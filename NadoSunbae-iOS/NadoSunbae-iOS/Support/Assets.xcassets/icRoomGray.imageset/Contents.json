@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "icRoomGray.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "scale" : "2x",
+      "filename" : "icRoomGray@2x.png",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "icRoomGray@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
