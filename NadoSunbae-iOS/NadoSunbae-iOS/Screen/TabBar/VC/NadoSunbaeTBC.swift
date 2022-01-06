@@ -35,9 +35,9 @@ extension NadoSunbaeTBC {
     /// 탭바 아이템 스타일 설정하는 메서드
     func configureTabBarItemStyle() {
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.medium12,
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.PretendardM(size: 12.0),
                                                           NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.medium12], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.PretendardM(size: 12.0)], for: .selected)
     }
     
     /// 탭바 구성하는 메서드

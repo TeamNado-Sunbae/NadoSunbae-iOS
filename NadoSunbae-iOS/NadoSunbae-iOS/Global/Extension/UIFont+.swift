@@ -9,24 +9,25 @@ import UIKit
 
 extension UIFont {
     
-    class var semiBold24: UIFont {
-        return UIFont(name: "Pretendard-SemiBold", size: 24.0)!
+    // MARK: Pretendard Font
+    class func PretendardL(size: CGFloat) -> UIFont {
+        return UIFont(name: "Pretendard-Light", size: size)!
     }
     
-    class var semiBold14: UIFont {
-        return UIFont(name: "Pretendard-SemiBold", size: 14.0)!
+    class func PretendardR(size: CGFloat) -> UIFont {
+        return UIFont(name: "Pretendard-Regular", size: size)!
     }
     
-    class var medium12: UIFont {
-        return UIFont(name: "Pretendard-Medium", size: 12.0)!
+    class func PretendardM(size: CGFloat) -> UIFont {
+        return UIFont(name: "Pretendard-Medium", size: size)!
     }
     
-    class var regular14: UIFont {
-        return UIFont(name: "Pretendard-Regular", size: 14.0)!
+    class func PretendardB(size: CGFloat) -> UIFont {
+        return UIFont(name: "Pretendard-Bold", size: size)!
     }
     
-    class var regular12: UIFont {
-        return UIFont(name: "Pretendard-Regular", size: 12.0)!
+    class func PretendardSB(size: CGFloat) -> UIFont {
+        return UIFont(name: "Pretendard-SemiBold", size: size)!
     }
 }
 
