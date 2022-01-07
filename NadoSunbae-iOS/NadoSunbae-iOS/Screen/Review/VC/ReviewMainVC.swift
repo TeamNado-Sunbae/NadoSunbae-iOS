@@ -15,6 +15,17 @@ class ReviewMainVC: UIViewController {
         super.viewDidLoad()
         addShadowToNaviBar()
     }
+    
+    @objc func showHalfModalView() {
+        let slideVC = HalfModalVC()
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func tapNaviBarBtn(_ sender: Any) {
+        showHalfModalView()
+    }
 }
 
 extension ReviewMainVC {
@@ -24,6 +35,12 @@ extension ReviewMainVC {
         naviBarView.layer.shadowRadius = 18
         naviBarView.layer.shadowOpacity = 1
         naviBarView.layer.masksToBounds = false
+    }
+}
+
+extension ReviewMainVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 
