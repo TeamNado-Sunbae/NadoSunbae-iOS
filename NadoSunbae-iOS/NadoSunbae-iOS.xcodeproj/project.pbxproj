@@ -56,7 +56,7 @@
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
 		33F02A832786F2160078F9B7 /* xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A822786F2160078F9B7 /* xib.swift */; };
-		33F02A852786F21E0078F9B7 /* cls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A842786F21E0078F9B7 /* cls.swift */; };
+		33F02A8B278889650078F9B7 /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,7 +110,7 @@
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
 		33F02A822786F2160078F9B7 /* xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xib.swift; sourceTree = "<group>"; };
-		33F02A842786F21E0078F9B7 /* cls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cls.swift; sourceTree = "<group>"; };
+		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -447,7 +447,7 @@
 		33F02A812786F2080078F9B7 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				33F02A842786F21E0078F9B7 /* cls.swift */,
+				33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -610,6 +610,7 @@
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
+				33F02A8B278889650078F9B7 /* NadoSunbaeBtn.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
@@ -617,7 +618,6 @@
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
-				33F02A852786F21E0078F9B7 /* cls.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				331364662785AE3B00E0C118 /* BaseCVC.swift in Sources */,
