@@ -59,6 +59,8 @@
 		77AEEB192788A0660016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB172788A0660016880B /* HalfModalVC.swift */; };
 		77AEEB1A2788A0660016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB182788A0660016880B /* HalfModalVC.xib */; };
 		77AEEB1C2788A2D70016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB1B2788A2D70016880B /* HalfModalPresentationController.swift */; };
+		77AEEB1F2788B5900016880B /* UICollectionViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB1E2788B5900016880B /* UICollectionViewRegisterable.swift */; };
+		77AEEB212788B5AD0016880B /* UITableViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB202788B5AD0016880B /* UITableViewRegisterable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,8 @@
 		77AEEB172788A0660016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB182788A0660016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB1B2788A2D70016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		77AEEB1E2788B5900016880B /* UICollectionViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewRegisterable.swift; sourceTree = "<group>"; };
+		77AEEB202788B5AD0016880B /* UITableViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewRegisterable.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -470,6 +474,8 @@
 		77AEEB1D2788B4670016880B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				77AEEB1E2788B5900016880B /* UICollectionViewRegisterable.swift */,
+				77AEEB202788B5AD0016880B /* UITableViewRegisterable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -614,8 +620,10 @@
 				331364622785AAA300E0C118 /* UITableViewCell+.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
+				77AEEB1F2788B5900016880B /* UICollectionViewRegisterable.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
+				77AEEB212788B5AD0016880B /* UITableViewRegisterable.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
