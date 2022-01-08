@@ -183,14 +183,6 @@
             <point key="canvasLocation" x="131.8840579710145" y="101.78571428571428"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Xqh-EM-8iC">
-            <size key="intrinsicContentSize" width="68" height="19"/>
-        </designable>
-        <designable name="yWh-jP-b8K">
-            <size key="intrinsicContentSize" width="103.5" height="20"/>
-        </designable>
-    </designables>
     <resources>
         <namedColor name="gray0">
             <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

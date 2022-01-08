@@ -10,7 +10,7 @@ import UIKit
  - Description:
  나도선배에서 자주 사용되는 텍스트필드
  */
-@IBDesignable
+//@IBDesignable
 class NadoTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)

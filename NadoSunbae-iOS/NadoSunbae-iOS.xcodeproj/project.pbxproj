@@ -55,12 +55,21 @@
 		331364C12786217400E0C118 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C02786217400E0C118 /* ReviewService.swift */; };
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
-		33F02A832786F2160078F9B7 /* xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A822786F2160078F9B7 /* xib.swift */; };
-		33F02A852786F21E0078F9B7 /* cls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A842786F21E0078F9B7 /* cls.swift */; };
 		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
+		33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */; };
+		33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D48278982E0000FB6C8 /* BaseNC.swift */; };
+		33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */; };
+		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
+		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
+		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
+		77AEEB462789AF380016880B /* MajorTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB422789AF380016880B /* MajorTVC.xib */; };
+		77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB472789AF4D0016880B /* AppContentDataModel.swift */; };
+		77AEEB4D2789AF900016880B /* UITableViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */; };
+		77AEEB4E2789AF900016880B /* UICollectionViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */; };
+		77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,12 +122,21 @@
 		331364C02786217400E0C118 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
-		33F02A822786F2160078F9B7 /* xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xib.swift; sourceTree = "<group>"; };
-		33F02A842786F21E0078F9B7 /* cls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cls.swift; sourceTree = "<group>"; };
 		5C485F21278965D000FCA5DF /* NadoTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoTextField.xib; sourceTree = "<group>"; };
 		5C485F232789661F00FCA5DF /* NadoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextField.swift; sourceTree = "<group>"; };
 		5C4ED929278949AC001EA6BB /* SignInSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInSB.storyboard; sourceTree = "<group>"; };
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeNaviBar.swift; sourceTree = "<group>"; };
+		33BE2D48278982E0000FB6C8 /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
+		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
+		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
+		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
+		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
+		77AEEB422789AF380016880B /* MajorTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MajorTVC.xib; sourceTree = "<group>"; };
+		77AEEB472789AF4D0016880B /* AppContentDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContentDataModel.swift; sourceTree = "<group>"; };
+		77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewRegisterable.swift; sourceTree = "<group>"; };
+		77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewRegisterable.swift; sourceTree = "<group>"; };
+		77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +198,7 @@
 				331364522785A8E900E0C118 /* Factory */,
 				331364412785A4B400E0C118 /* Class */,
 				331364422785A4BA00E0C118 /* Struct */,
+				77AEEB1D2788B4670016880B /* Protocol */,
 				331364B927861B9300E0C118 /* UIComponent */,
 				331364442785A4DE00E0C118 /* Extension */,
 				331364452785A4E700E0C118 /* Font */,
@@ -230,6 +249,7 @@
 			children = (
 				331364632785ADFE00E0C118 /* BaseVC.swift */,
 				331364652785AE3B00E0C118 /* BaseCVC.swift */,
+				33BE2D48278982E0000FB6C8 /* BaseNC.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -305,6 +325,7 @@
 		3313644B2785A7FB00E0C118 /* APIModels */ = {
 			isa = PBXGroup;
 			children = (
+				77AEEB262789713D0016880B /* Models */,
 				331364502785A85E00E0C118 /* GenericResponse.swift */,
 			);
 			path = APIModels;
@@ -356,6 +377,7 @@
 		3313648C2785D75100E0C118 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */,
 				3313648F2785D77100E0C118 /* ReviewMainVC.swift */,
 			);
 			path = VC;
@@ -448,8 +470,11 @@
 		33F02A802786F2020078F9B7 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				33F02A822786F2160078F9B7 /* xib.swift */,
 				5C485F21278965D000FCA5DF /* NadoTextField.xib */,
+				77AEEB402789AF380016880B /* HalfModalVC.swift */,
+				77AEEB3F2789AF380016880B /* HalfModalVC.xib */,
+				77AEEB412789AF380016880B /* MajorTVC.swift */,
+				77AEEB422789AF380016880B /* MajorTVC.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -457,8 +482,9 @@
 		33F02A812786F2080078F9B7 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				33F02A842786F21E0078F9B7 /* cls.swift */,
 				5C485F232789661F00FCA5DF /* NadoTextField.swift */,
+				33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */,
+				33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -494,6 +520,23 @@
 				5C4ED92B278949C4001EA6BB /* SignInVC.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		77AEEB1D2788B4670016880B /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */,
+				77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		77AEEB262789713D0016880B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,6 +603,7 @@
 				331364A02785D8CB00E0C118 /* ClassroomSB.storyboard in Resources */,
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
+				77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
 				331364AA2785D96100E0C118 /* MypageSB.storyboard in Resources */,
@@ -570,6 +614,7 @@
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
+				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +667,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,
 				331364A22785D8DD00E0C118 /* ClassroomMainVC.swift in Sources */,
 				3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */,
@@ -632,9 +678,9 @@
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
+				33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
-				33F02A832786F2160078F9B7 /* xib.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
 				331364622785AAA300E0C118 /* UITableViewCell+.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
@@ -644,7 +690,9 @@
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
+				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
+				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
 				331364C5278623EC00E0C118 /* s.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
@@ -652,12 +700,16 @@
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
+				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
+				77AEEB4D2789AF900016880B /* UITableViewRegisterable.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
+				77AEEB4E2789AF900016880B /* UICollectionViewRegisterable.swift in Sources */,
+				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
-				33F02A852786F21E0078F9B7 /* cls.swift in Sources */,
+				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				331364662785AE3B00E0C118 /* BaseCVC.swift in Sources */,

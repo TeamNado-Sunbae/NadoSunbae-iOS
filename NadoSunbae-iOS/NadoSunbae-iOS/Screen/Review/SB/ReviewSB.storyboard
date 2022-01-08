@@ -4,8 +4,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Medium.otf">
+            <string>Pretendard-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Review MainVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -14,13 +20,60 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulf-PI-yaI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="국어국문학과" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTe-n5-UNg">
+                                        <rect key="frame" x="16" y="56" width="104" height="24"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIU-m1-7pK">
+                                        <rect key="frame" x="120" y="44" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="MlB-mC-Vze"/>
+                                            <constraint firstAttribute="width" constant="48" id="XVM-yo-KJW"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="btnArrow"/>
+                                        <connections>
+                                            <action selector="tapNaviBarBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0VQ-hw-JTc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="CIU-m1-7pK" secondAttribute="bottom" constant="12" id="EU4-tv-rlA"/>
+                                    <constraint firstAttribute="height" constant="104" id="FNk-9w-ZrK"/>
+                                    <constraint firstItem="CIU-m1-7pK" firstAttribute="leading" secondItem="wTe-n5-UNg" secondAttribute="trailing" id="RLW-y7-AOL"/>
+                                    <constraint firstAttribute="bottom" secondItem="wTe-n5-UNg" secondAttribute="bottom" constant="24" id="oZa-Pg-14e"/>
+                                    <constraint firstItem="wTe-n5-UNg" firstAttribute="leading" secondItem="ulf-PI-yaI" secondAttribute="leading" constant="16" id="vfp-MN-eHo"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ulf-PI-yaI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="7CW-7e-m77"/>
+                            <constraint firstItem="ulf-PI-yaI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="O4A-LF-reu"/>
+                            <constraint firstItem="ulf-PI-yaI" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cD7-0S-vYC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="naviBarView" destination="ulf-PI-yaI" id="bER-cF-Pyk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-25" y="113"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btnArrow" width="48" height="48"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
