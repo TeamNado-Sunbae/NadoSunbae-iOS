@@ -1,18 +1,18 @@
 {
   "images" : [
     {
+      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "btnArrow.png",
-      "scale" : "1x"
+      "filename" : "icNoticeSmall.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "btnArrow@2x.png",
+      "filename" : "icNoticeSmall@2x.png",
       "scale" : "2x"
     },
     {
+      "filename" : "icNoticeSmall@3x.png",
       "idiom" : "universal",
-      "filename" : "btnArrow@3x.png",
       "scale" : "3x"
     }
   ],
