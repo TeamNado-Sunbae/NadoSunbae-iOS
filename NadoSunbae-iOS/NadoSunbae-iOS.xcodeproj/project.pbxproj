@@ -57,6 +57,8 @@
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
 		33F02A832786F2160078F9B7 /* xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A822786F2160078F9B7 /* xib.swift */; };
 		33F02A852786F21E0078F9B7 /* cls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A842786F21E0078F9B7 /* cls.swift */; };
+		5C485F22278965D000FCA5DF /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
+		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
 /* End PBXBuildFile section */
@@ -113,6 +115,8 @@
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
 		33F02A822786F2160078F9B7 /* xib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xib.swift; sourceTree = "<group>"; };
 		33F02A842786F21E0078F9B7 /* cls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cls.swift; sourceTree = "<group>"; };
+		5C485F21278965D000FCA5DF /* NadoTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoTextField.xib; sourceTree = "<group>"; };
+		5C485F232789661F00FCA5DF /* NadoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextField.swift; sourceTree = "<group>"; };
 		5C4ED929278949AC001EA6BB /* SignInSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInSB.storyboard; sourceTree = "<group>"; };
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -445,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				33F02A822786F2160078F9B7 /* xib.swift */,
+				5C485F21278965D000FCA5DF /* NadoTextField.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				33F02A842786F21E0078F9B7 /* cls.swift */,
+				5C485F232789661F00FCA5DF /* NadoTextField.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
 				331364A02785D8CB00E0C118 /* ClassroomSB.storyboard in Resources */,
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
+				5C485F22278965D000FCA5DF /* NadoTextField.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
 				331364AA2785D96100E0C118 /* MypageSB.storyboard in Resources */,
@@ -622,6 +629,7 @@
 				3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
+				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
@@ -794,7 +802,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = N4RT4KGQK9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -822,7 +830,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = N4RT4KGQK9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
