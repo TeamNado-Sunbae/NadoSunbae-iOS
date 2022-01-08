@@ -64,15 +64,24 @@
 		77AEEB242788C45C0016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		77AEEB252788C45C0016880B /* (null) in Resources */ = {isa = PBXBuildFile; };
 		77AEEB28278971610016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
-		77AEEB2A278998960016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB29278998960016880B /* HalfModalPresentationController.swift */; };
-		77AEEB2F278998D10016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB2B278998D10016880B /* MajorTVC.swift */; };
-		77AEEB30278998D10016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB2C278998D10016880B /* HalfModalVC.xib */; };
-		77AEEB31278998D10016880B /* MajorTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB2D278998D10016880B /* MajorTVC.xib */; };
-		77AEEB32278998D10016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB2E278998D10016880B /* HalfModalVC.swift */; };
-		77AEEB34278999180016880B /* AppContentDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB33278999180016880B /* AppContentDataModel.swift */; };
-		77AEEB37278999330016880B /* UICollectionViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB35278999330016880B /* UICollectionViewRegisterable.swift */; };
-		77AEEB38278999330016880B /* UITableViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB36278999330016880B /* UITableViewRegisterable.swift */; };
-		77AEEB3A278999790016880B /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB39278999790016880B /* NadoSunbaeBtn.swift */; };
+		77AEEB2A278998960016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		77AEEB2F278998D10016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		77AEEB30278998D10016880B /* (null) in Resources */ = {isa = PBXBuildFile; };
+		77AEEB31278998D10016880B /* (null) in Resources */ = {isa = PBXBuildFile; };
+		77AEEB32278998D10016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		77AEEB34278999180016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		77AEEB37278999330016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		77AEEB38278999330016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		77AEEB3A278999790016880B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
+		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
+		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
+		77AEEB462789AF380016880B /* MajorTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB422789AF380016880B /* MajorTVC.xib */; };
+		77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB472789AF4D0016880B /* AppContentDataModel.swift */; };
+		77AEEB4A2789AF670016880B /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB492789AF670016880B /* NadoSunbaeBtn.swift */; };
+		77AEEB4D2789AF900016880B /* UITableViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */; };
+		77AEEB4E2789AF900016880B /* UICollectionViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */; };
+		77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,15 +134,15 @@
 		331364C02786217400E0C118 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
-		33F02A842786F21E0078F9B7 /* cls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cls.swift; sourceTree = "<group>"; };
-		77AEEB172788A0660016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
-		77AEEB182788A0660016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
-		77AEEB1B2788A2D70016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
-		77AEEB1E2788B5900016880B /* UICollectionViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewRegisterable.swift; sourceTree = "<group>"; };
-		77AEEB202788B5AD0016880B /* UITableViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewRegisterable.swift; sourceTree = "<group>"; };
-		77AEEB222788C45C0016880B /* MajorTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
-		77AEEB232788C45C0016880B /* MajorTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MajorTVC.xib; sourceTree = "<group>"; };
-		77AEEB27278971610016880B /* AppContentDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentDataModel.swift; sourceTree = "<group>"; };
+		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
+		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
+		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
+		77AEEB422789AF380016880B /* MajorTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MajorTVC.xib; sourceTree = "<group>"; };
+		77AEEB472789AF4D0016880B /* AppContentDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContentDataModel.swift; sourceTree = "<group>"; };
+		77AEEB492789AF670016880B /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
+		77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewRegisterable.swift; sourceTree = "<group>"; };
+		77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewRegisterable.swift; sourceTree = "<group>"; };
+		77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,7 +381,7 @@
 		3313648C2785D75100E0C118 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				77AEEB29278998960016880B /* HalfModalPresentationController.swift */,
+				77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */,
 				3313648F2785D77100E0C118 /* ReviewMainVC.swift */,
 			);
 			path = VC;
@@ -465,10 +474,10 @@
 		33F02A802786F2020078F9B7 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				77AEEB2E278998D10016880B /* HalfModalVC.swift */,
-				77AEEB2C278998D10016880B /* HalfModalVC.xib */,
-				77AEEB2B278998D10016880B /* MajorTVC.swift */,
-				77AEEB2D278998D10016880B /* MajorTVC.xib */,
+				77AEEB402789AF380016880B /* HalfModalVC.swift */,
+				77AEEB3F2789AF380016880B /* HalfModalVC.xib */,
+				77AEEB412789AF380016880B /* MajorTVC.swift */,
+				77AEEB422789AF380016880B /* MajorTVC.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -476,7 +485,7 @@
 		33F02A812786F2080078F9B7 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				33F02A842786F21E0078F9B7 /* cls.swift */,
+				77AEEB492789AF670016880B /* NadoSunbaeBtn.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -492,8 +501,8 @@
 		77AEEB1D2788B4670016880B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				77AEEB35278999330016880B /* UICollectionViewRegisterable.swift */,
-				77AEEB36278999330016880B /* UITableViewRegisterable.swift */,
+				77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */,
+				77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -501,7 +510,7 @@
 		77AEEB262789713D0016880B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				77AEEB33278999180016880B /* AppContentDataModel.swift */,
+				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -569,7 +578,8 @@
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
 				331364A02785D8CB00E0C118 /* ClassroomSB.storyboard in Resources */,
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
-				77AEEB31278998D10016880B /* MajorTVC.xib in Resources */,
+				77AEEB31278998D10016880B /* (null) in Resources */,
+				77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
 				331364AA2785D96100E0C118 /* MypageSB.storyboard in Resources */,
@@ -578,10 +588,11 @@
 				3313647E2785BBAF00E0C118 /* Pretendard-Regular.otf in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				77AEEB1A2788A0660016880B /* (null) in Resources */,
-				77AEEB30278998D10016880B /* HalfModalVC.xib in Resources */,
+				77AEEB30278998D10016880B /* (null) in Resources */,
 				77AEEB252788C45C0016880B /* (null) in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
+				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,26 +645,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77AEEB3A278999790016880B /* NadoSunbaeBtn.swift in Sources */,
+				77AEEB4A2789AF670016880B /* NadoSunbaeBtn.swift in Sources */,
+				77AEEB3A278999790016880B /* (null) in Sources */,
+				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,
-				77AEEB32278998D10016880B /* HalfModalVC.swift in Sources */,
-				77AEEB38278999330016880B /* UITableViewRegisterable.swift in Sources */,
+				77AEEB32278998D10016880B /* (null) in Sources */,
+				77AEEB38278999330016880B /* (null) in Sources */,
 				331364A22785D8DD00E0C118 /* ClassroomMainVC.swift in Sources */,
 				3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */,
-				77AEEB2F278998D10016880B /* MajorTVC.swift in Sources */,
+				77AEEB2F278998D10016880B /* (null) in Sources */,
 				3313646E2785AF9A00E0C118 /* UILabel+.swift in Sources */,
-				77AEEB2A278998960016880B /* HalfModalPresentationController.swift in Sources */,
+				77AEEB2A278998960016880B /* (null) in Sources */,
 				3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */,
 				77AEEB28278971610016880B /* (null) in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
-				77AEEB34278999180016880B /* AppContentDataModel.swift in Sources */,
+				77AEEB34278999180016880B /* (null) in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
-				77AEEB37278999330016880B /* UICollectionViewRegisterable.swift in Sources */,
+				77AEEB37278999330016880B /* (null) in Sources */,
 				331364622785AAA300E0C118 /* UITableViewCell+.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
@@ -666,18 +679,24 @@
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				77AEEB192788A0660016880B /* (null) in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
+				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
 				331364C5278623EC00E0C118 /* s.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				77AEEB242788C45C0016880B /* (null) in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
+				33F02A8B278889650078F9B7 /* (null) in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
+				77AEEB4D2789AF900016880B /* UITableViewRegisterable.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
+				77AEEB4E2789AF900016880B /* UICollectionViewRegisterable.swift in Sources */,
+				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
+				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				77AEEB1C2788A2D70016880B /* (null) in Sources */,
