@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum FontWeight {
+    case light, regular, medium, bold, semiBold
+}
+
 extension UIFont {
     
     // MARK: Pretendard Font
