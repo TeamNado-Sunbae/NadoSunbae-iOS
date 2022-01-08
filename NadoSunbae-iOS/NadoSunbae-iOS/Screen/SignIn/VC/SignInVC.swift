@@ -7,6 +7,8 @@
 // TODO: TextField clear Btn 에셋 나오면 수정
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SignInVC: BaseVC {
     // MARK: Properties
@@ -15,12 +17,37 @@ class SignInVC: BaseVC {
     @IBOutlet weak var signInBtn: NadoSunbaeBtn!
     @IBOutlet weak var infoLabel: UILabel!
     
+    let disposeBag = DisposeBag()
+
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
     }
+    
+    // MARK: Private Methods
     private func configureUI() {
         infoLabel.isHidden = true
+        signInBtn.isEnabled = false
+        checkEmailIsValid()
+    }
+    
+    /// 이메일 유효성 검사
+    private func checkEmailIsValid() {
+        emailTextField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                if changedText.contains("@") && changedText.contains(".") {
+                    self.signInBtn.isActivated = true
+                    self.signInBtn.isEnabled = true
+                    self.infoLabel.isHidden = true
+                } else {
+                    self.infoLabel.isHidden = false
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: IBAction
