@@ -15,7 +15,7 @@ protocol UITableViewRegisterable {
 extension UITableViewRegisterable where Self: UITableViewCell {
     static func register(target: UITableView) {
         if self.isFromNib {
-          target.register(UINib(nibName: Self.className, bundle: nil), forCellReuseIdentifier: Self.className)
+            target.register(UINib(nibName: Self.className, bundle: nil), forCellReuseIdentifier: Self.className)
         } else {
             target.register(Self.self, forCellReuseIdentifier: Self.className)
         }

@@ -13,7 +13,7 @@ class HalfModalVC: UIViewController {
     @IBOutlet weak var reviewTV: UITableView!
     @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
     
-    // MARK: Vars
+    // MARK: Properties
     var majorList: [ReviewData] = []
     
     // MARK: Life Cycle Part
