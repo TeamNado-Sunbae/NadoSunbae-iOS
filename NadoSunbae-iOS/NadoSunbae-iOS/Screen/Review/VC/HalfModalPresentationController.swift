@@ -53,7 +53,7 @@ class HalfModalPresentationController: UIPresentationController {
     /// 하프 모달 뷰 radius 설정
   override func containerViewWillLayoutSubviews() {
       super.containerViewWillLayoutSubviews()
-    presentedView!.roundCorners([.topLeft, .topRight], radius: 8)
+      presentedView!.makeRounded(cornerRadius: 8)
   }
 
   override func containerViewDidLayoutSubviews() {
@@ -65,17 +65,6 @@ class HalfModalPresentationController: UIPresentationController {
     /// dismiss처리
   @objc func dismissController(){
       self.presentedViewController.dismiss(animated: true, completion: nil)
-  }
-}
-
-// MARK: - Extension Part
-extension UIView {
-  func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-      let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners,
-                              cornerRadii: CGSize(width: radius, height: radius))
-      let mask = CAShapeLayer()
-      mask.path = path.cgPath
-      layer.mask = mask
   }
 }
 
