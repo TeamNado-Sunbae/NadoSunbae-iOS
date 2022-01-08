@@ -54,8 +54,16 @@ extension UIView {
         views.forEach { self.addSubview($0) }
     }
     
+    /// 다수의 뷰를 한번에 addSubview+Then Closure 사용하게 해주는 메서드
+    @discardableResult
+    func adds<T: UIView>(_ subviews: [T], then closure: (([T]) -> Void)? = nil) -> [T] {
+        subviews.forEach { addSubview($0) }
+        closure?(subviews)
+        return subviews
+    }
+    
     /// UIView 의 모서리가 둥근 정도를 설정하는 메서드
-    func makeRounded(cornerRadius : CGFloat?){
+    func makeRounded(cornerRadius : CGFloat?) {
         if let cornerRadius_ = cornerRadius {
             self.layer.cornerRadius = cornerRadius_
         }  else {
