@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="0oA-r6-cBN">
+        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" id="0oA-r6-cBN" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="350" height="34"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -17,4 +17,9 @@
             <point key="canvasLocation" x="194.20289855072465" y="107.8125"/>
         </textField>
     </objects>
+    <designables>
+        <designable name="0oA-r6-cBN">
+            <size key="intrinsicContentSize" width="28" height="27.5"/>
+        </designable>
+    </designables>
 </document>

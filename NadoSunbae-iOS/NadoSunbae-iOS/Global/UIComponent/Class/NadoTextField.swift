@@ -29,6 +29,5 @@ class NadoTextField: UITextField {
         self.addLeftPadding(16)
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.gray1.cgColor
-        self.clearButtonMode = .whileEditing
     }
 }

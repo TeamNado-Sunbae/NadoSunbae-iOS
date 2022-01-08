@@ -9,12 +9,10 @@ import UIKit
 
 class SignInVC: BaseVC {
     // MARK: Properties
-    
     @IBOutlet weak var emailTextField: NadoTextField!
     @IBOutlet weak var pwTextField: NadoTextField!
     
     // MARK: LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,7 +21,14 @@ class SignInVC: BaseVC {
     }
     
     // MARK: IBAction
-
+    @IBAction func tapEmailClearBtn(_ sender: Any) {
+        emailTextField.text = ""
+    }
+    
+    @IBAction func tapPWClearBtn(_ sender: Any) {
+        pwTextField.text = ""
+    }
+    
     @IBAction func tapSignUpBtn(_ sender: Any) {
     }
     

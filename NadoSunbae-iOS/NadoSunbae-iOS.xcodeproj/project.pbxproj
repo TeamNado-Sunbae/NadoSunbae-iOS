@@ -57,10 +57,10 @@
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
 		33F02A832786F2160078F9B7 /* xib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A822786F2160078F9B7 /* xib.swift */; };
 		33F02A852786F21E0078F9B7 /* cls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A842786F21E0078F9B7 /* cls.swift */; };
-		5C485F22278965D000FCA5DF /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
+		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -559,7 +559,7 @@
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
 				331364A02785D8CB00E0C118 /* ClassroomSB.storyboard in Resources */,
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
-				5C485F22278965D000FCA5DF /* NadoTextField.xib in Resources */,
+				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
 				331364AA2785D96100E0C118 /* MypageSB.storyboard in Resources */,

@@ -25,7 +25,7 @@
                                 <rect key="frame" x="83" y="172" width="248" height="57.5"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@korea.ac.kr" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yWh-jP-b8K" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@korea.ac.kr" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yWh-jP-b8K" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="308.5" width="382" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="ktW-KI-N6M"/>
@@ -33,7 +33,7 @@
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xqh-EM-8iC" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xqh-EM-8iC" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="372.5" width="382" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="9S8-Dj-PjZ"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eop-oW-jiS">
-                                <rect key="frame" x="83" y="435.5" width="42" height="26"/>
+                                <rect key="frame" x="83" y="435" width="42" height="27"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="회원가입">
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzK-wN-DQo">
-                                <rect key="frame" x="174" y="435.5" width="66" height="26"/>
+                                <rect key="frame" x="174" y="435" width="66" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="66" id="Fgi-c9-HpT"/>
                                 </constraints>
@@ -83,7 +83,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjf-23-icp">
-                                <rect key="frame" x="289" y="435.5" width="42" height="26"/>
+                                <rect key="frame" x="289" y="435" width="42" height="27"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="문의하기">
@@ -113,11 +113,35 @@
                                     <constraint firstAttribute="height" constant="16" id="gr4-lV-cfT"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YX-fd-Fbw">
+                                <rect key="frame" x="379" y="327.5" width="10" height="10"/>
+                                <color key="backgroundColor" name="gray2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5YX-fd-Fbw" secondAttribute="height" multiplier="1:1" id="gtC-x0-QIN"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="tapEmailClearBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fgn-NZ-Qu4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3E-YD-aE9">
+                                <rect key="frame" x="379" y="391.5" width="10" height="10"/>
+                                <color key="backgroundColor" name="gray2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="r3E-YD-aE9" secondAttribute="height" multiplier="1:1" id="kgL-jz-f0H"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="tapPWClearBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5QU-il-qiX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
+                            <constraint firstItem="5YX-fd-Fbw" firstAttribute="leading" secondItem="yWh-jP-b8K" secondAttribute="trailing" constant="-19" id="0QE-j6-oit"/>
                             <constraint firstItem="OZH-vv-xh5" firstAttribute="leading" secondItem="TzK-wN-DQo" secondAttribute="trailing" constant="24" id="27F-V8-IVQ"/>
+                            <constraint firstItem="r3E-YD-aE9" firstAttribute="leading" secondItem="Xqh-EM-8iC" secondAttribute="trailing" constant="-19" id="644-lA-1Kg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2nM-ue-pEV" secondAttribute="trailing" constant="20" id="7Bw-oL-mXm"/>
                             <constraint firstItem="Iqf-TQ-SoZ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="104" id="7Sq-qf-mWw"/>
                             <constraint firstItem="nYp-gR-58c" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.6" id="9R4-YE-gW9"/>
@@ -125,6 +149,7 @@
                             <constraint firstItem="nYp-gR-58c" firstAttribute="top" secondItem="Iqf-TQ-SoZ" secondAttribute="bottom" constant="8" id="BbM-2V-2ab"/>
                             <constraint firstItem="2nM-ue-pEV" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="CPz-OO-S3q"/>
                             <constraint firstItem="bTK-ay-mQ6" firstAttribute="leading" secondItem="Eop-oW-jiS" secondAttribute="trailing" constant="24" id="Ccn-xH-wfa"/>
+                            <constraint firstItem="r3E-YD-aE9" firstAttribute="bottom" secondItem="Xqh-EM-8iC" secondAttribute="bottom" constant="-19" id="G7f-2g-Gv2"/>
                             <constraint firstItem="TzK-wN-DQo" firstAttribute="centerY" secondItem="bTK-ay-mQ6" secondAttribute="centerY" id="LLB-wH-b72"/>
                             <constraint firstItem="yWh-jP-b8K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="NJA-k8-mH9"/>
                             <constraint firstItem="TzK-wN-DQo" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="TQB-mv-U7u"/>
@@ -139,6 +164,9 @@
                             <constraint firstItem="gjf-23-icp" firstAttribute="leading" secondItem="OZH-vv-xh5" secondAttribute="trailing" constant="24" id="fcy-Mj-khi"/>
                             <constraint firstItem="nYp-gR-58c" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fzv-9J-29i"/>
                             <constraint firstItem="TzK-wN-DQo" firstAttribute="leading" secondItem="bTK-ay-mQ6" secondAttribute="trailing" constant="24" id="gDP-G3-ahr"/>
+                            <constraint firstItem="5YX-fd-Fbw" firstAttribute="bottom" secondItem="yWh-jP-b8K" secondAttribute="bottom" constant="-19" id="kY9-Te-j3w"/>
+                            <constraint firstItem="r3E-YD-aE9" firstAttribute="top" secondItem="Xqh-EM-8iC" secondAttribute="top" constant="19" id="na6-Pk-5in"/>
+                            <constraint firstItem="5YX-fd-Fbw" firstAttribute="top" secondItem="yWh-jP-b8K" secondAttribute="top" constant="19" id="oLI-Zt-CYZ"/>
                             <constraint firstItem="2nM-ue-pEV" firstAttribute="top" secondItem="nYp-gR-58c" secondAttribute="bottom" constant="8" id="seF-Qq-fAY"/>
                             <constraint firstItem="bTK-ay-mQ6" firstAttribute="top" secondItem="Xqh-EM-8iC" secondAttribute="bottom" constant="20" id="uhk-6S-1Hw"/>
                             <constraint firstItem="Xqh-EM-8iC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="vDv-ZJ-QJ8"/>
@@ -157,15 +185,18 @@
     </scenes>
     <designables>
         <designable name="Xqh-EM-8iC">
-            <size key="intrinsicContentSize" width="52" height="18"/>
+            <size key="intrinsicContentSize" width="68" height="19"/>
         </designable>
         <designable name="yWh-jP-b8K">
-            <size key="intrinsicContentSize" width="86.5" height="19"/>
+            <size key="intrinsicContentSize" width="103.5" height="20"/>
         </designable>
     </designables>
     <resources>
         <namedColor name="gray0">
             <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray2">
+            <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray3">
             <color red="0.58039215686274515" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
