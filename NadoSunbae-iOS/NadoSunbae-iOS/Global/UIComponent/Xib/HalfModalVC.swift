@@ -11,6 +11,7 @@ class HalfModalVC: UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet weak var reviewTV: UITableView!
+    @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
     
     // MARK: Vars
     var majorList: [ReviewData] = []
@@ -20,6 +21,7 @@ class HalfModalVC: UIViewController {
         super.viewDidLoad()
         initMajorList()
         setUpTV()
+        configureBtnUI()
     }
     
     // MARK: IBAction
@@ -50,6 +52,20 @@ class HalfModalVC: UIViewController {
         
         reviewTV.dataSource = self
         reviewTV.delegate = self
+    }
+    /// 선택완료 버튼 UI  setting 함수
+    private func configureBtnUI() {
+        majorChooseBtn.isActivated = false
+        
+        switch majorChooseBtn.isActivated {
+            
+        case true:
+            print("true")
+            majorChooseBtn.setTitle("선택 완료", for: .normal)
+        case false:
+            print("false")
+            majorChooseBtn.setTitle("선택 완료", for: .normal)
+        }
     }
 }
 

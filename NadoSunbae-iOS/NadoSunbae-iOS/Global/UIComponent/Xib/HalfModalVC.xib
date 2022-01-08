@@ -15,6 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HalfModalVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="majorChooseBtn" destination="6Ge-lL-3Yc" id="wLc-o1-nG4"/>
                 <outlet property="reviewTV" destination="h1f-Qa-f52" id="wNR-zk-w67"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -49,16 +50,16 @@
                         <constraint firstAttribute="height" constant="1" id="ylO-Ni-OJu"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-lL-3Yc">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-lL-3Yc" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                     <rect key="frame" x="32" y="538" width="311" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="kAJ-le-XcL"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="h1f-Qa-f52">
-                    <rect key="frame" x="16" y="83" width="343" height="439"/>
+                    <rect key="frame" x="16" y="83" width="343" height="428"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -70,7 +71,7 @@
                 <constraint firstItem="6Ge-lL-3Yc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="GFz-53-G1t"/>
                 <constraint firstItem="Z8a-g7-e5j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="I3u-vv-e8u"/>
                 <constraint firstItem="hl3-EK-zrp" firstAttribute="top" secondItem="Z8a-g7-e5j" secondAttribute="bottom" constant="15" id="Kk4-xC-Nla"/>
-                <constraint firstItem="6Ge-lL-3Yc" firstAttribute="top" secondItem="h1f-Qa-f52" secondAttribute="bottom" constant="16" id="OMl-q0-GzP"/>
+                <constraint firstItem="6Ge-lL-3Yc" firstAttribute="top" secondItem="h1f-Qa-f52" secondAttribute="bottom" constant="27" id="OMl-q0-GzP"/>
                 <constraint firstItem="h1f-Qa-f52" firstAttribute="top" secondItem="hl3-EK-zrp" secondAttribute="bottom" constant="24" id="Ydb-u1-Inh"/>
                 <constraint firstItem="hl3-EK-zrp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Yoc-dW-QAw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="h1f-Qa-f52" secondAttribute="trailing" constant="16" id="bre-Jm-SUE"/>
