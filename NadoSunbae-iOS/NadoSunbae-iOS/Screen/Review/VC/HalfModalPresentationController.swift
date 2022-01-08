@@ -9,9 +9,12 @@ import UIKit
 
 class HalfModalPresentationController: UIPresentationController {
 
+    // MARK: Vars & Lets
+    
   let blurEffectView: UIVisualEffectView!
   var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
   
+    /// 뒷 배경 블랙 블러 처리
   override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
       let blurEffect = UIBlurEffect(style: .dark)
       blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -22,12 +25,14 @@ class HalfModalPresentationController: UIPresentationController {
       self.blurEffectView.addGestureRecognizer(tapGestureRecognizer)
   }
   
+    /// 보여질 하프 모달 뷰 프레임 설정(높이 180 ~ 632 슬라이드, 보여지는 높이는 632)
   override var frameOfPresentedViewInContainerView: CGRect {
       CGRect(origin: CGPoint(x: 0, y: self.containerView!.frame.height * 180/812),
              size: CGSize(width: self.containerView!.frame.width, height: self.containerView!.frame.height *
                           632/812))
   }
 
+    /// present 시작할 때
   override func presentationTransitionWillBegin() {
       self.blurEffectView.alpha = 0
       self.containerView?.addSubview(blurEffectView)
@@ -36,6 +41,7 @@ class HalfModalPresentationController: UIPresentationController {
       }, completion: { (UIViewControllerTransitionCoordinatorContext) in })
   }
   
+    /// dismiss 시작될 때
   override func dismissalTransitionWillBegin() {
       self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
           self.blurEffectView.alpha = 0
@@ -44,6 +50,7 @@ class HalfModalPresentationController: UIPresentationController {
       })
   }
   
+    /// 하프 모달 뷰 radius 설정
   override func containerViewWillLayoutSubviews() {
       super.containerViewWillLayoutSubviews()
     presentedView!.roundCorners([.topLeft, .topRight], radius: 8)
@@ -55,11 +62,13 @@ class HalfModalPresentationController: UIPresentationController {
       blurEffectView.frame = containerView!.bounds
   }
 
+    /// dismiss처리
   @objc func dismissController(){
       self.presentedViewController.dismiss(animated: true, completion: nil)
   }
 }
 
+// MARK: - Extension Part
 extension UIView {
   func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
       let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners,

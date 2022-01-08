@@ -61,6 +61,9 @@
 		77AEEB1C2788A2D70016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB1B2788A2D70016880B /* HalfModalPresentationController.swift */; };
 		77AEEB1F2788B5900016880B /* UICollectionViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB1E2788B5900016880B /* UICollectionViewRegisterable.swift */; };
 		77AEEB212788B5AD0016880B /* UITableViewRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB202788B5AD0016880B /* UITableViewRegisterable.swift */; };
+		77AEEB242788C45C0016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB222788C45C0016880B /* MajorTVC.swift */; };
+		77AEEB252788C45C0016880B /* MajorTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB232788C45C0016880B /* MajorTVC.xib */; };
+		77AEEB28278971610016880B /* AppContentDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB27278971610016880B /* AppContentDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +122,9 @@
 		77AEEB1B2788A2D70016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
 		77AEEB1E2788B5900016880B /* UICollectionViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB202788B5AD0016880B /* UITableViewRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewRegisterable.swift; sourceTree = "<group>"; };
+		77AEEB222788C45C0016880B /* MajorTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
+		77AEEB232788C45C0016880B /* MajorTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MajorTVC.xib; sourceTree = "<group>"; };
+		77AEEB27278971610016880B /* AppContentDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentDataModel.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +311,7 @@
 		3313644B2785A7FB00E0C118 /* APIModels */ = {
 			isa = PBXGroup;
 			children = (
+				77AEEB262789713D0016880B /* Models */,
 				331364502785A85E00E0C118 /* GenericResponse.swift */,
 			);
 			path = APIModels;
@@ -451,6 +458,8 @@
 			children = (
 				77AEEB172788A0660016880B /* HalfModalVC.swift */,
 				77AEEB182788A0660016880B /* HalfModalVC.xib */,
+				77AEEB222788C45C0016880B /* MajorTVC.swift */,
+				77AEEB232788C45C0016880B /* MajorTVC.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -478,6 +487,14 @@
 				77AEEB202788B5AD0016880B /* UITableViewRegisterable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		77AEEB262789713D0016880B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				77AEEB27278971610016880B /* AppContentDataModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -551,6 +568,7 @@
 				3313647E2785BBAF00E0C118 /* Pretendard-Regular.otf in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				77AEEB1A2788A0660016880B /* HalfModalVC.xib in Resources */,
+				77AEEB252788C45C0016880B /* MajorTVC.xib in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
 			);
@@ -610,6 +628,7 @@
 				3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */,
 				3313646E2785AF9A00E0C118 /* UILabel+.swift in Sources */,
 				3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */,
+				77AEEB28278971610016880B /* AppContentDataModel.swift in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
@@ -631,6 +650,7 @@
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				331364C5278623EC00E0C118 /* s.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
+				77AEEB242788C45C0016880B /* MajorTVC.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
