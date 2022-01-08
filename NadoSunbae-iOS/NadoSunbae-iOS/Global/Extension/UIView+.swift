@@ -74,6 +74,15 @@ extension UIView {
         self.layer.masksToBounds = true
     }
     
+    /// UIView 의 모서리가 둥근 정도를 방향과 함께 설정하는 메서드
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+    
     /// 진동 온 것처럼 흔들리게 하는 메서드
     func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
