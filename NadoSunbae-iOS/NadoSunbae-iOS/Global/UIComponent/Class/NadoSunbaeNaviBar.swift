@@ -38,7 +38,7 @@ class NadoSunbaeNaviBar: UIView {
     }
 
     private (set) lazy var backBtn = UIButton().then {
-        $0.setImgByName(name: "btnArrow", selectedName: nil)
+        $0.setImgByName(name: "btnBack", selectedName: nil)
         $0.contentMode = .scaleAspectFit
     }
     
