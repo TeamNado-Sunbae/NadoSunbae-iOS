@@ -8,7 +8,28 @@
 import UIKit
 
 class SignInVC: BaseVC {
+    // MARK: Properties
+    
+    @IBOutlet weak var emailTextField: NadoTextField!
+    @IBOutlet weak var pwTextField: NadoTextField!
+    
+    // MARK: LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    private func configureUI() {
+        
+    }
+    
+    // MARK: IBAction
+
+    @IBAction func tapSignUpBtn(_ sender: Any) {
+    }
+    
+    @IBAction func tapFindPWBtn(_ sender: Any) {
+    }
+    
+    @IBAction func tapContactBtn(_ sender: Any) {
     }
 }
