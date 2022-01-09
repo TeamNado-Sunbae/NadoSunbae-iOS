@@ -59,14 +59,100 @@
                                     <constraint firstItem="TdD-X3-qXU" firstAttribute="leading" secondItem="UGt-Nh-kOz" secondAttribute="trailing" constant="8" id="zWS-sL-Qmv"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkZ-a5-6uJ">
+                                <rect key="frame" x="16" y="194.5" width="382" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8c-Q5-EqV">
+                                        <rect key="frame" x="24" y="12" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="j8c-Q5-EqV" secondAttribute="height" multiplier="1:1" id="HrL-Qr-fmg"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="btn_check"/>
+                                        <connections>
+                                            <action selector="tapCheckPrivacyBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sk2-QR-dlC"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개인정보 수집 동의 (필수)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RW-oV-GDZ">
+                                        <rect key="frame" x="64" y="18.5" width="151.5" height="19"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="15"/>
+                                        <color key="textColor" name="mainBlack"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOJ-s1-Lke">
+                                        <rect key="frame" x="326" y="0.0" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jOJ-s1-Lke" secondAttribute="height" multiplier="1:1" id="yFx-0I-AAb"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="btn_arrow"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jOJ-s1-Lke" secondAttribute="bottom" id="E2p-q7-9JG"/>
+                                    <constraint firstItem="jOJ-s1-Lke" firstAttribute="top" secondItem="dkZ-a5-6uJ" secondAttribute="top" id="FlG-lp-7jp"/>
+                                    <constraint firstAttribute="trailing" secondItem="jOJ-s1-Lke" secondAttribute="trailing" id="Q0V-yl-7aA"/>
+                                    <constraint firstItem="j8c-Q5-EqV" firstAttribute="top" secondItem="dkZ-a5-6uJ" secondAttribute="top" constant="12" id="QCr-QD-Qsc"/>
+                                    <constraint firstItem="7RW-oV-GDZ" firstAttribute="leading" secondItem="j8c-Q5-EqV" secondAttribute="trailing" constant="8" id="RgS-Nt-H3b"/>
+                                    <constraint firstAttribute="bottom" secondItem="j8c-Q5-EqV" secondAttribute="bottom" constant="12" id="VsR-58-klu"/>
+                                    <constraint firstItem="j8c-Q5-EqV" firstAttribute="leading" secondItem="dkZ-a5-6uJ" secondAttribute="leading" constant="24" id="rRG-ct-wFS"/>
+                                    <constraint firstItem="7RW-oV-GDZ" firstAttribute="centerY" secondItem="dkZ-a5-6uJ" secondAttribute="centerY" id="rRh-Q3-5NX"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaH-AQ-Vza">
+                                <rect key="frame" x="16" y="250.5" width="382" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTQ-DV-3hl">
+                                        <rect key="frame" x="24" y="12" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="fTQ-DV-3hl" secondAttribute="height" multiplier="1:1" id="1sK-KU-aN7"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="btn_check"/>
+                                        <connections>
+                                            <action selector="tapCheckServiceTermBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="46G-vw-uHG"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서비스 이용 약관 동의 (필수)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em3-2d-oev">
+                                        <rect key="frame" x="64" y="18.5" width="168" height="19"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="15"/>
+                                        <color key="textColor" name="mainBlack"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ehl-ol-CEQ">
+                                        <rect key="frame" x="326" y="0.0" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Ehl-ol-CEQ" secondAttribute="height" multiplier="1:1" id="RZv-iw-qHg"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="btn_arrow"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fTQ-DV-3hl" firstAttribute="top" secondItem="kaH-AQ-Vza" secondAttribute="top" constant="12" id="7fV-Py-HJK"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ehl-ol-CEQ" secondAttribute="bottom" id="Ol6-sc-ZZ8"/>
+                                    <constraint firstItem="fTQ-DV-3hl" firstAttribute="leading" secondItem="kaH-AQ-Vza" secondAttribute="leading" constant="24" id="TZL-Fx-2jS"/>
+                                    <constraint firstItem="em3-2d-oev" firstAttribute="centerY" secondItem="kaH-AQ-Vza" secondAttribute="centerY" id="UdH-kB-a9C"/>
+                                    <constraint firstItem="Ehl-ol-CEQ" firstAttribute="top" secondItem="kaH-AQ-Vza" secondAttribute="top" id="bKI-oc-5MJ"/>
+                                    <constraint firstItem="em3-2d-oev" firstAttribute="leading" secondItem="fTQ-DV-3hl" secondAttribute="trailing" constant="8" id="fsh-Kl-D5c"/>
+                                    <constraint firstAttribute="bottom" secondItem="fTQ-DV-3hl" secondAttribute="bottom" constant="12" id="m13-bX-NQP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ehl-ol-CEQ" secondAttribute="trailing" id="qb2-8d-BgA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
                             <constraint firstItem="YjF-Gk-Rae" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="1pO-vB-dup"/>
+                            <constraint firstItem="dkZ-a5-6uJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Guq-0s-qhZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YjF-Gk-Rae" secondAttribute="trailing" constant="16" id="Hqe-1p-0l5"/>
+                            <constraint firstItem="dkZ-a5-6uJ" firstAttribute="top" secondItem="YjF-Gk-Rae" secondAttribute="bottom" id="KdK-ih-fRd"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NO6-aU-rOU"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kaH-AQ-Vza" secondAttribute="trailing" constant="16" id="Ove-jZ-Oyk"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ow9-Bv-Hrx"/>
+                            <constraint firstItem="kaH-AQ-Vza" firstAttribute="top" secondItem="dkZ-a5-6uJ" secondAttribute="bottom" id="V4i-6u-sXR"/>
+                            <constraint firstItem="kaH-AQ-Vza" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="fJL-rA-wmr"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dkZ-a5-6uJ" secondAttribute="trailing" constant="16" id="h3d-ts-g7i"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iO1-dG-APo"/>
                             <constraint firstItem="YjF-Gk-Rae" firstAttribute="top" secondItem="mSG-8v-yL9" secondAttribute="bottom" constant="33" id="k4y-Eh-RQc"/>
                             <constraint firstItem="YjF-Gk-Rae" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0689" id="sB2-xv-AMf"/>
@@ -75,6 +161,8 @@
                     <connections>
                         <outlet property="allCheckBtn" destination="UGt-Nh-kOz" id="Lvx-YO-fod"/>
                         <outlet property="allCheckView" destination="YjF-Gk-Rae" id="wej-Al-gDN"/>
+                        <outlet property="checkPrivacyBtn" destination="j8c-Q5-EqV" id="QyH-jB-q5h"/>
+                        <outlet property="checkServiceTermBtn" destination="fTQ-DV-3hl" id="oar-z3-NpN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -83,6 +171,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn_arrow" width="48" height="48"/>
         <image name="btn_check" width="32" height="32"/>
         <namedColor name="mainBlack">
             <color red="0.0" green="0.10980392156862745" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
