@@ -58,6 +58,8 @@
 		33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */; };
 		33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D48278982E0000FB6C8 /* BaseNC.swift */; };
 		33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */; };
+		5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73378278A8F4900806B17 /* NadoAlertVC.swift */; };
+		5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -121,6 +123,8 @@
 		33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeNaviBar.swift; sourceTree = "<group>"; };
 		33BE2D48278982E0000FB6C8 /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
+		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
+		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -465,6 +469,7 @@
 				77AEEB3F2789AF380016880B /* HalfModalVC.xib */,
 				77AEEB412789AF380016880B /* MajorTVC.swift */,
 				77AEEB422789AF380016880B /* MajorTVC.xib */,
+				5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 			children = (
 				33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */,
 				33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */,
+				5CA73378278A8F4900806B17 /* NadoAlertVC.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -566,7 +572,6 @@
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
 				331364A02785D8CB00E0C118 /* ClassroomSB.storyboard in Resources */,
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
-				77AEEB31278998D10016880B /* (null) in Resources */,
 				77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
@@ -575,12 +580,10 @@
 				3313647F2785BBB100E0C118 /* Pretendard-SemiBold.otf in Resources */,
 				3313647E2785BBAF00E0C118 /* Pretendard-Regular.otf in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
-				77AEEB1A2788A0660016880B /* (null) in Resources */,
-				77AEEB30278998D10016880B /* (null) in Resources */,
-				77AEEB252788C45C0016880B /* (null) in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
+				5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,18 +636,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77AEEB3A278999790016880B /* (null) in Sources */,
+				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,
-				77AEEB32278998D10016880B /* (null) in Sources */,
-				77AEEB38278999330016880B /* (null) in Sources */,
 				331364A22785D8DD00E0C118 /* ClassroomMainVC.swift in Sources */,
 				3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */,
-				77AEEB2F278998D10016880B /* (null) in Sources */,
 				3313646E2785AF9A00E0C118 /* UILabel+.swift in Sources */,
-				77AEEB2A278998960016880B /* (null) in Sources */,
 				3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */,
-				77AEEB28278971610016880B /* (null) in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
@@ -653,14 +651,11 @@
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
-				77AEEB37278999330016880B /* (null) in Sources */,
 				331364622785AAA300E0C118 /* UITableViewCell+.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
-				77AEEB1F2788B5900016880B /* (null) in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
-				77AEEB212788B5AD0016880B /* (null) in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
@@ -669,10 +664,8 @@
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
 				331364C5278623EC00E0C118 /* s.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
-				77AEEB242788C45C0016880B /* (null) in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
-				33F02A8B278889650078F9B7 /* (null) in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
 				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
@@ -687,7 +680,6 @@
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
-				77AEEB1C2788A2D70016880B /* (null) in Sources */,
 				331364662785AE3B00E0C118 /* BaseCVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -830,7 +822,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = N4RT4KGQK9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -858,7 +850,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = N4RT4KGQK9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
