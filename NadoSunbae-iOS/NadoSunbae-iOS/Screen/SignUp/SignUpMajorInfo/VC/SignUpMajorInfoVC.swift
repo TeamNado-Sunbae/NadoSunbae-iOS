@@ -17,6 +17,8 @@ class SignUpMajorInfoVC: BaseVC {
     @IBOutlet weak var secondMajorStartTextField: NadoTextField!
     @IBOutlet weak var nextBtn: NadoSunbaeBtn!
     
+    var univList = ["고려대학교"]
+    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +27,46 @@ class SignUpMajorInfoVC: BaseVC {
     
     // MARK: Custom Method
     private func configureUI() {
+        [univTextField, firstMajorTextField, firstMajorStartTextField, secondMajorTextField, secondMajorStartTextField].forEach { textField in
+            textField?.placeholder = "선택하기"
+            textField?.isUserInteractionEnabled = false
+        }
+    }
+    
+    private func alertAction(title: String, targetTextField: UITextField) -> UIAlertAction {
+        let alertAction = UIAlertAction(title: title, style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            targetTextField.text = title
+        })
+        return alertAction
     }
     
     // MARK: IBAction
+    @IBAction func tapUnivBtn(_ sender: UIButton) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        var univAlertActionList = [UIAlertAction]()
+        
+        for univName in univList {
+            univAlertActionList.append(alertAction(title: univName, targetTextField: univTextField))
+        }
+        
+        let readyAction = UIAlertAction(title: "타 대학은 현재 준비중입니다", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        readyAction.setValue(UIColor.gray3, forKey: "titleTextColor")
+
+        (univAlertActionList + [readyAction, cancelAction]).forEach { action in
+            optionMenu.addAction(action)
+        }
+        
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
     @IBAction func tapPrevBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func tapNextBtn(_ sender: Any) {
+        self.navigationController?.pushViewController(UIViewController(), animated: true)
     }
 }
