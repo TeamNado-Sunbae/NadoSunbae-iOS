@@ -10,7 +10,7 @@ import UIKit
 class HalfModalVC: UIViewController {
     
     // MARK: IBOutlet
-    @IBOutlet weak var reviewTV: UITableView!
+    @IBOutlet weak var majorTV: UITableView!
     @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
     
     // MARK: Properties
@@ -48,10 +48,10 @@ class HalfModalVC: UIViewController {
     
     /// TableView setting 함수
     private func setUpTV() {
-        MajorTVC.register(target: reviewTV)
+        MajorTVC.register(target: majorTV)
         
-        reviewTV.dataSource = self
-        reviewTV.delegate = self
+        majorTV.dataSource = self
+        majorTV.delegate = self
     }
     /// 선택완료 버튼 UI  setting 함수
     private func configureBtnUI() {
