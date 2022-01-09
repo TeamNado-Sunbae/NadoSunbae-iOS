@@ -35,7 +35,7 @@ class NadoAlertVC: BaseVC {
         self.modalTransitionStyle = .crossDissolve
     }
     
-    func showNadoAlert(view: UIViewController, message: String, confirmBtnTitle: String, cancelBtnTitle: String) {
+    func showNadoAlert(vc: UIViewController, message: String, confirmBtnTitle: String, cancelBtnTitle: String) {
         messageLabel.text = message
         DispatchQueue.main.async {
             self.confirmBtn.setTitleWithStyle(title: confirmBtnTitle, size: 14, weight: .bold)
