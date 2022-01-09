@@ -66,7 +66,7 @@ class SignInVC: BaseVC {
     }
     
     @IBAction func tapSignUpBtn(_ sender: Any) {
-        guard let vc = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: AgreeTermsVC.className) as? AgreeTermsVC else { return }
+        guard let vc = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: "SignUpNVC") as? UINavigationController else { return }
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
