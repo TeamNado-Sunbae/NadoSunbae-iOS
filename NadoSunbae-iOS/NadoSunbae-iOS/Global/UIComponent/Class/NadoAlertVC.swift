@@ -41,7 +41,7 @@ class NadoAlertVC: BaseVC {
             self.confirmBtn.setTitleWithStyle(title: confirmBtnTitle, size: 14, weight: .bold)
             self.cancelBtn.setTitleWithStyle(title: cancelBtnTitle, size: 14, weight: .bold)
         }
-        view.present(self, animated: true, completion: nil)
+        vc.present(self, animated: true, completion: nil)
     }
     
     // MARK: IBAction
