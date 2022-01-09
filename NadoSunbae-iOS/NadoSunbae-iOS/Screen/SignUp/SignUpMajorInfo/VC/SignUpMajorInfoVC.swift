@@ -10,6 +10,12 @@ import UIKit
 class SignUpMajorInfoVC: BaseVC {
     
     // MARK: Properties
+    @IBOutlet weak var univTextField: NadoTextField!
+    @IBOutlet weak var firstMajorTextField: NadoTextField!
+    @IBOutlet weak var firstMajorStartTextField: NadoTextField!
+    @IBOutlet weak var secondMajorTextField: NadoTextField!
+    @IBOutlet weak var secondMajorStartTextField: NadoTextField!
+    @IBOutlet weak var nextBtn: NadoSunbaeBtn!
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -19,8 +25,10 @@ class SignUpMajorInfoVC: BaseVC {
     
     // MARK: Custom Method
     private func configureUI() {
-
     }
     
     // MARK: IBAction
+    @IBAction func tapPrevBtn(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
