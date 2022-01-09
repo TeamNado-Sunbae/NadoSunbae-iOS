@@ -16,6 +16,7 @@ class AgreeTermsVC: BaseVC {
     @IBOutlet weak var allCheckBtn: UIButton!
     @IBOutlet weak var checkPrivacyBtn: UIButton!
     @IBOutlet weak var checkServiceTermBtn: UIButton!
+    @IBOutlet weak var nextBtn: NadoSunbaeBtn!
     
     let disposeBag = DisposeBag()
     
@@ -33,6 +34,7 @@ class AgreeTermsVC: BaseVC {
         [allCheckBtn, checkPrivacyBtn, checkServiceTermBtn].forEach { btn in
             btn.setImgByName(name: "btn_check", selectedName: "btn_check_selected")
         }
+        nextBtn.isActivated = false
     }
     
     private func changeAllBtnState() {
@@ -41,6 +43,8 @@ class AgreeTermsVC: BaseVC {
         } else {
             allCheckBtn.isSelected = false
         }
+        nextBtn.isActivated = allCheckBtn.isSelected
+        nextBtn.isEnabled = allCheckBtn.isSelected
     }
     
     // MARK: IBAction
@@ -49,6 +53,8 @@ class AgreeTermsVC: BaseVC {
         [checkPrivacyBtn, checkServiceTermBtn].forEach { btn in
             btn?.isSelected = sender.isSelected
         }
+        nextBtn.isActivated = sender.isSelected
+        nextBtn.isEnabled = sender.isSelected
     }
     
     @IBAction func tapCheckPrivacyBtn(_ sender: UIButton) {
@@ -59,5 +65,17 @@ class AgreeTermsVC: BaseVC {
     @IBAction func tapCheckServiceTermBtn(_ sender: UIButton) {
         sender.isSelected.toggle()
         changeAllBtnState()
+    }
+    
+    @IBAction func tapNextBtn(_ sender: UIButton) {
+        print("tapNextBtn")
+    }
+    
+    @IBAction func tapPrevBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func tapOpenTermBtn(_ sender: Any) {
+        
     }
 }
