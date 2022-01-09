@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="gxf-cd-wcu" customClass="NadoAlertVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
+            <view key="view" contentMode="scaleToFill" id="eKh-a9-Udr">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jV9-hc-CUq">
+                        <rect key="frame" x="61.5" y="355.5" width="291" height="185"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cz8-zP-5TM">
+                                <rect key="frame" x="24" y="12" width="243" height="100"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" name="mainBlack"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELo-xG-zpK" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="14" y="114" width="123.5" height="57"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="tapCancelBtn:" destination="gxf-cd-wcu" eventType="touchUpInside" id="dQw-P8-lDI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCK-SR-a1R" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="153.5" y="114" width="123.5" height="57"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="tapConfirmBtn:" destination="gxf-cd-wcu" eventType="touchUpInside" id="nKu-N0-vHw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Cz8-zP-5TM" firstAttribute="leading" secondItem="jV9-hc-CUq" secondAttribute="leading" constant="24" id="FAN-tu-HoO"/>
+                            <constraint firstItem="ELo-xG-zpK" firstAttribute="height" secondItem="jV9-hc-CUq" secondAttribute="height" multiplier="0.3095" id="JaG-Gy-JDQ"/>
+                            <constraint firstItem="Cz8-zP-5TM" firstAttribute="top" secondItem="jV9-hc-CUq" secondAttribute="top" constant="12" id="NQF-BF-EzR"/>
+                            <constraint firstAttribute="bottom" secondItem="CCK-SR-a1R" secondAttribute="bottom" constant="14" id="PcJ-UE-7aB"/>
+                            <constraint firstItem="ELo-xG-zpK" firstAttribute="width" secondItem="jV9-hc-CUq" secondAttribute="width" multiplier="0.4242" id="QYP-tT-Ve5"/>
+                            <constraint firstAttribute="trailing" secondItem="CCK-SR-a1R" secondAttribute="trailing" constant="14" id="SPf-0R-4sf"/>
+                            <constraint firstItem="ELo-xG-zpK" firstAttribute="leading" secondItem="jV9-hc-CUq" secondAttribute="leading" constant="14" id="ciR-TS-52U"/>
+                            <constraint firstAttribute="trailing" secondItem="Cz8-zP-5TM" secondAttribute="trailing" constant="24" id="dYy-l3-qtZ"/>
+                            <constraint firstAttribute="bottom" secondItem="ELo-xG-zpK" secondAttribute="bottom" constant="14" id="kOd-Hs-zUU"/>
+                            <constraint firstItem="CCK-SR-a1R" firstAttribute="width" secondItem="ELo-xG-zpK" secondAttribute="width" id="pTv-i0-GpC"/>
+                            <constraint firstItem="CCK-SR-a1R" firstAttribute="height" secondItem="ELo-xG-zpK" secondAttribute="height" id="uke-h2-OKh"/>
+                            <constraint firstItem="ELo-xG-zpK" firstAttribute="top" secondItem="Cz8-zP-5TM" secondAttribute="bottom" constant="2" id="voe-nh-g45"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <viewLayoutGuide key="safeArea" id="kId-HL-WNy"/>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="jV9-hc-CUq" firstAttribute="height" secondItem="eKh-a9-Udr" secondAttribute="height" multiplier="0.2068" id="SbG-JW-fhu"/>
+                    <constraint firstItem="jV9-hc-CUq" firstAttribute="width" secondItem="eKh-a9-Udr" secondAttribute="width" multiplier="0.704" id="SoM-hM-34l"/>
+                    <constraint firstItem="jV9-hc-CUq" firstAttribute="centerX" secondItem="eKh-a9-Udr" secondAttribute="centerX" id="ckD-xa-SIW"/>
+                    <constraint firstItem="jV9-hc-CUq" firstAttribute="centerY" secondItem="eKh-a9-Udr" secondAttribute="centerY" id="igA-A8-2DN"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="cancelBtn" destination="ELo-xG-zpK" id="GvO-FQ-BRv"/>
+                <outlet property="confirmBtn" destination="CCK-SR-a1R" id="Fxq-qn-i68"/>
+                <outlet property="containerView" destination="jV9-hc-CUq" id="1a8-V5-0Zt"/>
+                <outlet property="messageLabel" destination="Cz8-zP-5TM" id="N6i-58-FJp"/>
+            </connections>
+            <point key="canvasLocation" x="874" y="97"/>
+        </viewController>
+    </objects>
+    <resources>
+        <namedColor name="mainBlack">
+            <color red="0.0" green="0.10980392156862745" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
