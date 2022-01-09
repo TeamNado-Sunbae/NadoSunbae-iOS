@@ -71,11 +71,13 @@ class AgreeTermsVC: BaseVC {
         print("tapNextBtn")
     }
     
-    @IBAction func tapPrevBtn(_ sender: Any) {
+    @IBAction func tapPrevBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func tapOpenTermBtn(_ sender: Any) {
-        
+    @IBAction func tapOpenTermBtn(_ sender: UIButton) {
+        guard let termDetailVC = self.storyboard?.instantiateViewController(withIdentifier: TermDetailVC.className) as? TermDetailVC else { return }
+        termDetailVC.termTag = sender.tag
+        self.present(termDetailVC, animated: true, completion: nil)
     }
 }

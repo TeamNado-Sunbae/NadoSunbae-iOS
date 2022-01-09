@@ -61,6 +61,7 @@
 		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
+		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
 		5CAB3F28278AE39D00025DA5 /* AgreeTermsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */; };
 		5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
@@ -131,6 +132,7 @@
 		5C485F232789661F00FCA5DF /* NadoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextField.swift; sourceTree = "<group>"; };
 		5C4ED929278949AC001EA6BB /* SignInSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInSB.storyboard; sourceTree = "<group>"; };
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
 		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */,
+				5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
 				331364622785AAA300E0C118 /* UITableViewCell+.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
+				5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
