@@ -29,53 +29,53 @@
                                     <constraint firstAttribute="height" constant="56" id="a8i-tX-6nx"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ez-lL-DiI">
-                                <rect key="frame" x="0.0" y="100" width="414" height="93"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjF-Gk-Rae">
+                                <rect key="frame" x="16" y="133" width="382" height="61.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7r0-LL-HGC">
-                                        <rect key="frame" x="20" y="8" width="32" height="15"/>
-                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
-                                        <nil key="textColor"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGt-Nh-kOz">
+                                        <rect key="frame" x="8" y="12" width="37.5" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="UGt-Nh-kOz" secondAttribute="height" multiplier="1:1" id="psw-yH-a8M"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="btn_check"/>
+                                        <connections>
+                                            <action selector="tapAllCheckBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qY6-hu-1AT"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체 동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-X3-qXU">
+                                        <rect key="frame" x="53.5" y="21.5" width="56" height="19"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="15"/>
+                                        <color key="textColor" name="mainBlack"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jyN-Q1-Exe" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="281.5" height="53"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCf-1N-z4j" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="305.5" y="31" width="92.5" height="53"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="중복 확인"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="93" id="8Bc-2N-sUo"/>
-                                    <constraint firstItem="jyN-Q1-Exe" firstAttribute="width" secondItem="1Ez-lL-DiI" secondAttribute="width" multiplier="0.68" id="BhL-6d-qdN"/>
-                                    <constraint firstItem="bCf-1N-z4j" firstAttribute="leading" secondItem="jyN-Q1-Exe" secondAttribute="trailing" constant="8" id="HT1-ON-afN"/>
-                                    <constraint firstItem="7r0-LL-HGC" firstAttribute="top" secondItem="1Ez-lL-DiI" secondAttribute="top" constant="8" id="Ktc-3Y-THQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="bCf-1N-z4j" secondAttribute="trailing" constant="16" id="V4v-1r-4yb"/>
-                                    <constraint firstItem="jyN-Q1-Exe" firstAttribute="leading" secondItem="1Ez-lL-DiI" secondAttribute="leading" constant="16" id="Vhe-9T-zrv"/>
-                                    <constraint firstItem="bCf-1N-z4j" firstAttribute="top" secondItem="jyN-Q1-Exe" secondAttribute="top" id="ZTp-OI-eH7"/>
-                                    <constraint firstItem="jyN-Q1-Exe" firstAttribute="top" secondItem="7r0-LL-HGC" secondAttribute="bottom" constant="8" id="cmy-I5-2Ne"/>
-                                    <constraint firstItem="bCf-1N-z4j" firstAttribute="bottom" secondItem="jyN-Q1-Exe" secondAttribute="bottom" id="fJd-vP-zcR"/>
-                                    <constraint firstItem="7r0-LL-HGC" firstAttribute="leading" secondItem="1Ez-lL-DiI" secondAttribute="leading" constant="20" id="zEQ-bJ-DQh"/>
+                                    <constraint firstItem="UGt-Nh-kOz" firstAttribute="leading" secondItem="YjF-Gk-Rae" secondAttribute="leading" constant="8" id="QvV-d5-zPG"/>
+                                    <constraint firstItem="UGt-Nh-kOz" firstAttribute="top" secondItem="YjF-Gk-Rae" secondAttribute="top" constant="12" id="i3R-B5-yLq"/>
+                                    <constraint firstItem="TdD-X3-qXU" firstAttribute="centerY" secondItem="YjF-Gk-Rae" secondAttribute="centerY" id="u8d-js-xsY"/>
+                                    <constraint firstAttribute="bottom" secondItem="UGt-Nh-kOz" secondAttribute="bottom" constant="12" id="xf3-Yk-jXk"/>
+                                    <constraint firstItem="TdD-X3-qXU" firstAttribute="leading" secondItem="UGt-Nh-kOz" secondAttribute="trailing" constant="8" id="zWS-sL-Qmv"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
+                            <constraint firstItem="YjF-Gk-Rae" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="1pO-vB-dup"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YjF-Gk-Rae" secondAttribute="trailing" constant="16" id="Hqe-1p-0l5"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NO6-aU-rOU"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ow9-Bv-Hrx"/>
-                            <constraint firstItem="1Ez-lL-DiI" firstAttribute="top" secondItem="mSG-8v-yL9" secondAttribute="bottom" id="Ref-4k-11f"/>
-                            <constraint firstItem="1Ez-lL-DiI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="S5F-cG-iBD"/>
-                            <constraint firstItem="jyN-Q1-Exe" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0591" id="ccH-Wx-djB"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1Ez-lL-DiI" secondAttribute="trailing" id="eeE-eq-CvX"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iO1-dG-APo"/>
+                            <constraint firstItem="YjF-Gk-Rae" firstAttribute="top" secondItem="mSG-8v-yL9" secondAttribute="bottom" constant="33" id="k4y-Eh-RQc"/>
+                            <constraint firstItem="YjF-Gk-Rae" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0689" id="sB2-xv-AMf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="allCheckBtn" destination="UGt-Nh-kOz" id="Lvx-YO-fod"/>
+                        <outlet property="allCheckView" destination="YjF-Gk-Rae" id="wej-Al-gDN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,6 +83,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn_check" width="32" height="32"/>
+        <namedColor name="mainBlack">
+            <color red="0.0" green="0.10980392156862745" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="paleGray">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
