@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpMajorInfo: BaseVC {
+class SignUpMajorInfoVC: BaseVC {
     
     // MARK: Properties
     

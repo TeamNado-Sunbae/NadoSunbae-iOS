@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxCocoa
-import RxSwift
 
 class AgreeTermsVC: BaseVC {
     
@@ -17,8 +15,6 @@ class AgreeTermsVC: BaseVC {
     @IBOutlet weak var checkPrivacyBtn: UIButton!
     @IBOutlet weak var checkServiceTermBtn: UIButton!
     @IBOutlet weak var nextBtn: NadoSunbaeBtn!
-    
-    let disposeBag = DisposeBag()
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -68,7 +64,9 @@ class AgreeTermsVC: BaseVC {
     }
     
     @IBAction func tapNextBtn(_ sender: UIButton) {
-        print("tapNextBtn")
+        guard let majorInfoVC = UIStoryboard.init(name: SignUpMajorInfoVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpMajorInfoVC.className) as? SignUpMajorInfoVC else { return }
+        self.navigationController?.pushViewController(majorInfoVC, animated: true)
+        
     }
     
     @IBAction func tapPrevBtn(_ sender: UIButton) {
