@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Agree TermsVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="AgreeTermsVC" id="Y6W-OH-hqX" customClass="AgreeTermsVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mSG-8v-yL9">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="a8i-tX-6nx"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ez-lL-DiI">
+                                <rect key="frame" x="0.0" y="100" width="414" height="93"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7r0-LL-HGC">
+                                        <rect key="frame" x="20" y="8" width="32" height="15"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jyN-Q1-Exe" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="31" width="281.5" height="53"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCf-1N-z4j" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="305.5" y="31" width="92.5" height="53"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="중복 확인"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="8Bc-2N-sUo"/>
+                                    <constraint firstItem="jyN-Q1-Exe" firstAttribute="width" secondItem="1Ez-lL-DiI" secondAttribute="width" multiplier="0.68" id="BhL-6d-qdN"/>
+                                    <constraint firstItem="bCf-1N-z4j" firstAttribute="leading" secondItem="jyN-Q1-Exe" secondAttribute="trailing" constant="8" id="HT1-ON-afN"/>
+                                    <constraint firstItem="7r0-LL-HGC" firstAttribute="top" secondItem="1Ez-lL-DiI" secondAttribute="top" constant="8" id="Ktc-3Y-THQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="bCf-1N-z4j" secondAttribute="trailing" constant="16" id="V4v-1r-4yb"/>
+                                    <constraint firstItem="jyN-Q1-Exe" firstAttribute="leading" secondItem="1Ez-lL-DiI" secondAttribute="leading" constant="16" id="Vhe-9T-zrv"/>
+                                    <constraint firstItem="bCf-1N-z4j" firstAttribute="top" secondItem="jyN-Q1-Exe" secondAttribute="top" id="ZTp-OI-eH7"/>
+                                    <constraint firstItem="jyN-Q1-Exe" firstAttribute="top" secondItem="7r0-LL-HGC" secondAttribute="bottom" constant="8" id="cmy-I5-2Ne"/>
+                                    <constraint firstItem="bCf-1N-z4j" firstAttribute="bottom" secondItem="jyN-Q1-Exe" secondAttribute="bottom" id="fJd-vP-zcR"/>
+                                    <constraint firstItem="7r0-LL-HGC" firstAttribute="leading" secondItem="1Ez-lL-DiI" secondAttribute="leading" constant="20" id="zEQ-bJ-DQh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="paleGray"/>
+                        <constraints>
+                            <constraint firstItem="mSG-8v-yL9" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NO6-aU-rOU"/>
+                            <constraint firstItem="mSG-8v-yL9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ow9-Bv-Hrx"/>
+                            <constraint firstItem="1Ez-lL-DiI" firstAttribute="top" secondItem="mSG-8v-yL9" secondAttribute="bottom" id="Ref-4k-11f"/>
+                            <constraint firstItem="1Ez-lL-DiI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="S5F-cG-iBD"/>
+                            <constraint firstItem="jyN-Q1-Exe" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0591" id="ccH-Wx-djB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1Ez-lL-DiI" secondAttribute="trailing" id="eeE-eq-CvX"/>
+                            <constraint firstItem="mSG-8v-yL9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iO1-dG-APo"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13.043478260869566" y="69.642857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
