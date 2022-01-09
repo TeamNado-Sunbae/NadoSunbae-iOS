@@ -75,6 +75,10 @@ class AgreeTermsVC: BaseVC {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func tapDismissBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func tapOpenTermBtn(_ sender: UIButton) {
         guard let termDetailVC = self.storyboard?.instantiateViewController(withIdentifier: TermDetailVC.className) as? TermDetailVC else { return }
         termDetailVC.termTag = sender.tag
