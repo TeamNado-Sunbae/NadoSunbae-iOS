@@ -82,12 +82,19 @@ class SignUpMajorInfoVC: BaseVC {
     
     @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
         guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
-        slideVC.enterdBtnTag = sender.tag
-        self.enterBtnTag = sender.tag
-        slideVC.modalPresentationStyle = .custom
-        slideVC.transitioningDelegate = self
-        slideVC.selectMajorDelegate = self
-        self.present(slideVC, animated: true, completion: nil)
+        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
+        if sender.tag == 3 && secondMajorTextField.isEmpty {
+            // TODO: 처리 어떻게 하지...? 일단 modal 안 뜨게 막아둠
+        } else {
+            slideVC.enterdBtnTag = sender.tag
+            self.enterBtnTag = sender.tag
+            
+            slideVC.modalPresentationStyle = .custom
+            slideVC.transitioningDelegate = self
+            slideVC.selectMajorDelegate = self
+            
+            self.present(slideVC, animated: true, completion: nil)
+        }
     }
     
     @IBAction func tapPrevBtn(_ sender: UIButton) {
