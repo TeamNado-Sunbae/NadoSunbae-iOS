@@ -62,11 +62,24 @@ class SignUpMajorInfoVC: BaseVC {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
+    @IBAction func tapFirstMajorBtn(_ sender: UIButton) {
+        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
     @IBAction func tapPrevBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func tapNextBtn(_ sender: Any) {
+    @IBAction func tapNextBtn(_ sender: UIButton) {
         self.navigationController?.pushViewController(UIViewController(), animated: true)
+    }
+}
+
+extension SignUpMajorInfoVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
