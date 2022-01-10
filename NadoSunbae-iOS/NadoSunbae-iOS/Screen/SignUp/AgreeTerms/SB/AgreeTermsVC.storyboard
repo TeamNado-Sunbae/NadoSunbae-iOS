@@ -32,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="84"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전공정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHh-8b-aw6">
-                                        <rect key="frame" x="108" y="66" width="35" height="13"/>
+                                        <rect key="frame" x="108" y="66" width="35" height="11.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="10"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약관동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cO-WW-fvh">
-                                        <rect key="frame" x="16" y="66" width="35" height="13"/>
+                                        <rect key="frame" x="16" y="66" width="35" height="11.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="10"/>
                                         <color key="textColor" name="nadoBlack"/>
                                         <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기본정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yb7-Y5-QMT">
-                                        <rect key="frame" x="200" y="66" width="35" height="13"/>
+                                        <rect key="frame" x="200" y="66" width="35" height="11.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="10"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                                         <color key="backgroundColor" name="gray1"/>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diamond_gray" translatesAutoresizingMaskIntoConstraints="NO" id="SZG-9M-gWu">
-                                        <rect key="frame" x="292" y="66.666666666666671" width="12" height="12"/>
+                                        <rect key="frame" x="292" y="66" width="12" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="SZG-9M-gWu" secondAttribute="height" id="PXd-Ku-Mj3"/>
                                         </constraints>
@@ -128,7 +128,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체 동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-X3-qXU">
-                                        <rect key="frame" x="48" y="18.333333333333343" width="56" height="19"/>
+                                        <rect key="frame" x="48" y="19" width="56" height="17.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="15"/>
                                         <color key="textColor" name="mainBlack"/>
                                         <nil key="highlightedColor"/>
@@ -158,7 +158,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개인정보 수집 동의 (필수)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RW-oV-GDZ">
-                                        <rect key="frame" x="63.999999999999986" y="18.333333333333343" width="151.66666666666663" height="19"/>
+                                        <rect key="frame" x="64.000000000000014" y="19" width="150.33333333333337" height="17.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="15"/>
                                         <color key="textColor" name="mainBlack"/>
                                         <nil key="highlightedColor"/>
@@ -201,7 +201,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서비스 이용 약관 동의 (필수)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em3-2d-oev">
-                                        <rect key="frame" x="64" y="18.333333333333314" width="168" height="19"/>
+                                        <rect key="frame" x="64" y="19" width="168" height="17.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="15"/>
                                         <color key="textColor" name="mainBlack"/>
                                         <nil key="highlightedColor"/>
@@ -247,9 +247,6 @@
                                 <state key="normal" image="btn_arrow_left">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
-                                <connections>
-                                    <action selector="tapPrevBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8Go-1R-ZBG"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

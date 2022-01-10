@@ -69,10 +69,6 @@ class AgreeTermsVC: BaseVC {
         
     }
     
-    @IBAction func tapPrevBtn(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func tapDismissBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
