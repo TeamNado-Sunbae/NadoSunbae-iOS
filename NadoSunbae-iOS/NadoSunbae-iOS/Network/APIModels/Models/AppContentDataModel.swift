@@ -20,3 +20,28 @@ struct ReviewImgData {
         return UIImage(named: reviewImgName)
     }
 }
+
+/// 후기 뷰 메인 게시글 리스트 위한 모델
+struct ReviewPostData {
+    let date: String
+    let title: String
+    let diamondCount: Int
+    let firstTagImgName: String
+    let secondTagImgName: String
+    let thirdTagImgName: String
+    let majorName: String
+    let secondMajorName: String
+    
+    func makeFirstImg() -> UIImage? {
+        return UIImage(named: firstTagImgName)
+    }
+    
+    func makeSecondImg() -> UIImage? {
+        return UIImage(named: secondTagImgName)
+    }
+    
+    func makeThirdImg() -> UIImage? {
+        return UIImage(named: thirdTagImgName)
+    }
+}
+

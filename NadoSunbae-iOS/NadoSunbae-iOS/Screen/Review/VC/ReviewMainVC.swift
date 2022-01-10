@@ -15,11 +15,13 @@ class ReviewMainVC: UIViewController {
     
     // MARK: Properties
     var imgList: [ReviewImgData] = []
+    var postList: [ReviewPostData] = []
     
     // MARK: Life Cycle Part
     override func viewDidLoad() {
         super.viewDidLoad()
         initImgList()
+        initPostList()
         setUpTV()
         addShadowToNaviBar()
     }
@@ -38,10 +40,21 @@ class ReviewMainVC: UIViewController {
         ])
     }
     
+    private func initPostList() {
+        postList.append(contentsOf: [
+            ReviewPostData(date: "21/12/23", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 12, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "21/12/24", title: "아요 사랑해", diamondCount: 4, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "22/01/01", title: "나도 선배 사랑해", diamondCount: 34, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "22/01/02", title: "우리가 짱이다~~~", diamondCount: 21, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "22/01/03", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 1, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+        ])
+    }
+    
     /// TableView setting 함수
     private func setUpTV() {
         ReviewMainImgTVC.register(target: reviewTV)
         ReviewMainLinkTVC.register(target: reviewTV)
+        ReviewMainPostTVC.register(target: reviewTV)
         
         reviewTV.dataSource = self
         reviewTV.delegate = self
@@ -77,7 +90,7 @@ extension ReviewMainVC: UITableViewDelegate {
     
     /// section 3개로 나눔
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -85,6 +98,8 @@ extension ReviewMainVC: UITableViewDelegate {
             return 192
         } else if indexPath.section == 1 {
             return 52
+        } else if indexPath.section == 2 {
+            return 156
         } else {
             return 0
         }
@@ -97,6 +112,8 @@ extension ReviewMainVC: UITableViewDataSource {
             return 1
         } else if section == 1 {
             return 1
+        } else if section == 2 {
+            return postList.count
         } else {
             return 0
         }
@@ -110,6 +127,11 @@ extension ReviewMainVC: UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainLinkTVC.className) as? ReviewMainLinkTVC else { return UITableViewCell() }
+            return cell
+        } else if indexPath.section == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC else { return UITableViewCell() }
+            
+            cell.setData(postData: postList[indexPath.row])
             return cell
         } else {
             return UITableViewCell()
