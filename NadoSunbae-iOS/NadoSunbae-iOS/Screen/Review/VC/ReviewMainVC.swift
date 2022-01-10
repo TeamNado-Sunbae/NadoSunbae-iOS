@@ -41,6 +41,7 @@ class ReviewMainVC: UIViewController {
     /// TableView setting 함수
     private func setUpTV() {
         ReviewMainImgTVC.register(target: reviewTV)
+        ReviewMainLinkTVC.register(target: reviewTV)
         
         reviewTV.dataSource = self
         reviewTV.delegate = self
@@ -73,24 +74,47 @@ extension ReviewMainVC: UIViewControllerTransitioningDelegate {
 }
 
 extension ReviewMainVC: UITableViewDelegate {
+    
+    /// section 3개로 나눔
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 192
+        if indexPath.section == 0 {
+            return 192
+        } else if indexPath.section == 1 {
+            return 52
+        } else {
+            return 0
+        }
     }
 }
 
 extension ReviewMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 1
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC else { return UITableViewCell() }
-        
-        cell.setData(ImgData: imgList[indexPath.row])
-        return cell
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC else { return UITableViewCell() }
+            
+            cell.setData(ImgData: imgList[indexPath.row])
+            return cell
+        } else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainLinkTVC.className) as? ReviewMainLinkTVC else { return UITableViewCell() }
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
-    
-    
 }
 
 
