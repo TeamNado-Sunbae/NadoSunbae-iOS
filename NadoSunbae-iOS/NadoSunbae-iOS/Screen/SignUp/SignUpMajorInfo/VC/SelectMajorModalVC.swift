@@ -66,7 +66,6 @@ class SelectMajorModalVC: BaseVC {
                 return ""
             }
         }()
-        print(sendData)
         selectMajorDelegate?.sendUpdate(data: sendData)
     }
     

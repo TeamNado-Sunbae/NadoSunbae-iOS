@@ -177,7 +177,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
-                                            <action selector="tapFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="yrP-ey-WRq"/>
+                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7eX-DA-vuj"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -217,7 +217,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
-                                            <action selector="tapFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="eLy-oW-0g1"/>
+                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Hvs-ea-Hyb"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -257,7 +257,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
-                                            <action selector="tapFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mMD-Me-9aW"/>
+                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9UX-d4-YiL"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -318,7 +318,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
-                                            <action selector="tapFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FKM-BK-7Vc"/>
+                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fqk-ot-q7C"/>
                                         </connections>
                                     </button>
                                 </subviews>

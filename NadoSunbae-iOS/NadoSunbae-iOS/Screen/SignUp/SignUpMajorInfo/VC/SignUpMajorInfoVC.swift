@@ -43,6 +43,22 @@ class SignUpMajorInfoVC: BaseVC {
         return alertAction
     }
     
+    /// textField에 값이 들어올 때마다 NextBtn 활성화할지를 체크하는 함수
+    private func checkNextBtnIsEnabled() {
+        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) {
+            if !(secondMajorTextField.isEmpty) && (secondMajorStartTextField.isEmpty) {
+                nextBtn.isActivated = false
+                nextBtn.isEnabled = false
+            } else {
+                nextBtn.isActivated = true
+                nextBtn.isEnabled = true
+            }
+        } else {
+            nextBtn.isActivated = false
+            nextBtn.isEnabled = false
+        }
+    }
+    
     // MARK: IBAction
     @IBAction func tapUnivBtn(_ sender: UIButton) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -64,7 +80,7 @@ class SignUpMajorInfoVC: BaseVC {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    @IBAction func tapFirstMajorBtn(_ sender: UIButton) {
+    @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
         guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
         slideVC.enterdBtnTag = sender.tag
         self.enterBtnTag = sender.tag
@@ -105,5 +121,6 @@ extension SignUpMajorInfoVC: SendUpdateDelegate {
             print("SignUpMajorInfoVC SendUpdateDelegate error")
             #endif
         }
+        checkNextBtnIsEnabled()
     }
 }
