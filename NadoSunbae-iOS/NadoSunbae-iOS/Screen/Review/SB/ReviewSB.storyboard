@@ -52,17 +52,36 @@
                                     <constraint firstItem="wTe-n5-UNg" firstAttribute="leading" secondItem="ulf-PI-yaI" secondAttribute="leading" constant="16" id="vfp-MN-eHo"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AxF-38-GGZ">
+                                <rect key="frame" x="0.0" y="104" width="375" height="674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="I0z-zQ-mlk">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I0z-zQ-mlk" id="VdD-O4-ucB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ulf-PI-yaI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="7CW-7e-m77"/>
                             <constraint firstItem="ulf-PI-yaI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="O4A-LF-reu"/>
+                            <constraint firstItem="AxF-38-GGZ" firstAttribute="top" secondItem="ulf-PI-yaI" secondAttribute="bottom" id="OPm-MF-tDw"/>
                             <constraint firstItem="ulf-PI-yaI" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cD7-0S-vYC"/>
+                            <constraint firstItem="AxF-38-GGZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="euZ-Az-sJl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AxF-38-GGZ" secondAttribute="trailing" id="ny3-Wz-kf4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="AxF-38-GGZ" secondAttribute="bottom" id="yen-4o-Qg3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="naviBarView" destination="ulf-PI-yaI" id="bER-cF-Pyk"/>
+                        <outlet property="reviewTV" destination="AxF-38-GGZ" id="9Ai-ul-zX4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

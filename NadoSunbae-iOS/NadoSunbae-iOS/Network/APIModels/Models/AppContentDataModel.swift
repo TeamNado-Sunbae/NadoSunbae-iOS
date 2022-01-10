@@ -11,3 +11,12 @@ import UIKit
 struct ReviewData {
     let majorName: String
 }
+
+/// 후기 뷰 메인 이미지 위한 모델
+struct ReviewImgData {
+    let reviewImgName: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: reviewImgName)
+    }
+}

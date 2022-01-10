@@ -53,6 +53,7 @@ class HalfModalVC: UIViewController {
         majorTV.dataSource = self
         majorTV.delegate = self
     }
+    
     /// 선택완료 버튼 UI  setting 함수
     private func configureBtnUI() {
         majorChooseBtn.isActivated = false
