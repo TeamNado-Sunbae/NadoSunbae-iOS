@@ -18,6 +18,8 @@ class SignUpMajorInfoVC: BaseVC {
     @IBOutlet weak var nextBtn: NadoSunbaeBtn!
     
     var univList = ["고려대학교"]
+    /// 내가 선택을 위해 '진입하는' 버튼의 태그
+    var enterBtnTag = 0
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -64,6 +66,8 @@ class SignUpMajorInfoVC: BaseVC {
     
     @IBAction func tapFirstMajorBtn(_ sender: UIButton) {
         guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
+        slideVC.enterdBtnTag = sender.tag
+        self.enterBtnTag = sender.tag
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         slideVC.selectMajorDelegate = self
@@ -87,6 +91,19 @@ extension SignUpMajorInfoVC: UIViewControllerTransitioningDelegate {
 
 extension SignUpMajorInfoVC: SendUpdateDelegate {
     func sendUpdate(data: Any) {
-        self.firstMajorTextField.text = data as? String
+        switch enterBtnTag {
+        case 0:
+            self.firstMajorTextField.text = data as? String
+        case 1:
+            self.firstMajorStartTextField.text = data as? String
+        case 2:
+            self.secondMajorTextField.text = data as? String
+        case 3:
+            self.secondMajorStartTextField.text = data as? String
+        default:
+            #if DEBUG
+            print("SignUpMajorInfoVC SendUpdateDelegate error")
+            #endif
+        }
     }
 }

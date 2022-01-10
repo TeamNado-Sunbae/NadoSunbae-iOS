@@ -9,12 +9,28 @@ import UIKit
 
 extension SelectMajorModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return majorList.count
+        switch enterdBtnTag {
+        case 0, 2:
+            return majorList.count
+        case 1, 3:
+            return startList.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectMajorModalTVC.className, for: indexPath) as? SelectMajorModalTVC else { return UITableViewCell() }
-        cell.setData(majorName: majorList[indexPath.row])
+        
+        switch enterdBtnTag {
+        case 0, 2:
+            cell.setData(majorName: majorList[indexPath.row])
+        case 1, 3:
+            cell.setData(majorName: startList[indexPath.row])
+        default:
+            break
+        }
+        
         return cell
     }
 }

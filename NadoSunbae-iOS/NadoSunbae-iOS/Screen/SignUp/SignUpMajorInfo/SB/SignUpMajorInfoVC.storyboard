@@ -207,7 +207,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT8-2E-AKy">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT8-2E-AKy">
                                         <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kT8-2E-AKy" secondAttribute="height" multiplier="48:32" id="0Xh-bH-mQe"/>
@@ -216,6 +216,9 @@
                                         <color key="tintColor" name="mainDefault"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
+                                        <connections>
+                                            <action selector="tapFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="eLy-oW-0g1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -244,7 +247,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FI6-4v-Pkv">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FI6-4v-Pkv">
                                         <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FI6-4v-Pkv" secondAttribute="height" multiplier="48:32" id="QMe-Gg-ZMy"/>
@@ -253,6 +256,9 @@
                                         <color key="tintColor" name="mainDefault"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
+                                        <connections>
+                                            <action selector="tapFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mMD-Me-9aW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -302,7 +308,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDr-xR-JTz">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDr-xR-JTz">
                                         <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="yDr-xR-JTz" secondAttribute="height" multiplier="48:32" id="0sU-8C-6lL"/>
@@ -311,6 +317,9 @@
                                         <color key="tintColor" name="mainDefault"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
+                                        <connections>
+                                            <action selector="tapFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FKM-BK-7Vc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
