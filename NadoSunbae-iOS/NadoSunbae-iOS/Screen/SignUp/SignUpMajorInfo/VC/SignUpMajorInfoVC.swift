@@ -16,6 +16,7 @@ class SignUpMajorInfoVC: BaseVC {
     @IBOutlet weak var secondMajorTextField: NadoTextField!
     @IBOutlet weak var secondMajorStartTextField: NadoTextField!
     @IBOutlet weak var nextBtn: NadoSunbaeBtn!
+    @IBOutlet weak var prevBtn: NadoSunbaeBtn!
     
     var univList = ["고려대학교"]
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
@@ -33,6 +34,7 @@ class SignUpMajorInfoVC: BaseVC {
             textField?.placeholder = "선택하기"
             textField?.isUserInteractionEnabled = false
         }
+        prevBtn.setBackgroundColor(.mainLight, for: .normal)
     }
     
     private func alertAction(title: String, targetTextField: UITextField) -> UIAlertAction {
@@ -103,6 +105,10 @@ class SignUpMajorInfoVC: BaseVC {
     
     @IBAction func tapNextBtn(_ sender: UIButton) {
         self.navigationController?.pushViewController(UIViewController(), animated: true)
+    }
+    
+    @IBAction func tapDismissBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

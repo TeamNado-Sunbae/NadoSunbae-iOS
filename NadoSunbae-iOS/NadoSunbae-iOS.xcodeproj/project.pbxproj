@@ -549,7 +549,6 @@
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
-				5CC7E3ED278C52BA000A8BD3 /* Model */,
 				5C8D8BFE278B3A540045E600 /* SB */,
 				5C8D8BFF278B3A580045E600 /* VC */,
 			);
@@ -609,13 +608,6 @@
 				5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */,
 			);
 			path = SB;
-			sourceTree = "<group>";
-		};
-		5CC7E3ED278C52BA000A8BD3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {

@@ -242,6 +242,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-R7-LPD" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="718" width="84" height="60"/>
+                                <color key="tintColor" name="gray3"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="btn_arrow_left">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>

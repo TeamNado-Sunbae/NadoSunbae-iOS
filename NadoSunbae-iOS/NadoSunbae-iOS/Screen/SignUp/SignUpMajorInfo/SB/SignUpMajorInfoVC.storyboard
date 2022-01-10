@@ -83,6 +83,9 @@
                                         <color key="tintColor" name="gray3"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="btnXGray"/>
+                                        <connections>
+                                            <action selector="tapDismissBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Rez-kL-kXH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -286,6 +289,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMq-Lq-dgg" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="802" width="97.5" height="60"/>
+                                <color key="tintColor" name="nadoBlack"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="btn_arrow_left">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
@@ -375,6 +379,7 @@
                         <outlet property="firstMajorStartTextField" destination="Znz-fg-xiH" id="vFp-AR-bkD"/>
                         <outlet property="firstMajorTextField" destination="g4o-dr-F0D" id="0T9-3O-Ata"/>
                         <outlet property="nextBtn" destination="CbI-tf-4af" id="s0R-dv-Nw1"/>
+                        <outlet property="prevBtn" destination="CMq-Lq-dgg" id="eqH-zO-U8b"/>
                         <outlet property="secondMajorStartTextField" destination="UTw-8I-lb1" id="u9b-as-ph7"/>
                         <outlet property="secondMajorTextField" destination="dud-Cr-rQd" id="TM7-w1-L66"/>
                         <outlet property="univTextField" destination="Qt3-Tp-vrg" id="RJe-M8-yW3"/>
