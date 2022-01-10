@@ -66,6 +66,7 @@ class SignUpMajorInfoVC: BaseVC {
         guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
+        slideVC.selectMajorDelegate = self
         self.present(slideVC, animated: true, completion: nil)
     }
     
@@ -81,5 +82,11 @@ class SignUpMajorInfoVC: BaseVC {
 extension SignUpMajorInfoVC: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension SignUpMajorInfoVC: SendUpdateDelegate {
+    func sendUpdate(data: Any) {
+        self.firstMajorTextField.text = data as? String
     }
 }

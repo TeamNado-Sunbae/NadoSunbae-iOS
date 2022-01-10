@@ -14,7 +14,8 @@ class SelectMajorModalVC: BaseVC {
     @IBOutlet weak var selectMajorTV: UITableView!
     
     var majorList = ["나도학과", "선배학과"]
-    
+    var selectMajorDelegate: SendUpdateDelegate?
+
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class SelectMajorModalVC: BaseVC {
     // MARK: Custom Method
     private func configureUI() {
         completeBtn.setTitleWithStyle(title: "선택 완료", size: 16, weight: .semiBold)
+        completeBtn.isEnabled = false
     }
     
     private func setUpTV() {
@@ -34,6 +36,11 @@ class SelectMajorModalVC: BaseVC {
     
     // MARK: IBAction
     @IBAction func tapCompleteBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        selectMajorDelegate?.sendUpdate(data: majorList[selectMajorTV.indexPathForSelectedRow?.row ?? 0])
+    }
+    
+    @IBAction func tapDismissBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 }

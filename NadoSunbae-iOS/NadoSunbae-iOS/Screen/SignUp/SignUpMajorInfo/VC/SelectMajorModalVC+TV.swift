@@ -23,4 +23,9 @@ extension SelectMajorModalVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.adjusted
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        completeBtn.isActivated = true
+        completeBtn.isEnabled = true
+    }
 }
