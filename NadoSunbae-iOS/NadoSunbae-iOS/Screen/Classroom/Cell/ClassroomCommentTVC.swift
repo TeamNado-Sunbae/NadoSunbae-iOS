@@ -20,7 +20,6 @@ class ClassroomCommentTVC: BaseTVC {
     weak var changeCellDelegate: TVCContentUpdate?
     var tapMoreBtnAction : (() -> ())?
     
-    
     // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
