@@ -19,7 +19,7 @@ class SelectMajorModalVC: BaseVC {
     
     var majorList = ["나도학과", "선배학과"]
     var startList = ["19-1", "19-2", "20-1", "20-2"]
-    var selectMajorDelegate: SendUpdateDelegate?
+    var selectMajorDelegate: SendUpdateModalDelegate?
     
     // MARK: LifeCycle
     override func viewDidLoad() {

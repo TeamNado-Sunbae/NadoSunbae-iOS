@@ -70,7 +70,7 @@
 		5CAB3F28278AE39D00025DA5 /* AgreeTermsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */; };
 		5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
-		5CC7E3EF278C7313000A8BD3 /* SendUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateDelegate.swift */; };
+		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */; };
 		5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
@@ -148,7 +148,7 @@
 		5CA7E411278BC39200D748E0 /* SelectMajorModalVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectMajorModalVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
-		5CC7E3EE278C7312000A8BD3 /* SendUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateDelegate.swift; sourceTree = "<group>"; };
+		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectMajorModalVC+TV.swift"; sourceTree = "<group>"; };
 		5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalTVC.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
@@ -615,7 +615,7 @@
 			children = (
 				77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */,
 				77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */,
-				5CC7E3EE278C7312000A8BD3 /* SendUpdateDelegate.swift */,
+				5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -805,7 +805,7 @@
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
 				77AEEB4E2789AF900016880B /* UICollectionViewRegisterable.swift in Sources */,
-				5CC7E3EF278C7313000A8BD3 /* SendUpdateDelegate.swift in Sources */,
+				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,

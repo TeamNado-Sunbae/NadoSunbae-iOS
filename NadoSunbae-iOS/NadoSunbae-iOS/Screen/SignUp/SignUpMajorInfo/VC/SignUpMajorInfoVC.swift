@@ -120,7 +120,7 @@ extension SignUpMajorInfoVC: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension SignUpMajorInfoVC: SendUpdateDelegate {
+extension SignUpMajorInfoVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         switch enterBtnTag {
         case 0:
