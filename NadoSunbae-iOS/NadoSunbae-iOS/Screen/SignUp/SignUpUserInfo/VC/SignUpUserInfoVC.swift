@@ -56,8 +56,8 @@ class SignUpUserInfoVC: BaseVC {
         }
         
         setCheckBtnState(textField: nickNameTextField, checkBtn: checkDuplicateBtn)
-        setCheckBtnState(textField: emailTextField, checkBtn: checkEmailBtn)
-        
+        changePWInfoLabelState()
+        checkEmailIsValid()
         prevBtn.setBackgroundColor(.mainLight, for: .normal)
     }
     
@@ -106,7 +106,44 @@ class SignUpUserInfoVC: BaseVC {
     /// NadoSunbae 버튼의 상태 변경 함수
     private func changeNadoBtnState(isOn: Bool, btn: NadoSunbaeBtn) {
         btn.isActivated = isOn ? true : false
+        btn.backgroundColor = isOn ? .mainLight : .gray1
         btn.isEnabled = isOn ? true : false
+    }
+    
+    /// 비밀번호 확인 함수
+    private func changePWInfoLabelState() {
+        
+        /// 비밀번호 유효성 검사
+        PWTextField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                let regex = "^(?=.*[A-Za-z])(?=.*[0-9]).{6,20}"
+                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
+                    self.checkPWTextFIeld.isUserInteractionEnabled = true
+                } else {
+                    self.checkPWTextFIeld.isUserInteractionEnabled = false
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        /// 비밀번호 일치 검사
+        checkPWTextFIeld.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                self.PWInfoLabel.isHidden = changedText == "" ? true : false
+                if changedText == self.PWTextField.text {
+                    self.PWInfoLabel.text = "비밀번호가 일치합니다."
+                    self.PWInfoLabel.textColor = .mainDark
+                } else {
+                    self.PWInfoLabel.text = "비밀번호가 일치하지 않습니다."
+                    self.PWInfoLabel.textColor = .red
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: IBAction
