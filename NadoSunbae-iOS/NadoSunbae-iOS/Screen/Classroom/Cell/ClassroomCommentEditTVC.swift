@@ -24,38 +24,25 @@ class ClassroomCommentEditTVC: BaseTVC {
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
     weak var changeCellDelegate: TVCContentUpdate?
-    var btnAction : (() -> ())?
     
-    // MARK: Life Cycles
+    
+    // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configurequestionContentTextView()
+        configureQuestionContentTextView()
         configureBackView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    @IBAction func tapMoreBtn(_ sender: UIButton) {
-        btnAction?()
-        
-        if let changeCellDelegate = changeCellDelegate {
-            changeCellDelegate.updateTV()
-        }
-    }
-    
-    func bind(_ model: DefaultQuestionDataModel) {
-        nicknameLabel.text = model.nickname
-        majorLabel.text = model.majorInfo
-        commentContentTextView.text = model.contentText
-    }
 }
+
 // MARK: - UI
 extension ClassroomCommentEditTVC {
     
     /// questionContentTextView style 구성하는 메서드
-    func configurequestionContentTextView() {
+    func configureQuestionContentTextView() {
         commentContentTextView.delegate = self
         commentContentTextView.isScrollEnabled = false
         commentContentTextView.isEditable = true
@@ -71,12 +58,22 @@ extension ClassroomCommentEditTVC {
     }
 }
 
+// MARK: - Custom Methods
+extension ClassroomCommentEditTVC {
+    
+    /// 데이터 바인딩하는 메서드
+    func bind(_ model: DefaultQuestionDataModel) {
+        nicknameLabel.text = model.nickname
+        majorLabel.text = model.majorInfo
+        commentContentTextView.text = model.contentText
+    }
+}
+
 // MARK: - UITextViewDelegate
 extension ClassroomCommentEditTVC: UITextViewDelegate {
     
     /// textView가 변화할 때마다 호출되는 메서드
     func textViewDidChange(_ textView: UITextView) {
-        
         if let delegate = dynamicUpdateDelegate {
             delegate.updateTextViewHeight(cell: self, textView: textView)
         }
