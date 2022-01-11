@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -24,24 +24,24 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpMajorInfoVC" id="Y6W-OH-hqX" customClass="SignUpMajorInfoVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrX-5a-nru">
-                                <rect key="frame" x="0.0" y="44" width="414" height="84"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="84"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전공정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APp-Mv-iQm">
-                                        <rect key="frame" x="116.5" y="66" width="35" height="12"/>
+                                        <rect key="frame" x="108" y="66" width="35" height="12"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="10"/>
                                         <color key="textColor" name="nadoBlack"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOC-pa-yTv">
-                                        <rect key="frame" x="116.5" y="60" width="93" height="1"/>
+                                        <rect key="frame" x="108" y="60" width="84" height="1"/>
                                         <color key="backgroundColor" name="nadoBlack"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회원가입" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XN-Sf-SQY">
-                                        <rect key="frame" x="16" y="8" width="326" height="40"/>
+                                        <rect key="frame" x="16" y="8" width="287" height="40"/>
                                         <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="24"/>
                                         <color key="textColor" name="mainDefault"/>
                                         <nil key="highlightedColor"/>
@@ -53,30 +53,30 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5X-4v-cbG">
-                                        <rect key="frame" x="16" y="60" width="92.5" height="1"/>
+                                        <rect key="frame" x="16" y="60" width="84" height="1"/>
                                         <color key="backgroundColor" name="gray1"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="xLP-ic-SVl"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기본정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCh-vG-6kS">
-                                        <rect key="frame" x="217.5" y="66" width="35" height="12"/>
+                                        <rect key="frame" x="200" y="66" width="35" height="12"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="10"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RdS-9z-zgW">
-                                        <rect key="frame" x="217.5" y="60" width="92.5" height="1"/>
+                                        <rect key="frame" x="200" y="60" width="84" height="1"/>
                                         <color key="backgroundColor" name="gray1"/>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diamond_gray" translatesAutoresizingMaskIntoConstraints="NO" id="GDC-FQ-TS2">
-                                        <rect key="frame" x="318" y="66" width="12" height="12"/>
+                                        <rect key="frame" x="292" y="66" width="12" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GDC-FQ-TS2" secondAttribute="height" id="Mpt-DR-JSy"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07w-bs-wQx">
-                                        <rect key="frame" x="358" y="8" width="40" height="40"/>
+                                        <rect key="frame" x="319" y="8" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="07w-bs-wQx" secondAttribute="height" multiplier="1:1" id="SlH-uy-5qM"/>
                                         </constraints>
@@ -117,7 +117,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJG-so-n2V">
-                                <rect key="frame" x="0.0" y="141" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="141" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학교명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTe-Yz-Nwf">
                                         <rect key="frame" x="20" y="8" width="32" height="15"/>
@@ -126,12 +126,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt3-Tp-vrg" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="382" height="53"/>
+                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjd-Kj-IsY">
-                                        <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
+                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Qjd-Kj-IsY" secondAttribute="height" multiplier="48:32" id="nZh-W6-vUY"/>
                                         </constraints>
@@ -157,7 +157,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asY-ib-9W9">
-                                <rect key="frame" x="0.0" y="241" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="241" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sx-1d-fWp">
                                         <rect key="frame" x="20" y="8" width="32" height="15"/>
@@ -166,12 +166,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-dr-F0D" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="382" height="53"/>
+                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dH-9u-AKi">
-                                        <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
+                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6dH-9u-AKi" secondAttribute="height" multiplier="48:32" id="P89-0b-0ir"/>
                                         </constraints>
@@ -197,7 +197,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHR-65-5Xf">
-                                <rect key="frame" x="0.0" y="341" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="341" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2re-U0-gDH">
                                         <rect key="frame" x="20" y="8" width="76" height="15"/>
@@ -206,12 +206,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znz-fg-xiH" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="382" height="53"/>
+                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT8-2E-AKy">
-                                        <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
+                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kT8-2E-AKy" secondAttribute="height" multiplier="48:32" id="0Xh-bH-mQe"/>
                                         </constraints>
@@ -237,7 +237,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38y-7S-Zfm">
-                                <rect key="frame" x="0.0" y="541" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="541" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pp-0b-UQ5">
                                         <rect key="frame" x="20" y="8" width="83" height="15"/>
@@ -246,12 +246,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UTw-8I-lb1" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="382" height="53"/>
+                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FI6-4v-Pkv">
-                                        <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
+                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FI6-4v-Pkv" secondAttribute="height" multiplier="48:32" id="QMe-Gg-ZMy"/>
                                         </constraints>
@@ -277,7 +277,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbI-tf-4af" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="125.5" y="802" width="272.5" height="60"/>
+                                <rect key="frame" x="112" y="718" width="247" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="LYE-Iv-EFj"/>
                                 </constraints>
@@ -288,7 +288,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMq-Lq-dgg" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="802" width="97.5" height="60"/>
+                                <rect key="frame" x="16" y="718" width="84" height="60"/>
                                 <color key="tintColor" name="nadoBlack"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="btn_arrow_left">
@@ -299,7 +299,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-xs-sTg">
-                                <rect key="frame" x="0.0" y="441" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="441" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqG-xI-1oY">
                                         <rect key="frame" x="20" y="8" width="39" height="15"/>
@@ -308,12 +308,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dud-Cr-rQd" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="382" height="53"/>
+                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDr-xR-JTz">
-                                        <rect key="frame" x="337.5" y="39" width="55.5" height="37"/>
+                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="yDr-xR-JTz" secondAttribute="height" multiplier="48:32" id="0sU-8C-6lL"/>
                                         </constraints>

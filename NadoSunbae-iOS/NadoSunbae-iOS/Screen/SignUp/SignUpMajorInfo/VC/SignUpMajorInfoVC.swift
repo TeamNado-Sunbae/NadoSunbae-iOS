@@ -106,7 +106,8 @@ class SignUpMajorInfoVC: BaseVC {
     }
     
     @IBAction func tapNextBtn(_ sender: UIButton) {
-        self.navigationController?.pushViewController(UIViewController(), animated: true)
+        guard let vc = UIStoryboard.init(name: SignUpUserInfoVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpUserInfoVC.className) as? SignUpUserInfoVC else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func tapDismissBtn(_ sender: UIButton) {
