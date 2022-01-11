@@ -8,6 +8,7 @@
 import UIKit
 
 extension UITextField {
+    
     /// UITextField의 상태를 리턴함
     var isEmpty: Bool {
         if text?.isEmpty ?? true {

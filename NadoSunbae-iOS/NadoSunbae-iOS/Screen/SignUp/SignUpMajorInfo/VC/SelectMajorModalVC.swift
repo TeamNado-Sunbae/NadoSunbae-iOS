@@ -13,6 +13,7 @@ class SelectMajorModalVC: BaseVC {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var completeBtn: NadoSunbaeBtn!
     @IBOutlet weak var selectMajorTV: UITableView!
+    
     /// 진입된 버튼의 태그, 0: 본전공, 1: 본전공진입시기, 2: 제2전공, 3: 제2전공진입시기
     var enterdBtnTag = 0
     
