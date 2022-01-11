@@ -24,6 +24,7 @@ class ReviewMainVC: UIViewController {
         initPostList()
         setUpTV()
         addShadowToNaviBar()
+        addTVBottomSpace()
     }
     
     /// 만들어 둔 HalfModalView 보여주는 함수
@@ -83,6 +84,10 @@ extension ReviewMainVC {
         naviBarView.layer.shadowRadius = 18
         naviBarView.layer.shadowOpacity = 1
         naviBarView.layer.masksToBounds = false
+    }
+    
+    private func addTVBottomSpace() {
+        reviewTV.contentInset.bottom = 16
     }
 }
 
