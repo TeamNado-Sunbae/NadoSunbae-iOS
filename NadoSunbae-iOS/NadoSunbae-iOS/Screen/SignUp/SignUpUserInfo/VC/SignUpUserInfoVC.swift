@@ -176,7 +176,7 @@ class SignUpUserInfoVC: BaseVC {
             completeBtn.isEnabled = true
         } else {
             completeBtn.isActivated = false
-            completeBtn.isActivated = false
+            completeBtn.isEnabled = false
         }
     }
     
