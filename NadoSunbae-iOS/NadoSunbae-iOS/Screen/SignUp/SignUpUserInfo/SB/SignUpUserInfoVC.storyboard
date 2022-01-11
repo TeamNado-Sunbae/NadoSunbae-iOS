@@ -132,6 +132,9 @@
                                         <rect key="frame" x="279" y="30" width="80" height="48"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="중복 확인"/>
+                                        <connections>
+                                            <action selector="tapCheckDuplicateBtn:" destination="kPv-Cn-mrK" eventType="touchUpInside" id="nda-x4-NfN"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyY-Jn-wVW">
                                         <rect key="frame" x="24" y="86" width="327" height="14"/>
@@ -187,6 +190,9 @@
                                         <rect key="frame" x="279" y="30" width="80" height="48"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="이메일 확인"/>
+                                        <connections>
+                                            <action selector="tapCheckEmailBtn:" destination="kPv-Cn-mrK" eventType="touchUpInside" id="pTr-gf-ZRW"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Fu-ey7">
                                         <rect key="frame" x="24" y="86" width="327" height="14"/>

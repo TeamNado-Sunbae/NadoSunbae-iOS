@@ -52,33 +52,61 @@ class SignUpUserInfoVC: BaseVC {
         }
         
         [(nickNameTextField, nickNameClearBtn), (emailTextField, emailClearBtn), (PWTextField, PWClearBtn), (checkPWTextFIeld, checkPWClearBtn)].forEach { (textField, btn) in
-            setTextFieldClearBtn(textField: textField, btn: btn)
+            setTextFieldClearBtn(textField: textField, clearBtn: btn)
         }
+        
+        setCheckBtnState(textField: nickNameTextField, checkBtn: checkDuplicateBtn)
+        setCheckBtnState(textField: emailTextField, checkBtn: checkEmailBtn)
+        
         prevBtn.setBackgroundColor(.mainLight, for: .normal)
     }
     
     /// textField-btn 에 clear 기능 세팅하는 함수
-    private func setTextFieldClearBtn(textField: UITextField, btn: UIButton) {
+    private func setTextFieldClearBtn(textField: UITextField, clearBtn: UIButton) {
         textField.rx.text
             .orEmpty
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
-                btn.isHidden = changedText != "" ? false : true
+                clearBtn.isHidden = changedText != "" ? false : true
             })
             .disposed(by: disposeBag)
         
         /// Clear 버튼 액션
-        btn.rx.tap
+        clearBtn.rx.tap
             .bind {
                 textField.text = ""
-                btn.isHidden = true
+                clearBtn.isHidden = true
             }
             .disposed(by: disposeBag)
     }
     
-    private func judgeCheckBtnState() {
-        //        checkDuplicateBtn.isActivated = true
-        //        checkDuplicateBtn.setBackgroundColor(.mainLight, for: .normal)
+    /// textField가 채워져 있는지에 따라 Btn 상태 변경하는 함수
+    private func setCheckBtnState(textField: UITextField, checkBtn: NadoSunbaeBtn) {
+        textField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                self.changeNadoBtnState(isOn: changedText != "", btn: checkBtn)
+            })
+            .disposed(by: disposeBag)
+        
+        nickNameClearBtn.rx.tap
+            .bind {
+                self.changeNadoBtnState(isOn: false, btn: self.checkDuplicateBtn)
+            }
+            .disposed(by: disposeBag)
+        
+        emailClearBtn.rx.tap
+            .bind {
+                self.changeNadoBtnState(isOn: false, btn: self.checkEmailBtn)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// NadoSunbae 버튼의 상태 변경 함수
+    private func changeNadoBtnState(isOn: Bool, btn: NadoSunbaeBtn) {
+        btn.isActivated = isOn ? true : false
+        btn.isEnabled = isOn ? true : false
     }
     
     // MARK: IBAction
