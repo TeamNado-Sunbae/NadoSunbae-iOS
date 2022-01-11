@@ -30,6 +30,7 @@ class HalfModalVC: UIViewController {
     }
     
     // MARK: Private Methods
+    
     /// 학과 이름 리스트 삽입 함수
     private func initMajorList() {
         majorList.append(contentsOf: [
