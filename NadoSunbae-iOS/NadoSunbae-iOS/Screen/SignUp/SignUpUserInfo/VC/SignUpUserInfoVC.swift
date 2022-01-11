@@ -31,7 +31,8 @@ class SignUpUserInfoVC: BaseVC {
     @IBOutlet weak var completeBtn: NadoSunbaeBtn!
     
     let disposeBag = DisposeBag()
-
+    var isCompleteList = [false, false, false]
+    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,7 @@ class SignUpUserInfoVC: BaseVC {
         changePWInfoLabelState()
         checkEmailIsValid()
         prevBtn.setBackgroundColor(.mainLight, for: .normal)
+        completeBtn.isEnabled = false
     }
     
     /// textField-btn 에 clear 기능 세팅하는 함수
@@ -108,6 +110,7 @@ class SignUpUserInfoVC: BaseVC {
         btn.isActivated = isOn ? true : false
         btn.backgroundColor = isOn ? .mainLight : .gray1
         btn.isEnabled = isOn ? true : false
+        checkIsCompleted()
     }
     
     /// 비밀번호 확인 함수
@@ -138,10 +141,13 @@ class SignUpUserInfoVC: BaseVC {
                 if changedText == self.PWTextField.text {
                     self.PWInfoLabel.text = "비밀번호가 일치합니다."
                     self.PWInfoLabel.textColor = .mainDark
+                    self.isCompleteList[2] = true
                 } else {
                     self.PWInfoLabel.text = "비밀번호가 일치하지 않습니다."
                     self.PWInfoLabel.textColor = .red
+                    self.isCompleteList[2] = false
                 }
+                self.checkIsCompleted()
             })
             .disposed(by: disposeBag)
     }
@@ -163,6 +169,17 @@ class SignUpUserInfoVC: BaseVC {
             .disposed(by: disposeBag)
     }
     
+    /// 모든 정보가 정상적으로 기입됐는지 검사
+    private func checkIsCompleted() {
+        if isCompleteList == [true, true, true] {
+            completeBtn.isActivated = true
+            completeBtn.isEnabled = true
+        } else {
+            completeBtn.isActivated = false
+            completeBtn.isActivated = false
+        }
+    }
+    
     // MARK: IBAction
     @IBAction func tapCheckDuplicateBtn(_ sender: UIButton) {
         // TODO: 중복 검사 실행 후 다시 여기 기능 세팅!
@@ -170,10 +187,13 @@ class SignUpUserInfoVC: BaseVC {
             self.nickNameInfoLabel.textColor = .mainDark
             self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
             self.nickNameClearBtn.isHidden = true
+            self.isCompleteList[0] = true
         } else { // 요기 워닝 떠서 주석처리함
 //            self.nickNameInfoLabel.textColor = .red
 //            self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
+//            self.isCompleteList[0] = false
         }
+        self.checkIsCompleted()
         self.nickNameInfoLabel.isHidden = false
     }
     
@@ -183,10 +203,14 @@ class SignUpUserInfoVC: BaseVC {
             self.emailInfoLabel.textColor = .mainDark
             self.emailInfoLabel.text = "인증 메일이 전송되었습니다."
             self.emailClearBtn.isHidden = true
+            self.isCompleteList[1] = true
         } else { // 요기 워닝 떠서 주석처리함
 //            self.emailInfoLabel.textColor = .red
 //            self.emailInfoLabel.text = "이미 가입된 메일입니다."
+//            self.isCompleteList[1] = false
+
         }
+        self.checkIsCompleted()
         self.emailInfoLabel.isHidden = false
     }
 }
