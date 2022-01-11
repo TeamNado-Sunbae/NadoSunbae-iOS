@@ -55,7 +55,7 @@ class SelectMajorModalVC: BaseVC {
     }
     
     // MARK: IBAction
-    @IBAction func tapCompleteBtn(_ sender: Any) {
+    @IBAction func tapCompleteBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
         let sendData = { () -> String in
             switch self.enterdBtnTag {
@@ -70,7 +70,7 @@ class SelectMajorModalVC: BaseVC {
         selectMajorDelegate?.sendUpdate(data: sendData)
     }
     
-    @IBAction func tapDismissBtn(_ sender: Any) {
+    @IBAction func tapDismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 }

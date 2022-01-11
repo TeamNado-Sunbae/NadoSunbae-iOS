@@ -69,7 +69,7 @@ class AgreeTermsVC: BaseVC {
         
     }
     
-    @IBAction func tapDismissBtn(_ sender: Any) {
+    @IBAction func tapDismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
