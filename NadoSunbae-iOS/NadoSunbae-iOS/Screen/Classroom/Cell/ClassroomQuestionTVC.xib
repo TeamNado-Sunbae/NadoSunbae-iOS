@@ -58,6 +58,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="btnMoreVert"/>
+                                <connections>
+                                    <action selector="tapMoreBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mmf-2Q-4Hv"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CFZ-tM-j9m">
                                 <rect key="frame" x="16" y="112" width="264.5" height="45"/>
@@ -133,6 +136,7 @@
             <connections>
                 <outlet property="backView" destination="YaZ-yA-JAB" id="bVz-xJ-Csb"/>
                 <outlet property="majorLabel" destination="OT9-0t-ckE" id="oDy-Ih-rX3"/>
+                <outlet property="moreBtn" destination="aK2-Jo-OMJ" id="63P-4q-lz0"/>
                 <outlet property="nicknameLabel" destination="udq-eX-F8j" id="TlL-ky-WBX"/>
                 <outlet property="questionContentTextView" destination="CFZ-tM-j9m" id="2pc-09-apb"/>
                 <outlet property="titleLabel" destination="4Jn-Qv-vH7" id="J2H-fQ-gLK"/>
