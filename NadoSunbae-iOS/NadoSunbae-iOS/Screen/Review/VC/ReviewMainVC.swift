@@ -20,19 +20,37 @@ class ReviewMainVC: UIViewController {
     // MARK: Life Cycle Part
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerTVC()
+        setUpTV()
         initImgList()
         initPostList()
-        setUpTV()
         addShadowToNaviBar()
-        addTVBottomSpace()
     }
     
-    /// 만들어 둔 HalfModalView 보여주는 함수
-    @objc func showHalfModalView() {
-        let slideVC = HalfModalVC()
-        slideVC.modalPresentationStyle = .custom
-        slideVC.transitioningDelegate = self
-        self.present(slideVC, animated: true, completion: nil)
+    // MARK: Custom Methods
+    
+    /// cell 등록 함수
+    private func registerTVC() {
+        ReviewMainImgTVC.register(target: reviewTV)
+        ReviewMainLinkTVC.register(target: reviewTV)
+        ReviewMainPostTVC.register(target: reviewTV)
+        
+        let nib = UINib(nibName: "ReviewMainStickyHeader", bundle: nil)
+        reviewTV.register(nib, forHeaderFooterViewReuseIdentifier: ReviewStickyHeaderView.className)
+    }
+    
+    /// TableView setting 함수
+    private func setUpTV() {
+        reviewTV.dataSource = self
+        reviewTV.delegate = self
+        
+        /// TableView 하단 space 설정
+        reviewTV.contentInset.bottom = 16
+        
+        /// section header 들어가지 않는 section에 padding 값 없도록
+        if #available(iOS 15.0, *) {
+            UITableView.appearance().sectionHeaderTopPadding = 0.0
+        }
     }
     
     /// section0: 이미지 삽입
@@ -53,22 +71,12 @@ class ReviewMainVC: UIViewController {
         ])
     }
     
-    /// TableView setting 함수
-    private func setUpTV() {
-        ReviewMainImgTVC.register(target: reviewTV)
-        ReviewMainLinkTVC.register(target: reviewTV)
-        ReviewMainPostTVC.register(target: reviewTV)
-        
-        let nib = UINib(nibName: "ReviewMainStickyHeader", bundle: nil)
-        reviewTV.register(nib, forHeaderFooterViewReuseIdentifier: ReviewStickyHeaderView.className)
-        
-        reviewTV.dataSource = self
-        reviewTV.delegate = self
-        
-        /// section header 들어가지 않는 section에 padding 값 없도록
-        if #available(iOS 15.0, *) {
-            UITableView.appearance().sectionHeaderTopPadding = 0.0
-        }
+    // MARK: @objc Function Part
+    @objc func showHalfModalView() {
+        let slideVC = HalfModalVC()
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
     }
     
     // MARK: IBAction
@@ -87,11 +95,6 @@ extension ReviewMainVC {
         naviBarView.layer.shadowRadius = 18
         naviBarView.layer.shadowOpacity = 1
         naviBarView.layer.masksToBounds = false
-    }
-    
-    /// TableView 하단 space 설정
-    private func addTVBottomSpace() {
-        reviewTV.contentInset.bottom = 16
     }
 }
 
