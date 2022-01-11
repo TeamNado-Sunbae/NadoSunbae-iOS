@@ -111,9 +111,9 @@ extension ReviewMainVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 192
+            return 192.adjustedH
         } else if indexPath.section == 1 {
-            return 52
+            return 52.adjustedH
         } else if indexPath.section == 2 {
             return 156
         } else {
