@@ -113,6 +113,7 @@ extension ReviewMainVC: UITableViewDelegate {
         return 3
     }
     
+    /// cell 높이 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 192.adjustedH
@@ -140,6 +141,7 @@ extension ReviewMainVC: UITableViewDataSource {
         }
     }
     
+    /// section header view 설정
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReviewStickyHeaderView.className) as? ReviewStickyHeaderView else { return UIView() }
@@ -149,6 +151,7 @@ extension ReviewMainVC: UITableViewDataSource {
         }
     }
     
+    /// section header 높이 설정
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 2 {
             return 48
@@ -157,6 +160,7 @@ extension ReviewMainVC: UITableViewDataSource {
         }
     }
     
+    /// row에 들어갈 cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC else { return UITableViewCell() }
