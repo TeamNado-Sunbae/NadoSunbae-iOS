@@ -8,6 +8,5 @@
 import UIKit
 
 protocol TVCContentUpdate : AnyObject {
-    
     func updateTV()
 }
