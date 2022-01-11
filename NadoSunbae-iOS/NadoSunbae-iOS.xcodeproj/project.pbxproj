@@ -60,6 +60,8 @@
 		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
+		5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */; };
+		5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CEC7278D9CC80054136D /* SignUpUserInfoVC.swift */; };
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
 		5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73378278A8F4900806B17 /* NadoAlertVC.swift */; };
 		5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */; };
@@ -152,6 +154,8 @@
 		5C485F232789661F00FCA5DF /* NadoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextField.swift; sourceTree = "<group>"; };
 		5C4ED929278949AC001EA6BB /* SignInSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInSB.storyboard; sourceTree = "<group>"; };
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpUserInfoVC.storyboard; sourceTree = "<group>"; };
+		5C54CEC7278D9CC80054136D /* SignUpUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserInfoVC.swift; sourceTree = "<group>"; };
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
 		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
 		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
@@ -579,6 +583,31 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		5C54CEC2278D9C8C0054136D /* SignUpUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CEC4278D9CA10054136D /* VC */,
+				5C54CEC3278D9C9D0054136D /* SB */,
+			);
+			path = SignUpUserInfo;
+			sourceTree = "<group>";
+		};
+		5C54CEC3278D9C9D0054136D /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		5C54CEC4278D9CA10054136D /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CEC7278D9CC80054136D /* SignUpUserInfoVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +642,7 @@
 			children = (
 				5CAB3F24278AE38600025DA5 /* AgreeTerms */,
 				5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */,
+				5C54CEC2278D9C8C0054136D /* SignUpUserInfo */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -726,6 +756,7 @@
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
 				331364A02785D8CB00E0C118 /* ClassroomSB.storyboard in Resources */,
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
+				5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */,
 				777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
@@ -825,6 +856,7 @@
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
+				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
