@@ -16,7 +16,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HalfModalVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="majorChooseBtn" destination="6Ge-lL-3Yc" id="wLc-o1-nG4"/>
-                <outlet property="reviewTV" destination="h1f-Qa-f52" id="wNR-zk-w67"/>
+                <outlet property="majorTV" destination="h1f-Qa-f52" id="vvO-vO-TVE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

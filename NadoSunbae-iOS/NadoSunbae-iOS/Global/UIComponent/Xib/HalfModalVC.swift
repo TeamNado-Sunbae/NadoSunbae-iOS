@@ -10,7 +10,7 @@ import UIKit
 class HalfModalVC: UIViewController {
     
     // MARK: IBOutlet
-    @IBOutlet weak var reviewTV: UITableView!
+    @IBOutlet weak var majorTV: UITableView!
     @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
     
     // MARK: Properties
@@ -30,6 +30,7 @@ class HalfModalVC: UIViewController {
     }
     
     // MARK: Private Methods
+    
     /// 학과 이름 리스트 삽입 함수
     private func initMajorList() {
         majorList.append(contentsOf: [
@@ -48,11 +49,12 @@ class HalfModalVC: UIViewController {
     
     /// TableView setting 함수
     private func setUpTV() {
-        MajorTVC.register(target: reviewTV)
+        MajorTVC.register(target: majorTV)
         
-        reviewTV.dataSource = self
-        reviewTV.delegate = self
+        majorTV.dataSource = self
+        majorTV.delegate = self
     }
+    
     /// 선택완료 버튼 UI  setting 함수
     private func configureBtnUI() {
         majorChooseBtn.isActivated = false
@@ -69,13 +71,14 @@ class HalfModalVC: UIViewController {
     }
 }
 
-// MARK: - Extension Part
+// MARK: - UITableViewDelegate
 extension HalfModalVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54
     }
 }
 
+// MARK: - UITableViewDelegate
 extension HalfModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return majorList.count

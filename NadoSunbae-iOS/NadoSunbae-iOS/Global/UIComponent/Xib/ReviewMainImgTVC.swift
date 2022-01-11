@@ -1,0 +1,36 @@
+//
+//  ReviewMainImgTVC.swift
+//  NadoSunbae-iOS
+//
+//  Created by EUNJU on 2022/01/10.
+//
+
+import UIKit
+
+class ReviewMainImgTVC: UITableViewCell, UITableViewRegisterable {
+    
+    /// Register할 Nib get
+    static var isFromNib: Bool {
+        get {
+            return true
+        }
+    }
+
+    // MARK: IBOutlet
+    @IBOutlet weak var reviewMainImgView: UIImageView!
+    
+    // MARK: Life Cycle Part
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    // MARK: Private Methods
+    /// 이미지 세팅 함수
+    func setData(ImgData: ReviewImgData) {
+        reviewMainImgView.image = ImgData.makeImg()
+    }
+}
