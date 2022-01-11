@@ -162,23 +162,21 @@ extension ReviewMainVC: UITableViewDataSource {
     
     /// row에 들어갈 cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let reviewMainImgTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC,
+              let reviewMainLinkTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainLinkTVC.className) as? ReviewMainLinkTVC,
+              let reviewMainPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC else { return UITableViewCell() }
+
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC else { return UITableViewCell() }
-            
-            cell.setData(ImgData: imgList[indexPath.row])
-            return cell
+            reviewMainImgTVC.setData(ImgData: imgList[indexPath.row])
+            return reviewMainImgTVC
         } else if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainLinkTVC.className) as? ReviewMainLinkTVC else { return UITableViewCell() }
-            return cell
+            return reviewMainLinkTVC
         } else if indexPath.section == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC else { return UITableViewCell() }
-            
-            cell.setData(postData: postList[indexPath.row])
-            return cell
+            reviewMainPostTVC.setData(postData: postList[indexPath.row])
+            return reviewMainPostTVC
         } else {
             return UITableViewCell()
         }
     }
 }
-
 
