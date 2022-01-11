@@ -218,7 +218,8 @@ class SignUpUserInfoVC: BaseVC {
     }
     
     @IBAction func tapCompleteBtn(_ sender: UIButton) {
-        self.navigationController?.pushViewController(UIViewController(), animated: true)
+        guard let vc = UIStoryboard.init(name: SignUpCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpCompleteVC.className) as? SignUpCompleteVC else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func tapDismissBtn(_ sender: UIButton) {
