@@ -146,5 +146,22 @@ class SignUpUserInfoVC: BaseVC {
             .disposed(by: disposeBag)
     }
     
+    /// 이메일 유효성 검사
+    private func checkEmailIsValid() {
+        emailTextField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
+                    self.changeNadoBtnState(isOn: true, btn: self.checkEmailBtn)
+                } else {
+                    self.changeNadoBtnState(isOn: false, btn: self.checkEmailBtn)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: IBAction
 }
