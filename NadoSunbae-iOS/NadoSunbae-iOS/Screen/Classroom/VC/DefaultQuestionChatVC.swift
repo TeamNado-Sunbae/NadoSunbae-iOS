@@ -73,7 +73,6 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
             
             // 1:1 질문자 셀
             if indexPath.row == 0 {
-                print("hhh")
                 // TODO: - 질문 원글은 추후에 수정을 해당 view가 아니라 질문작성뷰에서 처리하도록 기능을 붙여나갈 예정임
                 questionCell.moreBtn.isEnabled = false
             } else {
@@ -114,7 +113,8 @@ extension DefaultQuestionChatVC: TVCHeightDynamicUpdate {
             UIView.setAnimationsEnabled(false)
             defaultQuestionChatTV.beginUpdates()
             defaultQuestionChatTV.endUpdates()
-            UIView.setAnimationsEnabled(true)        }
+            UIView.setAnimationsEnabled(true)
+        }
     }
 }
 
