@@ -16,6 +16,7 @@ class ReviewMainPostTVC: UITableViewCell, UITableViewRegisterable {
         }
     }
 
+    // MARK: IBOutlet
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var diamondCountLabel: UILabel!
@@ -25,6 +26,7 @@ class ReviewMainPostTVC: UITableViewCell, UITableViewRegisterable {
     @IBOutlet weak var majorNameLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
     
+    // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
@@ -34,6 +36,8 @@ class ReviewMainPostTVC: UITableViewCell, UITableViewRegisterable {
         super.setSelected(selected, animated: animated)
     }
     
+    // MARK: Private Methods
+    /// 리스트 데이터 세팅 함수
     func setData(postData: ReviewPostData) {
         dateLabel.text = postData.date
         titleLabel.text = postData.title
@@ -46,6 +50,7 @@ class ReviewMainPostTVC: UITableViewCell, UITableViewRegisterable {
     }
 }
 
+// MARK: - Extension Part
 extension ReviewMainPostTVC {
     private func configureUI() {
         contentView.layer.cornerRadius = 8
@@ -54,6 +59,7 @@ extension ReviewMainPostTVC {
         contentView.backgroundColor = .white
     }
     
+    /// TVC 사이 간격 설정
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16))

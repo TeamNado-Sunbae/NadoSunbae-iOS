@@ -35,12 +35,14 @@ class ReviewMainVC: UIViewController {
         self.present(slideVC, animated: true, completion: nil)
     }
     
+    /// section0: 이미지 삽입
     private func initImgList() {
         imgList.append(contentsOf: [
             ReviewImgData(reviewImgName: "sampleImg")
         ])
     }
     
+    /// section2: 게시글 리스트 삽입
     private func initPostList() {
         postList.append(contentsOf: [
             ReviewPostData(date: "21/12/23", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 12, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
@@ -63,6 +65,7 @@ class ReviewMainVC: UIViewController {
         reviewTV.dataSource = self
         reviewTV.delegate = self
         
+        /// section header 들어가지 않는 section에 padding 값 없도록
         if #available(iOS 15.0, *) {
             UITableView.appearance().sectionHeaderTopPadding = 0.0
         }
@@ -86,6 +89,7 @@ extension ReviewMainVC {
         naviBarView.layer.masksToBounds = false
     }
     
+    /// TableView 하단 space 설정
     private func addTVBottomSpace() {
         reviewTV.contentInset.bottom = 16
     }
@@ -130,7 +134,6 @@ extension ReviewMainVC: UITableViewDataSource {
             return 0
         }
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {

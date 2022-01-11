@@ -16,8 +16,10 @@ class ReviewMainImgTVC: UITableViewCell, UITableViewRegisterable {
         }
     }
 
+    // MARK: IBOutlet
     @IBOutlet weak var reviewMainImgView: UIImageView!
     
+    // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -26,6 +28,8 @@ class ReviewMainImgTVC: UITableViewCell, UITableViewRegisterable {
         super.setSelected(selected, animated: animated)
     }
     
+    // MARK: Private Methods
+    /// 이미지 세팅 함수
     func setData(ImgData: ReviewImgData) {
         reviewMainImgView.image = ImgData.makeImg()
     }

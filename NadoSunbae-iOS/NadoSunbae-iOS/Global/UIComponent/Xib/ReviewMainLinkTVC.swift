@@ -16,6 +16,7 @@ class ReviewMainLinkTVC: UITableViewCell, UITableViewRegisterable {
         }
     }
 
+    // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -23,5 +24,4 @@ class ReviewMainLinkTVC: UITableViewCell, UITableViewRegisterable {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }
