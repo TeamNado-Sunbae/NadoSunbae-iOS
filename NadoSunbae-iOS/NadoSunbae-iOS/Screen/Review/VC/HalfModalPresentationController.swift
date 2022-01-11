@@ -52,7 +52,7 @@ class HalfModalPresentationController: UIPresentationController {
     /// 하프 모달 뷰 radius 설정
     override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
-        presentedView!.makeRounded(cornerRadius: 8)
+        presentedView!.makeRounded(cornerRadius: 8.adjusted)
     }
     
     override func containerViewDidLayoutSubviews() {
