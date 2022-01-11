@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SignUpUserInfoVC: BaseVC {
     
@@ -28,6 +30,8 @@ class SignUpUserInfoVC: BaseVC {
     @IBOutlet weak var prevBtn: NadoSunbaeBtn!
     @IBOutlet weak var completeBtn: NadoSunbaeBtn!
     
+    let disposeBag = DisposeBag()
+
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +46,40 @@ class SignUpUserInfoVC: BaseVC {
             btn?.makeRounded(cornerRadius: 8.adjusted)
             btn?.isEnabled = false
         }
+        
         [nickNameInfoLabel, emailInfoLabel, PWInfoLabel].forEach { label in
             label?.isHidden = true
         }
+        
+        [(nickNameTextField, nickNameClearBtn), (emailTextField, emailClearBtn), (PWTextField, PWClearBtn), (checkPWTextFIeld, checkPWClearBtn)].forEach { (textField, btn) in
+            setTextFieldClearBtn(textField: textField, btn: btn)
+        }
         prevBtn.setBackgroundColor(.mainLight, for: .normal)
     }
+    
+    /// textField-btn 에 clear 기능 세팅하는 함수
+    private func setTextFieldClearBtn(textField: UITextField, btn: UIButton) {
+        textField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                btn.isHidden = changedText != "" ? false : true
+            })
+            .disposed(by: disposeBag)
+        
+        /// Clear 버튼 액션
+        btn.rx.tap
+            .bind {
+                textField.text = ""
+                btn.isHidden = true
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func judgeCheckBtnState() {
+        //        checkDuplicateBtn.isActivated = true
+        //        checkDuplicateBtn.setBackgroundColor(.mainLight, for: .normal)
+    }
+    
+    // MARK: IBAction
 }

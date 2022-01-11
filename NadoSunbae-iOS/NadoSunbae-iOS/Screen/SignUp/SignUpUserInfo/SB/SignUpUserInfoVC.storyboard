@@ -126,7 +126,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFc-cy-ZRn" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="255" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-f1-zAM" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="279" y="30" width="80" height="48"/>
@@ -134,7 +134,7 @@
                                         <state key="normal" title="중복 확인"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyY-Jn-wVW">
-                                        <rect key="frame" x="24" y="86" width="327" height="14.333333333333329"/>
+                                        <rect key="frame" x="24" y="86" width="327" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -181,7 +181,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@korea.ac.kr" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dlP-ck-Dxk" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="255" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l5-T9-3Nv" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="279" y="30" width="80" height="48"/>
@@ -189,7 +189,7 @@
                                         <state key="normal" title="이메일 확인"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Fu-ey7">
-                                        <rect key="frame" x="24" y="86" width="327" height="14.333333333333329"/>
+                                        <rect key="frame" x="24" y="86" width="327" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -236,7 +236,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aai-7h-3Kd" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UcE-zG-Rkq">
                                         <rect key="frame" x="311" y="30" width="48" height="48"/>
@@ -273,7 +273,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A2U-XK-IhF" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beF-ab-f9d">
                                         <rect key="frame" x="311" y="30" width="48" height="48"/>
@@ -286,7 +286,7 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wju-B5-tOK">
-                                        <rect key="frame" x="24" y="86" width="327" height="14.333333333333329"/>
+                                        <rect key="frame" x="24" y="86" width="327" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
