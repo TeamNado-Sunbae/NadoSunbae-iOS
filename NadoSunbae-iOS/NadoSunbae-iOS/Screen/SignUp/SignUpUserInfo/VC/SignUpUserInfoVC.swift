@@ -164,4 +164,29 @@ class SignUpUserInfoVC: BaseVC {
     }
     
     // MARK: IBAction
+    @IBAction func tapCheckDuplicateBtn(_ sender: UIButton) {
+        // TODO: 중복 검사 실행 후 다시 여기 기능 세팅!
+        if true {
+            self.nickNameInfoLabel.textColor = .mainDark
+            self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
+            self.nickNameClearBtn.isHidden = true
+        } else { // 요기 워닝 떠서 주석처리함
+//            self.nickNameInfoLabel.textColor = .red
+//            self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
+        }
+        self.nickNameInfoLabel.isHidden = false
+    }
+    
+    @IBAction func tapCheckEmailBtn(_ sender: UIButton) {
+        // TODO: 이메일 확인 검사 실행 후 다시 여기 기능 세팅!
+        if true {
+            self.emailInfoLabel.textColor = .mainDark
+            self.emailInfoLabel.text = "인증 메일이 전송되었습니다."
+            self.emailClearBtn.isHidden = true
+        } else { // 요기 워닝 떠서 주석처리함
+//            self.emailInfoLabel.textColor = .red
+//            self.emailInfoLabel.text = "이미 가입된 메일입니다."
+        }
+        self.emailInfoLabel.isHidden = false
+    }
 }
