@@ -12,12 +12,15 @@ class ClassroomQuestionTVC: BaseTVC {
     // MARK: IBOutlet
     @IBOutlet var backView: UIView!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var moreBtn: UIButton!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
     @IBOutlet var questionContentTextView: UITextView!
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
+    weak var changeCellDelegate: TVCContentUpdate?
+    var tapMoreBtnAction : (() -> ())?
     
     // MARK: LifeCycle
     override func awakeFromNib() {
@@ -28,6 +31,15 @@ class ClassroomQuestionTVC: BaseTVC {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    // MARK: IBAction
+    @IBAction func tapMoreBtn(_ sender: UIButton) {
+        tapMoreBtnAction?()
+        
+        if let changeCellDelegate = changeCellDelegate {
+            changeCellDelegate.updateTV()
+        }
     }
 }
 
