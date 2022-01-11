@@ -62,20 +62,9 @@
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
 		5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */; };
 		5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CEC7278D9CC80054136D /* SignUpUserInfoVC.swift */; };
+		5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */; };
+		5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */; };
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
-		5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73378278A8F4900806B17 /* NadoAlertVC.swift */; };
-		5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */; };
-		5CAB3F28278AE39D00025DA5 /* AgreeTermsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */; };
-		5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */; };
-		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
-		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
-		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
-		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
-		777ABF7D278C844E002D3214 /* ReviewMainLinkTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */; };
-		777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */; };
-		777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */; };
-		777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */; };
-		777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */; };
 		5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */; };
 		5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */; };
 		5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73378278A8F4900806B17 /* NadoAlertVC.swift */; };
@@ -88,6 +77,14 @@
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */; };
 		5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */; };
+		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
+		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
+		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
+		777ABF7D278C844E002D3214 /* ReviewMainLinkTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */; };
+		777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */; };
+		777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */; };
+		777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */; };
+		777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -156,19 +153,9 @@
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpUserInfoVC.storyboard; sourceTree = "<group>"; };
 		5C54CEC7278D9CC80054136D /* SignUpUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserInfoVC.swift; sourceTree = "<group>"; };
+		5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpCompleteVC.storyboard; sourceTree = "<group>"; };
+		5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteVC.swift; sourceTree = "<group>"; };
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
-		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
-		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
-		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
-		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
-		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
-		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
-		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
-		777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainLinkTVC.xib; sourceTree = "<group>"; };
-		777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainPostTVC.swift; sourceTree = "<group>"; };
-		777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainPostTVC.xib; sourceTree = "<group>"; };
-		777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainStickyHeader.xib; sourceTree = "<group>"; };
-		777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStickyHeaderView.swift; sourceTree = "<group>"; };
 		5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpMajorInfoVC.storyboard; sourceTree = "<group>"; };
 		5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMajorInfoVC.swift; sourceTree = "<group>"; };
 		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
@@ -180,6 +167,14 @@
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectMajorModalVC+TV.swift"; sourceTree = "<group>"; };
 		5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalTVC.swift; sourceTree = "<group>"; };
+		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
+		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
+		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
+		777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainLinkTVC.xib; sourceTree = "<group>"; };
+		777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainPostTVC.swift; sourceTree = "<group>"; };
+		777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainPostTVC.xib; sourceTree = "<group>"; };
+		777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainStickyHeader.xib; sourceTree = "<group>"; };
+		777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStickyHeaderView.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -608,6 +603,31 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		5C54CEC9278DF5F10054136D /* SignUpComplete */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CECB278DF6020054136D /* SB */,
+				5C54CECA278DF5FB0054136D /* VC */,
+			);
+			path = SignUpComplete;
+			sourceTree = "<group>";
+		};
+		5C54CECA278DF5FB0054136D /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		5C54CECB278DF6020054136D /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +660,7 @@
 		5CAB3F23278AE37E00025DA5 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				5C54CEC9278DF5F10054136D /* SignUpComplete */,
 				5CAB3F24278AE38600025DA5 /* AgreeTerms */,
 				5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */,
 				5C54CEC2278D9C8C0054136D /* SignUpUserInfo */,
@@ -775,6 +796,7 @@
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
+				5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */,
 				5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,6 +874,7 @@
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
 				5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */,
 				5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */,
+				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
