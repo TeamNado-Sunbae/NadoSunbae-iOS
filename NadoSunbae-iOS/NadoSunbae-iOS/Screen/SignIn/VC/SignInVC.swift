@@ -51,30 +51,30 @@ class SignInVC: BaseVC {
     }
     
     // MARK: IBAction
-    @IBAction func tapEmailClearBtn(_ sender: Any) {
+    @IBAction func tapEmailClearBtn(_ sender: UIButton) {
         emailTextField.text = ""
     }
     
-    @IBAction func tapPWClearBtn(_ sender: Any) {
+    @IBAction func tapPWClearBtn(_ sender: UIButton) {
         pwTextField.text = ""
     }
     
-    @IBAction func tapSignInBtn(_ sender: Any) {
+    @IBAction func tapSignInBtn(_ sender: UIButton) {
         let sb = NadoSunbaeTBC()
         sb.modalPresentationStyle = .fullScreen
         self.present(sb, animated: true, completion: nil)
     }
     
-    @IBAction func tapSignUpBtn(_ sender: Any) {
+    @IBAction func tapSignUpBtn(_ sender: UIButton) {
         guard let vc = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: "SignUpNVC") as? UINavigationController else { return }
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func tapFindPWBtn(_ sender: Any) {
+    @IBAction func tapFindPWBtn(_ sender: UIButton) {
     }
     
-    @IBAction func tapContactBtn(_ sender: Any) {
+    @IBAction func tapContactBtn(_ sender: UIButton) {
     }
 }
