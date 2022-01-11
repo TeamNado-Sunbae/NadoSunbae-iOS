@@ -17,11 +17,14 @@ class ClassroomCommentTVC: BaseTVC {
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
+    weak var changeCellDelegate: TVCContentUpdate?
+    var tapMoreBtnAction : (() -> ())?
+    
     
     // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configurequestionContentTextView()
+        configureQuestionContentTextView()
         configureBackView()
     }
     
@@ -31,6 +34,11 @@ class ClassroomCommentTVC: BaseTVC {
     
     // MARK: IBAction
     @IBAction func tapMoreBtn(_ sender: UIButton) {
+        tapMoreBtnAction?()
+        
+        if let changeCellDelegate = changeCellDelegate {
+            changeCellDelegate.updateTV()
+        }
     }
 }
 
@@ -38,7 +46,7 @@ class ClassroomCommentTVC: BaseTVC {
 extension ClassroomCommentTVC {
     
     /// questionContentTextView style 구성하는 메서드
-    func configurequestionContentTextView() {
+    func configureQuestionContentTextView() {
         commentContentTextView.delegate = self
         commentContentTextView.isScrollEnabled = false
         commentContentTextView.isEditable = false
@@ -69,7 +77,6 @@ extension ClassroomCommentTVC: UITextViewDelegate {
     
     /// textView가 변화할 때마다 호출되는 메서드
     func textViewDidChange(_ textView: UITextView) {
-        
         if let delegate = dynamicUpdateDelegate {
             delegate.updateTextViewHeight(cell: self, textView: textView)
         }
