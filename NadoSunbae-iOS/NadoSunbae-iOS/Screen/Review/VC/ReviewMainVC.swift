@@ -56,8 +56,15 @@ class ReviewMainVC: UIViewController {
         ReviewMainLinkTVC.register(target: reviewTV)
         ReviewMainPostTVC.register(target: reviewTV)
         
+        let nib = UINib(nibName: "ReviewMainStickyHeader", bundle: nil)
+        reviewTV.register(nib, forHeaderFooterViewReuseIdentifier: ReviewStickyHeaderView.className)
+        
         reviewTV.dataSource = self
         reviewTV.delegate = self
+        
+        if #available(iOS 15.0, *) {
+            UITableView.appearance().sectionHeaderTopPadding = 0.0
+        }
     }
     
     // MARK: IBAction
@@ -114,6 +121,24 @@ extension ReviewMainVC: UITableViewDataSource {
             return 1
         } else if section == 2 {
             return postList.count
+        } else {
+            return 0
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 2 {
+            guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReviewStickyHeaderView.className) as? ReviewStickyHeaderView else { return UIView() }
+            return headerView
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return 48
         } else {
             return 0
         }
