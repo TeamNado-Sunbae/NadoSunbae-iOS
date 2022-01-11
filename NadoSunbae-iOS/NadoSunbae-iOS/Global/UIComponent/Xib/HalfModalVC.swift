@@ -70,13 +70,14 @@ class HalfModalVC: UIViewController {
     }
 }
 
-// MARK: - Extension Part
+// MARK: - UITableViewDelegate
 extension HalfModalVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54
     }
 }
 
+// MARK: - UITableViewDelegate
 extension HalfModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return majorList.count

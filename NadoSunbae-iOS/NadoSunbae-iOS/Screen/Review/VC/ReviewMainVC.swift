@@ -102,6 +102,7 @@ extension ReviewMainVC: UIViewControllerTransitioningDelegate {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension ReviewMainVC: UITableViewDelegate {
     
     /// section 3개로 나눔
@@ -122,6 +123,7 @@ extension ReviewMainVC: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension ReviewMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
