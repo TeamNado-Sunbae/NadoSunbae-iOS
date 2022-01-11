@@ -51,9 +51,6 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="btnMoreVertMint"/>
-                                <connections>
-                                    <action selector="tapMoreBtn:" destination="biT-4X-2Qy" eventType="touchUpInside" id="Phc-y4-3o0"/>
-                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니라 굿모닝인가..ㅎㅎ 잘 자고 내일 보자.. 하하 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GFj-lp-vBs">
                                 <rect key="frame" x="16" y="75" width="200" height="62"/>

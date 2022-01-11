@@ -3,21 +3,130 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClassroomQuestionEditTVC" id="KGk-i7-Jjw" customClass="ClassroomQuestionEditTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClassroomQuestionEditTVC" rowHeight="213" id="0JU-OO-wvB" customClass="ClassroomQuestionEditTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0JU-OO-wvB" id="qmH-oF-cLq">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emm-MX-lrM">
+                        <rect key="frame" x="16" y="8" width="304" height="197"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6시 30분 넘었는데 잠안오는 저. 정상인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUM-0R-I2m">
+                                <rect key="frame" x="16" y="16" width="231" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5Jl-VU-iNC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 때를 놓치면 큰일나요 !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVl-hg-oTy">
+                                <rect key="frame" x="16" y="37" width="119" height="14"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <color key="textColor" name="gray2"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atJ-80-Jgs">
+                                <rect key="frame" x="272" y="14.5" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Mki-6e-bB1"/>
+                                    <constraint firstAttribute="width" secondItem="atJ-80-Jgs" secondAttribute="height" multiplier="1:1" id="tFN-aK-MmY"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="btnMoreVert"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uga-CD-ixQ">
+                                <rect key="frame" x="16" y="75" width="272" height="58"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="LMD-AY-519"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="lRI-7V-MYb"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYp-lU-cWu" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="228" y="145" width="60" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="6ed-Og-5jU"/>
+                                    <constraint firstAttribute="width" constant="60" id="zh3-EU-wLP"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="atJ-80-Jgs" firstAttribute="centerY" secondItem="rUM-0R-I2m" secondAttribute="centerY" id="4yK-Fc-uEJ"/>
+                            <constraint firstAttribute="trailing" secondItem="uga-CD-ixQ" secondAttribute="trailing" constant="16" id="AfD-PS-18g"/>
+                            <constraint firstAttribute="bottom" secondItem="GYp-lU-cWu" secondAttribute="bottom" constant="16" id="EQr-9I-8gm"/>
+                            <constraint firstItem="uga-CD-ixQ" firstAttribute="top" secondItem="zVl-hg-oTy" secondAttribute="bottom" constant="24" id="Fdh-9r-HRb"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="197" id="Hg9-1I-qdE"/>
+                            <constraint firstItem="rUM-0R-I2m" firstAttribute="leading" secondItem="emm-MX-lrM" secondAttribute="leading" constant="16" id="KKD-43-6Fy"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="311" id="NpA-Do-gKE"/>
+                            <constraint firstItem="zVl-hg-oTy" firstAttribute="top" secondItem="rUM-0R-I2m" secondAttribute="bottom" id="Qap-TI-bce"/>
+                            <constraint firstItem="zVl-hg-oTy" firstAttribute="leading" secondItem="rUM-0R-I2m" secondAttribute="leading" id="Zr4-5s-DQC"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="hTJ-IO-RSM"/>
+                            <constraint firstItem="uga-CD-ixQ" firstAttribute="leading" secondItem="rUM-0R-I2m" secondAttribute="leading" id="hZl-Wy-ybU"/>
+                            <constraint firstItem="GYp-lU-cWu" firstAttribute="top" secondItem="uga-CD-ixQ" secondAttribute="bottom" constant="12" id="hl4-78-Jl5"/>
+                            <constraint firstAttribute="trailing" secondItem="atJ-80-Jgs" secondAttribute="trailing" constant="8" id="mvj-F2-NVx"/>
+                            <constraint firstItem="rUM-0R-I2m" firstAttribute="top" secondItem="emm-MX-lrM" secondAttribute="top" constant="16" id="ney-rW-lmp"/>
+                            <constraint firstAttribute="trailing" secondItem="GYp-lU-cWu" secondAttribute="trailing" constant="16" id="wfC-F9-Tjw"/>
+                            <constraint firstItem="atJ-80-Jgs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rUM-0R-I2m" secondAttribute="trailing" constant="25" id="ylN-WY-iI1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="gray1"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="emm-MX-lrM" secondAttribute="bottom" constant="8" id="6SZ-18-DnP"/>
+                    <constraint firstItem="emm-MX-lrM" firstAttribute="top" secondItem="qmH-oF-cLq" secondAttribute="top" constant="8" id="Ebo-MW-uCZ"/>
+                    <constraint firstItem="emm-MX-lrM" firstAttribute="leading" secondItem="qmH-oF-cLq" secondAttribute="leading" constant="16" id="nHQ-gR-9iA"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="emm-MX-lrM" secondAttribute="trailing" id="rOj-RS-uWZ"/>
+                </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="139" y="110"/>
+            <viewLayoutGuide key="safeArea" id="C8i-eE-soX"/>
+            <connections>
+                <outlet property="backView" destination="emm-MX-lrM" id="v0p-0C-JSH"/>
+                <outlet property="commentContentTextView" destination="uga-CD-ixQ" id="Qj2-Bu-W3U"/>
+                <outlet property="majorLabel" destination="zVl-hg-oTy" id="PDp-KE-3tU"/>
+                <outlet property="nadoBtn" destination="GYp-lU-cWu" id="Peh-Ga-d3E"/>
+                <outlet property="nicknameLabel" destination="rUM-0R-I2m" id="1M7-ig-zAS"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="177.12053571428569"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="btnMoreVert" width="24" height="24"/>
+        <namedColor name="gray1">
+            <color red="0.90980392156862744" green="0.90980392156862744" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray2">
+            <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
