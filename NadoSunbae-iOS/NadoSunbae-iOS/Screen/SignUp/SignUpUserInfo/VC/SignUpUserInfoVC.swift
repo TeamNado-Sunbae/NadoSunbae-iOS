@@ -208,9 +208,20 @@ class SignUpUserInfoVC: BaseVC {
 //            self.emailInfoLabel.textColor = .red
 //            self.emailInfoLabel.text = "이미 가입된 메일입니다."
 //            self.isCompleteList[1] = false
-
         }
         self.checkIsCompleted()
         self.emailInfoLabel.isHidden = false
+    }
+    
+    @IBAction func tapPrevBtn(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func tapCompleteBtn(_ sender: UIButton) {
+        self.navigationController?.pushViewController(UIViewController(), animated: true)
+    }
+    
+    @IBAction func tapDismissBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -84,6 +84,9 @@
                                         <color key="tintColor" name="gray3"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="btnXGray"/>
+                                        <connections>
+                                            <action selector="tapDismissBtn:" destination="kPv-Cn-mrK" eventType="touchUpInside" id="dID-DN-ght"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -320,6 +323,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="완료"/>
+                                <connections>
+                                    <action selector="tapCompleteBtn:" destination="kPv-Cn-mrK" eventType="touchUpInside" id="USX-AT-3EU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKh-Sm-xWx" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="718" width="84" height="60"/>
@@ -328,6 +334,9 @@
                                 <state key="normal" image="btn_arrow_left">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapPrevBtn:" destination="kPv-Cn-mrK" eventType="touchUpInside" id="igo-N8-dMQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oS6-mH-nNS"/>
