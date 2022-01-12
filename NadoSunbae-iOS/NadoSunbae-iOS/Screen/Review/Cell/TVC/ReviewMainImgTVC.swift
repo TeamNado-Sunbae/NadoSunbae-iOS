@@ -7,14 +7,7 @@
 
 import UIKit
 
-class ReviewMainImgTVC: UITableViewCell, UITableViewRegisterable {
-    
-    /// Register할 Nib get
-    static var isFromNib: Bool {
-        get {
-            return true
-        }
-    }
+class ReviewMainImgTVC: BaseTVC {
 
     // MARK: IBOutlet
     @IBOutlet weak var reviewMainImgView: UIImageView!
