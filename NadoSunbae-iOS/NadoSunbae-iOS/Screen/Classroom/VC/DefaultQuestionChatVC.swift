@@ -56,14 +56,14 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
         
         if editIndex == [0, indexPath.row] {
             
-            // 1:1 질문자 답변 수정 셀
+            /// 1:1 질문자 답변 수정 셀
             questionEditCell.dynamicUpdateDelegate = self
             questionEditCell.bind(defaultQuestionData[indexPath.row])
             return questionEditCell
             
         } else if editIndex == [1, indexPath.row] {
             
-            // 1:1 답변자 답변 수정 셀
+            /// 1:1 답변자 답변 수정 셀
             commentEditCell.dynamicUpdateDelegate = self
             commentEditCell.changeCellDelegate = self
             commentEditCell.bind(defaultQuestionData[indexPath.row])
@@ -71,7 +71,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
             
         } else if defaultQuestionData[indexPath.row].isWriter == true {
             
-            // 1:1 질문자 셀
+            /// 1:1 질문자 셀
             if indexPath.row == 0 {
                 // TODO: - 질문 원글은 추후에 수정을 해당 view가 아니라 질문작성뷰에서 처리하도록 기능을 붙여나갈 예정임
                 questionCell.moreBtn.isEnabled = false
@@ -88,7 +88,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
             
         } else {
             
-            // 1:1 답변자 셀
+            /// 1:1 답변자 셀
             commentCell.dynamicUpdateDelegate = self
             commentCell.changeCellDelegate = self
             commentCell.tapMoreBtnAction = { [unowned self] in
