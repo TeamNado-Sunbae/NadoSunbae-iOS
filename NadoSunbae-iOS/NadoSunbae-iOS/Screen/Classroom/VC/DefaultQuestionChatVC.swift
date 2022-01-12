@@ -19,6 +19,18 @@ class DefaultQuestionChatVC: UIViewController {
         }
     }
     
+    @IBOutlet var sendAreaTextView: UITextView! {
+        didSet {
+            sendAreaTextView.delegate = self
+            sendAreaTextView.isScrollEnabled = false
+            sendAreaTextView.layer.cornerRadius = 20
+            sendAreaTextView.layer.borderWidth = 1
+            sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
+            sendAreaTextView.textColor = .gray2
+            sendAreaTextView.sizeToFit()
+        }
+    }
+    
     // MARK: Properties
     var editIndex: [Int]?
     
@@ -26,6 +38,7 @@ class DefaultQuestionChatVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: Custom Methods
@@ -108,7 +121,6 @@ extension DefaultQuestionChatVC: TVCHeightDynamicUpdate {
         let size = textView.bounds.size
         let newSize = defaultQuestionChatTV.sizeThatFits(CGSize(width: size.width,
                                                                 height: CGFloat.greatestFiniteMagnitude))
-        
         if size.height != newSize.height {
             UIView.setAnimationsEnabled(false)
             defaultQuestionChatTV.beginUpdates()
@@ -125,5 +137,35 @@ extension DefaultQuestionChatVC: TVCContentUpdate {
     func updateTV() {
         defaultQuestionChatTV.reloadData()
         defaultQuestionChatTV.scrollToRow(at: IndexPath(row: editIndex?[1] ?? 0, section: 0), at: .top, animated: true)
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension DefaultQuestionChatVC: UITextViewDelegate {
+    
+    /// textViewDidChange
+    func textViewDidChange(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: defaultQuestionData.count-1, section: 0)
+            self.defaultQuestionChatTV.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
+    }
+    
+    /// textViewDidBeginEditing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray2 {
+            textView.text = nil
+            textView.textColor = UIColor.black
+            textView.backgroundColor = .white
+        }
+    }
+    
+    /// textViewDidEndEditing
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            // TODO: - 유저 정보에 따라 분기처리 필요
+            textView.text = "답글쓰기"
+            textView.textColor = .gray2
+        }
     }
 }
