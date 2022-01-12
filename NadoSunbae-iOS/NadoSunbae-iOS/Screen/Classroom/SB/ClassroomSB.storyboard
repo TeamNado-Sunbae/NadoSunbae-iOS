@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Classroom MainVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -32,30 +37,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ako-8J-KEr" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="J8B-Vs-hiO"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BzZ-Bu-aYX">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="답글쓰기" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xnc-u6-B5V">
+                                <rect key="frame" x="16" y="735" width="311" height="38"/>
+                                <color key="backgroundColor" name="gray0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="ExZ-Pd-Zct"/>
+                                    <constraint firstAttribute="height" priority="250" constant="38" id="SSg-sB-QX5"/>
+                                </constraints>
+                                <color key="textColor" name="gray4"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1m-v3-OEB">
+                                <rect key="frame" x="327" y="734" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EWx-2L-AAf"/>
+                                    <constraint firstAttribute="width" secondItem="R1m-v3-OEB" secondAttribute="height" multiplier="1:1" id="yt5-Ef-RYU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="btnSend" title=""/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zyO-Al-vZj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="zyO-Al-vZj" firstAttribute="trailing" secondItem="Ako-8J-KEr" secondAttribute="trailing" id="0lq-tJ-K1a"/>
+                            <constraint firstItem="xnc-u6-B5V" firstAttribute="leading" secondItem="zyO-Al-vZj" secondAttribute="leading" constant="16" id="0q4-no-wki"/>
+                            <constraint firstAttribute="bottom" secondItem="xnc-u6-B5V" secondAttribute="bottom" constant="39" id="2Gr-Qv-HLv"/>
+                            <constraint firstItem="Ako-8J-KEr" firstAttribute="leading" secondItem="zyO-Al-vZj" secondAttribute="leading" id="49H-lH-Of1"/>
+                            <constraint firstItem="xnc-u6-B5V" firstAttribute="top" secondItem="BzZ-Bu-aYX" secondAttribute="bottom" constant="6" id="Azm-aZ-9NF"/>
                             <constraint firstItem="zyO-Al-vZj" firstAttribute="trailing" secondItem="BzZ-Bu-aYX" secondAttribute="trailing" id="K7T-vM-jNB"/>
+                            <constraint firstItem="BzZ-Bu-aYX" firstAttribute="top" secondItem="Ako-8J-KEr" secondAttribute="bottom" id="LJz-8w-cpe"/>
+                            <constraint firstItem="zyO-Al-vZj" firstAttribute="bottom" secondItem="R1m-v3-OEB" secondAttribute="bottom" id="SCJ-dU-7BY"/>
+                            <constraint firstItem="Ako-8J-KEr" firstAttribute="top" secondItem="Vxh-wt-2Z5" secondAttribute="top" id="SfY-A5-E2K"/>
                             <constraint firstItem="BzZ-Bu-aYX" firstAttribute="leading" secondItem="zyO-Al-vZj" secondAttribute="leading" id="Who-uD-jeR"/>
-                            <constraint firstItem="zyO-Al-vZj" firstAttribute="bottom" secondItem="BzZ-Bu-aYX" secondAttribute="bottom" id="geu-Vz-a0v"/>
-                            <constraint firstItem="BzZ-Bu-aYX" firstAttribute="top" secondItem="zyO-Al-vZj" secondAttribute="top" id="sN7-KG-tXj"/>
+                            <constraint firstItem="zyO-Al-vZj" firstAttribute="trailing" secondItem="R1m-v3-OEB" secondAttribute="trailing" constant="4" id="e45-dL-kZm"/>
+                            <constraint firstItem="R1m-v3-OEB" firstAttribute="leading" secondItem="xnc-u6-B5V" secondAttribute="trailing" id="nkZ-vu-HNq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="defaultQuestionChatTV" destination="BzZ-Bu-aYX" id="7Xt-Mf-C45"/>
+                        <outlet property="sendAreaTextView" destination="xnc-u6-B5V" id="gm5-gx-Xiu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5y5-I2-ThK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="703" y="112"/>
+            <point key="canvasLocation" x="701.60000000000002" y="111.57635467980296"/>
         </scene>
     </scenes>
     <resources>
+        <image name="btnSend" width="44" height="44"/>
+        <namedColor name="gray0">
+            <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="paleGray">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
