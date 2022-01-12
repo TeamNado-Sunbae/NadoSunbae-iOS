@@ -25,8 +25,8 @@ class BaseCVC: UICollectionViewCell {
     }
 }
 
-// MARK: - UICollectionViewRegisterable
-extension BaseCVC: UICollectionViewRegisterable {
+// MARK: - CVRegisterable
+extension BaseCVC: CVRegisterable {
     
     static var isFromNib: Bool {
         get {
