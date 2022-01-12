@@ -75,6 +75,8 @@
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
 		5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */; };
 		5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CEC7278D9CC80054136D /* SignUpUserInfoVC.swift */; };
+		5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */; };
+		5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */; };
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
 		5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */; };
 		5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */; };
@@ -177,6 +179,8 @@
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpUserInfoVC.storyboard; sourceTree = "<group>"; };
 		5C54CEC7278D9CC80054136D /* SignUpUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUserInfoVC.swift; sourceTree = "<group>"; };
+		5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpCompleteVC.storyboard; sourceTree = "<group>"; };
+		5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteVC.swift; sourceTree = "<group>"; };
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
 		5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpMajorInfoVC.storyboard; sourceTree = "<group>"; };
 		5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMajorInfoVC.swift; sourceTree = "<group>"; };
@@ -184,6 +188,10 @@
 		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
 		5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalVC.swift; sourceTree = "<group>"; };
 		5CA7E411278BC39200D748E0 /* SelectMajorModalVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectMajorModalVC.storyboard; sourceTree = "<group>"; };
+		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
+		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
+		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
+		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
 		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
@@ -651,6 +659,31 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		5C54CEC9278DF5F10054136D /* SignUpComplete */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CECB278DF6020054136D /* SB */,
+				5C54CECA278DF5FB0054136D /* VC */,
+			);
+			path = SignUpComplete;
+			sourceTree = "<group>";
+		};
+		5C54CECA278DF5FB0054136D /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		5C54CECB278DF6020054136D /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,6 +716,7 @@
 		5CAB3F23278AE37E00025DA5 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				5C54CEC9278DF5F10054136D /* SignUpComplete */,
 				5CAB3F24278AE38600025DA5 /* AgreeTerms */,
 				5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */,
 				5C54CEC2278D9C8C0054136D /* SignUpUserInfo */,
@@ -825,6 +859,7 @@
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
+				5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */,
 				5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -903,6 +938,7 @@
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
 				5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */,
 				5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */,
+				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,

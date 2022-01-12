@@ -218,10 +218,19 @@ class SignUpUserInfoVC: BaseVC {
     }
     
     @IBAction func tapCompleteBtn(_ sender: UIButton) {
-        self.navigationController?.pushViewController(UIViewController(), animated: true)
+        guard let vc = UIStoryboard.init(name: SignUpCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpCompleteVC.className) as? SignUpCompleteVC else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func tapDismissBtn(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        alert.cancelBtn.press {
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.showNadoAlert(vc: self, message: """
+페이지를 나가면
+회원가입이 취소돼요.
+"""
+                            , confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
     }
 }
