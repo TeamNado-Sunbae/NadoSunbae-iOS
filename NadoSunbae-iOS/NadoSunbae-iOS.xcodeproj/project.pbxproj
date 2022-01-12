@@ -549,6 +549,14 @@
 		3391E48A278B48EF0079EA31 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				33B69FF2278F155400A8E3D3 /* TVC */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		33B69FF2278F155400A8E3D3 /* TVC */ = {
+			isa = PBXGroup;
+			children = (
 				3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */,
 				3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */,
 				33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */,
@@ -558,7 +566,7 @@
 				338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */,
 				338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */,
 			);
-			path = Cell;
+			path = TVC;
 			sourceTree = "<group>";
 		};
 		33F02A802786F2020078F9B7 /* Xib */ = {
