@@ -14,6 +14,7 @@ class BaseNC: UINavigationController {
         interactivePopGestureRecognizer?.delegate = self
     }
 }
+
 extension BaseNC: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return self.viewControllers.count > 1

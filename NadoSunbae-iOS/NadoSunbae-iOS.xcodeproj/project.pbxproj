@@ -54,6 +54,19 @@
 		331364C12786217400E0C118 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C02786217400E0C118 /* ReviewService.swift */; };
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
+		33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385636F278DC74D003C60A6 /* BaseTVC.swift */; };
+		338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */; };
+		338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */; };
+		338CDB03278C9F8600F8227A /* ClassroomCommentEditTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */; };
+		338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDB04278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift */; };
+		338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338CDB05278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib */; };
+		3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */; };
+		3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */; };
+		33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFCFE278C004700BFF6BE /* ClassroomCommentTVC.swift */; };
+		33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */; };
+		33BAFD03278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */; };
+		33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */; };
+		33BAFD07278C2D6100BFF6BE /* DefaultQuestionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */; };
 		33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */; };
 		33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D48278982E0000FB6C8 /* BaseNC.swift */; };
 		33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */; };
@@ -144,6 +157,19 @@
 		331364C02786217400E0C118 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
+		3385636F278DC74D003C60A6 /* BaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVC.swift; sourceTree = "<group>"; };
+		338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCContentUpdate.swift; sourceTree = "<group>"; };
+		338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomCommentEditTVC.swift; sourceTree = "<group>"; };
+		338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomCommentEditTVC.xib; sourceTree = "<group>"; };
+		338CDB04278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionEditTVC.swift; sourceTree = "<group>"; };
+		338CDB05278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomQuestionEditTVC.xib; sourceTree = "<group>"; };
+		3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionTVC.swift; sourceTree = "<group>"; };
+		3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomQuestionTVC.xib; sourceTree = "<group>"; };
+		33BAFCFE278C004700BFF6BE /* ClassroomCommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomCommentTVC.swift; sourceTree = "<group>"; };
+		33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomCommentTVC.xib; sourceTree = "<group>"; };
+		33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCHeightDynamicUpdate.swift; sourceTree = "<group>"; };
+		33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestionChatVC.swift; sourceTree = "<group>"; };
+		33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestionDataModel.swift; sourceTree = "<group>"; };
 		33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeNaviBar.swift; sourceTree = "<group>"; };
 		33BE2D48278982E0000FB6C8 /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
@@ -162,6 +188,10 @@
 		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
 		5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalVC.swift; sourceTree = "<group>"; };
 		5CA7E411278BC39200D748E0 /* SelectMajorModalVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectMajorModalVC.storyboard; sourceTree = "<group>"; };
+		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
+		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
+		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
+		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
 		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
@@ -297,6 +327,7 @@
 				331364632785ADFE00E0C118 /* BaseVC.swift */,
 				331364652785AE3B00E0C118 /* BaseCVC.swift */,
 				33BE2D48278982E0000FB6C8 /* BaseNC.swift */,
+				3385636F278DC74D003C60A6 /* BaseTVC.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -434,6 +465,7 @@
 			children = (
 				3313649C2785D8AD00E0C118 /* SB */,
 				3313649B2785D8A800E0C118 /* VC */,
+				3391E48A278B48EF0079EA31 /* Cell */,
 			);
 			path = Classroom;
 			sourceTree = "<group>";
@@ -476,6 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				331364A12785D8DD00E0C118 /* ClassroomMainVC.swift */,
+				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -511,6 +544,21 @@
 				33F02A812786F2080078F9B7 /* Class */,
 			);
 			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		3391E48A278B48EF0079EA31 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */,
+				3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */,
+				33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */,
+				33BAFCFE278C004700BFF6BE /* ClassroomCommentTVC.swift */,
+				338CDB05278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib */,
+				338CDB04278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift */,
+				338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */,
+				338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		33F02A802786F2020078F9B7 /* Xib */ = {
@@ -699,6 +747,8 @@
 			children = (
 				77AEEB4C2789AF900016880B /* UICollectionViewRegisterable.swift */,
 				77AEEB4B2789AF900016880B /* UITableViewRegisterable.swift */,
+				33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */,
+				338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */,
 				5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */,
 			);
 			path = Protocol;
@@ -708,6 +758,7 @@
 			isa = PBXGroup;
 			children = (
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
+				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -777,12 +828,14 @@
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
 				331364A02785D8CB00E0C118 /* ClassroomSB.storyboard in Resources */,
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
+				338CDB03278C9F8600F8227A /* ClassroomCommentEditTVC.xib in Resources */,
 				5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */,
 				777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
 				777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */,
 				77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */,
+				338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
 				331364AA2785D96100E0C118 /* MypageSB.storyboard in Resources */,
@@ -792,6 +845,8 @@
 				3313647E2785BBAF00E0C118 /* Pretendard-Regular.otf in Resources */,
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
+				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
+				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
@@ -862,6 +917,7 @@
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
+				33BAFD07278C2D6100BFF6BE /* DefaultQuestionDataModel.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
 				777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */,
 				33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */,
@@ -877,6 +933,7 @@
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
+				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
@@ -884,14 +941,18 @@
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
+				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
 				331364C5278623EC00E0C118 /* s.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
+				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
+				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
+				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
 				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
@@ -899,14 +960,17 @@
 				77AEEB4D2789AF900016880B /* UITableViewRegisterable.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
+				33BAFD03278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift in Sources */,
 				77AEEB4E2789AF900016880B /* UICollectionViewRegisterable.swift in Sources */,
 				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
+				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
+				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				331364662785AE3B00E0C118 /* BaseCVC.swift in Sources */,
 			);
@@ -1050,7 +1114,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N4RT4KGQK9;
+				DEVELOPMENT_TEAM = 2ZS26WP93H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1078,7 +1142,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N4RT4KGQK9;
+				DEVELOPMENT_TEAM = 2ZS26WP93H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
