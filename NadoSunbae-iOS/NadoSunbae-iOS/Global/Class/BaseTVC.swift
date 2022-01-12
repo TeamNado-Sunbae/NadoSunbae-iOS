@@ -22,8 +22,8 @@ class BaseTVC: UITableViewCell {
     
 }
 
-// MARK: - UITableViewRegisterable
-extension BaseTVC: UITableViewRegisterable {
+// MARK: - TVRegisterable
+extension BaseTVC: TVRegisterable {
     
     static var isFromNib: Bool {
         get {

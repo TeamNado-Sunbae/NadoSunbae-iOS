@@ -7,15 +7,8 @@
 
 import UIKit
 
-class ReviewMainLinkTVC: UITableViewCell, UITableViewRegisterable {
+class ReviewMainLinkTVC: BaseTVC {
     
-    /// Register할 Nib get
-    static var isFromNib: Bool {
-        get {
-            return true
-        }
-    }
-
     // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()

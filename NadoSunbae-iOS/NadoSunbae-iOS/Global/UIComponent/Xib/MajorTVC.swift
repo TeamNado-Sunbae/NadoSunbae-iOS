@@ -7,14 +7,7 @@
 
 import UIKit
 
-class MajorTVC: UITableViewCell, UITableViewRegisterable {
-    
-    /// Register할 Nib get
-    static var isFromNib: Bool {
-        get {
-            return true
-        }
-    }
+class MajorTVC: BaseTVC {
     
     // MARK: IBOutlet
     @IBOutlet weak var starBnt: UIButton!
