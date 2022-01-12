@@ -707,6 +707,7 @@
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
+				5CA51FF7278F2949001A1A40 /* Cell */,
 				5C8D8BFE278B3A540045E600 /* SB */,
 				5C8D8BFF278B3A580045E600 /* VC */,
 			);
@@ -728,9 +729,16 @@
 				5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */,
 				5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */,
 				5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */,
-				5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		5CA51FF7278F2949001A1A40 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5CAB3F23278AE37E00025DA5 /* SignUp */ = {
