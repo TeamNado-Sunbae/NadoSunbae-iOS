@@ -167,8 +167,7 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
         
         /// 텍스트 줄이 변경될 때마다 TableView를 bottom으로 animate
         DispatchQueue.main.async {
-            let indexPath = IndexPath(row: defaultQuestionData.count-1, section: 0)
-            self.defaultQuestionChatTV.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            self.scrollTVtoBottom(animate: false)
         }
         
         if textView.contentSize.height >= self.textViewMaxHeight {
