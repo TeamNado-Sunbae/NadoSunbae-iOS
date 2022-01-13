@@ -11,6 +11,9 @@
         <array key="Pretendard-Medium.otf">
             <string>Pretendard-Medium</string>
         </array>
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -25,16 +28,22 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDi-y1-OVg">
-                    <rect key="frame" x="299" y="12" width="68" height="24"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDi-y1-OVg">
+                    <rect key="frame" x="297" y="12" width="68" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="68" id="a12-4B-m9a"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="btnArray"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="  최신순" image="ArrangeIcon">
+                        <color key="titleColor" name="gray3"/>
+                    </state>
+                    <connections>
+                        <action selector="tapArrangeBtn:" destination="-1" eventType="touchUpInside" id="DGI-WU-UXZ"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vk8-Vp-6cO">
-                    <rect key="frame" x="247" y="12" width="48" height="24"/>
+                    <rect key="frame" x="245" y="12" width="48" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="TSH-lA-ouk"/>
                     </constraints>
@@ -45,7 +54,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="paleGray"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="bDi-y1-OVg" secondAttribute="trailing" constant="8" id="2wn-Tb-ySk"/>
+                <constraint firstAttribute="trailing" secondItem="bDi-y1-OVg" secondAttribute="trailing" constant="10" id="2wn-Tb-ySk"/>
                 <constraint firstItem="cQG-xa-rhy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="QH2-b2-RNE"/>
                 <constraint firstItem="bDi-y1-OVg" firstAttribute="leading" secondItem="Vk8-Vp-6cO" secondAttribute="trailing" constant="4" id="RaQ-iy-78U"/>
                 <constraint firstItem="Vk8-Vp-6cO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="UK1-83-HFD"/>
@@ -60,8 +69,11 @@
         </view>
     </objects>
     <resources>
-        <image name="btnArray" width="68" height="24"/>
+        <image name="ArrangeIcon" width="14" height="12"/>
         <image name="btnFilter" width="48" height="24"/>
+        <namedColor name="gray3">
+            <color red="0.58039215686274515" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="paleGray">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

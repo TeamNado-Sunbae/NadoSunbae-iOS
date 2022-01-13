@@ -85,7 +85,7 @@ class ReviewMainVC: UIViewController {
     }
 }
 
-// MARK: - Extension Part
+// MARK: - UI
 extension ReviewMainVC {
     
     /// NaviBar dropShadow 설정 함수
@@ -95,6 +95,32 @@ extension ReviewMainVC {
         naviBarView.layer.shadowRadius = 18
         naviBarView.layer.shadowOpacity = 1
         naviBarView.layer.masksToBounds = false
+    }
+}
+
+// MARK: - Custom Methods
+extension ReviewMainVC {
+    
+    /// 액션시트
+    func showActionSheet() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // TODO: 액션 추가 예정
+        let new = UIAlertAction(title: "최신순", style: .default) { action in
+            print("최신순 선택")
+        }
+        
+        // TODO: 액션 추가 예정
+        let like = UIAlertAction(title: "좋아요순", style: .default) { action in
+            print("좋아요순 선택")
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+        alert.addAction(new)
+        alert.addAction(like)
+        alert.addAction(cancel)
+
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -145,6 +171,10 @@ extension ReviewMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReviewStickyHeaderView.className) as? ReviewStickyHeaderView else { return UIView() }
+            
+            headerView.tapArrangeBtnAction = {
+                self.showActionSheet()
+            }
             return headerView
         } else {
             return nil
