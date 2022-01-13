@@ -47,6 +47,7 @@ class DefaultQuestionChatVC: UIViewController {
             sendAreaTextView.layer.borderWidth = 1
             sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
             sendAreaTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
+            configueTextViewPlaceholder(userType: userType)
             sendAreaTextView.sizeToFit()
         }
     }
@@ -65,6 +66,16 @@ class DefaultQuestionChatVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         sendAreaTextView.centerVertically()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: IBAction
@@ -316,5 +327,33 @@ extension DefaultQuestionChatVC: TVCContentUpdate {
     func updateTV() {
         defaultQuestionChatTV.reloadData()
         defaultQuestionChatTV.scrollToRow(at: IndexPath(row: editIndex?[1] ?? 0, section: 0), at: .top, animated: true)
+    }
+}
+
+// MARK: - Keyboard
+extension DefaultQuestionChatVC {
+    
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    private func keyboardWillShow(_ notification: Notification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            sendAreaTextViewBottom.constant = keyboardSize.height - 25
+            sendBtnBottom.constant = keyboardSize.height - 30
+            scrollTVtoBottom(animate: false)
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(_ notification:Notification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            sendAreaTextViewBottom.constant = 5
+            sendBtnBottom.constant = 0
+            defaultQuestionChatTV.fitContentInset(inset: .zero)
+        }
     }
 }
