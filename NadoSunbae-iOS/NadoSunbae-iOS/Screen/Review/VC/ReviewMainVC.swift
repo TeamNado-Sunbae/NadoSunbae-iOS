@@ -176,9 +176,7 @@ extension ReviewMainVC: UITableViewDataSource {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReviewStickyHeaderView.className) as? ReviewStickyHeaderView else { return UIView() }
             
             // ActionSheet 항목 클릭 시 버튼 타이틀 변경
-            if selectActionSheetIndex == 0 {
-                headerView.arrangeBtn.setTitle("  최신순", for: .normal)
-            } else if selectActionSheetIndex == 1 {
+            if selectActionSheetIndex == 1 {
                 headerView.arrangeBtn.setTitle("  좋아요순", for: .normal)
             } else {
                 headerView.arrangeBtn.setTitle("  최신순", for: .normal)
