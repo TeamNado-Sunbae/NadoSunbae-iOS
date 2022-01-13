@@ -75,7 +75,12 @@ class DefaultQuestionChatVC: UIViewController {
     
     // MARK: IBAction
     @IBAction func tapSendBtn(_ sender: UIButton) {
-        // TODO: sendAnimation 구현하기
+        // TODO: 서버 연결 후 더미데이터 삭제할 예정입니다!
+        defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: false, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
+        rightSendAnimation(text: ".............")
+        DispatchQueue.main.async {
+            self.defaultQuestionChatTV.reloadData()
+        }
     }
 }
 
