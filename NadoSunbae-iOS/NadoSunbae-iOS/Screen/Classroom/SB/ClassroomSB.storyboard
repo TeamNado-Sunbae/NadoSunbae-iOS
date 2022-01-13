@@ -106,10 +106,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="animateTop" destination="2fP-uI-pIG" id="OVo-GQ-eHa"/>
-                        <outlet property="animateTrailing" destination="hFj-lt-rHX" id="aaS-kE-xAK"/>
                         <outlet property="animationLabel" destination="YA9-w6-5Hb" id="3Am-hz-HV4"/>
-                        <outlet property="animationLeading" destination="C1N-g5-rTC" id="6lH-FM-6Ah"/>
+                        <outlet property="animationLeading" destination="C1N-g5-rTC" id="fcL-FH-WFo"/>
+                        <outlet property="animationTop" destination="2fP-uI-pIG" id="qOu-CJ-eZL"/>
+                        <outlet property="animationTrailing" destination="hFj-lt-rHX" id="Vsq-sn-MwW"/>
                         <outlet property="animationWidth" destination="oAh-ee-p8r" id="oCr-zd-GfF"/>
                         <outlet property="defaultQuestionChatTV" destination="BzZ-Bu-aYX" id="7Xt-Mf-C45"/>
                         <outlet property="sendAreaTextView" destination="xnc-u6-B5V" id="gm5-gx-Xiu"/>
