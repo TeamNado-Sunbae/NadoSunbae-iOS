@@ -51,7 +51,7 @@ class DefaultQuestionChatVC: UIViewController {
     
     // MARK: Properties
     var editIndex: [Int]?
-    var isWriter: Bool = true
+    var isWriter: Bool = false
     let textViewMaxHeight: CGFloat = 85
     
     // MARK: LifeCycle
@@ -77,7 +77,14 @@ class DefaultQuestionChatVC: UIViewController {
     // MARK: IBAction
     @IBAction func tapSendBtn(_ sender: UIButton) {
         // TODO: 서버 연결 후 더미데이터 삭제할 예정입니다!
-        defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: true, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
+        defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: false, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
+        
+        if isWriter {
+            leftSendAnimation(text: ".............")
+        } else {
+            rightSendAnimation(text: ".............")
+        }
+        
         DispatchQueue.main.async {
             self.defaultQuestionChatTV.reloadData()
         }
@@ -107,6 +114,19 @@ extension DefaultQuestionChatVC {
             self.defaultQuestionChatTV.reloadData()
             self.scrollTVtoBottom(animate: true)
         })
+    }
+    
+    /// 메시지 보내기: 기본 애니메이션 확장 -> 왼쪽 버블 애니메이션 메서드 (constraint 조정)
+    func leftSendAnimation(text: String) {
+        var animateConstraint: CGFloat = 0
+        animationLabel.text = text
+        animationLabel.numberOfLines = 0
+        animationLeading.constant = 15
+        animateTop.constant = self.view.frame.height - animationLabel.frame.height
+        animateConstraint = self.view.frame.height - 175
+        
+        bubbleAnimation(0.5, animateConstraint - 35, 50,
+                        200, .white, self.view.frame.height - 200, 30, 100, 50, .gray2)
     }
     
     /// 메시지 보내기: 기본 애니메이션 확장 -> 오른쪽 버블 애니메이션 메서드 (constraint 조정)
