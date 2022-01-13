@@ -82,6 +82,28 @@ class DefaultQuestionChatVC: UIViewController {
 // MARK: - UI
 extension DefaultQuestionChatVC {
     
+    /// 메시지 보내기: 기본 애니메이션 동작 메서드
+    func bubbleAnimation(_ duration: TimeInterval, _ topConstraint: CGFloat, _ widthConstraint: CGFloat, _ trailingConstraint: CGFloat , _ backgroundColor: UIColor, _ finishedTopConstraint: CGFloat, _ finishedTrailingConstraint: CGFloat, _ finishedWidthConstraint: CGFloat, _ finishedLeadingConstraint: CGFloat, _ finishedBackgroundColor: UIColor) {
+        UIView.animate(withDuration: duration, animations: {
+            self.animationLabel.isHidden = false
+            self.animateTop.constant = topConstraint
+            self.animationWidth.constant = widthConstraint
+            self.animateTrailing.constant = trailingConstraint
+            self.animationLabel.backgroundColor = backgroundColor
+            self.view.layoutSubviews()
+            self.view.layoutIfNeeded()
+        }, completion: { (finished) in
+            self.animationLabel.isHidden = true
+            self.animateTop.constant = finishedTopConstraint
+            self.animateTrailing.constant = finishedTrailingConstraint
+            self.animationWidth.constant = finishedWidthConstraint
+            self.animationLeading.constant = finishedLeadingConstraint
+            self.animationLabel.backgroundColor = finishedBackgroundColor
+            self.defaultQuestionChatTV.reloadData()
+            self.scrollTVtoBottom(animate: true)
+        })
+    }
+    
     ///  TableView 최하단으로 scroll하는 메서드
     func scrollTVtoBottom(animate: Bool) {
         DispatchQueue.main.async {
@@ -104,7 +126,7 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
             let indexPath = IndexPath(row: defaultQuestionData.count-1, section: 0)
             self.defaultQuestionChatTV.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
-    
+        
         if textView.contentSize.height >= self.textViewMaxHeight {
             sendAreaTextViewHeight.constant = self.textViewMaxHeight
             textView.isScrollEnabled = true
