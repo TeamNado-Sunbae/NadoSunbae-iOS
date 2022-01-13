@@ -10,12 +10,29 @@ import UIKit
 class DefaultQuestionChatVC: UIViewController {
     
     // MARK: IBOutlet
+    @IBOutlet var sendAreaTextViewHeight: NSLayoutConstraint!
+    @IBOutlet var animateTop: NSLayoutConstraint!
+    @IBOutlet var animationLeading: NSLayoutConstraint!
+    @IBOutlet var animateTrailing: NSLayoutConstraint!
+    @IBOutlet var animationWidth: NSLayoutConstraint!
     @IBOutlet var defaultQuestionChatTV: UITableView! {
         didSet {
             defaultQuestionChatTV.dataSource = self
             defaultQuestionChatTV.allowsSelection = false
             defaultQuestionChatTV.separatorStyle = .none
             defaultQuestionChatTV.rowHeight  = UITableView.automaticDimension
+            scrollTVtoBottom(animate: false)
+        }
+    }
+    
+    @IBOutlet var animationLabel: UILabel! {
+        didSet {
+            animationLabel.isHidden = true
+            animationLabel.layer.cornerRadius = 4
+            animationLabel.layer.masksToBounds = true
+            animationLabel.numberOfLines = 0
+            animationLabel.font = .PretendardR(size: 14.0)
+            animationLabel.sizeToFit()
         }
     }
     
@@ -23,22 +40,28 @@ class DefaultQuestionChatVC: UIViewController {
         didSet {
             sendAreaTextView.delegate = self
             sendAreaTextView.isScrollEnabled = false
-            sendAreaTextView.layer.cornerRadius = 20
+            sendAreaTextView.layer.cornerRadius = 18
             sendAreaTextView.layer.borderWidth = 1
             sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
             sendAreaTextView.textColor = .gray2
+            sendAreaTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
             sendAreaTextView.sizeToFit()
         }
     }
     
     // MARK: Properties
     var editIndex: [Int]?
+    let textViewMaxHeight: CGFloat = 85
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        sendAreaTextView.centerVertically()
     }
     
     // MARK: Custom Methods
@@ -49,7 +72,67 @@ class DefaultQuestionChatVC: UIViewController {
         ClassroomQuestionEditTVC.register(target: defaultQuestionChatTV)
         ClassroomCommentEditTVC.register(target: defaultQuestionChatTV)
     }
+    
+    // MARK: IBAction
+    @IBAction func tapSendBtn(_ sender: UIButton) {
+        // TODO: sendAnimation 구현하기
+    }
 }
+
+// MARK: - UI
+extension DefaultQuestionChatVC {
+    
+    ///  TableView 최하단으로 scroll하는 메서드
+    func scrollTVtoBottom(animate: Bool) {
+        DispatchQueue.main.async {
+            let lastSectionIndex = self.defaultQuestionChatTV!.numberOfSections - 1
+            let lastRowIndex = self.defaultQuestionChatTV.numberOfRows(inSection: lastSectionIndex) - 1
+            let pathToLastRow = NSIndexPath(row: lastRowIndex, section: lastSectionIndex)
+            self.defaultQuestionChatTV.scrollToRow(at: pathToLastRow as IndexPath, at: UITableView.ScrollPosition.none, animated: animate)
+        }
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension DefaultQuestionChatVC: UITextViewDelegate {
+    
+    /// textViewDidChange
+    func textViewDidChange(_ textView: UITextView) {
+        
+        /// 텍스트 줄이 변경될 때마다 TableView를 bottom으로 animate
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: defaultQuestionData.count-1, section: 0)
+            self.defaultQuestionChatTV.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
+    
+        if textView.contentSize.height >= self.textViewMaxHeight {
+            sendAreaTextViewHeight.constant = self.textViewMaxHeight
+            textView.isScrollEnabled = true
+        } else {
+            sendAreaTextViewHeight.constant = textView.contentSize.height
+            textView.isScrollEnabled = false
+        }
+    }
+    
+    /// textViewDidBeginEditing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray2 {
+            textView.text = nil
+            textView.textColor = UIColor.black
+            textView.backgroundColor = .white
+        }
+    }
+    
+    /// textViewDidEndEditing
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            // TODO: 유저 정보에 따라 분기처리 필요
+            textView.text = "답글쓰기"
+            textView.textColor = .gray2
+        }
+    }
+}
+
 
 // MARK: - UITableViewDataSource
 extension DefaultQuestionChatVC: UITableViewDataSource {
@@ -86,7 +169,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
             
             /// 1:1 질문자 셀
             if indexPath.row == 0 {
-                // TODO: - 질문 원글은 추후에 수정을 해당 view가 아니라 질문작성뷰에서 처리하도록 기능을 붙여나갈 예정임
+                // TODO: 질문 원글은 추후에 수정을 해당 view가 아니라 질문작성뷰에서 처리하도록 기능을 붙여나갈 예정임
                 questionCell.moreBtn.isEnabled = false
             } else {
                 questionCell.moreBtn.isEnabled = true
@@ -116,7 +199,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
 // MARK: - UITableViewCellDynamicUpdate
 extension DefaultQuestionChatVC: TVCHeightDynamicUpdate {
     
-    /// textView의 높이를 동적으로 업데이트하는 메서드
+    /// TextView의 높이를 동적으로 업데이트하는 메서드
     func updateTextViewHeight(cell: UITableViewCell, textView: UITextView) {
         let size = textView.bounds.size
         let newSize = defaultQuestionChatTV.sizeThatFits(CGSize(width: size.width,
@@ -137,35 +220,5 @@ extension DefaultQuestionChatVC: TVCContentUpdate {
     func updateTV() {
         defaultQuestionChatTV.reloadData()
         defaultQuestionChatTV.scrollToRow(at: IndexPath(row: editIndex?[1] ?? 0, section: 0), at: .top, animated: true)
-    }
-}
-
-// MARK: - UITextViewDelegate
-extension DefaultQuestionChatVC: UITextViewDelegate {
-    
-    /// textViewDidChange
-    func textViewDidChange(_ textView: UITextView) {
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(row: defaultQuestionData.count-1, section: 0)
-            self.defaultQuestionChatTV.scrollToRow(at: indexPath, at: .bottom, animated: false)
-        }
-    }
-    
-    /// textViewDidBeginEditing
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == .gray2 {
-            textView.text = nil
-            textView.textColor = UIColor.black
-            textView.backgroundColor = .white
-        }
-    }
-    
-    /// textViewDidEndEditing
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            // TODO: - 유저 정보에 따라 분기처리 필요
-            textView.text = "답글쓰기"
-            textView.textColor = .gray2
-        }
     }
 }
