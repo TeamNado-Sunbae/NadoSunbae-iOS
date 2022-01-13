@@ -11,9 +11,9 @@ class DefaultQuestionChatVC: UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet var sendAreaTextViewHeight: NSLayoutConstraint!
-    @IBOutlet var animateTop: NSLayoutConstraint!
+    @IBOutlet var animationTop: NSLayoutConstraint!
     @IBOutlet var animationLeading: NSLayoutConstraint!
-    @IBOutlet var animateTrailing: NSLayoutConstraint!
+    @IBOutlet var animationTrailing: NSLayoutConstraint!
     @IBOutlet var animationWidth: NSLayoutConstraint!
     @IBOutlet var defaultQuestionChatTV: UITableView! {
         didSet {
@@ -51,7 +51,7 @@ class DefaultQuestionChatVC: UIViewController {
     
     // MARK: Properties
     var editIndex: [Int]?
-    var isWriter: Bool = false
+    var isWriter: Bool = true
     let textViewMaxHeight: CGFloat = 85
     
     // MARK: LifeCycle
@@ -77,7 +77,7 @@ class DefaultQuestionChatVC: UIViewController {
     // MARK: IBAction
     @IBAction func tapSendBtn(_ sender: UIButton) {
         // TODO: 서버 연결 후 더미데이터 삭제할 예정입니다!
-        defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: false, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
+        defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: true, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
         
         if isWriter {
             leftSendAnimation(text: ".............")
@@ -98,16 +98,16 @@ extension DefaultQuestionChatVC {
     func bubbleAnimation(_ duration: TimeInterval, _ topConstraint: CGFloat, _ widthConstraint: CGFloat, _ trailingConstraint: CGFloat , _ backgroundColor: UIColor, _ finishedTopConstraint: CGFloat, _ finishedTrailingConstraint: CGFloat, _ finishedWidthConstraint: CGFloat, _ finishedLeadingConstraint: CGFloat, _ finishedBackgroundColor: UIColor) {
         UIView.animate(withDuration: duration, animations: {
             self.animationLabel.isHidden = false
-            self.animateTop.constant = topConstraint
+            self.animationTop.constant = topConstraint
             self.animationWidth.constant = widthConstraint
-            self.animateTrailing.constant = trailingConstraint
+            self.animationTrailing.constant = trailingConstraint
             self.animationLabel.backgroundColor = backgroundColor
             self.view.layoutSubviews()
             self.view.layoutIfNeeded()
         }, completion: { (finished) in
             self.animationLabel.isHidden = true
-            self.animateTop.constant = finishedTopConstraint
-            self.animateTrailing.constant = finishedTrailingConstraint
+            self.animationTop.constant = finishedTopConstraint
+            self.animationTrailing.constant = finishedTrailingConstraint
             self.animationWidth.constant = finishedWidthConstraint
             self.animationLeading.constant = finishedLeadingConstraint
             self.animationLabel.backgroundColor = finishedBackgroundColor
@@ -122,7 +122,7 @@ extension DefaultQuestionChatVC {
         animationLabel.text = text
         animationLabel.numberOfLines = 0
         animationLeading.constant = 15
-        animateTop.constant = self.view.frame.height - animationLabel.frame.height
+        animationTop.constant = self.view.frame.height - animationLabel.frame.height
         animateConstraint = self.view.frame.height - 175
         
         bubbleAnimation(0.5, animateConstraint - 35, 50,
@@ -134,7 +134,7 @@ extension DefaultQuestionChatVC {
         var constraint: CGFloat = 0, animateConstraint: CGFloat = 0
         animationLabel.text = text
         animationLabel.numberOfLines = 0
-        animateTop.constant = self.view.frame.height - animationLabel.frame.height
+        animationTop.constant = self.view.frame.height - animationLabel.frame.height
         animationLeading.constant = self.view.frame.width - animationLabel.intrinsicContentSize.width
         constraint = CGFloat(self.view.frame.height - defaultQuestionChatTV.contentSize.height)
         
