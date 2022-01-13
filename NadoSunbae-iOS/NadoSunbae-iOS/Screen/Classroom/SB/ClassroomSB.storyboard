@@ -112,7 +112,7 @@
                         <outlet property="animationTrailing" destination="hFj-lt-rHX" id="Vsq-sn-MwW"/>
                         <outlet property="animationWidth" destination="oAh-ee-p8r" id="oCr-zd-GfF"/>
                         <outlet property="defaultQuestionChatTV" destination="BzZ-Bu-aYX" id="7Xt-Mf-C45"/>
-                        <outlet property="questionNaviBar" destination="Ako-8J-KEr" id="QUl-MO-1EW"/>
+                        <outlet property="questionNaviBar" destination="Ako-8J-KEr" id="h8z-RC-0jO"/>
                         <outlet property="sendAreaTextView" destination="xnc-u6-B5V" id="gm5-gx-Xiu"/>
                         <outlet property="sendAreaTextViewBottom" destination="Qdl-hh-rL1" id="Z9n-pW-F6x"/>
                         <outlet property="sendAreaTextViewHeight" destination="pRa-r7-amq" id="FUl-ZC-2np"/>

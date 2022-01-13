@@ -52,6 +52,16 @@ class DefaultQuestionChatVC: UIViewController {
         }
     }
     
+    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar! {
+        didSet {
+            questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
+            questionNaviBar.configureTitleLabel(title: "1:1 질문")
+            questionNaviBar.backBtn.press {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
     // MARK: Properties
     var editIndex: [Int]?
     let userType: Int = 1
