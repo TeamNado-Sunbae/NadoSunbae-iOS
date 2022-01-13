@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		029EEBC37F1D2F9513AEB081 /* Pods_NadoSunbae_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */; };
+		330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4322790BCCC00FE127F /* NadoTextView.swift */; };
+		330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4342790C3E300FE127F /* UIScrollView+.swift */; };
 		3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364292784D3BD00E0C118 /* AppDelegate.swift */; };
 		3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313642B2784D3BD00E0C118 /* SceneDelegate.swift */; };
 		331364332784D3C000E0C118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 331364322784D3C000E0C118 /* Assets.xcassets */; };
@@ -109,6 +111,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330DA4322790BCCC00FE127F /* NadoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextView.swift; sourceTree = "<group>"; };
+		330DA4342790C3E300FE127F /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 		331364262784D3BD00E0C118 /* NadoSunbae-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NadoSunbae-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		331364292784D3BD00E0C118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3313642B2784D3BD00E0C118 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 				331364B52786179100E0C118 /* UITabBar+.swift */,
 				331364BC27861CD300E0C118 /* UITextView+.swift */,
 				331364BE27861D0600E0C118 /* Adjusted+.swift */,
+				330DA4342790C3E300FE127F /* UIScrollView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -617,6 +622,7 @@
 				33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */,
 				33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */,
 				5CA73378278A8F4900806B17 /* NadoAlertVC.swift */,
+				330DA4322790BCCC00FE127F /* NadoTextView.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -965,6 +971,7 @@
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
+				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
@@ -999,6 +1006,7 @@
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
+				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				331364662785AE3B00E0C118 /* BaseCVC.swift in Sources */,
 			);
