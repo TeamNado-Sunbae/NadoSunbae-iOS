@@ -14,7 +14,7 @@ class ReviewStickyHeaderView: UITableViewHeaderFooterView {
     // MARK: Properties
     var tapArrangeBtnAction : (() -> ())?
     
-    // MARK: Custom Methods
+    // TODO: drop shadow 효과 추가 예정
     func addShadowToHeaderView() {
         
     }
