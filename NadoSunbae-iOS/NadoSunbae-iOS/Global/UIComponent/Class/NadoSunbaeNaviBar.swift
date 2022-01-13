@@ -53,6 +53,7 @@ class NadoSunbaeNaviBar: UIView {
     }
     
     private (set) lazy var rightActivateBtn = NadoSunbaeBtn().then {
+        $0.layer.cornerRadius = 8
         $0.isActivated = false
         $0.setTitle("완료", for: .normal)
     }
