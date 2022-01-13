@@ -16,7 +16,6 @@ class ReviewMainVC: UIViewController {
     // MARK: Properties
     var imgList: [ReviewImgData] = []
     var postList: [ReviewPostData] = []
-    weak var cellDelegate: ClickActionSheetInCell?
     private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
