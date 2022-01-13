@@ -15,12 +15,15 @@ class DefaultQuestionChatVC: UIViewController {
     @IBOutlet var animationLeading: NSLayoutConstraint!
     @IBOutlet var animationTrailing: NSLayoutConstraint!
     @IBOutlet var animationWidth: NSLayoutConstraint!
+    @IBOutlet var sendAreaTextViewBottom: NSLayoutConstraint!
+    @IBOutlet var sendBtnBottom: NSLayoutConstraint!
     @IBOutlet var defaultQuestionChatTV: UITableView! {
         didSet {
             defaultQuestionChatTV.dataSource = self
             defaultQuestionChatTV.allowsSelection = false
             defaultQuestionChatTV.separatorStyle = .none
             defaultQuestionChatTV.rowHeight  = UITableView.automaticDimension
+            defaultQuestionChatTV.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
             scrollTVtoBottom(animate: false)
         }
     }
@@ -43,7 +46,6 @@ class DefaultQuestionChatVC: UIViewController {
             sendAreaTextView.layer.cornerRadius = 18
             sendAreaTextView.layer.borderWidth = 1
             sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
-            sendAreaTextView.textColor = .gray2
             sendAreaTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
             sendAreaTextView.sizeToFit()
         }
@@ -51,7 +53,7 @@ class DefaultQuestionChatVC: UIViewController {
     
     // MARK: Properties
     var editIndex: [Int]?
-    var isWriter: Bool = true
+    let userType: Int = 1
     let textViewMaxHeight: CGFloat = 85
     
     // MARK: LifeCycle
@@ -65,21 +67,12 @@ class DefaultQuestionChatVC: UIViewController {
         sendAreaTextView.centerVertically()
     }
     
-    // MARK: Custom Methods
-    /// TableView에 Xib 등록하는 메서드
-    private func registerXib() {
-        ClassroomQuestionTVC.register(target: defaultQuestionChatTV)
-        ClassroomCommentTVC.register(target: defaultQuestionChatTV)
-        ClassroomQuestionEditTVC.register(target: defaultQuestionChatTV)
-        ClassroomCommentEditTVC.register(target: defaultQuestionChatTV)
-    }
-    
     // MARK: IBAction
     @IBAction func tapSendBtn(_ sender: UIButton) {
         // TODO: 서버 연결 후 더미데이터 삭제할 예정입니다!
-        defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: true, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
+        defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: false, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
         
-        if isWriter {
+        if userType == 0 {
             leftSendAnimation(text: ".............")
         } else {
             rightSendAnimation(text: ".............")
@@ -87,6 +80,7 @@ class DefaultQuestionChatVC: UIViewController {
         
         DispatchQueue.main.async {
             self.defaultQuestionChatTV.reloadData()
+            self.clearTextView()
         }
     }
 }
@@ -95,7 +89,7 @@ class DefaultQuestionChatVC: UIViewController {
 extension DefaultQuestionChatVC {
     
     /// 메시지 보내기: 기본 애니메이션 동작 메서드
-    func bubbleAnimation(_ duration: TimeInterval, _ topConstraint: CGFloat, _ widthConstraint: CGFloat, _ trailingConstraint: CGFloat , _ backgroundColor: UIColor, _ finishedTopConstraint: CGFloat, _ finishedTrailingConstraint: CGFloat, _ finishedWidthConstraint: CGFloat, _ finishedLeadingConstraint: CGFloat, _ finishedBackgroundColor: UIColor) {
+    private func bubbleAnimation(_ duration: TimeInterval, _ topConstraint: CGFloat, _ widthConstraint: CGFloat, _ trailingConstraint: CGFloat , _ backgroundColor: UIColor, _ finishedTopConstraint: CGFloat, _ finishedTrailingConstraint: CGFloat, _ finishedWidthConstraint: CGFloat, _ finishedLeadingConstraint: CGFloat, _ finishedBackgroundColor: UIColor) {
         UIView.animate(withDuration: duration, animations: {
             self.animationLabel.isHidden = false
             self.animationTop.constant = topConstraint
@@ -117,7 +111,7 @@ extension DefaultQuestionChatVC {
     }
     
     /// 메시지 보내기: 기본 애니메이션 확장 -> 왼쪽 버블 애니메이션 메서드 (constraint 조정)
-    func leftSendAnimation(text: String) {
+    private func leftSendAnimation(text: String) {
         var animateConstraint: CGFloat = 0
         animationLabel.text = text
         animationLabel.numberOfLines = 0
@@ -130,7 +124,7 @@ extension DefaultQuestionChatVC {
     }
     
     /// 메시지 보내기: 기본 애니메이션 확장 -> 오른쪽 버블 애니메이션 메서드 (constraint 조정)
-    func rightSendAnimation(text: String) {
+    private func rightSendAnimation(text: String) {
         var constraint: CGFloat = 0, animateConstraint: CGFloat = 0
         animationLabel.text = text
         animationLabel.numberOfLines = 0
@@ -148,8 +142,46 @@ extension DefaultQuestionChatVC {
         bubbleAnimation(0.5, animateConstraint - 35, self.animationLabel.intrinsicContentSize.width + 100, 10, .mainLight, self.view.frame.height - 150, 70, 330, 50, .gray2)
     }
     
+    /// userType별로 TextView의 placeholder 지정하는 메서드
+    private func configueTextViewPlaceholder(userType: Int) {
+        /// TODO: userType 분기처리 서버 통신 후 수정 예정.
+        /// 현재는 0: 작성자, 1: 질문받은 선배, 2: 타인
+        
+        if userType == 0 || userType == 1 {
+            sendAreaTextView.isEditable = true
+            sendAreaTextView.text = "답글쓰기"
+            sendAreaTextView.textColor = .gray2
+            sendAreaTextView.backgroundColor = .gray0
+        } else {
+            sendAreaTextView.isEditable = false
+            sendAreaTextView.text = "다른 선배 개인 페이지에서는 답글 불가!"
+            sendAreaTextView.textColor = .gray2
+            sendAreaTextView.backgroundColor = .gray0
+        }
+    }
+    
+    /// TextView의 content를 초기상태로 되돌리는 메서드
+    private func clearTextView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.sendAreaTextView.text = ""
+            self.sendAreaTextViewHeight.constant = 38
+        })
+    }
+}
+
+// MARK: - Custom Methods
+extension DefaultQuestionChatVC {
+    
+    /// TableView에 Xib 등록하는 메서드
+    private func registerXib() {
+        ClassroomQuestionTVC.register(target: defaultQuestionChatTV)
+        ClassroomCommentTVC.register(target: defaultQuestionChatTV)
+        ClassroomQuestionEditTVC.register(target: defaultQuestionChatTV)
+        ClassroomCommentEditTVC.register(target: defaultQuestionChatTV)
+    }
+    
     ///  TableView 최하단으로 scroll하는 메서드
-    func scrollTVtoBottom(animate: Bool) {
+    private func scrollTVtoBottom(animate: Bool) {
         DispatchQueue.main.async {
             let lastSectionIndex = self.defaultQuestionChatTV!.numberOfSections - 1
             let lastRowIndex = self.defaultQuestionChatTV.numberOfRows(inSection: lastSectionIndex) - 1
@@ -165,10 +197,11 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
     /// textViewDidChange
     func textViewDidChange(_ textView: UITextView) {
         
+        // TODO: Refactor 필요..
         /// 텍스트 줄이 변경될 때마다 TableView를 bottom으로 animate
-        DispatchQueue.main.async {
-            self.scrollTVtoBottom(animate: false)
-        }
+        // DispatchQueue.main.async {
+        //   self.scrollTVtoBottom(animate: false)
+        // }
         
         if textView.contentSize.height >= self.textViewMaxHeight {
             sendAreaTextViewHeight.constant = self.textViewMaxHeight
@@ -191,13 +224,11 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            // TODO: 유저 정보에 따라 분기처리 필요
-            textView.text = "답글쓰기"
-            textView.textColor = .gray2
+            // TODO: 서버통신 후 유저 정보에 따라 분기처리 필요
+            configueTextViewPlaceholder(userType: userType)
         }
     }
 }
-
 
 // MARK: - UITableViewDataSource
 extension DefaultQuestionChatVC: UITableViewDataSource {
