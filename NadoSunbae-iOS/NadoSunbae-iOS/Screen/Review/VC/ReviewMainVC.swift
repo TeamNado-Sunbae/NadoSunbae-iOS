@@ -16,6 +16,8 @@ class ReviewMainVC: UIViewController {
     // MARK: Properties
     var imgList: [ReviewImgData] = []
     var postList: [ReviewPostData] = []
+    weak var cellDelegate: ClickActionSheetInCell?
+    private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
     override func viewDidLoad() {
@@ -107,12 +109,14 @@ extension ReviewMainVC {
         
         // TODO: 액션 추가 예정
         let new = UIAlertAction(title: "최신순", style: .default) { action in
-            print("최신순 선택")
+            self.selectActionSheetIndex = 0
+            self.reviewTV.reloadSections([2], with: .fade)
         }
         
         // TODO: 액션 추가 예정
         let like = UIAlertAction(title: "좋아요순", style: .default) { action in
-            print("좋아요순 선택")
+            self.selectActionSheetIndex = 1
+            self.reviewTV.reloadSections([2], with: .fade)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
 
@@ -172,6 +176,15 @@ extension ReviewMainVC: UITableViewDataSource {
         if section == 2 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReviewStickyHeaderView.className) as? ReviewStickyHeaderView else { return UIView() }
             
+            // ActionSheet 항목 클릭 시 버튼 타이틀 변경
+            if selectActionSheetIndex == 0 {
+                headerView.arrangeBtn.setTitle("  최신순", for: .normal)
+            } else if selectActionSheetIndex == 1 {
+                headerView.arrangeBtn.setTitle("  좋아요순", for: .normal)
+            } else {
+                headerView.arrangeBtn.setTitle("  최신순", for: .normal)
+            }
+            
             headerView.tapArrangeBtnAction = {
                 self.showActionSheet()
             }
@@ -209,4 +222,3 @@ extension ReviewMainVC: UITableViewDataSource {
         }
     }
 }
-

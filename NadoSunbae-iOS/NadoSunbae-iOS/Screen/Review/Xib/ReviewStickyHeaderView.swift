@@ -9,6 +9,8 @@ import UIKit
 
 class ReviewStickyHeaderView: UITableViewHeaderFooterView {
     
+    @IBOutlet weak var arrangeBtn: UIButton!
+    
     // MARK: Properties
     var tapArrangeBtnAction : (() -> ())?
     
@@ -22,5 +24,3 @@ class ReviewStickyHeaderView: UITableViewHeaderFooterView {
         tapArrangeBtnAction?()
     }
 }
-
-

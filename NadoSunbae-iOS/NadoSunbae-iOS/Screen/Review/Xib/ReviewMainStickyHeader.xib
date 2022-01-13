@@ -65,6 +65,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bDi-y1-OVg" secondAttribute="bottom" constant="12" id="tBt-Ga-Bbb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="arrangeBtn" destination="bDi-y1-OVg" id="Q44-Qo-Hws"/>
+            </connections>
             <point key="canvasLocation" x="133" y="113"/>
         </view>
     </objects>
