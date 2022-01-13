@@ -9,6 +9,7 @@ import UIKit
 
 class ReviewStickyHeaderView: UITableViewHeaderFooterView {
     
+    // MARK: IBOutlet
     @IBOutlet weak var arrangeBtn: UIButton!
     
     // MARK: Properties
