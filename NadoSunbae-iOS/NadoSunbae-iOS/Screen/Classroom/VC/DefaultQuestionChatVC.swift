@@ -104,6 +104,25 @@ extension DefaultQuestionChatVC {
         })
     }
     
+    /// 메시지 보내기: 기본 애니메이션 확장 -> 오른쪽 버블 애니메이션 메서드 (constraint 조정)
+    func rightSendAnimation(text: String) {
+        var constraint: CGFloat = 0, animateConstraint: CGFloat = 0
+        animationLabel.text = text
+        animationLabel.numberOfLines = 0
+        animateTop.constant = self.view.frame.height - animationLabel.frame.height
+        animationLeading.constant = self.view.frame.width - animationLabel.intrinsicContentSize.width
+        constraint = CGFloat(self.view.frame.height - defaultQuestionChatTV.contentSize.height)
+        
+        if self.view.frame.height - constraint < self.view.frame.height - 200 {
+            animateConstraint = self.view.frame.height - constraint
+        }
+        else {
+            animateConstraint = self.view.frame.height - 175
+        }
+        
+        bubbleAnimation(0.5, animateConstraint - 35, self.animationLabel.intrinsicContentSize.width + 100, 10, .mainLight, self.view.frame.height - 150, 70, 330, 50, .gray2)
+    }
+    
     ///  TableView 최하단으로 scroll하는 메서드
     func scrollTVtoBottom(animate: Bool) {
         DispatchQueue.main.async {
