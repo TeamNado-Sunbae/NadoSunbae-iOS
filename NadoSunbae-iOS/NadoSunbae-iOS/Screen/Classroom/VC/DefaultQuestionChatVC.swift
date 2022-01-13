@@ -28,6 +28,14 @@ class DefaultQuestionChatVC: UIViewController {
         }
     }
     
+    @IBOutlet var sendBtn: UIButton! {
+        didSet {
+            if userType == 3 {
+                sendBtn.isEnabled = false
+            }
+        }
+    }
+    
     @IBOutlet var animationLabel: UILabel! {
         didSet {
             animationLabel.isHidden = true
@@ -64,7 +72,7 @@ class DefaultQuestionChatVC: UIViewController {
     
     // MARK: Properties
     var editIndex: [Int]?
-    let userType: Int = 1
+    let userType: Int = 3
     let textViewMaxHeight: CGFloat = 85
     
     // MARK: LifeCycle
@@ -262,6 +270,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
     /// cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // TODO: 서버통신시 userType별 수정가능 상태 조정 필요
         guard let questionCell = tableView.dequeueReusableCell(withIdentifier: ClassroomQuestionTVC.className) as? ClassroomQuestionTVC,
               let commentCell = tableView.dequeueReusableCell(withIdentifier: ClassroomCommentTVC.className) as? ClassroomCommentTVC,
               let questionEditCell = tableView.dequeueReusableCell(withIdentifier: ClassroomQuestionEditTVC.className) as? ClassroomQuestionEditTVC,
