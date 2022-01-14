@@ -56,6 +56,8 @@
 		331364C12786217400E0C118 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C02786217400E0C118 /* ReviewService.swift */; };
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
+		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
+		334D2E0727914CB200A4CA23 /* WriteQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D2E0627914CB200A4CA23 /* WriteQuestionVC.swift */; };
 		33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385636F278DC74D003C60A6 /* BaseTVC.swift */; };
 		338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */; };
 		338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */; };
@@ -161,6 +163,8 @@
 		331364C02786217400E0C118 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
+		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
+		334D2E0627914CB200A4CA23 /* WriteQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteQuestionVC.swift; sourceTree = "<group>"; };
 		3385636F278DC74D003C60A6 /* BaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVC.swift; sourceTree = "<group>"; };
 		338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCContentUpdate.swift; sourceTree = "<group>"; };
 		338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomCommentEditTVC.swift; sourceTree = "<group>"; };
@@ -510,6 +514,7 @@
 		3313649B2785D8A800E0C118 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				334D2E0627914CB200A4CA23 /* WriteQuestionVC.swift */,
 				331364A12785D8DD00E0C118 /* ClassroomMainVC.swift */,
 				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
 			);
@@ -520,6 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				3313649F2785D8CB00E0C118 /* ClassroomSB.storyboard */,
+				334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -880,6 +886,7 @@
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
+				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
 				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
@@ -982,6 +989,7 @@
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
+				334D2E0727914CB200A4CA23 /* WriteQuestionVC.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
 				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
 				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
