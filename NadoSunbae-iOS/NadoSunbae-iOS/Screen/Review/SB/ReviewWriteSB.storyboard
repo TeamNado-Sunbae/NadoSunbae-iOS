@@ -94,15 +94,18 @@
                                                 <rect key="frame" x="0.0" y="135" width="375" height="145"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배경선택" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXH-BD-Fjx">
-                                                        <rect key="frame" x="16" y="24" width="56" height="20"/>
+                                                        <rect key="frame" x="16" y="24" width="56" height="19"/>
                                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SLo-Qf-agw">
-                                                        <rect key="frame" x="16" y="60" width="359" height="69"/>
+                                                        <rect key="frame" x="16" y="59" width="343" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SPl-WE-fHr">
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="70" id="n0O-Eg-upd"/>
+                                                        </constraints>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SPl-WE-fHr">
                                                             <size key="itemSize" width="128" height="70"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -124,8 +127,7 @@
                                                 <constraints>
                                                     <constraint firstItem="SLo-Qf-agw" firstAttribute="top" secondItem="RXH-BD-Fjx" secondAttribute="bottom" constant="16" id="0e7-dc-E0N"/>
                                                     <constraint firstItem="RXH-BD-Fjx" firstAttribute="leading" secondItem="JFL-XG-vX5" secondAttribute="leading" constant="16" id="1CW-Q5-8g9"/>
-                                                    <constraint firstAttribute="bottom" secondItem="SLo-Qf-agw" secondAttribute="bottom" constant="16" id="CFI-Xx-Xck"/>
-                                                    <constraint firstAttribute="trailing" secondItem="SLo-Qf-agw" secondAttribute="trailing" id="O8n-Xm-ytr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SLo-Qf-agw" secondAttribute="trailing" constant="16" id="O8n-Xm-ytr"/>
                                                     <constraint firstItem="RXH-BD-Fjx" firstAttribute="top" secondItem="JFL-XG-vX5" secondAttribute="top" constant="24" id="Yug-hg-QwV"/>
                                                     <constraint firstAttribute="height" constant="145" id="rCa-w0-3RY"/>
                                                     <constraint firstItem="SLo-Qf-agw" firstAttribute="leading" secondItem="JFL-XG-vX5" secondAttribute="leading" constant="16" id="y4c-xF-WUx"/>
@@ -316,6 +318,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="1657"/>
                     <connections>
+                        <outlet property="bgImgCV" destination="SLo-Qf-agw" id="nqq-mm-NLX"/>
                         <outlet property="choiceTagView" destination="0Uq-b9-a80" id="E00-4P-QsZ"/>
                         <outlet property="essentialTagView" destination="5bs-Y4-zdY" id="ZtW-0W-Ydc"/>
                         <outlet property="majorNameView" destination="DKH-ET-dLt" id="zbI-Tb-aH2"/>

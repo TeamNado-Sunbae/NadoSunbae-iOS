@@ -93,6 +93,8 @@
 		7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */; };
 		7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31527901FE50093C230 /* ReviewWriteVC.swift */; };
 		7754A318279028250093C230 /* NaviVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A317279028250093C230 /* NaviVC.swift */; };
+		7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */; };
+		7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -199,6 +201,8 @@
 		7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewWriteSB.storyboard; sourceTree = "<group>"; };
 		7754A31527901FE50093C230 /* ReviewWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteVC.swift; sourceTree = "<group>"; };
 		7754A317279028250093C230 /* NaviVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviVC.swift; sourceTree = "<group>"; };
+		7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteBgImgCVC.swift; sourceTree = "<group>"; };
+		7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewWriteBgImgCVC.xib; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -579,6 +583,7 @@
 		33C7ABEC278F2051000A325A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				7754A31927912EF40093C230 /* CVC */,
 				33C7ABED278F2066000A325A /* TVC */,
 			);
 			path = Cell;
@@ -779,6 +784,15 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		7754A31927912EF40093C230 /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */,
+				7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -867,6 +881,7 @@
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
 				338CDB03278C9F8600F8227A /* ClassroomCommentEditTVC.xib in Resources */,
 				5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */,
+				7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */,
 				777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
@@ -972,6 +987,7 @@
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
+				7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
