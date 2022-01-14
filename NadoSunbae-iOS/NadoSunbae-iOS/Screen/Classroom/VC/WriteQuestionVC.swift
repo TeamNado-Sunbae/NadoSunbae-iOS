@@ -84,6 +84,8 @@ extension WriteQuestionVC {
             $0.leading.trailing.equalTo(questionTitleTextField)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-58)
         }
+        
+        setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
     }
 }
 
@@ -93,27 +95,20 @@ extension WriteQuestionVC {
     private func setTextViewDelegate() {
         questionWriteTextView.delegate = self
     }
-    /// textField가 채워져 있는지에 따라 Btn 상태 변경하는 함수
-    private func setCheckBtnState(textField: UITextField, checkBtn: NadoSunbaeBtn) {
+    /// textField가 채워져 있는지에 따라 highlightView 상태 변경하는 함수
+    private func setHighlightViewState(textField: UITextField, highlightView: UIView) {
         textField.rx.text
             .orEmpty
+            .skip(1)
             .distinctUntilChanged()
-            .subscribe(onNext: { changedText in
-                //                self.changeNadoBtnState(isOn: changedText != "", btn: checkBtn)
+            .subscribe(onNext: { [weak self] changedText in
+                if self?.questionTitleTextField.text?.isEmpty == true {
+                    self?.textHighlightView.backgroundColor = .gray0
+                } else {
+                    self?.textHighlightView.backgroundColor = .black
+                }
             })
             .disposed(by: disposeBag)
-        
-        //        nickNameClearBtn.rx.tap
-        //            .bind {
-        //                self.changeNadoBtnState(isOn: false, btn: self.checkDuplicateBtn)
-        //            }
-        //            .disposed(by: disposeBag)
-        //
-        //        emailClearBtn.rx.tap
-        //            .bind {
-        //                self.changeNadoBtnState(isOn: false, btn: self.checkEmailBtn)
-        //            }
-        //            .disposed(by: disposeBag)
     }
     
     private func setTapBtnAction() {
