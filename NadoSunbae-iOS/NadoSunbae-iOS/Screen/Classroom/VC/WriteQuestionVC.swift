@@ -54,6 +54,8 @@ class WriteQuestionVC: UIViewController {
 
 // MARK: - UI
 extension WriteQuestionVC {
+    
+    /// UI 구성하는 메서드
     private func configureUI() {
         view.addSubviews([questionWriteNaviBar, questionTitleTextField, textHighlightView, contentHeaderLabel, questionWriteTextView])
         
@@ -92,10 +94,12 @@ extension WriteQuestionVC {
 // MARK: - Custom Method
 extension WriteQuestionVC {
     
+    /// textView delegate 설정하는 메서드
     private func setTextViewDelegate() {
         questionWriteTextView.delegate = self
     }
-    /// textField가 채워져 있는지에 따라 highlightView 상태 변경하는 함수
+    
+    /// textField가 채워져 있는지에 따라 highlightView 상태 변경하는 메서드
     private func setHighlightViewState(textField: UITextField, highlightView: UIView) {
         textField.rx.text
             .orEmpty
@@ -111,6 +115,7 @@ extension WriteQuestionVC {
             .disposed(by: disposeBag)
     }
     
+    /// btn Action set 메서드
     private func setTapBtnAction() {
         questionWriteNaviBar.rightActivateBtn.press {
             print("press")
@@ -126,12 +131,15 @@ extension WriteQuestionVC {
 
 // MARK: - UITextViewDelegate
 extension WriteQuestionVC: UITextViewDelegate {
+    
+    /// scrollViewDidScroll
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         DispatchQueue.main.async() {
             scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
         }
     }
     
+    /// textViewDidBeginEditing
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .gray2 {
             textView.text = nil
@@ -139,6 +147,7 @@ extension WriteQuestionVC: UITextViewDelegate {
         }
     }
     
+    /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
