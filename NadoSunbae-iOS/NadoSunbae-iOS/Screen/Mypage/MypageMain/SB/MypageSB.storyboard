@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PEE-ZU-uAc">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -166,6 +166,15 @@
                                     <constraint firstItem="0Zq-Ki-sCH" firstAttribute="centerX" secondItem="RvU-8m-vts" secondAttribute="centerX" multiplier="31.8:100" id="n1X-wI-Gsn"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3km-Z4-cT2">
+                                <rect key="frame" x="106" y="391" width="163" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="정숙한 Girl만 누르기 🌹"/>
+                                <connections>
+                                    <action selector="goMypageUser:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Yiu-QN-zAr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
@@ -184,10 +193,29 @@
                             <constraint firstItem="RvU-8m-vts" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="xxY-cF-Ara"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Y9I-We-uwQ"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26.399999999999999" y="112.3152709359606"/>
+            <point key="canvasLocation" x="916" y="112.3152709359606"/>
+        </scene>
+        <!--MypageNVC-->
+        <scene sceneID="i0b-9j-anD">
+            <objects>
+                <navigationController storyboardIdentifier="MypageNVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="PEE-ZU-uAc" customClass="MypageNVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GIt-jn-ppz">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="g1T-Cl-jWA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pKe-3e-8eu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="201" y="112"/>
         </scene>
     </scenes>
     <resources>
