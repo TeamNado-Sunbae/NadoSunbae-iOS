@@ -98,6 +98,7 @@ class DefaultQuestionChatVC: UIViewController {
     
     // MARK: IBAction
     @IBAction func tapSendBtn(_ sender: UIButton) {
+        
         // TODO: 서버 연결 후 더미데이터 삭제할 예정입니다!
         defaultQuestionData.append(contentsOf: [DefaultQuestionDataModel(isWriter: false, questionTitle: "제목은너무졸려서패쓰요", nickname: "지으니", majorInfo: "디미과", contentText: sendAreaTextView.text)])
         
@@ -173,9 +174,9 @@ extension DefaultQuestionChatVC {
     
     /// userType별로 TextView의 placeholder 지정하는 메서드
     private func configueTextViewPlaceholder(userType: Int) {
+       
         /// TODO: userType 분기처리 서버 통신 후 수정 예정.
         /// 현재는 0: 작성자, 1: 질문받은 선배, 2: 타인
-        
         if userType == 0 || userType == 1 {
             sendAreaTextView.isEditable = true
             sendAreaTextView.text = "답글쓰기"
@@ -352,14 +353,14 @@ extension DefaultQuestionChatVC: TVCContentUpdate {
 // MARK: - Keyboard
 extension DefaultQuestionChatVC {
     
+    /// Keyboard Observer add 메서드
     private func addKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
     @objc
     private func keyboardWillShow(_ notification: Notification) {
-        
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             sendAreaTextViewBottom.constant = keyboardSize.height - 25
             sendBtnBottom.constant = keyboardSize.height - 30
