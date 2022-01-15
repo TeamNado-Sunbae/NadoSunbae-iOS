@@ -32,14 +32,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn2-Vh-Q2Y" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="8RK-tj-B4S"/>
+                                </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Si5-3Y-Tl8">
-                                <rect key="frame" x="0.0" y="114" width="375" height="800"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="810"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJl-mK-oSe" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="820"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="820.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KN-MV-zEV">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="37.333333333333336"/>
@@ -199,12 +202,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlK-2x-mgE">
-                                                <rect key="frame" x="291" y="268" width="68" height="28"/>
+                                                <rect key="frame" x="291" y="268" width="68" height="28.333333333333314"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="btnArray"/>
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kXs-pO-uLu">
-                                                <rect key="frame" x="24" y="300" width="327" height="500"/>
+                                                <rect key="frame" x="24" y="300.33333333333326" width="327" height="500"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="500" id="9Eh-OO-Be7"/>
@@ -341,16 +344,24 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="hyp-9l-Woy"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="eyv-8y-cy7"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yax-Dk-hiT">
+                                <rect key="frame" x="287" y="826" width="64" height="64"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="btnFloating_x"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
+                            <constraint firstItem="Yax-Dk-hiT" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.170667" id="6oR-dE-YEo"/>
                             <constraint firstItem="YlK-2x-mgE" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0295567" id="BpW-ms-pQw"/>
                             <constraint firstItem="Si5-3Y-Tl8" firstAttribute="top" secondItem="fn2-Vh-Q2Y" secondAttribute="bottom" id="DAm-8o-uAT"/>
+                            <constraint firstItem="Yax-Dk-hiT" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0675105" id="HRM-vq-IHP"/>
                             <constraint firstItem="fn2-Vh-Q2Y" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="S6e-FL-PoW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Si5-3Y-Tl8" secondAttribute="trailing" id="W39-PZ-HrH"/>
                             <constraint firstItem="fn2-Vh-Q2Y" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Xdp-ZA-dpH"/>
-                            <constraint firstItem="fn2-Vh-Q2Y" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0738" id="gjM-U7-IVd"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Yax-Dk-hiT" secondAttribute="bottom" constant="24" id="fEP-1F-zrM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Yax-Dk-hiT" secondAttribute="trailing" constant="24" id="lAu-st-GUX"/>
                             <constraint firstItem="yRX-c9-EEe" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.872" id="lBD-7L-xrG"/>
                             <constraint firstItem="fn2-Vh-Q2Y" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="nOQ-Pt-E1R"/>
                             <constraint firstItem="ifh-6A-2YM" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0689655" id="pyq-da-fv4"/>
@@ -362,12 +373,14 @@
                     </view>
                     <size key="freeformSize" width="375" height="948"/>
                     <connections>
+                        <outlet property="floatingBtn" destination="Yax-Dk-hiT" id="diD-0g-tev"/>
                         <outlet property="majorReviewView" destination="ifh-6A-2YM" id="0s0-Nr-K5Z"/>
                         <outlet property="navView" destination="fn2-Vh-Q2Y" id="XfA-VX-IW5"/>
                         <outlet property="profileView" destination="yRX-c9-EEe" id="JzK-kz-Kt2"/>
                         <outlet property="questionTableVIewHeight" destination="9Eh-OO-Be7" id="cHm-PC-Cy0"/>
                         <outlet property="questionTableView" destination="kXs-pO-uLu" id="c9i-Dw-cxu"/>
                         <outlet property="userStateView" destination="1KN-MV-zEV" id="nlC-vs-Xrm"/>
+                        <outlet property="userStateViewHeight" destination="x4B-Kf-6c0" id="b3v-A3-kcl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -378,6 +391,7 @@
     <resources>
         <image name="btnArray" width="68" height="24"/>
         <image name="btnDiamond" width="32" height="32"/>
+        <image name="btnFloating_x" width="113" height="114"/>
         <image name="btnMoreVert" width="24" height="24"/>
         <image name="btn_arrow" width="48" height="48"/>
         <image name="icComment" width="32" height="32"/>

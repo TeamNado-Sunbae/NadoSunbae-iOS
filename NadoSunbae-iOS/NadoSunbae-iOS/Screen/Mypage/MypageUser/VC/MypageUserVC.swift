@@ -13,20 +13,23 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var majorReviewView: UIView!
     @IBOutlet weak var userStateView: UIView!
+    @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
     @IBOutlet weak var questionTableView: UITableView!
     @IBOutlet weak var questionTableVIewHeight: NSLayoutConstraint!
+    @IBOutlet weak var floatingBtn: UIButton!
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
             navView.setUpNaviStyle(state: .backDefault)
             navView.configureTitleLabel(title: "선배 닉네임")
             navView.rightActivateBtn.isActivated = false
-            navView.rightActivateBtn.press {
+            navView.dismissBtn.press {
                 self.navigationController?.popViewController(animated: true)
             }
         }
     }
     
     // MARK: Properties
+    var isQuestionable = false
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -49,6 +52,13 @@ extension MypageUserVC {
         self.questionTableView.makeRounded(cornerRadius: 8.adjusted)
         DispatchQueue.main.async {
             self.questionTableVIewHeight.constant = self.questionTableView.contentSize.height
+            if self.isQuestionable {
+                self.floatingBtn.imageView?.image = UIImage(named: "btnFloating")
+                self.userStateView.alpha = 0
+                self.userStateViewHeight.constant = 0
+            } else {
+                self.floatingBtn.imageView?.image = UIImage(named: "btnFloating_x")!
+            }
         }
     }
     
