@@ -16,6 +16,48 @@ class ReviewWriteVC: UIViewController {
     @IBOutlet weak var majorNameView: UIView!
     @IBOutlet weak var bgImgCV: UICollectionView!
     
+    @IBOutlet weak var oneLineReviewTextView: NadoTextView! {
+        didSet {
+            oneLineReviewTextView.setDefaultStyle(placeholderText: "학과를 한줄로 표현한다면?")
+        }
+    }
+    
+    @IBOutlet weak var prosAndConsTextView: NadoTextView! {
+        didSet {
+            prosAndConsTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+        }
+    }
+    
+    @IBOutlet weak var learnInfoTextView: NadoTextView! {
+        didSet {
+            learnInfoTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+        }
+    }
+    
+    @IBOutlet weak var recommendClassTextView: NadoTextView! {
+        didSet {
+            recommendClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+        }
+    }
+    
+    @IBOutlet weak var badClassTextView: NadoTextView! {
+        didSet {
+            badClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+        }
+    }
+    
+    @IBOutlet weak var futureTextView: NadoTextView! {
+        didSet {
+            futureTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+        }
+    }
+    
+    @IBOutlet weak var tipTextView: NadoTextView! {
+        didSet {
+            tipTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+        }
+    }
+
     var bgImgList: [ReviewWriteBgImgData] = []
     
     // MARK: Life Cycle
@@ -27,6 +69,9 @@ class ReviewWriteVC: UIViewController {
         customNaviUI()
         configureTagViewUI()
         configureMajorNameViewUI()
+        hideKeyboardWhenTappedAround()
+        oneLineReviewTextView.delegate = self
+        prosAndConsTextView.delegate = self
     }
     
     private func registerCVC() {
@@ -103,3 +148,34 @@ extension ReviewWriteVC: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK: - UITextViewDelegate
+extension ReviewWriteVC: UITextViewDelegate {
+    
+    /// textViewDidBeginEditing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray2 {
+            textView.text = nil
+            textView.textColor = .mainText
+        }
+    }
+    
+    /// textViewDidEndEditing
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            if textView == oneLineReviewTextView {
+                textView.text = "학과를 한줄로 표현한다면?"
+            } else {
+                textView.text = "내용을 입력해주세요"
+            }
+            textView.textColor = .gray2
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        DispatchQueue.main.async() {
+            scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+        }
+    }
+}
+
