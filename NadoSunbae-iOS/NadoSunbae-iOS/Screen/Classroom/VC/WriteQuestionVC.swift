@@ -18,6 +18,7 @@ class WriteQuestionVC: UIViewController {
     private let contentView = UIView()
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
+    private var isTextViewEmpty: Bool = true
     private let questionWriteNaviBar = NadoSunbaeNaviBar().then {
         $0.setUpNaviStyle(state: .dismissWithNadoBtn)
         $0.configureTitleLabel(title: "1:1 질문 작성")
@@ -113,6 +114,7 @@ extension WriteQuestionVC {
         }
         
         setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
+        setActivateBtnState(textField: questionTitleTextField, textView: questionWriteTextView)
     }
 }
 
@@ -140,6 +142,43 @@ extension WriteQuestionVC {
             .disposed(by: disposeBag)
     }
     
+    /// 제목, 내용이 모두 채워져 있는지에 따라 상단 네비바 버튼 활성화/비활성화 하는 메서드
+    private func setActivateBtnState(textField: UITextField, textView: NadoTextView) {
+        
+        let a = BehaviorSubject<Bool>(value: false)
+        let b = BehaviorSubject<Bool>(value: false)
+        
+        textField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                if changedText.isEmpty {
+                    a.onNext(false)
+                } else {
+                    a.onNext(true)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        textView.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] changedText in
+                if changedText.isEmpty || self?.isTextViewEmpty == true {
+                    b.onNext(false)
+                } else {
+                    b.onNext(true)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(a, b) {$0 && $1}
+        .bind(to: questionWriteNaviBar.rightActivateBtn.rx.isActivated)
+        .disposed(by: disposeBag)
+    }
+    
     /// btn Action set 메서드
     private func setTapBtnAction() {
         questionWriteNaviBar.rightActivateBtn.press {
@@ -149,7 +188,6 @@ extension WriteQuestionVC {
         
         questionWriteNaviBar.dismissBtn.press {
             print("dismiss")
-            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -206,6 +244,7 @@ extension WriteQuestionVC: UITextViewDelegate {
     
     /// textViewDidChange
     func textViewDidChange(_ textView: UITextView) {
+        isTextViewEmpty = false
         scollByTextViewState(textView: textView)
     }
     
@@ -214,6 +253,7 @@ extension WriteQuestionVC: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
             textView.textColor = .gray2
+            isTextViewEmpty = true
         }
     }
 }
