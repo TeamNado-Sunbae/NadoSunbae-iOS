@@ -63,6 +63,9 @@
                                                                 <buttonConfiguration key="configuration" style="plain" title="변경">
                                                                     <fontDescription key="titleFontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="tapMajorChangeBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bkW-d7-ev2"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="국어국문학과" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cn-v9-Ivr">
                                                                 <rect key="frame" x="16" y="15.666666666666657" width="78" height="19"/>
@@ -447,11 +450,12 @@
                     <size key="freeformSize" width="375" height="1657"/>
                     <connections>
                         <outlet property="badClassTextView" destination="nm1-tf-Oha" id="vSu-1P-Vss"/>
-                        <outlet property="bgImgCV" destination="SLo-Qf-agw" id="nqq-mm-NLX"/>
+                        <outlet property="bgImgCV" destination="SLo-Qf-agw" id="599-bB-Jhk"/>
                         <outlet property="choiceTagView" destination="0Uq-b9-a80" id="E00-4P-QsZ"/>
                         <outlet property="essentialTagView" destination="5bs-Y4-zdY" id="ZtW-0W-Ydc"/>
                         <outlet property="futureTextView" destination="bdh-60-r4e" id="16y-hT-IVK"/>
                         <outlet property="learnInfoTextView" destination="iD4-XI-pAf" id="0eS-iQ-E7H"/>
+                        <outlet property="majorNameLabel" destination="3Cn-v9-Ivr" id="o3J-8Q-587"/>
                         <outlet property="majorNameView" destination="DKH-ET-dLt" id="zbI-Tb-aH2"/>
                         <outlet property="oneLineReviewTextView" destination="BIh-8P-r1P" id="uxH-6e-TDl"/>
                         <outlet property="prosAndConsTextView" destination="zFo-4i-ZDU" id="9YW-7S-LQG"/>

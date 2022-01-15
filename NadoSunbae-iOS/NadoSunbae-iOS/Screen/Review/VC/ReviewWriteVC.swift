@@ -15,6 +15,7 @@ class ReviewWriteVC: UIViewController {
     @IBOutlet weak var choiceTagView: UIView!
     @IBOutlet weak var majorNameView: UIView!
     @IBOutlet weak var bgImgCV: UICollectionView!
+    @IBOutlet weak var majorNameLabel: UILabel!
     
     @IBOutlet weak var oneLineReviewTextView: NadoTextView! {
         didSet {
@@ -95,6 +96,26 @@ class ReviewWriteVC: UIViewController {
             ReviewWriteBgImgData(bgImgName: "bgSample"),
             ReviewWriteBgImgData(bgImgName: "bgSample"),
         ])
+    }
+    
+    @IBAction func tapMajorChangeBtn(_ sender: Any) {
+        let alert = UIAlertController(title: "후기 작성 학과", message: nil, preferredStyle: .actionSheet)
+
+        let majorName = UIAlertAction(title: "본전공명", style: .default) { action in
+            self.majorNameLabel.text = "국어국문학과"
+        }
+        
+        // TODO: 회원가입 시 본전공만 존재하는 유저인 경우 분기 처리 예정
+        let secondMajorName = UIAlertAction(title: "제2전공명", style: .default) { action in
+            self.majorNameLabel.text = "디지털미디어학과"
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+        alert.addAction(majorName)
+        alert.addAction(secondMajorName)
+        alert.addAction(cancel)
+
+        present(alert, animated: true, completion: nil)
     }
     
 }
