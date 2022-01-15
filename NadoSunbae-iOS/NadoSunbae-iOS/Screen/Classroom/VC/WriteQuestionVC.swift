@@ -181,15 +181,35 @@ extension WriteQuestionVC {
     
     /// btn Action set 메서드
     private func setTapBtnAction() {
+        
+        /// rightActivat Btn Press
         questionWriteNaviBar.rightActivateBtn.press {
-            print("press")
-            // TODO: Alert 띄우기
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            alert.showNadoAlert(vc: self, message:
+    """
+    글을 올리시겠습니까?
+    """
+                                , confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+            alert.confirmBtn.press {
+                // TODO: 글 올리기 서버통신부
+            }
         }
         
+        /// dismissBtn Press
         questionWriteNaviBar.dismissBtn.press {
-            print("dismiss")
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            alert.showNadoAlert(vc: self, message:
+    """
+    페이지를 나가면
+    작성중인 글이 삭제돼요.
+    """
+                                , confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+            alert.cancelBtn.press {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
+    
     
     /// textView의 상태에 따라 스크롤뷰를 Up, Down 하는 메서드
     private func scollByTextViewState(textView: UITextView) {
