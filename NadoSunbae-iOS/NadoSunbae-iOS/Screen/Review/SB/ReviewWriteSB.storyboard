@@ -461,6 +461,7 @@
                         <outlet property="prosAndConsTextView" destination="zFo-4i-ZDU" id="9YW-7S-LQG"/>
                         <outlet property="recommendClassTextView" destination="t47-df-jbz" id="u5r-5n-o60"/>
                         <outlet property="reviewWriteNaviBar" destination="EL1-CC-rXF" id="J1B-DI-G8d"/>
+                        <outlet property="reviewWriteScrollView" destination="sdp-YP-VDn" id="2DG-VJ-LbD"/>
                         <outlet property="tipTextView" destination="ics-mX-Sz3" id="GAR-AM-wtR"/>
                     </connections>
                 </viewController>

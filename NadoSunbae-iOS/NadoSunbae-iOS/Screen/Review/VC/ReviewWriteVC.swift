@@ -18,6 +18,7 @@ class ReviewWriteVC: UIViewController {
         }
     }
     
+    @IBOutlet weak var reviewWriteScrollView: UIScrollView!
     @IBOutlet weak var essentialTagView: UIView!
     @IBOutlet weak var choiceTagView: UIView!
     @IBOutlet weak var majorNameView: UIView!
@@ -78,6 +79,7 @@ class ReviewWriteVC: UIViewController {
         configureTagViewUI()
         configureMajorNameViewUI()
         setTextViewDelegate()
+        addKeyboardObserver()
         hideKeyboardWhenTappedAround()
     }
     
@@ -104,6 +106,7 @@ class ReviewWriteVC: UIViewController {
         ])
     }
     
+    /// TextView delegate 설정
     private func setTextViewDelegate() {
         oneLineReviewTextView.delegate = self
         prosAndConsTextView.delegate = self
@@ -195,6 +198,23 @@ extension ReviewWriteVC: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .mainText
         }
+        
+        /// 키보드 처리
+        if textView == oneLineReviewTextView {
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+        } else if textView == prosAndConsTextView {
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 160), animated: true)
+        } else if textView == learnInfoTextView {
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 405), animated: true)
+        } else if textView == recommendClassTextView {
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 580), animated: true)
+        } else if textView == badClassTextView {
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 750), animated: true)
+        } else if textView == futureTextView {
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 920), animated: true)
+        } else if textView == tipTextView {
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1090), animated: true)
+        }
     }
     
     /// textViewDidEndEditing
@@ -213,6 +233,31 @@ extension ReviewWriteVC: UITextViewDelegate {
         DispatchQueue.main.async() {
             scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
         }
+    }
+}
+
+extension ReviewWriteVC {
+    
+    /// Keyboard Observer add 메서드
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        reviewWriteScrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height
+        
+//        var userInfo = notification.userInfo!
+//        var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+//        reviewWriteScrollView.contentOffset = CGPoint(x: 0, y: keyboardFrame.size.height - 120)
+    }
+    
+    @objc
+    func keyboardWillHide(_ notification: Notification) {
+        reviewWriteScrollView.contentInset.bottom = 0
     }
 }
 
