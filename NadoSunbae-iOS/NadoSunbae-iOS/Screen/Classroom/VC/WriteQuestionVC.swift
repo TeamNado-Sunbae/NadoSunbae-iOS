@@ -209,7 +209,6 @@ extension WriteQuestionVC {
         }
     }
     
-    
     /// textView의 상태에 따라 스크롤뷰를 Up, Down 하는 메서드
     private func scollByTextViewState(textView: UITextView) {
         var contentOffsetY = questionScrollView.contentOffset.y
