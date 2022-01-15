@@ -234,6 +234,38 @@ extension ReviewWriteVC: UITextViewDelegate {
             scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
         }
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        print(textView.text.count)
+        /// 최대 글자수 설정
+        var maxCount = 99
+        
+        if textView == oneLineReviewTextView {
+            maxCount = 39
+        }
+        
+        /// 이전 글자 - 선택된 글자 + 새로운 글자(대체될 글자)
+        let newLength = textView.text.count - range.length + text.count
+        let koreanMaxCount = maxCount + 1
+        
+        /// 글자수가 초과 된 경우 or 초과되지 않은 경우
+        if newLength > koreanMaxCount { //11글자
+            let overflow = newLength - koreanMaxCount //초과된 글자수
+            if text.count < overflow {
+                return true
+            }
+            let index = text.index(text.endIndex, offsetBy: -overflow)
+            let newText = text[..<index]
+            guard let startPosition = textView.position(from: textView.beginningOfDocument, offset: range.location) else { return false }
+            guard let endPosition = textView.position(from: textView.beginningOfDocument, offset: NSMaxRange(range)) else { return false }
+            guard let textRange = textView.textRange(from: startPosition, to: endPosition) else { return false }
+            
+            textView.replace(textRange, withText: String(newText))
+            
+            return false
+        }
+        return true
+    }
 }
 
 extension ReviewWriteVC {
