@@ -14,6 +14,10 @@ import RxCocoa
 class WriteQuestionVC: UIViewController {
     
     // MARK: Properties
+    private let questionScrollView = UIScrollView()
+    private let contentView = UIView()
+    private let disposeBag = DisposeBag()
+    private var questionTextViewLineCount: Int = 1
     private let questionWriteNaviBar = NadoSunbaeNaviBar().then {
         $0.setUpNaviStyle(state: .dismissWithNadoBtn)
         $0.configureTitleLabel(title: "1:1 질문 작성")
@@ -41,11 +45,10 @@ class WriteQuestionVC: UIViewController {
         $0.setDefaultStyle(placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
     }
     
-    let disposeBag = DisposeBag()
-    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         configureUI()
         setTextViewDelegate()
         setTapBtnAction()
@@ -57,17 +60,30 @@ extension WriteQuestionVC {
     
     /// UI 구성하는 메서드
     private func configureUI() {
-        view.addSubviews([questionWriteNaviBar, questionTitleTextField, textHighlightView, contentHeaderLabel, questionWriteTextView])
+        view.addSubviews([questionWriteNaviBar, questionScrollView])
+        questionScrollView.addSubview(contentView)
+        contentView.addSubviews([questionTitleTextField, textHighlightView, contentHeaderLabel, questionWriteTextView])
         
         questionWriteNaviBar.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(56)
         }
         
+        questionScrollView.snp.makeConstraints {
+            $0.top.equalTo(questionWriteNaviBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.height.equalToSuperview()
+            $0.centerX.top.bottom.equalToSuperview()
+        }
+        
         questionTitleTextField.snp.makeConstraints {
-            $0.top.equalTo(questionWriteNaviBar.snp.bottom).offset(24)
-            $0.leading.equalTo(view).offset(24)
-            $0.trailing.equalTo(view).offset(-24)
+            $0.top.equalToSuperview().offset(56)
+            $0.leading.equalToSuperview().offset(24)
+            $0.trailing.equalToSuperview().offset(-24)
         }
         
         textHighlightView.snp.makeConstraints {
@@ -84,7 +100,7 @@ extension WriteQuestionVC {
         questionWriteTextView.snp.makeConstraints {
             $0.top.equalTo(contentHeaderLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalTo(questionTitleTextField)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-58)
+            $0.bottom.equalTo(contentView.snp.bottom).offset(-102)
         }
         
         setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
