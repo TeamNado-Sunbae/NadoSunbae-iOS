@@ -201,19 +201,19 @@ extension ReviewWriteVC: UITextViewDelegate {
         
         /// 키보드 처리
         if textView == oneLineReviewTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 140), animated: true)
         } else if textView == prosAndConsTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 160), animated: true)
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
         } else if textView == learnInfoTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 405), animated: true)
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 445), animated: true)
         } else if textView == recommendClassTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 580), animated: true)
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 620), animated: true)
         } else if textView == badClassTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 750), animated: true)
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 790), animated: true)
         } else if textView == futureTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 920), animated: true)
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 960), animated: true)
         } else if textView == tipTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1090), animated: true)
+            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1130), animated: true)
         }
     }
     
@@ -248,11 +248,6 @@ extension ReviewWriteVC {
     func keyboardWillShow(_ notification: Notification) {
         guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         reviewWriteScrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height
-        
-//        var userInfo = notification.userInfo!
-//        var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-//        reviewWriteScrollView.contentOffset = CGPoint(x: 0, y: keyboardFrame.size.height - 120)
     }
     
     @objc
