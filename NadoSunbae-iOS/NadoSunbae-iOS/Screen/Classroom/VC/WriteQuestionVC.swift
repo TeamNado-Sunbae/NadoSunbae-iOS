@@ -144,7 +144,6 @@ extension WriteQuestionVC {
     
     /// 제목, 내용이 모두 채워져 있는지에 따라 상단 네비바 버튼 활성화/비활성화 하는 메서드
     private func setActivateBtnState(textField: UITextField, textView: NadoTextView) {
-        
         let a = BehaviorSubject<Bool>(value: false)
         let b = BehaviorSubject<Bool>(value: false)
         
@@ -238,7 +237,6 @@ extension WriteQuestionVC {
                     questionScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 }
             }
-            
         }
         questionTextViewLineCount = textView.numberOfLines()
     }
