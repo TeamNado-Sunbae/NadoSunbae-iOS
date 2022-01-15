@@ -25,44 +25,20 @@ class ReviewWriteVC: UIViewController {
     @IBOutlet weak var bgImgCV: UICollectionView!
     @IBOutlet weak var majorNameLabel: UILabel!
     
-    @IBOutlet weak var oneLineReviewTextView: NadoTextView! {
-        didSet {
-            oneLineReviewTextView.setDefaultStyle(placeholderText: "학과를 한줄로 표현한다면?")
-        }
-    }
-    
-    @IBOutlet weak var prosAndConsTextView: NadoTextView! {
-        didSet {
-            prosAndConsTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-        }
-    }
-    
-    @IBOutlet weak var learnInfoTextView: NadoTextView! {
-        didSet {
-            learnInfoTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-        }
-    }
-    
-    @IBOutlet weak var recommendClassTextView: NadoTextView! {
-        didSet {
-            recommendClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-        }
-    }
-    
-    @IBOutlet weak var badClassTextView: NadoTextView! {
-        didSet {
-            badClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-        }
-    }
-    
-    @IBOutlet weak var futureTextView: NadoTextView! {
-        didSet {
-            futureTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-        }
-    }
-    
+    @IBOutlet weak var oneLineReviewTextView: NadoTextView!
+    @IBOutlet weak var prosAndConsTextView: NadoTextView!
+    @IBOutlet weak var learnInfoTextView: NadoTextView!
+    @IBOutlet weak var recommendClassTextView: NadoTextView!
+    @IBOutlet weak var badClassTextView: NadoTextView!
+    @IBOutlet weak var futureTextView: NadoTextView!
     @IBOutlet weak var tipTextView: NadoTextView! {
         didSet {
+            oneLineReviewTextView.setDefaultStyle(placeholderText: "학과를 한줄로 표현한다면?")
+            prosAndConsTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+            learnInfoTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+            recommendClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+            badClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+            futureTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
             tipTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
         }
     }
