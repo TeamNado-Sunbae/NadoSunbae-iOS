@@ -100,7 +100,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SLo-Qf-agw">
-                                                        <rect key="frame" x="16" y="59" width="343" height="70"/>
+                                                        <rect key="frame" x="16" y="59" width="359" height="70"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="n0O-Eg-upd"/>
@@ -127,7 +127,7 @@
                                                 <constraints>
                                                     <constraint firstItem="SLo-Qf-agw" firstAttribute="top" secondItem="RXH-BD-Fjx" secondAttribute="bottom" constant="16" id="0e7-dc-E0N"/>
                                                     <constraint firstItem="RXH-BD-Fjx" firstAttribute="leading" secondItem="JFL-XG-vX5" secondAttribute="leading" constant="16" id="1CW-Q5-8g9"/>
-                                                    <constraint firstAttribute="trailing" secondItem="SLo-Qf-agw" secondAttribute="trailing" constant="16" id="O8n-Xm-ytr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SLo-Qf-agw" secondAttribute="trailing" id="O8n-Xm-ytr"/>
                                                     <constraint firstItem="RXH-BD-Fjx" firstAttribute="top" secondItem="JFL-XG-vX5" secondAttribute="top" constant="24" id="Yug-hg-QwV"/>
                                                     <constraint firstAttribute="height" constant="145" id="rCa-w0-3RY"/>
                                                     <constraint firstItem="SLo-Qf-agw" firstAttribute="leading" secondItem="JFL-XG-vX5" secondAttribute="leading" constant="16" id="y4c-xF-WUx"/>
