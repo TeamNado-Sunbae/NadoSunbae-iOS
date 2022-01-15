@@ -70,9 +70,8 @@ class ReviewWriteVC: UIViewController {
         customNaviUI()
         configureTagViewUI()
         configureMajorNameViewUI()
+        setTextViewDelegate()
         hideKeyboardWhenTappedAround()
-        oneLineReviewTextView.delegate = self
-        prosAndConsTextView.delegate = self
     }
     
     private func registerCVC() {
@@ -96,6 +95,16 @@ class ReviewWriteVC: UIViewController {
             ReviewWriteBgImgData(bgImgName: "bgSample"),
             ReviewWriteBgImgData(bgImgName: "bgSample"),
         ])
+    }
+    
+    private func setTextViewDelegate() {
+        oneLineReviewTextView.delegate = self
+        prosAndConsTextView.delegate = self
+        learnInfoTextView.delegate = self
+        recommendClassTextView.delegate = self
+        badClassTextView.delegate = self
+        futureTextView.delegate = self
+        tipTextView.delegate = self
     }
     
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
