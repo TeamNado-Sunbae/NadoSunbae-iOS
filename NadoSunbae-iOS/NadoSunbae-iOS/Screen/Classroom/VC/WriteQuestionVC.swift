@@ -52,6 +52,15 @@ class WriteQuestionVC: UIViewController {
         configureUI()
         setTextViewDelegate()
         setTapBtnAction()
+        hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        addKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeKeyboardObserver()
     }
 }
 
@@ -143,6 +152,38 @@ extension WriteQuestionVC {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    /// textView의 상태에 따라 스크롤뷰를 Up, Down 하는 메서드
+    private func scollByTextViewState(textView: UITextView) {
+        var contentOffsetY = questionScrollView.contentOffset.y
+        var isLineAdded = true
+        
+        if questionTextViewLineCount != textView.numberOfLines() {
+            
+            if questionTextViewLineCount > textView.numberOfLines() {
+                isLineAdded = false
+            } else {
+                isLineAdded = true
+            }
+            
+            if  isLineAdded && textView.numberOfLines() > 8 && questionScrollView.contentOffset.y < 243 {
+                contentOffsetY += 38
+                questionScrollView.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
+                
+            } else if !isLineAdded && questionTextViewLineCount < 14 && questionScrollView.contentOffset.y > 0 {
+                
+                if contentOffsetY - 38 > 0 {
+                    contentOffsetY -= 38
+                    questionScrollView.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
+                } else {
+                    contentOffsetY = 0
+                    questionScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                }
+            }
+            
+        }
+        questionTextViewLineCount = textView.numberOfLines()
+    }
 }
 
 // MARK: - UITextViewDelegate
@@ -163,11 +204,37 @@ extension WriteQuestionVC: UITextViewDelegate {
         }
     }
     
+    /// textViewDidChange
+    func textViewDidChange(_ textView: UITextView) {
+        scollByTextViewState(textView: textView)
+    }
+    
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
             textView.textColor = .gray2
         }
+    }
+}
+
+// MARK: - Keyboard
+extension WriteQuestionVC {
+    
+    /// Keyboard Observer add 메서드
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    /// Keyboard Observer remove 메서드
+    private func removeKeyboardObserver() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    /// keyboardWillHide
+    @objc
+    func keyboardWillHide(notification: Notification) {
+        questionScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
