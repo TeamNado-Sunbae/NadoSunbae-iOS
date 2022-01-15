@@ -42,7 +42,12 @@ class ReviewWriteVC: UIViewController {
             tipTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
         }
     }
-
+    
+    /// 필수 작성 항목 검사를 위한 변수
+    var essentialTextViewStatus: Bool = false
+    var choiceTextViewStatus: Bool = false
+    var choiceEmptyStatus: Bool = true
+    
     var bgImgList: [ReviewWriteBgImgData] = []
     
     // MARK: Life Cycle
@@ -203,44 +208,100 @@ extension ReviewWriteVC: UITextViewDelegate {
             }
             textView.textColor = .gray2
         }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        DispatchQueue.main.async() {
-            scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
-        }
+        
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print(textView.text.count)
-        /// 최대 글자수 설정
-        var maxCount = 99
-        
         if textView == oneLineReviewTextView {
-            maxCount = 39
-        }
-        
-        /// 이전 글자 - 선택된 글자 + 새로운 글자(대체될 글자)
-        let newLength = textView.text.count - range.length + text.count
-        let koreanMaxCount = maxCount + 1
-        
-        /// 글자수가 초과 된 경우 or 초과되지 않은 경우
-        if newLength > koreanMaxCount { //11글자
-            let overflow = newLength - koreanMaxCount //초과된 글자수
-            if text.count < overflow {
-                return true
+            let maxCount = 39
+            //이전 글자 - 선택된 글자 + 새로운 글자(대체될 글자)
+            let newLength = textView.text.count - range.length + text.count
+            let koreanMaxCount = maxCount + 1
+            //글자수가 초과 된 경우 or 초과되지 않은 경우
+            if newLength > koreanMaxCount { //11글자
+                let overflow = newLength - koreanMaxCount //초과된 글자수
+                if text.count < overflow {
+                    return true
+                }
+                let index = text.index(text.endIndex, offsetBy: -overflow)
+                let newText = text[..<index]
+                guard let startPosition = textView.position(from: textView.beginningOfDocument, offset: range.location) else { return false }
+                guard let endPosition = textView.position(from: textView.beginningOfDocument, offset: NSMaxRange(range)) else { return false }
+                guard let textRange = textView.textRange(from: startPosition, to: endPosition) else { return false }
+                
+                textView.replace(textRange, withText: String(newText))
+                
+                return false
             }
-            let index = text.index(text.endIndex, offsetBy: -overflow)
-            let newText = text[..<index]
-            guard let startPosition = textView.position(from: textView.beginningOfDocument, offset: range.location) else { return false }
-            guard let endPosition = textView.position(from: textView.beginningOfDocument, offset: NSMaxRange(range)) else { return false }
-            guard let textRange = textView.textRange(from: startPosition, to: endPosition) else { return false }
-            
-            textView.replace(textRange, withText: String(newText))
-            
-            return false
         }
         return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.reloadInputViews()
+        print(essentialTextViewStatus)
+        print(choiceTextViewStatus)
+        
+        if oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
+            essentialTextViewStatus = true
+        }
+        if learnInfoTextView.text.count >= 100 {
+            if (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = true
+                reviewWriteNaviBar.rightActivateBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = false
+            }
+        }
+        if recommendClassTextView.text.count >= 100 {
+            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = true
+                reviewWriteNaviBar.rightActivateBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = false
+            }
+        }
+       if badClassTextView.text.count >= 100 {
+            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = true
+                reviewWriteNaviBar.rightActivateBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = false
+            }
+        }
+        if futureTextView.text.count >= 100 {
+            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = true
+                reviewWriteNaviBar.rightActivateBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = false
+            }
+        }
+        if tipTextView.text.count >= 100 {
+            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && essentialTextViewStatus == true {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = true
+                reviewWriteNaviBar.rightActivateBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                reviewWriteNaviBar.rightActivateBtn.isActivated = false
+            }
+        }
+        
+        
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            DispatchQueue.main.async() {
+                scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+            }
+        }
     }
 }
 
