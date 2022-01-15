@@ -10,7 +10,14 @@ import UIKit
 class ReviewWriteVC: UIViewController {
     
     // MARK: IBOutlet
-    @IBOutlet weak var reviewWriteNaviBar: NadoSunbaeNaviBar!
+    @IBOutlet weak var reviewWriteNaviBar: NadoSunbaeNaviBar! {
+        didSet {
+            reviewWriteNaviBar.dismissBtn.press {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
     @IBOutlet weak var essentialTagView: UIView!
     @IBOutlet weak var choiceTagView: UIView!
     @IBOutlet weak var majorNameView: UIView!
