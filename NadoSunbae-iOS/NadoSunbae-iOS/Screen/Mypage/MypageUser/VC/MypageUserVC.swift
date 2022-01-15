@@ -7,11 +7,11 @@
 
 import UIKit
 
-@IBDesignable
 class MypageUserVC: BaseVC {
     
     // MARK: @IBOutlet
     @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var majorReviewView: UIView!
     @IBOutlet weak var userStateView: UIView!
     @IBOutlet weak var questionTableView: UITableView!
     @IBOutlet weak var questionTableVIewHeight: NSLayoutConstraint!
@@ -44,7 +44,12 @@ class MypageUserVC: BaseVC {
 extension MypageUserVC {
     private func configureUI() {
         navigationBackSwipeMotion()
-        questionTableVIewHeight.constant = questionTableView.contentSize.height
+        self.profileView.makeRounded(cornerRadius: 8.adjusted)
+        self.majorReviewView.makeRounded(cornerRadius: 8.adjusted)
+        self.questionTableView.makeRounded(cornerRadius: 8.adjusted)
+        DispatchQueue.main.async {
+            self.questionTableVIewHeight.constant = self.questionTableView.contentSize.height
+        }
     }
     
     /// 네비게이션 백 스와이프 모션으로도 뒤로가기가 가능하도록 만들어주는 함수

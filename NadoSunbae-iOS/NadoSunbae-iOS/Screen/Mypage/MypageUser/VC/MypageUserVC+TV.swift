@@ -9,7 +9,7 @@ import UIKit
 
 extension MypageUserVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -20,5 +20,13 @@ extension MypageUserVC: UITableViewDataSource {
 }
 
 extension MypageUserVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 101.adjustedH
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: 나중에 1:1 뷰랑 연결
+        let vc = UIViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
