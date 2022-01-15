@@ -40,7 +40,7 @@ class ClassroomQuestionEditTVC: BaseTVC {
 extension ClassroomQuestionEditTVC {
     
     /// questionContentTextView style 구성하는 메서드
-    func configureQuestionContentTextView() {
+    private func configureQuestionContentTextView() {
         commentContentTextView.delegate = self
         commentContentTextView.isScrollEnabled = false
         commentContentTextView.isEditable = true
@@ -48,7 +48,7 @@ extension ClassroomQuestionEditTVC {
     }
     
     /// backView style 구성하는 메서드
-    func configureBackView() {
+    private func configureBackView() {
         backView.layer.borderWidth = 1
         backView.layer.borderColor = UIColor.gray1.cgColor
         backView.layer.cornerRadius = 8

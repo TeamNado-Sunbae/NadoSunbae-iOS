@@ -69,6 +69,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7M-H1-HhE">
+                                <rect key="frame" x="287" y="690" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Uu6-JH-Cyz"/>
+                                    <constraint firstAttribute="width" constant="64" id="cjJ-Xc-0dR"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="btnFloating"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
@@ -76,8 +85,10 @@
                             <constraint firstItem="ulf-PI-yaI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="7CW-7e-m77"/>
                             <constraint firstItem="ulf-PI-yaI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="O4A-LF-reu"/>
                             <constraint firstItem="AxF-38-GGZ" firstAttribute="top" secondItem="ulf-PI-yaI" secondAttribute="bottom" id="OPm-MF-tDw"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H7M-H1-HhE" secondAttribute="trailing" constant="24" id="UPP-LF-B4T"/>
                             <constraint firstItem="ulf-PI-yaI" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cD7-0S-vYC"/>
                             <constraint firstItem="AxF-38-GGZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="euZ-Az-sJl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="H7M-H1-HhE" secondAttribute="bottom" constant="24" id="khb-R5-TC4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AxF-38-GGZ" secondAttribute="trailing" id="ny3-Wz-kf4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="AxF-38-GGZ" secondAttribute="bottom" id="yen-4o-Qg3"/>
                         </constraints>
@@ -94,6 +105,7 @@
     </scenes>
     <resources>
         <image name="btnArrow" width="48" height="48"/>
+        <image name="btnFloating" width="113" height="114"/>
         <namedColor name="paleGray">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

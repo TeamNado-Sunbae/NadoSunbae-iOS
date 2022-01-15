@@ -15,4 +15,29 @@ extension UITextView {
         attributedStr.addAttribute(NSAttributedString.Key.kern, value: spacing, range: NSMakeRange(0, attributedStr.length))
         self.attributedText = attributedStr
     }
+    
+    /// 세로 중앙정렬 메서드
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
+    }
+    
+    /// line 수 카운트 메서드
+    func numberOfLines() -> Int {
+        let layoutManager = layoutManager
+        let numberOfGlyphs = layoutManager.numberOfGlyphs
+        var lineRange: NSRange = NSMakeRange(0, 1)
+        var index = 0
+        var numberOfLines = 0
+
+        while index < numberOfGlyphs {
+            layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
+            index = NSMaxRange(lineRange)
+            numberOfLines += 1
+        }
+        return numberOfLines
+    }
 }
