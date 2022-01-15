@@ -13,6 +13,8 @@ class MypageUserVC: BaseVC {
     // MARK: @IBOutlet
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var userStateView: UIView!
+    @IBOutlet weak var questionTableView: UITableView!
+    @IBOutlet weak var questionTableVIewHeight: NSLayoutConstraint!
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
             navView.setUpNaviStyle(state: .backDefault)
@@ -31,6 +33,7 @@ class MypageUserVC: BaseVC {
         super.viewDidLoad()
         
         configureUI()
+        setUpTV()
     }
     
     // MARK: @IBAction
@@ -41,10 +44,19 @@ class MypageUserVC: BaseVC {
 extension MypageUserVC {
     private func configureUI() {
         navigationBackSwipeMotion()
+        questionTableVIewHeight.constant = questionTableView.contentSize.height
     }
     
     /// 네비게이션 백 스와이프 모션으로도 뒤로가기가 가능하도록 만들어주는 함수
     private func navigationBackSwipeMotion() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+}
+
+// MARK: - Custom Methods
+extension MypageUserVC {
+    private func setUpTV() {
+        questionTableView.delegate = self
+        questionTableView.dataSource = self
     }
 }
