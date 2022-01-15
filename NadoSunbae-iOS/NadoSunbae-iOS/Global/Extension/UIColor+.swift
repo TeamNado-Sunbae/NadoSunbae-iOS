@@ -2,7 +2,7 @@
 //  UIColor+.swift
 //  NadoSunbae-iOS
 //
-//  Created by 황지은 on 2022/01/05.
+//  Created by JIEUN on 2022/01/05.
 //
 
 import UIKit
@@ -68,8 +68,13 @@ extension UIColor {
     @nonobjc class var red: UIColor {
         return UIColor(red: 255.0 / 225.0, green: 76.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
     }
+
     @nonobjc class var bgGray: UIColor {
         return UIColor(red: 248.0 / 225.0, green: 249.0 / 255.0, blue: 253.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var scrollMint: UIColor {
+        return UIColor(red: 187.0 / 225.0, green: 242.0 / 255.0, blue: 236.0 / 255.0, alpha: 1.0)
     }
 }
 

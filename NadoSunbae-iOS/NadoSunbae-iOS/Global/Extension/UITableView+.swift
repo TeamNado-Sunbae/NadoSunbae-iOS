@@ -14,4 +14,9 @@ extension UITableView {
         let dummyView = UIView(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
         self.tableFooterView = dummyView
     }
+    
+    func fitContentInset(inset: UIEdgeInsets!) {
+        self.contentInset = inset
+        self.scrollIndicatorInsets = inset
+    }
 }
