@@ -22,5 +22,10 @@ extension NotificationMainVC: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension NotificationMainVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80.adjustedH
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8
+    }
 }

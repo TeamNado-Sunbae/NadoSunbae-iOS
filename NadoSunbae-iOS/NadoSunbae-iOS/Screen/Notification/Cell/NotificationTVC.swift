@@ -19,9 +19,25 @@ class NotificationTVC: BaseTVC {
     // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureUI()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setContentViewInset()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    // MARK: Custom Methods
+    private func configureUI() {
+        contentView.makeRounded(cornerRadius: 8.adjusted)
+        self.backgroundColor = .clear
+    }
+    
+    private func setContentViewInset() {
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
     }
 }

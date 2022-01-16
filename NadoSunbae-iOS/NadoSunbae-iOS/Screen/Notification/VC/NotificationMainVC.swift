@@ -27,7 +27,8 @@ class NotificationMainVC: BaseVC {
 // MARK: - UI
 extension NotificationMainVC {
     private func configureUI() {
-        
+        notificationTV.backgroundColor = .clear
+        notificationTV.separatorStyle = .none
     }
     
     private func setUpTV() {

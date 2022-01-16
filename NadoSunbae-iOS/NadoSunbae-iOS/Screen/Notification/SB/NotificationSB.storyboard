@@ -40,13 +40,15 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="1Lh-Hy-FGK"/>
                                     <constraint firstAttribute="bottom" secondItem="Gz8-It-2OG" secondAttribute="bottom" constant="24" id="83Y-gL-jRU"/>
                                     <constraint firstItem="Gz8-It-2OG" firstAttribute="leading" secondItem="SgZ-z0-ye5" secondAttribute="leading" constant="16" id="odG-wV-ZDX"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2Dg-vn-V8b">
-                                <rect key="frame" x="16" y="120" width="343" height="658"/>
+                                <rect key="frame" x="16" y="112" width="343" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTVC" rowHeight="80" id="MZ0-Up-XFz" customClass="NotificationTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="343" height="80"/>
@@ -94,6 +96,7 @@
                                                     <state key="normal" image="btnXGray"/>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="wRC-o2-gBG" firstAttribute="leading" secondItem="DN2-Tw-VwD" secondAttribute="leading" id="1OW-s4-70J"/>
                                                 <constraint firstItem="PCr-Nw-pi3" firstAttribute="trailing" secondItem="wRC-o2-gBG" secondAttribute="trailing" id="5nG-XB-pAk"/>
@@ -134,8 +137,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2Dg-vn-V8b" secondAttribute="trailing" constant="16" id="54v-MT-Slf"/>
                             <constraint firstItem="SgZ-z0-ye5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="5rm-Ta-E63"/>
                             <constraint firstItem="SgZ-z0-ye5" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="I5w-qV-HW4"/>
-                            <constraint firstItem="SgZ-z0-ye5" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.128079" id="Px5-tM-nZe"/>
-                            <constraint firstItem="2Dg-vn-V8b" firstAttribute="top" secondItem="SgZ-z0-ye5" secondAttribute="bottom" constant="16" id="Yoq-QD-6qz"/>
+                            <constraint firstItem="2Dg-vn-V8b" firstAttribute="top" secondItem="SgZ-z0-ye5" secondAttribute="bottom" constant="8" id="Yoq-QD-6qz"/>
                             <constraint firstItem="2Dg-vn-V8b" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="bKU-o1-dPJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="2Dg-vn-V8b" secondAttribute="bottom" id="iGm-v6-pf4"/>
                         </constraints>
