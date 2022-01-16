@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,20 +14,108 @@
             <objects>
                 <viewController storyboardIdentifier="ClassroomMainVC" id="Y6W-OH-hqX" customClass="ClassroomMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhm-iT-Ypx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="feV-Qg-wvV"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-78-pjq">
+                                <rect key="frame" x="0.0" y="174" width="414" height="792"/>
+                                <connections>
+                                    <segue destination="Ufw-P2-QNl" kind="embed" id="EBd-LK-ZvN"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpK-ir-4DU">
+                                <rect key="frame" x="0.0" y="104" width="414" height="70"/>
+                                <color key="backgroundColor" name="paleGray"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Mqd-5l-t8T"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a7h-78-pjq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="0Or-zG-9NY"/>
+                            <constraint firstItem="zpK-ir-4DU" firstAttribute="top" secondItem="xhm-iT-Ypx" secondAttribute="bottom" id="7Ts-AJ-uh2"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="a7h-78-pjq" secondAttribute="bottom" id="BmF-bu-xAD"/>
+                            <constraint firstItem="a7h-78-pjq" firstAttribute="top" secondItem="zpK-ir-4DU" secondAttribute="bottom" id="KKj-wU-baS"/>
+                            <constraint firstItem="xhm-iT-Ypx" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="OU2-iQ-DZS"/>
+                            <constraint firstItem="xhm-iT-Ypx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Swm-OK-isB"/>
+                            <constraint firstItem="xhm-iT-Ypx" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="TE1-wb-jpV"/>
+                            <constraint firstItem="zpK-ir-4DU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZNs-83-TRJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zpK-ir-4DU" secondAttribute="trailing" id="jyM-bC-l3B"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="a7h-78-pjq" secondAttribute="trailing" id="yeM-EB-DiB"/>
+                        </constraints>
                     </view>
+                    <size key="freeformSize" width="414" height="1000"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="92"/>
+            <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
+        </scene>
+        <!--Classroom PageVC-->
+        <scene sceneID="VaD-7F-kIp">
+            <objects>
+                <viewController storyboardIdentifier="ClassroomPageVC" id="Ufw-P2-QNl" customClass="ClassroomPageVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MQt-Ax-8Ud">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oYM-r4-DYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="937"/>
+        </scene>
+        <!--Question MainVC-->
+        <scene sceneID="xE1-Un-pc7">
+            <objects>
+                <viewController storyboardIdentifier="QuestionMainVC" id="gxv-TD-Fo6" customClass="QuestionMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sdd-CS-ARW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6pV-RV-RTo"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LLL-TW-haF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="991" y="106"/>
+        </scene>
+        <!--Info MainVC-->
+        <scene sceneID="QB3-fa-OAU">
+            <objects>
+                <viewController storyboardIdentifier="InfoMainVC" id="ynF-Ge-n8s" customClass="InfoMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rlh-VA-YC2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6OD-1v-pii"/>
+                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cTb-fa-q2P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1683" y="106"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
