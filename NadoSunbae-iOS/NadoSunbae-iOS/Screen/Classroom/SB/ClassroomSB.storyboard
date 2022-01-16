@@ -22,21 +22,13 @@
                                     <constraint firstAttribute="height" constant="104" id="WWk-lb-yZ0"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQc-nk-3Qk" customClass="NadoHorizonContainerViews" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="chX-yB-bWd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gQc-nk-3Qk" firstAttribute="top" secondItem="tzN-r6-y1u" secondAttribute="bottom" id="1PM-CH-OUh"/>
                             <constraint firstItem="tzN-r6-y1u" firstAttribute="leading" secondItem="chX-yB-bWd" secondAttribute="leading" id="5kt-zu-15v"/>
-                            <constraint firstItem="chX-yB-bWd" firstAttribute="trailing" secondItem="gQc-nk-3Qk" secondAttribute="trailing" id="5xB-pQ-0ax"/>
-                            <constraint firstItem="gQc-nk-3Qk" firstAttribute="leading" secondItem="chX-yB-bWd" secondAttribute="leading" id="ANm-5I-icW"/>
                             <constraint firstItem="tzN-r6-y1u" firstAttribute="top" secondItem="CvY-i7-vaj" secondAttribute="top" id="BYS-Wi-UIz"/>
                             <constraint firstItem="chX-yB-bWd" firstAttribute="trailing" secondItem="tzN-r6-y1u" secondAttribute="trailing" id="Gfz-W1-dKr"/>
-                            <constraint firstItem="chX-yB-bWd" firstAttribute="bottom" secondItem="gQc-nk-3Qk" secondAttribute="bottom" id="sYz-u2-c2x"/>
                         </constraints>
                     </view>
                     <connections>
