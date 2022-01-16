@@ -17,6 +17,7 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var questionTV: UITableView!
     @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
     @IBOutlet weak var floatingBtn: UIButton!
+    @IBOutlet weak var questionEmptyView: UIView!
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
             navView.setUpNaviStyle(state: .backDefault)
@@ -67,9 +68,14 @@ extension MypageUserVC {
         majorReviewView.makeRounded(cornerRadius: 8.adjusted)
         questionTV.makeRounded(cornerRadius: 8.adjusted)
         questionTV.removeSeparatorsOfEmptyCellsAndLastCell()
+        questionEmptyView.makeRounded(cornerRadius: 8.adjusted)
+        
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         DispatchQueue.main.async {
             self.questionTVHeight.constant = self.questionTV.contentSize.height
+            self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
+            self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+            
             if self.isQuestionable {
                 self.floatingBtn.imageView?.image = UIImage(named: "btnFloating")
                 self.userStateViewHeight.constant = 0
