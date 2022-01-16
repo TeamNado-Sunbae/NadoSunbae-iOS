@@ -47,7 +47,6 @@ class ReviewWriteVC: UIViewController {
     /// 완료 버튼 활성화 검사를 위한 변수
     var essentialTextViewStatus: Bool = false
     var choiceTextViewStatus: Bool = false
-    var choiceEmptyStatus: Bool = true
     
     /// 데이터 삽입을 위한 리스트 변수
     var bgImgList: [ReviewWriteBgImgData] = []
