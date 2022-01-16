@@ -128,9 +128,6 @@
                                 <state key="normal" image="btnXGray">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
-                                <connections>
-                                    <action selector="tapEmailClearBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fgn-NZ-Qu4"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3E-YD-aE9">
                                 <rect key="frame" x="311" y="367" width="48" height="48"/>
@@ -141,9 +138,6 @@
                                 <state key="normal" image="btnXGray">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
-                                <connections>
-                                    <action selector="tapPWClearBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5QU-il-qiX"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디 또는 비밀번호가 잘못되었어요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92z-Sg-lMB">
                                 <rect key="frame" x="16" y="671" width="343" height="15"/>
@@ -196,9 +190,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="PWClearBtn" destination="r3E-YD-aE9" id="wy1-lc-tqH"/>
+                        <outlet property="PWTextField" destination="Xqh-EM-8iC" id="4RG-E8-OBa"/>
+                        <outlet property="emailClearBtn" destination="5YX-fd-Fbw" id="bFm-2i-0VL"/>
                         <outlet property="emailTextField" destination="yWh-jP-b8K" id="6i8-hf-Iib"/>
                         <outlet property="infoLabel" destination="92z-Sg-lMB" id="Jpf-fP-KyS"/>
-                        <outlet property="pwTextField" destination="Xqh-EM-8iC" id="4RG-E8-OBa"/>
                         <outlet property="signInBtn" destination="hc2-9w-OnP" id="svn-xh-PlN"/>
                     </connections>
                 </viewController>
