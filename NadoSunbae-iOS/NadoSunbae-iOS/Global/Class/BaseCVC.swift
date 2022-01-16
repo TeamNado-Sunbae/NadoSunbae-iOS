@@ -8,21 +8,6 @@
 import UIKit
 
 class BaseCVC: UICollectionViewCell {
-    
-    //MARK: init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-    
-    func setupViews() {
-        
-    }
 }
 
 // MARK: - CVRegisterable
