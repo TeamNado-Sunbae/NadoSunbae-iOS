@@ -29,9 +29,9 @@ class SignInVC: BaseVC {
     
     // MARK: IBAction
     @IBAction func tapSignInBtn(_ sender: UIButton) {
-        let sb = NadoSunbaeTBC()
-        sb.modalPresentationStyle = .fullScreen
-        self.present(sb, animated: true, completion: nil)
+        let nadoSunbaeTBC = NadoSunbaeTBC()
+        nadoSunbaeTBC.modalPresentationStyle = .fullScreen
+        self.present(nadoSunbaeTBC, animated: true, completion: nil)
     }
     
     @IBAction func tapSignUpBtn(_ sender: UIButton) {
