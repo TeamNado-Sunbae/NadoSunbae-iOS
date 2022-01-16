@@ -92,6 +92,11 @@
 		5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
+		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
+		5CD4213A279080C100D09DEE /* MypageUserVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CD42139279080C100D09DEE /* MypageUserVC.storyboard */; };
+		5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD4213C2790865A00D09DEE /* MypageNVC.swift */; };
+		5CF0EC2A279317C500AF63E4 /* MypageQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0EC29279317C500AF63E4 /* MypageQuestionTVC.swift */; };
+		5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */; };
 		5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */; };
 		5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
@@ -199,6 +204,11 @@
 		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
+		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
+		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
+		5CD4213C2790865A00D09DEE /* MypageNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageNVC.swift; sourceTree = "<group>"; };
+		5CF0EC29279317C500AF63E4 /* MypageQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageQuestionTVC.swift; sourceTree = "<group>"; };
+		5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MypageUserVC+TV.swift"; sourceTree = "<group>"; };
 		5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectMajorModalVC+TV.swift"; sourceTree = "<group>"; };
 		5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalTVC.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
@@ -489,8 +499,9 @@
 		331364982785D84600E0C118 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
-				3313649E2785D8BB00E0C118 /* SB */,
-				3313649D2785D8B500E0C118 /* VC */,
+				5CD4213B2790863100D09DEE /* MypageNVC */,
+				5CD4213327907E4900D09DEE /* MypageUser */,
+				5CA51FF8278F2A95001A1A40 /* MypageMain */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -719,6 +730,7 @@
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
+				5CA51FF7278F2949001A1A40 /* Cell */,
 				5C8D8BFE278B3A540045E600 /* SB */,
 				5C8D8BFF278B3A580045E600 /* VC */,
 			);
@@ -740,9 +752,25 @@
 				5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */,
 				5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */,
 				5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */,
-				5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		5CA51FF7278F2949001A1A40 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5CA51FF8278F2A95001A1A40 /* MypageMain */ = {
+			isa = PBXGroup;
+			children = (
+				3313649E2785D8BB00E0C118 /* SB */,
+				3313649D2785D8B500E0C118 /* VC */,
+			);
+			path = MypageMain;
 			sourceTree = "<group>";
 		};
 		5CAB3F23278AE37E00025DA5 /* SignUp */ = {
@@ -780,6 +808,49 @@
 				5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */,
 			);
 			path = SB;
+			sourceTree = "<group>";
+		};
+		5CD4213327907E4900D09DEE /* MypageUser */ = {
+			isa = PBXGroup;
+			children = (
+				5CF0EC28279317B400AF63E4 /* Cell */,
+				5CD421352790809A00D09DEE /* VC */,
+				5CD421342790809600D09DEE /* SB */,
+			);
+			path = MypageUser;
+			sourceTree = "<group>";
+		};
+		5CD421342790809600D09DEE /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				5CD42139279080C100D09DEE /* MypageUserVC.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		5CD421352790809A00D09DEE /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5CD42136279080A600D09DEE /* MypageUserVC.swift */,
+				5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		5CD4213B2790863100D09DEE /* MypageNVC */ = {
+			isa = PBXGroup;
+			children = (
+				5CD4213C2790865A00D09DEE /* MypageNVC.swift */,
+			);
+			path = MypageNVC;
+			sourceTree = "<group>";
+		};
+		5CF0EC28279317B400AF63E4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5CF0EC29279317C500AF63E4 /* MypageQuestionTVC.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {
@@ -878,6 +949,7 @@
 				338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
+				5CD4213A279080C100D09DEE /* MypageUserVC.storyboard in Resources */,
 				331364AA2785D96100E0C118 /* MypageSB.storyboard in Resources */,
 				331364332784D3C000E0C118 /* Assets.xcassets in Resources */,
 				3313647F2785BBB100E0C118 /* Pretendard-SemiBold.otf in Resources */,
@@ -970,10 +1042,12 @@
 				5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
 				5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */,
+				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
 				5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */,
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
+				5CF0EC2A279317C500AF63E4 /* MypageQuestionTVC.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
@@ -989,6 +1063,7 @@
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
+				5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */,
 				33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
 				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
@@ -1012,6 +1087,7 @@
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
+				5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */,
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
