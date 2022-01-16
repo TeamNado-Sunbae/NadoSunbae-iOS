@@ -7,12 +7,7 @@
 
 import UIKit
 
-class ReviewWriteBgImgCVC: UICollectionViewCell, CVRegisterable {
-    static var isFromNib: Bool {
-        get {
-            return true
-        }
-    }
+class ReviewWriteBgImgCVC: BaseCVC {
 
     // MARK: UI Component
     @IBOutlet weak var bgImgView: UIImageView!
@@ -29,8 +24,9 @@ class ReviewWriteBgImgCVC: UICollectionViewCell, CVRegisterable {
 
 }
 
+// MARK: - UI
 extension ReviewWriteBgImgCVC {
     func configureUI() {
-        bgImgView.layer.cornerRadius = 8
+        bgImgView.makeRounded(cornerRadius: 8.adjusted)
     }
 }
