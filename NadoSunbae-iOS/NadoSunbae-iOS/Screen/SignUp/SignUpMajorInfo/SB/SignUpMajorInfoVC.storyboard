@@ -363,11 +363,11 @@
                             <constraint firstAttribute="bottom" secondItem="CbI-tf-4af" secondAttribute="bottom" constant="34" id="bWR-T3-eej"/>
                             <constraint firstItem="zJG-so-n2V" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="iNe-bE-pSi"/>
                             <constraint firstItem="zJG-so-n2V" firstAttribute="top" secondItem="NrX-5a-nru" secondAttribute="bottom" constant="13" id="igU-mZ-dbD"/>
-                            <constraint firstAttribute="top" secondItem="NrX-5a-nru" secondAttribute="bottom" constant="-128" id="mbL-Zk-Rbd"/>
                             <constraint firstItem="dud-Cr-rQd" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0591" id="q5H-WL-7vm"/>
                             <constraint firstItem="FHR-65-5Xf" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="wzN-Xl-KEW"/>
                             <constraint firstItem="38y-7S-Zfm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="x1C-3W-rBn"/>
                             <constraint firstItem="Qt3-Tp-vrg" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0591" id="xsk-hV-wee"/>
+                            <constraint firstItem="NrX-5a-nru" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.103448" id="zhN-3n-zOT"/>
                         </constraints>
                     </view>
                     <connections>

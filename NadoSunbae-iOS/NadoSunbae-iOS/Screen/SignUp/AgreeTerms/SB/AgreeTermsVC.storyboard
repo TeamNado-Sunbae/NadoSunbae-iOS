@@ -250,8 +250,8 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kaH-AQ-Vza" secondAttribute="trailing" constant="16" id="Ove-jZ-Oyk"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ow9-Bv-Hrx"/>
                             <constraint firstItem="kaH-AQ-Vza" firstAttribute="top" secondItem="dkZ-a5-6uJ" secondAttribute="bottom" id="V4i-6u-sXR"/>
+                            <constraint firstItem="mSG-8v-yL9" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.103448" id="VTc-06-mw0"/>
                             <constraint firstAttribute="bottom" secondItem="P4W-JC-ct3" secondAttribute="bottom" constant="34" id="Y8P-RR-aCY"/>
-                            <constraint firstAttribute="top" secondItem="mSG-8v-yL9" secondAttribute="bottom" constant="-128" id="ah5-SD-xKt"/>
                             <constraint firstItem="kaH-AQ-Vza" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="fJL-rA-wmr"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dkZ-a5-6uJ" secondAttribute="trailing" constant="16" id="h3d-ts-g7i"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="P4W-JC-ct3" secondAttribute="trailing" constant="16" id="iAV-Rb-Y0v"/>
