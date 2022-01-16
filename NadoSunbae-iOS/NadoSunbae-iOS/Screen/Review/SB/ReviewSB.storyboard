@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -77,6 +77,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="btnFloating"/>
+                                <connections>
+                                    <action selector="tapFloatingBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="z7p-ZE-tbD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -93,6 +96,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="AxF-38-GGZ" secondAttribute="bottom" id="yen-4o-Qg3"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="gCg-2q-H8f"/>
                     <connections>
                         <outlet property="naviBarView" destination="ulf-PI-yaI" id="bER-cF-Pyk"/>
                         <outlet property="reviewTV" destination="AxF-38-GGZ" id="9Ai-ul-zX4"/>
@@ -100,7 +104,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="113"/>
+            <point key="canvasLocation" x="916" y="112.3152709359606"/>
+        </scene>
+        <!--NaviVC-->
+        <scene sceneID="f7o-NR-yOh">
+            <objects>
+                <navigationController storyboardIdentifier="NaviVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8Wx-3d-vPZ" customClass="NaviVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sci-ei-HaA">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="d5M-Gg-XjW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9hf-6y-aSD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26.399999999999999" y="112.3152709359606"/>
         </scene>
     </scenes>
     <resources>

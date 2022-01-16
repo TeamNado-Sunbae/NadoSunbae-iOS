@@ -9,15 +9,26 @@ import UIKit
 
 class SignUpMajorInfoVC: BaseVC {
     
-    // MARK: Properties
+    // MARK: @IBOutlet
     @IBOutlet weak var univTextField: NadoTextField!
     @IBOutlet weak var firstMajorTextField: NadoTextField!
     @IBOutlet weak var firstMajorStartTextField: NadoTextField!
     @IBOutlet weak var secondMajorTextField: NadoTextField!
     @IBOutlet weak var secondMajorStartTextField: NadoTextField!
-    @IBOutlet weak var nextBtn: NadoSunbaeBtn!
+    @IBOutlet weak var nextBtn: NadoSunbaeBtn! {
+        didSet {
+            nextBtn.isActivated = false
+            nextBtn.isEnabled = false
+        }
+    }
     @IBOutlet weak var prevBtn: NadoSunbaeBtn!
+    @IBOutlet weak var univSelectBtn: UIButton!
+    @IBOutlet weak var firstMajorSelectBtn: UIButton!
+    @IBOutlet weak var firstMajorStartSelectBtn: UIButton!
+    @IBOutlet weak var secondMajorSelectBtn: UIButton!
+    @IBOutlet weak var secondMajorStartSelectBtn: UIButton!
     
+    // MARK: Properties
     var univList = ["고려대학교"]
     
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
@@ -27,39 +38,6 @@ class SignUpMajorInfoVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-    }
-    
-    // MARK: Custom Method
-    private func configureUI() {
-        [univTextField, firstMajorTextField, firstMajorStartTextField, secondMajorTextField, secondMajorStartTextField].forEach { textField in
-            textField?.placeholder = "선택하기"
-            textField?.isUserInteractionEnabled = false
-        }
-        prevBtn.setBackgroundColor(.mainLight, for: .normal)
-    }
-    
-    private func alertAction(title: String, targetTextField: UITextField) -> UIAlertAction {
-        let alertAction = UIAlertAction(title: title, style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            targetTextField.text = title
-        })
-        return alertAction
-    }
-    
-    /// textField에 값이 들어올 때마다 NextBtn 활성화할지를 체크하는 함수
-    private func checkNextBtnIsEnabled() {
-        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) {
-            if !(secondMajorTextField.isEmpty) && (secondMajorStartTextField.isEmpty) {
-                nextBtn.isActivated = false
-                nextBtn.isEnabled = false
-            } else {
-                nextBtn.isActivated = true
-                nextBtn.isEnabled = true
-            }
-        } else {
-            nextBtn.isActivated = false
-            nextBtn.isEnabled = false
-        }
     }
     
     // MARK: IBAction
@@ -123,12 +101,58 @@ class SignUpMajorInfoVC: BaseVC {
     }
 }
 
+// MARK: - UI
+extension SignUpMajorInfoVC {
+    private func configureUI() {
+        [univTextField, firstMajorTextField, firstMajorStartTextField, secondMajorTextField, secondMajorStartTextField].forEach { textField in
+            textField?.placeholder = "선택하기"
+            textField?.isUserInteractionEnabled = false
+        }
+        prevBtn.setBackgroundColor(.mainLight, for: .normal)
+    }
+}
+
+// MARK: - Custom Methods
+extension SignUpMajorInfoVC {
+    private func alertAction(title: String, targetTextField: UITextField) -> UIAlertAction {
+        let alertAction = UIAlertAction(title: title, style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            targetTextField.text = title
+            self.checkSelectBtnStatus(btn: self.univSelectBtn, textField: self.univTextField)
+        })
+        return alertAction
+    }
+    
+    /// textField에 값이 들어올 때마다 NextBtn 활성화할지를 체크하는 함수
+    private func checkNextBtnIsEnabled() {
+        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) {
+            if !(secondMajorTextField.isEmpty) && (secondMajorStartTextField.isEmpty) {
+                nextBtn.isActivated = false
+                nextBtn.isEnabled = false
+            } else {
+                nextBtn.isActivated = true
+                nextBtn.isEnabled = true
+            }
+        } else {
+            nextBtn.isActivated = false
+            nextBtn.isEnabled = false
+        }
+    }
+    
+    /// textField에 값이 있으면 '선택' 버튼을 '변경' 버튼으로 바꾸는 함수
+    private func checkSelectBtnStatus(btn: UIButton, textField: UITextField) {
+        btn.setTitle(textField.isEmpty ? "선택" : "변경", for: .normal)
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
 extension SignUpMajorInfoVC: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 
+// MARK: - SendUpdateModalDelegate
 extension SignUpMajorInfoVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         switch enterBtnTag {
@@ -146,5 +170,11 @@ extension SignUpMajorInfoVC: SendUpdateModalDelegate {
             #endif
         }
         checkNextBtnIsEnabled()
+        [(firstMajorSelectBtn, firstMajorTextField),
+         (firstMajorStartSelectBtn, firstMajorStartTextField),
+         (secondMajorSelectBtn, secondMajorTextField),
+         (secondMajorStartSelectBtn, secondMajorStartTextField)].forEach { (btn, textField) in
+            checkSelectBtnStatus(btn: btn, textField: textField)
+        }
     }
 }

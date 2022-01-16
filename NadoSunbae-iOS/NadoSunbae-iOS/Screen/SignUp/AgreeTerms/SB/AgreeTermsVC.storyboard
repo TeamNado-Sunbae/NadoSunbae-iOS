@@ -116,16 +116,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjF-Gk-Rae">
                                 <rect key="frame" x="16" y="161" width="343" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGt-Nh-kOz">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGt-Nh-kOz">
                                         <rect key="frame" x="8" y="12" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="UGt-Nh-kOz" secondAttribute="height" multiplier="1:1" id="psw-yH-a8M"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="btn_check"/>
-                                        <connections>
-                                            <action selector="tapAllCheckBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qY6-hu-1AT"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체 동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdD-X3-qXU">
                                         <rect key="frame" x="48" y="19" width="56" height="17.666666666666671"/>
@@ -229,8 +226,8 @@
                                     <constraint firstAttribute="trailing" secondItem="Ehl-ol-CEQ" secondAttribute="trailing" id="qb2-8d-BgA"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4W-JC-ct3" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="112" y="718" width="247" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4W-JC-ct3" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="16" y="718" width="343" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="VW7-fX-BIC"/>
                                 </constraints>
@@ -240,38 +237,26 @@
                                     <action selector="tapNextBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2Q4-3M-nmd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-R7-LPD" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="718" width="84" height="60"/>
-                                <color key="tintColor" name="gray3"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="btn_arrow_left">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
                             <constraint firstItem="YjF-Gk-Rae" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="1pO-vB-dup"/>
-                            <constraint firstItem="P4W-JC-ct3" firstAttribute="leading" secondItem="VY2-R7-LPD" secondAttribute="trailing" constant="12" id="E17-iQ-woe"/>
+                            <constraint firstItem="P4W-JC-ct3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="D3i-3V-5sg"/>
                             <constraint firstItem="dkZ-a5-6uJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Guq-0s-qhZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YjF-Gk-Rae" secondAttribute="trailing" constant="16" id="Hqe-1p-0l5"/>
                             <constraint firstItem="dkZ-a5-6uJ" firstAttribute="top" secondItem="YjF-Gk-Rae" secondAttribute="bottom" id="KdK-ih-fRd"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NO6-aU-rOU"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kaH-AQ-Vza" secondAttribute="trailing" constant="16" id="Ove-jZ-Oyk"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ow9-Bv-Hrx"/>
-                            <constraint firstItem="P4W-JC-ct3" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.6586" id="QWs-LS-LUa"/>
-                            <constraint firstItem="VY2-R7-LPD" firstAttribute="height" secondItem="P4W-JC-ct3" secondAttribute="height" id="Qmc-CB-CDT"/>
                             <constraint firstItem="kaH-AQ-Vza" firstAttribute="top" secondItem="dkZ-a5-6uJ" secondAttribute="bottom" id="V4i-6u-sXR"/>
+                            <constraint firstItem="mSG-8v-yL9" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.103448" id="VTc-06-mw0"/>
                             <constraint firstAttribute="bottom" secondItem="P4W-JC-ct3" secondAttribute="bottom" constant="34" id="Y8P-RR-aCY"/>
-                            <constraint firstItem="VY2-R7-LPD" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="YWX-LZ-bI8"/>
-                            <constraint firstAttribute="top" secondItem="mSG-8v-yL9" secondAttribute="bottom" constant="-128" id="ah5-SD-xKt"/>
                             <constraint firstItem="kaH-AQ-Vza" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="fJL-rA-wmr"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dkZ-a5-6uJ" secondAttribute="trailing" constant="16" id="h3d-ts-g7i"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="P4W-JC-ct3" secondAttribute="trailing" constant="16" id="iAV-Rb-Y0v"/>
                             <constraint firstItem="mSG-8v-yL9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iO1-dG-APo"/>
                             <constraint firstItem="YjF-Gk-Rae" firstAttribute="top" secondItem="mSG-8v-yL9" secondAttribute="bottom" constant="33" id="k4y-Eh-RQc"/>
-                            <constraint firstAttribute="bottom" secondItem="VY2-R7-LPD" secondAttribute="bottom" constant="34" id="mfy-dC-WrP"/>
                             <constraint firstItem="YjF-Gk-Rae" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0689" id="sB2-xv-AMf"/>
                         </constraints>
                     </view>
@@ -334,7 +319,6 @@
     <resources>
         <image name="btnXGray" width="40" height="40"/>
         <image name="btn_arrow" width="48" height="48"/>
-        <image name="btn_arrow_left" width="48" height="48"/>
         <image name="btn_check" width="32" height="32"/>
         <image name="diamond_gray" width="12" height="11"/>
         <namedColor name="gray1">

@@ -9,8 +9,13 @@ import UIKit
 
 class AgreeTermsVC: BaseVC {
     
-    // MARK: Properties
-    @IBOutlet weak var allCheckView: UIView!
+    // MARK: @IBOutlet
+    @IBOutlet weak var allCheckView: UIView! {
+        didSet {
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAllCheckView(gestureRecognizer:)))
+            allCheckView.addGestureRecognizer(tapRecognizer)
+        }
+    }
     @IBOutlet weak var allCheckBtn: UIButton!
     @IBOutlet weak var checkPrivacyBtn: UIButton!
     @IBOutlet weak var checkServiceTermBtn: UIButton!
@@ -22,37 +27,7 @@ class AgreeTermsVC: BaseVC {
         configureUI()
     }
     
-    // MARK: Custom Method
-    private func configureUI() {
-        allCheckView.layer.borderColor = UIColor.gray0.cgColor
-        allCheckView.layer.borderWidth = 1
-        allCheckView.makeRounded(cornerRadius: 8.adjusted)
-        [allCheckBtn, checkPrivacyBtn, checkServiceTermBtn].forEach { btn in
-            btn.setImgByName(name: "btn_check", selectedName: "btn_check_selected")
-        }
-        nextBtn.isActivated = false
-    }
-    
-    private func changeAllBtnState() {
-        if checkPrivacyBtn.isSelected == checkServiceTermBtn.isSelected {
-            allCheckBtn.isSelected = checkPrivacyBtn.isSelected
-        } else {
-            allCheckBtn.isSelected = false
-        }
-        nextBtn.isActivated = allCheckBtn.isSelected
-        nextBtn.isEnabled = allCheckBtn.isSelected
-    }
-    
     // MARK: IBAction
-    @IBAction func tapAllCheckBtn(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        [checkPrivacyBtn, checkServiceTermBtn].forEach { btn in
-            btn?.isSelected = sender.isSelected
-        }
-        nextBtn.isActivated = sender.isSelected
-        nextBtn.isEnabled = sender.isSelected
-    }
-    
     @IBAction func tapCheckPrivacyBtn(_ sender: UIButton) {
         sender.isSelected.toggle()
         changeAllBtnState()
@@ -85,5 +60,43 @@ class AgreeTermsVC: BaseVC {
         guard let termDetailVC = self.storyboard?.instantiateViewController(withIdentifier: TermDetailVC.className) as? TermDetailVC else { return }
         termDetailVC.termTag = sender.tag
         self.present(termDetailVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UI
+extension AgreeTermsVC {
+    private func configureUI() {
+        allCheckView.layer.borderColor = UIColor.gray0.cgColor
+        allCheckView.layer.borderWidth = 1
+        allCheckView.makeRounded(cornerRadius: 8.adjusted)
+        [allCheckBtn, checkPrivacyBtn, checkServiceTermBtn].forEach { btn in
+            btn.setImgByName(name: "btn_check", selectedName: "btn_check_selected")
+        }
+        nextBtn.isActivated = false
+        nextBtn.isEnabled = false
+    }
+    
+    @objc func tapAllCheckView(gestureRecognizer: UIGestureRecognizer) {
+        allCheckBtn.isSelected.toggle()
+        [checkPrivacyBtn, checkServiceTermBtn].forEach { btn in
+            btn?.isSelected = allCheckBtn.isSelected
+        }
+        nextBtn.isActivated = allCheckBtn.isSelected
+        nextBtn.isEnabled = allCheckBtn.isSelected
+    }
+}
+
+// MARK: - Custom Methods
+extension AgreeTermsVC {
+    
+    /// 모든 버튼의 상태를 체크하여 반영
+    private func changeAllBtnState() {
+        if checkPrivacyBtn.isSelected == checkServiceTermBtn.isSelected {
+            allCheckBtn.isSelected = checkPrivacyBtn.isSelected
+        } else {
+            allCheckBtn.isSelected = false
+        }
+        nextBtn.isActivated = allCheckBtn.isSelected
+        nextBtn.isEnabled = allCheckBtn.isSelected
     }
 }

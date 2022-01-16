@@ -22,12 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYp-gR-58c">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nadosunbae_logo" translatesAutoresizingMaskIntoConstraints="NO" id="nYp-gR-58c">
                                 <rect key="frame" x="75" y="172" width="225" height="52"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@korea.ac.kr" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yWh-jP-b8K" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="303" width="343" height="48"/>
+                                <rect key="frame" x="16" y="305" width="343" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="ktW-KI-N6M"/>
                                 </constraints>
@@ -35,7 +35,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="비밀번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xqh-EM-8iC" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="367" width="343" height="48"/>
+                                <rect key="frame" x="16" y="369" width="343" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="9S8-Dj-PjZ"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTK-ay-mQ6">
-                                <rect key="frame" x="129.66666666666666" y="435" width="1" height="16"/>
+                                <rect key="frame" x="129.66666666666666" y="437" width="1" height="16"/>
                                 <color key="backgroundColor" name="gray0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Pc7-9p-4ib"/>
@@ -51,7 +51,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eop-oW-jiS">
-                                <rect key="frame" x="63.666666666666657" y="429.33333333333331" width="42" height="27"/>
+                                <rect key="frame" x="63.666666666666657" y="431.33333333333331" width="42" height="27"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="회원가입">
@@ -62,7 +62,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzK-wN-DQo">
-                                <rect key="frame" x="154.66666666666666" y="429.33333333333331" width="66" height="27"/>
+                                <rect key="frame" x="154.66666666666666" y="431.33333333333331" width="66" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="66" id="Fgi-c9-HpT"/>
                                 </constraints>
@@ -76,7 +76,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZH-vv-xh5">
-                                <rect key="frame" x="244.66666666666666" y="435" width="1" height="16"/>
+                                <rect key="frame" x="244.66666666666666" y="437" width="1" height="16"/>
                                 <color key="backgroundColor" name="gray0"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="Esn-GW-rT5"/>
@@ -84,7 +84,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjf-23-icp">
-                                <rect key="frame" x="269.66666666666669" y="429.33333333333331" width="42" height="27"/>
+                                <rect key="frame" x="269.66666666666669" y="431.33333333333331" width="42" height="27"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="문의하기">
@@ -106,44 +106,38 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다양한 학과 정보를 공유해요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nM-ue-pEV">
-                                <rect key="frame" x="20" y="232" width="335" height="17"/>
+                                <rect key="frame" x="20" y="234" width="335" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" name="mainDark"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iqf-TQ-SoZ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diamond_black" translatesAutoresizingMaskIntoConstraints="NO" id="Iqf-TQ-SoZ">
                                 <rect key="frame" x="179.66666666666666" y="148" width="16" height="16"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="dAA-Or-S5S"/>
                                     <constraint firstAttribute="height" constant="16" id="gr4-lV-cfT"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YX-fd-Fbw">
-                                <rect key="frame" x="311" y="303" width="48" height="48"/>
+                                <rect key="frame" x="311" y="305" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5YX-fd-Fbw" secondAttribute="height" multiplier="1:1" id="gtC-x0-QIN"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="btnX">
+                                <state key="normal" image="btnXGray">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
-                                <connections>
-                                    <action selector="tapEmailClearBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fgn-NZ-Qu4"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3E-YD-aE9">
-                                <rect key="frame" x="311" y="367" width="48" height="48"/>
+                                <rect key="frame" x="311" y="369" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="r3E-YD-aE9" secondAttribute="height" multiplier="1:1" id="kgL-jz-f0H"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="btnX">
+                                <state key="normal" image="btnXGray">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
-                                <connections>
-                                    <action selector="tapPWClearBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5QU-il-qiX"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디 또는 비밀번호가 잘못되었어요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92z-Sg-lMB">
                                 <rect key="frame" x="16" y="671" width="343" height="15"/>
@@ -187,7 +181,7 @@
                             <constraint firstItem="r3E-YD-aE9" firstAttribute="top" secondItem="Xqh-EM-8iC" secondAttribute="top" id="na6-Pk-5in"/>
                             <constraint firstItem="5YX-fd-Fbw" firstAttribute="top" secondItem="yWh-jP-b8K" secondAttribute="top" id="oLI-Zt-CYZ"/>
                             <constraint firstAttribute="bottom" secondItem="hc2-9w-OnP" secondAttribute="bottom" constant="34" id="rGS-2z-OhM"/>
-                            <constraint firstItem="2nM-ue-pEV" firstAttribute="top" secondItem="nYp-gR-58c" secondAttribute="bottom" constant="8" id="seF-Qq-fAY"/>
+                            <constraint firstItem="2nM-ue-pEV" firstAttribute="top" secondItem="nYp-gR-58c" secondAttribute="bottom" constant="10" id="seF-Qq-fAY"/>
                             <constraint firstItem="bTK-ay-mQ6" firstAttribute="top" secondItem="Xqh-EM-8iC" secondAttribute="bottom" constant="20" id="uhk-6S-1Hw"/>
                             <constraint firstItem="hc2-9w-OnP" firstAttribute="top" secondItem="92z-Sg-lMB" secondAttribute="bottom" constant="32" id="usf-s0-k9x"/>
                             <constraint firstItem="Xqh-EM-8iC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="vDv-ZJ-QJ8"/>
@@ -196,9 +190,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="PWClearBtn" destination="r3E-YD-aE9" id="wy1-lc-tqH"/>
+                        <outlet property="PWTextField" destination="Xqh-EM-8iC" id="4RG-E8-OBa"/>
+                        <outlet property="emailClearBtn" destination="5YX-fd-Fbw" id="bFm-2i-0VL"/>
                         <outlet property="emailTextField" destination="yWh-jP-b8K" id="6i8-hf-Iib"/>
                         <outlet property="infoLabel" destination="92z-Sg-lMB" id="Jpf-fP-KyS"/>
-                        <outlet property="pwTextField" destination="Xqh-EM-8iC" id="4RG-E8-OBa"/>
                         <outlet property="signInBtn" destination="hc2-9w-OnP" id="svn-xh-PlN"/>
                     </connections>
                 </viewController>
@@ -208,7 +204,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btnX" width="40" height="40"/>
+        <image name="btnXGray" width="40" height="40"/>
+        <image name="diamond_black" width="12" height="11"/>
+        <image name="nadosunbae_logo" width="199.66667175292969" height="47.333332061767578"/>
         <namedColor name="gray0">
             <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
