@@ -19,4 +19,9 @@ extension UITableView {
         self.contentInset = inset
         self.scrollIndicatorInsets = inset
     }
+    
+    /// TableView 마지막 separator, 빈 셀 separator 숨기는 메서드
+    func removeSeparatorsOfEmptyCellsAndLastCell() {
+        tableFooterView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: 1)))
+    }
 }
