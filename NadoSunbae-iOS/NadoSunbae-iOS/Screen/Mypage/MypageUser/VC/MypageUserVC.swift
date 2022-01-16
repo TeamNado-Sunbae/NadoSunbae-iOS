@@ -14,8 +14,8 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var majorReviewView: UIView!
     @IBOutlet weak var userStateView: UIView!
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var questionTableView: UITableView!
-    @IBOutlet weak var questionTableVIewHeight: NSLayoutConstraint!
+    @IBOutlet weak var questionTV: UITableView!
+    @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
     @IBOutlet weak var floatingBtn: UIButton!
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
@@ -62,7 +62,7 @@ extension MypageUserVC {
         navigationBackSwipeMotion()
         self.profileView.makeRounded(cornerRadius: 8.adjusted)
         self.majorReviewView.makeRounded(cornerRadius: 8.adjusted)
-        self.questionTableView.makeRounded(cornerRadius: 8.adjusted)
+        self.questionTV.makeRounded(cornerRadius: 8.adjusted)
         DispatchQueue.main.async {
             self.questionTableVIewHeight.constant = self.questionTableView.contentSize.height
             if self.isQuestionable {
@@ -84,7 +84,7 @@ extension MypageUserVC {
 // MARK: - Custom Methods
 extension MypageUserVC {
     private func setUpTV() {
-        questionTableView.delegate = self
-        questionTableView.dataSource = self
+        questionTV.delegate = self
+        questionTV.dataSource = self
     }
 }
