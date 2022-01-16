@@ -120,12 +120,12 @@ extension ReviewWriteVC {
     }
     
     func configureTagViewUI() {
-        essentialTagView.layer.cornerRadius = 4
-        choiceTagView.layer.cornerRadius = 4
+        essentialTagView.makeRounded(cornerRadius: 4.adjusted)
+        choiceTagView.makeRounded(cornerRadius: 4.adjusted)
     }
     
     func configureMajorNameViewUI() {
-        majorNameView.layer.cornerRadius = 8
+        majorNameView.makeRounded(cornerRadius: 4.adjusted)
         majorNameView.layer.borderColor = UIColor.gray0.cgColor
         majorNameView.layer.borderWidth = 1
     }
