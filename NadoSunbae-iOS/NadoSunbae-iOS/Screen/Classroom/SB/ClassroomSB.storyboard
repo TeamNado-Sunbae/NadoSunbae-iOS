@@ -1,121 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Classroom MainVC-->
-        <scene sceneID="s0d-6b-0kx">
+        <scene sceneID="ixr-va-fae">
             <objects>
-                <viewController storyboardIdentifier="ClassroomMainVC" id="Y6W-OH-hqX" customClass="ClassroomMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                <viewController storyboardIdentifier="ClassroomMainVC" id="dTn-VJ-af8" customClass="ClassroomMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CvY-i7-vaj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhm-iT-Ypx">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzN-r6-y1u">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="104" id="feV-Qg-wvV"/>
+                                    <constraint firstAttribute="height" constant="104" id="WWk-lb-yZ0"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-78-pjq">
-                                <rect key="frame" x="0.0" y="174" width="414" height="792"/>
-                                <connections>
-                                    <segue destination="Ufw-P2-QNl" kind="embed" id="EBd-LK-ZvN"/>
-                                </connections>
-                            </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpK-ir-4DU">
-                                <rect key="frame" x="0.0" y="104" width="414" height="70"/>
-                                <color key="backgroundColor" name="paleGray"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="Mqd-5l-t8T"/>
-                                </constraints>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQc-nk-3Qk" customClass="NadoHorizonContainerViews" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <viewLayoutGuide key="safeArea" id="chX-yB-bWd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="a7h-78-pjq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="0Or-zG-9NY"/>
-                            <constraint firstItem="zpK-ir-4DU" firstAttribute="top" secondItem="xhm-iT-Ypx" secondAttribute="bottom" id="7Ts-AJ-uh2"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="a7h-78-pjq" secondAttribute="bottom" id="BmF-bu-xAD"/>
-                            <constraint firstItem="a7h-78-pjq" firstAttribute="top" secondItem="zpK-ir-4DU" secondAttribute="bottom" id="KKj-wU-baS"/>
-                            <constraint firstItem="xhm-iT-Ypx" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="OU2-iQ-DZS"/>
-                            <constraint firstItem="xhm-iT-Ypx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Swm-OK-isB"/>
-                            <constraint firstItem="xhm-iT-Ypx" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="TE1-wb-jpV"/>
-                            <constraint firstItem="zpK-ir-4DU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZNs-83-TRJ"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zpK-ir-4DU" secondAttribute="trailing" id="jyM-bC-l3B"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="a7h-78-pjq" secondAttribute="trailing" id="yeM-EB-DiB"/>
+                            <constraint firstItem="gQc-nk-3Qk" firstAttribute="top" secondItem="tzN-r6-y1u" secondAttribute="bottom" id="1PM-CH-OUh"/>
+                            <constraint firstItem="tzN-r6-y1u" firstAttribute="leading" secondItem="chX-yB-bWd" secondAttribute="leading" id="5kt-zu-15v"/>
+                            <constraint firstItem="chX-yB-bWd" firstAttribute="trailing" secondItem="gQc-nk-3Qk" secondAttribute="trailing" id="5xB-pQ-0ax"/>
+                            <constraint firstItem="gQc-nk-3Qk" firstAttribute="leading" secondItem="chX-yB-bWd" secondAttribute="leading" id="ANm-5I-icW"/>
+                            <constraint firstItem="tzN-r6-y1u" firstAttribute="top" secondItem="CvY-i7-vaj" secondAttribute="top" id="BYS-Wi-UIz"/>
+                            <constraint firstItem="chX-yB-bWd" firstAttribute="trailing" secondItem="tzN-r6-y1u" secondAttribute="trailing" id="Gfz-W1-dKr"/>
+                            <constraint firstItem="chX-yB-bWd" firstAttribute="bottom" secondItem="gQc-nk-3Qk" secondAttribute="bottom" id="sYz-u2-c2x"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <connections>
+                        <outlet property="topNaviView" destination="tzN-r6-y1u" id="fG1-hd-OSu"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="og2-4F-dbH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
-        </scene>
-        <!--Classroom PageVC-->
-        <scene sceneID="VaD-7F-kIp">
-            <objects>
-                <viewController storyboardIdentifier="ClassroomPageVC" id="Ufw-P2-QNl" customClass="ClassroomPageVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MQt-Ax-8Ud">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oYM-r4-DYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="138" y="937"/>
-        </scene>
-        <!--Question MainVC-->
-        <scene sceneID="xE1-Un-pc7">
-            <objects>
-                <viewController storyboardIdentifier="QuestionMainVC" id="gxv-TD-Fo6" customClass="QuestionMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sdd-CS-ARW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6pV-RV-RTo"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LLL-TW-haF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="991" y="106"/>
-        </scene>
-        <!--Info MainVC-->
-        <scene sceneID="QB3-fa-OAU">
-            <objects>
-                <viewController storyboardIdentifier="InfoMainVC" id="ynF-Ge-n8s" customClass="InfoMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rlh-VA-YC2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6OD-1v-pii"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cTb-fa-q2P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1683" y="106"/>
+            <point key="canvasLocation" x="118.84057971014494" y="-56.25"/>
         </scene>
     </scenes>
     <resources>
-        <namedColor name="paleGray">
-            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
