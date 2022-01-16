@@ -22,7 +22,6 @@ class ReviewWriteBgImgCVC: BaseCVC {
     func setData(imgData: ReviewWriteBgImgData) {
         bgImgView.image = imgData.makeImg()
     }
-
 }
 
 // MARK: - UI

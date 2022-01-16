@@ -33,23 +33,20 @@ class ReviewWriteVC: UIViewController {
     @IBOutlet weak var tipTextView: NadoTextView! {
         didSet {
             oneLineReviewTextView.setDefaultStyle(placeholderText: "학과를 한줄로 표현한다면?")
-            prosAndConsTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-            learnInfoTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-            recommendClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-            badClassTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-            futureTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
-            tipTextView.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+            [prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach { textView in
+                textView?.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+            }
         }
     }
     
     // MARK: Properties
     
     /// 완료 버튼 활성화 검사를 위한 변수
-    var essentialTextViewStatus: Bool = false
-    var choiceTextViewStatus: Bool = false
+    private var essentialTextViewStatus: Bool = false
+    private var choiceTextViewStatus: Bool = false
     
     /// 데이터 삽입을 위한 리스트 변수
-    var bgImgList: [ReviewWriteBgImgData] = []
+    private var bgImgList: [ReviewWriteBgImgData] = []
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -58,7 +55,7 @@ class ReviewWriteVC: UIViewController {
         setUpCV()
         setTextViewDelegate()
         initBgImgList()
-        customNaviUI()
+        configureNaviUI()
         configureTagViewUI()
         configureMajorNameViewUI()
         addKeyboardObserver()
@@ -77,13 +74,9 @@ class ReviewWriteVC: UIViewController {
     
     /// TextView delegate 설정
     private func setTextViewDelegate() {
-        oneLineReviewTextView.delegate = self
-        prosAndConsTextView.delegate = self
-        learnInfoTextView.delegate = self
-        recommendClassTextView.delegate = self
-        badClassTextView.delegate = self
-        futureTextView.delegate = self
-        tipTextView.delegate = self
+        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach { textView in
+            textView?.delegate = self
+        }
     }
     
     private func initBgImgList() {
@@ -121,7 +114,7 @@ class ReviewWriteVC: UIViewController {
 
 // MARK: - UI
 extension ReviewWriteVC {
-    func customNaviUI() {
+    func configureNaviUI() {
         reviewWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
         reviewWriteNaviBar.configureTitleLabel(title: "후기작성")
     }
@@ -183,7 +176,7 @@ extension ReviewWriteVC: UITextViewDelegate {
         
         // TODO: 다른 디바이스 화면에도 대응하기 위한 분기처리 예정
         
-        /// 키보드 액션 처리(아이폰 11, 12 기준)
+        /// 키보드가 올라감에 따라 scrollView Offset 처리(아이폰 11, 12 기준)
         if textView == oneLineReviewTextView {
             reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 140), animated: true)
         } else if textView == prosAndConsTextView {
