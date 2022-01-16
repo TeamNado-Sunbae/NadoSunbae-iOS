@@ -1,14 +1,14 @@
 //
-//  MypageUserVC+TV.swift
+//  MypageMainVC+TV.swift
 //  NadoSunbae-iOS
 //
-//  Created by 1v1 on 2022/01/15.
+//  Created by 1v1 on 2022/01/16.
 //
 
 import UIKit
 
-// MARK: - UITableViewDataSource
-extension MypageUserVC: UITableViewDataSource {
+// MARK: - UITableDataSource
+extension MypageMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questionList.count
     }
@@ -21,7 +21,7 @@ extension MypageUserVC: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension MypageUserVC: UITableViewDelegate {
+extension MypageMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 101.adjustedH
     }

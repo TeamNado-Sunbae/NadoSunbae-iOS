@@ -17,6 +17,7 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var questionTV: UITableView!
     @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
     @IBOutlet weak var floatingBtn: UIButton!
+    @IBOutlet weak var questionEmptyView: UIView!
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
             navView.setUpNaviStyle(state: .backDefault)
@@ -30,6 +31,10 @@ class MypageUserVC: BaseVC {
     
     // MARK: Properties
     var isQuestionable = true
+    var questionList = [
+        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다ㅏㅏㅏㅏ", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5),
+        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5)
+    ]
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -59,12 +64,18 @@ class MypageUserVC: BaseVC {
 // MARK: - UI
 extension MypageUserVC {
     private func configureUI() {
-        navigationBackSwipeMotion()
-        self.profileView.makeRounded(cornerRadius: 8.adjusted)
-        self.majorReviewView.makeRounded(cornerRadius: 8.adjusted)
-        self.questionTV.makeRounded(cornerRadius: 8.adjusted)
+        profileView.makeRounded(cornerRadius: 8.adjusted)
+        majorReviewView.makeRounded(cornerRadius: 8.adjusted)
+        questionTV.makeRounded(cornerRadius: 8.adjusted)
+        questionTV.removeSeparatorsOfEmptyCellsAndLastCell()
+        questionEmptyView.makeRounded(cornerRadius: 8.adjusted)
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         DispatchQueue.main.async {
             self.questionTVHeight.constant = self.questionTV.contentSize.height
+            self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
+            self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+            
             if self.isQuestionable {
                 self.floatingBtn.imageView?.image = UIImage(named: "btnFloating")
                 self.userStateViewHeight.constant = 0
@@ -73,11 +84,6 @@ extension MypageUserVC {
                 self.userStateViewHeight.constant = 32.adjusted
             }
         }
-    }
-    
-    /// 네비게이션 백 스와이프 모션으로도 뒤로가기가 가능하도록 만들어주는 함수
-    private func navigationBackSwipeMotion() {
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
 }
 
