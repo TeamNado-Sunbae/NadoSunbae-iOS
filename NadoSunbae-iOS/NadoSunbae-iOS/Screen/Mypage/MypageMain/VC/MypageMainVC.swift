@@ -53,6 +53,13 @@ extension MypageMainVC {
         DispatchQueue.main.async {
             self.questionTVHeight.constant = self.questionTV.contentSize.height
             self.navTitleBottomSpace.constant = 26.adjustedH
+            self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
+            self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+            if self.isQuestionable {
+                self.userStateViewHeight.constant = 0
+            } else {
+                self.userStateViewHeight.constant = 32.adjusted
+            }
         }
     }
 }
