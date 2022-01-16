@@ -84,6 +84,14 @@ class ReviewMainVC: UIViewController {
     @IBAction func tapNaviBarBtn(_ sender: Any) {
         showHalfModalView()
     }
+    
+    @IBAction func tapFloatingBtn(_ sender: Any) {
+        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
+        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UI

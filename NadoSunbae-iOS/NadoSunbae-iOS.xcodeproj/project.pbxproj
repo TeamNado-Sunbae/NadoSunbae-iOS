@@ -101,6 +101,12 @@
 		5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */; };
 		5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */; };
 		5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */; };
+		7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */; };
+		7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31527901FE50093C230 /* ReviewWriteVC.swift */; };
+		7754A318279028250093C230 /* NaviVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A317279028250093C230 /* NaviVC.swift */; };
+		7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */; };
+		7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */; };
+		7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31E279418120093C230 /* CodeBaseCVC.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -215,6 +221,12 @@
 		5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MypageUserVC+TV.swift"; sourceTree = "<group>"; };
 		5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectMajorModalVC+TV.swift"; sourceTree = "<group>"; };
 		5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalTVC.swift; sourceTree = "<group>"; };
+		7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewWriteSB.storyboard; sourceTree = "<group>"; };
+		7754A31527901FE50093C230 /* ReviewWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteVC.swift; sourceTree = "<group>"; };
+		7754A317279028250093C230 /* NaviVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviVC.swift; sourceTree = "<group>"; };
+		7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteBgImgCVC.swift; sourceTree = "<group>"; };
+		7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewWriteBgImgCVC.xib; sourceTree = "<group>"; };
+		7754A31E279418120093C230 /* CodeBaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBaseCVC.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -346,6 +358,7 @@
 				33BE2D48278982E0000FB6C8 /* BaseNC.swift */,
 				3385636F278DC74D003C60A6 /* BaseTVC.swift */,
 				33DAB83B279153A400214CA8 /* BaseCVC.swift */,
+				7754A31E279418120093C230 /* CodeBaseCVC.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -468,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				3313648D2785D76400E0C118 /* ReviewSB.storyboard */,
+				7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -477,6 +491,8 @@
 			children = (
 				77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */,
 				3313648F2785D77100E0C118 /* ReviewMainVC.swift */,
+				7754A31527901FE50093C230 /* ReviewWriteVC.swift */,
+				7754A317279028250093C230 /* NaviVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -597,6 +613,7 @@
 		33C7ABEC278F2051000A325A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				7754A31927912EF40093C230 /* CVC */,
 				33C7ABED278F2066000A325A /* TVC */,
 			);
 			path = Cell;
@@ -824,6 +841,15 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		7754A31927912EF40093C230 /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */,
+				7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
 		5CD4213327907E4900D09DEE /* MypageUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -955,6 +981,7 @@
 				331364832785D60F00E0C118 /* Pretendard-Bold.otf in Resources */,
 				338CDB03278C9F8600F8227A /* ClassroomCommentEditTVC.xib in Resources */,
 				5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */,
+				7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */,
 				777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
@@ -971,6 +998,7 @@
 				3313647E2785BBAF00E0C118 /* Pretendard-Regular.otf in Resources */,
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
+				7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
 				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
 				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
@@ -1063,6 +1091,7 @@
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				5CF0EC2A279317C500AF63E4 /* MypageQuestionTVC.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
+				7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
@@ -1100,15 +1129,19 @@
 				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
+				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
 				5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */,
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
+				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
+				7754A318279028250093C230 /* NaviVC.swift in Sources */,
+				331364662785AE3B00E0C118 /* BaseCVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
