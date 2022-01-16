@@ -45,3 +45,12 @@ struct ReviewPostData {
     }
 }
 
+/// 후기 작성 뷰 배경 이미지 선택 리스트 위한 모델
+struct ReviewWriteBgImgData {
+    let bgImgName: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: bgImgName)
+    }
+}
+
