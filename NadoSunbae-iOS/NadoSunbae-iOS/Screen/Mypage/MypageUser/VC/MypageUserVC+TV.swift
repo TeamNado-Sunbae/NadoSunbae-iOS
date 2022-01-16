@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - UITableViewDataSource
 extension MypageUserVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questionList.count
@@ -19,6 +20,7 @@ extension MypageUserVC: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MypageUserVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 101.adjustedH
