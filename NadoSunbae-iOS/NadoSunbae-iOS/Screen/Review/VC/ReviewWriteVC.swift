@@ -24,7 +24,6 @@ class ReviewWriteVC: UIViewController {
     @IBOutlet weak var majorNameView: UIView!
     @IBOutlet weak var bgImgCV: UICollectionView!
     @IBOutlet weak var majorNameLabel: UILabel!
-    
     @IBOutlet weak var oneLineReviewTextView: NadoTextView!
     @IBOutlet weak var prosAndConsTextView: NadoTextView!
     @IBOutlet weak var learnInfoTextView: NadoTextView!
@@ -43,11 +42,14 @@ class ReviewWriteVC: UIViewController {
         }
     }
     
-    /// 필수 작성 항목 검사를 위한 변수
+    // MARK: Properties
+    
+    /// 완료 버튼 활성화 검사를 위한 변수
     var essentialTextViewStatus: Bool = false
     var choiceTextViewStatus: Bool = false
     var choiceEmptyStatus: Bool = true
     
+    /// 데이터 삽입을 위한 리스트 변수
     var bgImgList: [ReviewWriteBgImgData] = []
     
     // MARK: Life Cycle
@@ -55,15 +57,16 @@ class ReviewWriteVC: UIViewController {
         super.viewDidLoad()
         registerCVC()
         setUpCV()
+        setTextViewDelegate()
         initBgImgList()
         customNaviUI()
         configureTagViewUI()
         configureMajorNameViewUI()
-        setTextViewDelegate()
         addKeyboardObserver()
         hideKeyboardWhenTappedAround()
     }
     
+    // MARK: Custom Method
     private func registerCVC() {
         ReviewWriteBgImgCVC.register(target: bgImgCV)
     }
@@ -71,6 +74,17 @@ class ReviewWriteVC: UIViewController {
     private func setUpCV() {
         bgImgCV.dataSource = self
         bgImgCV.delegate = self
+    }
+    
+    /// TextView delegate 설정
+    private func setTextViewDelegate() {
+        oneLineReviewTextView.delegate = self
+        prosAndConsTextView.delegate = self
+        learnInfoTextView.delegate = self
+        recommendClassTextView.delegate = self
+        badClassTextView.delegate = self
+        futureTextView.delegate = self
+        tipTextView.delegate = self
     }
     
     private func initBgImgList() {
@@ -87,25 +101,12 @@ class ReviewWriteVC: UIViewController {
         ])
     }
     
-    /// TextView delegate 설정
-    private func setTextViewDelegate() {
-        oneLineReviewTextView.delegate = self
-        prosAndConsTextView.delegate = self
-        learnInfoTextView.delegate = self
-        recommendClassTextView.delegate = self
-        badClassTextView.delegate = self
-        futureTextView.delegate = self
-        tipTextView.delegate = self
-    }
-    
+    // TODO: 회원가입 시 본전공만 존재하는 유저인 경우 버튼 비활성화 처리 예정
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
         let alert = UIAlertController(title: "후기 작성 학과", message: nil, preferredStyle: .actionSheet)
-
         let majorName = UIAlertAction(title: "본전공명", style: .default) { action in
             self.majorNameLabel.text = "국어국문학과"
         }
-        
-        // TODO: 회원가입 시 본전공만 존재하는 유저인 경우 분기 처리 예정
         let secondMajorName = UIAlertAction(title: "제2전공명", style: .default) { action in
             self.majorNameLabel.text = "디지털미디어학과"
         }
@@ -117,7 +118,6 @@ class ReviewWriteVC: UIViewController {
 
         present(alert, animated: true, completion: nil)
     }
-    
 }
 
 // MARK: - UI
@@ -139,6 +139,7 @@ extension ReviewWriteVC {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension ReviewWriteVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 70, height: 70)
@@ -157,6 +158,7 @@ extension ReviewWriteVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension ReviewWriteVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bgImgList.count
@@ -180,7 +182,9 @@ extension ReviewWriteVC: UITextViewDelegate {
             textView.textColor = .mainText
         }
         
-        /// 키보드 처리
+        // TODO: 다른 디바이스 화면에도 대응하기 위한 분기처리 예정
+        
+        /// 키보드 액션 처리(아이폰 11, 12 기준)
         if textView == oneLineReviewTextView {
             reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 140), animated: true)
         } else if textView == prosAndConsTextView {
@@ -208,17 +212,21 @@ extension ReviewWriteVC: UITextViewDelegate {
             }
             textView.textColor = .gray2
         }
-        
     }
     
+    /// 글자 수 제한을 위한 함수
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == oneLineReviewTextView {
+            
+            /// 최대 글자수 - 1
             let maxCount = 39
-            //이전 글자 - 선택된 글자 + 새로운 글자(대체될 글자)
+            
+            /// 이전 글자 - 선택된 글자 + 새로운 글자(대체될 글자)
             let newLength = textView.text.count - range.length + text.count
-            let koreanMaxCount = maxCount + 1
-            //글자수가 초과 된 경우 or 초과되지 않은 경우
-            if newLength > koreanMaxCount { //11글자
+            let koreanMaxCount = maxCount + 1 // 최대 글자수
+            
+            /// 글자수가 초과 된 경우 or 초과되지 않은 경우
+            if newLength > koreanMaxCount {
                 let overflow = newLength - koreanMaxCount //초과된 글자수
                 if text.count < overflow {
                     return true
@@ -238,13 +246,13 @@ extension ReviewWriteVC: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        self.reloadInputViews()
-        print(essentialTextViewStatus)
-        print(choiceTextViewStatus)
         
+        /// 필수 항목 모두 작성되었을 때
         if oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
             essentialTextViewStatus = true
         }
+        
+        /// 선택항목 중 하나가 100자 이상 채워졌을 때 다른 텍스트뷰에 글자가 입력되지 않았을때 or 100자 이상일 때 활성화
         if learnInfoTextView.text.count >= 100 {
             if (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
@@ -255,6 +263,7 @@ extension ReviewWriteVC: UITextViewDelegate {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
             }
         }
+        
         if recommendClassTextView.text.count >= 100 {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
@@ -265,6 +274,7 @@ extension ReviewWriteVC: UITextViewDelegate {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
             }
         }
+        
        if badClassTextView.text.count >= 100 {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
@@ -275,6 +285,7 @@ extension ReviewWriteVC: UITextViewDelegate {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
             }
         }
+        
         if futureTextView.text.count >= 100 {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
@@ -285,6 +296,7 @@ extension ReviewWriteVC: UITextViewDelegate {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
             }
         }
+        
         if tipTextView.text.count >= 100 {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
@@ -296,7 +308,7 @@ extension ReviewWriteVC: UITextViewDelegate {
             }
         }
         
-        
+        /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             DispatchQueue.main.async() {
                 scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
@@ -305,6 +317,7 @@ extension ReviewWriteVC: UITextViewDelegate {
     }
 }
 
+// MARK: - Extension Part
 extension ReviewWriteVC {
     
     /// Keyboard Observer add 메서드
