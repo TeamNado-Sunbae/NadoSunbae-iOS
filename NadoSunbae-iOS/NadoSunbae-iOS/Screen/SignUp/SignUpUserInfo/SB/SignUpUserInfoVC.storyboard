@@ -346,6 +346,7 @@
                             <constraint firstItem="tnM-gU-puq" firstAttribute="top" secondItem="ZrH-QR-mSB" secondAttribute="bottom" id="24U-3h-kVV"/>
                             <constraint firstItem="hWL-QD-9bd" firstAttribute="top" secondItem="oS6-mH-nNS" secondAttribute="top" id="2BK-nR-a5G"/>
                             <constraint firstItem="9UR-zI-LXX" firstAttribute="leading" secondItem="bKh-Sm-xWx" secondAttribute="trailing" constant="12" id="3rL-ss-CwM"/>
+                            <constraint firstItem="hWL-QD-9bd" firstAttribute="height" secondItem="ybf-ih-I0T" secondAttribute="height" multiplier="0.103448" id="5UP-Qd-MEb"/>
                             <constraint firstItem="bKh-Sm-xWx" firstAttribute="height" secondItem="9UR-zI-LXX" secondAttribute="height" id="8Dd-Jq-VvN"/>
                             <constraint firstItem="oS6-mH-nNS" firstAttribute="trailing" secondItem="9UR-zI-LXX" secondAttribute="trailing" constant="16" id="AwW-Bg-tMv"/>
                             <constraint firstItem="ZrH-QR-mSB" firstAttribute="leading" secondItem="oS6-mH-nNS" secondAttribute="leading" id="BJ8-yA-5RB"/>
@@ -366,7 +367,6 @@
                             <constraint firstItem="bKh-Sm-xWx" firstAttribute="leading" secondItem="oS6-mH-nNS" secondAttribute="leading" constant="16" id="evs-pJ-PiZ"/>
                             <constraint firstItem="1Dr-DF-Yso" firstAttribute="trailing" secondItem="oS6-mH-nNS" secondAttribute="trailing" id="nWH-Hs-acg"/>
                             <constraint firstItem="9UR-zI-LXX" firstAttribute="width" secondItem="ybf-ih-I0T" secondAttribute="width" multiplier="0.6586" id="q7A-an-8QY"/>
-                            <constraint firstAttribute="top" secondItem="hWL-QD-9bd" secondAttribute="bottom" constant="-128" id="rYm-s5-fDa"/>
                             <constraint firstItem="9UR-zI-LXX" firstAttribute="bottom" secondItem="ybf-ih-I0T" secondAttribute="bottom" constant="-34" id="tjd-Qf-Pbm"/>
                             <constraint firstItem="hFc-cy-ZRn" firstAttribute="height" secondItem="ybf-ih-I0T" secondAttribute="height" multiplier="0.0591" id="whm-Sy-1En"/>
                         </constraints>

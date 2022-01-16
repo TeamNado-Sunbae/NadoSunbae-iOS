@@ -14,7 +14,7 @@ import RxCocoa
 class WriteQuestionVC: UIViewController {
     
     // MARK: Properties
-    private let questionScrollView = UIScrollView()
+    private let questionSV = UIScrollView()
     private let contentView = UIView()
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
@@ -70,8 +70,8 @@ extension WriteQuestionVC {
     
     /// UI 구성하는 메서드
     private func configureUI() {
-        view.addSubviews([questionWriteNaviBar, questionScrollView])
-        questionScrollView.addSubview(contentView)
+        view.addSubviews([questionWriteNaviBar, questionSV])
+        questionSV.addSubview(contentView)
         contentView.addSubviews([questionTitleTextField, textHighlightView, contentHeaderLabel, questionWriteTextView])
         
         questionWriteNaviBar.snp.makeConstraints {
@@ -79,7 +79,7 @@ extension WriteQuestionVC {
             $0.height.equalTo(56)
         }
         
-        questionScrollView.snp.makeConstraints {
+        questionSV.snp.makeConstraints {
             $0.top.equalTo(questionWriteNaviBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -211,7 +211,7 @@ extension WriteQuestionVC {
     
     /// textView의 상태에 따라 스크롤뷰를 Up, Down 하는 메서드
     private func scollByTextViewState(textView: UITextView) {
-        var contentOffsetY = questionScrollView.contentOffset.y
+        var contentOffsetY = questionSV.contentOffset.y
         var isLineAdded = true
         
         if questionTextViewLineCount != textView.numberOfLines() {
@@ -222,18 +222,18 @@ extension WriteQuestionVC {
                 isLineAdded = true
             }
             
-            if  isLineAdded && textView.numberOfLines() > 8 && questionScrollView.contentOffset.y < 243 {
+            if  isLineAdded && textView.numberOfLines() > 8 && questionSV.contentOffset.y < 243 {
                 contentOffsetY += 38
-                questionScrollView.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
+                questionSV.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
                 
-            } else if !isLineAdded && questionTextViewLineCount < 14 && questionScrollView.contentOffset.y > 0 {
+            } else if !isLineAdded && questionTextViewLineCount < 14 && questionSV.contentOffset.y > 0 {
                 
                 if contentOffsetY - 38 > 0 {
                     contentOffsetY -= 38
-                    questionScrollView.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
+                    questionSV.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
                 } else {
                     contentOffsetY = 0
-                    questionScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                    questionSV.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 }
             }
         }
@@ -292,6 +292,6 @@ extension WriteQuestionVC {
     /// keyboardWillHide
     @objc
     func keyboardWillHide(notification: Notification) {
-        questionScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        questionSV.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
