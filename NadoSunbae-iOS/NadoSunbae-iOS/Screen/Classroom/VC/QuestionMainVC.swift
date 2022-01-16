@@ -6,24 +6,45 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class QuestionMainVC: UIViewController {
 
+    // MARK: Properties
+    let questionSegmentView = NadoSegmentView()
+    weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
+    
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureUI()
+        setUpTapInfoBtn()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+// MARK: - UI
+extension QuestionMainVC {
+    func configureUI() {
+        self.view.addSubviews([questionSegmentView])
+        
+        questionSegmentView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(16)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(38)
+        }
+    }
+}
+
+// MARK: - Custom Methods
+extension QuestionMainVC {
+    func setUpTapInfoBtn() {
+        questionSegmentView.infoBtn.press {
+            
+            if let delegate = self.sendSegmentStateDelegate {
+                delegate.sendSegmentClicked(index: 1)
+            }
+        }
+    }
+}
+
