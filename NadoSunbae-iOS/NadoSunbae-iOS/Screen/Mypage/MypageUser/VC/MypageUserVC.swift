@@ -29,7 +29,7 @@ class MypageUserVC: BaseVC {
     }
     
     // MARK: Properties
-    var isQuestionable = false
+    var isQuestionable = true
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -46,11 +46,11 @@ class MypageUserVC: BaseVC {
         let latestAction = UIAlertAction(title: "최신순", style: .default, handler: nil)
         let moreLikeAction = UIAlertAction(title: "좋아요순", style: .default, handler: nil)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-
+        
         [latestAction, moreLikeAction, cancelAction].forEach { action in
             optionMenu.addAction(action)
         }
-
+        
         self.present(optionMenu, animated: true, completion: nil)
     }
     
@@ -64,13 +64,13 @@ extension MypageUserVC {
         self.majorReviewView.makeRounded(cornerRadius: 8.adjusted)
         self.questionTV.makeRounded(cornerRadius: 8.adjusted)
         DispatchQueue.main.async {
-            self.questionTableVIewHeight.constant = self.questionTableView.contentSize.height
+            self.questionTVHeight.constant = self.questionTV.contentSize.height
             if self.isQuestionable {
                 self.floatingBtn.imageView?.image = UIImage(named: "btnFloating")
-                self.userStateView.alpha = 0
                 self.userStateViewHeight.constant = 0
             } else {
                 self.floatingBtn.imageView?.image = UIImage(named: "btnFloating_x")!
+                self.userStateViewHeight.constant = 32.adjusted
             }
         }
     }
