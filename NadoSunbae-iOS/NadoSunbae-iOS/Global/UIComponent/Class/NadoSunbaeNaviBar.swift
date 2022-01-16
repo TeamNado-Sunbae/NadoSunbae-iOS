@@ -33,6 +33,10 @@ enum NaviState {
 class NadoSunbaeNaviBar: UIView {
     
     // MARK: Properties
+    private lazy var backView = UIView().then {
+        $0.backgroundColor = .systemBackground
+    }
+    
     private lazy var titleLabel = UILabel().then {
         $0.setLabel(text: "제목", color: .black, size: 20, weight: .medium)
     }
@@ -74,7 +78,11 @@ extension NadoSunbaeNaviBar {
     // MARK: Private Methods
     /// 뒤로가기 버튼이 있는 디폴트 UI를 구성하는 메서드
     private func configureDefaultUI() {
-        self.addSubviews([backBtn, titleLabel])
+        self.addSubviews([backView, backBtn, titleLabel])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
         backBtn.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
             $0.height.width.equalTo(48)
@@ -88,7 +96,11 @@ extension NadoSunbaeNaviBar {
     
     /// 뒤로가기 버튼 + 나도선배 버튼 UI를 구성하는 메서드
     private func configureBackWithNadoBtnUI() {
-        self.addSubviews([backBtn, titleLabel, rightActivateBtn])
+        self.addSubviews([backView, backBtn, titleLabel, rightActivateBtn])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
         backBtn.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
             $0.height.width.equalTo(48)
@@ -109,7 +121,11 @@ extension NadoSunbaeNaviBar {
     
     /// 뒤로가기 버튼 + 중앙 텍스트 + 우측 커스텀 버튼 UI를 구성하는 메서드
     private func configureBackWithCenterUI() {
-        self.addSubviews([backBtn, titleLabel, rightCustomBtn])
+        self.addSubviews([backView, backBtn, titleLabel, rightCustomBtn])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
         backBtn.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
             $0.height.width.equalTo(48)
@@ -129,7 +145,11 @@ extension NadoSunbaeNaviBar {
     
     /// 취소 버튼 + 중앙 텍스트 + 우측 커스텀 버튼 UI를 구성하는 메서드
     private func configureDismissWithCustomRightBtnUI() {
-        self.addSubviews([dismissBtn, titleLabel, rightCustomBtn])
+        self.addSubviews([backView, dismissBtn, titleLabel, rightCustomBtn])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
         dismissBtn.snp.makeConstraints {
             $0.top.equalTo(self).offset(4)
             $0.leading.equalTo(self).offset(4)
@@ -150,7 +170,11 @@ extension NadoSunbaeNaviBar {
     
     /// 취소 버튼 + 중앙 텍스트 + 나도선배 버튼 UI를 구성하는 메서드
     private func configureDismissWithNadoBtnUI() {
-        self.addSubviews([dismissBtn, titleLabel, rightActivateBtn])
+        self.addSubviews([backView, dismissBtn, titleLabel, rightActivateBtn])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
         dismissBtn.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
             $0.height.width.equalTo(48)
