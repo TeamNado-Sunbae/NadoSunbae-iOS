@@ -27,7 +27,12 @@ class MypageQuestionTVC: BaseTVC {
     }
     
     // MARK: Custom Methods
-    func setData() {
-        // TODO: 데이터 파싱 후...
+    func setData(data: MypageQuestionModel) {
+        titleLabel.text = data.title
+        contentLabel.text = data.content
+        nickNameLabel.text = data.nickName
+        timeLabel.text = data.writeTime
+        commentCountLabel.text = "\(data.commentCount)"
+        likeCountLabel.text = "\(data.likeCount)"
     }
 }
