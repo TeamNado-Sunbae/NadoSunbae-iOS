@@ -120,23 +120,21 @@
                                 <rect key="frame" x="0.0" y="141" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학교명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTe-Yz-Nwf">
-                                        <rect key="frame" x="20" y="8" width="32" height="15"/>
+                                        <rect key="frame" x="20" y="8" width="32" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt3-Tp-vrg" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
+                                        <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjd-Kj-IsY">
-                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Qjd-Kj-IsY" secondAttribute="height" multiplier="48:32" id="nZh-W6-vUY"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjd-Kj-IsY">
+                                        <rect key="frame" x="20" y="38" width="334" height="32"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="tintColor" name="mainDefault"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
@@ -150,6 +148,7 @@
                                     <constraint firstItem="JTe-Yz-Nwf" firstAttribute="leading" secondItem="zJG-so-n2V" secondAttribute="leading" constant="20" id="O89-Qc-NWI"/>
                                     <constraint firstItem="Qjd-Kj-IsY" firstAttribute="bottom" secondItem="Qt3-Tp-vrg" secondAttribute="bottom" constant="-8" id="QGq-KN-Ovw"/>
                                     <constraint firstItem="Qt3-Tp-vrg" firstAttribute="leading" secondItem="zJG-so-n2V" secondAttribute="leading" constant="16" id="Qke-sc-Qhd"/>
+                                    <constraint firstItem="Qjd-Kj-IsY" firstAttribute="leading" secondItem="JTe-Yz-Nwf" secondAttribute="leading" id="U2R-gT-1Lf"/>
                                     <constraint firstAttribute="trailing" secondItem="Qt3-Tp-vrg" secondAttribute="trailing" constant="16" id="bDl-bs-hul"/>
                                     <constraint firstItem="Qt3-Tp-vrg" firstAttribute="top" secondItem="JTe-Yz-Nwf" secondAttribute="bottom" constant="8" id="pfs-Cw-ref"/>
                                     <constraint firstItem="JTe-Yz-Nwf" firstAttribute="top" secondItem="zJG-so-n2V" secondAttribute="top" constant="8" id="sGN-lj-aam"/>
@@ -160,23 +159,21 @@
                                 <rect key="frame" x="0.0" y="241" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sx-1d-fWp">
-                                        <rect key="frame" x="20" y="8" width="32" height="15"/>
+                                        <rect key="frame" x="20" y="8" width="32" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-dr-F0D" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
+                                        <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dH-9u-AKi">
-                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="6dH-9u-AKi" secondAttribute="height" multiplier="48:32" id="P89-0b-0ir"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dH-9u-AKi">
+                                        <rect key="frame" x="20" y="38" width="334" height="32"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="tintColor" name="mainDefault"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
@@ -193,6 +190,7 @@
                                     <constraint firstAttribute="trailing" secondItem="g4o-dr-F0D" secondAttribute="trailing" constant="16" id="WaL-qH-VtH"/>
                                     <constraint firstItem="6dH-9u-AKi" firstAttribute="bottom" secondItem="g4o-dr-F0D" secondAttribute="bottom" constant="-8" id="kj1-7N-gqF"/>
                                     <constraint firstItem="5Sx-1d-fWp" firstAttribute="leading" secondItem="asY-ib-9W9" secondAttribute="leading" constant="20" id="oux-Xt-cD8"/>
+                                    <constraint firstItem="6dH-9u-AKi" firstAttribute="leading" secondItem="5Sx-1d-fWp" secondAttribute="leading" id="pVM-BS-Enh"/>
                                     <constraint firstItem="g4o-dr-F0D" firstAttribute="top" secondItem="5Sx-1d-fWp" secondAttribute="bottom" constant="8" id="qD8-Ot-Pra"/>
                                 </constraints>
                             </view>
@@ -200,23 +198,21 @@
                                 <rect key="frame" x="0.0" y="341" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2re-U0-gDH">
-                                        <rect key="frame" x="20" y="8" width="76" height="15"/>
+                                        <rect key="frame" x="20" y="8" width="76" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znz-fg-xiH" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
+                                        <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT8-2E-AKy">
-                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="kT8-2E-AKy" secondAttribute="height" multiplier="48:32" id="0Xh-bH-mQe"/>
-                                        </constraints>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT8-2E-AKy">
+                                        <rect key="frame" x="20" y="38" width="334" height="32"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="tintColor" name="mainDefault"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
@@ -232,6 +228,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Znz-fg-xiH" secondAttribute="trailing" constant="16" id="ma5-aS-iBE"/>
                                     <constraint firstItem="2re-U0-gDH" firstAttribute="leading" secondItem="FHR-65-5Xf" secondAttribute="leading" constant="20" id="pyP-yB-Le7"/>
                                     <constraint firstItem="2re-U0-gDH" firstAttribute="top" secondItem="FHR-65-5Xf" secondAttribute="top" constant="8" id="qgZ-nl-Uee"/>
+                                    <constraint firstItem="kT8-2E-AKy" firstAttribute="leading" secondItem="2re-U0-gDH" secondAttribute="leading" id="wXK-T4-ECI"/>
                                     <constraint firstItem="Znz-fg-xiH" firstAttribute="leading" secondItem="FHR-65-5Xf" secondAttribute="leading" constant="16" id="whh-EU-aYz"/>
                                     <constraint firstItem="kT8-2E-AKy" firstAttribute="top" secondItem="Znz-fg-xiH" secondAttribute="top" constant="8" id="xSA-T0-OkA"/>
                                 </constraints>
@@ -240,23 +237,21 @@
                                 <rect key="frame" x="0.0" y="541" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pp-0b-UQ5">
-                                        <rect key="frame" x="20" y="8" width="83" height="15"/>
+                                        <rect key="frame" x="20" y="8" width="83" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UTw-8I-lb1" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
+                                        <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FI6-4v-Pkv">
-                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="FI6-4v-Pkv" secondAttribute="height" multiplier="48:32" id="QMe-Gg-ZMy"/>
-                                        </constraints>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FI6-4v-Pkv">
+                                        <rect key="frame" x="20" y="38" width="334" height="32"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="tintColor" name="mainDefault"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
@@ -271,12 +266,13 @@
                                     <constraint firstItem="UTw-8I-lb1" firstAttribute="top" secondItem="8pp-0b-UQ5" secondAttribute="bottom" constant="8" id="KRD-H3-Oxj"/>
                                     <constraint firstItem="8pp-0b-UQ5" firstAttribute="top" secondItem="38y-7S-Zfm" secondAttribute="top" constant="8" id="SI6-l6-WwO"/>
                                     <constraint firstAttribute="height" constant="100" id="SVf-MN-aU5"/>
+                                    <constraint firstItem="FI6-4v-Pkv" firstAttribute="leading" secondItem="8pp-0b-UQ5" secondAttribute="leading" id="Yej-oi-erd"/>
                                     <constraint firstItem="FI6-4v-Pkv" firstAttribute="bottom" secondItem="UTw-8I-lb1" secondAttribute="bottom" constant="-8" id="efb-UG-2iA"/>
                                     <constraint firstItem="FI6-4v-Pkv" firstAttribute="trailing" secondItem="UTw-8I-lb1" secondAttribute="trailing" constant="-5" id="gzI-1M-n77"/>
                                     <constraint firstItem="UTw-8I-lb1" firstAttribute="leading" secondItem="38y-7S-Zfm" secondAttribute="leading" constant="16" id="opP-e0-yba"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbI-tf-4af" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbI-tf-4af" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="112" y="718" width="247" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="LYE-Iv-EFj"/>
@@ -302,23 +298,21 @@
                                 <rect key="frame" x="0.0" y="441" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqG-xI-1oY">
-                                        <rect key="frame" x="20" y="8" width="39" height="15"/>
+                                        <rect key="frame" x="20" y="8" width="38" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dud-Cr-rQd" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="31" width="343" height="48"/>
+                                        <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDr-xR-JTz">
-                                        <rect key="frame" x="306" y="39" width="48" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="yDr-xR-JTz" secondAttribute="height" multiplier="48:32" id="0sU-8C-6lL"/>
-                                        </constraints>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDr-xR-JTz">
+                                        <rect key="frame" x="20" y="38" width="334" height="32"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="tintColor" name="mainDefault"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="선택"/>
                                         <connections>
@@ -333,6 +327,7 @@
                                     <constraint firstAttribute="trailing" secondItem="dud-Cr-rQd" secondAttribute="trailing" constant="16" id="KG4-Rl-nYC"/>
                                     <constraint firstItem="yDr-xR-JTz" firstAttribute="bottom" secondItem="dud-Cr-rQd" secondAttribute="bottom" constant="-8" id="Mox-aB-MUm"/>
                                     <constraint firstItem="dud-Cr-rQd" firstAttribute="top" secondItem="cqG-xI-1oY" secondAttribute="bottom" constant="8" id="UTp-Oi-JIh"/>
+                                    <constraint firstItem="yDr-xR-JTz" firstAttribute="leading" secondItem="cqG-xI-1oY" secondAttribute="leading" id="WYa-fw-4M9"/>
                                     <constraint firstItem="dud-Cr-rQd" firstAttribute="leading" secondItem="vPv-xs-sTg" secondAttribute="leading" constant="16" id="bpJ-7u-VDJ"/>
                                     <constraint firstItem="yDr-xR-JTz" firstAttribute="top" secondItem="dud-Cr-rQd" secondAttribute="top" constant="8" id="d3P-4x-WM6"/>
                                     <constraint firstItem="cqG-xI-1oY" firstAttribute="leading" secondItem="vPv-xs-sTg" secondAttribute="leading" constant="20" id="i2Y-a8-d4e"/>
@@ -376,12 +371,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="firstMajorSelectBtn" destination="6dH-9u-AKi" id="urv-OQ-QLX"/>
+                        <outlet property="firstMajorStartSelectBtn" destination="kT8-2E-AKy" id="mNB-e9-wz5"/>
                         <outlet property="firstMajorStartTextField" destination="Znz-fg-xiH" id="vFp-AR-bkD"/>
                         <outlet property="firstMajorTextField" destination="g4o-dr-F0D" id="0T9-3O-Ata"/>
                         <outlet property="nextBtn" destination="CbI-tf-4af" id="s0R-dv-Nw1"/>
                         <outlet property="prevBtn" destination="CMq-Lq-dgg" id="eqH-zO-U8b"/>
+                        <outlet property="secondMajorSelectBtn" destination="yDr-xR-JTz" id="z7Y-Aq-fKn"/>
+                        <outlet property="secondMajorStartSelectBtn" destination="FI6-4v-Pkv" id="oi1-EH-bip"/>
                         <outlet property="secondMajorStartTextField" destination="UTw-8I-lb1" id="u9b-as-ph7"/>
                         <outlet property="secondMajorTextField" destination="dud-Cr-rQd" id="TM7-w1-L66"/>
+                        <outlet property="univSelectBtn" destination="Qjd-Kj-IsY" id="voY-YY-yOM"/>
                         <outlet property="univTextField" destination="Qt3-Tp-vrg" id="RJe-M8-yW3"/>
                     </connections>
                 </viewController>

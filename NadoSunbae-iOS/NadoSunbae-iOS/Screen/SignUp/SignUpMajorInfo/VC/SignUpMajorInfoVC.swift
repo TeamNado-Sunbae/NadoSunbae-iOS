@@ -9,13 +9,18 @@ import UIKit
 
 class SignUpMajorInfoVC: BaseVC {
     
-    // MARK: Properties
+    // MARK: @IBOutlet
     @IBOutlet weak var univTextField: NadoTextField!
     @IBOutlet weak var firstMajorTextField: NadoTextField!
     @IBOutlet weak var firstMajorStartTextField: NadoTextField!
     @IBOutlet weak var secondMajorTextField: NadoTextField!
     @IBOutlet weak var secondMajorStartTextField: NadoTextField!
-    @IBOutlet weak var nextBtn: NadoSunbaeBtn!
+    @IBOutlet weak var nextBtn: NadoSunbaeBtn! {
+        didSet {
+            nextBtn.isActivated = false
+            nextBtn.isEnabled = false
+        }
+    }
     @IBOutlet weak var prevBtn: NadoSunbaeBtn!
     
     var univList = ["고려대학교"]
