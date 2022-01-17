@@ -31,6 +31,7 @@ class ReviewDetailVC: UIViewController {
         initPostList()
         initProfileList()
         configureUI()
+        addShadowToNaviBar()
     }
     
     private func registerTVC() {
@@ -47,7 +48,7 @@ class ReviewDetailVC: UIViewController {
     
     private func initEssentialPostList() {
         detailEssentialPostList.append(contentsOf: [
-            ReviewEssentialData.init(bgImg: "imgReviewBg", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼")
+            ReviewEssentialData.init(bgImg: "property1Black", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼")
         ])
     }
     
@@ -69,6 +70,15 @@ class ReviewDetailVC: UIViewController {
 extension ReviewDetailVC {
     private func configureUI() {
         likeCountView.makeRounded(cornerRadius: 16.adjusted)
+    }
+    
+    /// NaviBar dropShadow 설정 함수
+    private func addShadowToNaviBar() {
+        naviBarView.layer.shadowColor = UIColor(red: 0.898, green: 0.898, blue: 0.91, alpha: 0.16).cgColor
+        naviBarView.layer.shadowOffset = CGSize(width: 0, height: 9)
+        naviBarView.layer.shadowRadius = 18
+        naviBarView.layer.shadowOpacity = 1
+        naviBarView.layer.masksToBounds = false
     }
 }
 
