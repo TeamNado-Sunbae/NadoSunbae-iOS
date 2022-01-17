@@ -83,6 +83,9 @@
 		33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF635D2794877800E92C04 /* QuestionTVC.swift */; };
 		33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF635F2794A03300E92C04 /* QuestionHeaderTVC.swift */; };
 		33CF63622794A04700E92C04 /* QuestionFooterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF63612794A04700E92C04 /* QuestionFooterTVC.swift */; };
+		33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */; };
+		33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636727955D9500E92C04 /* ClassroomNC.swift */; };
+		33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636B279567AF00E92C04 /* QuestionType.swift */; };
 		33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */; };
 		33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83B279153A400214CA8 /* BaseCVC.swift */; };
 		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
@@ -214,6 +217,9 @@
 		33CF635D2794877800E92C04 /* QuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTVC.swift; sourceTree = "<group>"; };
 		33CF635F2794A03300E92C04 /* QuestionHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionHeaderTVC.swift; sourceTree = "<group>"; };
 		33CF63612794A04700E92C04 /* QuestionFooterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFooterTVC.swift; sourceTree = "<group>"; };
+		33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionEmptyTVC.swift; sourceTree = "<group>"; };
+		33CF636727955D9500E92C04 /* ClassroomNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomNC.swift; sourceTree = "<group>"; };
+		33CF636B279567AF00E92C04 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
 		33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteQuestionVC.swift; sourceTree = "<group>"; };
 		33DAB83B279153A400214CA8 /* BaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVC.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
@@ -391,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				331364932785D78F00E0C118 /* Identifiers.swift */,
+				33CF636B279567AF00E92C04 /* QuestionType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -574,6 +581,7 @@
 				331364A12785D8DD00E0C118 /* ClassroomMainVC.swift */,
 				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
 				33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */,
+				33CF636727955D9500E92C04 /* ClassroomNC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -670,6 +678,7 @@
 				33CF635D2794877800E92C04 /* QuestionTVC.swift */,
 				33CF635F2794A03300E92C04 /* QuestionHeaderTVC.swift */,
 				33CF63612794A04700E92C04 /* QuestionFooterTVC.swift */,
+				33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */,
 			);
 			path = QuestionMain;
 			sourceTree = "<group>";
@@ -1151,12 +1160,15 @@
 				33CF635727945DE300E92C04 /* InfoMainVC.swift in Sources */,
 				7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */,
 				33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */,
+				33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
+				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
+				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
