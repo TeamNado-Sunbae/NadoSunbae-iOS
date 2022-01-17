@@ -8,7 +8,7 @@
 import UIKit
 
 class ReviewMainVC: UIViewController {
-
+    
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: UIView!
     @IBOutlet weak var reviewTV: UITableView!
@@ -126,11 +126,11 @@ extension ReviewMainVC {
             self.reviewTV.reloadSections([2], with: .fade)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-
+        
         alert.addAction(new)
         alert.addAction(like)
         alert.addAction(cancel)
-
+        
         present(alert, animated: true, completion: nil)
     }
 }
@@ -158,21 +158,6 @@ extension ReviewMainVC: UITableViewDelegate {
             return 52.adjustedH
         } else if indexPath.section == 2 {
             return 156
-        } else {
-            return 0
-        }
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension ReviewMainVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else if section == 1 {
-            return 1
-        } else if section == 2 {
-            return postList.count
         } else {
             return 0
         }
@@ -208,12 +193,41 @@ extension ReviewMainVC: UITableViewDataSource {
         }
     }
     
+    /// cell 선택 시 화면 전환
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("index: ", indexPath.row)
+        let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
+        guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+        
+        // TODO: 서버통신 후 데이터모델[indexPath.row].postId로 코드 변경
+        nextVC.postId = indexPath.row
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+        
+        // self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension ReviewMainVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 1
+        } else if section == 2 {
+            return postList.count
+        } else {
+            return 0
+        }
+    }
+    
     /// row에 들어갈 cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let reviewMainImgTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC,
               let reviewMainLinkTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainLinkTVC.className) as? ReviewMainLinkTVC,
               let reviewMainPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC else { return UITableViewCell() }
-
+        
         if indexPath.section == 0 {
             reviewMainImgTVC.setData(ImgData: imgList[indexPath.row])
             return reviewMainImgTVC
@@ -221,22 +235,9 @@ extension ReviewMainVC: UITableViewDataSource {
             return reviewMainLinkTVC
         } else if indexPath.section == 2 {
             reviewMainPostTVC.setData(postData: postList[indexPath.row])
-            reviewMainPostTVC.postDelegate = self
             return reviewMainPostTVC
         } else {
             return UITableViewCell()
         }
-    }
-}
-
-extension ReviewMainVC: postCellDelegate {
-    func tapPostCell(cell: ReviewMainPostTVC) {
-        let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
-        guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
-        
-        //self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

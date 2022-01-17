@@ -22,6 +22,7 @@ class ReviewDetailVC: UIViewController {
     var detailEssentialPostList: [ReviewEssentialData] = []
     var detailPostList: [ReviewDetailData] = []
     var profileList: [ProfileData] = []
+    var postId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,14 @@ class ReviewDetailVC: UIViewController {
         configureUI()
         addShadowToNaviBar()
         showActionSheet()
+        setUpPostId()
+    }
+    
+    private func setUpPostId() {
+        if let postId = postId {
+            // TODO: 서버통신 시 해당 PostId로 후기글 상세 조회 API 호출할 것임!!
+            print(postId)
+        }
     }
     
     private func registerTVC() {

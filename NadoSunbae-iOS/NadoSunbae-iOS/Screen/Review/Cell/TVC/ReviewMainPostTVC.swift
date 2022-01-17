@@ -23,7 +23,7 @@ class ReviewMainPostTVC: BaseTVC {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
-        setGesture()
+//        setGesture()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,6 +31,7 @@ class ReviewMainPostTVC: BaseTVC {
     }
     
     // MARK: Private Methods
+    
     /// 리스트 데이터 세팅 함수
     func setData(postData: ReviewPostData) {
         dateLabel.text = postData.date
@@ -43,20 +44,22 @@ class ReviewMainPostTVC: BaseTVC {
         secondMajorNameLabel.text = postData.secondMajorName
     }
     
-    func setGesture() {
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPost(gestureRecognizer:)))
-        
-        contentView.addGestureRecognizer(tapRecognizer)
-        print("tapped")
-    }
+//    /// tapGesture 세팅 함수
+//    func setGesture() {
+//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPost(gestureRecognizer:)))
+//
+//        contentView.addGestureRecognizer(tapRecognizer)
+//        print("tapped")
+//    }
     
-    @objc func tapPost(gestureRecognizer: UITapGestureRecognizer) {
-        postDelegate?.tapPostCell(cell: self)
-        print("탭")
-    }
+//    // MARK: @objc Function
+//    @objc func tapPost(gestureRecognizer: UITapGestureRecognizer) {
+//        postDelegate?.tapPostCell(cell: self)
+//        print("탭")
+//    }
 }
 
-// MARK: - Extension Part
+// MARK: - UI
 extension ReviewMainPostTVC {
     private func configureUI() {
         contentView.layer.cornerRadius = 8
