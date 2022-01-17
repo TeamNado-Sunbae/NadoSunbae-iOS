@@ -81,15 +81,13 @@ class ReviewWriteVC: UIViewController {
     
     private func initBgImgList() {
         bgImgList.append(contentsOf: [
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
-            ReviewWriteBgImgData(bgImgName: "bgSample"),
+            ReviewWriteBgImgData(bgImgName: "property1Mint"),
+            ReviewWriteBgImgData(bgImgName: "propertyBlack"),
+            ReviewWriteBgImgData(bgImgName: "property1Skyblue"),
+            ReviewWriteBgImgData(bgImgName: "property1Pink"),
+            ReviewWriteBgImgData(bgImgName: "property1Navy"),
+            ReviewWriteBgImgData(bgImgName: "property1Orange"),
+            ReviewWriteBgImgData(bgImgName: "property1Purple")
         ])
     }
     
