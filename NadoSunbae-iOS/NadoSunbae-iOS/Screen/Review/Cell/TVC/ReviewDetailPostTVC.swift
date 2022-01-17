@@ -7,17 +7,38 @@
 
 import UIKit
 
-class ReviewDetailPostTVC: UITableViewCell {
+class ReviewDetailPostTVC: BaseTVC {
 
+    @IBOutlet weak var iconImgView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        configureUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+    }
+
+    func setData(postData: ReviewDetailData) {
+        iconImgView.image = postData.makeImg()
+        titleLabel.text = postData.title
+        contentLabel.text = postData.content
+    }
+}
+
+extension ReviewDetailPostTVC {
+    private func configureUI() {
+        contentView.makeRounded(cornerRadius: 40.adjusted)
+        contentView.backgroundColor = .white
     }
     
+    /// TVC 사이 간격 설정
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 12, left: 23, bottom: 12, right: 24))
+    }
 }

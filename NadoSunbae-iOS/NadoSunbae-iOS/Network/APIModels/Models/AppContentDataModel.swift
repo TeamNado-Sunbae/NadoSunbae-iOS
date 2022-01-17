@@ -54,3 +54,14 @@ struct ReviewWriteBgImgData {
     }
 }
 
+/// 후기 상세 뷰 게시글 리스트 위한 모델
+struct ReviewDetailData {
+    let iconImgName: String
+    let title: String
+    let content: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: iconImgName)
+    }
+}
+

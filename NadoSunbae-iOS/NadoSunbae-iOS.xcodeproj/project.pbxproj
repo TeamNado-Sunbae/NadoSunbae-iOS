@@ -111,6 +111,8 @@
 		7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31E279418120093C230 /* CodeBaseCVC.swift */; };
 		7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32027947D990093C230 /* ReviewDetailSB.storyboard */; };
 		7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32227947F310093C230 /* ReviewDetailVC.swift */; };
+		7754A32627954B770093C230 /* ReviewDetailPostTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */; };
+		7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -236,6 +238,8 @@
 		7754A31E279418120093C230 /* CodeBaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBaseCVC.swift; sourceTree = "<group>"; };
 		7754A32027947D990093C230 /* ReviewDetailSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewDetailSB.storyboard; sourceTree = "<group>"; };
 		7754A32227947F310093C230 /* ReviewDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailVC.swift; sourceTree = "<group>"; };
+		7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailPostTVC.swift; sourceTree = "<group>"; };
+		7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostTVC.xib; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -642,6 +646,8 @@
 				777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */,
 				777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */,
 				777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */,
+				7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */,
+				7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */,
 			);
 			path = TVC;
 			sourceTree = "<group>";
@@ -1020,6 +1026,7 @@
 				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
+				7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */,
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
 				33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */,
@@ -1087,6 +1094,7 @@
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
+				7754A32627954B770093C230 /* ReviewDetailPostTVC.swift in Sources */,
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				33BAFD07278C2D6100BFF6BE /* DefaultQuestionDataModel.swift in Sources */,
