@@ -20,6 +20,7 @@ class NotificationTVC: BaseTVC {
     }
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     // MARK: LifeCycle
     override func awakeFromNib() {

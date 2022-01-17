@@ -128,6 +128,7 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="contentLabel" destination="wRC-o2-gBG" id="VPU-fp-SMz"/>
+                                            <outlet property="deleteBtn" destination="dc5-6c-h8x" id="O0U-Wr-ZZM"/>
                                             <outlet property="profileImgView" destination="nt6-Ri-kDI" id="iXQ-gI-U4r"/>
                                             <outlet property="redCircleImgView" destination="MOz-OB-WJ5" id="PYf-Ly-TiI"/>
                                             <outlet property="timeLabel" destination="PCr-Nw-pi3" id="6Oa-2y-YnI"/>
