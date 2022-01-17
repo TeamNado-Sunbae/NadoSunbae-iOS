@@ -9,22 +9,26 @@ import UIKit
 
 class ReviewDetailProfileTVC: BaseTVC {
 
+    // MARK: IBOutlet
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var secondMajorLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
+    // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    // MARK: Custom Methods
+    
+    /// 리스트 데이터 세팅 함수
     func setData(profileData: ProfileData) {
         profileImgView.image = profileData.makeImg()
         nickNameLabel.text = profileData.nickName
@@ -35,6 +39,7 @@ class ReviewDetailProfileTVC: BaseTVC {
     
 }
 
+// MARK: - UI
 extension ReviewDetailProfileTVC {
     private func configureUI() {
         contentView.makeRounded(cornerRadius: 40.adjusted)

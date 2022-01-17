@@ -9,10 +9,12 @@ import UIKit
 
 class ReviewDetailPostTVC: BaseTVC {
 
+    // MARK: IBOutlet
     @IBOutlet weak var iconImgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     
+    // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
@@ -23,6 +25,9 @@ class ReviewDetailPostTVC: BaseTVC {
 
     }
 
+    // MARK: Custom Methods
+    
+    /// 리스트 데이터 세팅 함수
     func setData(postData: ReviewDetailData) {
         iconImgView.image = postData.makeImg()
         titleLabel.text = postData.title
@@ -30,6 +35,7 @@ class ReviewDetailPostTVC: BaseTVC {
     }
 }
 
+// MARK: - UI
 extension ReviewDetailPostTVC {
     private func configureUI() {
         contentView.makeRounded(cornerRadius: 40.adjusted)

@@ -9,6 +9,7 @@ import UIKit
 
 class ReviewDetailVC: UIViewController {
 
+    // MARK: IBOutlet
     @IBOutlet weak var naviBarView: NadoSunbaeNaviBar! {
         didSet {
             naviBarView.setUpNaviStyle(state: .backDefaultWithCustomRightBtn)
@@ -19,13 +20,16 @@ class ReviewDetailVC: UIViewController {
     @IBOutlet weak var reviewPostTV: UITableView!
     @IBOutlet weak var likeCountView: UIView!
     
+    // MARK: Properties
     var detailEssentialPostList: [ReviewEssentialData] = []
     var detailPostList: [ReviewDetailData] = []
     var profileList: [ProfileData] = []
     var postId: Int?
     
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpPostId()
         registerTVC()
         setUpTV()
         initEssentialPostList()
@@ -34,9 +38,9 @@ class ReviewDetailVC: UIViewController {
         configureUI()
         addShadowToNaviBar()
         showActionSheet()
-        setUpPostId()
     }
     
+    // MARK: Custom Methods
     private func setUpPostId() {
         if let postId = postId {
             // TODO: 서버통신 시 해당 PostId로 후기글 상세 조회 API 호출할 것임!!
@@ -139,6 +143,7 @@ extension ReviewDetailVC: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension ReviewDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {

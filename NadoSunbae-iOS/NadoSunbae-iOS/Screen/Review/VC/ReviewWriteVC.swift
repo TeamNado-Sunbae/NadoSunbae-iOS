@@ -62,7 +62,7 @@ class ReviewWriteVC: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-    // MARK: Custom Method
+    // MARK: Custom Methods
     private func registerCVC() {
         ReviewWriteBgImgCVC.register(target: bgImgCV)
     }
