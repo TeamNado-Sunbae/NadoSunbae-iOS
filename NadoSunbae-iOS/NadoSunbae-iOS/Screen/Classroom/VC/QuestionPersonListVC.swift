@@ -34,6 +34,7 @@ class QuestionPersonListVC: UIViewController {
         setUpDelegate()
         registerCell()
         registerXib()
+        setUpTapNaviBackBtn()
     }
 }
 
@@ -76,6 +77,13 @@ extension QuestionPersonListVC {
     private func registerXib() {
         let nibName = UINib(nibName: "QuestionPeopleHeaderView", bundle: nil)
         questionPersonCV.register(nibName, forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader", withReuseIdentifier: "QuestionPeopleHeaderView")
+    }
+    
+    /// 네비 back 버튼을 눌렀을 때 액션 set 메서드
+    private func setUpTapNaviBackBtn() {
+        questionPersonNaviBar.backBtn.press {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
