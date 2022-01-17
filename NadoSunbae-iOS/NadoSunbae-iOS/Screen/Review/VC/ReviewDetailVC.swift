@@ -15,6 +15,7 @@ class ReviewDetailVC: UIViewController {
         }
     }
     @IBOutlet weak var reviewPostTV: UITableView!
+    @IBOutlet weak var likeCountView: UIView!
     
     var detailEssentialPostList: [ReviewEssentialData] = []
     var detailPostList: [ReviewDetailData] = []
@@ -27,6 +28,7 @@ class ReviewDetailVC: UIViewController {
         initEssentialPostList()
         initPostList()
         initProfileList()
+        configureUI()
     }
     
     private func registerTVC() {
@@ -61,6 +63,14 @@ class ReviewDetailVC: UIViewController {
     }
 }
 
+// MARK: - UI
+extension ReviewDetailVC {
+    private func configureUI() {
+        likeCountView.makeRounded(cornerRadius: 16.adjusted)
+    }
+}
+
+// MARK: - UITableViewDelegate
 extension ReviewDetailVC: UITableViewDelegate {
     
     /// section 3개로 나눔
