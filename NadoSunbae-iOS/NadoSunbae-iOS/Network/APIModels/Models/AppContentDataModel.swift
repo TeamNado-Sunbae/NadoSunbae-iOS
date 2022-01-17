@@ -74,3 +74,16 @@ struct ReviewDetailData {
     }
 }
 
+/// 프로필 정보를 위한 모델
+struct ProfileData {
+    let profileImg: String
+    let nickName: String
+    let majorName: String
+    let secondMajorName: String
+    let message: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: profileImg)
+    }
+}
+

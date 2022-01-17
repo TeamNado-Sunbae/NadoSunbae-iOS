@@ -46,19 +46,19 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
-                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="0IW-4t-nNF"/>
+                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="top" secondItem="d9w-EZ-U4M" secondAttribute="bottom" id="4na-Am-QTt"/>
+                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="EOd-Fe-NyH"/>
                             <constraint firstItem="d9w-EZ-U4M" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="NyP-XG-Sdj"/>
-                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Sdl-4a-If7"/>
+                            <constraint firstAttribute="bottom" secondItem="DA4-Xx-KZ1" secondAttribute="bottom" id="PXn-7y-vFI"/>
                             <constraint firstItem="d9w-EZ-U4M" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="U3A-dj-hVV"/>
-                            <constraint firstAttribute="bottom" secondItem="DA4-Xx-KZ1" secondAttribute="bottom" id="e1o-KB-vOx"/>
-                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="top" secondItem="d9w-EZ-U4M" secondAttribute="bottom" id="s0E-80-oaZ"/>
+                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="WEL-IG-dLA"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d9w-EZ-U4M" secondAttribute="trailing" id="tq6-zo-spI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AlL-q4-9qg"/>
                     <connections>
                         <outlet property="naviBarView" destination="d9w-EZ-U4M" id="bWG-qY-E36"/>
-                        <outlet property="reviewPostTV" destination="DA4-Xx-KZ1" id="ft1-Nb-fu3"/>
+                        <outlet property="reviewPostTV" destination="DA4-Xx-KZ1" id="hyP-wX-Xyg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
