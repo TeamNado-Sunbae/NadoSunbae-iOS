@@ -73,6 +73,7 @@ class QuestionTVC: BaseTVC {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
+        selectionStyle = .none
     }
     
     @available(*, unavailable)

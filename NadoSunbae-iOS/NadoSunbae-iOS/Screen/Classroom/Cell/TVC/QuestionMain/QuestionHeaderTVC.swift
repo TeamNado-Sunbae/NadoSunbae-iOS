@@ -20,6 +20,9 @@ class QuestionHeaderTVC: BaseTVC {
     private let questionWriteBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "btnWrite"), for: .normal)
         $0.contentMode = .scaleAspectFill
+        $0.press {
+            print("구성원 전체질문 작성")
+        }
     }
     
     // MARK: Life Cycle
@@ -36,6 +39,7 @@ class QuestionHeaderTVC: BaseTVC {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
+        selectionStyle = .none
     }
     
     @available(*, unavailable)

@@ -20,6 +20,9 @@ class QuestionFooterTVC: UITableViewCell {
     private let seeEntireQuestionBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "questionArrow"), for: .normal)
         $0.contentMode = .scaleAspectFill
+        $0.press {
+            print("질문 전체보기")
+        }
     }
     
     // MARK: Life Cycle
@@ -36,6 +39,7 @@ class QuestionFooterTVC: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
+        selectionStyle = .none
     }
     
     @available(*, unavailable)
