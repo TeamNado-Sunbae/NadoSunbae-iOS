@@ -9,15 +9,39 @@ import UIKit
 
 class QuestionEmptyTVC: UITableViewCell {
 
+    // MARK: Properties
+    private let emptyQuestionLabel = UILabel().then {
+        $0.text = "등록된 전체 질문이 없습니다."
+        $0.textColor = .gray2
+        $0.font = .PretendardR(size: 14.0)
+        $0.sizeToFit()
+    }
+    
+    // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // MARK: init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureUI()
     }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+}
 
+// MARK: - UI
+extension QuestionEmptyTVC {
+    private func configureUI() {
+        contentView.addSubview(emptyQuestionLabel)
+        
+        emptyQuestionLabel.snp.makeConstraints {
+            $0.centerX.equalTo(contentView)
+            $0.centerY.equalTo(contentView)
+        }
+    }
 }
