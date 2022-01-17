@@ -11,7 +11,9 @@ class ReviewDetailVC: UIViewController {
 
     @IBOutlet weak var naviBarView: NadoSunbaeNaviBar! {
         didSet {
-            naviBarView.setUpNaviStyle(state: .backDefault)
+            naviBarView.setUpNaviStyle(state: .backDefaultWithCustomRightBtn)
+            naviBarView.rightCustomBtn.setImage(UIImage(named: "btnMoreVert"), for: .normal)
+            naviBarView.configureTitleLabel(title: "학과후기")
         }
     }
     @IBOutlet weak var reviewPostTV: UITableView!
