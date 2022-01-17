@@ -58,10 +58,6 @@ class ReviewMainPostTVC: BaseTVC {
     }
 }
 
-protocol postCellDelegate {
-    func tapPostCell(cell: ReviewMainPostTVC)
-}
-
 // MARK: - Extension Part
 extension ReviewMainPostTVC {
     private func configureUI() {
