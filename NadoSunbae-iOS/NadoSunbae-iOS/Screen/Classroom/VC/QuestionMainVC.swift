@@ -36,13 +36,14 @@ class QuestionMainVC: UIViewController {
     
     let questionSegmentView = NadoSegmentView()
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
-    var questionList = [
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다ㅏㅏㅏㅏ", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5),
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5),
-        MypageQuestionModel(title: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다", content: "예예예예질문내용입니다ㅏㅏㅏㅏ", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5),
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5),
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5),
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다", nickName: "윈터내거", writeTime: "오후 5:33", commentCount: 2, likeCount: 5)
+    var questionList: [MypageQuestionModel] = [
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111)
     ]
     
     // MARK: LifeCycle
@@ -52,20 +53,14 @@ class QuestionMainVC: UIViewController {
         setUpDelegate()
         setUpTapInfoBtn()
         registerCell()
-        DispatchQueue.main.async {
-            self.entireQuestionTV.snp.makeConstraints {
-                if self.questionList.count > 5 {
-                    $0.height.equalTo(70 + 5 * 110 + 40)
-                } else {
-                    $0.height.equalTo(70 + self.questionList.count * 110)
-                }
-            }
-        }
+        configureQuestionTVHeight()
     }
 }
 
 // MARK: - UI
 extension QuestionMainVC {
+    
+    /// 전체 UI를 구성하는 메서드
     func configureUI() {
         
         view.addSubview(questionSV)
@@ -106,22 +101,41 @@ extension QuestionMainVC {
             $0.bottom.equalToSuperview().offset(-24)
         }
     }
+    
+    /// entireQuestionTV 높이를 구성하는 메서드
+    func configureQuestionTVHeight() {
+        DispatchQueue.main.async {
+            self.entireQuestionTV.snp.makeConstraints {
+                if self.questionList.count > 5 {
+                    $0.height.equalTo(70 + 5 * 110 + 40)
+                } else if self.questionList.count == 0 {
+                    $0.height.equalTo(70 + 236)
+                } else {
+                    $0.height.equalTo(70 + self.questionList.count * 110)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Custom Methods
 extension QuestionMainVC {
     
+    /// 대리자 위임 메서드
     private func setUpDelegate() {
         entireQuestionTV.delegate = self
         entireQuestionTV.dataSource = self
     }
     
+    /// 셀 등록 메서드
     private func registerCell() {
         entireQuestionTV.register(QuestionTVC.self, forCellReuseIdentifier: QuestionTVC.className)
         entireQuestionTV.register(QuestionHeaderTVC.self, forCellReuseIdentifier: QuestionHeaderTVC.className)
         entireQuestionTV.register(QuestionFooterTVC.self, forCellReuseIdentifier: QuestionFooterTVC.className)
+        entireQuestionTV.register(QuestionEmptyTVC.self, forCellReuseIdentifier: QuestionEmptyTVC.className)
     }
     
+    /// '정보' 버튼을 눌렀을 때 액션 set 메서드
     private func setUpTapInfoBtn() {
         questionSegmentView.infoBtn.press {
             
@@ -135,6 +149,7 @@ extension QuestionMainVC {
 // MARK: - UITableViewDataSource
 extension QuestionMainVC: UITableViewDataSource {
     
+    /// numberOfSections
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -169,16 +184,25 @@ extension QuestionMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionHeaderTVC.className, for: indexPath) as? QuestionHeaderTVC else { return UITableViewCell() }
-            return cell
+            return QuestionHeaderTVC()
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTVC.className, for: indexPath) as? QuestionTVC else { return UITableViewCell() }
-            cell.setData(data: questionList[indexPath.row])
-            return cell
+            if questionList.count == 0 {
+                guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: QuestionEmptyTVC.className, for: indexPath) as? QuestionEmptyTVC else { return UITableViewCell() }
+                emptyCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+                return emptyCell
+            } else {
+                guard let questionCell = tableView.dequeueReusableCell(withIdentifier: QuestionTVC.className, for: indexPath) as? QuestionTVC else { return UITableViewCell() }
+                
+                /// 마지막 인덱스만 separator 숨김
+                if indexPath.row == questionList.count - 1 {
+                    questionCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+                }
+                questionCell.setData(data: questionList[indexPath.row])
+                return questionCell
+            }
         case 2:
             if questionList.count > 5 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionFooterTVC.className, for: indexPath) as? QuestionFooterTVC else { return UITableViewCell() }
-                return cell
+                return QuestionFooterTVC()
             } else {
                 return UITableViewCell()
             }
