@@ -58,26 +58,30 @@ extension UIColor {
     }
     
     @nonobjc class var shadowDefault: UIColor {
-        return UIColor(red: 229.0 / 225.0, green: 229.0 / 255.0, blue: 232.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 229.0 / 255.0, green: 229.0 / 255.0, blue: 232.0 / 255.0, alpha: 1.0)
     }
     
     @nonobjc class var paleGray: UIColor {
-        return UIColor(red: 251.0 / 225.0, green: 251.0 / 255.0, blue: 253.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 251.0 / 255.0, green: 251.0 / 255.0, blue: 253.0 / 255.0, alpha: 1.0)
     }
     
     @nonobjc class var red: UIColor {
-        return UIColor(red: 255.0 / 225.0, green: 76.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 255.0 / 255.0, green: 76.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
     }
 
     @nonobjc class var bgGray: UIColor {
-        return UIColor(red: 248.0 / 225.0, green: 249.0 / 255.0, blue: 253.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 248.0 / 255.0, green: 249.0 / 255.0, blue: 253.0 / 255.0, alpha: 1.0)
     }
     
     @nonobjc class var scrollMint: UIColor {
-        return UIColor(red: 187.0 / 225.0, green: 242.0 / 255.0, blue: 236.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 187.0 / 255.0, green: 242.0 / 255.0, blue: 236.0 / 255.0, alpha: 1.0)
     }
     
     @nonobjc class var separatorGray: UIColor {
-        return UIColor(red: 234.0 / 225.0, green: 235.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 234.0 / 255.0, green: 235.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var lightMint: UIColor {
+        return UIColor(red: 169.0 / 255.0, green: 244.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
     }
 }
