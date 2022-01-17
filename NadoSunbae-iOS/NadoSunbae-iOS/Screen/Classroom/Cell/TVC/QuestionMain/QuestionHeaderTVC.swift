@@ -20,10 +20,8 @@ class QuestionHeaderTVC: BaseTVC {
     private let questionWriteBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "btnWrite"), for: .normal)
         $0.contentMode = .scaleAspectFill
-        $0.press {
-            print("구성원 전체질문 작성")
-        }
     }
+    var tapWriteBtnAction : (() -> ())?
     
     // MARK: Life Cycle
     override func awakeFromNib() {
@@ -38,6 +36,7 @@ class QuestionHeaderTVC: BaseTVC {
     // MARK: init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setUpTapQuestionWriteBtn()
         configureUI()
         selectionStyle = .none
     }
@@ -64,6 +63,17 @@ extension QuestionHeaderTVC {
             $0.leading.equalToSuperview()
             $0.trailing.equalTo(questionWriteBtn.snp.leading).offset(-30)
             $0.centerY.equalTo(questionWriteBtn)
+        }
+    }
+}
+
+// MARK: - Custom Methods
+extension QuestionHeaderTVC {
+    
+    /// '질문 작성' 버튼을 눌렀을 때 액션 set 메서드
+    private func setUpTapQuestionWriteBtn() {
+        questionWriteBtn.press {
+            self.tapWriteBtnAction?()
         }
     }
 }

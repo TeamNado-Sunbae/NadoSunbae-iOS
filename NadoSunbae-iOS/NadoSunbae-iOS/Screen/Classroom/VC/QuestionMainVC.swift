@@ -20,7 +20,7 @@ class QuestionMainVC: UIViewController {
         $0.setBackgroundImage(UIImage(named: "imgRoomMain"), for: .normal)
         $0.contentMode = .scaleAspectFill
         $0.press {
-            print("개인질문 하러가기")
+            // TODO: 질문가능 선배목록 UI 구성되면 연결 예정
         }
     }
     
@@ -132,6 +132,7 @@ extension QuestionMainVC {
     
     /// 셀 등록 메서드
     private func registerCell() {
+        entireQuestionTV.register(QuestionHeaderTVC.self, forCellReuseIdentifier: QuestionHeaderTVC.className)
         entireQuestionTV.register(QuestionTVC.self, forCellReuseIdentifier: QuestionTVC.className)
     }
     
@@ -143,6 +144,17 @@ extension QuestionMainVC {
                 delegate.sendSegmentClicked(index: 1)
             }
         }
+    }
+    
+    /// 질문작성VC로 present하는 메서드
+    private func presentToWriteQuestionVC() {
+        let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
+        guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
+         
+        writeQuestionVC.questionType = .group
+        writeQuestionVC.modalPresentationStyle = .fullScreen
+        
+        self.present(writeQuestionVC, animated: true, completion: nil)
     }
 }
 
@@ -184,7 +196,11 @@ extension QuestionMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            return QuestionHeaderTVC()
+            guard let questionHeaderCell = tableView.dequeueReusableCell(withIdentifier: QuestionHeaderTVC.className, for: indexPath) as? QuestionHeaderTVC else { return UITableViewCell() }
+            questionHeaderCell.tapWriteBtnAction = {
+                self.presentToWriteQuestionVC()
+            }
+            return questionHeaderCell
         case 1:
             if questionList.count == 0 {
                 return QuestionEmptyTVC()
@@ -227,6 +243,20 @@ extension QuestionMainVC: UITableViewDelegate {
             }
         default:
             return 0
+        }
+    }
+    
+    /// didSelectRowAt
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
+            guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+             
+            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
+            groupChatVC.questionType = .group
+            groupChatVC.naviStyle = .push
+            
+            self.navigationController?.pushViewController(groupChatVC, animated: true)
         }
     }
 }

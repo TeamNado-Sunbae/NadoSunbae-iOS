@@ -39,6 +39,10 @@ class ClassroomMainVC: UIViewController {
         tapMajorSelectBtn()
         configureContainerView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
 }
 
 // MARK: - UI
@@ -113,7 +117,7 @@ extension ClassroomMainVC {
     
     /// 전공 선택 버튼을 tap했을 때 메서드
     private func tapMajorSelectBtn() {
-        majorSelectBtn.press {
+        majorSelectBtn.press(vibrate: true) {
             self.presentHalfModalView()
         }
     }
