@@ -19,8 +19,6 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var majorNameLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
     
-    var postDelegate: postCellDelegate?
-    
     // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()
