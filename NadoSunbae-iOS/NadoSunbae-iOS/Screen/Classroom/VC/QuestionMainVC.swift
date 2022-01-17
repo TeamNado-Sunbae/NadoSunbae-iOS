@@ -19,6 +19,9 @@ class QuestionMainVC: UIViewController {
     private let personalQuestionBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "imgRoomMain"), for: .normal)
         $0.contentMode = .scaleAspectFill
+        $0.press {
+            print("개인질문 하러가기")
+        }
     }
     
     private let entireQuestionTitleLabel = UILabel().then {
@@ -34,16 +37,12 @@ class QuestionMainVC: UIViewController {
         $0.layer.borderColor = UIColor.gray0.cgColor
         $0.isScrollEnabled = false
         $0.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
     let questionSegmentView = NadoSegmentView()
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     private var questionList: [MypageQuestionModel] = [
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
         MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
         MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111)
     ]
@@ -102,6 +101,8 @@ extension QuestionMainVC {
             $0.leading.trailing.equalTo(personalQuestionBtn)
             $0.bottom.equalToSuperview().offset(-24)
         }
+        
+        entireQuestionTV.separatorColor = .gray1
     }
     
     /// entireQuestionTV 높이를 구성하는 메서드
@@ -132,9 +133,6 @@ extension QuestionMainVC {
     /// 셀 등록 메서드
     private func registerCell() {
         entireQuestionTV.register(QuestionTVC.self, forCellReuseIdentifier: QuestionTVC.className)
-        entireQuestionTV.register(QuestionHeaderTVC.self, forCellReuseIdentifier: QuestionHeaderTVC.className)
-        entireQuestionTV.register(QuestionFooterTVC.self, forCellReuseIdentifier: QuestionFooterTVC.className)
-        entireQuestionTV.register(QuestionEmptyTVC.self, forCellReuseIdentifier: QuestionEmptyTVC.className)
     }
     
     /// '정보' 버튼을 눌렀을 때 액션 set 메서드
@@ -189,16 +187,9 @@ extension QuestionMainVC: UITableViewDataSource {
             return QuestionHeaderTVC()
         case 1:
             if questionList.count == 0 {
-                guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: QuestionEmptyTVC.className, for: indexPath) as? QuestionEmptyTVC else { return UITableViewCell() }
-                emptyCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-                return emptyCell
+                return QuestionEmptyTVC()
             } else {
                 guard let questionCell = tableView.dequeueReusableCell(withIdentifier: QuestionTVC.className, for: indexPath) as? QuestionTVC else { return UITableViewCell() }
-                
-                /// 마지막 인덱스만 separator 숨김
-                if indexPath.row == questionList.count - 1 {
-                    questionCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-                }
                 questionCell.setData(data: questionList[indexPath.row])
                 return questionCell
             }
