@@ -136,6 +136,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgC-Y7-gAY">
+                                <rect key="frame" x="141.66666666666666" y="397.66666666666669" width="92" height="17"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" name="gray3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
@@ -144,12 +150,16 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2Dg-vn-V8b" secondAttribute="trailing" constant="16" id="54v-MT-Slf"/>
                             <constraint firstItem="SgZ-z0-ye5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="5rm-Ta-E63"/>
                             <constraint firstItem="SgZ-z0-ye5" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="I5w-qV-HW4"/>
+                            <constraint firstItem="NgC-Y7-gAY" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="IfS-zD-KAD"/>
                             <constraint firstItem="2Dg-vn-V8b" firstAttribute="top" secondItem="SgZ-z0-ye5" secondAttribute="bottom" constant="8" id="Yoq-QD-6qz"/>
                             <constraint firstItem="2Dg-vn-V8b" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="bKU-o1-dPJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="2Dg-vn-V8b" secondAttribute="bottom" id="iGm-v6-pf4"/>
+                            <constraint firstItem="NgC-Y7-gAY" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uLY-t5-rY4"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="navView" destination="SgZ-z0-ye5" id="3em-Fb-IHU"/>
+                        <outlet property="noNotiLabel" destination="NgC-Y7-gAY" id="lNN-Kb-drq"/>
                         <outlet property="notificationTV" destination="2Dg-vn-V8b" id="s3O-EE-csf"/>
                     </connections>
                 </viewController>
