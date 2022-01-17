@@ -32,6 +32,7 @@ class ReviewDetailVC: UIViewController {
         initProfileList()
         configureUI()
         addShadowToNaviBar()
+        showActionSheet()
     }
     
     private func registerTVC() {
@@ -79,6 +80,32 @@ extension ReviewDetailVC {
         naviBarView.layer.shadowRadius = 18
         naviBarView.layer.shadowOpacity = 1
         naviBarView.layer.masksToBounds = false
+    }
+}
+
+// MARK: - Action Sheet
+extension ReviewDetailVC {
+    private func showActionSheet() {
+        naviBarView.rightCustomBtn.press {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let edit = UIAlertAction(title: "수정", style: .default) { action in
+                
+                // TODO: 액션 추가 예정
+                print("수정")
+            }
+            let delete = UIAlertAction(title: "삭제", style: .default) { action in
+                
+                // TODO: 화면전환 방식 navigation 방식으로 변경 후 팝업 추가 예정
+                print("삭제")
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            
+            alert.addAction(edit)
+            alert.addAction(delete)
+            alert.addAction(cancel)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
