@@ -38,7 +38,7 @@ class QuestionMainVC: UIViewController {
     
     let questionSegmentView = NadoSegmentView()
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
-    var questionList: [MypageQuestionModel] = [
+    private var questionList: [MypageQuestionModel] = [
         MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
         MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
         MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
@@ -63,7 +63,7 @@ class QuestionMainVC: UIViewController {
 extension QuestionMainVC {
     
     /// 전체 UI를 구성하는 메서드
-    func configureUI() {
+    private func configureUI() {
         
         view.addSubview(questionSV)
         questionSV.addSubview(contentView)
@@ -105,7 +105,7 @@ extension QuestionMainVC {
     }
     
     /// entireQuestionTV 높이를 구성하는 메서드
-    func configureQuestionTVHeight() {
+    private func configureQuestionTVHeight() {
         DispatchQueue.main.async {
             self.entireQuestionTV.snp.makeConstraints {
                 if self.questionList.count > 5 {
