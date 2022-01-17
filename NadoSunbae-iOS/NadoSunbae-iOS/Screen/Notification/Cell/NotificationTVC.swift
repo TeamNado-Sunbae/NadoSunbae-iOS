@@ -44,6 +44,18 @@ class NotificationTVC: BaseTVC {
     func setData(data: NotificationModel) {
         redCircleImgView.isHidden = !(data.isRead)
         titleLabel.text = "\(data.notiType.rawValue)에 \(data.senderNickName)님이 \(data.notiType != .mypageQuestion ? "답글" : "1:1 질문")을 남겼습니다."
+        
+        let mintAttributeStr = NSMutableAttributedString(string: titleLabel.text!)
+
+        switch data.notiType {
+        case .mypageQuestion:
+            mintAttributeStr.addAttributes([.foregroundColor : UIColor.blue], range: (titleLabel.text! as NSString).range(of: "1:1 질문"))
+        default:
+            mintAttributeStr.addAttributes([.foregroundColor : UIColor.blue], range: (titleLabel.text! as NSString).range(of: "\(data.notiType.rawValue)"))
+        }
+        
+        titleLabel.attributedText = mintAttributeStr
+        
         contentLabel.text = "\(data.content)"
         timeLabel.text = "\(data.time)"
     }
