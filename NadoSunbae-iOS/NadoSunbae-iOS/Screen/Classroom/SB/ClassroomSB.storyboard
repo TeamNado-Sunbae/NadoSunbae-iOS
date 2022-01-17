@@ -32,13 +32,28 @@
                             <constraint firstItem="chX-yB-bWd" firstAttribute="trailing" secondItem="tzN-r6-y1u" secondAttribute="trailing" id="Gfz-W1-dKr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="uiH-qE-2ah"/>
                     <connections>
                         <outlet property="topNaviView" destination="tzN-r6-y1u" id="fG1-hd-OSu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="og2-4F-dbH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118.84057971014494" y="-56.25"/>
+            <point key="canvasLocation" x="2849.275362318841" y="-56.25"/>
+        </scene>
+        <!--ClassroomNC-->
+        <scene sceneID="5Zt-M7-PPt">
+            <objects>
+                <navigationController storyboardIdentifier="ClassroomNC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="1hI-3j-vLa" customClass="ClassroomNC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B8r-Ab-4qq">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fHC-TA-HrR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1939.1304347826087" y="-56.25"/>
         </scene>
     </scenes>
     <resources>
