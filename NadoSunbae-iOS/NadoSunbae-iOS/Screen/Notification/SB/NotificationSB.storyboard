@@ -70,19 +70,25 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DN2-Tw-VwD">
-                                                    <rect key="frame" x="56" y="12" width="225" height="17"/>
+                                                    <rect key="frame" x="56" y="12" width="240" height="16"/>
                                                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                                     <color key="textColor" name="gray4"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRC-o2-gBG">
-                                                    <rect key="frame" x="56" y="29.000000000000004" width="225" height="14.666666666666668"/>
+                                                    <rect key="frame" x="56" y="29" width="240" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="W3H-lR-iTq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                     <color key="textColor" name="gray3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCr-Nw-pi3">
-                                                    <rect key="frame" x="56" y="57.666666666666664" width="225" height="12.333333333333336"/>
+                                                    <rect key="frame" x="56" y="57" width="240" height="13"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="13" id="Lx3-8Y-avd"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Pretendard-Light" family="Pretendard" pointSize="10"/>
                                                     <color key="textColor" name="gray3"/>
                                                     <nil key="highlightedColor"/>
@@ -100,21 +106,22 @@
                                             <constraints>
                                                 <constraint firstItem="wRC-o2-gBG" firstAttribute="leading" secondItem="DN2-Tw-VwD" secondAttribute="leading" id="1OW-s4-70J"/>
                                                 <constraint firstItem="PCr-Nw-pi3" firstAttribute="trailing" secondItem="wRC-o2-gBG" secondAttribute="trailing" id="5nG-XB-pAk"/>
-                                                <constraint firstItem="nt6-Ri-kDI" firstAttribute="centerY" secondItem="tC0-h9-PL1" secondAttribute="centerY" multiplier="8:10" id="EmQ-rS-30z"/>
+                                                <constraint firstItem="PCr-Nw-pi3" firstAttribute="top" secondItem="wRC-o2-gBG" secondAttribute="bottom" constant="13" id="AtI-12-OHG"/>
                                                 <constraint firstAttribute="trailing" secondItem="dc5-6c-h8x" secondAttribute="trailing" id="GgQ-2p-QPr"/>
                                                 <constraint firstItem="DN2-Tw-VwD" firstAttribute="leading" secondItem="nt6-Ri-kDI" secondAttribute="trailing" constant="12" id="HEJ-31-LuG"/>
                                                 <constraint firstItem="wRC-o2-gBG" firstAttribute="trailing" secondItem="DN2-Tw-VwD" secondAttribute="trailing" id="J3e-G8-F9C"/>
                                                 <constraint firstItem="DN2-Tw-VwD" firstAttribute="top" secondItem="tC0-h9-PL1" secondAttribute="topMargin" constant="1" id="KIH-QH-rhy"/>
                                                 <constraint firstItem="nt6-Ri-kDI" firstAttribute="width" secondItem="tC0-h9-PL1" secondAttribute="width" multiplier="0.0699708" id="Ly7-u2-ckf"/>
-                                                <constraint firstItem="wRC-o2-gBG" firstAttribute="top" secondItem="DN2-Tw-VwD" secondAttribute="bottom" id="MXf-Dv-ubv"/>
+                                                <constraint firstItem="wRC-o2-gBG" firstAttribute="top" secondItem="DN2-Tw-VwD" secondAttribute="bottom" constant="1" id="MXf-Dv-ubv"/>
                                                 <constraint firstItem="nt6-Ri-kDI" firstAttribute="leading" secondItem="tC0-h9-PL1" secondAttribute="leadingMargin" constant="4" id="Oyn-TG-w46"/>
                                                 <constraint firstItem="dc5-6c-h8x" firstAttribute="top" secondItem="tC0-h9-PL1" secondAttribute="top" id="PF3-Wq-Jvr"/>
-                                                <constraint firstItem="dc5-6c-h8x" firstAttribute="leading" secondItem="DN2-Tw-VwD" secondAttribute="trailing" constant="22" id="UFe-uH-rV1"/>
+                                                <constraint firstItem="dc5-6c-h8x" firstAttribute="leading" secondItem="DN2-Tw-VwD" secondAttribute="trailing" constant="7" id="UFe-uH-rV1"/>
+                                                <constraint firstItem="dc5-6c-h8x" firstAttribute="width" secondItem="tC0-h9-PL1" secondAttribute="width" multiplier="0.116618" id="WFh-7s-P8i"/>
                                                 <constraint firstItem="PCr-Nw-pi3" firstAttribute="leading" secondItem="DN2-Tw-VwD" secondAttribute="leading" id="YO4-VI-isz"/>
                                                 <constraint firstAttribute="bottom" secondItem="PCr-Nw-pi3" secondAttribute="bottom" constant="10" id="b45-ke-uLO"/>
                                                 <constraint firstItem="MOz-OB-WJ5" firstAttribute="height" secondItem="nt6-Ri-kDI" secondAttribute="height" multiplier="0.25" id="e4I-jf-kZE"/>
                                                 <constraint firstItem="MOz-OB-WJ5" firstAttribute="top" secondItem="nt6-Ri-kDI" secondAttribute="top" id="hYq-cu-R4w"/>
-                                                <constraint firstItem="dc5-6c-h8x" firstAttribute="height" secondItem="tC0-h9-PL1" secondAttribute="height" multiplier="0.5" id="lsK-sG-HWf"/>
+                                                <constraint firstItem="nt6-Ri-kDI" firstAttribute="top" secondItem="tC0-h9-PL1" secondAttribute="topMargin" constant="9" id="qS6-4S-s9w"/>
                                                 <constraint firstItem="MOz-OB-WJ5" firstAttribute="trailing" secondItem="nt6-Ri-kDI" secondAttribute="trailing" id="zQ7-zI-T8X"/>
                                             </constraints>
                                         </tableViewCellContentView>
