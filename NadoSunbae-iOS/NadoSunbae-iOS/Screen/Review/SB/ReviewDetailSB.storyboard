@@ -25,7 +25,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DA4-Xx-KZ1">
-                                <rect key="frame" x="0.0" y="100" width="375" height="678"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="712"/>
                                 <color key="backgroundColor" name="paleGray"/>
                                 <color key="sectionIndexBackgroundColor" name="paleGray"/>
                                 <prototypes>
@@ -48,9 +48,9 @@
                         <constraints>
                             <constraint firstItem="DA4-Xx-KZ1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="0IW-4t-nNF"/>
                             <constraint firstItem="d9w-EZ-U4M" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="NyP-XG-Sdj"/>
-                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="OfB-gH-tzq"/>
                             <constraint firstItem="DA4-Xx-KZ1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Sdl-4a-If7"/>
                             <constraint firstItem="d9w-EZ-U4M" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="U3A-dj-hVV"/>
+                            <constraint firstAttribute="bottom" secondItem="DA4-Xx-KZ1" secondAttribute="bottom" id="e1o-KB-vOx"/>
                             <constraint firstItem="DA4-Xx-KZ1" firstAttribute="top" secondItem="d9w-EZ-U4M" secondAttribute="bottom" id="s0E-80-oaZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d9w-EZ-U4M" secondAttribute="trailing" id="tq6-zo-spI"/>
                         </constraints>

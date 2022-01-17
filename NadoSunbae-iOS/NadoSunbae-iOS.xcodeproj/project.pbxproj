@@ -113,6 +113,10 @@
 		7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32227947F310093C230 /* ReviewDetailVC.swift */; };
 		7754A32627954B770093C230 /* ReviewDetailPostTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */; };
 		7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */; };
+		7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */; };
+		7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */; };
+		7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */; };
+		7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -240,6 +244,10 @@
 		7754A32227947F310093C230 /* ReviewDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailVC.swift; sourceTree = "<group>"; };
 		7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailPostTVC.swift; sourceTree = "<group>"; };
 		7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostTVC.xib; sourceTree = "<group>"; };
+		7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailPostWithImgTVC.swift; sourceTree = "<group>"; };
+		7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostWithImgTVC.xib; sourceTree = "<group>"; };
+		7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailProfileTVC.swift; sourceTree = "<group>"; };
+		7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailProfileTVC.xib; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -648,6 +656,10 @@
 				777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */,
 				7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */,
 				7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */,
+				7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */,
+				7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */,
+				7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */,
+				7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */,
 			);
 			path = TVC;
 			sourceTree = "<group>";
@@ -1005,8 +1017,10 @@
 				777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
+				7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */,
 				777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */,
 				77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */,
+				7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */,
 				338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
@@ -1124,6 +1138,7 @@
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
+				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
@@ -1162,6 +1177,7 @@
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
+				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
