@@ -14,7 +14,7 @@ class ClassroomMainVC: UIViewController {
     // MARK: Properties
     private let screenWidth = UIScreen.main.bounds.size.width
     private let majorLabel = UILabel().then {
-        // TODO: Userdefaults선배 값으로 바꿀 예정
+        // TODO: text Userdefaults선배 값으로 바꿀 예정
         $0.text = "국어국문학과"
         $0.font = .PretendardM(size: 20)
         $0.textColor = .black
@@ -31,9 +31,10 @@ class ClassroomMainVC: UIViewController {
     @IBOutlet var topNaviView: UIView!
     private let classroomContainerView = NadoHorizonContainerViews()
     
-    // MARK: LifeCycle
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .paleGray
         configureUI()
         tapMajorSelectBtn()
         configureContainerView()
@@ -127,7 +128,10 @@ extension ClassroomMainVC: UIViewControllerTransitioningDelegate {
     }
 }
 
+// MARK: - SendSegmentStateDelegate
 extension ClassroomMainVC: SendSegmentStateDelegate {
+     
+    /// segment가 클릭되면 index에 따라 ContainerView의 ContentOffset.x 좌표를 바꿔주는 메서드
     func sendSegmentClicked(index: Int) {
         if index == 0 {
             classroomContainerView.externalSV.contentOffset.x = 0
