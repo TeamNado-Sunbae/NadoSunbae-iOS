@@ -12,6 +12,8 @@ struct Identifiers {
     static let ClassroomSB = "ClassroomSB"
     static let WriteQusetionSB = "WriteQuestionSB"
     static let QuestionChatSB = "QuestionChatSB"
+    static let QuestionSB = "QuestionSB"
+    static let InfoSB = "InfoSB"
     static let NotificationSB = "NotificationSB"
     static let MypageSB = "MypageSB"
 }
