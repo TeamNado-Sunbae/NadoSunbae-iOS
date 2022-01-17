@@ -25,7 +25,15 @@ class NotificationMainVC: BaseVC {
     }
     
     // MARK: Properties
-    var notificationList = [NotificationModel]()
+    var notificationList = [
+        NotificationModel(senderNickName: "최숙주", notiType: .mypageQuestion, time: "1시간 전", isRead: false, title: "확인해", content: "알림읽어용~!!&^^"),
+        NotificationModel(senderNickName: "정정숙", notiType: .answerQuestion, time: "1시간 전", isRead: true, title: "확인해", content: "알림읽어용~!!&^^"),
+        NotificationModel(senderNickName: "황정숙", notiType: .notiInfo, time: "1시간 전", isRead: false, title: "확인해", content: "알림읽어용~!!&^^"),
+        NotificationModel(senderNickName: "김두숙", notiType: .writtenInfo, time: "1시간 전", isRead: false, title: "확인해", content: "알림읽어용~!!&^^"),
+        NotificationModel(senderNickName: "김나도", notiType: .notiQuestion, time: "1시간 전", isRead: true, title: "확인해", content: "알림읽어용~!!&^^"),
+        NotificationModel(senderNickName: "이선배", notiType: .answerInfo, time: "1시간 전", isRead: true, title: "확인해", content: "알림읽어용~!!&^^"),
+        NotificationModel(senderNickName: "김나도", notiType: .answerQuestion, time: "1시간 전", isRead: false, title: "확인해", content: "알림읽어용~!!&^^")
+    ]
     
     /// TableView 투명한 header, footer를 위한 empty View
     var emptyViewForTV = UIView()

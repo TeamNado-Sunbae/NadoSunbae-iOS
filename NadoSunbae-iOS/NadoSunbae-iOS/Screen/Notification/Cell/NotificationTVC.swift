@@ -41,5 +41,10 @@ class NotificationTVC: BaseTVC {
         self.backgroundColor = .clear
     }
     
+    func setData(data: NotificationModel) {
+        redCircleImgView.isHidden = !(data.isRead)
+        titleLabel.text = "\(data.notiType.rawValue)에 \(data.senderNickName)님이 \(data.notiType != .mypageQuestion ? "답글" : "1:1 질문")을 남겼습니다."
+        contentLabel.text = "\(data.content)"
+        timeLabel.text = "\(data.time)"
     }
 }
