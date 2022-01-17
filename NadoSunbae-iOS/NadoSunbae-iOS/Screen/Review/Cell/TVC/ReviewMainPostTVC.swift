@@ -46,10 +46,7 @@ class ReviewMainPostTVC: BaseTVC {
     }
     
     func setGesture() {
-        //let tapRecognizer = UIGestureRecognizer(target: self, action: #selector(tapPost(gestureRecognizer:)))
-        //tapRecognizer.delegate = self
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPost(gestureRecognizer:)))
-        //tapRecognizer.delegate = self
         
         contentView.addGestureRecognizer(tapRecognizer)
         print("tapped")
