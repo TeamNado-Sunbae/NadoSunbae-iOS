@@ -44,6 +44,10 @@ class QuestionMainVC: UIViewController {
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     private var questionList: [MypageQuestionModel] = [
         MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
+        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
         MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111)
     ]
     
@@ -172,21 +176,9 @@ extension QuestionMainVC: UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            if questionList.count == 0 {
-                return 1
-            } else {
-                if questionList.count > 5 {
-                    return 5
-                } else {
-                    return questionList.count
-                }
-            }
+            return (questionList.count == 0 ? 1 : (questionList.count > 5 ? 5 : questionList.count))
         case 2:
-            if questionList.count > 5 {
-                return 1
-            } else {
-                return 0
-            }
+            return (questionList.count > 5 ? 1 : 0)
         default:
             return 0
         }
@@ -210,11 +202,7 @@ extension QuestionMainVC: UITableViewDataSource {
                 return questionCell
             }
         case 2:
-            if questionList.count > 5 {
-                return QuestionFooterTVC()
-            } else {
-                return UITableViewCell()
-            }
+            return (questionList.count > 5 ? QuestionFooterTVC() : UITableViewCell())
         default:
             return UITableViewCell()
         }
@@ -230,17 +218,9 @@ extension QuestionMainVC: UITableViewDelegate {
         case 0:
             return 70
         case 1:
-            if questionList.count == 0 {
-                return 236
-            } else {
-                return 110
-            }
+            return (questionList.count == 0 ? 236 : 110)
         case 2:
-            if questionList.count > 5 {
-                return 40
-            } else {
-                return 0
-            }
+            return (questionList.count > 5 ? 40 : 0)
         default:
             return 0
         }
