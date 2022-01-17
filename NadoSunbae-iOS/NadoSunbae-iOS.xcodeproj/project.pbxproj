@@ -107,6 +107,7 @@
 		5CA7E412278BC39200D748E0 /* SelectMajorModalVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CA7E411278BC39200D748E0 /* SelectMajorModalVC.storyboard */; };
 		5CAB3F28278AE39D00025DA5 /* AgreeTermsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */; };
 		5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */; };
+		5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CB6502C27944415007694B1 /* GoogleService-Info.plist */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
@@ -243,6 +244,8 @@
 		5CA7E411278BC39200D748E0 /* SelectMajorModalVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectMajorModalVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F27278AE39D00025DA5 /* AgreeTermsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AgreeTermsVC.storyboard; sourceTree = "<group>"; };
 		5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeTermsVC.swift; sourceTree = "<group>"; };
+		5CB6502C27944415007694B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5CB6502E279458B5007694B1 /* NadoSunbae-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NadoSunbae-iOS.entitlements"; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
@@ -320,6 +323,7 @@
 		331364282784D3BD00E0C118 /* NadoSunbae-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				5CB6502E279458B5007694B1 /* NadoSunbae-iOS.entitlements */,
 				3313643D2785A47300E0C118 /* Global */,
 				3313643E2785A47B00E0C118 /* Network */,
 				3313643F2785A48200E0C118 /* Screen */,
@@ -373,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				331364372784D3C000E0C118 /* Info.plist */,
+				5CB6502C27944415007694B1 /* GoogleService-Info.plist */,
 				331364292784D3BD00E0C118 /* AppDelegate.swift */,
 				3313642B2784D3BD00E0C118 /* SceneDelegate.swift */,
 				331364322784D3C000E0C118 /* Assets.xcassets */,
@@ -1065,6 +1070,7 @@
 				33CF635C279464FD00E92C04 /* InfoSB.storyboard in Resources */,
 				33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */,
 				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
+				5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */,
 				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
@@ -1356,6 +1362,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2ZS26WP93H;
@@ -1385,6 +1392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2ZS26WP93H;

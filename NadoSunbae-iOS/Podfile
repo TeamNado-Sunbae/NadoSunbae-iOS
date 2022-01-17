@@ -12,4 +12,5 @@ target 'NadoSunbae-iOS' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftyJSON'
+  pod 'Firebase/Messaging'
 end
