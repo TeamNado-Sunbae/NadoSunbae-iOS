@@ -19,10 +19,13 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var majorNameLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
     
+    var postDelegate: postCellDelegate?
+    
     // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
+        setGesture()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,6 +44,25 @@ class ReviewMainPostTVC: BaseTVC {
         majorNameLabel.text = postData.majorName
         secondMajorNameLabel.text = postData.secondMajorName
     }
+    
+    func setGesture() {
+        //let tapRecognizer = UIGestureRecognizer(target: self, action: #selector(tapPost(gestureRecognizer:)))
+        //tapRecognizer.delegate = self
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapPost(gestureRecognizer:)))
+        //tapRecognizer.delegate = self
+        
+        contentView.addGestureRecognizer(tapRecognizer)
+        print("tapped")
+    }
+    
+    @objc func tapPost(gestureRecognizer: UITapGestureRecognizer) {
+        postDelegate?.tapPostCell(cell: self)
+        print("탭")
+    }
+}
+
+protocol postCellDelegate {
+    func tapPostCell(cell: ReviewMainPostTVC)
 }
 
 // MARK: - Extension Part

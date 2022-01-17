@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Review DetailVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ReviewDetailVC" id="Y6W-OH-hqX" customClass="ReviewDetailVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-EZ-U4M" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="VFc-8d-1f1"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgReviewBg" translatesAutoresizingMaskIntoConstraints="NO" id="WTK-xh-8JZ">
+                                <rect key="frame" x="0.0" y="100" width="375" height="232"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="232" id="zSi-gx-ukI"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztg-Bg-fFa">
+                                <rect key="frame" x="162.33333333333334" y="174" width="50.333333333333343" height="48.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DA4-Xx-KZ1">
+                                <rect key="frame" x="0.0" y="292" width="375" height="486"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="0IW-4t-nNF"/>
+                            <constraint firstItem="Ztg-Bg-fFa" firstAttribute="top" secondItem="d9w-EZ-U4M" secondAttribute="bottom" constant="74" id="9ym-zv-IdK"/>
+                            <constraint firstItem="WTK-xh-8JZ" firstAttribute="top" secondItem="d9w-EZ-U4M" secondAttribute="bottom" id="GYT-vf-2f8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="WTK-xh-8JZ" secondAttribute="trailing" id="HF9-qd-lbA"/>
+                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="top" secondItem="WTK-xh-8JZ" secondAttribute="bottom" constant="-40" id="LrP-zL-UqJ"/>
+                            <constraint firstItem="Ztg-Bg-fFa" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="NUe-Ol-wit"/>
+                            <constraint firstItem="d9w-EZ-U4M" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="NyP-XG-Sdj"/>
+                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="OfB-gH-tzq"/>
+                            <constraint firstItem="DA4-Xx-KZ1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Sdl-4a-If7"/>
+                            <constraint firstItem="d9w-EZ-U4M" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="U3A-dj-hVV"/>
+                            <constraint firstItem="WTK-xh-8JZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kGI-gz-vfK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d9w-EZ-U4M" secondAttribute="trailing" id="tq6-zo-spI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="AlL-q4-9qg"/>
+                    <connections>
+                        <outlet property="naviBarView" destination="d9w-EZ-U4M" id="bWG-qY-E36"/>
+                        <outlet property="titleLabel" destination="Ztg-Bg-fFa" id="XJl-Xk-oWW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="992.79999999999995" y="75.369458128078819"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="imgReviewBg" width="375" height="232"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

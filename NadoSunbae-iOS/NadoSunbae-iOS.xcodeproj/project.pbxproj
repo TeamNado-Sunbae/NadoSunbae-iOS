@@ -109,6 +109,8 @@
 		7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */; };
 		7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */; };
 		7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31E279418120093C230 /* CodeBaseCVC.swift */; };
+		7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32027947D990093C230 /* ReviewDetailSB.storyboard */; };
+		7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32227947F310093C230 /* ReviewDetailVC.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -232,6 +234,8 @@
 		7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteBgImgCVC.swift; sourceTree = "<group>"; };
 		7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewWriteBgImgCVC.xib; sourceTree = "<group>"; };
 		7754A31E279418120093C230 /* CodeBaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBaseCVC.swift; sourceTree = "<group>"; };
+		7754A32027947D990093C230 /* ReviewDetailSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewDetailSB.storyboard; sourceTree = "<group>"; };
+		7754A32227947F310093C230 /* ReviewDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailVC.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 			children = (
 				3313648D2785D76400E0C118 /* ReviewSB.storyboard */,
 				7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */,
+				7754A32027947D990093C230 /* ReviewDetailSB.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */,
 				3313648F2785D77100E0C118 /* ReviewMainVC.swift */,
 				7754A31527901FE50093C230 /* ReviewWriteVC.swift */,
+				7754A32227947F310093C230 /* ReviewDetailVC.swift */,
 				7754A317279028250093C230 /* NaviVC.swift */,
 			);
 			path = VC;
@@ -1007,6 +1013,7 @@
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */,
+				7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
 				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
 				5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */,
@@ -1149,6 +1156,7 @@
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
+				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				7754A318279028250093C230 /* NaviVC.swift in Sources */,
 			);
@@ -1293,7 +1301,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = 397WA8BG8W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
@@ -1323,7 +1331,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = 397WA8BG8W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";

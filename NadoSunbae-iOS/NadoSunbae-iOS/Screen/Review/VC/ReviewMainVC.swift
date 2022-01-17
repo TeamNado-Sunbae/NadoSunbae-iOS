@@ -221,9 +221,22 @@ extension ReviewMainVC: UITableViewDataSource {
             return reviewMainLinkTVC
         } else if indexPath.section == 2 {
             reviewMainPostTVC.setData(postData: postList[indexPath.row])
+            reviewMainPostTVC.postDelegate = self
             return reviewMainPostTVC
         } else {
             return UITableViewCell()
         }
+    }
+}
+
+extension ReviewMainVC: postCellDelegate {
+    func tapPostCell(cell: ReviewMainPostTVC) {
+        let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
+        guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+        
+        //self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
