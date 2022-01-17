@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum NaviType {
+    case push
+    case present
+}
+
 class DefaultQuestionChatVC: UIViewController {
     
     // MARK: IBOutlet
@@ -60,24 +65,19 @@ class DefaultQuestionChatVC: UIViewController {
         }
     }
     
-    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar! {
-        didSet {
-            questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
-            questionNaviBar.configureTitleLabel(title: "1:1 질문")
-            questionNaviBar.backBtn.press {
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
+    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar!
     
     // MARK: Properties
     var editIndex: [Int]?
+    var naviStyle: NaviType?
+    var questionType: QuestionType?
     let userType: Int = 3
     let textViewMaxHeight: CGFloat = 85
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNaviInitStyle()
         registerXib()
         self.tabBarController?.tabBar.isHidden = true
     }
@@ -174,7 +174,7 @@ extension DefaultQuestionChatVC {
     
     /// userType별로 TextView의 placeholder 지정하는 메서드
     private func configueTextViewPlaceholder(userType: Int) {
-       
+        
         /// TODO: userType 분기처리 서버 통신 후 수정 예정.
         /// 현재는 0: 작성자, 1: 질문받은 선배, 2: 타인
         if userType == 0 || userType == 1 {
@@ -217,6 +217,40 @@ extension DefaultQuestionChatVC {
             let lastRowIndex = self.defaultQuestionChatTV.numberOfRows(inSection: lastSectionIndex) - 1
             let pathToLastRow = NSIndexPath(row: lastRowIndex, section: lastSectionIndex)
             self.defaultQuestionChatTV.scrollToRow(at: pathToLastRow as IndexPath, at: UITableView.ScrollPosition.none, animated: animate)
+        }
+    }
+    
+    /// 전달된 데이터에 따라 동적으로 네비 스타일을 구성하는 메서드
+    private func setUpNaviInitStyle() {
+        if let naviStyle = naviStyle {
+            switch naviStyle {
+            case .push:
+                questionNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
+                questionNaviBar.backBtn.press {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                if let questionType = questionType {
+                    switch questionType {
+                    case .personal:
+                        questionNaviBar.configureTitleLabel(title: "1:1 질문")
+                    case .group:
+                        questionNaviBar.configureTitleLabel(title: "질문")
+                    }
+                }
+            case .present:
+                questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
+                questionNaviBar.dismissBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                if let questionType = questionType {
+                    switch questionType {
+                    case .personal:
+                        questionNaviBar.configureTitleLabel(title: "1:1 질문")
+                    case .group:
+                        questionNaviBar.configureTitleLabel(title: "질문")
+                    }
+                }
+            }
         }
     }
 }
@@ -358,7 +392,7 @@ extension DefaultQuestionChatVC {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     @objc
     private func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {

@@ -19,11 +19,7 @@ class WriteQuestionVC: UIViewController {
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
     private var isTextViewEmpty: Bool = true
-    private let questionWriteNaviBar = NadoSunbaeNaviBar().then {
-        $0.setUpNaviStyle(state: .dismissWithNadoBtn)
-        $0.configureTitleLabel(title: "1:1 질문 작성")
-    }
-    
+    private let questionWriteNaviBar = NadoSunbaeNaviBar()
     private let questionTitleTextField = UITextField().then {
         $0.borderStyle = .none
         $0.backgroundColor = .white
@@ -42,14 +38,15 @@ class WriteQuestionVC: UIViewController {
         $0.font = .PretendardM(size: 16.0)
     }
     
-    private let questionWriteTextView = NadoTextView().then {
-        $0.setDefaultStyle(placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
-    }
+    private let questionWriteTextView = NadoTextView()
+    
+    var questionType: QuestionType?
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
+        setUpInitStyle()
         configureUI()
         setTextViewDelegate()
         setTapBtnAction()
@@ -239,6 +236,21 @@ extension WriteQuestionVC {
         }
         questionTextViewLineCount = textView.numberOfLines()
     }
+    
+    private func setUpInitStyle() {
+        questionWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
+        
+        if let questionType = questionType {
+            switch questionType {
+            case .personal:
+                questionWriteNaviBar.configureTitleLabel(title: "1:1 질문 작성")
+                questionWriteTextView.setDefaultStyle(placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
+            case .group:
+                questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
+                questionWriteTextView.setDefaultStyle(placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
+            }
+        }
+    }
 }
 
 // MARK: - UITextViewDelegate
@@ -268,7 +280,14 @@ extension WriteQuestionVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
+            if let questionType = questionType {
+                switch questionType {
+                case .personal:
+                    textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
+                case .group:
+                    textView.text = "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!"
+                }
+            }
             textView.textColor = .gray2
             isTextViewEmpty = true
         }
