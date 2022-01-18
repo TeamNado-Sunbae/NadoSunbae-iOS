@@ -45,6 +45,8 @@ class ReviewDetailVC: UIViewController {
         configureUI()
         addShadowToNaviBar()
         showActionSheet()
+        setUpTapNaviBackBtn()
+        self.tabBarController?.tabBar.isHidden = true
     }
 }
 
@@ -125,6 +127,13 @@ extension ReviewDetailVC {
             alert.addAction(cancel)
             
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    /// 네비 back 버튼을 눌렀을 때 액션 set 메서드
+    private func setUpTapNaviBackBtn() {
+        naviBarView.backBtn.press {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
