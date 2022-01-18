@@ -22,15 +22,6 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-    }
-    
-    // MARK: Custom Methods
-    
-    /// 리스트 데이터 세팅 함수
-    func setData(postData: ReviewEssentialData) {
-        bgImgView.image = postData.makeImg()
-        contentLabel.text = postData.content
     }
 }
 
@@ -38,6 +29,15 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
 extension ReviewDetailPostWithImgTVC {
     private func configureUI() {
         postContentView.makeRounded(cornerRadius: 40.adjusted)
-    }
+    }  
+}
 
+// MARK: - Custom Methods
+extension ReviewDetailPostWithImgTVC {
+    
+    /// 리스트 데이터 세팅 함수
+    func setData(postData: ReviewEssentialData) {
+        bgImgView.image = postData.makeImg()
+        contentLabel.text = postData.content
+    }
 }

@@ -69,35 +69,6 @@ class ReviewWriteVC: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-    // MARK: Custom Methods
-    private func registerCVC() {
-        ReviewWriteBgImgCVC.register(target: bgImgCV)
-    }
-    
-    private func setUpCV() {
-        bgImgCV.dataSource = self
-        bgImgCV.delegate = self
-    }
-    
-    /// TextView delegate 설정
-    private func setTextViewDelegate() {
-        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach { textView in
-            textView?.delegate = self
-        }
-    }
-    
-    private func initBgImgList() {
-        bgImgList.append(contentsOf: [
-            ReviewWriteBgImgData(bgImgName: "property1Mint"),
-            ReviewWriteBgImgData(bgImgName: "propertyBlack"),
-            ReviewWriteBgImgData(bgImgName: "property1Skyblue"),
-            ReviewWriteBgImgData(bgImgName: "property1Pink"),
-            ReviewWriteBgImgData(bgImgName: "property1Navy"),
-            ReviewWriteBgImgData(bgImgName: "property1Orange"),
-            ReviewWriteBgImgData(bgImgName: "property1Purple")
-        ])
-    }
-    
     // TODO: 회원가입 시 본전공만 존재하는 유저인 경우 버튼 비활성화 처리 예정
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
         let alert = UIAlertController(title: "후기 작성 학과", message: nil, preferredStyle: .actionSheet)
@@ -133,6 +104,37 @@ extension ReviewWriteVC {
         majorNameView.makeRounded(cornerRadius: 4.adjusted)
         majorNameView.layer.borderColor = UIColor.gray0.cgColor
         majorNameView.layer.borderWidth = 1
+    }
+}
+
+// MARK: - Custom Methods
+extension ReviewWriteVC {
+    private func registerCVC() {
+        ReviewWriteBgImgCVC.register(target: bgImgCV)
+    }
+    
+    private func setUpCV() {
+        bgImgCV.dataSource = self
+        bgImgCV.delegate = self
+    }
+    
+    /// TextView delegate 설정
+    private func setTextViewDelegate() {
+        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach { textView in
+            textView?.delegate = self
+        }
+    }
+    
+    private func initBgImgList() {
+        bgImgList.append(contentsOf: [
+            ReviewWriteBgImgData(bgImgName: "property1Mint"),
+            ReviewWriteBgImgData(bgImgName: "propertyBlack"),
+            ReviewWriteBgImgData(bgImgName: "property1Skyblue"),
+            ReviewWriteBgImgData(bgImgName: "property1Pink"),
+            ReviewWriteBgImgData(bgImgName: "property1Navy"),
+            ReviewWriteBgImgData(bgImgName: "property1Orange"),
+            ReviewWriteBgImgData(bgImgName: "property1Purple")
+        ])
     }
 }
 
