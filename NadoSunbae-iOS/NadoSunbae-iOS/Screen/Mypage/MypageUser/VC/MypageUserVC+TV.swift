@@ -27,8 +27,13 @@ extension MypageUserVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: 나중에 1:1 뷰랑 연결
-        let vc = UIViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
+        guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+        
+        // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
+        groupChatVC.questionType = .personal
+        groupChatVC.naviStyle = .push
+        
+        self.navigationController?.pushViewController(groupChatVC, animated: true)
     }
 }
