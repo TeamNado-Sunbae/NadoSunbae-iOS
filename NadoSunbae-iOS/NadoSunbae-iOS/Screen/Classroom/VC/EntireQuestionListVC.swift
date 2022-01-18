@@ -46,6 +46,7 @@ extension EntireQuestionListVC {
     
     /// UI 구성 메서드
     func configureUI() {
+        self.view.backgroundColor = .white
         self.view.addSubviews([entireQuestionNaviBar, entireQuestionListTV, questionFloatingBtn])
         
         entireQuestionNaviBar.snp.makeConstraints {
@@ -114,6 +115,7 @@ extension EntireQuestionListVC {
         present(alert, animated: true, completion: nil)
     }
     
+    /// 질문작성 floatingBtn tap 메서드
     private func setUpTapFloatingBtn() {
         questionFloatingBtn.press {
             // TODO: 후기작성 분기처리 후 질문작성뷰랑 연결
