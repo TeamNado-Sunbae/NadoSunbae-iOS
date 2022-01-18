@@ -103,5 +103,4 @@ extension HalfModalVC: UITableViewDataSource {
         majorChooseBtn.isActivated = true
         majorChooseBtn.titleLabel?.textColor = UIColor.mainDefault
     }
-    
 }

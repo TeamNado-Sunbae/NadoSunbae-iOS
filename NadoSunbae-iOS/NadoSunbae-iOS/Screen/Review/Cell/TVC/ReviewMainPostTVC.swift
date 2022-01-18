@@ -115,8 +115,6 @@ extension ReviewMainPostTVC: UICollectionViewDataSource {
         
         cell.setData(tagData: tagImgList[indexPath.row])
         return cell
-    }
-    
-    
+    }   
 }
 
