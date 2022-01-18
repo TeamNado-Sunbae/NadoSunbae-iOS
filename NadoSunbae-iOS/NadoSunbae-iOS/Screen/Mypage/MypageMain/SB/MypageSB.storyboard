@@ -865,7 +865,7 @@
         <image name="btnArray" width="68" height="24"/>
         <image name="btnDiamond" width="32" height="32"/>
         <image name="btnEditProfile" width="72" height="24"/>
-        <image name="btnFloating_x" width="113" height="114"/>
+        <image name="btnFloating_x" width="64" height="64"/>
         <image name="btnMoreVert" width="24" height="24"/>
         <image name="btnSetting" width="44" height="44"/>
         <image name="btn_arrow" width="48" height="48"/>
