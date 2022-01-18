@@ -40,6 +40,7 @@ class MypageMainVC: UIViewController {
         
         configureUI()
         setUpTV()
+        registerCell()
     }
     
     // MARK: @IBAction
@@ -106,6 +107,12 @@ extension MypageMainVC {
 
 // MARK: - Custom Methods
 extension MypageMainVC {
+    
+    /// 셀 등록 메서드
+    private func registerCell() {
+        questionTV.register(MypageQuestionTVC.self, forCellReuseIdentifier: MypageQuestionTVC.className)
+    }
+    
     private func setUpTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
