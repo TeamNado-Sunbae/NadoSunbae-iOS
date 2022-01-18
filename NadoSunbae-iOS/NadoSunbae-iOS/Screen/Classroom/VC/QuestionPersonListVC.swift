@@ -118,7 +118,7 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
         case 1:
             questionPeopleCell.offSetData(model: offQuestionUserList[indexPath.row])
             return questionPeopleCell
-        default: assert(false)
+        default: return UICollectionViewCell()
         }
     }
     
@@ -137,7 +137,7 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
             default: headerView.headerTitleLabel.text = "질문 가능해요"
                 return headerView
             }
-        default: assert(false)
+        default: return UICollectionViewCell()
         }
     }
 }
