@@ -11,7 +11,14 @@ class MypageQuestionTVC: BaseTVC {
     
     // MARK: @IBOutlet
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel! {
+        didSet {
+            contentLabel.sizeToFit()
+            contentLabel.lineBreakStrategy = .hangulWordPriority
+            contentLabel.lineBreakMode = .byTruncatingTail
+            contentLabel.numberOfLines = 2
+        }
+    }
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!

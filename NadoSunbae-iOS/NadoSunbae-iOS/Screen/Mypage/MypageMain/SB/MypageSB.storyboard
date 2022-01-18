@@ -325,25 +325,34 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxK-TS-idd">
-                                                                    <rect key="frame" x="15.999999999999996" y="73" width="36.666666666666657" height="17"/>
+                                                                    <rect key="frame" x="15.999999999999996" y="72" width="36.666666666666657" height="18"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="18" id="Iup-Xb-qqS"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
                                                                     <color key="textColor" name="gray4"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 5:42" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TU-aO-NXe">
-                                                                    <rect key="frame" x="60.666666666666657" y="74.666666666666671" width="48" height="14"/>
+                                                                    <rect key="frame" x="60.666666666666657" y="73.666666666666671" width="48" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="15" id="9Kg-B8-0OL"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                                     <color key="textColor" name="gray2"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="질문 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMi-zh-ecw">
-                                                                    <rect key="frame" x="16" y="11" width="286" height="17"/>
+                                                                    <rect key="frame" x="16" y="11" width="286" height="18"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="18" id="Ufl-iM-isy"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
                                                                     <color key="textColor" name="nadoBlack"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bg-kI-4jR">
-                                                                    <rect key="frame" x="16" y="32" width="286" height="17"/>
+                                                                    <rect key="frame" x="16" y="33" width="286" height="28"/>
                                                                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                                                     <color key="textColor" name="gray3"/>
                                                                     <nil key="highlightedColor"/>
@@ -386,6 +395,7 @@
                                                                 <constraint firstItem="3bg-kI-4jR" firstAttribute="trailing" secondItem="eMi-zh-ecw" secondAttribute="trailing" id="UWy-Dv-iof"/>
                                                                 <constraint firstItem="wud-Vz-L8k" firstAttribute="centerY" secondItem="cc7-Bp-gKB" secondAttribute="centerY" id="Whu-I9-Lqg"/>
                                                                 <constraint firstItem="bxK-TS-idd" firstAttribute="bottom" secondItem="7hg-Ac-nUM" secondAttribute="bottomMargin" id="YGZ-eq-x6X"/>
+                                                                <constraint firstItem="cc7-Bp-gKB" firstAttribute="top" secondItem="3bg-kI-4jR" secondAttribute="bottom" constant="8" id="cbd-rs-XPX"/>
                                                                 <constraint firstItem="eMi-zh-ecw" firstAttribute="leading" secondItem="7hg-Ac-nUM" secondAttribute="leadingMargin" id="e6c-8y-Ede"/>
                                                                 <constraint firstItem="cc7-Bp-gKB" firstAttribute="leading" secondItem="9e0-eQ-Xc4" secondAttribute="trailing" constant="16" id="e6v-vj-fxZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="wud-Vz-L8k" secondAttribute="trailing" constant="8" id="fh0-28-L86"/>
@@ -447,10 +457,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Zgk-i2-YWI"/>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-fq-33Y">
-                                <rect key="frame" x="24" y="258" width="326" height="496"/>
+                                <rect key="frame" x="24" y="366.66666666666674" width="326" height="387.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 1:1 질문이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-aJ-nVo">
-                                        <rect key="frame" x="87.666666666666686" y="239.66666666666669" width="151" height="17"/>
+                                        <rect key="frame" x="87.666666666666686" y="185.33333333333331" width="151" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
