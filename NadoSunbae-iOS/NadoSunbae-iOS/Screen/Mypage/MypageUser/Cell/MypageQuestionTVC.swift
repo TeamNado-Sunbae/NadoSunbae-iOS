@@ -6,40 +6,30 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
-class MypageQuestionTVC: BaseTVC {
+class MypageQuestionTVC: BaseQuestionTVC {
     
-    // MARK: @IBOutlet
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel! {
-        didSet {
-            contentLabel.sizeToFit()
-            contentLabel.lineBreakStrategy = .hangulWordPriority
-            contentLabel.lineBreakMode = .byTruncatingTail
-            contentLabel.numberOfLines = 2
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
+    }
+    
+    override func configureUI() {
+        super.configureUI()
+        
+        /// UI에 문제가 됐던 프로퍼티들의 Constraints를 업데이트.....
+        questionTitleLabel.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(12)
         }
-    }
-    @IBOutlet weak var nickNameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var commentCountLabel: UILabel!
-    @IBOutlet weak var likeCountLabel: UILabel!
-    
-    // MARK: Life Cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    // MARK: Custom Methods
-    func setData(data: MypageQuestionModel) {
-        titleLabel.text = data.title
-        contentLabel.text = data.content
-        nickNameLabel.text = data.nickName
-        timeLabel.text = data.writeTime.serverTimeToString(forUse: .forDefault)
-        commentCountLabel.text = "\(data.commentCount)"
-        likeCountLabel.text = "\(data.likeCount)"
+        
+        questionContentLabel.snp.updateConstraints {
+            $0.top.equalTo(questionTitleLabel.snp.bottom).offset(4)
+        }
+        
+        nicknameLabel.snp.updateConstraints {
+            $0.bottom.equalToSuperview().offset(-18)
+        }
     }
 }
