@@ -22,16 +22,6 @@ class ReviewDetailPostTVC: BaseTVC {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-    }
-
-    // MARK: Custom Methods
-    
-    /// 리스트 데이터 세팅 함수
-    func setData(postData: ReviewDetailData) {
-        iconImgView.image = postData.makeImg()
-        titleLabel.text = postData.title
-        contentLabel.text = postData.content
     }
 }
 
@@ -46,5 +36,16 @@ extension ReviewDetailPostTVC {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 12, left: 23, bottom: 12, right: 24))
+    }
+}
+
+// MARK: - Custom Methods
+extension ReviewDetailPostTVC {
+    
+    /// 리스트 데이터 세팅 함수
+    func setData(postData: ReviewDetailData) {
+        iconImgView.image = postData.makeImg()
+        titleLabel.text = postData.title
+        contentLabel.text = postData.content
     }
 }

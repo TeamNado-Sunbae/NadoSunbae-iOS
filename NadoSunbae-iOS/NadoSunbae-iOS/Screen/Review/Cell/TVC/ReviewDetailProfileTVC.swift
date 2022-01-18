@@ -25,18 +25,6 @@ class ReviewDetailProfileTVC: BaseTVC {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    // MARK: Custom Methods
-    
-    /// 리스트 데이터 세팅 함수
-    func setData(profileData: ProfileData) {
-        profileImgView.image = profileData.makeImg()
-        nickNameLabel.text = profileData.nickName
-        majorLabel.text = profileData.majorName
-        secondMajorLabel.text = profileData.secondMajorName
-        messageLabel.text = profileData.message
-    }
-    
 }
 
 // MARK: - UI
@@ -49,5 +37,18 @@ extension ReviewDetailProfileTVC {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 12, left: 16, bottom: 107, right: 16))
+    }
+}
+
+// MARK: - Custom Methods
+extension ReviewDetailProfileTVC {
+    
+    /// 리스트 데이터 세팅 함수
+    func setData(profileData: ProfileData) {
+        profileImgView.image = profileData.makeImg()
+        nickNameLabel.text = profileData.nickName
+        majorLabel.text = profileData.majorName
+        secondMajorLabel.text = profileData.secondMajorName
+        messageLabel.text = profileData.message
     }
 }

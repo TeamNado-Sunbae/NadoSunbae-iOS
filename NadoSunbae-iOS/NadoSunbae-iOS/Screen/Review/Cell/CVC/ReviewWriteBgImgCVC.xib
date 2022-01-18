@@ -19,19 +19,34 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="41J-Py-GXf">
                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwu-jt-P7K">
+                        <rect key="frame" x="25" y="25" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="FYJ-O2-EAn"/>
+                            <constraint firstAttribute="width" constant="20" id="P40-vK-ijy"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="iconCheckImg"/>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="41J-Py-GXf" secondAttribute="trailing" id="5ba-Pj-LGM"/>
+                <constraint firstItem="Hwu-jt-P7K" firstAttribute="centerX" secondItem="41J-Py-GXf" secondAttribute="centerX" id="Ddt-hB-mP1"/>
                 <constraint firstAttribute="bottom" secondItem="41J-Py-GXf" secondAttribute="bottom" id="MWQ-uF-8Rg"/>
                 <constraint firstItem="41J-Py-GXf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ULe-S4-Bfu"/>
+                <constraint firstItem="Hwu-jt-P7K" firstAttribute="centerY" secondItem="41J-Py-GXf" secondAttribute="centerY" id="jad-86-zKS"/>
                 <constraint firstItem="41J-Py-GXf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nbW-Xr-vhT"/>
             </constraints>
             <connections>
                 <outlet property="bgImgView" destination="41J-Py-GXf" id="KNz-qW-4M5"/>
+                <outlet property="checkBtn" destination="Hwu-jt-P7K" id="zkg-Qu-UQj"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="107.8125"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="iconCheckImg" width="20" height="20"/>
+    </resources>
 </document>
