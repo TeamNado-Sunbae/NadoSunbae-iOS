@@ -365,13 +365,13 @@
                                     <constraint firstItem="ywa-c9-cyk" firstAttribute="centerY" secondItem="x0n-Mc-DWP" secondAttribute="centerY" id="ajw-Y6-FHD"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yax-Dk-hiT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yax-Dk-hiT">
                                 <rect key="frame" x="287" y="826" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yax-Dk-hiT" secondAttribute="height" multiplier="1:1" id="8St-WY-cIH"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="btnFloating_x"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="btn_floating_plus"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -398,13 +398,17 @@
                     </view>
                     <size key="freeformSize" width="375" height="948"/>
                     <connections>
+                        <outlet property="firstMajorLabel" destination="k4h-rD-4bX" id="bcy-3M-F37"/>
                         <outlet property="floatingBtn" destination="Yax-Dk-hiT" id="diD-0g-tev"/>
                         <outlet property="majorReviewView" destination="ifh-6A-2YM" id="0s0-Nr-K5Z"/>
                         <outlet property="navView" destination="fn2-Vh-Q2Y" id="XfA-VX-IW5"/>
+                        <outlet property="nickNameLabel" destination="Mi7-WZ-SNo" id="fyx-UP-xKK"/>
                         <outlet property="profileView" destination="yRX-c9-EEe" id="JzK-kz-Kt2"/>
                         <outlet property="questionEmptyView" destination="x0n-Mc-DWP" id="p8D-Tw-fD8"/>
                         <outlet property="questionTV" destination="kXs-pO-uLu" id="c9i-Dw-cxu"/>
                         <outlet property="questionTVHeight" destination="9Eh-OO-Be7" id="cHm-PC-Cy0"/>
+                        <outlet property="responseRateLabel" destination="E7l-XF-nO7" id="wzk-e0-3jA"/>
+                        <outlet property="secondMajorLabel" destination="QdH-XR-kIi" id="PY0-W5-go8"/>
                         <outlet property="userStateView" destination="1KN-MV-zEV" id="nlC-vs-Xrm"/>
                         <outlet property="userStateViewHeight" destination="SE4-AW-N5H" id="bH1-ac-X8L"/>
                     </connections>
@@ -417,9 +421,9 @@
     <resources>
         <image name="btnArray" width="68" height="24"/>
         <image name="btnDiamond" width="32" height="32"/>
-        <image name="btnFloating_x" width="113" height="114"/>
         <image name="btnMoreVert" width="24" height="24"/>
         <image name="btn_arrow" width="48" height="48"/>
+        <image name="btn_floating_plus" width="64" height="64"/>
         <image name="icComment" width="32" height="32"/>
         <image name="imgProfile" width="72" height="72"/>
         <namedColor name="gray1">
