@@ -83,6 +83,7 @@ extension MypageUserVC {
         questionTV.makeRounded(cornerRadius: 8.adjusted)
         questionTV.removeSeparatorsOfEmptyCellsAndLastCell()
         questionEmptyView.makeRounded(cornerRadius: 8.adjusted)
+        questionTV.separatorColor = .separatorGray
         
         nickNameLabel.text = userInfo.nickname
         firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"

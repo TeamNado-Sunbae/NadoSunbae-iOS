@@ -308,12 +308,14 @@
                                                     <action selector="tapSortBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iVY-Zy-7eF"/>
                                                 </connections>
                                             </button>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yck-ZF-BPb">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yck-ZF-BPb">
                                                 <rect key="frame" x="24" y="325.66666666666674" width="326" height="500"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="500" id="hG4-BW-Xr8"/>
                                                 </constraints>
+                                                <color key="separatorColor" name="separatorGray"/>
+                                                <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MypageQuestionTVC" rowHeight="101" id="rdB-9N-Y7g" customClass="MypageQuestionTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="44.666666030883789" width="326" height="101"/>
@@ -392,7 +394,6 @@
                                                                 <constraint firstItem="9e0-eQ-Xc4" firstAttribute="centerY" secondItem="ai3-QO-q6a" secondAttribute="centerY" id="zcz-3u-jAQ"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
-                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <connections>
                                                             <outlet property="commentCountLabel" destination="9e0-eQ-Xc4" id="nK7-6K-9Pt"/>
                                                             <outlet property="contentLabel" destination="3bg-kI-4jR" id="vwg-TA-i8N"/>
@@ -446,10 +447,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Zgk-i2-YWI"/>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-fq-33Y">
-                                <rect key="frame" x="24" y="429.66666666666674" width="326" height="324.33333333333326"/>
+                                <rect key="frame" x="24" y="258" width="326" height="496"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 1:1 질문이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-aJ-nVo">
-                                        <rect key="frame" x="87.666666666666686" y="153.66666666666669" width="151" height="17"/>
+                                        <rect key="frame" x="87.666666666666686" y="239.66666666666669" width="151" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
