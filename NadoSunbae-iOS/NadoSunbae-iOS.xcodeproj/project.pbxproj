@@ -55,6 +55,9 @@
 		331364C12786217400E0C118 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C02786217400E0C118 /* ReviewService.swift */; };
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
+		331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */; };
+		331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5381279629620052B309 /* BaseQuestionTVC.swift */; };
+		331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5383279629D30052B309 /* EntireQuestionListTVC.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385636F278DC74D003C60A6 /* BaseTVC.swift */; };
 		338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */; };
@@ -194,6 +197,9 @@
 		331364C02786217400E0C118 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
+		331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListVC.swift; sourceTree = "<group>"; };
+		331C5381279629620052B309 /* BaseQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionTVC.swift; sourceTree = "<group>"; };
+		331C5383279629D30052B309 /* EntireQuestionListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListTVC.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		3385636F278DC74D003C60A6 /* BaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVC.swift; sourceTree = "<group>"; };
 		338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCContentUpdate.swift; sourceTree = "<group>"; };
@@ -596,6 +602,7 @@
 				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
 				33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */,
 				33CF636727955D9500E92C04 /* ClassroomNC.swift */,
+				331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -693,6 +700,8 @@
 				33CF635F2794A03300E92C04 /* QuestionHeaderTVC.swift */,
 				33CF63612794A04700E92C04 /* QuestionFooterTVC.swift */,
 				33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */,
+				331C5381279629620052B309 /* BaseQuestionTVC.swift */,
+				331C5383279629D30052B309 /* EntireQuestionListTVC.swift */,
 			);
 			path = QuestionMain;
 			sourceTree = "<group>";
@@ -1169,6 +1178,7 @@
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
+				331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */,
 				33BAFD07278C2D6100BFF6BE /* DefaultQuestionDataModel.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
 				777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */,
@@ -1177,6 +1187,7 @@
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
+				331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */,
 				5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */,
 				5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
@@ -1197,6 +1208,7 @@
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
+				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
