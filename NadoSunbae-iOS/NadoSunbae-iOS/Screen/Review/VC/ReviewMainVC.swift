@@ -8,7 +8,7 @@
 import UIKit
 
 class ReviewMainVC: UIViewController {
-
+    
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: UIView!
     @IBOutlet weak var reviewTV: UITableView!
@@ -28,7 +28,35 @@ class ReviewMainVC: UIViewController {
         addShadowToNaviBar()
     }
     
-    // MARK: Custom Methods
+    // MARK: IBAction
+    @IBAction func tapNaviBarBtn(_ sender: Any) {
+        showHalfModalView()
+    }
+    
+    @IBAction func tapFloatingBtn(_ sender: Any) {
+        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
+        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UI
+extension ReviewMainVC {
+    
+    /// NaviBar dropShadow 설정 함수
+    private func addShadowToNaviBar() {
+        naviBarView.layer.shadowColor = UIColor(red: 0.898, green: 0.898, blue: 0.91, alpha: 0.16).cgColor
+        naviBarView.layer.shadowOffset = CGSize(width: 0, height: 9)
+        naviBarView.layer.shadowRadius = 18
+        naviBarView.layer.shadowOpacity = 1
+        naviBarView.layer.masksToBounds = false
+    }
+}
+
+// MARK: - Custom Methods
+extension ReviewMainVC {
     
     /// cell 등록 함수
     private func registerTVC() {
@@ -72,44 +100,6 @@ class ReviewMainVC: UIViewController {
         ])
     }
     
-    // MARK: @objc Function Part
-    @objc func showHalfModalView() {
-        let slideVC = HalfModalVC()
-        slideVC.modalPresentationStyle = .custom
-        slideVC.transitioningDelegate = self
-        self.present(slideVC, animated: true, completion: nil)
-    }
-    
-    // MARK: IBAction
-    @IBAction func tapNaviBarBtn(_ sender: Any) {
-        showHalfModalView()
-    }
-    
-    @IBAction func tapFloatingBtn(_ sender: Any) {
-        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        present(nextVC, animated: true, completion: nil)
-    }
-}
-
-// MARK: - UI
-extension ReviewMainVC {
-    
-    /// NaviBar dropShadow 설정 함수
-    private func addShadowToNaviBar() {
-        naviBarView.layer.shadowColor = UIColor(red: 0.898, green: 0.898, blue: 0.91, alpha: 0.16).cgColor
-        naviBarView.layer.shadowOffset = CGSize(width: 0, height: 9)
-        naviBarView.layer.shadowRadius = 18
-        naviBarView.layer.shadowOpacity = 1
-        naviBarView.layer.masksToBounds = false
-    }
-}
-
-// MARK: - Custom Methods
-extension ReviewMainVC {
-    
     /// 액션시트
     func showActionSheet() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -126,12 +116,24 @@ extension ReviewMainVC {
             self.reviewTV.reloadSections([2], with: .fade)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-
+        
         alert.addAction(new)
         alert.addAction(like)
         alert.addAction(cancel)
-
+        
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - @objc Function Part
+extension ReviewMainVC {
+    
+    /// 바텀시트 호출
+    @objc func showHalfModalView() {
+        let slideVC = HalfModalVC()
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
     }
 }
 
@@ -158,21 +160,6 @@ extension ReviewMainVC: UITableViewDelegate {
             return 52.adjustedH
         } else if indexPath.section == 2 {
             return 156
-        } else {
-            return 0
-        }
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension ReviewMainVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else if section == 1 {
-            return 1
-        } else if section == 2 {
-            return postList.count
         } else {
             return 0
         }
@@ -208,12 +195,41 @@ extension ReviewMainVC: UITableViewDataSource {
         }
     }
     
+    /// cell 선택 시 화면 전환
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("index: ", indexPath.row)
+        let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
+        guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+        
+        // TODO: 서버통신 후 데이터모델[indexPath.row].postId로 코드 변경
+        nextVC.postId = indexPath.row
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+        
+        // self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension ReviewMainVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 1
+        } else if section == 2 {
+            return postList.count
+        } else {
+            return 0
+        }
+    }
+    
     /// row에 들어갈 cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let reviewMainImgTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC,
               let reviewMainLinkTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainLinkTVC.className) as? ReviewMainLinkTVC,
               let reviewMainPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC else { return UITableViewCell() }
-
+        
         if indexPath.section == 0 {
             reviewMainImgTVC.setData(ImgData: imgList[indexPath.row])
             return reviewMainImgTVC

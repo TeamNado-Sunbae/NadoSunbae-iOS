@@ -11,6 +11,11 @@ class ReviewWriteBgImgCVC: BaseCVC {
 
     // MARK: UI Component
     @IBOutlet weak var bgImgView: UIImageView!
+    @IBOutlet weak var checkBtn: UIButton! {
+        didSet {
+            checkBtn.isHidden = true
+        }
+    }
     
     // MARK: Life Cycle
     override func awakeFromNib() {
@@ -28,5 +33,15 @@ class ReviewWriteBgImgCVC: BaseCVC {
 extension ReviewWriteBgImgCVC {
     func configureUI() {
         bgImgView.makeRounded(cornerRadius: 8.adjusted)
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                checkBtn.isHidden = false
+            } else {
+                checkBtn.isHidden = true
+            }
+        }
     }
 }

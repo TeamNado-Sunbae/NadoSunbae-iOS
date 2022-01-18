@@ -54,3 +54,36 @@ struct ReviewWriteBgImgData {
     }
 }
 
+struct ReviewEssentialData {
+    let bgImg: String
+    let content: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: bgImg)
+    }
+}
+
+/// 후기 상세 뷰 게시글 리스트 위한 모델
+struct ReviewDetailData {
+    let iconImgName: String
+    let title: String
+    let content: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: iconImgName)
+    }
+}
+
+/// 프로필 정보를 위한 모델
+struct ProfileData {
+    let profileImg: String
+    let nickName: String
+    let majorName: String
+    let secondMajorName: String
+    let message: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: profileImg)
+    }
+}
+

@@ -20,8 +20,11 @@ class ReviewMainImgTVC: BaseTVC {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+}
+
+// MARK: - Custom Methods
+extension ReviewMainImgTVC {
     
-    // MARK: Private Methods
     /// 이미지 세팅 함수
     func setData(ImgData: ReviewImgData) {
         reviewMainImgView.image = ImgData.makeImg()

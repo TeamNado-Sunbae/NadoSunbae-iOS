@@ -28,22 +28,9 @@ class ReviewMainPostTVC: BaseTVC {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    // MARK: Private Methods
-    /// 리스트 데이터 세팅 함수
-    func setData(postData: ReviewPostData) {
-        dateLabel.text = postData.date
-        titleLabel.text = postData.title
-        diamondCountLabel.text = "\(postData.diamondCount)"
-        firstTagImgView.image = postData.makeFirstImg()
-        secondTagImgView.image = postData.makeSecondImg()
-        thirdTagImgView.image = postData.makeThirdImg()
-        majorNameLabel.text = postData.majorName
-        secondMajorNameLabel.text = postData.secondMajorName
-    }
 }
 
-// MARK: - Extension Part
+// MARK: - UI
 extension ReviewMainPostTVC {
     private func configureUI() {
         contentView.layer.cornerRadius = 8
@@ -58,3 +45,20 @@ extension ReviewMainPostTVC {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16))
     }
 }
+
+// MARK: - Custom Methods
+extension ReviewMainPostTVC {
+    
+    /// 리스트 데이터 세팅 함수
+    func setData(postData: ReviewPostData) {
+        dateLabel.text = postData.date
+        titleLabel.text = postData.title
+        diamondCountLabel.text = "\(postData.diamondCount)"
+        firstTagImgView.image = postData.makeFirstImg()
+        secondTagImgView.image = postData.makeSecondImg()
+        thirdTagImgView.image = postData.makeThirdImg()
+        majorNameLabel.text = postData.majorName
+        secondMajorNameLabel.text = postData.secondMajorName
+    }
+}
+
