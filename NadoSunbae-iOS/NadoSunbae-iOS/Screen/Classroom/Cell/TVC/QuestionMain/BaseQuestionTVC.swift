@@ -10,20 +10,20 @@ import UIKit
 class BaseQuestionTVC: BaseTVC {
     
     // MARK: Properties
-    private let questionTitleLabel = UILabel().then {
+    let questionTitleLabel = UILabel().then {
         $0.textColor = .nadoBlack
         $0.font = .PretendardSB(size: 14.0)
         $0.sizeToFit()
     }
     
-    private let questionContentLabel = UILabel().then {
+    let questionContentLabel = UILabel().then {
         $0.textColor = .gray3
         $0.font = .PretendardR(size: 14.0)
         $0.numberOfLines = 0
         $0.sizeToFit()
     }
     
-    private let nicknameLabel = UILabel().then {
+    let nicknameLabel = UILabel().then {
         $0.textColor = .gray4
         $0.font = .PretendardSB(size: 14.0)
         $0.sizeToFit()
@@ -77,7 +77,9 @@ class BaseQuestionTVC: BaseTVC {
 
 // MARK: - UI
 extension BaseQuestionTVC {
-    private func configureUI() {
+    
+    @objc
+    func configureUI() {
         contentView.addSubviews([questionTitleLabel, questionContentLabel, nicknameLabel, questionTimeLabel, commentImgView, commentCountLabel, likeImgView, likeCountLabel])
         
         questionTitleLabel.snp.makeConstraints {
@@ -133,7 +135,7 @@ extension BaseQuestionTVC {
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.nickName
-        questionTimeLabel.text = data.writeTime
+        questionTimeLabel.text = data.writeTime.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
         likeCountLabel.text = "\(data.likeCount)"
     }

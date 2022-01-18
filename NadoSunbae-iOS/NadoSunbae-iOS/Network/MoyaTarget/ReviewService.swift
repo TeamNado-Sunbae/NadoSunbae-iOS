@@ -9,7 +9,6 @@ import Foundation
 import Moya
 
 enum ReviewService {
-    
 }
 
 extension ReviewService: TargetType {
