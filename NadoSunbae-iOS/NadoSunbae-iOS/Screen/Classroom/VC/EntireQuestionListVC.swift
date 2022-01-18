@@ -38,6 +38,7 @@ class EntireQuestionListVC: UIViewController {
         registerCell()
         registerXib()
         setUpTapFloatingBtn()
+        setUpTapNaviBackBtn()
     }
 }
 
@@ -121,11 +122,18 @@ extension EntireQuestionListVC {
             // TODO: 후기작성 분기처리 후 질문작성뷰랑 연결
             let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
             guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-             
+            
             writeQuestionVC.questionType = .group
             writeQuestionVC.modalPresentationStyle = .fullScreen
             
             self.present(writeQuestionVC, animated: true, completion: nil)
+        }
+    }
+    
+    /// 네비 back 버튼을 눌렀을 때 액션 set 메서드
+    private func setUpTapNaviBackBtn() {
+        entireQuestionNaviBar.backBtn.press {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
@@ -184,5 +192,17 @@ extension EntireQuestionListVC: UITableViewDelegate {
     /// heightForHeaderInSection
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
+    }
+    
+    /// didSelectRowAt
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
+        guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+        
+        // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
+        groupChatVC.questionType = .group
+        groupChatVC.naviStyle = .push
+        
+        self.navigationController?.pushViewController(groupChatVC, animated: true)
     }
 }
