@@ -27,6 +27,12 @@ class MypageMainVC: UIViewController {
     ]
     
     // MARK: LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getUserInfo()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,5 +103,27 @@ extension MypageMainVC {
     private func setUpTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
+    }
+}
+
+// MARK: - Network
+extension MypageMainVC {
+    func getUserInfo() {
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrdTJAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1MiIsImZpcmViYXNlSWQiOiJOT1ZDYktEUUlEY3IybmJsam9ZazhSSnJ0NTUyIiwiaWF0IjoxNjQyMzI5OTMwLCJleHAiOjE2NDQ5MjE5MzAsImlzcyI6Im5hZG9TdW5iYWUifQ.tiblhyT4Y9-DDH1KTwIm37wevbChJ-R8-ECSb3QpZUI"
+        
+        MypageAPI.shared.getUserInfo(userID: 1, accessToken: accessToken, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageUserInfoModel {
+                    print("호애애애애ㅐㅇㅇ", data)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            default:
+                print("걍모든나머지에러")
+            }
+        })
     }
 }
