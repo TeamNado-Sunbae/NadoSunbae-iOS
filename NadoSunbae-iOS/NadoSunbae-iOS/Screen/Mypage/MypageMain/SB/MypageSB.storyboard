@@ -482,13 +482,16 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <size key="freeformSize" width="374" height="812"/>
                     <connections>
+                        <outlet property="firstMajorLabel" destination="9cd-WG-iJ5" id="LG3-gk-KJj"/>
                         <outlet property="likeListView" destination="xRv-Yq-z9u" id="YCz-Dy-OOG"/>
                         <outlet property="navTitleBottomSpace" destination="i7D-yr-MUG" id="idH-qc-Jua"/>
                         <outlet property="navView" destination="frH-g3-cFN" id="ZfX-WY-GyF"/>
+                        <outlet property="nickNameLabel" destination="DkH-uk-mr1" id="m5B-5q-bse"/>
                         <outlet property="profileView" destination="Qll-4v-JzH" id="Kb7-qO-fav"/>
                         <outlet property="questionEmptyView" destination="uF1-fq-33Y" id="OHN-bF-clq"/>
                         <outlet property="questionTV" destination="yck-ZF-BPb" id="ZN2-jP-vJ0"/>
                         <outlet property="questionTVHeight" destination="hG4-BW-Xr8" id="RAg-oM-4mg"/>
+                        <outlet property="secondMajorLabel" destination="Kss-ZR-4kQ" id="t8J-Aa-YRp"/>
                         <outlet property="userStateViewHeight" destination="Vaa-CA-BSH" id="ts6-aW-zdi"/>
                     </connections>
                 </viewController>
