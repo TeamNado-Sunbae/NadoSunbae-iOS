@@ -31,7 +31,7 @@ class MypageQuestionTVC: BaseTVC {
         titleLabel.text = data.title
         contentLabel.text = data.content
         nickNameLabel.text = data.nickName
-        timeLabel.text = data.writeTime
+        timeLabel.text = data.writeTime.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
         likeCountLabel.text = "\(data.likeCount)"
     }
