@@ -30,10 +30,12 @@ class ReviewDetailPostTVC: BaseTVC {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
+}
 
-    // MARK: Custom Methods
+
+// MARK: - Custom Methods
+extension ReviewDetailPostTVC {
     
     /// 리스트 데이터 세팅 함수
     func setData(postData: ReviewDetailData) {
@@ -42,4 +44,3 @@ class ReviewDetailPostTVC: BaseTVC {
         contentLabel.text = postData.content
     }
 }
-

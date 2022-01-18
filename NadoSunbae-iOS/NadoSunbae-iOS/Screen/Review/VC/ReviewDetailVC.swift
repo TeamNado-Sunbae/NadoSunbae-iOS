@@ -46,8 +46,26 @@ class ReviewDetailVC: UIViewController {
         addShadowToNaviBar()
         showActionSheet()
     }
+}
+
+// MARK: - UI
+extension ReviewDetailVC {
+    private func configureUI() {
+        likeCountView.makeRounded(cornerRadius: 16.adjusted)
+    }
     
-    // MARK: Custom Methods
+    /// NaviBar dropShadow 설정 함수
+    private func addShadowToNaviBar() {
+        naviBarView.layer.shadowColor = UIColor(red: 0.898, green: 0.898, blue: 0.91, alpha: 0.16).cgColor
+        naviBarView.layer.shadowOffset = CGSize(width: 0, height: 9)
+        naviBarView.layer.shadowRadius = 18
+        naviBarView.layer.shadowOpacity = 1
+        naviBarView.layer.masksToBounds = false
+    }
+}
+
+// MARK: - Custom Methods
+extension ReviewDetailVC {
     private func setUpPostId() {
         if let postId = postId {
             // TODO: 서버통신 시 해당 PostId로 후기글 상세 조회 API 호출할 것임!!
@@ -85,26 +103,8 @@ class ReviewDetailVC: UIViewController {
             ProfileData.init(profileImg: "imgProfile", nickName: "최숙주", majorName: "디지털미디어학과", secondMajorName: "솝트아요학과", message: "선배에게 1:1 질문을 남겨보세요!")
         ])
     }
-}
-
-// MARK: - UI
-extension ReviewDetailVC {
-    private func configureUI() {
-        likeCountView.makeRounded(cornerRadius: 16.adjusted)
-    }
     
-    /// NaviBar dropShadow 설정 함수
-    private func addShadowToNaviBar() {
-        naviBarView.layer.shadowColor = UIColor(red: 0.898, green: 0.898, blue: 0.91, alpha: 0.16).cgColor
-        naviBarView.layer.shadowOffset = CGSize(width: 0, height: 9)
-        naviBarView.layer.shadowRadius = 18
-        naviBarView.layer.shadowOpacity = 1
-        naviBarView.layer.masksToBounds = false
-    }
-}
-
-// MARK: - Action Sheet
-extension ReviewDetailVC {
+    /// 액션 시트
     private func showActionSheet() {
         naviBarView.rightCustomBtn.press {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
