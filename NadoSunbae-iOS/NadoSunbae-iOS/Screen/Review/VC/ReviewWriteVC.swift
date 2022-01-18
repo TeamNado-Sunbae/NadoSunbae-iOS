@@ -44,6 +44,7 @@ class ReviewWriteVC: UIViewController {
     /// 완료 버튼 활성화 검사를 위한 변수
     private var essentialTextViewStatus: Bool = false
     private var choiceTextViewStatus: Bool = false
+    var postBgImgId: Int = 0
     
     /// 데이터 삽입을 위한 리스트 변수
     private var bgImgList: [ReviewWriteBgImgData] = []
@@ -159,6 +160,13 @@ extension ReviewWriteVC: UICollectionViewDataSource {
         
         cell.setData(imgData: bgImgList[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // TODO: 서버통신을 위해 선택된 배경이미지 index값 저장
+        self.postBgImgId = indexPath.row
+        print(postBgImgId)
     }
 }
 
