@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="ReviewDetailPostTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="313"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="328" height="313"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TKI-Nm-VXX">
+                        <rect key="frame" x="9" y="15" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="7My-QG-QNI"/>
+                            <constraint firstAttribute="width" constant="80" id="ay8-lN-mkY"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koZ-Jo-E7g">
+                        <rect key="frame" x="24" y="116" width="48" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="UjS-S6-foo"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmR-AH-P4J">
+                        <rect key="frame" x="24" y="175" width="280" height="101"/>
+                        <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                        <color key="textColor" name="gray4"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TKI-Nm-VXX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="5o1-WQ-pGO"/>
+                    <constraint firstItem="koZ-Jo-E7g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="GKn-0b-nGQ"/>
+                    <constraint firstAttribute="trailing" secondItem="cmR-AH-P4J" secondAttribute="trailing" constant="24" id="Umj-O0-AFG"/>
+                    <constraint firstItem="TKI-Nm-VXX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Vd3-WA-Cxo"/>
+                    <constraint firstItem="koZ-Jo-E7g" firstAttribute="top" secondItem="TKI-Nm-VXX" secondAttribute="bottom" constant="21" id="d69-Yg-jv4"/>
+                    <constraint firstItem="cmR-AH-P4J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="dhY-W8-cZz"/>
+                    <constraint firstItem="cmR-AH-P4J" firstAttribute="top" secondItem="koZ-Jo-E7g" secondAttribute="bottom" constant="36" id="yz6-SK-Er8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="paleGray"/>
+            <connections>
+                <outlet property="contentLabel" destination="cmR-AH-P4J" id="CH8-3j-47Y"/>
+                <outlet property="iconImgView" destination="TKI-Nm-VXX" id="lmR-dD-MCx"/>
+                <outlet property="titleLabel" destination="koZ-Jo-E7g" id="5Eb-fn-lzE"/>
+            </connections>
+            <point key="canvasLocation" x="133" y="96"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

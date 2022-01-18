@@ -29,7 +29,8 @@ class ReviewMainPostTVC: BaseTVC {
         super.setSelected(selected, animated: animated)
     }
     
-    // MARK: Private Methods
+    // MARK: Custom Methods
+    
     /// 리스트 데이터 세팅 함수
     func setData(postData: ReviewPostData) {
         dateLabel.text = postData.date
@@ -41,9 +42,10 @@ class ReviewMainPostTVC: BaseTVC {
         majorNameLabel.text = postData.majorName
         secondMajorNameLabel.text = postData.secondMajorName
     }
+
 }
 
-// MARK: - Extension Part
+// MARK: - UI
 extension ReviewMainPostTVC {
     private func configureUI() {
         contentView.layer.cornerRadius = 8

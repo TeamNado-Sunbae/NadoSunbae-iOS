@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="ReviewDetailPostWithImgTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgReviewBg" translatesAutoresizingMaskIntoConstraints="NO" id="22y-a7-5o9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
+                        <color key="backgroundColor" name="paleGray"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="232" id="zDQ-PO-Vth"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gi7-n0-Lnt">
+                        <rect key="frame" x="23" y="192" width="328" height="313"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cube" translatesAutoresizingMaskIntoConstraints="NO" id="szZ-Sv-F8y">
+                                <rect key="frame" x="9" y="15" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="f2B-PH-kpf"/>
+                                    <constraint firstAttribute="height" constant="80" id="nCK-NE-Hei"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i64-89-Zot">
+                                <rect key="frame" x="24" y="175" width="280" height="101"/>
+                                <string key="text">난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼</string>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" name="gray4"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장단점" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3u-RK-JCO">
+                                <rect key="frame" x="24" y="116" width="49.5" height="23"/>
+                                <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="i64-89-Zot" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="24" id="1xZ-lI-FD1"/>
+                            <constraint firstItem="w3u-RK-JCO" firstAttribute="top" secondItem="szZ-Sv-F8y" secondAttribute="bottom" constant="21" id="K0Q-D0-dtX"/>
+                            <constraint firstItem="i64-89-Zot" firstAttribute="top" secondItem="w3u-RK-JCO" secondAttribute="bottom" constant="36" id="KT0-bs-MYU"/>
+                            <constraint firstItem="szZ-Sv-F8y" firstAttribute="top" secondItem="Gi7-n0-Lnt" secondAttribute="top" constant="15" id="Wg3-Gt-UVU"/>
+                            <constraint firstAttribute="trailing" secondItem="i64-89-Zot" secondAttribute="trailing" constant="24" id="dmo-f1-qkG"/>
+                            <constraint firstAttribute="height" constant="313" id="fKe-Ks-qKy"/>
+                            <constraint firstItem="w3u-RK-JCO" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="24" id="slE-R3-hqH"/>
+                            <constraint firstItem="szZ-Sv-F8y" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="9" id="tSG-nJ-KIW"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="paleGray"/>
+                <constraints>
+                    <constraint firstItem="22y-a7-5o9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="AMk-H6-DZF"/>
+                    <constraint firstAttribute="trailing" secondItem="22y-a7-5o9" secondAttribute="trailing" id="GlJ-g8-3kb"/>
+                    <constraint firstItem="22y-a7-5o9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="L2C-sb-mHn"/>
+                    <constraint firstItem="Gi7-n0-Lnt" firstAttribute="top" secondItem="22y-a7-5o9" secondAttribute="bottom" constant="-40" id="VOd-tq-cSc"/>
+                    <constraint firstAttribute="trailing" secondItem="Gi7-n0-Lnt" secondAttribute="trailing" constant="24" id="cZd-OW-brn"/>
+                    <constraint firstItem="Gi7-n0-Lnt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="iwH-W7-gOl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bgImgView" destination="22y-a7-5o9" id="p3K-nw-QoB"/>
+                <outlet property="contentLabel" destination="i64-89-Zot" id="E2t-if-B1O"/>
+                <outlet property="postContentView" destination="Gi7-n0-Lnt" id="bYm-86-P6t"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="96"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cube" width="80" height="80"/>
+        <image name="imgReviewBg" width="375" height="232"/>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

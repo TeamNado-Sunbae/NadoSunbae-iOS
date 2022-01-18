@@ -12,6 +12,7 @@ import Then
 enum NaviState {
     case backDefault
     case backDefaultWithNadoBtn
+    case backDefaultWithCustomRightBtn
     case backWithCenterTitle
     case dismissWithCustomRightBtn
     case dismissWithNadoBtn
@@ -40,7 +41,7 @@ class NadoSunbaeNaviBar: UIView {
     private lazy var titleLabel = UILabel().then {
         $0.setLabel(text: "제목", color: .black, size: 20, weight: .medium)
     }
-
+    
     private (set) lazy var backBtn = UIButton().then {
         $0.setImgByName(name: "btnBack", selectedName: nil)
         $0.contentMode = .scaleAspectFit
@@ -115,6 +116,30 @@ extension NadoSunbaeNaviBar {
             $0.trailing.equalTo(self.snp.trailing).offset(-16)
             $0.height.equalTo(36)
             $0.width.equalTo(rightActivateBtn.snp.height).multipliedBy(52.0 / 36.0)
+            $0.centerY.equalTo(backBtn)
+        }
+    }
+    
+    /// 뒤로가기 버튼 + 우측 커스텀 버튼 UI를 구성하는 메서드
+    private func configureBackWithCustomRightBtn() {
+        self.addSubviews([backView, backBtn, titleLabel, rightCustomBtn])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        backBtn.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
+            $0.height.width.equalTo(48)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalTo(backBtn.snp.trailing)
+            $0.centerY.equalTo(backBtn)
+        }
+        
+        rightCustomBtn.snp.makeConstraints {
+            $0.trailing.equalTo(self.snp.trailing).offset(-24)
+            $0.height.equalTo(44)
             $0.centerY.equalTo(backBtn)
         }
     }
@@ -218,6 +243,8 @@ extension NadoSunbaeNaviBar {
             configureBackWithNadoBtnUI()
         case .backWithCenterTitle:
             configureBackWithCenterUI()
+        case .backDefaultWithCustomRightBtn:
+            configureBackWithCustomRightBtn()
         case .dismissWithCustomRightBtn:
             configureDismissWithCustomRightBtnUI()
         case .dismissWithNadoBtn:

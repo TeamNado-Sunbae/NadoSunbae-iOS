@@ -131,6 +131,14 @@
 		7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */; };
 		7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */; };
 		7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31E279418120093C230 /* CodeBaseCVC.swift */; };
+		7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32027947D990093C230 /* ReviewDetailSB.storyboard */; };
+		7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32227947F310093C230 /* ReviewDetailVC.swift */; };
+		7754A32627954B770093C230 /* ReviewDetailPostTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */; };
+		7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */; };
+		7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */; };
+		7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */; };
+		7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */; };
+		7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -276,6 +284,14 @@
 		7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteBgImgCVC.swift; sourceTree = "<group>"; };
 		7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewWriteBgImgCVC.xib; sourceTree = "<group>"; };
 		7754A31E279418120093C230 /* CodeBaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBaseCVC.swift; sourceTree = "<group>"; };
+		7754A32027947D990093C230 /* ReviewDetailSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewDetailSB.storyboard; sourceTree = "<group>"; };
+		7754A32227947F310093C230 /* ReviewDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailVC.swift; sourceTree = "<group>"; };
+		7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailPostTVC.swift; sourceTree = "<group>"; };
+		7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostTVC.xib; sourceTree = "<group>"; };
+		7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailPostWithImgTVC.swift; sourceTree = "<group>"; };
+		7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostWithImgTVC.xib; sourceTree = "<group>"; };
+		7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailProfileTVC.swift; sourceTree = "<group>"; };
+		7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailProfileTVC.xib; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -534,6 +550,7 @@
 			children = (
 				3313648D2785D76400E0C118 /* ReviewSB.storyboard */,
 				7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */,
+				7754A32027947D990093C230 /* ReviewDetailSB.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -544,6 +561,7 @@
 				77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */,
 				3313648F2785D77100E0C118 /* ReviewMainVC.swift */,
 				7754A31527901FE50093C230 /* ReviewWriteVC.swift */,
+				7754A32227947F310093C230 /* ReviewDetailVC.swift */,
 				7754A317279028250093C230 /* NaviVC.swift */,
 			);
 			path = VC;
@@ -695,6 +713,12 @@
 				777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */,
 				777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */,
 				777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */,
+				7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */,
+				7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */,
+				7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */,
+				7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */,
+				7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */,
+				7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */,
 			);
 			path = TVC;
 			sourceTree = "<group>";
@@ -1100,8 +1124,10 @@
 				33CF635A279464EF00E92C04 /* QuestionSB.storyboard in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
+				7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */,
 				777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */,
 				77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */,
+				7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */,
 				338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
@@ -1115,6 +1141,7 @@
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */,
+				7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
 				33CF635C279464FD00E92C04 /* InfoSB.storyboard in Resources */,
 				33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */,
@@ -1123,6 +1150,7 @@
 				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
 				331364A82785D91800E0C118 /* NotificationSB.storyboard in Resources */,
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
+				7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */,
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
 				33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */,
@@ -1191,6 +1219,7 @@
 				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
+				7754A32627954B770093C230 /* ReviewDetailPostTVC.swift in Sources */,
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				33BAFD07278C2D6100BFF6BE /* DefaultQuestionDataModel.swift in Sources */,
@@ -1227,6 +1256,7 @@
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
+				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
@@ -1273,9 +1303,11 @@
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
 				331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */,
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
+				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
+				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
 				5CB6503327947ACE007694B1 /* NotificationModel.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				7754A318279028250093C230 /* NaviVC.swift in Sources */,
@@ -1421,7 +1453,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = 397WA8BG8W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
@@ -1451,7 +1483,7 @@
 				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				DEVELOPMENT_TEAM = 397WA8BG8W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
