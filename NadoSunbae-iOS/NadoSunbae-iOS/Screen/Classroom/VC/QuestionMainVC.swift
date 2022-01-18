@@ -153,7 +153,7 @@ extension QuestionMainVC {
     
     /// 질문가능선배Btn tap Action 설정 메서드
     private func setUpTapPersonalQuestionBtn() {
-        personalQuestionBtn.press {
+        personalQuestionBtn.press(vibrate: true) {
             let questionPersonVC = QuestionPersonListVC()
             self.navigationController?.pushViewController(questionPersonVC, animated: true)
         }

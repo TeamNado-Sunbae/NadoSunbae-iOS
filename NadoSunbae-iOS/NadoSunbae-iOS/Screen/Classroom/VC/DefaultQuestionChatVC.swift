@@ -29,7 +29,6 @@ class DefaultQuestionChatVC: UIViewController {
             defaultQuestionChatTV.separatorStyle = .none
             defaultQuestionChatTV.rowHeight  = UITableView.automaticDimension
             defaultQuestionChatTV.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
-            scrollTVtoBottom(animate: false)
         }
     }
     
@@ -71,7 +70,7 @@ class DefaultQuestionChatVC: UIViewController {
     var editIndex: [Int]?
     var naviStyle: NaviType?
     var questionType: QuestionType?
-    let userType: Int = 3
+    let userType: Int = 1
     let textViewMaxHeight: CGFloat = 85
     
     // MARK: LifeCycle
@@ -226,6 +225,8 @@ extension DefaultQuestionChatVC {
             switch naviStyle {
             case .push:
                 questionNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
+                questionNaviBar.rightCustomBtn.isHidden = true
+                
                 questionNaviBar.backBtn.press {
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -398,7 +399,6 @@ extension DefaultQuestionChatVC {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             sendAreaTextViewBottom.constant = keyboardSize.height - 25
             sendBtnBottom.constant = keyboardSize.height - 30
-            scrollTVtoBottom(animate: false)
         }
     }
     
