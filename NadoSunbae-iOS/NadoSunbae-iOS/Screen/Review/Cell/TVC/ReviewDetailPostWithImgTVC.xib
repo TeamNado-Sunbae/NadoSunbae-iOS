@@ -67,6 +67,7 @@
                             <constraint firstAttribute="height" constant="313" id="fKe-Ks-qKy"/>
                             <constraint firstItem="w3u-RK-JCO" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="24" id="slE-R3-hqH"/>
                             <constraint firstItem="szZ-Sv-F8y" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="9" id="tSG-nJ-KIW"/>
+                            <constraint firstAttribute="bottom" secondItem="i64-89-Zot" secondAttribute="bottom" constant="37" id="urd-2G-Jlt"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -76,6 +77,7 @@
                     <constraint firstAttribute="trailing" secondItem="22y-a7-5o9" secondAttribute="trailing" id="GlJ-g8-3kb"/>
                     <constraint firstItem="22y-a7-5o9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="L2C-sb-mHn"/>
                     <constraint firstItem="Gi7-n0-Lnt" firstAttribute="top" secondItem="22y-a7-5o9" secondAttribute="bottom" constant="-40" id="VOd-tq-cSc"/>
+                    <constraint firstAttribute="bottom" secondItem="Gi7-n0-Lnt" secondAttribute="bottom" constant="12" id="alJ-Zb-cwy"/>
                     <constraint firstAttribute="trailing" secondItem="Gi7-n0-Lnt" secondAttribute="trailing" constant="24" id="cZd-OW-brn"/>
                     <constraint firstItem="Gi7-n0-Lnt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="iwH-W7-gOl"/>
                 </constraints>

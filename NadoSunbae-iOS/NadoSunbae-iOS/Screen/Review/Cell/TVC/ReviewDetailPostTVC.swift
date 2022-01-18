@@ -10,14 +10,22 @@ import UIKit
 class ReviewDetailPostTVC: BaseTVC {
 
     // MARK: IBOutlet
+    @IBOutlet weak var backView: UIView! {
+        didSet {
+            backView.makeRounded(cornerRadius: 40.adjusted)
+        }
+    }
     @IBOutlet weak var iconImgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel! {
+        didSet {
+            contentLabel.sizeToFit()
+        }
+    }
     
     // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,16 +43,3 @@ class ReviewDetailPostTVC: BaseTVC {
     }
 }
 
-// MARK: - UI
-extension ReviewDetailPostTVC {
-    private func configureUI() {
-        contentView.makeRounded(cornerRadius: 40.adjusted)
-        contentView.backgroundColor = .white
-    }
-    
-    /// TVC 사이 간격 설정
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 12, left: 23, bottom: 12, right: 24))
-    }
-}

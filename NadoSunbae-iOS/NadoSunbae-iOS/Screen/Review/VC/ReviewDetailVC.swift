@@ -17,7 +17,14 @@ class ReviewDetailVC: UIViewController {
             naviBarView.configureTitleLabel(title: "학과후기")
         }
     }
-    @IBOutlet weak var reviewPostTV: UITableView!
+    
+    /// 게시글 길이에 따른 동적 높이 셀 구현
+    @IBOutlet weak var reviewPostTV: UITableView! {
+        didSet {
+            reviewPostTV.rowHeight = UITableView.automaticDimension
+        }
+    }
+    
     @IBOutlet weak var likeCountView: UIView!
     
     // MARK: Properties
@@ -69,7 +76,7 @@ class ReviewDetailVC: UIViewController {
     private func initPostList() {
         detailPostList.append(contentsOf: [
             ReviewDetailData.init(iconImgName: "bomb", title: "추천수업", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼"),
-            ReviewDetailData.init(iconImgName: "honey", title: "꿀팁", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼")
+            ReviewDetailData.init(iconImgName: "honey", title: "꿀팁", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼")
         ])
     }
     
@@ -132,9 +139,9 @@ extension ReviewDetailVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 517
+            return UITableView.automaticDimension
         } else if indexPath.section == 1 {
-            return 313
+            return UITableView.automaticDimension
         } else if indexPath.section == 2{
             return 255
         } else {
@@ -166,6 +173,7 @@ extension ReviewDetailVC: UITableViewDataSource {
             reviewDetailPostWithImgTVC.setData(postData: detailEssentialPostList[indexPath.row])
             return reviewDetailPostWithImgTVC
         } else if indexPath.section == 1 {
+            reviewDetailPostTVC.contentLabel.sizeToFit()
             reviewDetailPostTVC.setData(postData: detailPostList[indexPath.row])
             return reviewDetailPostTVC
         } else if indexPath.section == 2 {
