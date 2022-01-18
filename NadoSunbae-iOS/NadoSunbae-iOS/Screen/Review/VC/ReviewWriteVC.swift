@@ -261,7 +261,11 @@ extension ReviewWriteVC: UITextViewDelegate {
             if (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
                 reviewWriteNaviBar.rightActivateBtn.press {
-                    self.dismiss(animated: true, completion: nil)
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+                    alert.confirmBtn.press {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             } else {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
@@ -272,7 +276,11 @@ extension ReviewWriteVC: UITextViewDelegate {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
                 reviewWriteNaviBar.rightActivateBtn.press {
-                    self.dismiss(animated: true, completion: nil)
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+                    alert.confirmBtn.press {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             } else {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
@@ -283,7 +291,11 @@ extension ReviewWriteVC: UITextViewDelegate {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
                 reviewWriteNaviBar.rightActivateBtn.press {
-                    self.dismiss(animated: true, completion: nil)
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+                    alert.confirmBtn.press {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             } else {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
@@ -294,7 +306,11 @@ extension ReviewWriteVC: UITextViewDelegate {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
                 reviewWriteNaviBar.rightActivateBtn.press {
-                    self.dismiss(animated: true, completion: nil)
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+                    alert.confirmBtn.press {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             } else {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
@@ -305,7 +321,11 @@ extension ReviewWriteVC: UITextViewDelegate {
             if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && essentialTextViewStatus == true {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = true
                 reviewWriteNaviBar.rightActivateBtn.press {
-                    self.dismiss(animated: true, completion: nil)
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+                    alert.confirmBtn.press {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
             } else {
                 reviewWriteNaviBar.rightActivateBtn.isActivated = false
