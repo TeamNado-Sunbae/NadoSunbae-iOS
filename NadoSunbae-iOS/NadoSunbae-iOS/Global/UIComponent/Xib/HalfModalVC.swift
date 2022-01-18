@@ -11,7 +11,15 @@ class HalfModalVC: UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet weak var majorTV: UITableView!
-    @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
+    @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn! {
+        didSet {
+            majorChooseBtn.press {
+                if self.majorChooseBtn.isActivated == true {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
     
     // MARK: Properties
     var majorList: [ReviewData] = []
@@ -89,6 +97,11 @@ extension HalfModalVC: UITableViewDataSource {
         
         cell.setData(reviewData: majorList[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        majorChooseBtn.isActivated = true
+        majorChooseBtn.titleLabel?.textColor = UIColor.mainDefault
     }
     
 }

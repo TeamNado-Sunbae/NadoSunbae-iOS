@@ -560,6 +560,7 @@
 			children = (
 				3313648D2785D76400E0C118 /* ReviewSB.storyboard */,
 				7754A32027947D990093C230 /* ReviewDetailSB.storyboard */,
+				7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -699,7 +700,6 @@
 		33B69FF2278F155400A8E3D3 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
-				7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */,
 				33CF63642794A05900E92C04 /* Chat */,
 				33CF63632794A04C00E92C04 /* QuestionMain */,
 			);

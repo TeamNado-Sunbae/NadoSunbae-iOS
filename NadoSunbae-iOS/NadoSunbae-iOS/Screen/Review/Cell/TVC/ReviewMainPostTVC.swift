@@ -71,6 +71,7 @@ extension ReviewMainPostTVC {
         tagCV.delegate = self
     }
     
+    /// 태그 이미지 삽입
     private func initTagImg() {
         tagImgList.append(contentsOf: [
             tagImgData.init(tagImgName: "icReviewTag"),
