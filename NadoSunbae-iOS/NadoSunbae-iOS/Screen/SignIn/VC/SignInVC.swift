@@ -25,13 +25,13 @@ class SignInVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        setUpUserdefaultValues()
     }
     
     // MARK: IBAction
     @IBAction func tapSignInBtn(_ sender: UIButton) {
         let nadoSunbaeTBC = NadoSunbaeTBC()
         nadoSunbaeTBC.modalPresentationStyle = .fullScreen
+        setUpUserdefaultValues()
         self.present(nadoSunbaeTBC, animated: true, completion: nil)
     }
     
