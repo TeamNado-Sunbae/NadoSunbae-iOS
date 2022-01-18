@@ -25,6 +25,7 @@ class SignInVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setUpUserdefaultValues()
     }
     
     // MARK: IBAction
@@ -97,5 +98,16 @@ extension SignInVC {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    /// Userdefaults에 값 지정하는 메서드
+    private func setUpUserdefaultValues() {
+        UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJJSkdFQjhMOEZaVmY0MVE1OGJTWDVQWkttRUQyIiwiaWF0IjoxNjQyNTI4NzcxLCJleHAiOjE2NDUxMjA3NzEsImlzcyI6Im5hZG9TdW5iYWUifQ.U4qQ-muMpVZv8K8Pi7jryrlc6bL4ObEMgc11L01yBAo", forKey: UserDefaults.Keys.AccessToken)
+        UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJJSkdFQjhMOEZaVmY0MVE1OGJTWDVQWkttRUQyIiwiaWF0IjoxNjQyNTI4NzcxLCJleHAiOjE2NDUxMjA3NzEsImlzcyI6Im5hZG9TdW5iYWUifQ.U4qQ-muMpVZv8K8Pi7jryrlc6bL4ObEMgc11L01yBAo", forKey: UserDefaults.Keys.RefreshToken)
+        UserDefaults.standard.set(5, forKey: UserDefaults.Keys.FirstMajorID)
+        UserDefaults.standard.set("경영학과", forKey: UserDefaults.Keys.FirstMajorName)
+        UserDefaults.standard.set(126, forKey: UserDefaults.Keys.SecondMajorID)
+        UserDefaults.standard.set("미진입", forKey: UserDefaults.Keys.SecondMajorName)
+        UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
     }
 }
