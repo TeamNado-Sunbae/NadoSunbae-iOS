@@ -803,6 +803,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5C3280162797207200781EBE /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				5C5AFCBF2794043B0045E47A /* MypageQuestionModel.swift */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
 		5C4ED92627894951001EA6BB /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,14 +886,6 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
-		5C5AFCBE2794042B0045E47A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5C5AFCBF2794043B0045E47A /* MypageQuestionModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,7 +926,6 @@
 		5CA51FF8278F2A95001A1A40 /* MypageMain */ = {
 			isa = PBXGroup;
 			children = (
-				5C5AFCBE2794042B0045E47A /* Model */,
 				3313649E2785D8BB00E0C118 /* SB */,
 				3313649D2785D8B500E0C118 /* VC */,
 			);
@@ -1057,6 +1056,7 @@
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
 				331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */,
+				5C3280162797207200781EBE /* Mypage */,
 			);
 			path = Models;
 			sourceTree = "<group>";
