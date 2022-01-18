@@ -19,9 +19,6 @@ class QuestionMainVC: UIViewController {
     private let personalQuestionBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "imgRoomMain"), for: .normal)
         $0.contentMode = .scaleAspectFill
-        $0.press {
-            // TODO: 질문가능 선배목록 UI 구성되면 연결 예정
-        }
     }
     
     private let entireQuestionTitleLabel = UILabel().then {
@@ -51,6 +48,7 @@ class QuestionMainVC: UIViewController {
         setUpTapInfoBtn()
         registerCell()
         configureQuestionTVHeight()
+        setUpTapPersonalQuestionBtn()
     }
 }
 
@@ -146,11 +144,19 @@ extension QuestionMainVC {
     private func presentToWriteQuestionVC() {
         let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
         guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-         
+        
         writeQuestionVC.questionType = .group
         writeQuestionVC.modalPresentationStyle = .fullScreen
         
         self.present(writeQuestionVC, animated: true, completion: nil)
+    }
+    
+    /// 질문가능선배Btn tap Action 설정 메서드
+    private func setUpTapPersonalQuestionBtn() {
+        personalQuestionBtn.press {
+            let questionPersonVC = QuestionPersonListVC()
+            self.navigationController?.pushViewController(questionPersonVC, animated: true)
+        }
     }
 }
 
@@ -223,12 +229,15 @@ extension QuestionMainVC: UITableViewDelegate {
         if indexPath.section == 1 {
             let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
             guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-             
+            
             // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
             groupChatVC.questionType = .group
             groupChatVC.naviStyle = .push
             
             self.navigationController?.pushViewController(groupChatVC, animated: true)
+        } else if indexPath.section == 2 {
+            let entireQuestionVC = EntireQuestionListVC()
+            self.navigationController?.pushViewController(entireQuestionVC, animated: true)
         }
     }
 }
