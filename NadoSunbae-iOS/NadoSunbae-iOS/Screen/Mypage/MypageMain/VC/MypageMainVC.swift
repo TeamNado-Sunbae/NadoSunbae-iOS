@@ -10,7 +10,11 @@ import UIKit
 class MypageMainVC: UIViewController {
     
     // MARK: @IBOutlet
-    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var navView: UIView! {
+        didSet {
+            navView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
+        }
+    }
     @IBOutlet weak var navTitleBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
     @IBOutlet weak var profileView: UIView!
