@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MypageNVC: UINavigationController {
+class MypageNVC: BaseNC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
