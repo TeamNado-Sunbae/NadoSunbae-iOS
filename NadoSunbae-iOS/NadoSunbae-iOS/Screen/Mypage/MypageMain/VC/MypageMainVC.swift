@@ -10,7 +10,11 @@ import UIKit
 class MypageMainVC: UIViewController {
     
     // MARK: @IBOutlet
-    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var navView: UIView! {
+        didSet {
+            navView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
+        }
+    }
     @IBOutlet weak var navTitleBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
     @IBOutlet weak var profileView: UIView!
@@ -18,9 +22,13 @@ class MypageMainVC: UIViewController {
     @IBOutlet weak var questionTV: UITableView!
     @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
     @IBOutlet weak var questionEmptyView: UIView!
+    @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var firstMajorLabel: UILabel!
+    @IBOutlet weak var secondMajorLabel: UILabel!
     
     // MARK: Properties
-    var isQuestionable = false
+    var userInfo = MypageUserInfoModel(userID: 1, profileImageID: 2, nickname: "닉네임선배", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "컴퓨터학과", secondMajorStart: "19-2", isOnQuestion: true)
+    
     var questionList = [
         MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다ㅏㅏㅏㅏ", nickName: "윈터내거", writeTime: "2022-01-18T19:00:42.040Z", commentCount: 2, likeCount: 5),
         MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다", nickName: "윈터내거", writeTime: "2022-01-18T19:20:42.040Z", commentCount: 2, likeCount: 5)
@@ -38,6 +46,7 @@ class MypageMainVC: UIViewController {
         
         configureUI()
         setUpTV()
+        registerCell()
     }
     
     // MARK: @IBAction
@@ -84,12 +93,16 @@ extension MypageMainVC {
         questionTV.makeRounded(cornerRadius: 8.adjusted)
         questionTV.removeSeparatorsOfEmptyCellsAndLastCell()
         
+        nickNameLabel.text = userInfo.nickname
+        firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"
+        secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
+        
         DispatchQueue.main.async {
             self.questionTVHeight.constant = self.questionTV.contentSize.height
             self.navTitleBottomSpace.constant = 26.adjustedH
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
-            if self.isQuestionable {
+            if self.userInfo.isOnQuestion {
                 self.userStateViewHeight.constant = 0
             } else {
                 self.userStateViewHeight.constant = 32.adjusted
@@ -100,6 +113,12 @@ extension MypageMainVC {
 
 // MARK: - Custom Methods
 extension MypageMainVC {
+    
+    /// 셀 등록 메서드
+    private func registerCell() {
+        questionTV.register(MypageQuestionTVC.self, forCellReuseIdentifier: MypageQuestionTVC.className)
+    }
+    
     private func setUpTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
