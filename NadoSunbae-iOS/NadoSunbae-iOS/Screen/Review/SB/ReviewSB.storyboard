@@ -106,10 +106,10 @@
             </objects>
             <point key="canvasLocation" x="916" y="112.3152709359606"/>
         </scene>
-        <!--NaviVC-->
+        <!--ReviewNC-->
         <scene sceneID="f7o-NR-yOh">
             <objects>
-                <navigationController storyboardIdentifier="NaviVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8Wx-3d-vPZ" customClass="NaviVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ReviewNC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8Wx-3d-vPZ" customClass="ReviewNC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sci-ei-HaA">
                         <autoresizingMask key="autoresizingMask"/>

@@ -23,7 +23,7 @@ extension TypeOfViewController {
         case .tabBar:
             return StoryboardRepresentation(bundle: nil, storyboardName: "", storyboardId: NadoSunbaeTBC.className)
         case .review:
-            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.ReviewSB, storyboardId: ReviewMainVC.className)
+            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.ReviewSB, storyboardId: ReviewNC.className)
         case .classroom:
             return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.ClassroomSB, storyboardId: ClassroomNC.className)
         case .notification:

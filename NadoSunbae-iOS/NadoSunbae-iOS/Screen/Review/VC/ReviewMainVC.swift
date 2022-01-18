@@ -28,6 +28,10 @@ class ReviewMainVC: UIViewController {
         addShadowToNaviBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: IBAction
     @IBAction func tapNaviBarBtn(_ sender: Any) {
         showHalfModalView()
@@ -85,7 +89,7 @@ extension ReviewMainVC {
     /// section0: 이미지 삽입
     private func initImgList() {
         imgList.append(contentsOf: [
-            ReviewImgData(reviewImgName: "sampleImg")
+            ReviewImgData(reviewImgName: "img_review_main")
         ])
     }
     
@@ -93,10 +97,10 @@ extension ReviewMainVC {
     private func initPostList() {
         postList.append(contentsOf: [
             ReviewPostData(date: "21/12/23", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 12, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "21/12/24", title: "아요 사랑해", diamondCount: 4, firstTagImgName: "icBadClassTag", secondTagImgName: "", thirdTagImgName: "", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "22/01/01", title: "나도 선배 사랑해", diamondCount: 34, firstTagImgName: "icTipTag", secondTagImgName: "icBadClassTag", thirdTagImgName: "", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "22/01/02", title: "우리가 짱이다~~~", diamondCount: 21, firstTagImgName: "icReviewTag", secondTagImgName: "icBadClassTag", thirdTagImgName: "", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "22/01/03", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 1, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "21/12/24", title: "아요 사랑해", diamondCount: 4, firstTagImgName: "icBadClassTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "22/01/01", title: "나도 선배 사랑해", diamondCount: 34, firstTagImgName: "icTipTag", secondTagImgName: "icBadClassTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "22/01/02", title: "우리가 짱이다~~~", diamondCount: 21, firstTagImgName: "icReviewTag", secondTagImgName: "icBadClassTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
+            ReviewPostData(date: "22/01/03", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 1, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icReviewTag", majorName: "18-1", secondMajorName: "18-2"),
         ])
     }
     
@@ -197,16 +201,14 @@ extension ReviewMainVC: UITableViewDelegate {
     
     /// cell 선택 시 화면 전환
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("index: ", indexPath.row)
-        let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
-        guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
-        
-        // TODO: 서버통신 후 데이터모델[indexPath.row].postId로 코드 변경
-        nextVC.postId = indexPath.row
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
-        
-        // self.navigationController?.pushViewController(nextVC, animated: true)
+        if indexPath.section == 2 {
+            let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
+            guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+            
+            // TODO: 서버통신 후 데이터모델[indexPath.row].postId로 코드 변경
+            nextVC.postId = indexPath.row
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
     }
 }
 
