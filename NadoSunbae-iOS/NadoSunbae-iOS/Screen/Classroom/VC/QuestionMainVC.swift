@@ -42,14 +42,6 @@ class QuestionMainVC: UIViewController {
     
     let questionSegmentView = NadoSegmentView()
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
-    private var questionList: [MypageQuestionModel] = [
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111),
-        MypageQuestionModel(title: "호랑이", content: "광야의 딸", nickName: "유영진", writeTime: "0107", commentCount: 1, likeCount: 11111)
-    ]
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -113,12 +105,12 @@ extension QuestionMainVC {
     private func configureQuestionTVHeight() {
         DispatchQueue.main.async {
             self.entireQuestionTV.snp.makeConstraints {
-                if self.questionList.count > 5 {
+                if questionList.count > 5 {
                     $0.height.equalTo(70 + 5 * 110 + 40)
-                } else if self.questionList.count == 0 {
+                } else if questionList.count == 0 {
                     $0.height.equalTo(70 + 236)
                 } else {
-                    $0.height.equalTo(70 + self.questionList.count * 110)
+                    $0.height.equalTo(70 + questionList.count * 110)
                 }
             }
         }
