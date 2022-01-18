@@ -55,6 +55,11 @@
 		331364C12786217400E0C118 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C02786217400E0C118 /* ReviewService.swift */; };
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
 		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
+		331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53742795B7830052B309 /* QuestionPersonListVC.swift */; };
+		331C53772795B9CA0052B309 /* QuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */; };
+		331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */; };
+		331C537C2795F4EF0052B309 /* QuestionPeopleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */; };
+		331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385636F278DC74D003C60A6 /* BaseTVC.swift */; };
 		338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */; };
@@ -202,6 +207,11 @@
 		331364C02786217400E0C118 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
+		331C53742795B7830052B309 /* QuestionPersonListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPersonListVC.swift; sourceTree = "<group>"; };
+		331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPersonCVC.swift; sourceTree = "<group>"; };
+		331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnQuestionUserListModel.swift; sourceTree = "<group>"; };
+		331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionPeopleHeaderView.xib; sourceTree = "<group>"; };
+		331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPeopleHeaderView.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		3385636F278DC74D003C60A6 /* BaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVC.swift; sourceTree = "<group>"; };
 		338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCContentUpdate.swift; sourceTree = "<group>"; };
@@ -614,6 +624,7 @@
 				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
 				33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */,
 				33CF636727955D9500E92C04 /* ClassroomNC.swift */,
+				331C53742795B7830052B309 /* QuestionPersonListVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -656,9 +667,20 @@
 			path = UIComponent;
 			sourceTree = "<group>";
 		};
+		331C53782795C7B50052B309 /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */,
+				331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */,
+				331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
 		3391E48A278B48EF0079EA31 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				331C53782795C7B50052B309 /* CVC */,
 				33B69FF2278F155400A8E3D3 /* TVC */,
 			);
 			path = Cell;
@@ -1025,6 +1047,7 @@
 			children = (
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
+				331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1113,6 +1136,7 @@
 				331364332784D3C000E0C118 /* Assets.xcassets in Resources */,
 				3313647F2785BBB100E0C118 /* Pretendard-SemiBold.otf in Resources */,
 				5CA7E412278BC39200D748E0 /* SelectMajorModalVC.storyboard in Resources */,
+				331C537C2795F4EF0052B309 /* QuestionPeopleHeaderView.xib in Resources */,
 				3313647E2785BBAF00E0C118 /* Pretendard-Regular.otf in Resources */,
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
@@ -1216,6 +1240,7 @@
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				5CF0EC2A279317C500AF63E4 /* MypageQuestionTVC.swift in Sources */,
+				331C53772795B9CA0052B309 /* QuestionPersonCVC.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
 				33CF635727945DE300E92C04 /* InfoMainVC.swift in Sources */,
 				7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */,
@@ -1240,12 +1265,14 @@
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
 				5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */,
+				331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */,
 				33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
 				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
 				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
 				5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
+				331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
@@ -1274,6 +1301,7 @@
 				5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */,
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
+				331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */,
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
