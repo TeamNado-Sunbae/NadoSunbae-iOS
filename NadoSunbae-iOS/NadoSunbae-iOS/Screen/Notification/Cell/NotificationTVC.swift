@@ -64,6 +64,6 @@ extension NotificationTVC {
         titleLabel.attributedText = mintAttributeStr
 
         contentLabel.text = "\(data.content)"
-        timeLabel.text = "\(data.time)"
+        timeLabel.text = data.time.serverTimeToString(forUse: .forNotification)
     }
 }
