@@ -136,6 +136,13 @@ extension ReviewDetailVC {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    /// 화면 상단에 닿으면 스크롤 disable
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            scrollView.contentOffset.y = 0
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
