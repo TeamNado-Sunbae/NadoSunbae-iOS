@@ -20,6 +20,7 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var firstMajorLabel: UILabel!
     @IBOutlet weak var secondMajorLabel: UILabel!
+    @IBOutlet weak var privateQuestionNickNameLabel: UILabel!
     @IBOutlet weak var floatingBtn: UIButton! {
         didSet {
             floatingBtn.setImage(UIImage(named: "btnFloating_x")!, for: .disabled)
@@ -88,6 +89,7 @@ extension MypageUserVC {
         nickNameLabel.text = userInfo.nickname
         firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"
         secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
+        privateQuestionNickNameLabel.text = userInfo.nickname
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
