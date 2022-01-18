@@ -10,6 +10,8 @@ import UIKit
 class ReviewStickyHeaderView: UITableViewHeaderFooterView {
     
     // MARK: IBOutlet
+    @IBOutlet weak var headerTitleLabel: UILabel!
+    @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var arrangeBtn: UIButton!
     
     // MARK: Properties
