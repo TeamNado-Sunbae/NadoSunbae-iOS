@@ -12,8 +12,14 @@ class ReviewWriteVC: UIViewController {
     // MARK: IBOutlet
     @IBOutlet weak var reviewWriteNaviBar: NadoSunbaeNaviBar! {
         didSet {
+            
+            /// x버튼 클릭 시 커스텀 팝업창 띄움
             reviewWriteNaviBar.dismissBtn.press {
-                self.dismiss(animated: true, completion: nil)
+                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                alert.showNadoAlert(vc: self, message: "페이지를 나가면 \n 작성중인 글이 삭제돼요.", confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+                alert.cancelBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
