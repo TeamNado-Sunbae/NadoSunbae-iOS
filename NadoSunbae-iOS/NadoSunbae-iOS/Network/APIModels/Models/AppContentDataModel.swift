@@ -54,6 +54,15 @@ struct ReviewWriteBgImgData {
     }
 }
 
+/// 후기 게시글 태그 리스트 위한 모델
+struct tagImgData {
+    let tagImgName: String
+    
+    func makeImg() -> UIImage? {
+        return UIImage(named: tagImgName)
+    }
+}
+
 struct ReviewEssentialData {
     let bgImg: String
     let content: String
