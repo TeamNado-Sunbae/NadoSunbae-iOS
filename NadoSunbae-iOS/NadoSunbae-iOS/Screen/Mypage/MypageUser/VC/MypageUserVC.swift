@@ -44,7 +44,7 @@ class MypageUserVC: BaseVC {
     }
     
     // MARK: Properties
-    var userInfo = MypageUserInfoModel(userID: 1, profileImageID: 2, nickname: "닉네임선배", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "컴퓨터학과", secondMajorStart: "19-2", isOnQuestion: true)
+    var userInfo = MypageUserInfoModel()
     
     var questionList = [
         MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다ㅏㅏㅏㅏ", nickName: "윈터내거", writeTime: "2022-01-18T19:00:42.040Z", commentCount: 2, likeCount: 5),
@@ -52,6 +52,12 @@ class MypageUserVC: BaseVC {
     ]
     
     // MARK: LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getUserInfo()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -121,5 +127,28 @@ extension MypageUserVC {
     private func setUpTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
+    }
+}
+
+// MARK: - Network
+extension MypageUserVC {
+    private func getUserInfo() {
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrdTJAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1MiIsImZpcmViYXNlSWQiOiJOT1ZDYktEUUlEY3IybmJsam9ZazhSSnJ0NTUyIiwiaWF0IjoxNjQyMzI5OTMwLCJleHAiOjE2NDQ5MjE5MzAsImlzcyI6Im5hZG9TdW5iYWUifQ.tiblhyT4Y9-DDH1KTwIm37wevbChJ-R8-ECSb3QpZUI"
+        
+        MypageAPI.shared.getUserInfo(userID: 1, accessToken: accessToken, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageUserInfoModel {
+                    self.userInfo = data
+                    self.configureUI()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해 데이터를 불러올 수 없습니다. 다시 시도해 주세요.")
+            }
+        })
     }
 }
