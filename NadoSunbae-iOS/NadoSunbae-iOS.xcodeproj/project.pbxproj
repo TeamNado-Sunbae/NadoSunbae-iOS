@@ -54,7 +54,6 @@
 		331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364BE27861D0600E0C118 /* Adjusted+.swift */; };
 		331364C12786217400E0C118 /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C02786217400E0C118 /* ReviewService.swift */; };
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
-		331364C5278623EC00E0C118 /* s.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C4278623EC00E0C118 /* s.swift */; };
 		331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53742795B7830052B309 /* QuestionPersonListVC.swift */; };
 		331C53772795B9CA0052B309 /* QuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */; };
 		331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */; };
@@ -97,6 +96,7 @@
 		33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */; };
 		33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83B279153A400214CA8 /* BaseCVC.swift */; };
 		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
+		33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBC3182796F6C900741730 /* ReviewAPI.swift */; };
 		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
@@ -209,7 +209,6 @@
 		331364BE27861D0600E0C118 /* Adjusted+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adjusted+.swift"; sourceTree = "<group>"; };
 		331364C02786217400E0C118 /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
-		331364C4278623EC00E0C118 /* s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = s.swift; sourceTree = "<group>"; };
 		331C53742795B7830052B309 /* QuestionPersonListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPersonListVC.swift; sourceTree = "<group>"; };
 		331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPersonCVC.swift; sourceTree = "<group>"; };
 		331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnQuestionUserListModel.swift; sourceTree = "<group>"; };
@@ -252,6 +251,7 @@
 		33DAB83B279153A400214CA8 /* BaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVC.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
 		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
+		33FBC3182796F6C900741730 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
 		5C485F21278965D000FCA5DF /* NadoTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoTextField.xib; sourceTree = "<group>"; };
 		5C485F232789661F00FCA5DF /* NadoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextField.swift; sourceTree = "<group>"; };
 		5C4ED929278949AC001EA6BB /* SignInSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInSB.storyboard; sourceTree = "<group>"; };
@@ -390,7 +390,7 @@
 			children = (
 				3313644A2785A7EF00E0C118 /* APIEssentials */,
 				3313644B2785A7FB00E0C118 /* APIModels */,
-				331364482785A58A00E0C118 /* APIServices */,
+				331364482785A58A00E0C118 /* APIManagers */,
 				331364492785A59700E0C118 /* MoyaTarget */,
 				331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */,
 			);
@@ -480,12 +480,12 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		331364482785A58A00E0C118 /* APIServices */ = {
+		331364482785A58A00E0C118 /* APIManagers */ = {
 			isa = PBXGroup;
 			children = (
-				331364C4278623EC00E0C118 /* s.swift */,
+				33FBC3182796F6C900741730 /* ReviewAPI.swift */,
 			);
-			path = APIServices;
+			path = APIManagers;
 			sourceTree = "<group>";
 		};
 		331364492785A59700E0C118 /* MoyaTarget */ = {
@@ -1262,6 +1262,7 @@
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
+				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
@@ -1272,7 +1273,6 @@
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
-				331364C5278623EC00E0C118 /* s.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,

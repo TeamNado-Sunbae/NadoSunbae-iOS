@@ -11,6 +11,32 @@ extension UserDefaults {
     
     /// UserDefaults key value가 많아지면 관리하기 어려워지므로 enum 'Keys'로 묶어 관리합니다.
     enum Keys {
+        
+        /// String
         static var FCMTokenForDevice = "FCMTokenForDevice"
+        
+        /// String
+        static var AccessToken = "AccessToken"
+        
+        /// String
+        static var RefreshToken = "RefreshToken"
+        
+        /// Int
+        static var FirstMajorID = "MajorID"
+        
+        /// String
+        static var FirstMajorName = "MajorName"
+        
+        /// Int
+        static var SecondMajorID = "SecondMajorID"
+        
+        /// String
+        static var SecondMajorName = "SecondMajorName"
+        
+        /// Int
+        static var UserID = "userID"
+        
+        /// Bool
+        static var IsReviewed = "IsReviewed"
     }
 }
