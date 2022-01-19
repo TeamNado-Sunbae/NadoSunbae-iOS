@@ -8,10 +8,14 @@
 import Foundation
 
 struct MypageUserInfoModel: Codable {
-    let userID, profileImageID: Int
-    let nickname, firstMajorName, firstMajorStart, secondMajorName: String
-    let secondMajorStart: String
-    let isOnQuestion: Bool
+    var userID: Int = 0
+    var profileImageID: Int = 0
+    var nickname: String = ""
+    var firstMajorName: String = ""
+    var firstMajorStart: String = ""
+    var secondMajorName: String = ""
+    var secondMajorStart: String = ""
+    var isOnQuestion: Bool = true
 
     enum CodingKeys: String, CodingKey {
         case userID = "userId"
