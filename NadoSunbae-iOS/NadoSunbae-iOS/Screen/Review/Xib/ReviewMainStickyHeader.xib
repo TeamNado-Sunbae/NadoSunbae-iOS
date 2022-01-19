@@ -31,11 +31,12 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDi-y1-OVg">
                     <rect key="frame" x="297" y="12" width="68" height="24"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="24" id="CdT-1h-UP1"/>
                         <constraint firstAttribute="width" constant="68" id="a12-4B-m9a"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="  최신순" image="ArrangeIcon">
+                    <state key="normal" image="btnArray">
                         <color key="titleColor" name="gray3"/>
                     </state>
                     <connections>
@@ -74,7 +75,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ArrangeIcon" width="14" height="12"/>
+        <image name="btnArray" width="68" height="24"/>
         <image name="btnFilter" width="48" height="24"/>
         <namedColor name="gray3">
             <color red="0.58039215686274515" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

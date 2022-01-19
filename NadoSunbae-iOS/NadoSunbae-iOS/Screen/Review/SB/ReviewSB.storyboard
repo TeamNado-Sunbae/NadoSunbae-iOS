@@ -31,14 +31,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIU-m1-7pK">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnArrow" translatesAutoresizingMaskIntoConstraints="NO" id="B22-dF-dYf">
                                         <rect key="frame" x="120" y="44" width="48" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="MlB-mC-Vze"/>
-                                            <constraint firstAttribute="width" constant="48" id="XVM-yo-KJW"/>
+                                            <constraint firstAttribute="width" constant="48" id="1Le-Ik-J4T"/>
+                                            <constraint firstAttribute="height" constant="48" id="2br-Hy-Xx0"/>
                                         </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIU-m1-7pK">
+                                        <rect key="frame" x="16" y="56" width="152" height="24"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="btnArrow"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
                                         <connections>
                                             <action selector="tapNaviBarBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0VQ-hw-JTc"/>
                                         </connections>
@@ -46,10 +49,14 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="CIU-m1-7pK" secondAttribute="bottom" constant="12" id="EU4-tv-rlA"/>
+                                    <constraint firstItem="CIU-m1-7pK" firstAttribute="leading" secondItem="wTe-n5-UNg" secondAttribute="leading" id="8Mw-Xu-p7G"/>
                                     <constraint firstAttribute="height" constant="104" id="FNk-9w-ZrK"/>
-                                    <constraint firstItem="CIU-m1-7pK" firstAttribute="leading" secondItem="wTe-n5-UNg" secondAttribute="trailing" id="RLW-y7-AOL"/>
+                                    <constraint firstItem="B22-dF-dYf" firstAttribute="leading" secondItem="wTe-n5-UNg" secondAttribute="trailing" id="Ib5-X3-7Gp"/>
+                                    <constraint firstItem="CIU-m1-7pK" firstAttribute="bottom" secondItem="wTe-n5-UNg" secondAttribute="bottom" id="MV9-IM-GI7"/>
+                                    <constraint firstItem="CIU-m1-7pK" firstAttribute="trailing" secondItem="B22-dF-dYf" secondAttribute="trailing" id="N8x-r1-yaL"/>
+                                    <constraint firstItem="CIU-m1-7pK" firstAttribute="top" secondItem="wTe-n5-UNg" secondAttribute="top" id="ejU-l9-683"/>
                                     <constraint firstAttribute="bottom" secondItem="wTe-n5-UNg" secondAttribute="bottom" constant="24" id="oZa-Pg-14e"/>
+                                    <constraint firstAttribute="bottom" secondItem="B22-dF-dYf" secondAttribute="bottom" constant="12" id="uh3-PV-wst"/>
                                     <constraint firstItem="wTe-n5-UNg" firstAttribute="leading" secondItem="ulf-PI-yaI" secondAttribute="leading" constant="16" id="vfp-MN-eHo"/>
                                 </constraints>
                             </view>
@@ -98,6 +105,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gCg-2q-H8f"/>
                     <connections>
+                        <outlet property="majorLabel" destination="wTe-n5-UNg" id="aqf-rc-HlR"/>
                         <outlet property="naviBarView" destination="ulf-PI-yaI" id="bER-cF-Pyk"/>
                         <outlet property="reviewTV" destination="AxF-38-GGZ" id="9Ai-ul-zX4"/>
                     </connections>

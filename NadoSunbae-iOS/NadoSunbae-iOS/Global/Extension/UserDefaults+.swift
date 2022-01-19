@@ -38,5 +38,11 @@ extension UserDefaults {
         
         /// Bool
         static var IsReviewed = "IsReviewed"
+        
+        /// Int
+        static var SelectedMajorID = "SelectedMajorID"
+        
+        /// String
+        static var SelectedMajorName = "SelectedMajorName"
     }
 }

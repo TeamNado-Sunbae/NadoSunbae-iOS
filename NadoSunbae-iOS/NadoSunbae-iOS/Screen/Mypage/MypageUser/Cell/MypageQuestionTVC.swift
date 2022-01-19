@@ -13,7 +13,8 @@ class MypageQuestionTVC: BaseQuestionTVC {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
+        
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16))
     }
     
     override func configureUI() {
@@ -21,15 +22,17 @@ class MypageQuestionTVC: BaseQuestionTVC {
         
         /// UI에 문제가 됐던 프로퍼티들의 Constraints를 업데이트.....
         questionTitleLabel.snp.updateConstraints {
-            $0.top.equalToSuperview().offset(12)
+            $0.top.leading.equalToSuperview().offset(12)
         }
         
         questionContentLabel.snp.updateConstraints {
+            $0.leading.equalToSuperview().offset(12)
             $0.top.equalTo(questionTitleLabel.snp.bottom).offset(4)
         }
         
         nicknameLabel.snp.updateConstraints {
             $0.bottom.equalToSuperview().offset(-18)
+            $0.leading.equalToSuperview().offset(12)
         }
     }
 }

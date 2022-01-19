@@ -13,16 +13,20 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var diamondCountLabel: UILabel!
-    @IBOutlet weak var firstTagImgView: UIImageView!
-    @IBOutlet weak var secondTagImgView: UIImageView!
-    @IBOutlet weak var thirdTagImgView: UIImageView!
     @IBOutlet weak var majorNameLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
+    @IBOutlet weak var tagCV: UICollectionView!
+    
+    // MARK: Properties
+    private var tagImgList: [tagImgData] = []
     
     // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
+        registerCVC()
+        setUpCV()
+        initTagImg()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -54,11 +58,63 @@ extension ReviewMainPostTVC {
         dateLabel.text = postData.date
         titleLabel.text = postData.title
         diamondCountLabel.text = "\(postData.diamondCount)"
-        firstTagImgView.image = postData.makeFirstImg()
-        secondTagImgView.image = postData.makeSecondImg()
-        thirdTagImgView.image = postData.makeThirdImg()
         majorNameLabel.text = postData.majorName
         secondMajorNameLabel.text = postData.secondMajorName
     }
+    
+    private func registerCVC() {
+        ReviewPostTagCVC.register(target: tagCV)
+    }
+    
+    private func setUpCV() {
+        tagCV.dataSource = self
+        tagCV.delegate = self
+    }
+    
+    /// 태그 이미지 삽입
+    private func initTagImg() {
+        tagImgList.append(contentsOf: [
+            tagImgData.init(tagImgName: "icReviewTag"),
+            tagImgData.init(tagImgName: "icBadClassTag"),
+            tagImgData.init(tagImgName: "icTipTag"),
+            tagImgData.init(tagImgName: "property1Career"),
+            tagImgData.init(tagImgName: "property1Learning"),
+        ])
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ReviewMainPostTVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var tagWidth: Int?
+        
+        // TODO: 서버통신 시 태그 이름으로 접그
+        if tagImgList[indexPath.row].tagImgName == "icTipTag" {
+            tagWidth = 35
+        } else if tagImgList[indexPath.row].tagImgName == "property1Learning" {
+            tagWidth = 75
+        } else {
+            tagWidth = 59
+        }
+        return CGSize(width: tagWidth ?? 59, height: 28)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 9
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension ReviewMainPostTVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tagImgList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewPostTagCVC.className, for: indexPath) as? ReviewPostTagCVC else { return UICollectionViewCell() }
+        
+        cell.setData(tagData: tagImgList[indexPath.row])
+        return cell
+    }   
 }
 

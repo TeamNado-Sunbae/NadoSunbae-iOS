@@ -28,7 +28,7 @@
             <objects>
                 <viewController storyboardIdentifier="MypageMainVC" id="Y6W-OH-hqX" customClass="MypageMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="1033"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frH-g3-cFN">
@@ -69,7 +69,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIU-LS-kTe">
-                                <rect key="frame" x="0.0" y="104" width="374" height="674"/>
+                                <rect key="frame" x="0.0" y="104" width="374" height="895.00000000000011"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgh-ef-uvF" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="845.66666666666663"/>
@@ -359,10 +359,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Zgk-i2-YWI"/>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-fq-33Y">
-                                <rect key="frame" x="24" y="277.66666666666674" width="326" height="476.33333333333326"/>
+                                <rect key="frame" x="24" y="258" width="326" height="717"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 1:1 질문이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-aJ-nVo">
-                                        <rect key="frame" x="87.666666666666686" y="229.66666666666663" width="151" height="17"/>
+                                        <rect key="frame" x="87.666666666666686" y="350" width="151" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
@@ -393,7 +393,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Y9I-We-uwQ"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <size key="freeformSize" width="374" height="812"/>
+                    <size key="freeformSize" width="374" height="1033"/>
                     <connections>
                         <outlet property="firstMajorLabel" destination="9cd-WG-iJ5" id="LG3-gk-KJj"/>
                         <outlet property="likeListView" destination="xRv-Yq-z9u" id="YCz-Dy-OOG"/>
@@ -754,7 +754,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="915.20000000000005" y="112.3152709359606"/>
+            <point key="canvasLocation" x="915.20000000000005" y="193.96551724137933"/>
         </scene>
         <!--MypageNVC-->
         <scene sceneID="i0b-9j-anD">

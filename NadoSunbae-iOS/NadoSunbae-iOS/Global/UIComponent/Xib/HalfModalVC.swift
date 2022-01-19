@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Moya
 
 class HalfModalVC: UIViewController {
     
@@ -14,14 +15,17 @@ class HalfModalVC: UIViewController {
     @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
     
     // MARK: Properties
-    var majorList: [ReviewData] = []
+    var majorList: [MajorInfoModel] = []
+    var selectMajorDelegate: SendUpdateModalDelegate?
     
     // MARK: Life Cycle Part
     override func viewDidLoad() {
         super.viewDidLoad()
-        initMajorList()
+        majorList = MajorInfo.shared.majorList ?? []
         setUpTV()
+        majorTV.reloadData()
         configureBtnUI()
+        tapMajorChooseBtnAction()
     }
     
     // MARK: IBAction
@@ -30,22 +34,6 @@ class HalfModalVC: UIViewController {
     }
     
     // MARK: Private Methods
-    
-    /// 학과 이름 리스트 삽입 함수
-    private func initMajorList() {
-        majorList.append(contentsOf: [
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순")
-        ])
-    }
     
     /// TableView setting 함수
     private func setUpTV() {
@@ -69,6 +57,21 @@ class HalfModalVC: UIViewController {
             majorChooseBtn.setTitle("선택 완료", for: .normal)
         }
     }
+    
+    /// 선택완료 버튼 클릭 시 데이터 전달
+    func tapMajorChooseBtnAction() {
+        majorChooseBtn.press {
+            let selectedMajorName = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
+            let selectedMajorID = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
+
+            if let selectMajorDelegate = self.selectMajorDelegate {
+                UserDefaults.standard.set(selectedMajorID, forKey: UserDefaults.Keys.SelectedMajorID)
+                UserDefaults.standard.set(selectedMajorName, forKey: UserDefaults.Keys.SelectedMajorName)
+                selectMajorDelegate.sendUpdate(data: selectedMajorName)
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -87,8 +90,12 @@ extension HalfModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className) as? MajorTVC else { return UITableViewCell() }
         
-        cell.setData(reviewData: majorList[indexPath.row])
+        cell.setData(majorName: majorList[indexPath.row].majorName)
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        majorChooseBtn.isActivated = true
+        majorChooseBtn.titleLabel?.textColor = UIColor.mainDefault
+    }
 }

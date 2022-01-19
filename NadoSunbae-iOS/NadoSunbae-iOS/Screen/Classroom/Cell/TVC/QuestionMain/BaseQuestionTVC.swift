@@ -131,11 +131,11 @@ extension BaseQuestionTVC {
 
 // MARK: - Custom Methods
 extension BaseQuestionTVC {
-    func setData(data: MypageQuestionModel) {
+    func setData(data: ClassroomPostList) {
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
-        nicknameLabel.text = data.nickName
-        questionTimeLabel.text = data.writeTime.serverTimeToString(forUse: .forDefault)
+        nicknameLabel.text = data.writer.nickname
+        questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
         likeCountLabel.text = "\(data.likeCount)"
     }
