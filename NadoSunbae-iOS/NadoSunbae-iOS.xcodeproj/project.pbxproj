@@ -166,6 +166,11 @@
 		77A759202797645E00A8E48B /* WriterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7591F2797645E00A8E48B /* WriterData.swift */; };
 		77A759222797649A00A8E48B /* LikeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759212797649A00A8E48B /* LikeData.swift */; };
 		77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759232797656B00A8E48B /* ReviewPostData.swift */; };
+		77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759252797FDEA00A8E48B /* MajorListData.swift */; };
+		77A759282797FEB400A8E48B /* PublicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759272797FEB400A8E48B /* PublicService.swift */; };
+		77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759292798028900A8E48B /* PublicAPI.swift */; };
+		77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7592E27981A0E00A8E48B /* MajorInfo.swift */; };
+		77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593227984A7100A8E48B /* MajorInfoModel.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -339,6 +344,11 @@
 		77A7591F2797645E00A8E48B /* WriterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterData.swift; sourceTree = "<group>"; };
 		77A759212797649A00A8E48B /* LikeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeData.swift; sourceTree = "<group>"; };
 		77A759232797656B00A8E48B /* ReviewPostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostData.swift; sourceTree = "<group>"; };
+		77A759252797FDEA00A8E48B /* MajorListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorListData.swift; sourceTree = "<group>"; };
+		77A759272797FEB400A8E48B /* PublicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicService.swift; sourceTree = "<group>"; };
+		77A759292798028900A8E48B /* PublicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPI.swift; sourceTree = "<group>"; };
+		77A7592E27981A0E00A8E48B /* MajorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfo.swift; sourceTree = "<group>"; };
+		77A7593227984A7100A8E48B /* MajorInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfoModel.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -407,6 +417,7 @@
 		3313643D2785A47300E0C118 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				77A7592D279819E000A8E48B /* PublicData */,
 				331364522785A8E900E0C118 /* Factory */,
 				331364412785A4B400E0C118 /* Class */,
 				331364422785A4BA00E0C118 /* Struct */,
@@ -521,6 +532,7 @@
 			children = (
 				33FBC3182796F6C900741730 /* ReviewAPI.swift */,
 				5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */,
+				77A759292798028900A8E48B /* PublicAPI.swift */,
 				5C32801B2797292B00781EBE /* MypageAPI.swift */,
 			);
 			path = APIManagers;
@@ -531,6 +543,7 @@
 			children = (
 				331364C02786217400E0C118 /* ReviewService.swift */,
 				5CC0BFD127985D4C00B96905 /* NotificationService.swift */,
+				77A759272797FEB400A8E48B /* PublicService.swift */,
 				5C3280172797217E00781EBE /* MypageService.swift */,
 			);
 			path = MoyaTarget;
@@ -1107,6 +1120,41 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		77A7592D279819E000A8E48B /* PublicData */ = {
+			isa = PBXGroup;
+			children = (
+				77A7593127984A3800A8E48B /* AppModel */,
+				77A7593027984A2E00A8E48B /* Singleton */,
+			);
+			path = PublicData;
+			sourceTree = "<group>";
+		};
+		77A7593027984A2E00A8E48B /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				77A7592E27981A0E00A8E48B /* MajorInfo.swift */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
+		77A7593127984A3800A8E48B /* AppModel */ = {
+			isa = PBXGroup;
+			children = (
+				77A7593227984A7100A8E48B /* MajorInfoModel.swift */,
+			);
+			path = AppModel;
+			sourceTree = "<group>";
+		};
+		77A7593427987E9E00A8E48B /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				77A7591F2797645E00A8E48B /* WriterData.swift */,
+				77A759212797649A00A8E48B /* LikeData.swift */,
+				77A759252797FDEA00A8E48B /* MajorListData.swift */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,13 +1172,12 @@
 			isa = PBXGroup;
 			children = (
 				5CC0BFCE27985D2800B96905 /* Notification */,
+				77A7593427987E9E00A8E48B /* Public */,
 				77A7591C2797628F00A8E48B /* Review */,
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
 				331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */,
 				5C3280162797207200781EBE /* Mypage */,
-				77A7591F2797645E00A8E48B /* WriterData.swift */,
-				77A759212797649A00A8E48B /* LikeData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1323,6 +1370,7 @@
 				5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */,
 				5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
+				77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */,
 				5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */,
 				5C32801C2797292B00781EBE /* MypageAPI.swift in Sources */,
 				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
@@ -1345,6 +1393,7 @@
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
+				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
 				77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
@@ -1370,6 +1419,7 @@
 				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
 				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
 				5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */,
+				77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
 				331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */,
 				5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */,
@@ -1407,10 +1457,13 @@
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				5C328021279741C200781EBE /* MypageUserPersonalQuestionModel.swift in Sources */,
 				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
+				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
+				77A759282797FEB400A8E48B /* PublicService.swift in Sources */,
+				5CB6503327947ACE007694B1 /* NotificationModel.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				7754A318279028250093C230 /* ReviewNC.swift in Sources */,
 			);
