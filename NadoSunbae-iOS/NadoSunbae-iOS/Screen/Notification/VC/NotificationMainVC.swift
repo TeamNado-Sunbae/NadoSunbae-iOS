@@ -72,7 +72,7 @@ extension NotificationMainVC {
 // MARK: - Network
 extension NotificationMainVC {
     private func getNotiList() {
-        DispatchQueue.main.async { self.activityIndicator.startAnimating() }
+        self.activityIndicator.startAnimating()
         NotificationAPI.shared.getNotiList { networkResult in
             switch networkResult {
             case .success(let res):
@@ -81,8 +81,8 @@ extension NotificationMainVC {
                     DispatchQueue.main.async {
                         self.notificationTV.reloadData()
                         self.setEmptyState()
-                        self.activityIndicator.stopAnimating()
                     }
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
