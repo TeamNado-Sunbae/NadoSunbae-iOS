@@ -72,15 +72,17 @@ extension NotificationMainVC {
 // MARK: - Network
 extension NotificationMainVC {
     private func getNotiList() {
-        self.activityIndicator.startAnimating()
+        DispatchQueue.main.async { self.activityIndicator.startAnimating() }
         NotificationAPI.shared.getNotiList { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? NotificationDataModel {
                     self.notificationList = data.notificationList
-                    self.notificationTV.reloadData()
-                    self.setEmptyState()
-                    self.activityIndicator.stopAnimating()
+                    DispatchQueue.main.async {
+                        self.notificationTV.reloadData()
+                        self.setEmptyState()
+                        self.activityIndicator.stopAnimating()
+                    }
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
@@ -98,7 +100,24 @@ extension NotificationMainVC {
             switch networkResult {
             case .success(let res):
                 if res is ReadNotificationDataModel {
-                    print("우헤헤성공")
+                    self.getNotiList()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print("request err: ", message)
+                }
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    func deleteNoti(notiID: Int) {
+        NotificationAPI.shared.deleteNoti(notiID: notiID) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if res is DeleteNotificationDataModel {
                     self.getNotiList()
                 }
             case .requestErr(let msg):

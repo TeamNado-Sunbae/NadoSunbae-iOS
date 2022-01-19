@@ -19,11 +19,16 @@ extension NotificationMainVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NotificationTVC.className, for: indexPath) as? NotificationTVC else { return UITableViewCell() }
+        
         cell.setData(data: notificationList[indexPath.section])
-        cell.deleteBtn.press {
-            // TODO: 서버에 삭제 처리 후 다시 fetch
-        }
+        cell.deleteBtn.tag = indexPath.section
+        cell.deleteBtn.addTarget(self, action: #selector(self.removeCell), for: .touchUpInside)
+        
         return cell
+    }
+    
+    @objc func removeCell(_ sender: UIButton) {
+        self.deleteNoti(notiID: self.notificationList[sender.tag].notificationID)
     }
 }
 

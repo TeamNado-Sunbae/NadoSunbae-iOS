@@ -10,7 +10,7 @@ import Moya
 
 class NotificationAPI {
     static let shared = NotificationAPI()
-    private var provider = MoyaProvider<NotificationService>(plugins: [NetworkLoggerPlugin()])
+    private var provider = MoyaProvider<NotificationService>()
     
     private init() {}
 }
@@ -52,7 +52,7 @@ extension NotificationAPI {
     
     /// [DELETE] 특정 알림 삭제 처리
     func deleteNoti(notiID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.readNoti(notiID: notiID)) { result in
+        provider.request(.deleteNoti(notiID: notiID)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
