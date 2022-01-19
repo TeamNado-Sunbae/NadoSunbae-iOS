@@ -21,7 +21,7 @@ extension NotificationMainVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NotificationTVC.className, for: indexPath) as? NotificationTVC else { return UITableViewCell() }
         cell.setData(data: notificationList[indexPath.section])
         cell.deleteBtn.press {
-            // TODO: 서버에 읽음 처리 후 다시 fetch
+            // TODO: 서버에 삭제 처리 후 다시 fetch
         }
         return cell
     }
@@ -29,6 +29,57 @@ extension NotificationMainVC: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension NotificationMainVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        /// 뷰 이동 및 읽음 처리, 현재 질문글만 뷰 이동 가능
+        switch notificationList[indexPath.section].notificationType.getNotiType() {
+        case .writtenInfo:
+            break
+            
+        case .writtenQuestion:
+            guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+            
+            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
+            
+            /// 현재 들어온 정보로는 개인질문글인지, 공개질문글인지 모름 . ...?
+            groupChatVC.questionType = .personal
+            groupChatVC.naviStyle = .push
+            
+            readNoti(notiID: notificationList[indexPath.section].notificationID)
+            self.navigationController?.pushViewController(groupChatVC, animated: true)
+            
+        case .answerInfo:
+            break
+            
+        case .answerQuestion:
+            guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+            
+            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
+            
+            /// 현재 들어온 정보로는 개인질문글인지, 공개질문글인지 모름 . ...?
+            groupChatVC.questionType = .personal
+            groupChatVC.naviStyle = .push
+            
+            readNoti(notiID: notificationList[indexPath.section].notificationID)
+            self.navigationController?.pushViewController(groupChatVC, animated: true)
+
+        case .mypageQuestion:
+            guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+            
+            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?), 얜 확실히 개인 질문!
+            
+            groupChatVC.questionType = .personal
+            groupChatVC.naviStyle = .push
+            
+            readNoti(notiID: notificationList[indexPath.section].notificationID)
+            self.navigationController?.pushViewController(groupChatVC, animated: true)
+
+        default:
+            break
+        }
+    }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }

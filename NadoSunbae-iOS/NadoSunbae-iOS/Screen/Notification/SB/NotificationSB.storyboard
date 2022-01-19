@@ -158,6 +158,7 @@
                             <constraint firstItem="NgC-Y7-gAY" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uLY-t5-rY4"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4ux-ge-Nus"/>
                     <connections>
                         <outlet property="navView" destination="SgZ-z0-ye5" id="3em-Fb-IHU"/>
                         <outlet property="noNotiLabel" destination="NgC-Y7-gAY" id="lNN-Kb-drq"/>
@@ -165,6 +166,23 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="916" y="112.3152709359606"/>
+        </scene>
+        <!--NotificationNVC-->
+        <scene sceneID="iq2-MS-0mL">
+            <objects>
+                <navigationController storyboardIdentifier="NotificationNVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="wCZ-Oz-eXv" customClass="NotificationNVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wwE-3Q-Pma">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="HGB-Ky-3ob"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsX-Gr-1ya" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-26.399999999999999" y="112.3152709359606"/>
         </scene>

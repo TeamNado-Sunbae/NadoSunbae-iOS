@@ -44,6 +44,7 @@ class NotificationMainVC: BaseVC {
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        makeVisibleTabBar()
         getNotiList()
     }
     
@@ -61,6 +62,10 @@ extension NotificationMainVC {
     
     private func setEmptyState() {
         noNotiLabel.isHidden = notificationList.isEmpty ? false : true
+    }
+    
+    private func makeVisibleTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -81,6 +86,26 @@ extension NotificationMainVC {
                 if let message = msg as? String {
                     print("request err: ", message)
                 }
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    func readNoti(notiID: Int) {
+        NotificationAPI.shared.readNoti(notiID: notiID) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if res is ReadNotificationDataModel {
+                    print("우헤헤성공")
+                    self.getNotiList()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print("request err: ", message)
+                }
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }

@@ -50,18 +50,7 @@ extension NotificationTVC {
     func setData(data: NotificationList) {
         redCircleImgView.isHidden = data.isRead
         
-        var notiType: NotiType? {
-            switch data.notificationType {
-            case 1: return .mypageQuestion
-            case 2: return .writtenQuestion
-            case 3: return .writtenInfo
-            case 4: return .answerQuestion
-            case 5: return .answerInfo
-            default:
-                print("server Notification type error")
-                return nil
-            }
-        }
+        let notiType = data.notificationType.getNotiType()
         
         titleLabel.text = "\(notiType!.rawValue)에 \(data.sender.nickname)님이 \(notiType != .mypageQuestion ? "답글" : "1:1 질문")을 남겼습니다."
         contentLabel.text = "\(data.content)"
