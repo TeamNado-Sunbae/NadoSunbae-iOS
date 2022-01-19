@@ -452,10 +452,12 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 commentEditCell.bindData(questionChatData[indexPath.row])
                 commentEditCell.tapConfirmBtnAction = { [unowned self] in
                     // TODO: 수정 API 연결
+                    editIndex = []
                     defaultQuestionChatTV.reloadData()
                 }
                 
                 commentEditCell.tapCancelBtnAction = { [unowned self] in
+                    editIndex = []
                     defaultQuestionChatTV.reloadData()
                 }
                 return commentEditCell
