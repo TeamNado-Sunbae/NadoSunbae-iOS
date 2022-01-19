@@ -128,6 +128,7 @@
 		5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */; };
 		5CC0BFD82798768F00B96905 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD72798768F00B96905 /* Int+.swift */; };
 		5CC0BFDB27987F6400B96905 /* NotificationNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */; };
+		5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFDC2798836400B96905 /* DeleteNotificationDataModel.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
@@ -301,6 +302,7 @@
 		5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNotificationDataModel.swift; sourceTree = "<group>"; };
 		5CC0BFD72798768F00B96905 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNVC.swift; sourceTree = "<group>"; };
+		5CC0BFDC2798836400B96905 /* DeleteNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNotificationDataModel.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
@@ -1029,6 +1031,7 @@
 			children = (
 				5CC0BFD32798621600B96905 /* NotificationDataModel.swift */,
 				5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */,
+				5CC0BFDC2798836400B96905 /* DeleteNotificationDataModel.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1392,6 +1395,7 @@
 				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
+				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
