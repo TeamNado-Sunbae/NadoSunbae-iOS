@@ -16,7 +16,11 @@ class NotificationMainVC: BaseVC {
         }
     }
     
-    @IBOutlet weak var noNotiLabel: UILabel!
+    @IBOutlet weak var noNotiLabel: UILabel! {
+        didSet {
+            noNotiLabel.isHidden = true
+        }
+    }
     @IBOutlet weak var notificationTV: UITableView! {
         didSet {
             notificationTV.delegate = self
@@ -32,23 +36,19 @@ class NotificationMainVC: BaseVC {
     }
     
     // MARK: Properties
-    var notificationList = [
-        NotificationModel(senderNickName: "최숙주", notiType: .mypageQuestion, time: "2022-01-18T19:29:42.040Z", isRead: false, title: "확인해", content: "알림읽어용~!!&^^"),
-        NotificationModel(senderNickName: "정정숙", notiType: .answerQuestion, time: "2022-01-18T14:56:42.040Z", isRead: true, title: "확인해", content: "알림읽어용~!!&^^"),
-        NotificationModel(senderNickName: "황정숙", notiType: .notiInfo, time: "2022-01-14T18:56:42.040Z", isRead: false, title: "확인해", content: "알림읽어용~!!&^^"),
-        NotificationModel(senderNickName: "김두숙", notiType: .writtenInfo, time: "2022-01-16T18:56:42.040Z", isRead: false, title: "확인해", content: "알림읽어용~!!&^^"),
-        NotificationModel(senderNickName: "김나도", notiType: .notiQuestion, time: "2022-01-12T18:56:42.040Z", isRead: true, title: "확인해", content: "알림읽어용~!!&^^"),
-        NotificationModel(senderNickName: "이선배", notiType: .answerInfo, time: "2022-01-18T18:56:42.040Z", isRead: true, title: "확인해", content: "알림읽어용~!!&^^"),
-        NotificationModel(senderNickName: "김나도", notiType: .answerQuestion, time: "2022-01-12T19:00:42.040Z", isRead: false, title: "확인해", content: "알림읽어용~!!&^^")
-    ]
+    var notificationList = [NotificationList]()
     
     /// TableView 투명한 header, footer를 위한 empty View
     var emptyViewForTV = UIView()
     
     // MARK: LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getNotiList()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
     }
 }
@@ -57,11 +57,33 @@ class NotificationMainVC: BaseVC {
 extension NotificationMainVC {
     private func configureUI() {
         emptyViewForTV.backgroundColor = .clear
+    }
+    
+    private func setEmptyState() {
         noNotiLabel.isHidden = notificationList.isEmpty ? false : true
     }
 }
 
-// MARK: - Custom Methods
+// MARK: - Network
 extension NotificationMainVC {
-    // TODO: 서버 붙이고 어쩌고.. 여기에 함수 넣을 거임!
+    private func getNotiList() {
+        self.activityIndicator.startAnimating()
+        NotificationAPI.shared.getNotiList { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? NotificationDataModel {
+                    self.notificationList = data.notificationList
+                    self.notificationTV.reloadData()
+                    self.setEmptyState()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print("request err: ", message)
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
 }
