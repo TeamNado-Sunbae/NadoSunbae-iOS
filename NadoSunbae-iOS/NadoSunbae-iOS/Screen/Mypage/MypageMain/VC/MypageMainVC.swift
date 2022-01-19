@@ -34,14 +34,12 @@ class MypageMainVC: UIViewController {
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         getUserInfo()
         getUserPersonalQuestionList()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
         setUpTV()
         registerCell()
@@ -125,7 +123,7 @@ extension MypageMainVC {
 // MARK: - Network
 extension MypageMainVC {
     private func getUserInfo() {
-        MypageAPI.shared.getUserInfo(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, accessToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String, completion: { networkResult in
+        MypageAPI.shared.getUserInfo(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserInfoModel {
@@ -143,7 +141,7 @@ extension MypageMainVC {
     }
     
     private func getUserPersonalQuestionList() {
-        MypageAPI.shared.getUserPersonalQuestionList(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, accessToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String, sort: .recent, completion: { networkResult in
+        MypageAPI.shared.getUserPersonalQuestionList(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, sort: .recent, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserPersonalQuestionModel {

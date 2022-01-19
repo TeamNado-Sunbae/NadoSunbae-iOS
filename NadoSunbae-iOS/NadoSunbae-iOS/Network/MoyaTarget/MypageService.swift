@@ -9,8 +9,8 @@ import Foundation
 import Moya
 
 enum MypageService {
-    case getUserInfo(userID: Int, accessToken: String)
-    case getUserPersonalQuestionList(userID: Int, accessToken: String, sort: ListSortType)
+    case getUserInfo(userID: Int)
+    case getUserPersonalQuestionList(userID: Int, sort: ListSortType)
 }
 
 extension MypageService: TargetType {
@@ -20,9 +20,9 @@ extension MypageService: TargetType {
     
     var path: String {
         switch self {
-        case .getUserInfo(let userID, _):
+        case .getUserInfo(let userID):
             return "/user/mypage/\(userID)"
-        case .getUserPersonalQuestionList(let userID, _, _):
+        case .getUserPersonalQuestionList(let userID, _):
             return "/user/mypage/\(userID)/classroom-post/list"
         }
     }
@@ -36,18 +36,18 @@ extension MypageService: TargetType {
     
     var task: Task {
         switch self {
-        case .getUserInfo(let userID, _):
+        case .getUserInfo(let userID):
             return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
-        case .getUserPersonalQuestionList(_, _, let sort):
+        case .getUserPersonalQuestionList(_, let sort):
             return .requestParameters(parameters: ["sort": sort.rawValue], encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String : String]? {
+        let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
+        
         switch self {
-        case .getUserInfo(_, let accessToken):
-            return ["accessToken": accessToken]
-        case .getUserPersonalQuestionList(_, let accessToken, _):
+        case .getUserInfo, .getUserPersonalQuestionList:
             return ["accessToken": accessToken]
         }
     }

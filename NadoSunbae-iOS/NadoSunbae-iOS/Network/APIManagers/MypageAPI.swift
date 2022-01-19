@@ -19,8 +19,8 @@ class MypageAPI {
 extension MypageAPI {
     
     /// [GET] 특정 유저 정보 조회
-    func getUserInfo(userID: Int, accessToken: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.getUserInfo(userID: userID, accessToken: accessToken)) { result in
+    func getUserInfo(userID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getUserInfo(userID: userID)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -35,8 +35,8 @@ extension MypageAPI {
     }
     
     /// [GET] 유저에게 온 1:1 질문글 리스트 조회
-    func getUserPersonalQuestionList(userID: Int, accessToken: String, sort: ListSortType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.getUserPersonalQuestionList(userID: userID, accessToken: accessToken, sort: sort)) { result in
+    func getUserPersonalQuestionList(userID: Int, sort: ListSortType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getUserPersonalQuestionList(userID: userID, sort: sort)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -57,10 +57,11 @@ extension MypageAPI {
         let decoder = JSONDecoder()
         
         guard let decodedData = try? decoder.decode(GenericResponse<MypageUserInfoModel>.self, from: data) else { return .pathErr }
+        
         switch status {
-        case 200:
+        case 200...204:
             return .success(decodedData.data ?? "None-Data")
-        case 400...500:
+        case 400...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
@@ -75,9 +76,9 @@ extension MypageAPI {
         guard let decodedData = try? decoder.decode(GenericResponse<MypageUserPersonalQuestionModel>.self, from: data) else { return .pathErr }
 
         switch status {
-        case 200:
+        case 200...204:
             return .success(decodedData.data ?? "None-Data")
-        case 400...500:
+        case 400...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
