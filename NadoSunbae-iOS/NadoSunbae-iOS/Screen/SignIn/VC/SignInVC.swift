@@ -109,5 +109,6 @@ extension SignInVC {
         UserDefaults.standard.set(126, forKey: UserDefaults.Keys.SecondMajorID)
         UserDefaults.standard.set("미진입", forKey: UserDefaults.Keys.SecondMajorName)
         UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(3, forKey: UserDefaults.Keys.UserID)
     }
 }

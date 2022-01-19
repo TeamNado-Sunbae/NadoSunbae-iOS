@@ -44,6 +44,7 @@ class MypageUserVC: BaseVC {
     }
     
     // MARK: Properties
+    var targetUserID = 1
     var userInfo = MypageUserInfoModel()
     var questionList: [ClassroomPostList] = []
     
@@ -129,9 +130,7 @@ extension MypageUserVC {
 // MARK: - Network
 extension MypageUserVC {
     private func getUserInfo() {
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrdTJAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1MiIsImZpcmViYXNlSWQiOiJOT1ZDYktEUUlEY3IybmJsam9ZazhSSnJ0NTUyIiwiaWF0IjoxNjQyMzI5OTMwLCJleHAiOjE2NDQ5MjE5MzAsImlzcyI6Im5hZG9TdW5iYWUifQ.tiblhyT4Y9-DDH1KTwIm37wevbChJ-R8-ECSb3QpZUI"
-        
-        MypageAPI.shared.getUserInfo(userID: 3, accessToken: accessToken, completion: { networkResult in
+        MypageAPI.shared.getUserInfo(userID: targetUserID, accessToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserInfoModel {
@@ -149,9 +148,7 @@ extension MypageUserVC {
     }
     
     private func getUserPersonalQuestionList() {
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJRakw2dTdVR0NEVGhEN1pCUVBpcTZCeHNxNVEyIiwiaWF0IjoxNjQyNTM0NTE1LCJleHAiOjE2NDUxMjY1MTUsImlzcyI6Im5hZG9TdW5iYWUifQ.cOdQIyyPtDE9d36J3t6231hpnDV8qgLb2xhxe523i20"
-        
-        MypageAPI.shared.getUserPersonalQuestionList(userID: 1, accessToken: accessToken, sort: .recent, completion: { networkResult in
+        MypageAPI.shared.getUserPersonalQuestionList(userID: targetUserID, accessToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String, sort: .recent, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserPersonalQuestionModel {

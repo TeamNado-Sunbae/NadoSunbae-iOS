@@ -125,9 +125,7 @@ extension MypageMainVC {
 // MARK: - Network
 extension MypageMainVC {
     private func getUserInfo() {
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJRakw2dTdVR0NEVGhEN1pCUVBpcTZCeHNxNVEyIiwiaWF0IjoxNjQyNTM0NTE1LCJleHAiOjE2NDUxMjY1MTUsImlzcyI6Im5hZG9TdW5iYWUifQ.cOdQIyyPtDE9d36J3t6231hpnDV8qgLb2xhxe523i20"
-        
-        MypageAPI.shared.getUserInfo(userID: 3, accessToken: accessToken, completion: { networkResult in
+        MypageAPI.shared.getUserInfo(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, accessToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserInfoModel {
@@ -145,9 +143,7 @@ extension MypageMainVC {
     }
     
     private func getUserPersonalQuestionList() {
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJRakw2dTdVR0NEVGhEN1pCUVBpcTZCeHNxNVEyIiwiaWF0IjoxNjQyNTM0NTE1LCJleHAiOjE2NDUxMjY1MTUsImlzcyI6Im5hZG9TdW5iYWUifQ.cOdQIyyPtDE9d36J3t6231hpnDV8qgLb2xhxe523i20"
-        
-        MypageAPI.shared.getUserPersonalQuestionList(userID: 3, accessToken: accessToken, sort: .recent, completion: { networkResult in
+        MypageAPI.shared.getUserPersonalQuestionList(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, accessToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String, sort: .recent, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserPersonalQuestionModel {
