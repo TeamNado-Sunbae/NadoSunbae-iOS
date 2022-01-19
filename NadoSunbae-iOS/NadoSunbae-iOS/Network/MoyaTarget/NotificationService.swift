@@ -9,11 +9,14 @@ import Foundation
 import Moya
 
 enum NotificationService {
-    case getNotiList(
-    case createReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String)
+    case getNotiList
 }
 
 extension NotificationService: TargetType {
+    var userID: Int {
+        return UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int
+    }
+    
     var baseURL: URL {
         return URL(string: APIConstants.baseURL)!
     }
@@ -21,47 +24,26 @@ extension NotificationService: TargetType {
     var path: String {
         switch self {
         case .getNotiList:
-            return "/review-post"
+            return "/notification/list/\(userID)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-            
-        case .createReviewPost:
-            return .post
+        case .getNotiList:
+            return .get
         }
     }
     
     var task: Task {
         switch self {
-            
-        case .createReviewPost(let majorID, let bgImgID, let oneLineReview, let prosCons, let curriculum, let career, let recommendLecture, let nonRecommendLecture, let tip):
-            
-            let body: [String : Any] = [
-                "majorId" : majorID,
-                "backgroundImageId" : bgImgID,
-                "oneLineReview" : oneLineReview,
-                "prosCons" : prosCons,
-                "curriculum" : curriculum,
-                "career" : career,
-                "recommendLecture" : recommendLecture,
-                "nonRecommendLecture" : nonRecommendLecture,
-                "tip" : tip
-            ]
-            
-            return .requestParameters(parameters: body, encoding: URLEncoding.httpBody)
+        case .getNotiList:
+            return .requestParameters(parameters: ["receiverId": userID], encoding: URLEncoding.queryString)
         }
     }
     
-    var headers: [String: String]? {
-        let accessToken: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken) ?? ""
-        print(accessToken)
-        
-        switch self {
-            
-        case .createReviewPost:
-            return ["accesstoken" : accessToken]
-        }
+    var headers: [String : String]? {
+        let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
+        return ["accessToken": accessToken]
     }
 }
