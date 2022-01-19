@@ -30,7 +30,6 @@ class ReviewAPI {
             }
         }
     }
-    
 }
 
 // MARK: - JudgeData
