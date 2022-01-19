@@ -161,6 +161,7 @@
 		77A759282797FEB400A8E48B /* PublicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759272797FEB400A8E48B /* PublicService.swift */; };
 		77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759292798028900A8E48B /* PublicAPI.swift */; };
 		77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7592E27981A0E00A8E48B /* MajorInfo.swift */; };
+		77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593227984A7100A8E48B /* MajorInfoModel.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -328,6 +329,7 @@
 		77A759272797FEB400A8E48B /* PublicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicService.swift; sourceTree = "<group>"; };
 		77A759292798028900A8E48B /* PublicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPI.swift; sourceTree = "<group>"; };
 		77A7592E27981A0E00A8E48B /* MajorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfo.swift; sourceTree = "<group>"; };
+		77A7593227984A7100A8E48B /* MajorInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfoModel.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -1392,6 +1394,7 @@
 				331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */,
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
+				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
