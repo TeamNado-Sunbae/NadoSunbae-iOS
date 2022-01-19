@@ -120,6 +120,8 @@
 		5CB6503027947A5E007694B1 /* NotificationMainVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6502F27947A5E007694B1 /* NotificationMainVC+TV.swift */; };
 		5CB6503327947ACE007694B1 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6503227947ACE007694B1 /* NotificationModel.swift */; };
 		5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6503527947B5A007694B1 /* NotificationTVC.swift */; };
+		5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */; };
+		5CC0BFD227985D4C00B96905 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD127985D4C00B96905 /* NotificationService.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
@@ -284,6 +286,8 @@
 		5CB6502F27947A5E007694B1 /* NotificationMainVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationMainVC+TV.swift"; sourceTree = "<group>"; };
 		5CB6503227947ACE007694B1 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		5CB6503527947B5A007694B1 /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
+		5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
+		5CC0BFD127985D4C00B96905 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
@@ -498,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				33FBC3182796F6C900741730 /* ReviewAPI.swift */,
+				5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */,
 			);
 			path = APIManagers;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				331364C02786217400E0C118 /* ReviewService.swift */,
+				5CC0BFD127985D4C00B96905 /* NotificationService.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -1001,6 +1007,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		5CC0BFCE27985D2800B96905 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		5CD4213327907E4900D09DEE /* MypageUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1080,6 +1093,7 @@
 		77AEEB262789713D0016880B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5CC0BFCE27985D2800B96905 /* Notification */,
 				77A7591C2797628F00A8E48B /* Review */,
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
@@ -1311,6 +1325,7 @@
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
+				5CC0BFD227985D4C00B96905 /* NotificationService.swift in Sources */,
 				5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */,
 				331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */,
 				33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */,
@@ -1320,6 +1335,7 @@
 				5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
 				331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */,
+				5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
