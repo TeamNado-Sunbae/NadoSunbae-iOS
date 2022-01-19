@@ -26,6 +26,7 @@ class ReviewMainVC: UIViewController {
         initImgList()
         initPostList()
         addShadowToNaviBar()
+        requestGetMajorList(univID: 1, filterType: "all")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -251,3 +252,35 @@ extension ReviewMainVC: UITableViewDataSource {
         }
     }
 }
+
+// MARK: - Network
+extension ReviewMainVC {
+    func requestGetMajorList(univID: Int, filterType: String) {
+        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                var list: [String] = []
+                DispatchQueue.main.async {
+                    if let data = res as? [MajorListData] {
+                        for i in 0...data.count - 3 {
+                            list.append(data[i].majorName)
+                        }
+                        MajorInfo.shared.majorList = list
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+}
+

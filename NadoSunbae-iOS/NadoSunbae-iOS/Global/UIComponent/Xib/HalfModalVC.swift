@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Moya
 
 class HalfModalVC: UIViewController {
     
@@ -22,13 +23,14 @@ class HalfModalVC: UIViewController {
     }
     
     // MARK: Properties
-    var majorList: [ReviewData] = []
+    var majorList: [String] = []
     
     // MARK: Life Cycle Part
     override func viewDidLoad() {
         super.viewDidLoad()
-        initMajorList()
+        majorList = MajorInfo.shared.majorList ?? []
         setUpTV()
+        majorTV.reloadData()
         configureBtnUI()
     }
     
@@ -38,22 +40,6 @@ class HalfModalVC: UIViewController {
     }
     
     // MARK: Private Methods
-    
-    /// 학과 이름 리스트 삽입 함수
-    private func initMajorList() {
-        majorList.append(contentsOf: [
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순"),
-            ReviewData(majorName: "학과 이름 가나다순")
-        ])
-    }
     
     /// TableView setting 함수
     private func setUpTV() {
@@ -95,7 +81,7 @@ extension HalfModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className) as? MajorTVC else { return UITableViewCell() }
         
-        cell.setData(reviewData: majorList[indexPath.row])
+        cell.setData(majorName: majorList[indexPath.row])
         return cell
     }
     

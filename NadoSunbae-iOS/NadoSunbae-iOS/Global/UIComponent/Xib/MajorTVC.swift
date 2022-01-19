@@ -46,8 +46,8 @@ class MajorTVC: BaseTVC {
 extension MajorTVC {
     
     /// Label에 학과 이름 setting하는 함수
-    func setData(reviewData: ReviewData) {
-        majorNameLabel.text = reviewData.majorName
+    func setData(majorName: String) {
+        majorNameLabel.text = majorName
     }
     
     /// 즐겨찾기 버튼 이미지 설정
