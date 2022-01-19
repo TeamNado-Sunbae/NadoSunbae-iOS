@@ -154,6 +154,12 @@
 		777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */; };
 		777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */; };
 		777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */; };
+		77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */; };
+		77A7591B279712B700A8E48B /* ReviewPostTagCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A75919279712B700A8E48B /* ReviewPostTagCVC.xib */; };
+		77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */; };
+		77A759202797645E00A8E48B /* WriterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7591F2797645E00A8E48B /* WriterData.swift */; };
+		77A759222797649A00A8E48B /* LikeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759212797649A00A8E48B /* LikeData.swift */; };
+		77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759232797656B00A8E48B /* ReviewPostData.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -315,6 +321,12 @@
 		777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainPostTVC.xib; sourceTree = "<group>"; };
 		777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainStickyHeader.xib; sourceTree = "<group>"; };
 		777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStickyHeaderView.swift; sourceTree = "<group>"; };
+		77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostTagCVC.swift; sourceTree = "<group>"; };
+		77A75919279712B700A8E48B /* ReviewPostTagCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewPostTagCVC.xib; sourceTree = "<group>"; };
+		77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostRegisterData.swift; sourceTree = "<group>"; };
+		77A7591F2797645E00A8E48B /* WriterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterData.swift; sourceTree = "<group>"; };
+		77A759212797649A00A8E48B /* LikeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeData.swift; sourceTree = "<group>"; };
+		77A759232797656B00A8E48B /* ReviewPostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostData.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -569,6 +581,7 @@
 			children = (
 				3313648D2785D76400E0C118 /* ReviewSB.storyboard */,
 				7754A32027947D990093C230 /* ReviewDetailSB.storyboard */,
+				7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -708,7 +721,6 @@
 		33B69FF2278F155400A8E3D3 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
-				7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */,
 				33CF63642794A05900E92C04 /* Chat */,
 				33CF63632794A04C00E92C04 /* QuestionMain */,
 			);
@@ -1055,8 +1067,19 @@
 			children = (
 				7754A31A27912F3A0093C230 /* ReviewWriteBgImgCVC.swift */,
 				7754A31B27912F3A0093C230 /* ReviewWriteBgImgCVC.xib */,
+				77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */,
+				77A75919279712B700A8E48B /* ReviewPostTagCVC.xib */,
 			);
 			path = CVC;
+			sourceTree = "<group>";
+		};
+		77A7591C2797628F00A8E48B /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */,
+				77A759232797656B00A8E48B /* ReviewPostData.swift */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {
@@ -1075,10 +1098,13 @@
 		77AEEB262789713D0016880B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				77A7591C2797628F00A8E48B /* Review */,
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
 				331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */,
 				5C3280162797207200781EBE /* Mypage */,
+				77A7591F2797645E00A8E48B /* WriterData.swift */,
+				77A759212797649A00A8E48B /* LikeData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1162,6 +1188,7 @@
 				338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */,
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
+				77A7591B279712B700A8E48B /* ReviewPostTagCVC.xib in Resources */,
 				5CD4213A279080C100D09DEE /* MypageUserVC.storyboard in Resources */,
 				331364332784D3C000E0C118 /* Assets.xcassets in Resources */,
 				3313647F2785BBB100E0C118 /* Pretendard-SemiBold.otf in Resources */,
@@ -1247,7 +1274,9 @@
 				3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */,
 				3313646E2785AF9A00E0C118 /* UILabel+.swift in Sources */,
 				3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */,
+				77A759202797645E00A8E48B /* WriterData.swift in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
+				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
 				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
@@ -1282,12 +1311,14 @@
 				5CB6503027947A5E007694B1 /* NotificationMainVC+TV.swift in Sources */,
 				33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */,
 				33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */,
+				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
+				77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
@@ -1311,6 +1342,7 @@
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
 				331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
+				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,

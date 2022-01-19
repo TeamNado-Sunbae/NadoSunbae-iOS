@@ -9,7 +9,7 @@ import UIKit
 
 class ReviewMainLinkTVC: BaseTVC {
     
-    // MARK: Life Cycle Part
+    // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }

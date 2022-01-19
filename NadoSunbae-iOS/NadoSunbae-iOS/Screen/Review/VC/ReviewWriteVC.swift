@@ -79,11 +79,11 @@ class ReviewWriteVC: UIViewController {
             self.majorNameLabel.text = "디지털미디어학과"
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-
+        
         alert.addAction(majorName)
         alert.addAction(secondMajorName)
         alert.addAction(cancel)
-
+        
         present(alert, animated: true, completion: nil)
     }
 }
@@ -218,6 +218,26 @@ extension ReviewWriteVC: UITextViewDelegate {
             }
             textView.textColor = .gray2
         }
+        
+        /// 완료 버튼 클릭 시
+        if reviewWriteNaviBar.rightActivateBtn.isActivated {
+            reviewWriteNaviBar.rightActivateBtn.press {
+                
+                /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
+                [self.learnInfoTextView, self.recommendClassTextView, self.badClassTextView, self.futureTextView, self.tipTextView].forEach {
+                    for _ in 0...4 {
+                        if $0?.text == "내용을 입력해주세요" {
+                            $0?.text = ""
+                        }
+                    }
+                }
+                
+                /// 서버통신
+                self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     /// 글자 수 제한을 위한 함수
@@ -258,81 +278,24 @@ extension ReviewWriteVC: UITextViewDelegate {
             essentialTextViewStatus = true
         }
         
-        /// 선택항목 중 하나가 100자 이상 채워졌을 때 다른 텍스트뷰에 글자가 입력되지 않았을때 or 100자 이상일 때 활성화
-        if learnInfoTextView.text.count >= 100 {
-            if (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = true
-                reviewWriteNaviBar.rightActivateBtn.press {
-                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
-                    alert.confirmBtn.press {
-                        self.dismiss(animated: true, completion: nil)
+        /// 선택 항목 분기 처리
+        [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
+            if textView == $0 {
+                for _ in 0...4 {
+                    if ($0?.text.count)! >= 100 {
+                        choiceTextViewStatus = true
+                    } else if $0?.text.isEmpty == false {
+                        choiceTextViewStatus = false
+                    } else if $0?.text.isEmpty == true {
+                        choiceTextViewStatus = true
                     }
                 }
-            } else {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = false
             }
         }
         
-        if recommendClassTextView.text.count >= 100 {
-            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = true
-                reviewWriteNaviBar.rightActivateBtn.press {
-                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
-                    alert.confirmBtn.press {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            } else {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = false
-            }
-        }
+        /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
+        reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
         
-       if badClassTextView.text.count >= 100 {
-            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = true
-                reviewWriteNaviBar.rightActivateBtn.press {
-                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
-                    alert.confirmBtn.press {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            } else {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = false
-            }
-        }
-        
-        if futureTextView.text.count >= 100 {
-            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (tipTextView.text == "내용을 입력해주세요" || tipTextView.text.count >= 100) && essentialTextViewStatus == true {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = true
-                reviewWriteNaviBar.rightActivateBtn.press {
-                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
-                    alert.confirmBtn.press {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            } else {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = false
-            }
-        }
-        
-        if tipTextView.text.count >= 100 {
-            if (learnInfoTextView.text == "내용을 입력해주세요" || learnInfoTextView.text.count >= 100) && (recommendClassTextView.text == "내용을 입력해주세요" || recommendClassTextView.text.count >= 100) && (badClassTextView.text == "내용을 입력해주세요" || badClassTextView.text.count >= 100) && (futureTextView.text == "내용을 입력해주세요" || futureTextView.text.count >= 100) && essentialTextViewStatus == true {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = true
-                reviewWriteNaviBar.rightActivateBtn.press {
-                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
-                    alert.confirmBtn.press {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            } else {
-                reviewWriteNaviBar.rightActivateBtn.isActivated = false
-            }
-        }
         
         /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -364,3 +327,27 @@ extension ReviewWriteVC {
     }
 }
 
+// MARK: - Network
+extension ReviewWriteVC {
+    func requestCreateReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
+        ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? ReviewPostRegisterData {
+                    print(data)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+}

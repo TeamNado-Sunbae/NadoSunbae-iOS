@@ -183,11 +183,10 @@ extension ReviewMainVC: UITableViewDelegate {
             
             // ActionSheet 항목 클릭 시 버튼 타이틀 변경
             if selectActionSheetIndex == 1 {
-                headerView.arrangeBtn.setTitle("  좋아요순", for: .normal)
+                headerView.arrangeBtn.setImage(UIImage(named: "property1Variant3"), for: .normal)
             } else {
-                headerView.arrangeBtn.setTitle("  최신순", for: .normal)
+                headerView.arrangeBtn.setImage(UIImage(named: "btnArray"), for: .normal)
             }
-            
             headerView.tapArrangeBtnAction = {
                 self.showActionSheet()
             }
