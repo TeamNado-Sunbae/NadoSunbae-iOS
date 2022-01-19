@@ -1078,9 +1078,26 @@
 		77A7592D279819E000A8E48B /* PublicData */ = {
 			isa = PBXGroup;
 			children = (
-				77A7592E27981A0E00A8E48B /* MajorInfo.swift */,
+				77A7593127984A3800A8E48B /* AppModel */,
+				77A7593027984A2E00A8E48B /* Singleton */,
 			);
 			path = PublicData;
+			sourceTree = "<group>";
+		};
+		77A7593027984A2E00A8E48B /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				77A7592E27981A0E00A8E48B /* MajorInfo.swift */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
+		77A7593127984A3800A8E48B /* AppModel */ = {
+			isa = PBXGroup;
+			children = (
+				77A7593227984A7100A8E48B /* MajorInfoModel.swift */,
+			);
+			path = AppModel;
 			sourceTree = "<group>";
 		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {
