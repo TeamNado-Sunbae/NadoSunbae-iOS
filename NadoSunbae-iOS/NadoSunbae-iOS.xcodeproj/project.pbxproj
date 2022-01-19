@@ -125,6 +125,7 @@
 		5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */; };
 		5CC0BFD227985D4C00B96905 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD127985D4C00B96905 /* NotificationService.swift */; };
 		5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD32798621600B96905 /* NotificationDataModel.swift */; };
+		5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
@@ -295,6 +296,7 @@
 		5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
 		5CC0BFD127985D4C00B96905 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		5CC0BFD32798621600B96905 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
+		5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNotificationDataModel.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
@@ -1020,6 +1022,7 @@
 			isa = PBXGroup;
 			children = (
 				5CC0BFD32798621600B96905 /* NotificationDataModel.swift */,
+				5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1334,6 +1337,7 @@
 				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
 				5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
+				5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
