@@ -79,11 +79,11 @@ class ReviewWriteVC: UIViewController {
             self.majorNameLabel.text = "디지털미디어학과"
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-
+        
         alert.addAction(majorName)
         alert.addAction(secondMajorName)
         alert.addAction(cancel)
-
+        
         present(alert, animated: true, completion: nil)
     }
 }
@@ -218,6 +218,26 @@ extension ReviewWriteVC: UITextViewDelegate {
             }
             textView.textColor = .gray2
         }
+        
+        /// 완료 버튼 클릭 시
+        if reviewWriteNaviBar.rightActivateBtn.isActivated {
+            reviewWriteNaviBar.rightActivateBtn.press {
+                
+                /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
+                [self.learnInfoTextView, self.recommendClassTextView, self.badClassTextView, self.futureTextView, self.tipTextView].forEach {
+                    for _ in 0...4 {
+                        if $0?.text == "내용을 입력해주세요" {
+                            $0?.text = ""
+                        }
+                    }
+                }
+                
+                /// 서버통신
+                self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     /// 글자 수 제한을 위한 함수
@@ -307,3 +327,27 @@ extension ReviewWriteVC {
     }
 }
 
+// MARK: - Network
+extension ReviewWriteVC {
+    func requestCreateReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
+        ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? ReviewPostRegisterData {
+                    print(data)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+}
