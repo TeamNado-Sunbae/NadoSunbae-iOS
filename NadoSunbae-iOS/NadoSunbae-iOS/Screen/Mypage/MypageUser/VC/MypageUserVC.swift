@@ -44,17 +44,19 @@ class MypageUserVC: BaseVC {
     }
     
     // MARK: Properties
-    var userInfo = MypageUserInfoModel(userID: 1, profileImageID: 2, nickname: "닉네임선배", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "컴퓨터학과", secondMajorStart: "19-2", isOnQuestion: true)
-    
-    var questionList = [
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다ㅏㅏㅏㅏ", nickName: "윈터내거", writeTime: "2022-01-18T19:00:42.040Z", commentCount: 2, likeCount: 5),
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예오암큐리어스예~~~사진속니가 순간 걸어나 와 예예질문내용입니다", nickName: "윈터내거", writeTime: "2022-01-18T19:00:42.040Z", commentCount: 2, likeCount: 5)
-    ]
+    var targetUserID = 1
+    var userInfo = MypageUserInfoModel()
+    var questionList: [ClassroomPostList] = []
     
     // MARK: LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getUserInfo()
+        getUserPersonalQuestionList()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
         setUpTV()
         registerCell()
@@ -103,7 +105,6 @@ extension MypageUserVC {
         }
         
         DispatchQueue.main.async {
-            self.questionTVHeight.constant = self.questionTV.contentSize.height
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
         }
@@ -121,5 +122,54 @@ extension MypageUserVC {
     private func setUpTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
+    }
+}
+
+// MARK: - Network
+extension MypageUserVC {
+    private func getUserInfo() {
+        MypageAPI.shared.getUserInfo(userID: targetUserID, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageUserInfoModel {
+                    self.userInfo = data
+                    self.configureUI()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해 데이터를 불러올 수 없습니다. 다시 시도해 주세요.")
+            }
+        })
+    }
+    
+    private func getUserPersonalQuestionList() {
+        MypageAPI.shared.getUserPersonalQuestionList(userID: targetUserID, sort: .recent, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageUserPersonalQuestionModel {
+                    self.questionList = []
+                    self.questionList = data.classroomPostList
+                    DispatchQueue.main.async {
+                        self.questionTV.reloadData()
+
+                        self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+                        self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
+
+                        self.questionTV.layoutIfNeeded()
+                        self.questionTV.rowHeight = UITableView.automaticDimension
+                        self.questionTVHeight.constant = self.questionTV.contentSize.height
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해 데이터를 불러올 수 없습니다. 다시 시도해 주세요.")
+            }
+        })
     }
 }
