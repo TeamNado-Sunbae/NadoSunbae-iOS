@@ -11,6 +11,7 @@ import Moya
 enum NotificationService {
     case getNotiList
     case readNoti(notiID: Int)
+    case deleteNoti(notiID: Int)
 }
 
 extension NotificationService: TargetType {
@@ -28,6 +29,8 @@ extension NotificationService: TargetType {
             return "/notification/list/\(userID)"
         case .readNoti(let notiID):
             return "/notification/read/\(notiID)"
+        case .deleteNoti(let notiID):
+            return "/notification/\(notiID)"
         }
     }
     
@@ -35,8 +38,10 @@ extension NotificationService: TargetType {
         switch self {
         case .getNotiList:
             return .get
-        case .readNoti(_):
+        case .readNoti:
             return .put
+        case .deleteNoti:
+            return .delete
         }
     }
     
@@ -44,7 +49,7 @@ extension NotificationService: TargetType {
         switch self {
         case .getNotiList:
             return .requestParameters(parameters: ["receiverId": userID], encoding: URLEncoding.queryString)
-        case.readNoti(let notiID):
+        case .readNoti(let notiID), .deleteNoti(let notiID):
             return .requestParameters(parameters: ["notification": notiID], encoding: URLEncoding.queryString)
         }
     }
