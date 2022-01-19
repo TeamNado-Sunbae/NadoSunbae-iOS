@@ -34,6 +34,7 @@ class MypageMainVC: UIViewController {
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        makeVisibleTabBar()
         getUserInfo()
         getUserPersonalQuestionList()
     }
@@ -103,6 +104,11 @@ extension MypageMainVC {
                 self.userStateViewHeight.constant = 32.adjusted
             }
         }
+    }
+    
+    /// 1:1 질문글 들어갔다 나오면 사라져 있는 탭바를 다시 보이게 함
+    private func makeVisibleTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
     }
 }
 
