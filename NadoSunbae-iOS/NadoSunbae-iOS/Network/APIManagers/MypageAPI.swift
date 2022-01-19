@@ -33,6 +33,22 @@ extension MypageAPI {
             }
         }
     }
+    
+    /// [GET] 유저에게 온 1:1 질문글 리스트 조회
+    func getUserPersonalQuestionList(userID: Int, accessToken: String, sort: ListSortType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getUserPersonalQuestionList(userID: userID, accessToken: accessToken, sort: sort)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getUserPersonalQuestionListJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - judgeData
@@ -41,7 +57,23 @@ extension MypageAPI {
         let decoder = JSONDecoder()
         
         guard let decodedData = try? decoder.decode(GenericResponse<MypageUserInfoModel>.self, from: data) else { return .pathErr }
+        switch status {
+        case 200:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...500:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func getUserPersonalQuestionListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
         
+        guard let decodedData = try? decoder.decode(GenericResponse<MypageUserPersonalQuestionModel>.self, from: data) else { return .pathErr }
+
         switch status {
         case 200:
             return .success(decodedData.data ?? "None-Data")
@@ -54,4 +86,3 @@ extension MypageAPI {
         }
     }
 }
-

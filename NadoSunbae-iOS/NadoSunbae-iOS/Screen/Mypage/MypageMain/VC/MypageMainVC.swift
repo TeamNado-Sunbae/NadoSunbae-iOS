@@ -36,6 +36,7 @@ class MypageMainVC: UIViewController {
         super.viewWillAppear(animated)
         
         getUserInfo()
+        getUserPersonalQuestionList()
     }
     
     override func viewDidLoad() {
@@ -125,9 +126,9 @@ extension MypageMainVC {
 // MARK: - Network
 extension MypageMainVC {
     private func getUserInfo() {
-        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrdTJAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1MiIsImZpcmViYXNlSWQiOiJOT1ZDYktEUUlEY3IybmJsam9ZazhSSnJ0NTUyIiwiaWF0IjoxNjQyMzI5OTMwLCJleHAiOjE2NDQ5MjE5MzAsImlzcyI6Im5hZG9TdW5iYWUifQ.tiblhyT4Y9-DDH1KTwIm37wevbChJ-R8-ECSb3QpZUI"
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJRakw2dTdVR0NEVGhEN1pCUVBpcTZCeHNxNVEyIiwiaWF0IjoxNjQyNTM0NTE1LCJleHAiOjE2NDUxMjY1MTUsImlzcyI6Im5hZG9TdW5iYWUifQ.cOdQIyyPtDE9d36J3t6231hpnDV8qgLb2xhxe523i20"
         
-        MypageAPI.shared.getUserInfo(userID: 1, accessToken: accessToken, completion: { networkResult in
+        MypageAPI.shared.getUserInfo(userID: 3, accessToken: accessToken, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserInfoModel {
@@ -142,5 +143,28 @@ extension MypageMainVC {
                 self.makeAlert(title: "네트워크 오류로 인해 데이터를 불러올 수 없습니다. 다시 시도해 주세요.")
             }
         })
+    }
+    
+    private func getUserPersonalQuestionList() {
+        let accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJRakw2dTdVR0NEVGhEN1pCUVBpcTZCeHNxNVEyIiwiaWF0IjoxNjQyNTM0NTE1LCJleHAiOjE2NDUxMjY1MTUsImlzcyI6Im5hZG9TdW5iYWUifQ.cOdQIyyPtDE9d36J3t6231hpnDV8qgLb2xhxe523i20"
+        
+        MypageAPI.shared.getUserPersonalQuestionList(userID: 3, accessToken: accessToken, sort: .recent, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageUserPersonalQuestionModel {
+                    self.questionList = data.classroomPostList
+
+                    self.questionTV.reloadData()
+                    self.configureUI()
+                }
+
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해 데이터를 불러올 수 없습니다. 다시 시도해 주세요.")
+            }
+        }) 
     }
 }

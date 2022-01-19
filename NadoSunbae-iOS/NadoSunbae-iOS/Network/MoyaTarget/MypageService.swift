@@ -10,6 +10,7 @@ import Moya
 
 enum MypageService {
     case getUserInfo(userID: Int, accessToken: String)
+    case getUserPersonalQuestionList(userID: Int, accessToken: String, sort: ListSortType)
 }
 
 extension MypageService: TargetType {
@@ -20,13 +21,15 @@ extension MypageService: TargetType {
     var path: String {
         switch self {
         case .getUserInfo(let userID, _):
-            return "/user/mypage/\(userID)/"
+            return "/user/mypage/\(userID)"
+        case .getUserPersonalQuestionList(let userID, _, _):
+            return "/user/mypage/\(userID)/classroom-post/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getUserInfo:
+        case .getUserInfo, .getUserPersonalQuestionList:
             return .get
         }
     }
@@ -35,12 +38,16 @@ extension MypageService: TargetType {
         switch self {
         case .getUserInfo(let userID, _):
             return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
+        case .getUserPersonalQuestionList(_, _, let sort):
+            return .requestParameters(parameters: ["sort": sort.rawValue], encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String : String]? {
         switch self {
         case .getUserInfo(_, let accessToken):
+            return ["accessToken": accessToken]
+        case .getUserPersonalQuestionList(_, let accessToken, _):
             return ["accessToken": accessToken]
         }
     }
