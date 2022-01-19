@@ -45,10 +45,6 @@ extension MypageService: TargetType {
     
     var headers: [String : String]? {
         let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
-        
-        switch self {
-        case .getUserInfo, .getUserPersonalQuestionList:
-            return ["accessToken": accessToken]
-        }
+        return ["accessToken": accessToken]
     }
 }
