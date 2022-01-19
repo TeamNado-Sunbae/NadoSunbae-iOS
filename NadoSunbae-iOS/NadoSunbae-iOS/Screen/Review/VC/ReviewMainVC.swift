@@ -11,11 +11,13 @@ class ReviewMainVC: UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: UIView!
+    @IBOutlet var majorLabel: UILabel!
     @IBOutlet weak var reviewTV: UITableView!
     
     // MARK: Properties
     var imgList: [ReviewImgData] = []
     var postList: [ReviewPostData] = []
+    var majorInfo: String = ""
     private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
@@ -143,6 +145,7 @@ extension ReviewMainVC {
     /// 바텀시트 호출
     @objc func showHalfModalView() {
         let slideVC = HalfModalVC()
+        slideVC.selectMajorDelegate = self
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         self.present(slideVC, animated: true, completion: nil)
@@ -253,6 +256,17 @@ extension ReviewMainVC: UITableViewDataSource {
     }
 }
 
+// MARK: - SendUpdateModalDelegate
+extension ReviewMainVC: SendUpdateModalDelegate {
+    func sendUpdate(data: Any) {
+        majorLabel.text = data as? String
+        // TODO: 은주의 할일!
+        /// 서버통신. get.
+        /// 여기서는 selected된 ID를 유저디폴트에서 뽑아오고.
+        /// UserDefaults.standard.integer(forKey: UserDefaults.Keys.SelectedMajorID))
+    }
+}
+
 // MARK: - Network
 extension ReviewMainVC {
     func requestGetMajorList(univID: Int, filterType: String) {
@@ -260,11 +274,11 @@ extension ReviewMainVC {
             switch networkResult {
                 
             case .success(let res):
-                var list: [String] = []
+                var list: [MajorInfoModel] = []
                 DispatchQueue.main.async {
                     if let data = res as? [MajorListData] {
                         for i in 0...data.count - 3 {
-                            list.append(data[i].majorName)
+                            list.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }
                         MajorInfo.shared.majorList = list
                     }

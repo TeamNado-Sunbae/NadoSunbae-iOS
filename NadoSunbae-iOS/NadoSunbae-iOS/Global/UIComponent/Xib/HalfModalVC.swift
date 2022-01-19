@@ -12,18 +12,11 @@ class HalfModalVC: UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet weak var majorTV: UITableView!
-    @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn! {
-        didSet {
-            majorChooseBtn.press {
-                if self.majorChooseBtn.isActivated == true {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
-    }
+    @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
     
     // MARK: Properties
-    var majorList: [String] = []
+    var majorList: [MajorInfoModel] = []
+    var selectMajorDelegate: SendUpdateModalDelegate?
     
     // MARK: Life Cycle Part
     override func viewDidLoad() {
@@ -32,6 +25,7 @@ class HalfModalVC: UIViewController {
         setUpTV()
         majorTV.reloadData()
         configureBtnUI()
+        tapMajorChooseBtnAction()
     }
     
     // MARK: IBAction
@@ -63,6 +57,21 @@ class HalfModalVC: UIViewController {
             majorChooseBtn.setTitle("선택 완료", for: .normal)
         }
     }
+    
+    /// 선택완료 버튼 클릭 시 데이터 전달
+    func tapMajorChooseBtnAction() {
+        majorChooseBtn.press {
+            let selectedMajorName = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
+            let selectedMajorID = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
+
+            if let selectMajorDelegate = self.selectMajorDelegate {
+                UserDefaults.standard.set(selectedMajorID, forKey: UserDefaults.Keys.SelectedMajorID)
+                UserDefaults.standard.set(selectedMajorName, forKey: UserDefaults.Keys.SelectedMajorName)
+                selectMajorDelegate.sendUpdate(data: selectedMajorName)
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -81,7 +90,7 @@ extension HalfModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className) as? MajorTVC else { return UITableViewCell() }
         
-        cell.setData(majorName: majorList[indexPath.row])
+        cell.setData(majorName: majorList[indexPath.row].majorName)
         return cell
     }
     
