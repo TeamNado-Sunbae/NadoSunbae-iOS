@@ -45,11 +45,7 @@ class MypageUserVC: BaseVC {
     
     // MARK: Properties
     var userInfo = MypageUserInfoModel()
-    
-    var questionList = [
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다ㅏㅏㅏㅏ", nickName: "윈터내거", writeTime: "2022-01-18T19:00:42.040Z", commentCount: 2, likeCount: 5),
-        MypageQuestionModel(title: "에스파는나야둘이될수없어", content: "예예예예질문내용입니다예예예예질문내용입니다예예예예질문내용입니다예예오암큐리어스예~~~사진속니가 순간 걸어나 와 예예질문내용입니다", nickName: "윈터내거", writeTime: "2022-01-18T19:00:42.040Z", commentCount: 2, likeCount: 5)
-    ]
+    var questionList: [ClassroomPostList] = []
     
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
