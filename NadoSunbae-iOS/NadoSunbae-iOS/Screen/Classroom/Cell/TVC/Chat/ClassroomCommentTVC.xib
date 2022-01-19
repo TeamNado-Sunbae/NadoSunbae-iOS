@@ -25,8 +25,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38o-sG-EsX">
-                        <rect key="frame" x="72" y="8" width="232" height="197"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38o-sG-EsX">
+                        <rect key="frame" x="32" y="8" width="272" height="197"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6시 30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlX-jq-iUU">
                                 <rect key="frame" x="16" y="16" width="42.5" height="21"/>
@@ -43,8 +43,8 @@
                                 <color key="textColor" name="mainDark"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYD-bX-I2J">
-                                <rect key="frame" x="200" y="14.5" width="24" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYD-bX-I2J">
+                                <rect key="frame" x="240" y="14.5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kYD-bX-I2J" secondAttribute="height" multiplier="1:1" id="lsg-l6-opG"/>
                                     <constraint firstAttribute="height" constant="24" id="pq0-AH-ZXR"/>
@@ -55,8 +55,8 @@
                                     <action selector="tapMoreBtn:" destination="SVq-Rl-eLx" eventType="touchUpInside" id="p33-6s-BuR"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니라 굿모닝인가..ㅎㅎ 잘 자고 내일 보자.. 하하 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LMH-SD-I1n">
-                                <rect key="frame" x="16" y="75" width="200" height="82"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니" translatesAutoresizingMaskIntoConstraints="NO" id="LMH-SD-I1n">
+                                <rect key="frame" x="16" y="75" width="240" height="82"/>
                                 <color key="backgroundColor" name="mainLight"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="2MN-Nb-oRn"/>
@@ -66,8 +66,8 @@
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2022/01/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pt-bF-h5S">
-                                <rect key="frame" x="154.5" y="165" width="61.5" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022/01/10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pt-bF-h5S">
+                                <rect key="frame" x="180" y="165" width="76" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="n7V-f2-MeO"/>
                                 </constraints>
@@ -90,8 +90,8 @@
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="311" id="W4e-am-iO0"/>
                             <constraint firstAttribute="trailing" secondItem="LMH-SD-I1n" secondAttribute="trailing" constant="16" id="WcF-ac-ez0"/>
                             <constraint firstItem="LMH-SD-I1n" firstAttribute="leading" secondItem="OlX-jq-iUU" secondAttribute="leading" id="YCo-fW-BeS"/>
-                            <constraint firstItem="5pt-bF-h5S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="38o-sG-EsX" secondAttribute="leading" constant="154.5" id="a8O-1p-bd6"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="197" id="u5x-eI-IfJ"/>
+                            <constraint firstItem="5pt-bF-h5S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="38o-sG-EsX" secondAttribute="leading" constant="180" id="a8O-1p-bd6"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="u5x-eI-IfJ"/>
                             <constraint firstItem="OlX-jq-iUU" firstAttribute="leading" secondItem="38o-sG-EsX" secondAttribute="leading" constant="16" id="xmc-BG-enZ"/>
                             <constraint firstItem="XsY-Xa-ot0" firstAttribute="top" secondItem="OlX-jq-iUU" secondAttribute="bottom" id="yax-7h-ZWo"/>
                             <constraint firstAttribute="trailing" secondItem="5pt-bF-h5S" secondAttribute="trailing" constant="16" id="yxF-BB-d3o"/>
