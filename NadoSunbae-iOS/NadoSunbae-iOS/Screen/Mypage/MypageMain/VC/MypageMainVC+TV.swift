@@ -16,6 +16,8 @@ extension MypageMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MypageQuestionTVC.className, for: indexPath) as? MypageQuestionTVC else { return UITableViewCell() }
         cell.setData(data: self.questionList[indexPath.row])
+        cell.layoutIfNeeded()
+        
         return cell
     }
 }
@@ -24,6 +26,10 @@ extension MypageMainVC: UITableViewDataSource {
 extension MypageMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

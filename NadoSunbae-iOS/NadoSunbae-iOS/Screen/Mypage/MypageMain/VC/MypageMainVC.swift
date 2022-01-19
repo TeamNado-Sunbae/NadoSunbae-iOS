@@ -96,7 +96,6 @@ extension MypageMainVC {
         secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         
         DispatchQueue.main.async {
-            self.questionTVHeight.constant = self.questionTV.contentSize.height
             self.navTitleBottomSpace.constant = 26.adjustedH
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
@@ -152,12 +151,19 @@ extension MypageMainVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserPersonalQuestionModel {
+                    self.questionList = []
                     self.questionList = data.classroomPostList
+                    DispatchQueue.main.async {
+                        self.questionTV.reloadData()
 
-                    self.questionTV.reloadData()
-                    self.configureUI()
+                        self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+                        self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
+
+                        self.questionTV.layoutIfNeeded()
+                        self.questionTV.rowHeight = UITableView.automaticDimension
+                        self.questionTVHeight.constant = self.questionTV.contentSize.height
+                    }
                 }
-
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
