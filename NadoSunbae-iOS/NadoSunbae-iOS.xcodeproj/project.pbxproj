@@ -166,6 +166,7 @@
 		77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7592E27981A0E00A8E48B /* MajorInfo.swift */; };
 		77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593227984A7100A8E48B /* MajorInfoModel.swift */; };
 		77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */; };
+		77A759382798905600A8E48B /* ReviewMainPostListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759372798905600A8E48B /* ReviewMainPostListService.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -339,6 +340,7 @@
 		77A7592E27981A0E00A8E48B /* MajorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfo.swift; sourceTree = "<group>"; };
 		77A7593227984A7100A8E48B /* MajorInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfoModel.swift; sourceTree = "<group>"; };
 		77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainPostListData.swift; sourceTree = "<group>"; };
+		77A759372798905600A8E48B /* ReviewMainPostListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainPostListService.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 				331364C02786217400E0C118 /* ReviewService.swift */,
 				77A759272797FEB400A8E48B /* PublicService.swift */,
 				5C3280172797217E00781EBE /* MypageService.swift */,
+				77A759372798905600A8E48B /* ReviewMainPostListService.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -1358,6 +1361,7 @@
 				331C53772795B9CA0052B309 /* QuestionPersonCVC.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
 				33CF635727945DE300E92C04 /* InfoMainVC.swift in Sources */,
+				77A759382798905600A8E48B /* ReviewMainPostListService.swift in Sources */,
 				7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */,
 				5CB6503027947A5E007694B1 /* NotificationMainVC+TV.swift in Sources */,
 				33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */,
