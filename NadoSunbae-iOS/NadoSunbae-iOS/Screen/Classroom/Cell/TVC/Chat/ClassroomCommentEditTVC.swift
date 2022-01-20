@@ -13,18 +13,39 @@ class ClassroomCommentEditTVC: BaseTVC {
     @IBOutlet var backView: UIView!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
-    @IBOutlet var commentContentTextView: UITextView!
-    @IBOutlet var nadoBtn: NadoSunbaeBtn! {
+    @IBOutlet var commentContentTextView: UITextView! {
         didSet {
-            nadoBtn.isActivated = true
-            nadoBtn.setTitle("확인", for: .normal)
+            commentContentTextView.layer.borderWidth = 1
+            commentContentTextView.layer.borderColor = UIColor.gray1.cgColor
+            commentContentTextView.layer.cornerRadius = 4
         }
     }
+    
+    @IBOutlet var confirmBtn: NadoSunbaeBtn! {
+        didSet {
+            confirmBtn.isActivated = true
+            confirmBtn.setTitleWithStyle(title: "확인", size: 14.0, weight: .semiBold)
+            confirmBtn.setTitleColor(.mainLight, for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var cancelBtn: NadoSunbaeBtn! {
+        didSet {
+            cancelBtn.isActivated = true
+            cancelBtn.setTitleWithStyle(title: "취소", size: 14.0, weight: .semiBold)
+            cancelBtn.setTitleColor(.mainText, for: .normal)
+            cancelBtn.backgroundColor = UIColor(red: 209/255, green: 242/255, blue: 238/255, alpha: 1.0)
+        }
+    }
+    
+    @IBOutlet weak var commentEditTextViewHeight: NSLayoutConstraint!
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
     weak var changeCellDelegate: TVCContentUpdate?
-    
+    var tapConfirmBtnAction : (() -> ())?
+    var tapCancelBtnAction : (() -> ())?
+    private let textViewMaxHeight: CGFloat = 170
     
     // MARK: LifeCycle
     override func awakeFromNib() {
@@ -35,6 +56,15 @@ class ClassroomCommentEditTVC: BaseTVC {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    // MARK: - IBAction
+    @IBAction func tapConfirmBtn(_ sender: NadoSunbaeBtn) {
+        tapConfirmBtnAction?()
+    }
+    
+    @IBAction func tapCancelBtn(_ sender: NadoSunbaeBtn) {
+        tapCancelBtnAction?()
     }
 }
 
@@ -62,10 +92,10 @@ extension ClassroomCommentEditTVC {
 extension ClassroomCommentEditTVC {
     
     /// 데이터 바인딩하는 메서드
-    func bind(_ model: DefaultQuestionDataModel) {
-        nicknameLabel.text = model.nickname
-        majorLabel.text = model.majorInfo
-        commentContentTextView.text = model.contentText
+    func bindData(_ model: ClassroomMessageList) {
+        nicknameLabel.text = model.writer.nickname
+        majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
+        commentContentTextView.text = model.content
     }
 }
 
@@ -76,6 +106,14 @@ extension ClassroomCommentEditTVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if let delegate = dynamicUpdateDelegate {
             delegate.updateTextViewHeight(cell: self, textView: textView)
+        }
+        
+        if textView.contentSize.height >= self.textViewMaxHeight {
+            commentEditTextViewHeight.constant = self.textViewMaxHeight
+            textView.isScrollEnabled = true
+        } else {
+            commentEditTextViewHeight.constant = textView.contentSize.height
+            textView.isScrollEnabled = false
         }
     }
 }

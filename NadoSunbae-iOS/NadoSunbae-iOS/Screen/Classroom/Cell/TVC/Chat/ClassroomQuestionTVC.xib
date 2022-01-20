@@ -27,9 +27,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YaZ-yA-JAB">
-                        <rect key="frame" x="16" y="8" width="296.5" height="197"/>
+                        <rect key="frame" x="16" y="8" width="272" height="197"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정빈걸 은주걸 굿나잇🌙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jn-Qv-vH7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정빈걸 은주걸 굿나잇🌙" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jn-Qv-vH7">
                                 <rect key="frame" x="16" y="16" width="223.5" height="29"/>
                                 <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="24"/>
                                 <color key="textColor" name="mainDefault"/>
@@ -41,7 +41,7 @@
                                     <constraint firstAttribute="height" constant="21" id="KZy-8O-e8s"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="gray4"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 때를 놓치면 큰일나요 !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT9-0t-ckE">
@@ -51,19 +51,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK2-Jo-OMJ">
-                                <rect key="frame" x="264.5" y="20" width="24" height="24"/>
+                                <rect key="frame" x="240" y="20" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aK2-Jo-OMJ" secondAttribute="height" multiplier="1:1" id="fRd-6l-5fV"/>
                                     <constraint firstAttribute="height" constant="24" id="iJG-rc-iGU"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="btnMoreVert"/>
+                                <buttonConfiguration key="configuration" style="plain" image="btnMoreVertChatGray"/>
                                 <connections>
                                     <action selector="tapMoreBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mmf-2Q-4Hv"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CFZ-tM-j9m">
-                                <rect key="frame" x="16" y="112" width="264.5" height="45"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. " translatesAutoresizingMaskIntoConstraints="NO" id="CFZ-tM-j9m">
+                                <rect key="frame" x="16" y="112" width="240" height="45"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="X9q-f2-SBx"/>
@@ -89,7 +89,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022/01/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ac-01-sRD">
-                                <rect key="frame" x="219" y="166" width="61.5" height="14"/>
+                                <rect key="frame" x="194.5" y="166" width="61.5" height="14"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <color key="textColor" name="gray2"/>
                                 <nil key="highlightedColor"/>
@@ -100,7 +100,7 @@
                             <constraint firstItem="4Jn-Qv-vH7" firstAttribute="top" secondItem="YaZ-yA-JAB" secondAttribute="top" constant="16" id="A2q-Ul-nWi"/>
                             <constraint firstItem="XwU-wy-Tk1" firstAttribute="centerY" secondItem="hkZ-Xq-Tbg" secondAttribute="centerY" id="Aip-29-fcW"/>
                             <constraint firstItem="XwU-wy-Tk1" firstAttribute="leading" secondItem="hkZ-Xq-Tbg" secondAttribute="trailing" id="DMx-EJ-zEj"/>
-                            <constraint firstItem="aK2-Jo-OMJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Jn-Qv-vH7" secondAttribute="trailing" constant="25" id="GOe-Ab-epl"/>
+                            <constraint firstItem="aK2-Jo-OMJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Jn-Qv-vH7" secondAttribute="trailing" constant="0.5" id="HtU-XE-oUE"/>
                             <constraint firstItem="OT9-0t-ckE" firstAttribute="leading" secondItem="udq-eX-F8j" secondAttribute="leading" id="Lqt-Ko-Ipf"/>
                             <constraint firstItem="1Ac-01-sRD" firstAttribute="leading" secondItem="XwU-wy-Tk1" secondAttribute="trailing" priority="250" constant="13.5" id="Mce-7W-KfJ"/>
                             <constraint firstAttribute="bottom" secondItem="hkZ-Xq-Tbg" secondAttribute="bottom" constant="8" id="NS0-hw-WPr"/>
@@ -135,6 +135,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="backView" destination="YaZ-yA-JAB" id="bVz-xJ-Csb"/>
+                <outlet property="likeBtn" destination="hkZ-Xq-Tbg" id="O7a-21-Kx3"/>
+                <outlet property="likeCountLabel" destination="XwU-wy-Tk1" id="bMk-Z8-htz"/>
                 <outlet property="majorLabel" destination="OT9-0t-ckE" id="oDy-Ih-rX3"/>
                 <outlet property="moreBtn" destination="aK2-Jo-OMJ" id="63P-4q-lz0"/>
                 <outlet property="nicknameLabel" destination="udq-eX-F8j" id="TlL-ky-WBX"/>
@@ -146,9 +148,12 @@
     </objects>
     <resources>
         <image name="btnDiamond" width="32" height="32"/>
-        <image name="btnMoreVert" width="24" height="24"/>
+        <image name="btnMoreVertChatGray" width="24" height="24"/>
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="mainDefault">
             <color red="0.0" green="0.78431372549019607" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
