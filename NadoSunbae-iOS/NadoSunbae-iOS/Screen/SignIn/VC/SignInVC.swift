@@ -4,13 +4,13 @@
 //
 //  Created by 1v1 on 2022/01/08.
 //
-// TODO: TextField clear Btn 에셋 나오면 수정
 
 import UIKit
 import RxSwift
 import RxCocoa
 
 class SignInVC: BaseVC {
+    
     // MARK: Properties
     @IBOutlet weak var emailTextField: NadoTextField!
     @IBOutlet weak var PWTextField: NadoTextField!
@@ -29,10 +29,7 @@ class SignInVC: BaseVC {
     
     // MARK: IBAction
     @IBAction func tapSignInBtn(_ sender: UIButton) {
-        let nadoSunbaeTBC = NadoSunbaeTBC()
-        nadoSunbaeTBC.modalPresentationStyle = .fullScreen
-        setUpUserdefaultValues()
-        self.present(nadoSunbaeTBC, animated: true, completion: nil)
+        requestSignIn()
     }
     
     @IBAction func tapSignUpBtn(_ sender: UIButton) {
@@ -101,14 +98,45 @@ extension SignInVC {
     }
     
     /// Userdefaults에 값 지정하는 메서드
-    private func setUpUserdefaultValues() {
-        UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJRakw2dTdVR0NEVGhEN1pCUVBpcTZCeHNxNVEyIiwiaWF0IjoxNjQyNTM0NTE1LCJleHAiOjE2NDUxMjY1MTUsImlzcyI6Im5hZG9TdW5iYWUifQ.cOdQIyyPtDE9d36J3t6231hpnDV8qgLb2xhxe523i20", forKey: UserDefaults.Keys.AccessToken)
-        UserDefaults.standard.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJrdTVAa29yZWEuYWMua3IiLCJuaWNrbmFtZSI6Imt1NSIsImZpcmViYXNlSWQiOiJRakw2dTdVR0NEVGhEN1pCUVBpcTZCeHNxNVEyIiwiaWF0IjoxNjQyNTM0NTE1LCJleHAiOjE2NDUxMjY1MTUsImlzcyI6Im5hZG9TdW5iYWUifQ.cOdQIyyPtDE9d36J3t6231hpnDV8qgLb2xhxe523i20", forKey: UserDefaults.Keys.RefreshToken)
-        UserDefaults.standard.set(5, forKey: UserDefaults.Keys.FirstMajorID)
-        UserDefaults.standard.set("경영학과", forKey: UserDefaults.Keys.FirstMajorName)
-        UserDefaults.standard.set(126, forKey: UserDefaults.Keys.SecondMajorID)
-        UserDefaults.standard.set("미진입", forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
-        UserDefaults.standard.set(3, forKey: UserDefaults.Keys.UserID)
+    private func setUpUserdefaultValues(data: SignInDataModel) {
+        UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
+        UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.RefreshToken)
+        UserDefaults.standard.set(data.user.firstMajorID, forKey: UserDefaults.Keys.FirstMajorID)
+        UserDefaults.standard.set(data.user.firstMajorName, forKey: UserDefaults.Keys.FirstMajorName)
+        UserDefaults.standard.set(data.user.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
+        UserDefaults.standard.set(data.user.secondMajorName, forKey: UserDefaults.Keys.SecondMajorName)
+        UserDefaults.standard.set(data.user.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(data.user.userID, forKey: UserDefaults.Keys.UserID)
+    }
+}
+
+// MARK: - Network
+extension SignInVC {
+    
+    /// 로그인 요청하는 메서드
+    private func requestSignIn() {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.signIn(email: emailTextField.text ?? "", PW: PWTextField.text ?? "", deviceToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.FCMTokenForDevice) as! String) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                self.activityIndicator.stopAnimating()
+                if let data = res as? SignInDataModel {
+                    self.setUpUserdefaultValues(data: data)
+                    let nadoSunbaeTBC = NadoSunbaeTBC()
+                    nadoSunbaeTBC.modalPresentationStyle = .fullScreen
+                    self.present(nadoSunbaeTBC, animated: true, completion: nil)
+                }
+            case .requestErr(let msg):
+                self.activityIndicator.stopAnimating()
+                if let message = msg as? String {
+                    self.infoLabel.text = message
+                    self.infoLabel.isHidden = false
+                    print("requestSignIn request err", message)
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }

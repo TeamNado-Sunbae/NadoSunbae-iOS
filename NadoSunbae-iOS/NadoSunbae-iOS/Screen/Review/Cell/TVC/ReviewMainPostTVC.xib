@@ -155,6 +155,7 @@
                 <outlet property="dateLabel" destination="Kcu-lx-xPX" id="21C-n3-8IU"/>
                 <outlet property="diamondCountLabel" destination="6vD-vQ-dab" id="NVD-Am-Alw"/>
                 <outlet property="majorNameLabel" destination="Mwc-Fl-BXw" id="h27-jV-rw3"/>
+                <outlet property="nickNameLabel" destination="WTF-gu-mXm" id="FU5-eN-NMc"/>
                 <outlet property="secondMajorNameLabel" destination="mnz-fO-zkk" id="hMj-jk-AGr"/>
                 <outlet property="tagCV" destination="5Hi-d0-c0y" id="wQ5-mL-8HH"/>
                 <outlet property="titleLabel" destination="sJH-yj-Sga" id="gB0-u2-ONb"/>

@@ -116,6 +116,7 @@
 		5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */; };
 		5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */; };
 		5C5AFCBD279400060045E47A /* MypageMainVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */; };
+		5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C873A4A279978650050EE43 /* SignInDataModel.swift */; };
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
 		5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */; };
 		5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */; };
@@ -127,8 +128,16 @@
 		5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */; };
 		5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CB6502C27944415007694B1 /* GoogleService-Info.plist */; };
 		5CB6503027947A5E007694B1 /* NotificationMainVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6502F27947A5E007694B1 /* NotificationMainVC+TV.swift */; };
-		5CB6503327947ACE007694B1 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6503227947ACE007694B1 /* NotificationModel.swift */; };
 		5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6503527947B5A007694B1 /* NotificationTVC.swift */; };
+		5CC0BFDF2798A3B900B96905 /* SignAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFDE2798A3B900B96905 /* SignAPI.swift */; };
+		5CC0BFE12798A3C300B96905 /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFE02798A3C300B96905 /* SignService.swift */; };
+		5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */; };
+		5CC0BFD227985D4C00B96905 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD127985D4C00B96905 /* NotificationService.swift */; };
+		5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD32798621600B96905 /* NotificationDataModel.swift */; };
+		5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */; };
+		5CC0BFD82798768F00B96905 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD72798768F00B96905 /* Int+.swift */; };
+		5CC0BFDB27987F6400B96905 /* NotificationNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */; };
+		5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFDC2798836400B96905 /* DeleteNotificationDataModel.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
@@ -170,6 +179,7 @@
 		77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A759292798028900A8E48B /* PublicAPI.swift */; };
 		77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7592E27981A0E00A8E48B /* MajorInfo.swift */; };
 		77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593227984A7100A8E48B /* MajorInfoModel.swift */; };
+		77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -293,6 +303,7 @@
 		5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpCompleteVC.storyboard; sourceTree = "<group>"; };
 		5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteVC.swift; sourceTree = "<group>"; };
 		5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MypageMainVC+TV.swift"; sourceTree = "<group>"; };
+		5C873A4A279978650050EE43 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
 		5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpMajorInfoVC.storyboard; sourceTree = "<group>"; };
 		5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMajorInfoVC.swift; sourceTree = "<group>"; };
@@ -305,8 +316,16 @@
 		5CB6502C27944415007694B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CB6502E279458B5007694B1 /* NadoSunbae-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NadoSunbae-iOS.entitlements"; sourceTree = "<group>"; };
 		5CB6502F27947A5E007694B1 /* NotificationMainVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationMainVC+TV.swift"; sourceTree = "<group>"; };
-		5CB6503227947ACE007694B1 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		5CB6503527947B5A007694B1 /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
+		5CC0BFDE2798A3B900B96905 /* SignAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignAPI.swift; sourceTree = "<group>"; };
+		5CC0BFE02798A3C300B96905 /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
+		5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
+		5CC0BFD127985D4C00B96905 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		5CC0BFD32798621600B96905 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
+		5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNotificationDataModel.swift; sourceTree = "<group>"; };
+		5CC0BFD72798768F00B96905 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNVC.swift; sourceTree = "<group>"; };
+		5CC0BFDC2798836400B96905 /* DeleteNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNotificationDataModel.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
@@ -347,6 +366,7 @@
 		77A759292798028900A8E48B /* PublicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPI.swift; sourceTree = "<group>"; };
 		77A7592E27981A0E00A8E48B /* MajorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfo.swift; sourceTree = "<group>"; };
 		77A7593227984A7100A8E48B /* MajorInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfoModel.swift; sourceTree = "<group>"; };
+		77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainPostListData.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -511,6 +531,7 @@
 				331364BC27861CD300E0C118 /* UITextView+.swift */,
 				331364BE27861D0600E0C118 /* Adjusted+.swift */,
 				330DA4342790C3E300FE127F /* UIScrollView+.swift */,
+				5CC0BFD72798768F00B96905 /* Int+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -531,8 +552,10 @@
 			isa = PBXGroup;
 			children = (
 				33FBC3182796F6C900741730 /* ReviewAPI.swift */,
+				5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */,
 				77A759292798028900A8E48B /* PublicAPI.swift */,
 				5C32801B2797292B00781EBE /* MypageAPI.swift */,
+				5CC0BFDE2798A3B900B96905 /* SignAPI.swift */,
 				33C1B8A62797505D004BABEC /* ClassroomAPI.swift */,
 			);
 			path = APIManagers;
@@ -542,8 +565,10 @@
 			isa = PBXGroup;
 			children = (
 				331364C02786217400E0C118 /* ReviewService.swift */,
+				5CC0BFD127985D4C00B96905 /* NotificationService.swift */,
 				77A759272797FEB400A8E48B /* PublicService.swift */,
 				5C3280172797217E00781EBE /* MypageService.swift */,
+				5CC0BFE02798A3C300B96905 /* SignService.swift */,
 				33C1B8A427974B72004BABEC /* ClassroomService.swift */,
 			);
 			path = MoyaTarget;
@@ -639,8 +664,8 @@
 		331364972785D83E00E0C118 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				5CC0BFD927987F5300B96905 /* NotificationNVC */,
 				5CB6503427947B4A007694B1 /* Cell */,
-				5CB6503127947AC3007694B1 /* Model */,
 				331364992785D89B00E0C118 /* SB */,
 				3313649A2785D8A000E0C118 /* VC */,
 			);
@@ -979,6 +1004,14 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		5C873A492799785A0050EE43 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				5C873A4A279978650050EE43 /* SignInDataModel.swift */,
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,20 +1095,30 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
-		5CB6503127947AC3007694B1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5CB6503227947ACE007694B1 /* NotificationModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		5CB6503427947B4A007694B1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				5CB6503527947B5A007694B1 /* NotificationTVC.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		5CC0BFCE27985D2800B96905 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				5CC0BFD32798621600B96905 /* NotificationDataModel.swift */,
+				5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */,
+				5CC0BFDC2798836400B96905 /* DeleteNotificationDataModel.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		5CC0BFD927987F5300B96905 /* NotificationNVC */ = {
+			isa = PBXGroup;
+			children = (
+				5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */,
+			);
+			path = NotificationNVC;
 			sourceTree = "<group>";
 		};
 		5CD4213327907E4900D09DEE /* MypageUser */ = {
@@ -1128,6 +1171,7 @@
 			children = (
 				77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */,
 				77A759232797656B00A8E48B /* ReviewPostData.swift */,
+				77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -1184,7 +1228,9 @@
 		77AEEB262789713D0016880B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5CC0BFCE27985D2800B96905 /* Notification */,
 				77A7593427987E9E00A8E48B /* Public */,
+				5C873A492799785A0050EE43 /* Sign */,
 				77A7591C2797628F00A8E48B /* Review */,
 				33C1B8A027974A13004BABEC /* Classroom */,
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
@@ -1354,6 +1400,7 @@
 			files = (
 				5C3280182797217E00781EBE /* MypageService.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
+				5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,
 				331364A22785D8DD00E0C118 /* ClassroomMainVC.swift in Sources */,
@@ -1391,6 +1438,8 @@
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
+				5CC0BFDB27987F6400B96905 /* NotificationNVC.swift in Sources */,
+				5CF0EC2A279317C500AF63E4 /* MypageQuestionTVC.swift in Sources */,
 				331C53772795B9CA0052B309 /* QuestionPersonCVC.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
 				33CF635727945DE300E92C04 /* InfoMainVC.swift in Sources */,
@@ -1407,6 +1456,7 @@
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
 				33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
+				5CC0BFE12798A3C300B96905 /* SignService.swift in Sources */,
 				77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
@@ -1417,11 +1467,15 @@
 				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
 				5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
+				5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
+				5CC0BFDF2798A3B900B96905 /* SignAPI.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
+				5CC0BFD82798768F00B96905 /* Int+.swift in Sources */,
+				5CC0BFD227985D4C00B96905 /* NotificationService.swift in Sources */,
 				5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */,
 				331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */,
 				33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */,
@@ -1432,6 +1486,7 @@
 				77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
 				331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */,
+				5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
 				338601062798B1F800C47D36 /* NaviType.swift in Sources */,
@@ -1445,6 +1500,7 @@
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
 				33CF635827945DE300E92C04 /* QuestionMainVC.swift in Sources */,
+				5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */,
 				33CF635427945C1200E92C04 /* SendSegmentStateDelegate.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
@@ -1456,6 +1512,7 @@
 				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
+				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
@@ -1467,6 +1524,7 @@
 				331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */,
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				5C328021279741C200781EBE /* QuestionOrInfoListModel.swift in Sources */,
+				77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */,
 				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,

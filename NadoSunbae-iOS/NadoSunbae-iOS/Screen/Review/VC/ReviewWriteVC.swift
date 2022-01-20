@@ -50,7 +50,7 @@ class ReviewWriteVC: UIViewController {
     /// 완료 버튼 활성화 검사를 위한 변수
     private var essentialTextViewStatus: Bool = false
     private var choiceTextViewStatus: Bool = false
-    var postBgImgId: Int = 0
+    var postBgImgId: Int = 6
     
     /// 데이터 삽입을 위한 리스트 변수
     private var bgImgList: [ReviewWriteBgImgData] = []
@@ -67,6 +67,7 @@ class ReviewWriteVC: UIViewController {
         configureMajorNameViewUI()
         addKeyboardObserver()
         hideKeyboardWhenTappedAround()
+        setUpTapCompleteBtn()
     }
     
     // TODO: 회원가입 시 본전공만 존재하는 유저인 경우 버튼 비활성화 처리 예정
@@ -136,6 +137,23 @@ extension ReviewWriteVC {
             ReviewWriteBgImgData(bgImgName: "property1Purple")
         ])
     }
+    
+    private func setUpTapCompleteBtn() {
+        reviewWriteNaviBar.rightActivateBtn.press {
+            
+            /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
+            [self.learnInfoTextView, self.recommendClassTextView, self.badClassTextView, self.futureTextView, self.tipTextView].forEach {
+                for _ in 0...4 {
+                    if $0?.text == "내용을 입력해주세요" {
+                        $0?.text = ""
+                    }
+                }
+            }
+            
+            /// 서버통신
+            self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -173,7 +191,7 @@ extension ReviewWriteVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         // TODO: 서버통신을 위해 선택된 배경이미지 index값 저장
-        self.postBgImgId = indexPath.row
+        self.postBgImgId = indexPath.row + 6
         print(postBgImgId)
     }
 }
@@ -217,26 +235,6 @@ extension ReviewWriteVC: UITextViewDelegate {
                 textView.text = "내용을 입력해주세요"
             }
             textView.textColor = .gray2
-        }
-        
-        /// 완료 버튼 클릭 시
-        if reviewWriteNaviBar.rightActivateBtn.isActivated {
-            reviewWriteNaviBar.rightActivateBtn.press {
-                
-                /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
-                [self.learnInfoTextView, self.recommendClassTextView, self.badClassTextView, self.futureTextView, self.tipTextView].forEach {
-                    for _ in 0...4 {
-                        if $0?.text == "내용을 입력해주세요" {
-                            $0?.text = ""
-                        }
-                    }
-                }
-                
-                /// 서버통신
-                self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
-                
-                self.dismiss(animated: true, completion: nil)
-            }
         }
     }
     
@@ -335,6 +333,7 @@ extension ReviewWriteVC {
                 
             case .success(let res):
                 if let data = res as? ReviewPostRegisterData {
+                    self.dismiss(animated: true)
                     print(data)
                 }
             case .requestErr(let msg):

@@ -15,7 +15,7 @@ class BaseVC: UIViewController {
         activityIndicator.center = view.center
         
         // 기타 옵션
-        activityIndicator.color = .purple
+        activityIndicator.color = .mainDefault
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .medium
         activityIndicator.stopAnimating()
