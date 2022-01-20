@@ -10,6 +10,7 @@ import Moya
 
 enum ReviewService {
     case createReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String)
+    case getReviewMainPostList(majorID: Int, writerFilter: Int, tagFilter:[Int], sort: String)
 }
 
 extension ReviewService: TargetType {
@@ -22,6 +23,8 @@ extension ReviewService: TargetType {
             
         case .createReviewPost:
             return "/review-post"
+        case .getReviewMainPostList:
+            return "/review-post/list"
         }
     }
     
@@ -30,14 +33,16 @@ extension ReviewService: TargetType {
             
         case .createReviewPost:
             return .post
+        case .getReviewMainPostList:
+            return .post
         }
     }
     
     var task: Task {
         switch self {
             
+        /// 후기글 작성 경우
         case .createReviewPost(let majorID, let bgImgID, let oneLineReview, let prosCons, let curriculum, let career, let recommendLecture, let nonRecommendLecture, let tip):
-            
             let body: [String : Any] = [
                 "majorId" : majorID,
                 "backgroundImageId" : bgImgID,
@@ -49,8 +54,20 @@ extension ReviewService: TargetType {
                 "nonRecommendLecture" : nonRecommendLecture,
                 "tip" : tip
             ]
-            
             return .requestParameters(parameters: body, encoding: URLEncoding.httpBody)
+            
+        /// 후기 메인 뷰에서 리스트를 요청하는 경우
+        case .getReviewMainPostList(let majorID, let writerFilter, let tagFilter, let sort):
+            let body: [String : Any] = [
+                "majorId" : majorID,
+                "writerFilter" : writerFilter,
+                "tagFilter" : tagFilter
+            ]
+            
+            let query = [ "sort" : sort ]
+            
+            // 배열값([Int])을 보낼 때는 JSONEncoding.prettyPrinted 사용해야함
+            return .requestCompositeParameters(bodyParameters: body, bodyEncoding: JSONEncoding.prettyPrinted, urlParameters: query)
         }
     }
     
@@ -61,6 +78,8 @@ extension ReviewService: TargetType {
         switch self {
             
         case .createReviewPost:
+            return ["accesstoken" : accessToken]
+        case .getReviewMainPostList:
             return ["accesstoken" : accessToken]
         }
     }

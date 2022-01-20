@@ -13,9 +13,10 @@ struct Writer: Codable {
     let nickname, firstMajorName, firstMajorStart, secondMajorName: String
     let secondMajorStart: String
     let isOnQuestion, isReviewed: Bool
+    let profileImageId: Int
 
     enum CodingKeys: String, CodingKey {
         case writerID = "writerId"
-        case nickname, firstMajorName, firstMajorStart, secondMajorName, secondMajorStart, isOnQuestion, isReviewed
+        case nickname, firstMajorName, firstMajorStart, secondMajorName, secondMajorStart, isOnQuestion, isReviewed, profileImageId
     }
 }
