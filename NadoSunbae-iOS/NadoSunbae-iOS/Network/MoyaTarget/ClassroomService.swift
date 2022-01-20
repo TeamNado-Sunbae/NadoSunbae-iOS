@@ -10,6 +10,7 @@ import Moya
 
 enum ClassroomService {
     case getQuestionDetail(chatPostID: Int)
+    case getGroupQuestionOrInfoList(majorID: Int, postTypeID: Int, sort: ListSortType)
 }
 
 extension ClassroomService: TargetType {
@@ -22,13 +23,15 @@ extension ClassroomService: TargetType {
             
         case .getQuestionDetail(let chatPostID):
             return "/classroom-post/question/\(chatPostID)"
+        case .getGroupQuestionOrInfoList(let majorID, let postTypeID, _):
+            return "/classroom-post/\(postTypeID)/major/\(majorID)/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
             
-        case .getQuestionDetail:
+        case .getQuestionDetail, .getGroupQuestionOrInfoList:
             return .get
         }
     }
@@ -38,16 +41,14 @@ extension ClassroomService: TargetType {
             
         case .getQuestionDetail:
             return .requestPlain
+        case .getGroupQuestionOrInfoList(_, _, let sort):
+            let body = ["sort": sort]
+            return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         let accessToken: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken) ?? ""
-        
-        switch self {
-            
-        case .getQuestionDetail:
-            return ["accesstoken" : accessToken]
-        }
+        return ["accesstoken": accessToken]
     }
 }

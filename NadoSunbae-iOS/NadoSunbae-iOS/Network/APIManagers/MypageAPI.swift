@@ -73,7 +73,7 @@ extension MypageAPI {
     private func getUserPersonalQuestionListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         
-        guard let decodedData = try? decoder.decode(GenericResponse<MypageUserPersonalQuestionModel>.self, from: data) else { return .pathErr }
+        guard let decodedData = try? decoder.decode(GenericResponse<QuestionOrInfoListModel>.self, from: data) else { return .pathErr }
 
         switch status {
         case 200...204:

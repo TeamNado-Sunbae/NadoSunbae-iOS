@@ -14,8 +14,7 @@ class ClassroomMainVC: UIViewController {
     // MARK: Properties
     private let screenWidth = UIScreen.main.bounds.size.width
     private let majorLabel = UILabel().then {
-        // TODO: text Userdefaults선배 값으로 바꿀 예정
-        $0.text = "국어국문학과"
+        $0.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
         $0.font = .PretendardM(size: 20)
         $0.textColor = .black
         $0.sizeToFit()
@@ -41,6 +40,7 @@ class ClassroomMainVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setUpMajorLabel()
         tabBarController?.tabBar.isHidden = false
     }
 }
@@ -112,6 +112,7 @@ extension ClassroomMainVC {
         let slideVC = HalfModalVC()
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
+        slideVC.selectMajorDelegate = self
         self.present(slideVC, animated: true, completion: nil)
     }
     
@@ -120,6 +121,11 @@ extension ClassroomMainVC {
         majorSelectBtn.press(vibrate: true) {
             self.presentHalfModalView()
         }
+    }
+    
+    /// 전공 Label text를 set하는 메서드
+    private func setUpMajorLabel() {
+        majorLabel.text = (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
     }
 }
 
@@ -142,5 +148,12 @@ extension ClassroomMainVC: SendSegmentStateDelegate {
         } else {
             classroomContainerView.externalSV.contentOffset.x += screenWidth
         }
+    }
+}
+
+// MARK: - SendUpdateModalDelegate
+extension ClassroomMainVC: SendUpdateModalDelegate {
+    func sendUpdate(data: Any) {
+        majorLabel.text = data as? String
     }
 }
