@@ -110,6 +110,7 @@
 		5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */; };
 		5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */; };
 		5C5AFCBD279400060045E47A /* MypageMainVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */; };
+		5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C873A4A279978650050EE43 /* SignInDataModel.swift */; };
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
 		5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */; };
 		5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */; };
@@ -284,6 +285,7 @@
 		5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpCompleteVC.storyboard; sourceTree = "<group>"; };
 		5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteVC.swift; sourceTree = "<group>"; };
 		5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MypageMainVC+TV.swift"; sourceTree = "<group>"; };
+		5C873A4A279978650050EE43 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
 		5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpMajorInfoVC.storyboard; sourceTree = "<group>"; };
 		5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMajorInfoVC.swift; sourceTree = "<group>"; };
@@ -939,6 +941,14 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		5C873A492799785A0050EE43 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				5C873A4A279978650050EE43 /* SignInDataModel.swift */,
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
 		5C8D8BFD278B3A440045E600 /* SignUpMajorInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,6 +1163,7 @@
 			isa = PBXGroup;
 			children = (
 				77A7593427987E9E00A8E48B /* Public */,
+				5C873A492799785A0050EE43 /* Sign */,
 				77A7591C2797628F00A8E48B /* Review */,
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
@@ -1411,6 +1422,7 @@
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
 				33CF635827945DE300E92C04 /* QuestionMainVC.swift in Sources */,
+				5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */,
 				33CF635427945C1200E92C04 /* SendSegmentStateDelegate.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
