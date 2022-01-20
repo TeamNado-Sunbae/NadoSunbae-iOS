@@ -53,6 +53,7 @@ class QuestionMainVC: BaseVC {
         registerCell()
         setUpTapPersonalQuestionBtn()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
+        addActivateIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,14 +85,14 @@ extension QuestionMainVC {
         questionSegmentView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(38)
+            $0.height.equalTo(38.adjustedH)
         }
         
         personalQuestionBtn.snp.makeConstraints {
             $0.top.equalTo(questionSegmentView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(24)
             $0.trailing.equalToSuperview().offset(-24)
-            $0.height.equalTo(176)
+            $0.height.equalTo(176.adjustedH)
         }
         
         entireQuestionTitleLabel.snp.makeConstraints {
@@ -178,13 +179,17 @@ extension QuestionMainVC {
     
     @objc
     func updateDataBySelectedMajor() {
-        print("majorIDdddddd: ", MajorInfo.shared.selecteMajorID ?? 0)
         requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .recent)
     }
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
         requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .groupQuestion, sort: .recent)
+    }
+    
+    private func addActivateIndicator() {
+        activityIndicator.center = CGPoint(x: self.view.center.x, y: view.center.y - 106)
+        view.addSubview(self.activityIndicator)
     }
 }
 
@@ -258,11 +263,12 @@ extension QuestionMainVC: UITableViewDelegate {
             let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
             guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
-            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
-            groupChatVC.questionType = .group
-            groupChatVC.naviStyle = .push
-            
-            self.navigationController?.pushViewController(groupChatVC, animated: true)
+            if questionList.count != 0 {
+                groupChatVC.questionType = .group
+                groupChatVC.naviStyle = .push
+                groupChatVC.chatPostID = questionList[indexPath.row].postID
+                self.navigationController?.pushViewController(groupChatVC, animated: true)
+            }
         } else if indexPath.section == 2 {
             let entireQuestionVC = EntireQuestionListVC()
             self.navigationController?.pushViewController(entireQuestionVC, animated: true)
@@ -284,7 +290,6 @@ extension QuestionMainVC {
                     DispatchQueue.main.async {
                         self.entireQuestionTV.reloadData()
                         self.configureQuestionTVHeight()
-                        print(self.entireQuestionTV.contentSize)
                     }
                     self.activityIndicator.stopAnimating()
                 }
