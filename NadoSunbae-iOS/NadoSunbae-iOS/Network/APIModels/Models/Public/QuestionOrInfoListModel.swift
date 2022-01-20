@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - MypageUserPersonalQuestionModel
-struct MypageUserPersonalQuestionModel: Codable {
+// MARK: - QuestionOrInfoListModel
+struct QuestionOrInfoListModel: Codable {
     var classroomPostList: [ClassroomPostList] = []
 
     enum CodingKeys: String, CodingKey {
@@ -16,7 +16,7 @@ struct MypageUserPersonalQuestionModel: Codable {
     }
 }
 
-// MARK: - ClassroomPostList
+// MARK: - PostList
 struct ClassroomPostList: Codable {
     var postID: Int = 0
     var title: String = ""
