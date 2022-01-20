@@ -10,13 +10,13 @@ import Moya
 
 class PublicAPI {
     static let shared = PublicAPI()
-    var userProvider = MoyaProvider<PublicService>(plugins: [NetworkLoggerPlugin()])
+    var publicProvider = MoyaProvider<PublicService>(plugins: [NetworkLoggerPlugin()])
     
     private init() {}
     
     /// [GET] 학과 리스트 조회  API
     func getMajorListAPI(univID: Int, filterType: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        userProvider.request(.getMajorList(univID: univID, filter: filterType)) { result in
+        publicProvider.request(.getMajorList(univID: univID, filter: filterType)) { result in
             switch result {
                 
             case .success(let response):
@@ -36,7 +36,7 @@ class PublicAPI {
 extension PublicAPI {
     
     /// majorListJudgeData
-    func majorListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+    private func majorListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         let decodedData = try? decoder.decode(GenericResponse<[MajorListData]>.self, from: data)
         
