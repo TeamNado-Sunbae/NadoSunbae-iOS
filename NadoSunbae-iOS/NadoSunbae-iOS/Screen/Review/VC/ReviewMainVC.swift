@@ -14,10 +14,11 @@ class ReviewMainVC: UIViewController {
     @IBOutlet var majorLabel: UILabel! {
         didSet {
             majorLabel.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
+            majorLabel.font = .PretendardM(size: 20.adjusted)
         }
     }
-    
     @IBOutlet weak var reviewTV: UITableView!
+    
     
     // MARK: Properties
     var imgList: [ReviewImgData] = []
@@ -217,9 +218,7 @@ extension ReviewMainVC: UITableViewDelegate {
         if indexPath.section == 2 {
             let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
             guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
-            
-            // TODO: 서버통신 후 데이터모델[indexPath.row].postId로 코드 변경
-            nextVC.postId = indexPath.row
+            nextVC.postId = postList[indexPath.row].postID
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }
@@ -333,5 +332,4 @@ extension ReviewMainVC {
         }
     }
 }
-
 

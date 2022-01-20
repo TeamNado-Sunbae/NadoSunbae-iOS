@@ -28,9 +28,7 @@ class ReviewDetailVC: UIViewController {
     @IBOutlet weak var likeCountView: UIView!
     
     // MARK: Properties
-    var detailEssentialPostList: [ReviewEssentialData] = []
-    var detailPostList: [ReviewDetailData] = []
-    var profileList: [ProfileData] = []
+    var detailPost: ReviewPostDetailData = ReviewPostDetailData()
     var postId: Int?
     
     // MARK: Life Cycle
@@ -39,14 +37,16 @@ class ReviewDetailVC: UIViewController {
         setUpPostId()
         registerTVC()
         setUpTV()
-        initEssentialPostList()
-        initPostList()
-        initProfileList()
         configureUI()
         addShadowToNaviBar()
         showActionSheet()
         setUpTapNaviBackBtn()
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        requestGetReviewPostDetail(postID: postId ?? 5)
     }
 }
 
@@ -69,10 +69,10 @@ extension ReviewDetailVC {
 // MARK: - Custom Methods
 extension ReviewDetailVC {
     private func setUpPostId() {
-        if let postId = postId {
-            // TODO: 서버통신 시 해당 PostId로 후기글 상세 조회 API 호출할 것임!!
-            print(postId)
-        }
+//        if let postId = postId {
+//            // TODO: 서버통신 시 해당 PostId로 후기글 상세 조회 API 호출할 것임!!
+//            print(postId)
+//        }
     }
     
     private func registerTVC() {
@@ -85,25 +85,6 @@ extension ReviewDetailVC {
         reviewPostTV.dataSource = self
         reviewPostTV.delegate = self
     
-    }
-    
-    private func initEssentialPostList() {
-        detailEssentialPostList.append(contentsOf: [
-            ReviewEssentialData.init(bgImg: "property1Black", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼")
-        ])
-    }
-    
-    private func initPostList() {
-        detailPostList.append(contentsOf: [
-            ReviewDetailData.init(iconImgName: "bomb", title: "추천수업", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼"),
-            ReviewDetailData.init(iconImgName: "honey", title: "꿀팁", content: "난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼")
-        ])
-    }
-    
-    private func initProfileList() {
-        profileList.append(contentsOf: [
-            ProfileData.init(profileImg: "imgProfile", nickName: "최숙주", majorName: "디지털미디어학과", secondMajorName: "솝트아요학과", message: "선배에게 1:1 질문을 남겨보세요!")
-        ])
     }
     
     /// 액션 시트
@@ -169,14 +150,18 @@ extension ReviewDetailVC: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension ReviewDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return detailEssentialPostList.count
-        } else if section == 1 {
-            return detailPostList.count
-        } else if section == 2 {
-            return profileList.count
-        } else {
+        if detailPost.post.postID == -1 {
             return 0
+        } else {
+            if section == 0 {
+                return 1
+            } else if section == 1 {
+                return detailPost.post.contentList.count - 1
+            } else if section == 2 {
+                return 1
+            } else {
+                return 0
+            }
         }
     }
     
@@ -186,17 +171,48 @@ extension ReviewDetailVC: UITableViewDataSource {
               let reviewDetailProfileTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailProfileTVC.className) as? ReviewDetailProfileTVC else { return UITableViewCell() }
         
         if indexPath.section == 0 {
-            reviewDetailPostWithImgTVC.setData(postData: detailEssentialPostList[indexPath.row])
+            reviewDetailPostWithImgTVC.setData(postData: detailPost)
             return reviewDetailPostWithImgTVC
         } else if indexPath.section == 1 {
             reviewDetailPostTVC.contentLabel.sizeToFit()
-            reviewDetailPostTVC.setData(postData: detailPostList[indexPath.row])
+            reviewDetailPostTVC.setData(postData: detailPost.post.contentList[indexPath.row + 1])
             return reviewDetailPostTVC
         } else if indexPath.section == 2 {
-            reviewDetailProfileTVC.setData(profileData: profileList[indexPath.row])
+            reviewDetailProfileTVC.setData(profileData: detailPost.writer)
             return reviewDetailProfileTVC
         } else {
             return UITableViewCell()
+        }
+    }
+}
+
+// MARK: - Network
+
+/// 후기글 상세 조회
+extension ReviewDetailVC {
+    func requestGetReviewPostDetail(postID: Int) {
+        ReviewAPI.shared.getReviewPostDetailAPI(postID: postID) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? ReviewPostDetailData {
+
+                    self.detailPost = data
+                    print(data)
+
+                    self.reviewPostTV.reloadData()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
         }
     }
 }

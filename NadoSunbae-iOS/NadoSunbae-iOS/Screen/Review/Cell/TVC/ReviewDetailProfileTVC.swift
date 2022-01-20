@@ -44,11 +44,11 @@ extension ReviewDetailProfileTVC {
 extension ReviewDetailProfileTVC {
     
     /// 리스트 데이터 세팅 함수
-    func setData(profileData: ProfileData) {
-        profileImgView.image = profileData.makeImg()
-        nickNameLabel.text = profileData.nickName
-        majorLabel.text = profileData.majorName
+    func setData(profileData: PostWriter) {
+        //profileImgView.image =
+        nickNameLabel.text = profileData.nickname
+        majorLabel.text = profileData.firstMajorName
         secondMajorLabel.text = profileData.secondMajorName
-        messageLabel.text = profileData.message
+        messageLabel.text = "선배에게 1:1 질문을 남겨보세요!"
     }
 }

@@ -15,7 +15,9 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var diamondCountLabel: UILabel!
     @IBOutlet weak var majorNameLabel: UILabel!
+    @IBOutlet weak var firstMajorStartLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
+    @IBOutlet weak var secondMajorStartLabel: UILabel!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
@@ -25,13 +27,17 @@ class ReviewMainPostTVC: BaseTVC {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
-        //self.tagCV.reloadData()
         registerCVC()
         setUpCV()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    /// CVC 재사용 문제 해결을 위한 reload
+    override func prepareForReuse() {
+        tagCV.reloadData()
     }
 }
 
@@ -62,6 +68,12 @@ extension ReviewMainPostTVC {
         diamondCountLabel.text = postData.likeCount
         majorNameLabel.text = postData.writer.firstMajorName
         secondMajorNameLabel.text = postData.writer.secondMajorName
+        firstMajorStartLabel.text = postData.writer.firstMajorStart
+        if postData.writer.secondMajorStart == "미진입" {
+            secondMajorStartLabel.text = ""
+        } else {
+            secondMajorStartLabel.text = postData.writer.secondMajorStart
+        }
     }
     
     private func registerCVC() {
