@@ -4,13 +4,13 @@
 //
 //  Created by 1v1 on 2022/01/08.
 //
-// TODO: TextField clear Btn 에셋 나오면 수정
 
 import UIKit
 import RxSwift
 import RxCocoa
 
 class SignInVC: BaseVC {
+    
     // MARK: Properties
     @IBOutlet weak var emailTextField: NadoTextField!
     @IBOutlet weak var PWTextField: NadoTextField!

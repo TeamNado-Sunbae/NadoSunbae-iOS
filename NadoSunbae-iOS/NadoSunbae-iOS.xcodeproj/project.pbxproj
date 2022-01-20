@@ -123,6 +123,8 @@
 		5CB6503027947A5E007694B1 /* NotificationMainVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6502F27947A5E007694B1 /* NotificationMainVC+TV.swift */; };
 		5CB6503327947ACE007694B1 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6503227947ACE007694B1 /* NotificationModel.swift */; };
 		5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6503527947B5A007694B1 /* NotificationTVC.swift */; };
+		5CC0BFDF2798A3B900B96905 /* SignAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFDE2798A3B900B96905 /* SignAPI.swift */; };
+		5CC0BFE12798A3C300B96905 /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFE02798A3C300B96905 /* SignService.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
@@ -296,6 +298,8 @@
 		5CB6502F27947A5E007694B1 /* NotificationMainVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationMainVC+TV.swift"; sourceTree = "<group>"; };
 		5CB6503227947ACE007694B1 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		5CB6503527947B5A007694B1 /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
+		5CC0BFDE2798A3B900B96905 /* SignAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignAPI.swift; sourceTree = "<group>"; };
+		5CC0BFE02798A3C300B96905 /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
@@ -520,6 +524,7 @@
 				33FBC3182796F6C900741730 /* ReviewAPI.swift */,
 				77A759292798028900A8E48B /* PublicAPI.swift */,
 				5C32801B2797292B00781EBE /* MypageAPI.swift */,
+				5CC0BFDE2798A3B900B96905 /* SignAPI.swift */,
 			);
 			path = APIManagers;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				331364C02786217400E0C118 /* ReviewService.swift */,
 				77A759272797FEB400A8E48B /* PublicService.swift */,
 				5C3280172797217E00781EBE /* MypageService.swift */,
+				5CC0BFE02798A3C300B96905 /* SignService.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -1367,6 +1373,7 @@
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
+				5CC0BFE12798A3C300B96905 /* SignService.swift in Sources */,
 				77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
@@ -1378,6 +1385,7 @@
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
+				5CC0BFDF2798A3B900B96905 /* SignAPI.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
