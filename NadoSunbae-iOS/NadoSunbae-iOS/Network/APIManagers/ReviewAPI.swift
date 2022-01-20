@@ -55,7 +55,7 @@ extension ReviewAPI {
     /// createReviewPostJudgeData
     func createReviewPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<ReviewPostRegisterData>.self, from: data) 
+        let decodedData = try? decoder.decode(GenericResponse<ReviewPostRegisterData>.self, from: data)
         
         switch status {
         case 200...204:
@@ -72,7 +72,7 @@ extension ReviewAPI {
     /// getReviewPostListJudgeData
     func getReviewPostListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<ReviewMainPostListData>.self, from: data)
+        let decodedData = try? decoder.decode(GenericResponse<[ReviewMainPostListData]>.self, from: data)
         
         switch status {
         case 200...204:

@@ -16,7 +16,7 @@ class ReviewMainVC: UIViewController {
     
     // MARK: Properties
     var imgList: [ReviewImgData] = []
-    var postList: [ReviewPostData] = []
+    var postList: [ReviewMainPostListData] = []
     var majorInfo: String = ""
     private var selectActionSheetIndex: Int = 0
     
@@ -26,13 +26,15 @@ class ReviewMainVC: UIViewController {
         registerTVC()
         setUpTV()
         initImgList()
-        initPostList()
+        reviewTV.reloadData()
         addShadowToNaviBar()
         requestGetMajorList(univID: 1, filterType: "all")
+        requestGetReviewPostList(majorID: 5, writerFilter: 1, tagFilter: [1,2,3,4,5])
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        requestGetReviewPostList(majorID: 5, writerFilter: 1, tagFilter: [1,2,3,4,5])
     }
     
     // MARK: IBAction
@@ -93,17 +95,6 @@ extension ReviewMainVC {
     private func initImgList() {
         imgList.append(contentsOf: [
             ReviewImgData(reviewImgName: "img_review_main")
-        ])
-    }
-    
-    /// section2: 게시글 리스트 삽입
-    private func initPostList() {
-        postList.append(contentsOf: [
-            ReviewPostData(date: "21/12/23", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 12, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "21/12/24", title: "아요 사랑해", diamondCount: 4, firstTagImgName: "icBadClassTag", secondTagImgName: "icTipTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "22/01/01", title: "나도 선배 사랑해", diamondCount: 34, firstTagImgName: "icTipTag", secondTagImgName: "icBadClassTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "22/01/02", title: "우리가 짱이다~~~", diamondCount: 21, firstTagImgName: "icReviewTag", secondTagImgName: "icBadClassTag", thirdTagImgName: "icBadClassTag", majorName: "18-1", secondMajorName: "18-2"),
-            ReviewPostData(date: "22/01/03", title: "난 자유롭고 싶어 지금 전투력 수치 111퍼", diamondCount: 1, firstTagImgName: "icReviewTag", secondTagImgName: "icTipTag", thirdTagImgName: "icReviewTag", majorName: "18-1", secondMajorName: "18-2"),
         ])
     }
     
@@ -249,6 +240,7 @@ extension ReviewMainVC: UITableViewDataSource {
             return reviewMainLinkTVC
         } else if indexPath.section == 2 {
             reviewMainPostTVC.setData(postData: postList[indexPath.row])
+            reviewMainPostTVC.tagImgList = postList[indexPath.row].tagList
             return reviewMainPostTVC
         } else {
             return UITableViewCell()
@@ -268,6 +260,8 @@ extension ReviewMainVC: SendUpdateModalDelegate {
 }
 
 // MARK: - Network
+
+/// 학과 정보 리스트 조회
 extension ReviewMainVC {
     func requestGetMajorList(univID: Int, filterType: String) {
         PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
@@ -297,4 +291,35 @@ extension ReviewMainVC {
         }
     }
 }
+
+/// 후기글 리스트 조회
+extension ReviewMainVC {
+    func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int]) {
+        ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                print(res)
+                if let data = res as? [ReviewMainPostListData] {
+                    print("fafa", data)
+                    DispatchQueue.main.async {
+                        self.postList = data
+                        self.reviewTV.reloadData()
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+}
+
 

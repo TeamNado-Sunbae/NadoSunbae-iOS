@@ -9,25 +9,36 @@ import Foundation
 
 // MARK: - ReviewMainPostListData
 struct ReviewMainPostListData: Codable {
-    let reviewPostID: Int
-    let oneLineReview, createdAt: String
-    let reviewWriter: Writer
-    let reviewTagList: [ReviewTagList]
-    let reviewLikeCount: String
+    let postID: Int
+    let oneLineReview: String
+    let createdAt: String
+    let writer: ReviewWriter
+    let tagList: [ReviewTagList]
+    let likeCount: String
 
     enum CodingKeys: String, CodingKey {
-        case reviewPostID = "postId"
-        case oneLineReview, createdAt, reviewWriter, reviewTagList, reviewLikeCount
+        case postID = "postId"
+        case oneLineReview, createdAt, writer, tagList, likeCount
     }
 }
 
 // MARK: - ReviewTagList
 struct ReviewTagList: Codable {
-    let tagName: TagName
+    let tagName: String
 }
 
-enum TagName: String, Codable {
-    case tip = "꿀팁"
-    case curriculum = "뭘 배우나요?"
-    case futureCareer = "향후 진로"
+// MARK: - ReviewWriter
+struct ReviewWriter: Codable {
+    let writerID, profileImageID: Int
+    let nickname: String
+    let firstMajorName: String
+    let firstMajorStart: String
+    let secondMajorName: String
+    let secondMajorStart: String
+
+    enum CodingKeys: String, CodingKey {
+        case writerID = "writerId"
+        case profileImageID = "profileImageId"
+        case nickname, firstMajorName, firstMajorStart, secondMajorName, secondMajorStart
+    }
 }
