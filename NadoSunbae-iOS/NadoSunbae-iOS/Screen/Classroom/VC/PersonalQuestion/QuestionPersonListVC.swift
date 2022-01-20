@@ -14,7 +14,6 @@ class QuestionPersonListVC: UIViewController {
     // MARK: Properties
     private let questionPersonNaviBar = NadoSunbaeNaviBar().then {
         $0.setUpNaviStyle(state: .backDefault)
-        $0.configureTitleLabel(title: "국어국문학과")
     }
     
     private let questionPersonCV = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
@@ -35,6 +34,7 @@ class QuestionPersonListVC: UIViewController {
         registerCell()
         registerXib()
         setUpTapNaviBackBtn()
+        setUpMajorLabel()
     }
 }
 
@@ -47,12 +47,12 @@ extension QuestionPersonListVC {
         self.view.addSubviews([questionPersonNaviBar, questionPersonCV])
         
         questionPersonNaviBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(56)
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(104)
         }
         
         questionPersonCV.snp.makeConstraints {
-            $0.top.equalTo(questionPersonNaviBar.snp.bottom).offset(16)
+            $0.top.equalTo(questionPersonNaviBar.snp.bottom)
             $0.leading.equalToSuperview().offset(0)
             $0.trailing.equalToSuperview().offset(0)
             $0.bottom.equalToSuperview().offset(0)
@@ -85,6 +85,11 @@ extension QuestionPersonListVC {
         questionPersonNaviBar.backBtn.press {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    /// 전공 Label text를 set하는 메서드
+    private func setUpMajorLabel() {
+        questionPersonNaviBar.configureTitleLabel(title: ((MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)) ?? "")
     }
 }
 
