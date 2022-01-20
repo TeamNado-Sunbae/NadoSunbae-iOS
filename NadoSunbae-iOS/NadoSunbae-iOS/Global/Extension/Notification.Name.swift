@@ -8,5 +8,5 @@
 import Foundation
 
 extension Notification.Name {
-//    static let pushedChatDown = Notification.Name("pushedChatDown")
+    static let dismissHalfModal = Notification.Name("dismissHalfModal")
 }

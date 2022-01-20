@@ -65,11 +65,13 @@ class HalfModalVC: UIViewController {
             let selectedMajorID = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
 
             if let selectMajorDelegate = self.selectMajorDelegate {
-                UserDefaults.standard.set(selectedMajorID, forKey: UserDefaults.Keys.SelectedMajorID)
-                UserDefaults.standard.set(selectedMajorName, forKey: UserDefaults.Keys.SelectedMajorName)
+                MajorInfo.shared.selectedMajorName = selectedMajorName
+                MajorInfo.shared.selecteMajorID = selectedMajorID
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: {
+                NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+            })
         }
     }
 }

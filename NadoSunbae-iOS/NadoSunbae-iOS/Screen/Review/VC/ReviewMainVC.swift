@@ -11,7 +11,12 @@ class ReviewMainVC: UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: UIView!
-    @IBOutlet var majorLabel: UILabel!
+    @IBOutlet var majorLabel: UILabel! {
+        didSet {
+            majorLabel.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
+        }
+    }
+    
     @IBOutlet weak var reviewTV: UITableView!
     
     // MARK: Properties
@@ -29,9 +34,11 @@ class ReviewMainVC: UIViewController {
         initPostList()
         addShadowToNaviBar()
         requestGetMajorList(univID: 1, filterType: "all")
+        setUpMajorLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setUpMajorLabel()
         self.tabBarController?.tabBar.isHidden = false
     }
     
@@ -136,6 +143,11 @@ extension ReviewMainVC {
         if scrollView.contentOffset.y < 0 {
             scrollView.contentOffset.y = 0
         }
+    }
+    
+    /// 전공 Label text를 set하는 메서드
+    private func setUpMajorLabel() {
+        majorLabel.text = (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
     }
 }
 
