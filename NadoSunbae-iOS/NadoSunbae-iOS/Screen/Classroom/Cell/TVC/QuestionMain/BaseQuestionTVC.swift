@@ -12,26 +12,26 @@ class BaseQuestionTVC: BaseTVC {
     // MARK: Properties
     let questionTitleLabel = UILabel().then {
         $0.textColor = .nadoBlack
-        $0.font = .PretendardSB(size: 14.0)
+        $0.font = .PretendardSB(size: 14.0.adjusted)
         $0.sizeToFit()
     }
     
     let questionContentLabel = UILabel().then {
         $0.textColor = .gray3
-        $0.font = .PretendardR(size: 14.0)
+        $0.font = .PretendardR(size: 14.0.adjusted)
         $0.numberOfLines = 0
         $0.sizeToFit()
     }
     
     let nicknameLabel = UILabel().then {
         $0.textColor = .gray4
-        $0.font = .PretendardSB(size: 14.0)
+        $0.font = .PretendardSB(size: 14.0.adjusted)
         $0.sizeToFit()
     }
     
     private let questionTimeLabel = UILabel().then {
         $0.textColor = .gray2
-        $0.font = .PretendardR(size: 12.0)
+        $0.font = .PretendardR(size: 12.0.adjusted)
         $0.sizeToFit()
     }
     
@@ -42,7 +42,7 @@ class BaseQuestionTVC: BaseTVC {
     
     private let commentCountLabel = UILabel().then {
         $0.textColor = .gray2
-        $0.font = .PretendardL(size: 12.0)
+        $0.font = .PretendardL(size: 12.0.adjusted)
         $0.sizeToFit()
     }
     
@@ -53,7 +53,7 @@ class BaseQuestionTVC: BaseTVC {
     
     private let likeCountLabel = UILabel().then {
         $0.textColor = .gray2
-        $0.font = .PretendardL(size: 12.0)
+        $0.font = .PretendardL(size: 12.0.adjusted)
         $0.sizeToFit()
     }
     

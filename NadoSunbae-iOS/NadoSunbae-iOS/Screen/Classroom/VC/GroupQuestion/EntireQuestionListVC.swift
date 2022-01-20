@@ -9,12 +9,13 @@ import UIKit
 import SnapKit
 import Then
 
-class EntireQuestionListVC: UIViewController {
+class EntireQuestionListVC: BaseVC {
     
     // MARK: Properties
     private let entireQuestionNaviBar = NadoSunbaeNaviBar().then {
         $0.setUpNaviStyle(state: .backDefault)
         $0.configureTitleLabel(title: "전체에게 질문")
+        $0.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
     }
     
     private let entireQuestionListTV = UITableView().then {
@@ -40,6 +41,12 @@ class EntireQuestionListVC: UIViewController {
         registerXib()
         setUpTapFloatingBtn()
         setUpTapNaviBackBtn()
+        addActivateIndicator()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUpRequestData()
+        self.tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -52,8 +59,8 @@ extension EntireQuestionListVC {
         self.view.addSubviews([entireQuestionNaviBar, entireQuestionListTV, questionFloatingBtn])
         
         entireQuestionNaviBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(56)
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(104)
         }
         
         entireQuestionListTV.snp.makeConstraints {
@@ -136,6 +143,17 @@ extension EntireQuestionListVC {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
+    private func setUpRequestData() {
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .groupQuestion, sort: .recent)
+    }
+    
+    /// activityIndicator 설정 메서드
+    private func addActivateIndicator() {
+        activityIndicator.center = CGPoint(x: 100.adjusted, y: view.center.y)
+        self.view.addSubview(self.activityIndicator)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -151,6 +169,7 @@ extension EntireQuestionListVC: UITableViewDataSource {
         guard let entireQuestionCell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return UITableViewCell() }
         entireQuestionCell.setData(data: questionList[indexPath.row])
         entireQuestionCell.backgroundColor = .paleGray
+        entireQuestionCell.layoutIfNeeded()
         tableView.bringSubviewToFront(entireQuestionCell)
         return entireQuestionCell
     }
@@ -161,7 +180,7 @@ extension EntireQuestionListVC: UITableViewDelegate {
     
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 102
+        return 140
     }
     
     /// viewForHeaderInSection
@@ -172,9 +191,9 @@ extension EntireQuestionListVC: UITableViewDelegate {
         
         // ActionSheet 항목 클릭 시 버튼 타이틀 변경
         if selectActionSheetIndex == 1 {
-            headerView.arrangeBtn.setTitle("  좋아요순", for: .normal)
+            headerView.arrangeBtn.setImage(UIImage(named: "property1Variant3"), for: .normal)
         } else {
-            headerView.arrangeBtn.setTitle("  최신순", for: .normal)
+            headerView.arrangeBtn.setImage(UIImage(named: "btnArray"), for: .normal)
         }
         
         headerView.tapArrangeBtnAction = {
@@ -191,7 +210,7 @@ extension EntireQuestionListVC: UITableViewDelegate {
     
     /// heightForHeaderInSection
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 48
     }
     
     /// didSelectRowAt
@@ -199,10 +218,48 @@ extension EntireQuestionListVC: UITableViewDelegate {
         let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
         guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
         
-        // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
         groupChatVC.questionType = .group
         groupChatVC.naviStyle = .push
-        
+        groupChatVC.chatPostID = questionList[indexPath.row].postID
         self.navigationController?.pushViewController(groupChatVC, animated: true)
+    }
+}
+
+// MARK: - Network
+extension EntireQuestionListVC {
+   
+    /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
+    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: ClassroomPostType, sort: ListSortType) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.getGroupQuestionOrInfoListAPI(majorID: majorID, postTypeID: postTypeID.rawValue, sort: sort) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [ClassroomPostList] {
+                    self.questionList = data
+                    DispatchQueue.main.async {
+                        self.entireQuestionListTV.reloadData()
+                    }
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .pathErr:
+                print("pathErr")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .serverErr:
+                print("serverErr")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "서버 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .networkFail:
+                print("networkFail")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }

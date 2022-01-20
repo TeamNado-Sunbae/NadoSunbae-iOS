@@ -24,7 +24,7 @@ class QuestionMainVC: BaseVC {
     private let entireQuestionTitleLabel = UILabel().then {
         $0.text = "전체에게 질문"
         $0.textColor = .black
-        $0.font = .PretendardM(size: 16.0)
+        $0.font = .PretendardM(size: 16.0.adjusted)
         $0.sizeToFit()
     }
     

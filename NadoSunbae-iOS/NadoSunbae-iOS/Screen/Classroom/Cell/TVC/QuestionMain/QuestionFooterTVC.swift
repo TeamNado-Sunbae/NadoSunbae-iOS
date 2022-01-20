@@ -13,7 +13,7 @@ class QuestionFooterTVC: UITableViewCell {
     private let seeEntireQuestionLabel = UILabel().then {
         $0.text = "질문 전체보기"
         $0.textColor = .lightMint
-        $0.font = .PretendardR(size: 14.0)
+        $0.font = .PretendardR(size: 14.0.adjusted)
         $0.sizeToFit()
     }
     
@@ -55,14 +55,14 @@ extension QuestionFooterTVC {
         
         seeEntireQuestionBtn.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-12)
-            $0.height.equalTo(5)
-            $0.width.equalTo(9)
+            $0.height.equalTo(5.adjustedH)
+            $0.width.equalTo(9.adjusted)
             $0.centerY.equalTo(contentView)
         }
         
         seeEntireQuestionLabel.snp.makeConstraints {
             $0.trailing.equalTo(seeEntireQuestionBtn.snp.leading).offset(-8)
-            $0.height.equalTo(18)
+            $0.height.equalTo(18.adjustedH)
             $0.centerY.equalTo(contentView)
         }
     }

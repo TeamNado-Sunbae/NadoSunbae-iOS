@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum QuestionType {
-    case personal
-    case group
+enum QuestionType: Int {
+    case personal = 4
+    case group = 3
+    case info = 2
 }

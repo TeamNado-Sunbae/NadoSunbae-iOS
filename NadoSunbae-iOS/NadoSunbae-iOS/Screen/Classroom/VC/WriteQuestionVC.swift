@@ -249,6 +249,9 @@ extension WriteQuestionVC {
             case .group:
                 questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
                 questionWriteTextView.setDefaultStyle(placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
+            case .info:
+                questionWriteNaviBar.configureTitleLabel(title: "정보글 작성")
+                questionWriteTextView.setDefaultStyle(placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
             }
         }
     }
@@ -287,6 +290,8 @@ extension WriteQuestionVC: UITextViewDelegate {
                     textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
                 case .group:
                     textView.text = "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!"
+                case .info:
+                    textView.text = "구성원에게 유용한 학과 정보를 공유해주세요."
                 }
             }
             textView.textColor = .gray2
