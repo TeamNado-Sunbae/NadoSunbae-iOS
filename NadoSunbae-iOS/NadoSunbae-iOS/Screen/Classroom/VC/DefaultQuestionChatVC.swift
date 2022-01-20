@@ -54,7 +54,7 @@ class DefaultQuestionChatVC: UIViewController {
     
     @IBOutlet var questionNaviBar: NadoSunbaeNaviBar! {
         didSet {
-            questionNaviBar.addShadow(offset: CGSize(width: 0, height: 9), color: UIColor.shadowDefault, opacity: 0.16, radius: 30)
+            questionNaviBar.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
         }
     }
     
@@ -182,6 +182,8 @@ extension DefaultQuestionChatVC {
         case .group:
             sendAreaTextView.isEditable = true
             sendAreaTextView.text = "답글쓰기"
+        case .info:
+            print("info")
         }
         
         sendAreaTextView.textColor = .gray2
@@ -236,6 +238,8 @@ extension DefaultQuestionChatVC {
                         questionNaviBar.configureTitleLabel(title: "1:1 질문")
                     case .group:
                         questionNaviBar.configureTitleLabel(title: "질문")
+                    case .info:
+                        questionNaviBar.configureTitleLabel(title: "정보글 작성")
                     }
                 }
             case .present:
@@ -250,6 +254,8 @@ extension DefaultQuestionChatVC {
                         questionNaviBar.configureTitleLabel(title: "1:1 질문")
                     case .group:
                         questionNaviBar.configureTitleLabel(title: "질문")
+                    case .info:
+                        questionNaviBar.configureTitleLabel(title: "정보글 작성")
                     }
                 }
             }

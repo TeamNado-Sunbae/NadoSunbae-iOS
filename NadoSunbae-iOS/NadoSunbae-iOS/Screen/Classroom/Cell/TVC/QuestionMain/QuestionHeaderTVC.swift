@@ -13,7 +13,7 @@ class QuestionHeaderTVC: BaseTVC {
     private let headerTitleLabel = UILabel().then {
         $0.text = "구성원 모두가 답할 수 있어요!"
         $0.textColor = .mainDefault
-        $0.font = .PretendardR(size: 14.0)
+        $0.font = .PretendardR(size: 14.0.adjusted)
         $0.sizeToFit()
     }
     
