@@ -11,8 +11,13 @@ class ReviewMainVC: UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: UIView!
-    @IBOutlet var majorLabel: UILabel!
+    @IBOutlet var majorLabel: UILabel! {
+        didSet {
+            majorLabel.font = .PretendardM(size: 20.adjusted)
+        }
+    }
     @IBOutlet weak var reviewTV: UITableView!
+    
     
     // MARK: Properties
     var imgList: [ReviewImgData] = []
