@@ -51,7 +51,6 @@ class QuestionMainVC: BaseVC {
         setUpDelegate()
         setUpTapInfoBtn()
         registerCell()
-//        requestGetGroupOrInfoListData(majorID: 5, postTypeID: .groupQuestion, sort: .recent)
         setUpTapPersonalQuestionBtn()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
     }

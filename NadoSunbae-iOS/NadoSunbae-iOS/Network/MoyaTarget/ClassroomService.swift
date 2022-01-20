@@ -31,9 +31,7 @@ extension ClassroomService: TargetType {
     var method: Moya.Method {
         switch self {
             
-        case .getQuestionDetail:
-            return .get
-        case .getGroupQuestionOrInfoList:
+        case .getQuestionDetail, .getGroupQuestionOrInfoList:
             return .get
         }
     }
@@ -44,13 +42,13 @@ extension ClassroomService: TargetType {
         case .getQuestionDetail:
             return .requestPlain
         case .getGroupQuestionOrInfoList(_, _, let sort):
-            let body = ["sort" : sort]
+            let body = ["sort": sort]
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         let accessToken: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken) ?? ""
-        return ["accesstoken" : accessToken]
+        return ["accesstoken": accessToken]
     }
 }

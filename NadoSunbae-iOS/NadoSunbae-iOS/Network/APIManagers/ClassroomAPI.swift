@@ -59,9 +59,9 @@ extension ClassroomAPI {
             return .pathErr }
         
         switch status {
-        case 200:
+        case 200...204:
             return .success(decodedData.data.self as Any)
-        case 400...500:
+        case 400...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
@@ -77,9 +77,9 @@ extension ClassroomAPI {
             return .pathErr }
         
         switch status {
-        case 200:
+        case 200...204:
             return .success(decodedData.data ?? "None-Data")
-        case 400...500:
+        case 400...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
