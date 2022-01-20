@@ -69,7 +69,11 @@ extension ReviewMainPostTVC {
         majorNameLabel.text = postData.writer.firstMajorName
         secondMajorNameLabel.text = postData.writer.secondMajorName
         firstMajorStartLabel.text = postData.writer.firstMajorStart
-        secondMajorStartLabel.text = postData.writer.secondMajorStart
+        if postData.writer.secondMajorStart == "미진입" {
+            secondMajorStartLabel.text = ""
+        } else {
+            secondMajorStartLabel.text = postData.writer.secondMajorStart
+        }
     }
     
     private func registerCVC() {
