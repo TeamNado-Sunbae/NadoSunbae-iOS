@@ -38,12 +38,14 @@ class ClassroomCommentEditTVC: BaseTVC {
         }
     }
     
+    @IBOutlet weak var commentEditTextViewHeight: NSLayoutConstraint!
+    
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
     weak var changeCellDelegate: TVCContentUpdate?
     var tapConfirmBtnAction : (() -> ())?
     var tapCancelBtnAction : (() -> ())?
-    
+    private let textViewMaxHeight: CGFloat = 170
     
     // MARK: LifeCycle
     override func awakeFromNib() {
@@ -106,10 +108,11 @@ extension ClassroomCommentEditTVC: UITextViewDelegate {
             delegate.updateTextViewHeight(cell: self, textView: textView)
         }
         
-        let size = textView.bounds.size
-        if size.height > 170 {
+        if textView.contentSize.height >= self.textViewMaxHeight {
+            commentEditTextViewHeight.constant = self.textViewMaxHeight
             textView.isScrollEnabled = true
         } else {
+            commentEditTextViewHeight.constant = textView.contentSize.height
             textView.isScrollEnabled = false
         }
     }

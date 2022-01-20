@@ -8,7 +8,7 @@
 import UIKit
 
 class ClassroomQuestionEditTVC: BaseTVC {
-   
+    
     // MARK: IBOutlet
     @IBOutlet var backView: UIView!
     @IBOutlet var nicknameLabel: UILabel!
@@ -38,10 +38,13 @@ class ClassroomQuestionEditTVC: BaseTVC {
         }
     }
     
+    @IBOutlet weak var questionEditTextViewHeight: NSLayoutConstraint!
+    
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
     var tapConfirmBtnAction : (() -> ())?
     var tapCancelBtnAction : (() -> ())?
+    private let textViewMaxHeight: CGFloat = 170
     
     // MARK: LifeCycle
     override func awakeFromNib() {
@@ -104,10 +107,11 @@ extension ClassroomQuestionEditTVC: UITextViewDelegate {
             delegate.updateTextViewHeight(cell: self, textView: textView)
         }
         
-        let size = textView.bounds.size
-        if size.height > 170 {
+        if textView.contentSize.height >= self.textViewMaxHeight {
+            questionEditTextViewHeight.constant = self.textViewMaxHeight
             textView.isScrollEnabled = true
         } else {
+            questionEditTextViewHeight.constant = textView.contentSize.height
             textView.isScrollEnabled = false
         }
     }

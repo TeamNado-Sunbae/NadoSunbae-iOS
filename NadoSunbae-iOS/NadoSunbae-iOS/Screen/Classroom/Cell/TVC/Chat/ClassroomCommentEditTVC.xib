@@ -57,6 +57,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="1IW-0m-43u"/>
+                                    <constraint firstAttribute="height" priority="250" constant="58" id="82r-Vx-rTX"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="CTg-bK-Wy9"/>
                                 </constraints>
                                 <color key="textColor" name="mainText"/>
@@ -92,7 +93,7 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="5VA-cI-FoF"/>
                             <constraint firstAttribute="trailing" secondItem="gHl-xg-62d" secondAttribute="trailing" constant="8" id="BqG-qZ-CZx"/>
                             <constraint firstItem="oia-gq-Jhn" firstAttribute="height" secondItem="DmU-Wz-mYu" secondAttribute="height" id="Cis-tK-YAv"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="177" id="QaV-R4-OVP"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" constant="100" id="QaV-R4-OVP"/>
                             <constraint firstItem="gHl-xg-62d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gvn-5I-kJU" secondAttribute="trailing" constant="25" id="Vz6-Kn-DE8"/>
                             <constraint firstItem="oia-gq-Jhn" firstAttribute="centerY" secondItem="DmU-Wz-mYu" secondAttribute="centerY" id="XvV-4g-y5a"/>
                             <constraint firstItem="gvn-5I-kJU" firstAttribute="top" secondItem="biO-Df-Zrm" secondAttribute="top" constant="16" id="a5n-1g-LCX"/>
@@ -122,7 +123,8 @@
             <connections>
                 <outlet property="backView" destination="biO-Df-Zrm" id="XbS-SC-rqk"/>
                 <outlet property="cancelBtn" destination="oia-gq-Jhn" id="c1h-ri-wtg"/>
-                <outlet property="commentContentTextView" destination="GFj-lp-vBs" id="I5R-ns-SJd"/>
+                <outlet property="commentContentTextView" destination="GFj-lp-vBs" id="Ojj-Xf-2NF"/>
+                <outlet property="commentEditTextViewHeight" destination="82r-Vx-rTX" id="nHU-0H-v6a"/>
                 <outlet property="confirmBtn" destination="DmU-Wz-mYu" id="bL5-VQ-Qhf"/>
                 <outlet property="majorLabel" destination="upB-yU-3X8" id="Pjf-kE-L9d"/>
                 <outlet property="nicknameLabel" destination="gvn-5I-kJU" id="jIG-bb-thA"/>

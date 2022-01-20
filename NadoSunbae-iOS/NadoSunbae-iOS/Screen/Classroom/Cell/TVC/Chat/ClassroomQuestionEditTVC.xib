@@ -57,6 +57,7 @@
                                 <rect key="frame" x="16" y="75" width="272" height="58"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" priority="250" constant="58" id="6Q2-Kf-fPr"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="LMD-AY-519"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="lRI-7V-MYb"/>
                                 </constraints>
@@ -124,6 +125,7 @@
                 <outlet property="confirmBtn" destination="GYp-lU-cWu" id="3Jg-vz-FJ6"/>
                 <outlet property="majorLabel" destination="zVl-hg-oTy" id="PDp-KE-3tU"/>
                 <outlet property="nicknameLabel" destination="rUM-0R-I2m" id="1M7-ig-zAS"/>
+                <outlet property="questionEditTextViewHeight" destination="6Q2-Kf-fPr" id="9sN-i2-JaV"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="177.12053571428569"/>
         </tableViewCell>
