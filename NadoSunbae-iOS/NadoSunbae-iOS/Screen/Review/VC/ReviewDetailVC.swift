@@ -28,8 +28,7 @@ class ReviewDetailVC: UIViewController {
     @IBOutlet weak var likeCountView: UIView!
     
     // MARK: Properties
-    var detailPost: PostDetail = PostDetail()
-    var profileList: PostWriter = PostWriter()
+    var detailPost: ReviewPostDetailData = ReviewPostDetailData()
     var postId: Int?
     
     // MARK: Life Cycle
@@ -151,13 +150,13 @@ extension ReviewDetailVC: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension ReviewDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if detailPost.postID == -1 {
+        if detailPost.post.postID == -1 {
             return 0
         } else {
             if section == 0 {
                 return 1
             } else if section == 1 {
-                return detailPost.contentList.count - 1
+                return detailPost.post.contentList.count - 1
             } else if section == 2 {
                 return 1
             } else {
@@ -176,10 +175,10 @@ extension ReviewDetailVC: UITableViewDataSource {
             return reviewDetailPostWithImgTVC
         } else if indexPath.section == 1 {
             reviewDetailPostTVC.contentLabel.sizeToFit()
-            reviewDetailPostTVC.setData(postData: detailPost.contentList[indexPath.row + 1])
+            reviewDetailPostTVC.setData(postData: detailPost.post.contentList[indexPath.row + 1])
             return reviewDetailPostTVC
         } else if indexPath.section == 2 {
-            reviewDetailProfileTVC.setData(profileData: profileList)
+            reviewDetailProfileTVC.setData(profileData: detailPost.writer)
             return reviewDetailProfileTVC
         } else {
             return UITableViewCell()
@@ -198,8 +197,7 @@ extension ReviewDetailVC {
             case .success(let res):
                 if let data = res as? ReviewPostDetailData {
 
-                    self.detailPost = data.post
-                    self.profileList = data.writer
+                    self.detailPost = data
                     print(data)
 
                     self.reviewPostTV.reloadData()

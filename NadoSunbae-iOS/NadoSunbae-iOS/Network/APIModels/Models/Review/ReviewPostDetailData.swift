@@ -9,16 +9,16 @@ import Foundation
 
 // MARK: - ReviewPostDetailData
 struct ReviewPostDetailData: Codable {
-    var post: PostDetail
-    var writer: PostWriter
-    var like: PostLike
-    var backgroundImage: BackgroundImage
+    var post: PostDetail = PostDetail()
+    var writer: PostWriter = PostWriter()
+    var like: PostLike = PostLike()
+    var backgroundImage: BackgroundImage = BackgroundImage()
 }
 
 // MARK: - BackgroundImage
 struct BackgroundImage: Codable {
-    let imageID: Int
-    let imageURL: String
+    let imageID: Int = 6
+    let imageURL: String = ""
 
     enum CodingKeys: String, CodingKey {
         case imageID = "imageId"
@@ -28,8 +28,8 @@ struct BackgroundImage: Codable {
 
 // MARK: - PostLike
 struct PostLike: Codable {
-    let isLiked: Bool
-    let likeCount: String
+    let isLiked: Bool = false
+    let likeCount: String = ""
 }
 
 // MARK: - PostDetail
