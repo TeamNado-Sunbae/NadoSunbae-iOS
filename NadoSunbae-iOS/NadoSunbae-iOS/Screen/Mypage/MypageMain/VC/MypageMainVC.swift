@@ -36,6 +36,7 @@ class MypageMainVC: UIViewController {
         super.viewWillAppear(animated)
         getUserInfo()
         getUserPersonalQuestionList()
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidLoad() {
@@ -111,7 +112,7 @@ extension MypageMainVC {
     
     /// 셀 등록 메서드
     private func registerCell() {
-        questionTV.register(MypageQuestionTVC.self, forCellReuseIdentifier: MypageQuestionTVC.className)
+        questionTV.register(BaseQuestionTVC.self, forCellReuseIdentifier: BaseQuestionTVC.className)
     }
     
     private func setUpTV() {
@@ -144,7 +145,7 @@ extension MypageMainVC {
         MypageAPI.shared.getUserPersonalQuestionList(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, sort: .recent, completion: { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? MypageUserPersonalQuestionModel {
+                if let data = res as? QuestionOrInfoListModel {
                     self.questionList = []
                     self.questionList = data.classroomPostList
                     DispatchQueue.main.async {

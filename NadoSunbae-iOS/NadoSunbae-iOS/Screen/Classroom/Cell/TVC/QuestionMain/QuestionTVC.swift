@@ -11,8 +11,22 @@ import Then
 
 class QuestionTVC: BaseQuestionTVC {
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 12, left: 16, bottom: 11, right: 16))
+    override func configureUI() {
+        super.configureUI()
+        
+        questionTitleLabel.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(12)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        questionContentLabel.snp.updateConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.top.equalTo(questionTitleLabel.snp.bottom).offset(4)
+        }
+        
+        nicknameLabel.snp.updateConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.bottom.equalToSuperview().offset(-18)
+        }
     }
 }
