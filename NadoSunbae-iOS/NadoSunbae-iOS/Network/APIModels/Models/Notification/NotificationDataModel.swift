@@ -25,6 +25,7 @@ struct NotificationList: Codable {
     var isRead: Bool = false
     var isDeleted: Bool = false
     var createdAt: String = ""
+    var isQuestionToPerson: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case notificationID = "notificationId"
@@ -35,6 +36,7 @@ struct NotificationList: Codable {
         case isRead = "isRead"
         case isDeleted = "isDeleted"
         case createdAt = "createdAt"
+        case isQuestionToPerson = "isQuestionToPerson"
     }
     
     struct Sender: Codable {

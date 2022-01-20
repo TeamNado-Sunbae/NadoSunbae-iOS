@@ -68,6 +68,8 @@ class DefaultQuestionChatVC: UIViewController {
     var answererID: Int?
     var userID: Int?
     var userType: Int?
+    var chatPostID: Int?
+    var isCommentSend: Bool = false
     var actionSheetString: [String] = []
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
@@ -78,9 +80,7 @@ class DefaultQuestionChatVC: UIViewController {
         super.viewDidLoad()
         setUpNaviInitStyle()
         registerXib()
-        DispatchQueue.main.async {
-            self.requestGetDetailQuestionData(chatPostID: 9)
-        }
+        optionalBindingData()
         self.tabBarController?.tabBar.isHidden = true
     }
     
@@ -109,7 +109,8 @@ class DefaultQuestionChatVC: UIViewController {
             }
             
             DispatchQueue.main.async {
-                self.requestGetDetailQuestionData(chatPostID: 9)
+                self.isCommentSend = true
+                self.requestCreateComment(chatPostID: self.chatPostID ?? 0, comment: self.sendAreaTextView.text)
                 self.clearTextView()
             }
         }
@@ -136,8 +137,6 @@ extension DefaultQuestionChatVC {
             self.animationWidth.constant = finishedWidthConstraint
             self.animationLeading.constant = finishedLeadingConstraint
             self.animationLabel.backgroundColor = finishedBackgroundColor
-            self.defaultQuestionChatTV.reloadData()
-            self.scrollTVtoBottom(animate: true)
         })
     }
     
@@ -196,6 +195,16 @@ extension DefaultQuestionChatVC {
             self.sendAreaTextViewHeight.constant = 38
         })
     }
+    
+    private func scrollTVtoBottom(animate: Bool) {
+        DispatchQueue.main.async {
+            let lastSectionIndex = self.defaultQuestionChatTV!.numberOfSections - 1
+            let lastRowIndex = self.defaultQuestionChatTV.numberOfRows(inSection: lastSectionIndex) - 1
+            let pathToLastRow = NSIndexPath(row: lastRowIndex, section: lastSectionIndex)
+            self.defaultQuestionChatTV.scrollToRow(at: pathToLastRow as IndexPath, at: UITableView.ScrollPosition.none, animated: animate)
+        }
+    }
+    
 }
 
 // MARK: - Custom Methods
@@ -207,16 +216,6 @@ extension DefaultQuestionChatVC {
         ClassroomCommentTVC.register(target: defaultQuestionChatTV)
         ClassroomQuestionEditTVC.register(target: defaultQuestionChatTV)
         ClassroomCommentEditTVC.register(target: defaultQuestionChatTV)
-    }
-    
-    ///  TableView 최하단으로 scroll하는 메서드
-    private func scrollTVtoBottom(animate: Bool) {
-        DispatchQueue.main.async {
-            let lastSectionIndex = self.defaultQuestionChatTV!.numberOfSections - 1
-            let lastRowIndex = self.defaultQuestionChatTV.numberOfRows(inSection: lastSectionIndex) - 1
-            let pathToLastRow = NSIndexPath(row: lastRowIndex, section: lastSectionIndex)
-            self.defaultQuestionChatTV.scrollToRow(at: pathToLastRow as IndexPath, at: UITableView.ScrollPosition.none, animated: animate)
-        }
     }
     
     /// 전달받은 데이터에 따라 동적으로 네비 스타일을 구성하는 메서드
@@ -294,7 +293,7 @@ extension DefaultQuestionChatVC {
         
         if sendTextViewLineCount != textView.numberOfLines() && textView.numberOfLines() > 1 {
             isLineAdded = sendTextViewLineCount > textView.numberOfLines() ? false : true
-        
+            
             if isLineAdded {
                 if textView.contentSize.height <= self.textViewMaxHeight {
                     self.defaultQuestionChatTV.contentOffset.y += 38
@@ -313,6 +312,15 @@ extension DefaultQuestionChatVC {
             return ["신고"]
         case .editAndDelete:
             return ["수정", "삭제"]
+        }
+    }
+    
+    /// 전달받은 데이터를 바인딩하는 메서드
+    private func optionalBindingData() {
+        if let chatPostID = chatPostID {
+            DispatchQueue.main.async {
+                self.requestGetDetailQuestionData(chatPostID: chatPostID)
+            }
         }
     }
 }
@@ -364,7 +372,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
               let commentCell = tableView.dequeueReusableCell(withIdentifier: ClassroomCommentTVC.className) as? ClassroomCommentTVC,
               let questionEditCell = tableView.dequeueReusableCell(withIdentifier: ClassroomQuestionEditTVC.className) as? ClassroomQuestionEditTVC,
               let commentEditCell = tableView.dequeueReusableCell(withIdentifier: ClassroomCommentEditTVC.className) as? ClassroomCommentEditTVC else { return UITableViewCell() }
-
+        
         if questionChatData[indexPath.row].writer.isQuestioner {
             if editIndex == [0,indexPath.row] {
                 
@@ -376,7 +384,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     editIndex = []
                     defaultQuestionChatTV.reloadData()
                 }
-
+                
                 questionEditCell.tapCancelBtnAction = { [unowned self] in
                     editIndex = []
                     defaultQuestionChatTV.reloadData()
@@ -414,7 +422,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                         if userType == 0 {
                             /// 작성자 본인
                             actionSheetString = returnActionSheetType(type: .editAndDelete)
-                
+                            
                         } else if userType == 1 {
                             /// 답변자
                             actionSheetString = returnActionSheetType(type: .onlyReport)
@@ -423,7 +431,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                             actionSheetString = returnActionSheetType(type: .onlyReport)
                         }
                     }
-
+                    
                     if actionSheetString.count > 1 {
                         self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
                             // TODO: 추후에 기능 추가 예정
@@ -580,6 +588,8 @@ extension DefaultQuestionChatVC {
 
 // MARK: - Network
 extension DefaultQuestionChatVC {
+    
+    /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
     func requestGetDetailQuestionData(chatPostID: Int) {
         ClassroomAPI.shared.getQuestionDetailAPI(chatPostID: chatPostID) { networkResult in
             switch networkResult {
@@ -590,6 +600,34 @@ extension DefaultQuestionChatVC {
                     self.userType = self.identifyUserType(questionerID: data.questionerID, answererID: data.answererID)
                     self.setUpSendBtnEnabledState(questionType: self.questionType ?? .personal, textView: self.sendAreaTextView)
                     self.defaultQuestionChatTV.reloadData()
+                    if self.isCommentSend {
+                        self.scrollTVtoBottom(animate: true)
+                        self.isCommentSend = false
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    /// 1:1질문, 전체 질문, 정보글에 댓글 등록 API 요청 메서드
+    func requestCreateComment(chatPostID: Int, comment: String) {
+        ClassroomAPI.shared.createCommentAPI(chatID: chatPostID, comment: comment) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let _ = res as? AddCommentData {
+                    DispatchQueue.main.async {
+                        self.requestGetDetailQuestionData(chatPostID: chatPostID)
+                    }
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class QuestionMainVC: UIViewController {
+class QuestionMainVC: BaseVC {
     
     // MARK: Properties
     private let questionSV = UIScrollView().then {
@@ -37,8 +37,12 @@ class QuestionMainVC: UIViewController {
         $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
+    private var questionList: [ClassroomPostList] = []
     let questionSegmentView = NadoSegmentView()
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
+    let halfVC = HalfModalVC()
+    var tvHeight = 0
+    var originalHeight = 0
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -47,8 +51,14 @@ class QuestionMainVC: UIViewController {
         setUpDelegate()
         setUpTapInfoBtn()
         registerCell()
-        configureQuestionTVHeight()
         setUpTapPersonalQuestionBtn()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
+        addActivateIndicator()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpRequestData()
     }
 }
 
@@ -75,19 +85,20 @@ extension QuestionMainVC {
         questionSegmentView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(38)
+            $0.height.equalTo(38.adjustedH)
         }
         
         personalQuestionBtn.snp.makeConstraints {
             $0.top.equalTo(questionSegmentView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(24)
             $0.trailing.equalToSuperview().offset(-24)
-            $0.height.equalTo(176)
+            $0.height.equalTo(176.adjustedH)
         }
         
         entireQuestionTitleLabel.snp.makeConstraints {
             $0.top.equalTo(personalQuestionBtn.snp.bottom).offset(24)
             $0.leading.equalTo(personalQuestionBtn)
+            $0.height.equalTo(19)
         }
         
         entireQuestionTV.snp.makeConstraints {
@@ -101,17 +112,24 @@ extension QuestionMainVC {
     
     /// entireQuestionTV 높이를 구성하는 메서드
     private func configureQuestionTVHeight() {
-        DispatchQueue.main.async {
+        if self.questionList.count > 5 {
+            tvHeight = 70 + 5 * 120 + 40
+        } else if self.questionList.count == 0 {
+            tvHeight = 70 + 236
+        } else {
+            tvHeight = 70 + self.questionList.count * 120
+        }
+        
+        if originalHeight == 0 {
             self.entireQuestionTV.snp.makeConstraints {
-                if questionList.count > 5 {
-                    $0.height.equalTo(70 + 5 * 110 + 40)
-                } else if questionList.count == 0 {
-                    $0.height.equalTo(70 + 236)
-                } else {
-                    $0.height.equalTo(70 + questionList.count * 110)
-                }
+                $0.height.equalTo(tvHeight)
+            }
+        } else if originalHeight != tvHeight {
+            self.entireQuestionTV.snp.updateConstraints {
+                $0.height.equalTo(tvHeight)
             }
         }
+        originalHeight = tvHeight
     }
 }
 
@@ -157,6 +175,21 @@ extension QuestionMainVC {
             let questionPersonVC = QuestionPersonListVC()
             self.navigationController?.pushViewController(questionPersonVC, animated: true)
         }
+    }
+    
+    @objc
+    func updateDataBySelectedMajor() {
+        requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .recent)
+    }
+    
+    /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
+    private func setUpRequestData() {
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .groupQuestion, sort: .recent)
+    }
+    
+    private func addActivateIndicator() {
+        activityIndicator.center = CGPoint(x: self.view.center.x, y: view.center.y - 106)
+        view.addSubview(self.activityIndicator)
     }
 }
 
@@ -216,7 +249,7 @@ extension QuestionMainVC: UITableViewDelegate {
         case 0:
             return 70
         case 1:
-            return (questionList.count == 0 ? 236 : 110)
+            return (questionList.count == 0 ? 236 : 120)
         case 2:
             return (questionList.count > 5 ? 40 : 0)
         default:
@@ -230,14 +263,55 @@ extension QuestionMainVC: UITableViewDelegate {
             let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
             guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
-            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
-            groupChatVC.questionType = .group
-            groupChatVC.naviStyle = .push
-            
-            self.navigationController?.pushViewController(groupChatVC, animated: true)
+            if questionList.count != 0 {
+                groupChatVC.questionType = .group
+                groupChatVC.naviStyle = .push
+                groupChatVC.chatPostID = questionList[indexPath.row].postID
+                self.navigationController?.pushViewController(groupChatVC, animated: true)
+            }
         } else if indexPath.section == 2 {
             let entireQuestionVC = EntireQuestionListVC()
             self.navigationController?.pushViewController(entireQuestionVC, animated: true)
+        }
+    }
+}
+
+// MARK: - Network
+extension QuestionMainVC {
+    
+    /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
+    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: ClassroomPostType, sort: ListSortType) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.getGroupQuestionOrInfoListAPI(majorID: majorID, postTypeID: postTypeID.rawValue, sort: sort) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [ClassroomPostList] {
+                    self.questionList = data
+                    DispatchQueue.main.async {
+                        self.entireQuestionTV.reloadData()
+                        self.configureQuestionTVHeight()
+                    }
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .pathErr:
+                print("pathErr")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .serverErr:
+                print("serverErr")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "서버 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .networkFail:
+                print("networkFail")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
         }
     }
 }

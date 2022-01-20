@@ -13,5 +13,7 @@ class MajorInfo {
     static let shared = MajorInfo()
     
     var majorList: [MajorInfoModel]?
+    var selecteMajorID: Int?
+    var selectedMajorName: String?
     private init() { }
 }
