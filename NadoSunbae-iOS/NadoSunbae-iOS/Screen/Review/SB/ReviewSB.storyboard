@@ -50,13 +50,13 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="CIU-m1-7pK" firstAttribute="leading" secondItem="wTe-n5-UNg" secondAttribute="leading" id="8Mw-Xu-p7G"/>
+                                    <constraint firstItem="B22-dF-dYf" firstAttribute="centerY" secondItem="wTe-n5-UNg" secondAttribute="centerY" id="Cdi-No-Xdz"/>
                                     <constraint firstAttribute="height" constant="104" id="FNk-9w-ZrK"/>
                                     <constraint firstItem="B22-dF-dYf" firstAttribute="leading" secondItem="wTe-n5-UNg" secondAttribute="trailing" id="Ib5-X3-7Gp"/>
                                     <constraint firstItem="CIU-m1-7pK" firstAttribute="bottom" secondItem="wTe-n5-UNg" secondAttribute="bottom" id="MV9-IM-GI7"/>
                                     <constraint firstItem="CIU-m1-7pK" firstAttribute="trailing" secondItem="B22-dF-dYf" secondAttribute="trailing" id="N8x-r1-yaL"/>
                                     <constraint firstItem="CIU-m1-7pK" firstAttribute="top" secondItem="wTe-n5-UNg" secondAttribute="top" id="ejU-l9-683"/>
                                     <constraint firstAttribute="bottom" secondItem="wTe-n5-UNg" secondAttribute="bottom" constant="24" id="oZa-Pg-14e"/>
-                                    <constraint firstAttribute="bottom" secondItem="B22-dF-dYf" secondAttribute="bottom" constant="12" id="uh3-PV-wst"/>
                                     <constraint firstItem="wTe-n5-UNg" firstAttribute="leading" secondItem="ulf-PI-yaI" secondAttribute="leading" constant="16" id="vfp-MN-eHo"/>
                                 </constraints>
                             </view>
