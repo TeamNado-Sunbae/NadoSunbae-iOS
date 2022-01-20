@@ -13,6 +13,7 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
     @IBOutlet weak var bgImgView: UIImageView!
     @IBOutlet weak var postContentView: UIView!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: Life Cycle
     override func awakeFromNib() {
@@ -36,8 +37,9 @@ extension ReviewDetailPostWithImgTVC {
 extension ReviewDetailPostWithImgTVC {
     
     /// 리스트 데이터 세팅 함수
-    func setData(postData: ReviewEssentialData) {
-        bgImgView.image = postData.makeImg()
-        contentLabel.text = postData.content
+    func setData(postData: PostDetail) {
+        bgImgView.image = UIImage(named: "cube")
+        titleLabel.text = postData.oneLineReview
+        contentLabel.text = postData.contentList[0].content
     }
 }
