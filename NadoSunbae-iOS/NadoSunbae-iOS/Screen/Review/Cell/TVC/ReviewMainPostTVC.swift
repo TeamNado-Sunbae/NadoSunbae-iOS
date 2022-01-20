@@ -12,21 +12,23 @@ class ReviewMainPostTVC: BaseTVC {
     // MARK: IBOutlet
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var diamondCountLabel: UILabel!
     @IBOutlet weak var majorNameLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
-    private var tagImgList: [tagImgData] = []
+    var tagImgList: [ReviewTagList] = []
     
     // MARK: Life Cycle Part
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
+        self.tagCV.reloadData()
         registerCVC()
         setUpCV()
-        initTagImg()
+//        initTagImg()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -54,12 +56,13 @@ extension ReviewMainPostTVC {
 extension ReviewMainPostTVC {
     
     /// 리스트 데이터 세팅 함수
-    func setData(postData: ReviewPostData) {
-        dateLabel.text = postData.date
-        titleLabel.text = postData.title
-        diamondCountLabel.text = "\(postData.diamondCount)"
-        majorNameLabel.text = postData.majorName
-        secondMajorNameLabel.text = postData.secondMajorName
+    func setData(postData: ReviewMainPostListData) {
+        dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
+        titleLabel.text = postData.oneLineReview
+        nickNameLabel.text = postData.writer.nickname
+        diamondCountLabel.text = postData.likeCount
+        majorNameLabel.text = postData.writer.firstMajorName
+        secondMajorNameLabel.text = postData.writer.secondMajorName
     }
     
     private func registerCVC() {
@@ -71,16 +74,16 @@ extension ReviewMainPostTVC {
         tagCV.delegate = self
     }
     
-    /// 태그 이미지 삽입
-    private func initTagImg() {
-        tagImgList.append(contentsOf: [
-            tagImgData.init(tagImgName: "icReviewTag"),
-            tagImgData.init(tagImgName: "icBadClassTag"),
-            tagImgData.init(tagImgName: "icTipTag"),
-            tagImgData.init(tagImgName: "property1Career"),
-            tagImgData.init(tagImgName: "property1Learning"),
-        ])
-    }
+//    /// 태그 이미지 삽입
+//    private func initTagImg() {
+//        tagImgList.append(contentsOf: [
+//            tagImgData.init(tagImgName: "icReviewTag"),
+//            tagImgData.init(tagImgName: "icBadClassTag"),
+//            tagImgData.init(tagImgName: "icTipTag"),
+//            tagImgData.init(tagImgName: "property1Career"),
+//            tagImgData.init(tagImgName: "property1Learning"),
+//        ])
+//    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -88,10 +91,10 @@ extension ReviewMainPostTVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var tagWidth: Int?
         
-        // TODO: 서버통신 시 태그 이름으로 접그
-        if tagImgList[indexPath.row].tagImgName == "icTipTag" {
+        // TODO: 서버통신 시 태그 이름으로 접근
+        if tagImgList[indexPath.row].tagName == "꿀팁" {
             tagWidth = 35
-        } else if tagImgList[indexPath.row].tagImgName == "property1Learning" {
+        } else if tagImgList[indexPath.row].tagName == "뭘 배우나요?" {
             tagWidth = 75
         } else {
             tagWidth = 59
@@ -107,6 +110,7 @@ extension ReviewMainPostTVC: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDataSource
 extension ReviewMainPostTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(tagImgList.count)
         return tagImgList.count
     }
     

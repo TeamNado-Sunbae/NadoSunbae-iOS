@@ -20,7 +20,18 @@ class ReviewPostTagCVC: BaseCVC {
 
 // MARK: - Custom Methods
 extension ReviewPostTagCVC {
-    func setData(tagData: tagImgData) {
-        tagImgView.image = tagData.makeImg()
+    func setData(tagData: ReviewTagList) {
+        if tagData.tagName == "추천 수업" {
+            tagImgView.image = UIImage(named: "icReviewTag")
+        } else if tagData.tagName == "비추 수업" {
+            tagImgView.image = UIImage(named: "icBadClassTag")
+        } else if tagData.tagName == "뭘 배우나요?" {
+            tagImgView.image = UIImage(named: "property1Learning")
+        } else if tagData.tagName == "향후 진로" {
+            tagImgView.image = UIImage(named: "property1Career")
+        } else if tagData.tagName == "꿀팁" {
+            tagImgView.image = UIImage(named: "icTipTag")
+        }
     }
 }
+
