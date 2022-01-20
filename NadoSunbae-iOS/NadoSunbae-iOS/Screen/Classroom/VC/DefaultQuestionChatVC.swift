@@ -230,6 +230,7 @@ extension DefaultQuestionChatVC {
                 questionNaviBar.backBtn.press {
                     self.navigationController?.popViewController(animated: true)
                 }
+                
                 if let questionType = questionType {
                     switch questionType {
                     case .personal:
@@ -243,6 +244,7 @@ extension DefaultQuestionChatVC {
                 questionNaviBar.dismissBtn.press {
                     self.dismiss(animated: true, completion: nil)
                 }
+                
                 if let questionType = questionType {
                     switch questionType {
                     case .personal:
@@ -262,7 +264,6 @@ extension DefaultQuestionChatVC {
     
     /// 전송 버튼의 상태를 setUp하는 메서드
     private func setUpSendBtnEnabledState(questionType: QuestionType, textView: UITextView) {
-        
         if isTextViewEmpty {
             sendBtn.isEnabled = false
         } else {
@@ -529,7 +530,7 @@ extension DefaultQuestionChatVC: TVCHeightDynamicUpdate {
         let size = textView.bounds.size
         let newSize = defaultQuestionChatTV.sizeThatFits(CGSize(width: size.width,
                                                                 height: CGFloat.greatestFiniteMagnitude))
-        if size.height != newSize.height && size.height < 170 {
+        if size.height != newSize.height {
             UIView.setAnimationsEnabled(false)
             defaultQuestionChatTV.beginUpdates()
             defaultQuestionChatTV.endUpdates()
