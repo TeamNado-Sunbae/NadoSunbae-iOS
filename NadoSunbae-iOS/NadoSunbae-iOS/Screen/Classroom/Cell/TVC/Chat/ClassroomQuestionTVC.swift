@@ -16,6 +16,8 @@ class ClassroomQuestionTVC: BaseTVC {
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
     @IBOutlet var questionContentTextView: UITextView!
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
@@ -71,11 +73,11 @@ extension ClassroomQuestionTVC {
 extension ClassroomQuestionTVC {
     
     /// 데이터 바인딩하는 메서드
-    func bind(_ model: DefaultQuestionDataModel) {
-        titleLabel.text = model.questionTitle
-        nicknameLabel.text = model.nickname
-        majorLabel.text = model.majorInfo
-        questionContentTextView.text = model.contentText
+    func bindData(_ model: ClassroomMessageList) {
+        titleLabel.text = model.title
+        nicknameLabel.text = model.writer.nickname
+        majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
+        questionContentTextView.text = model.content
     }
 }
 

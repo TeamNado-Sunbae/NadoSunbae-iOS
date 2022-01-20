@@ -39,7 +39,6 @@ class WriteQuestionVC: UIViewController {
     }
     
     private let questionWriteTextView = NadoTextView()
-    
     var questionType: QuestionType?
     
     // MARK: LifeCycle

@@ -26,7 +26,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biO-Df-Zrm">
-                        <rect key="frame" x="72" y="8" width="232" height="197"/>
+                        <rect key="frame" x="32" y="8" width="272" height="197"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6시 30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvn-5I-kJU">
                                 <rect key="frame" x="16" y="16" width="42.5" height="21"/>
@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHl-xg-62d">
-                                <rect key="frame" x="200" y="14.5" width="24" height="24"/>
+                                <rect key="frame" x="240" y="14.5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gHl-xg-62d" secondAttribute="height" multiplier="1:1" id="VPx-xF-bEg"/>
                                     <constraint firstAttribute="height" constant="24" id="ccN-iZ-wnB"/>
@@ -53,11 +53,11 @@
                                 <buttonConfiguration key="configuration" style="plain" image="btnMoreVertMint"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니라 굿모닝인가..ㅎㅎ 잘 자고 내일 보자.. 하하 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GFj-lp-vBs">
-                                <rect key="frame" x="16" y="75" width="200" height="62"/>
-                                <color key="backgroundColor" name="mainLight"/>
+                                <rect key="frame" x="16" y="75" width="240" height="58"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="1IW-0m-43u"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="AWv-sO-5nC"/>
+                                    <constraint firstAttribute="height" priority="250" constant="58" id="82r-Vx-rTX"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="CTg-bK-Wy9"/>
                                 </constraints>
                                 <color key="textColor" name="mainText"/>
@@ -65,13 +65,24 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DmU-Wz-mYu" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="156" y="149" width="60" height="32"/>
+                                <rect key="frame" x="204" y="145" width="52" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="fFM-0o-kgv"/>
-                                    <constraint firstAttribute="width" constant="60" id="h8L-Nb-rxc"/>
+                                    <constraint firstAttribute="height" constant="36" id="fFM-0o-kgv"/>
+                                    <constraint firstAttribute="width" constant="52" id="h8L-Nb-rxc"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title=""/>
+                                <connections>
+                                    <action selector="tapConfirmBtn:" destination="biT-4X-2Qy" eventType="touchUpInside" id="VZD-vH-3ab"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oia-gq-Jhn" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="140" y="145" width="52" height="36"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="tapCancelBtn:" destination="biT-4X-2Qy" eventType="touchUpInside" id="gzN-hw-8mF"/>
+                                    <action selector="tapConfirmBtn:" destination="biT-4X-2Qy" eventType="touchUpInside" id="dvc-TK-HAd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="mainLight"/>
@@ -79,25 +90,30 @@
                             <constraint firstAttribute="trailing" secondItem="GFj-lp-vBs" secondAttribute="trailing" constant="16" id="0b4-6l-2Ri"/>
                             <constraint firstItem="upB-yU-3X8" firstAttribute="leading" secondItem="gvn-5I-kJU" secondAttribute="leading" id="0ch-qX-NNT"/>
                             <constraint firstItem="gvn-5I-kJU" firstAttribute="leading" secondItem="biO-Df-Zrm" secondAttribute="leading" constant="16" id="1sJ-k2-2Ba"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="5VA-cI-FoF"/>
                             <constraint firstAttribute="trailing" secondItem="gHl-xg-62d" secondAttribute="trailing" constant="8" id="BqG-qZ-CZx"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="177" id="QaV-R4-OVP"/>
+                            <constraint firstItem="oia-gq-Jhn" firstAttribute="height" secondItem="DmU-Wz-mYu" secondAttribute="height" id="Cis-tK-YAv"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" constant="100" id="QaV-R4-OVP"/>
                             <constraint firstItem="gHl-xg-62d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gvn-5I-kJU" secondAttribute="trailing" constant="25" id="Vz6-Kn-DE8"/>
+                            <constraint firstItem="oia-gq-Jhn" firstAttribute="centerY" secondItem="DmU-Wz-mYu" secondAttribute="centerY" id="XvV-4g-y5a"/>
                             <constraint firstItem="gvn-5I-kJU" firstAttribute="top" secondItem="biO-Df-Zrm" secondAttribute="top" constant="16" id="a5n-1g-LCX"/>
+                            <constraint firstItem="DmU-Wz-mYu" firstAttribute="leading" secondItem="oia-gq-Jhn" secondAttribute="trailing" constant="12" id="f7Q-ba-QV6"/>
                             <constraint firstAttribute="bottom" secondItem="DmU-Wz-mYu" secondAttribute="bottom" constant="16" id="fyj-5M-p5l"/>
                             <constraint firstItem="gHl-xg-62d" firstAttribute="centerY" secondItem="gvn-5I-kJU" secondAttribute="centerY" id="htd-Mz-tIy"/>
                             <constraint firstItem="DmU-Wz-mYu" firstAttribute="top" secondItem="GFj-lp-vBs" secondAttribute="bottom" constant="12" id="iyE-wZ-Lyf"/>
                             <constraint firstItem="GFj-lp-vBs" firstAttribute="top" secondItem="upB-yU-3X8" secondAttribute="bottom" constant="24" id="lyx-7A-MUJ"/>
                             <constraint firstItem="GFj-lp-vBs" firstAttribute="leading" secondItem="gvn-5I-kJU" secondAttribute="leading" id="o4A-XJ-0vk"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="311" id="pDB-py-7lS"/>
+                            <constraint firstItem="oia-gq-Jhn" firstAttribute="width" secondItem="DmU-Wz-mYu" secondAttribute="width" id="qC0-C5-wpG"/>
                             <constraint firstItem="upB-yU-3X8" firstAttribute="top" secondItem="gvn-5I-kJU" secondAttribute="bottom" id="xUR-u6-KgP"/>
+                            <constraint firstItem="oia-gq-Jhn" firstAttribute="leading" relation="lessThanOrEqual" secondItem="biO-Df-Zrm" secondAttribute="leading" constant="140" id="ylB-Rs-pSo"/>
                             <constraint firstAttribute="trailing" secondItem="DmU-Wz-mYu" secondAttribute="trailing" constant="16" id="ysZ-um-Vpy"/>
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" name="gray1"/>
+                <color key="backgroundColor" red="0.0" green="0.15686274509803921" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="biO-Df-Zrm" secondAttribute="bottom" constant="8" id="4EO-u8-hCX"/>
-                    <constraint firstItem="biO-Df-Zrm" firstAttribute="leading" secondItem="eMV-C8-Sa8" secondAttribute="leadingMargin" constant="56" id="cNa-l6-i6e"/>
                     <constraint firstItem="biO-Df-Zrm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eMV-C8-Sa8" secondAttribute="leading" id="jLH-U9-Tfx"/>
                     <constraint firstAttribute="trailing" secondItem="biO-Df-Zrm" secondAttribute="trailing" constant="16" id="k89-ma-aIN"/>
                     <constraint firstItem="biO-Df-Zrm" firstAttribute="top" secondItem="eMV-C8-Sa8" secondAttribute="top" constant="8" id="mLC-xO-mBD"/>
@@ -106,9 +122,11 @@
             <viewLayoutGuide key="safeArea" id="oM1-Y1-cS0"/>
             <connections>
                 <outlet property="backView" destination="biO-Df-Zrm" id="XbS-SC-rqk"/>
-                <outlet property="commentContentTextView" destination="GFj-lp-vBs" id="I5R-ns-SJd"/>
+                <outlet property="cancelBtn" destination="oia-gq-Jhn" id="c1h-ri-wtg"/>
+                <outlet property="commentContentTextView" destination="GFj-lp-vBs" id="Ojj-Xf-2NF"/>
+                <outlet property="commentEditTextViewHeight" destination="82r-Vx-rTX" id="nHU-0H-v6a"/>
+                <outlet property="confirmBtn" destination="DmU-Wz-mYu" id="bL5-VQ-Qhf"/>
                 <outlet property="majorLabel" destination="upB-yU-3X8" id="Pjf-kE-L9d"/>
-                <outlet property="nadoBtn" destination="DmU-Wz-mYu" id="YiA-ao-pxc"/>
                 <outlet property="nicknameLabel" destination="gvn-5I-kJU" id="jIG-bb-thA"/>
             </connections>
             <point key="canvasLocation" x="5.7971014492753632" y="-43.191964285714285"/>
@@ -116,9 +134,6 @@
     </objects>
     <resources>
         <image name="btnMoreVertMint" width="24" height="24"/>
-        <namedColor name="gray1">
-            <color red="0.90980392156862744" green="0.90980392156862744" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="gray4">
             <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

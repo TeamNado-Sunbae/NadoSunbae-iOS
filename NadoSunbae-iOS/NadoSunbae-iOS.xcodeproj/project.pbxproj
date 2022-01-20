@@ -63,6 +63,8 @@
 		331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5383279629D30052B309 /* EntireQuestionListTVC.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385636F278DC74D003C60A6 /* BaseTVC.swift */; };
+		3386010427988D0500C47D36 /* ActionSheetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3386010327988D0500C47D36 /* ActionSheetCase.swift */; };
+		338601062798B1F800C47D36 /* NaviType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338601052798B1F800C47D36 /* NaviType.swift */; };
 		338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */; };
 		338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */; };
 		338CDB03278C9F8600F8227A /* ClassroomCommentEditTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */; };
@@ -78,6 +80,9 @@
 		33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */; };
 		33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D48278982E0000FB6C8 /* BaseNC.swift */; };
 		33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */; };
+		33C1B8A327974A4F004BABEC /* ClassroomQuestionDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A227974A4F004BABEC /* ClassroomQuestionDetailData.swift */; };
+		33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A427974B72004BABEC /* ClassroomService.swift */; };
+		33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A62797505D004BABEC /* ClassroomAPI.swift */; };
 		33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634D27945C0300E92C04 /* NadoSegmentView.swift */; };
 		33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */; };
 		33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */; };
@@ -234,6 +239,8 @@
 		331C5383279629D30052B309 /* EntireQuestionListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListTVC.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		3385636F278DC74D003C60A6 /* BaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVC.swift; sourceTree = "<group>"; };
+		3386010327988D0500C47D36 /* ActionSheetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCase.swift; sourceTree = "<group>"; };
+		338601052798B1F800C47D36 /* NaviType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviType.swift; sourceTree = "<group>"; };
 		338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCContentUpdate.swift; sourceTree = "<group>"; };
 		338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomCommentEditTVC.swift; sourceTree = "<group>"; };
 		338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomCommentEditTVC.xib; sourceTree = "<group>"; };
@@ -248,6 +255,9 @@
 		33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestionDataModel.swift; sourceTree = "<group>"; };
 		33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeNaviBar.swift; sourceTree = "<group>"; };
 		33BE2D48278982E0000FB6C8 /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
+		33C1B8A227974A4F004BABEC /* ClassroomQuestionDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionDetailData.swift; sourceTree = "<group>"; };
+		33C1B8A427974B72004BABEC /* ClassroomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomService.swift; sourceTree = "<group>"; };
+		33C1B8A62797505D004BABEC /* ClassroomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomAPI.swift; sourceTree = "<group>"; };
 		33CF634D27945C0300E92C04 /* NadoSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoSegmentView.swift; sourceTree = "<group>"; };
 		33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoHorizonContainerViews.swift; sourceTree = "<group>"; };
 		33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NadoHorizonContainerViews.xib; sourceTree = "<group>"; };
@@ -475,6 +485,8 @@
 				331364932785D78F00E0C118 /* Identifiers.swift */,
 				33CF636B279567AF00E92C04 /* QuestionType.swift */,
 				5C32801E27973E1A00781EBE /* ListSortType.swift */,
+				3386010327988D0500C47D36 /* ActionSheetCase.swift */,
+				338601052798B1F800C47D36 /* NaviType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -520,6 +532,7 @@
 				33FBC3182796F6C900741730 /* ReviewAPI.swift */,
 				77A759292798028900A8E48B /* PublicAPI.swift */,
 				5C32801B2797292B00781EBE /* MypageAPI.swift */,
+				33C1B8A62797505D004BABEC /* ClassroomAPI.swift */,
 			);
 			path = APIManagers;
 			sourceTree = "<group>";
@@ -530,6 +543,7 @@
 				331364C02786217400E0C118 /* ReviewService.swift */,
 				77A759272797FEB400A8E48B /* PublicService.swift */,
 				5C3280172797217E00781EBE /* MypageService.swift */,
+				33C1B8A427974B72004BABEC /* ClassroomService.swift */,
 			);
 			path = MoyaTarget;
 			sourceTree = "<group>";
@@ -738,6 +752,22 @@
 				33CF63632794A04C00E92C04 /* QuestionMain */,
 			);
 			path = TVC;
+			sourceTree = "<group>";
+		};
+		33C1B8A027974A13004BABEC /* Classroom */ = {
+			isa = PBXGroup;
+			children = (
+				33C1B8A127974A24004BABEC /* QuestionChat */,
+			);
+			path = Classroom;
+			sourceTree = "<group>";
+		};
+		33C1B8A127974A24004BABEC /* QuestionChat */ = {
+			isa = PBXGroup;
+			children = (
+				33C1B8A227974A4F004BABEC /* ClassroomQuestionDetailData.swift */,
+			);
+			path = QuestionChat;
 			sourceTree = "<group>";
 		};
 		33C7ABEC278F2051000A325A /* Cell */ = {
@@ -1148,6 +1178,7 @@
 			children = (
 				77A7593427987E9E00A8E48B /* Public */,
 				77A7591C2797628F00A8E48B /* Review */,
+				33C1B8A027974A13004BABEC /* Classroom */,
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
 				331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */,
@@ -1331,6 +1362,7 @@
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */,
+				33C1B8A327974A4F004BABEC /* ClassroomQuestionDetailData.swift in Sources */,
 				33BAFD07278C2D6100BFF6BE /* DefaultQuestionDataModel.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
 				777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */,
@@ -1366,10 +1398,12 @@
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
+				33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
 				77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */,
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
+				33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
@@ -1393,6 +1427,7 @@
 				331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
+				338601062798B1F800C47D36 /* NaviType.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
@@ -1407,6 +1442,7 @@
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
 				33BAFD03278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift in Sources */,
+				3386010427988D0500C47D36 /* ActionSheetCase.swift in Sources */,
 				5C5AFCBD279400060045E47A /* MypageMainVC+TV.swift in Sources */,
 				33CF63622794A04700E92C04 /* QuestionFooterTVC.swift in Sources */,
 				77AEEB4E2789AF900016880B /* CVRegisterable.swift in Sources */,

@@ -51,39 +51,53 @@
                                     <constraint firstAttribute="width" secondItem="atJ-80-Jgs" secondAttribute="height" multiplier="1:1" id="tFN-aK-MmY"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="btnMoreVert"/>
+                                <buttonConfiguration key="configuration" style="plain" image="btnMoreVertChatGray"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uga-CD-ixQ">
                                 <rect key="frame" x="16" y="75" width="272" height="58"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" priority="250" constant="58" id="6Q2-Kf-fPr"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="LMD-AY-519"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="lRI-7V-MYb"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="lRI-7V-MYb"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYp-lU-cWu" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="228" y="145" width="60" height="36"/>
+                                <rect key="frame" x="236" y="145" width="52" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="6ed-Og-5jU"/>
-                                    <constraint firstAttribute="width" constant="60" id="zh3-EU-wLP"/>
+                                    <constraint firstAttribute="width" constant="52" id="zh3-EU-wLP"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="tapConfirmBtn:" destination="0JU-OO-wvB" eventType="touchUpInside" id="wjw-Mw-iGg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8P-eq-Krl" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="172" y="145" width="52" height="36"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="tapCancelBtn:" destination="0JU-OO-wvB" eventType="touchUpInside" id="7uA-Bc-QWe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="X8P-eq-Krl" firstAttribute="height" secondItem="GYp-lU-cWu" secondAttribute="height" id="0xU-bH-FCk"/>
                             <constraint firstItem="atJ-80-Jgs" firstAttribute="centerY" secondItem="rUM-0R-I2m" secondAttribute="centerY" id="4yK-Fc-uEJ"/>
                             <constraint firstAttribute="trailing" secondItem="uga-CD-ixQ" secondAttribute="trailing" constant="16" id="AfD-PS-18g"/>
                             <constraint firstAttribute="bottom" secondItem="GYp-lU-cWu" secondAttribute="bottom" constant="16" id="EQr-9I-8gm"/>
                             <constraint firstItem="uga-CD-ixQ" firstAttribute="top" secondItem="zVl-hg-oTy" secondAttribute="bottom" constant="24" id="Fdh-9r-HRb"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="197" id="Hg9-1I-qdE"/>
+                            <constraint firstItem="X8P-eq-Krl" firstAttribute="centerY" secondItem="GYp-lU-cWu" secondAttribute="centerY" id="GWm-sx-Hz7"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="Hg9-1I-qdE"/>
                             <constraint firstItem="rUM-0R-I2m" firstAttribute="leading" secondItem="emm-MX-lrM" secondAttribute="leading" constant="16" id="KKD-43-6Fy"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="311" id="NpA-Do-gKE"/>
                             <constraint firstItem="zVl-hg-oTy" firstAttribute="top" secondItem="rUM-0R-I2m" secondAttribute="bottom" id="Qap-TI-bce"/>
+                            <constraint firstItem="GYp-lU-cWu" firstAttribute="leading" secondItem="X8P-eq-Krl" secondAttribute="trailing" constant="12" id="StP-e7-irG"/>
+                            <constraint firstItem="X8P-eq-Krl" firstAttribute="width" secondItem="GYp-lU-cWu" secondAttribute="width" id="Yof-Us-kQ9"/>
                             <constraint firstItem="zVl-hg-oTy" firstAttribute="leading" secondItem="rUM-0R-I2m" secondAttribute="leading" id="Zr4-5s-DQC"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="hTJ-IO-RSM"/>
                             <constraint firstItem="uga-CD-ixQ" firstAttribute="leading" secondItem="rUM-0R-I2m" secondAttribute="leading" id="hZl-Wy-ybU"/>
@@ -95,7 +109,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" name="gray1"/>
+                <color key="backgroundColor" red="0.0" green="0.15686274509803921" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="emm-MX-lrM" secondAttribute="bottom" constant="8" id="6SZ-18-DnP"/>
                     <constraint firstItem="emm-MX-lrM" firstAttribute="top" secondItem="qmH-oF-cLq" secondAttribute="top" constant="8" id="Ebo-MW-uCZ"/>
@@ -106,19 +120,18 @@
             <viewLayoutGuide key="safeArea" id="C8i-eE-soX"/>
             <connections>
                 <outlet property="backView" destination="emm-MX-lrM" id="v0p-0C-JSH"/>
+                <outlet property="cancelBtn" destination="X8P-eq-Krl" id="cY5-rO-e7B"/>
                 <outlet property="commentContentTextView" destination="uga-CD-ixQ" id="Qj2-Bu-W3U"/>
+                <outlet property="confirmBtn" destination="GYp-lU-cWu" id="3Jg-vz-FJ6"/>
                 <outlet property="majorLabel" destination="zVl-hg-oTy" id="PDp-KE-3tU"/>
-                <outlet property="nadoBtn" destination="GYp-lU-cWu" id="Peh-Ga-d3E"/>
                 <outlet property="nicknameLabel" destination="rUM-0R-I2m" id="1M7-ig-zAS"/>
+                <outlet property="questionEditTextViewHeight" destination="6Q2-Kf-fPr" id="9sN-i2-JaV"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="177.12053571428569"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btnMoreVert" width="24" height="24"/>
-        <namedColor name="gray1">
-            <color red="0.90980392156862744" green="0.90980392156862744" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="btnMoreVertChatGray" width="24" height="24"/>
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
