@@ -30,7 +30,6 @@ class ReviewMainVC: UIViewController {
         reviewTV.reloadData()
         addShadowToNaviBar()
         requestGetMajorList(univID: 1, filterType: "all")
-        requestGetReviewPostList(majorID: 5, writerFilter: 1, tagFilter: [1,2,3,4,5])
     }
     
     override func viewWillAppear(_ animated: Bool) {
