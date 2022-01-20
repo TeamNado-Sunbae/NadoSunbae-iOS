@@ -11,6 +11,7 @@ import Moya
 enum ReviewService {
     case createReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String)
     case getReviewMainPostList(majorID: Int, writerFilter: Int, tagFilter:[Int], sort: String)
+    case getReviewPostDetail(postID: Int)
 }
 
 extension ReviewService: TargetType {
@@ -25,6 +26,8 @@ extension ReviewService: TargetType {
             return "/review-post"
         case .getReviewMainPostList:
             return "/review-post/list"
+        case .getReviewPostDetail(let postID):
+            return "/review-post/\(postID)"
         }
     }
     
@@ -35,6 +38,8 @@ extension ReviewService: TargetType {
             return .post
         case .getReviewMainPostList:
             return .post
+        case .getReviewPostDetail:
+            return .get
         }
     }
     
@@ -68,6 +73,9 @@ extension ReviewService: TargetType {
             
             // 배열값([Int])을 보낼 때는 JSONEncoding.prettyPrinted 사용해야함
             return .requestCompositeParameters(bodyParameters: body, bodyEncoding: JSONEncoding.prettyPrinted, urlParameters: query)
+            
+        case .getReviewPostDetail:
+            return .requestPlain
         }
     }
     
@@ -77,9 +85,7 @@ extension ReviewService: TargetType {
         
         switch self {
             
-        case .createReviewPost:
-            return ["accesstoken" : accessToken]
-        case .getReviewMainPostList:
+        case .createReviewPost, .getReviewMainPostList, .getReviewPostDetail:
             return ["accesstoken" : accessToken]
         }
     }
