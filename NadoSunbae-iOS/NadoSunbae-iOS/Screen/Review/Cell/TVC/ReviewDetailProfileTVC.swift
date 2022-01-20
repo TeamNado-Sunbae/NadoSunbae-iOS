@@ -49,6 +49,6 @@ extension ReviewDetailProfileTVC {
         nickNameLabel.text = profileData.nickname
         majorLabel.text = profileData.firstMajorName
         secondMajorLabel.text = profileData.secondMajorName
-        messageLabel.text = "질문 불가능"
+        messageLabel.text = "선배에게 1:1 질문을 남겨보세요!"
     }
 }
