@@ -45,10 +45,7 @@ extension NotificationMainVC: UITableViewDelegate {
         case .writtenQuestion:
             guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
-            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
-            
-            /// 현재 들어온 정보로는 개인질문글인지, 공개질문글인지 모름 . ...?
-            groupChatVC.questionType = .personal
+            groupChatVC.questionType = notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
             groupChatVC.naviStyle = .push
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
@@ -60,10 +57,7 @@ extension NotificationMainVC: UITableViewDelegate {
         case .answerQuestion:
             guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
-            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
-            
-            /// 현재 들어온 정보로는 개인질문글인지, 공개질문글인지 모름 . ...?
-            groupChatVC.questionType = .personal
+            groupChatVC.questionType = notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
             groupChatVC.naviStyle = .push
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
@@ -90,11 +84,11 @@ extension NotificationMainVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 8
+        return 16
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 8
+        return 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
