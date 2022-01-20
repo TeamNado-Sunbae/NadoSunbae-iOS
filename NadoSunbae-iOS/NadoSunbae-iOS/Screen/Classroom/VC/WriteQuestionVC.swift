@@ -11,7 +11,7 @@ import Then
 import RxSwift
 import RxCocoa
 
-class WriteQuestionVC: UIViewController {
+class WriteQuestionVC: BaseVC {
     
     // MARK: Properties
     private let questionSV = UIScrollView()
@@ -19,7 +19,7 @@ class WriteQuestionVC: UIViewController {
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
     private var isTextViewEmpty: Bool = true
-    private let questionWriteNaviBar = NadoSunbaeNaviBar()
+    private let questionWriteNaviBar = NadoSunbaeNaviBar() 
     private let questionTitleTextField = UITextField().then {
         $0.borderStyle = .none
         $0.backgroundColor = .white
@@ -40,6 +40,8 @@ class WriteQuestionVC: UIViewController {
     
     private let questionWriteTextView = NadoTextView()
     var questionType: QuestionType?
+    var majorID: Int = 0
+    var answerID: Int = 0
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -186,7 +188,7 @@ extension WriteQuestionVC {
     """
                                 , confirmBtnTitle: "네", cancelBtnTitle: "아니요")
             alert.confirmBtn.press {
-                // TODO: 글 올리기 서버통신부
+                createClassroomPost(majorID: majorID, answerID: , postTypeID: questionType.row, title: <#T##String#>, content: <#T##String#>)
             }
         }
         
@@ -311,5 +313,35 @@ extension WriteQuestionVC {
     @objc
     func keyboardWillHide(notification: Notification) {
         questionSV.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+}
+
+// MARK: - Network
+extension WriteQuestionVC {
+    private func createClassroomPost(majorID: Int, answerID: Int, postTypeID: Int, title: String, content: String) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.createClassroomContentAPI(majorID: majorID, answerID: answerID, postTypeID: postTypeID, title: title, content: content) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [ClassroomPostList] {
+//                    self.questionList = data
+//                    DispatchQueue.main.async {
+//                        self.entireQuestionTV.reloadData()
+//                        self.configureQuestionTVHeight()
+//                    }
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                print("pathErr")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
