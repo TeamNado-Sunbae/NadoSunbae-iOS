@@ -74,7 +74,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLb-kY-18s">
-                        <rect key="frame" x="162.5" y="104" width="50.5" height="24.5"/>
+                        <rect key="frame" x="31" y="74" width="312" height="24.5"/>
                         <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -82,15 +82,16 @@
                 </subviews>
                 <color key="backgroundColor" name="paleGray"/>
                 <constraints>
-                    <constraint firstItem="CLb-kY-18s" firstAttribute="centerY" secondItem="22y-a7-5o9" secondAttribute="centerY" id="AEw-NB-qqI"/>
+                    <constraint firstAttribute="trailing" secondItem="CLb-kY-18s" secondAttribute="trailing" constant="32" id="8xl-vV-xYA"/>
                     <constraint firstItem="22y-a7-5o9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="AMk-H6-DZF"/>
                     <constraint firstAttribute="trailing" secondItem="22y-a7-5o9" secondAttribute="trailing" id="GlJ-g8-3kb"/>
                     <constraint firstItem="22y-a7-5o9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="L2C-sb-mHn"/>
+                    <constraint firstItem="CLb-kY-18s" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="74" id="SMl-eA-AZJ"/>
                     <constraint firstItem="Gi7-n0-Lnt" firstAttribute="top" secondItem="22y-a7-5o9" secondAttribute="bottom" constant="-40" id="VOd-tq-cSc"/>
-                    <constraint firstItem="CLb-kY-18s" firstAttribute="centerX" secondItem="22y-a7-5o9" secondAttribute="centerX" id="ZVb-Im-nDq"/>
                     <constraint firstAttribute="bottom" secondItem="Gi7-n0-Lnt" secondAttribute="bottom" constant="12" id="alJ-Zb-cwy"/>
                     <constraint firstAttribute="trailing" secondItem="Gi7-n0-Lnt" secondAttribute="trailing" constant="24" id="cZd-OW-brn"/>
                     <constraint firstItem="Gi7-n0-Lnt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="iwH-W7-gOl"/>
+                    <constraint firstItem="CLb-kY-18s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="31" id="yGY-Nt-ZlM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
