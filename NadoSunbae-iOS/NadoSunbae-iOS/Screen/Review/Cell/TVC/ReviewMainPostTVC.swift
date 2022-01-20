@@ -25,13 +25,17 @@ class ReviewMainPostTVC: BaseTVC {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
-        //self.tagCV.reloadData()
         registerCVC()
         setUpCV()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    /// CVC 재사용 문제 해결을 위한 reload
+    override func prepareForReuse() {
+        tagCV.reloadData()
     }
 }
 
