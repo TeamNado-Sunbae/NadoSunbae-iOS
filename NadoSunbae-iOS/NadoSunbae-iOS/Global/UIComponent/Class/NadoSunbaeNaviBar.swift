@@ -38,7 +38,7 @@ class NadoSunbaeNaviBar: UIView {
         $0.backgroundColor = .systemBackground
     }
     
-    private lazy var titleLabel = UILabel().then {
+    private (set) lazy var titleLabel = UILabel().then {
         $0.setLabel(text: "제목", color: .black, size: 20, weight: .medium)
     }
     
@@ -85,7 +85,8 @@ extension NadoSunbaeNaviBar {
         }
         
         backBtn.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.leading.equalToSuperview()
             $0.height.width.equalTo(48)
         }
         
@@ -103,7 +104,8 @@ extension NadoSunbaeNaviBar {
         }
         
         backBtn.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.leading.equalToSuperview()
             $0.height.width.equalTo(48)
         }
         
@@ -115,7 +117,7 @@ extension NadoSunbaeNaviBar {
         rightActivateBtn.snp.makeConstraints {
             $0.trailing.equalTo(self.snp.trailing).offset(-16)
             $0.height.equalTo(36)
-            $0.width.equalTo(rightActivateBtn.snp.height).multipliedBy(52.0 / 36.0)
+            $0.width.equalTo(52)
             $0.centerY.equalTo(backBtn)
         }
     }
@@ -128,7 +130,8 @@ extension NadoSunbaeNaviBar {
         }
         
         backBtn.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.leading.equalToSuperview()
             $0.height.width.equalTo(48)
         }
         
@@ -152,12 +155,14 @@ extension NadoSunbaeNaviBar {
         }
         
         backBtn.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.leading.equalToSuperview()
             $0.height.width.equalTo(48)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(backBtn)
         }
         
         rightCustomBtn.snp.makeConstraints {
@@ -176,13 +181,14 @@ extension NadoSunbaeNaviBar {
         }
         
         dismissBtn.snp.makeConstraints {
-            $0.top.equalTo(self).offset(4)
+            $0.bottom.equalToSuperview()
             $0.leading.equalTo(self).offset(4)
             $0.height.width.equalTo(40)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(dismissBtn)
         }
         
         rightCustomBtn.snp.makeConstraints {
@@ -201,12 +207,14 @@ extension NadoSunbaeNaviBar {
         }
         
         dismissBtn.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview()
             $0.height.width.equalTo(48)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(dismissBtn)
         }
         
         rightActivateBtn.snp.makeConstraints {
