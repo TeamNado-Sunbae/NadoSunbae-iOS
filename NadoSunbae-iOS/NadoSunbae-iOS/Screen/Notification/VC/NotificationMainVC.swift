@@ -71,6 +71,8 @@ extension NotificationMainVC {
 
 // MARK: - Network
 extension NotificationMainVC {
+    
+    /// 전체 알림 받아오는 메소드
     private func getNotiList() {
         self.activityIndicator.startAnimating()
         NotificationAPI.shared.getNotiList { networkResult in
@@ -97,6 +99,7 @@ extension NotificationMainVC {
         }
     }
     
+    /// 특정 알림 읽음 처리하는 메소드
     func readNoti(notiID: Int) {
         NotificationAPI.shared.readNoti(notiID: notiID) { networkResult in
             switch networkResult {
@@ -115,6 +118,7 @@ extension NotificationMainVC {
         }
     }
     
+    /// 특정 알림 삭제 처리하는 메소드
     func deleteNoti(notiID: Int) {
         NotificationAPI.shared.deleteNoti(notiID: notiID) { networkResult in
             switch networkResult {

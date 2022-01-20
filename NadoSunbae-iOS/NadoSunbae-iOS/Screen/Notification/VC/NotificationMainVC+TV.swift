@@ -68,7 +68,7 @@ extension NotificationMainVC: UITableViewDelegate {
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
             self.navigationController?.pushViewController(groupChatVC, animated: true)
-
+            
         case .mypageQuestion:
             guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
@@ -79,7 +79,7 @@ extension NotificationMainVC: UITableViewDelegate {
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
             self.navigationController?.pushViewController(groupChatVC, animated: true)
-
+            
         default:
             break
         }
