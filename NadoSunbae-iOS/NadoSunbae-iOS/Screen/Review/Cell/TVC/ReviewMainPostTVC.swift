@@ -15,7 +15,9 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var diamondCountLabel: UILabel!
     @IBOutlet weak var majorNameLabel: UILabel!
+    @IBOutlet weak var firstMajorStartLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
+    @IBOutlet weak var secondMajorStartLabel: UILabel!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
@@ -66,6 +68,8 @@ extension ReviewMainPostTVC {
         diamondCountLabel.text = postData.likeCount
         majorNameLabel.text = postData.writer.firstMajorName
         secondMajorNameLabel.text = postData.writer.secondMajorName
+        firstMajorStartLabel.text = postData.writer.firstMajorStart
+        secondMajorStartLabel.text = postData.writer.secondMajorStart
     }
     
     private func registerCVC() {
