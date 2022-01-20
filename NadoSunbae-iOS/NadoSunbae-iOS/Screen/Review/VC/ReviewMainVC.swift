@@ -16,6 +16,7 @@ class ReviewMainVC: UIViewController {
     
     // MARK: Properties
     var imgList: [ReviewImgData] = []
+    var tagList: [ReviewTagList] = []
     var postList: [ReviewMainPostListData] = []
     var majorInfo: String = ""
     private var selectActionSheetIndex: Int = 0
@@ -239,8 +240,9 @@ extension ReviewMainVC: UITableViewDataSource {
         } else if indexPath.section == 1 {
             return reviewMainLinkTVC
         } else if indexPath.section == 2 {
-            reviewMainPostTVC.setData(postData: postList[indexPath.row])
+            tagList = postList[indexPath.row].tagList
             reviewMainPostTVC.tagImgList = postList[indexPath.row].tagList
+            reviewMainPostTVC.setData(postData: postList[indexPath.row])
             return reviewMainPostTVC
         } else {
             return UITableViewCell()
@@ -301,7 +303,6 @@ extension ReviewMainVC {
             case .success(let res):
                 print(res)
                 if let data = res as? [ReviewMainPostListData] {
-                    print("fafa", data)
                     DispatchQueue.main.async {
                         self.postList = data
                         self.reviewTV.reloadData()

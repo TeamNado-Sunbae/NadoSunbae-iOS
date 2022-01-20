@@ -25,10 +25,9 @@ class ReviewMainPostTVC: BaseTVC {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureUI()
-        self.tagCV.reloadData()
+        //self.tagCV.reloadData()
         registerCVC()
         setUpCV()
-//        initTagImg()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -73,17 +72,6 @@ extension ReviewMainPostTVC {
         tagCV.dataSource = self
         tagCV.delegate = self
     }
-    
-//    /// 태그 이미지 삽입
-//    private func initTagImg() {
-//        tagImgList.append(contentsOf: [
-//            tagImgData.init(tagImgName: "icReviewTag"),
-//            tagImgData.init(tagImgName: "icBadClassTag"),
-//            tagImgData.init(tagImgName: "icTipTag"),
-//            tagImgData.init(tagImgName: "property1Career"),
-//            tagImgData.init(tagImgName: "property1Learning"),
-//        ])
-//    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -116,7 +104,6 @@ extension ReviewMainPostTVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewPostTagCVC.className, for: indexPath) as? ReviewPostTagCVC else { return UICollectionViewCell() }
-        
         cell.setData(tagData: tagImgList[indexPath.row])
         return cell
     }   
