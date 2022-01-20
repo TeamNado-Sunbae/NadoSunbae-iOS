@@ -27,7 +27,7 @@ extension TypeOfViewController {
         case .classroom:
             return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.ClassroomSB, storyboardId: ClassroomNC.className)
         case .notification:
-            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.NotificationSB, storyboardId: NotificationMainVC.className)
+            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.NotificationSB, storyboardId: NotificationNVC.className)
         case .mypage:
             return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.MypageSB, storyboardId: MypageNVC.className)
         }

@@ -51,6 +51,7 @@ class MypageUserVC: BaseVC {
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        makeVisibleTabBar()
         getUserInfo()
         getUserPersonalQuestionList()
     }
@@ -109,6 +110,11 @@ extension MypageUserVC {
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
         }
     }
+    
+    /// 1:1 질문글 들어갔다 나오면 사라져 있는 탭바를 다시 보이게 함
+    private func makeVisibleTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
+    }
 }
 
 // MARK: - Custom Methods
@@ -140,7 +146,7 @@ extension MypageUserVC {
                     print(message)
                 }
             default:
-                self.makeAlert(title: "네트워크 오류로 인해 데이터를 불러올 수 없습니다. 다시 시도해 주세요.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
     }
@@ -168,7 +174,7 @@ extension MypageUserVC {
                     print(message)
                 }
             default:
-                self.makeAlert(title: "네트워크 오류로 인해 데이터를 불러올 수 없습니다. 다시 시도해 주세요.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
     }
