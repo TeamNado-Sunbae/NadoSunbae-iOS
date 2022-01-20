@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BzZ-Bu-aYX">
-                                <rect key="frame" x="0.0" y="100" width="375" height="629"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="625"/>
                                 <color key="backgroundColor" name="paleGray"/>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="답글쓰기" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xnc-u6-B5V">
@@ -51,7 +51,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA9-w6-5Hb">
-                                <rect key="frame" x="50" y="740.66666666666663" width="285" height="21.333333333333371"/>
+                                <rect key="frame" x="50" y="744.66666666666663" width="285" height="21.333333333333371"/>
                                 <color key="backgroundColor" name="mainLight"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="290" id="oAh-ee-p8r"/>
@@ -62,10 +62,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ako-8J-KEr" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="J8B-Vs-hiO"/>
+                                    <constraint firstAttribute="height" constant="104" id="J8B-Vs-hiO"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -78,7 +78,6 @@
                             <constraint firstItem="Ako-8J-KEr" firstAttribute="leading" secondItem="zyO-Al-vZj" secondAttribute="leading" id="49H-lH-Of1"/>
                             <constraint firstItem="xnc-u6-B5V" firstAttribute="top" secondItem="BzZ-Bu-aYX" secondAttribute="bottom" constant="6" id="Azm-aZ-9NF"/>
                             <constraint firstItem="YA9-w6-5Hb" firstAttribute="leading" secondItem="zyO-Al-vZj" secondAttribute="leading" constant="50" id="C1N-g5-rTC"/>
-                            <constraint firstItem="Ako-8J-KEr" firstAttribute="top" secondItem="zyO-Al-vZj" secondAttribute="top" id="D5J-iO-f8X"/>
                             <constraint firstItem="zyO-Al-vZj" firstAttribute="trailing" secondItem="BzZ-Bu-aYX" secondAttribute="trailing" id="K7T-vM-jNB"/>
                             <constraint firstItem="BzZ-Bu-aYX" firstAttribute="top" secondItem="Ako-8J-KEr" secondAttribute="bottom" id="LJz-8w-cpe"/>
                             <constraint firstItem="zyO-Al-vZj" firstAttribute="bottom" secondItem="xnc-u6-B5V" secondAttribute="bottom" constant="5" id="Qdl-hh-rL1"/>
@@ -87,6 +86,7 @@
                             <constraint firstItem="BzZ-Bu-aYX" firstAttribute="leading" secondItem="zyO-Al-vZj" secondAttribute="leading" id="Who-uD-jeR"/>
                             <constraint firstItem="zyO-Al-vZj" firstAttribute="trailing" secondItem="R1m-v3-OEB" secondAttribute="trailing" constant="4" id="e45-dL-kZm"/>
                             <constraint firstItem="zyO-Al-vZj" firstAttribute="trailing" secondItem="YA9-w6-5Hb" secondAttribute="trailing" constant="40" id="hFj-lt-rHX"/>
+                            <constraint firstItem="Ako-8J-KEr" firstAttribute="top" secondItem="Vxh-wt-2Z5" secondAttribute="top" id="k5B-8m-1mV"/>
                             <constraint firstItem="R1m-v3-OEB" firstAttribute="leading" secondItem="xnc-u6-B5V" secondAttribute="trailing" id="nkZ-vu-HNq"/>
                         </constraints>
                     </view>
