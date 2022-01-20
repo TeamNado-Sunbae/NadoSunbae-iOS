@@ -34,12 +34,11 @@ extension SignService: TargetType {
     var task: Task {
         switch self {
         case .signIn(let email, let PW, let deviceToken):
-            return .requestParameters(parameters: ["userId": userID], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["email": email, "password": PW, "deviceToken": deviceToken], encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String : String]? {
-        let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
-        return ["accessToken": accessToken]
+        return ["Content-type": "application/json"]
     }
 }
