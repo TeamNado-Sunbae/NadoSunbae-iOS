@@ -15,6 +15,9 @@ class InfoMainVC: BaseVC {
     let infoSegmentView = NadoSegmentView().then {
         $0.questionBtn.isActivated = false
         $0.infoBtn.isActivated = true
+        [$0.questionBtn, $0.infoBtn].forEach() {
+            $0.isEnabled = true
+        }
     }
     
     private let infoSV = UIScrollView().then {
@@ -247,10 +250,12 @@ extension InfoMainVC: UITableViewDelegate {
         let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
         guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
         
-        groupChatVC.questionType = .group
-        groupChatVC.naviStyle = .push
-        groupChatVC.chatPostID = questionList[indexPath.row].postID
-        self.navigationController?.pushViewController(groupChatVC, animated: true)
+        if questionList.count != 0 {
+            groupChatVC.questionType = .info
+            groupChatVC.naviStyle = .push
+            groupChatVC.chatPostID = questionList[indexPath.row].postID
+            self.navigationController?.pushViewController(groupChatVC, animated: true)
+        }
     }
 }
 
