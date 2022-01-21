@@ -13,7 +13,7 @@ class QuestionEmptyTVC: UITableViewCell {
     private var emptyQuestionLabel = UILabel().then {
         $0.text = "등록된 전체 질문이 없습니다."
         $0.textColor = .gray2
-        $0.font = .PretendardR(size: 14.0.adjusted)
+        $0.font = .PretendardR(size: 14.0)
         $0.sizeToFit()
     }
     

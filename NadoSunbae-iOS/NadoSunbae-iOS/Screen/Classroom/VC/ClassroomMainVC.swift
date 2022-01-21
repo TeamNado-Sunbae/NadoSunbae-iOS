@@ -15,7 +15,7 @@ class ClassroomMainVC: UIViewController {
     private let screenWidth = UIScreen.main.bounds.size.width
     private let majorLabel = UILabel().then {
         $0.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
-        $0.font = .PretendardM(size: 20.adjusted)
+        $0.font = .PretendardM(size: 20)
         $0.textColor = .black
         $0.sizeToFit()
     }
@@ -25,15 +25,10 @@ class ClassroomMainVC: UIViewController {
     }
     
     private let majorSelectBtn = UIButton()
+    private let classroomContainerView = NadoHorizonContainerViews()
     
     // MARK: IBOutlet
-    @IBOutlet var topNaviView: UIView! {
-        didSet {
-            topNaviView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 0.5, radius: 16)
-        }
-    }
-    
-    private let classroomContainerView = NadoHorizonContainerViews()
+    @IBOutlet var topNaviView: UIView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {

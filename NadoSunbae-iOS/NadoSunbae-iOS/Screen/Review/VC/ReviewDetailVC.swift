@@ -37,7 +37,6 @@ class ReviewDetailVC: BaseVC {
         registerTVC()
         setUpTV()
         configureUI()
-        addShadowToNaviBar()
         showActionSheet()
         setUpTapNaviBackBtn()
     }

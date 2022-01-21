@@ -12,15 +12,10 @@ class NotificationMainVC: BaseVC {
     // MARK: @IBOutlet
     @IBOutlet weak var navTitleLabel: UILabel! {
         didSet {
-            navTitleLabel.font = .PretendardM(size: 20.adjusted)
+            navTitleLabel.font = .PretendardM(size: 20)
         }
     }
-    @IBOutlet weak var navView: UIView! {
-        didSet {
-            navView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 0.5, radius: 16)
-        }
-    }
-    
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var noNotiLabel: UILabel! {
         didSet {
             noNotiLabel.isHidden = true
