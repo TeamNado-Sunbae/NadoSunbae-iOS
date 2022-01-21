@@ -10,7 +10,7 @@ import UIKit
 class QuestionEmptyTVC: UITableViewCell {
 
     // MARK: Properties
-    private let emptyQuestionLabel = UILabel().then {
+    private var emptyQuestionLabel = UILabel().then {
         $0.text = "등록된 전체 질문이 없습니다."
         $0.textColor = .gray2
         $0.font = .PretendardR(size: 14.0.adjusted)
@@ -44,5 +44,13 @@ extension QuestionEmptyTVC {
             $0.centerX.equalTo(contentView)
             $0.centerY.equalTo(contentView)
         }
+    }
+}
+
+
+// MARK: - Custom Methods
+extension QuestionEmptyTVC {
+    func setUpEmptyQuestionLabelText(text: String) {
+        emptyQuestionLabel.text = text
     }
 }

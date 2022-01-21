@@ -178,6 +178,7 @@ extension QuestionMainVC {
         }
     }
     
+    /// 선택된 전공정보에 따라 서버통신 요청하는 메서드
     @objc
     func updateDataBySelectedMajor() {
         requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .recent)
@@ -188,6 +189,7 @@ extension QuestionMainVC {
         requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .groupQuestion, sort: .recent)
     }
     
+    /// ActivateIndicator 추가 메서드
     private func addActivateIndicator() {
         activityIndicator.center = CGPoint(x: self.view.center.x, y: view.center.y - 106)
         view.addSubview(self.activityIndicator)
