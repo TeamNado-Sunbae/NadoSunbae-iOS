@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewWriteVC: UIViewController {
+class ReviewWriteVC: BaseVC {
     
     // MARK: IBOutlet
     @IBOutlet weak var reviewWriteNaviBar: NadoSunbaeNaviBar! {
@@ -294,18 +294,32 @@ extension ReviewWriteVC: UITextViewDelegate {
         /// 필수 항목 모두 작성되었을 때
         if oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
             essentialTextViewStatus = true
+        } else {
+            essentialTextViewStatus = false
         }
+        
         
         /// 선택 항목 분기 처리
         [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
             if textView == $0 {
                 for _ in 0...4 {
                     if ($0?.text.count)! >= 100 {
+                        print(1, choiceTextViewStatus, $0?.text.count)
                         choiceTextViewStatus = true
                     } else if $0?.text.isEmpty == false {
+                        print(2, choiceTextViewStatus, $0?.text.count)
                         choiceTextViewStatus = false
                     } else if $0?.text.isEmpty == true {
-                        choiceTextViewStatus = true
+                        print(3, choiceTextViewStatus, $0?.text.count)
+                        //  선택 textView가 최소1개 이상채워졌는지 분기처리
+                        if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
+                            choiceTextViewStatus = true
+                        } else {
+                            choiceTextViewStatus = false
+                        }
+                    } else {
+                        print(4, choiceTextViewStatus, $0?.text.count)
+                        choiceTextViewStatus = false
                     }
                 }
             }
@@ -318,7 +332,9 @@ extension ReviewWriteVC: UITextViewDelegate {
         /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             DispatchQueue.main.async() {
-                scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+                if textView == self.tipTextView {
+                    scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+                }
             }
         }
     }
