@@ -33,14 +33,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-EZ-U4M" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="VFc-8d-1f1"/>
+                                    <constraint firstAttribute="height" constant="104" id="VFc-8d-1f1"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DA4-Xx-KZ1">
-                                <rect key="frame" x="0.0" y="100" width="375" height="629"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="625"/>
                                 <color key="backgroundColor" name="paleGray"/>
                                 <color key="sectionIndexBackgroundColor" name="paleGray"/>
                                 <prototypes>
@@ -111,7 +111,6 @@
                             <constraint firstItem="0dv-5u-kTY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="4QD-RT-sSV"/>
                             <constraint firstItem="DA4-Xx-KZ1" firstAttribute="top" secondItem="d9w-EZ-U4M" secondAttribute="bottom" id="4na-Am-QTt"/>
                             <constraint firstItem="DA4-Xx-KZ1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="EOd-Fe-NyH"/>
-                            <constraint firstItem="d9w-EZ-U4M" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="NyP-XG-Sdj"/>
                             <constraint firstItem="F4y-hS-RB6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ovi-Dh-MRf"/>
                             <constraint firstItem="d9w-EZ-U4M" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="U3A-dj-hVV"/>
                             <constraint firstItem="F4y-hS-RB6" firstAttribute="top" secondItem="DA4-Xx-KZ1" secondAttribute="bottom" id="Unz-wp-hE4"/>
@@ -119,6 +118,7 @@
                             <constraint firstItem="0dv-5u-kTY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-44" id="f5g-AY-aM4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="F4y-hS-RB6" secondAttribute="trailing" id="gx9-56-WpY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0dv-5u-kTY" secondAttribute="trailing" id="kY0-wH-SKZ"/>
+                            <constraint firstItem="d9w-EZ-U4M" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="t03-QF-aFQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="d9w-EZ-U4M" secondAttribute="trailing" id="tq6-zo-spI"/>
                             <constraint firstAttribute="bottom" secondItem="F4y-hS-RB6" secondAttribute="bottom" id="xBX-Z3-lIN"/>
                         </constraints>

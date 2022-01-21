@@ -68,6 +68,7 @@ class ReviewWriteVC: BaseVC {
     
     /// 데이터 삽입을 위한 리스트 변수
     private var bgImgList: [ReviewWriteBgImgData] = []
+    let screenHeight = UIScreen.main.bounds.size.height
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -96,11 +97,11 @@ class ReviewWriteVC: BaseVC {
             self.majorNameLabel.text = secondMajor
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-
+        
         alert.addAction(majorName)
         alert.addAction(secondMajorName)
         alert.addAction(cancel)
-
+        
         present(alert, animated: true, completion: nil)
     }
 }
@@ -246,21 +247,40 @@ extension ReviewWriteVC: UITextViewDelegate {
         
         // TODO: 다른 디바이스 화면에도 대응하기 위한 분기처리 예정
         
-        /// 키보드가 올라감에 따라 scrollView Offset 처리(아이폰 11, 12 기준)
-        if textView == oneLineReviewTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 140), animated: true)
-        } else if textView == prosAndConsTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
-        } else if textView == learnInfoTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 445), animated: true)
-        } else if textView == recommendClassTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 620), animated: true)
-        } else if textView == badClassTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 790), animated: true)
-        } else if textView == futureTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 960), animated: true)
-        } else if textView == tipTextView {
-            reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1130), animated: true)
+        if screenHeight == 667 {
+            
+            /// 키보드가 올라감에 따라 scrollView Offset 처리(아이폰 11, 12 기준)
+            if textView == oneLineReviewTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 240), animated: true)
+            } else if textView == prosAndConsTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 340), animated: true)
+            } else if textView == learnInfoTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 600), animated: true)
+            } else if textView == recommendClassTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 800), animated: true)
+            } else if textView == badClassTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1000), animated: true)
+            } else if textView == futureTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1180), animated: true)
+            } else if textView == tipTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1300), animated: true)
+            }
+        } else {
+            if textView == oneLineReviewTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 140), animated: true)
+            } else if textView == prosAndConsTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+            } else if textView == learnInfoTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 445), animated: true)
+            } else if textView == recommendClassTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 620), animated: true)
+            } else if textView == badClassTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 790), animated: true)
+            } else if textView == futureTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 960), animated: true)
+            } else if textView == tipTextView {
+                reviewWriteScrollView.setContentOffset(CGPoint(x: 0, y: 1130), animated: true)
+            }
         }
     }
     
@@ -341,6 +361,13 @@ extension ReviewWriteVC: UITextViewDelegate {
         
         /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
         reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
+        
+        /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            DispatchQueue.main.async() {
+                scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+            }
+        }
     }
 }
 

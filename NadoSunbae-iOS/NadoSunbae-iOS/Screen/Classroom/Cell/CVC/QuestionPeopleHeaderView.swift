@@ -12,7 +12,7 @@ class QuestionPeopleHeaderView: UICollectionReusableView {
     @IBOutlet var headerTitleLabel: UILabel! {
         didSet {
             headerTitleLabel.textColor = .black
-            headerTitleLabel.font = .PretendardM(size: 16.0)
+            headerTitleLabel.font = .PretendardM(size: 16.0.adjusted)
         }
     }
 }

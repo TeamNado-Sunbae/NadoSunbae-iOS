@@ -64,7 +64,7 @@ class InfoMainVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpRequestData()
+        setUpRequestData(sortType: .recent)
     }
 }
 
@@ -145,8 +145,8 @@ extension InfoMainVC {
     }
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
-    private func setUpRequestData() {
-        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .info, sort: .recent)
+    private func setUpRequestData(sortType: ListSortType) {
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .info, sort: sortType)
     }
     
     /// activityIndicator 설정 메서드
@@ -161,10 +161,11 @@ extension InfoMainVC {
             self.makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순",
                                         okAction: { _ in
                 self.arrangeBtn.setBackgroundImage(UIImage(named: "btnArray"), for: .normal)
-                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .info, sort: .recent)
+                self.setUpRequestData(sortType: .recent)
             }, secondOkAction: { _ in
                 self.arrangeBtn.setBackgroundImage(UIImage(named: "property1Variant3"), for: .normal)
-                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .info, sort: .like)
+                self.setUpRequestData(sortType: .like)
+//                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .info, sort: .like)
             })
         }
     }
