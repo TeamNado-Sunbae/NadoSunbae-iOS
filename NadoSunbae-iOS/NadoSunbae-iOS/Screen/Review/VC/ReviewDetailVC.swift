@@ -41,11 +41,11 @@ class ReviewDetailVC: UIViewController {
         addShadowToNaviBar()
         showActionSheet()
         setUpTapNaviBackBtn()
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         requestGetReviewPostDetail(postID: postId ?? 5)
     }
 }
