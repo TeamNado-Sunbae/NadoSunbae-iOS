@@ -53,11 +53,6 @@ class MypageMainVC: UIViewController {
     }
     
     // MARK: @IBAction
-    @IBAction func goMypageUser(_ sender: UIButton) {
-        guard let vc = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     @IBAction func tapEditProfileBtn(_ sender: Any) {
         /// 1순위!
         self.navigationController?.pushViewController(UIViewController(), animated: true)

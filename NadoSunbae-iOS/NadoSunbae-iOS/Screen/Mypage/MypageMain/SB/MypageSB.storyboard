@@ -48,15 +48,6 @@
                                             <action selector="tapSettingBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="MIs-BF-L54"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJN-in-Q9S">
-                                        <rect key="frame" x="173" y="57" width="129" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="선배페이지(temp)"/>
-                                        <connections>
-                                            <action selector="goMypageUser:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="KTf-Yv-Y6n"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
