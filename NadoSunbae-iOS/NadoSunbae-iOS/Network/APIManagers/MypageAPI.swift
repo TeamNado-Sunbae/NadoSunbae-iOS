@@ -10,13 +10,29 @@ import Moya
 
 class MypageAPI {
     static let shared = MypageAPI()
-    private var provider = MoyaProvider<MypageService>()
+    private var provider = MoyaProvider<MypageService>(plugins: [NetworkLoggerPlugin()])
     
     private init() {}
 }
 
 // MARK: - API
 extension MypageAPI {
+    
+    /// [GET] 특정 유저 정보 조회
+    func getMyInfo(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getMyInfo) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getMyInfoJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
     
     /// [GET] 특정 유저 정보 조회
     func getUserInfo(userID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
@@ -53,6 +69,24 @@ extension MypageAPI {
 
 // MARK: - judgeData
 extension MypageAPI {
+    private func getMyInfoJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        
+        guard let decodedData = try? decoder.decode(GenericResponse<MypageMyInfoModel>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+
+    
     private func getUserInfoJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         

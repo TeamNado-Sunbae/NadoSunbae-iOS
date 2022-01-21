@@ -39,6 +39,7 @@ extension MypageMainVC: UITableViewDelegate {
         // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
         groupChatVC.questionType = .personal
         groupChatVC.naviStyle = .push
+        groupChatVC.chatPostID = self.questionList[indexPath.row].postID
         
         self.navigationController?.pushViewController(groupChatVC, animated: true)
     }

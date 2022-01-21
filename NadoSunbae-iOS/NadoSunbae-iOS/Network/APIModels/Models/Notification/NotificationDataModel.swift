@@ -42,7 +42,7 @@ struct NotificationList: Codable {
     struct Sender: Codable {
         var senderID: Int = 0
         var nickname: String = ""
-        var profileImageID: Int = 1
+        var profileImageID: Int = 0
 
         enum CodingKeys: String, CodingKey {
             case senderID = "senderId"
