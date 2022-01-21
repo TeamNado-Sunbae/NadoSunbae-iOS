@@ -9,7 +9,7 @@ import Foundation
 
 struct MypageUserInfoModel: Codable {
     var userID: Int = 0
-    var profileImageID: Int = 1
+    var profileImageID: Int = 0
     var nickname: String = ""
     var firstMajorName: String = ""
     var firstMajorStart: String = ""
