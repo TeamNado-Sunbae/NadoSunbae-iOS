@@ -22,6 +22,7 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var firstMajorLabel: UILabel!
     @IBOutlet weak var secondMajorLabel: UILabel!
     @IBOutlet weak var privateQuestionNickNameLabel: UILabel!
+    @IBOutlet weak var majorReviewCountLabel: UILabel!
     @IBOutlet weak var floatingBtn: UIButton! {
         didSet {
             floatingBtn.setImage(UIImage(named: "btnFloating_x")!, for: .disabled)
@@ -100,6 +101,7 @@ extension MypageUserVC {
             secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         }
         privateQuestionNickNameLabel.text = userInfo.nickname
+        majorReviewCountLabel.text = userInfo.reviewPostCount
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         

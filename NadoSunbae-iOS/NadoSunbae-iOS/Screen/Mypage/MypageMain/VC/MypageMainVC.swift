@@ -30,9 +30,10 @@ class MypageMainVC: UIViewController {
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var firstMajorLabel: UILabel!
     @IBOutlet weak var secondMajorLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     // MARK: Properties
-    var userInfo = MypageUserInfoModel()
+    var userInfo = MypageMyInfoModel()
     
     var questionList: [ClassroomPostList] = []
     
@@ -40,7 +41,7 @@ class MypageMainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeVisibleTabBar()
-        getUserInfo()
+        getMyInfo()
         getUserPersonalQuestionList()
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -99,6 +100,7 @@ extension MypageMainVC {
         } else {
             secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         }
+        likeCountLabel.text = userInfo.likeCount
         
         DispatchQueue.main.async {
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
@@ -133,11 +135,11 @@ extension MypageMainVC {
 
 // MARK: - Network
 extension MypageMainVC {
-    private func getUserInfo() {
-        MypageAPI.shared.getUserInfo(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, completion: { networkResult in
+    private func getMyInfo() {
+        MypageAPI.shared.getMyInfo(completion: { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? MypageUserInfoModel {
+                if let data = res as? MypageMyInfoModel {
                     self.userInfo = data
                     self.configureUI()
                 }

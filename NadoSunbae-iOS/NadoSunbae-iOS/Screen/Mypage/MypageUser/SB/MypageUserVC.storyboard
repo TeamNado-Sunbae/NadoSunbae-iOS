@@ -314,6 +314,7 @@
                     <connections>
                         <outlet property="firstMajorLabel" destination="k4h-rD-4bX" id="bcy-3M-F37"/>
                         <outlet property="floatingBtn" destination="Yax-Dk-hiT" id="diD-0g-tev"/>
+                        <outlet property="majorReviewCountLabel" destination="SWl-yB-pDv" id="kC7-rK-IHA"/>
                         <outlet property="majorReviewView" destination="ifh-6A-2YM" id="0s0-Nr-K5Z"/>
                         <outlet property="navView" destination="fn2-Vh-Q2Y" id="XfA-VX-IW5"/>
                         <outlet property="nickNameLabel" destination="Mi7-WZ-SNo" id="fyx-UP-xKK"/>

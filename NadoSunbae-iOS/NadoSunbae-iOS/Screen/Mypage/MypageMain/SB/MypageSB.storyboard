@@ -387,6 +387,7 @@
                     <size key="freeformSize" width="374" height="1033"/>
                     <connections>
                         <outlet property="firstMajorLabel" destination="9cd-WG-iJ5" id="LG3-gk-KJj"/>
+                        <outlet property="likeCountLabel" destination="hxj-K9-WHH" id="Mzk-Ms-q5e"/>
                         <outlet property="likeListView" destination="xRv-Yq-z9u" id="YCz-Dy-OOG"/>
                         <outlet property="navTitleLabel" destination="nbM-qh-GYq" id="bDK-WR-Kgc"/>
                         <outlet property="nickNameLabel" destination="DkH-uk-mr1" id="m5B-5q-bse"/>
