@@ -219,6 +219,13 @@ extension ReviewWriteVC: UICollectionViewDataSource {
 // MARK: - UITextViewDelegate
 extension ReviewWriteVC: UITextViewDelegate {
     
+    /// scrollViewDidScroll
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        DispatchQueue.main.async() {
+            scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+        }
+    }
+    
     /// textViewDidBeginEditing
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .gray2 {
@@ -327,16 +334,6 @@ extension ReviewWriteVC: UITextViewDelegate {
         
         /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
         reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
-        
-        
-        /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            DispatchQueue.main.async() {
-                if textView == self.tipTextView {
-                    scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
-                }
-            }
-        }
     }
 }
 
