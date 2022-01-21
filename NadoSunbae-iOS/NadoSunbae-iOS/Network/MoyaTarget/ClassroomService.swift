@@ -12,7 +12,7 @@ enum ClassroomService {
     case getQuestionDetail(chatPostID: Int)
     case getGroupQuestionOrInfoList(majorID: Int, postTypeID: Int, sort: ListSortType)
     case postComment(chatPostID: Int, comment: String)
-    case postClassroomContent(majorID: Int, answerID: Int, postTypeID: Int, title: String, content: String)
+    case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
 }
 
 extension ClassroomService: TargetType {
