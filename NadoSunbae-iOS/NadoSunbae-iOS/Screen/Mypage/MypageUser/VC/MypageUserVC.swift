@@ -25,7 +25,6 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var majorReviewCountLabel: UILabel!
     @IBOutlet weak var floatingBtn: UIButton! {
         didSet {
-            floatingBtn.setImage(UIImage(named: "btnFloating_x")!, for: .disabled)
             floatingBtn.setImage(UIImage(named: "btn_floating_plus")!, for: .normal)
         }
     }
@@ -66,6 +65,18 @@ class MypageUserVC: BaseVC {
     }
     
     // MARK: @IBAction
+    @IBAction func tapPersonalQuestionBtn(_ sender: Any) {
+        if self.userInfo.isOnQuestion {
+            let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
+            guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
+            
+            writeQuestionVC.questionType = .personal
+            writeQuestionVC.answerID = self.userInfo.userID
+            writeQuestionVC.modalPresentationStyle = .fullScreen
+            
+            self.present(writeQuestionVC, animated: true, completion: nil)
+        }
+    }
     @IBAction func tapSortBtn(_ sender: UIButton) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -105,15 +116,14 @@ extension MypageUserVC {
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
-        if self.userInfo.isOnQuestion {
-            self.floatingBtn.isEnabled = true
-            self.userStateViewHeight.constant = 0
-        } else {
-            self.floatingBtn.isEnabled = false
-            self.userStateViewHeight.constant = 32.adjusted
-        }
-        
         DispatchQueue.main.async {
+            if self.userInfo.isOnQuestion {
+                self.floatingBtn.setImage(UIImage(named: "btn_floating_plus")!, for: .normal)
+                self.userStateViewHeight.constant = 0
+            } else {
+                self.floatingBtn.setImage(UIImage(named: "btnFloating_x")!, for: .normal)
+                self.userStateViewHeight.constant = 32.adjusted
+            }
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
         }
@@ -168,10 +178,10 @@ extension MypageUserVC {
                     self.questionList = data.classroomPostList
                     DispatchQueue.main.async {
                         self.questionTV.reloadData()
-
+                        
                         self.questionTV.isHidden = self.questionList.isEmpty ? true : false
                         self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
-
+                        
                         self.questionTV.layoutIfNeeded()
                         self.questionTV.rowHeight = UITableView.automaticDimension
                         self.questionTVHeight.constant = self.questionTV.contentSize.height

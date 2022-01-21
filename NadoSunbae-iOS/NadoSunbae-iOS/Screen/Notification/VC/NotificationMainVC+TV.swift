@@ -68,10 +68,9 @@ extension NotificationMainVC: UITableViewDelegate {
         case .mypageQuestion:
             guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
-            // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?), 얜 확실히 개인 질문!
-            
             groupChatVC.questionType = .personal
             groupChatVC.naviStyle = .push
+            groupChatVC.chatPostID = notificationList[indexPath.section].postID
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
             self.navigationController?.pushViewController(groupChatVC, animated: true)
