@@ -64,18 +64,18 @@ class MypageMainVC: UIViewController {
     }
     
     @IBAction func tapSortBtn(_ sender: Any) {
-        /// 3-4순위`
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let latestAction = UIAlertAction(title: "최신순", style: .default, handler: nil)
-        let moreLikeAction = UIAlertAction(title: "좋아요순", style: .default, handler: nil)
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        [latestAction, moreLikeAction, cancelAction].forEach { action in
-            optionMenu.addAction(action)
-        }
-        
-        self.present(optionMenu, animated: true, completion: nil)
+//        /// 3-4순위`
+//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        
+//        let latestAction = UIAlertAction(title: "최신순", style: .default, handler: nil)
+//        let moreLikeAction = UIAlertAction(title: "좋아요순", style: .default, handler: nil)
+//        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+//        
+//        [latestAction, moreLikeAction, cancelAction].forEach { action in
+//            optionMenu.addAction(action)
+//        }
+//        
+//        self.present(optionMenu, animated: true, completion: nil)
     }
 }
 
