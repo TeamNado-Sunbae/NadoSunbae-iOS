@@ -31,6 +31,7 @@ class NadoAlertVC: BaseVC {
         containerView.makeRounded(cornerRadius: 8.adjusted)
         confirmBtn.isActivated = true
         cancelBtn.isActivated = false
+        cancelBtn.isEnabled = true
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
     }

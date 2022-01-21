@@ -10,7 +10,7 @@ import Moya
 
 class ClassroomAPI {
     static let shared = ClassroomAPI()
-    var classroomProvider = MoyaProvider<ClassroomService>(plugins: [NetworkLoggerPlugin()])
+    var classroomProvider = MoyaProvider<ClassroomService>()
     
     private init() {}
     
@@ -64,6 +64,23 @@ class ClassroomAPI {
             }
         }
     }
+    
+    /// [POST] 1:1질문, 전체 질문, 정보글에 글 등록 API 메서드
+    func createClassroomContentAPI(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.postClassroomContent(majorID: majorID, answerID: answerID, postTypeID: postTypeID, title: title, content: content)) { result in
+            switch result {
+            
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.createClassroomPostJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
@@ -105,10 +122,28 @@ extension ClassroomAPI {
         }
     }
     
-    /// 전체 질문, 정보글 전체 목록 조회 및 정렬
+    /// 1:1질문, 전체 질문, 정보글에 댓글 등록
     private func createCommentJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<AddCommentData>.self, from: data) else {
+            return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// 1:1질문, 전체 질문, 정보글에 글 등록
+    private func createClassroomPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<CreateClassroomPostModel>.self, from: data) else {
             return .pathErr }
         
         switch status {

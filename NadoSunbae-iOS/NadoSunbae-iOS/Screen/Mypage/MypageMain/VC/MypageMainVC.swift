@@ -15,7 +15,11 @@ class MypageMainVC: UIViewController {
             navView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
         }
     }
-    @IBOutlet weak var navTitleBottomSpace: NSLayoutConstraint!
+    @IBOutlet weak var navTitleLabel: UILabel! {
+        didSet {
+            navTitleLabel.font = .PretendardM(size: 20.adjusted)
+        }
+    }
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var likeListView: UIView!
@@ -96,7 +100,6 @@ extension MypageMainVC {
         secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         
         DispatchQueue.main.async {
-            self.navTitleBottomSpace.constant = 26.adjustedH
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
             if self.userInfo.isOnQuestion {

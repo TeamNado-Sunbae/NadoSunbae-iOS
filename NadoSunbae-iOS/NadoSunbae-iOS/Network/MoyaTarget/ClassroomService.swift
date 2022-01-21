@@ -12,6 +12,7 @@ enum ClassroomService {
     case getQuestionDetail(chatPostID: Int)
     case getGroupQuestionOrInfoList(majorID: Int, postTypeID: Int, sort: ListSortType)
     case postComment(chatPostID: Int, comment: String)
+    case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
 }
 
 extension ClassroomService: TargetType {
@@ -28,6 +29,8 @@ extension ClassroomService: TargetType {
             return "/classroom-post/\(postTypeID)/major/\(majorID)/list"
         case .postComment:
             return "/comment"
+        case .postClassroomContent:
+            return "/classroom-post"
         }
     }
     
@@ -36,7 +39,7 @@ extension ClassroomService: TargetType {
             
         case .getQuestionDetail, .getGroupQuestionOrInfoList:
             return .get
-        case .postComment:
+        case .postComment, .postClassroomContent:
             return .post
         }
     }
@@ -53,6 +56,15 @@ extension ClassroomService: TargetType {
             let body: [String: Any] = [
                 "postId": chatPostID,
                 "content": comment
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .postClassroomContent(let majorID, let answerID, let postTypeID, let title, let content):
+            let body: [String: Any] = [
+                "majorId": majorID,
+                "answerId": answerID,
+                "postTypeId": postTypeID,
+                "title": title,
+                "content": content
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
