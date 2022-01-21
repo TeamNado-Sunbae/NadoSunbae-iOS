@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewDetailVC: UIViewController {
+class ReviewDetailVC: BaseVC {
 
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: NadoSunbaeNaviBar! {

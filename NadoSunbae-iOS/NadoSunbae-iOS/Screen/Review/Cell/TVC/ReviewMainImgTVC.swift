@@ -11,6 +11,16 @@ class ReviewMainImgTVC: BaseTVC {
 
     // MARK: IBOutlet
     @IBOutlet weak var reviewMainImgView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.font = .PretendardB(size: 21.adjusted)
+        }
+    }
+    @IBOutlet weak var subTitleLabel: UILabel! {
+        didSet {
+            subTitleLabel.font = .PretendardM(size: 11.adjusted)
+        }
+    }
     
     // MARK: Life Cycle Part
     override func awakeFromNib() {

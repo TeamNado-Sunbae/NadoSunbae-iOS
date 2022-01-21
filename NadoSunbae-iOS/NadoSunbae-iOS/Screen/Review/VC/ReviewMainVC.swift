@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewMainVC: UIViewController {
+class ReviewMainVC: BaseVC {
     
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: UIView!
@@ -80,6 +80,7 @@ extension ReviewMainVC {
         ReviewMainImgTVC.register(target: reviewTV)
         ReviewMainLinkTVC.register(target: reviewTV)
         ReviewMainPostTVC.register(target: reviewTV)
+        ReviewEmptyTVC.register(target: reviewTV)
         
         let nib = UINib(nibName: "ReviewMainStickyHeader", bundle: nil)
         reviewTV.register(nib, forHeaderFooterViewReuseIdentifier: ReviewStickyHeaderView.className)
@@ -102,7 +103,7 @@ extension ReviewMainVC {
     /// section0: 이미지 삽입
     private func initImgList() {
         imgList.append(contentsOf: [
-            ReviewImgData(reviewImgName: "img_review_main")
+            ReviewImgData(reviewImgName: "Frame 149")
         ])
     }
     
@@ -183,7 +184,11 @@ extension ReviewMainVC: UITableViewDelegate {
         } else if indexPath.section == 1 {
             return 52.adjustedH
         } else if indexPath.section == 2 {
-            return 156
+            if postList.isEmpty {
+                return 250.adjustedH
+            } else {
+                return 156
+            }
         } else {
             return 0
         }
@@ -221,10 +226,13 @@ extension ReviewMainVC: UITableViewDelegate {
     /// cell 선택 시 화면 전환
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
-            guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
-            nextVC.postId = postList[indexPath.row].postID
-            self.navigationController?.pushViewController(nextVC, animated: true)
+            
+            if !postList.isEmpty {
+                let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
+                guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+                nextVC.postId = postList[indexPath.row].postID
+                self.navigationController?.pushViewController(nextVC, animated: true)
+            }
         }
     }
 }
@@ -237,7 +245,11 @@ extension ReviewMainVC: UITableViewDataSource {
         } else if section == 1 {
             return 1
         } else if section == 2 {
-            return postList.count
+            if postList.isEmpty {
+                return 1
+            } else {
+                return postList.count
+            }
         } else {
             return 0
         }
@@ -247,18 +259,25 @@ extension ReviewMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let reviewMainImgTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className) as? ReviewMainImgTVC,
               let reviewMainLinkTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainLinkTVC.className) as? ReviewMainLinkTVC,
-              let reviewMainPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC else { return UITableViewCell() }
-        
+              let reviewMainPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC,
+              let reviewEmptyTVC = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className) as? ReviewEmptyTVC else { return UITableViewCell() }
+
         if indexPath.section == 0 {
             reviewMainImgTVC.setData(ImgData: imgList[indexPath.row])
             return reviewMainImgTVC
         } else if indexPath.section == 1 {
             return reviewMainLinkTVC
         } else if indexPath.section == 2 {
-            tagList = postList[indexPath.row].tagList
-            reviewMainPostTVC.tagImgList = postList[indexPath.row].tagList
-            reviewMainPostTVC.setData(postData: postList[indexPath.row])
-            return reviewMainPostTVC
+            
+            /// 게시글이 없을 때 emptyView 나오도록 분기처리
+            if postList.isEmpty {
+                return reviewEmptyTVC
+            } else {
+                tagList = postList[indexPath.row].tagList
+                reviewMainPostTVC.tagImgList = postList[indexPath.row].tagList
+                reviewMainPostTVC.setData(postData: postList[indexPath.row])
+                return reviewMainPostTVC
+            }
         } else {
             return UITableViewCell()
         }
@@ -311,6 +330,7 @@ extension ReviewMainVC {
 /// 후기글 리스트 조회
 extension ReviewMainVC {
     func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int]) {
+        self.activityIndicator.startAnimating()
         ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter) { networkResult in
             switch networkResult {
                 
@@ -321,17 +341,22 @@ extension ReviewMainVC {
                         self.postList = data
                         self.reviewTV.reloadData()
                     }
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
                 }
+                self.activityIndicator.stopAnimating()
             case .pathErr:
                 print("pathErr")
+                self.activityIndicator.stopAnimating()
             case .serverErr:
                 print("serverErr")
+                self.activityIndicator.stopAnimating()
             case .networkFail:
                 print("networkFail")
+                self.activityIndicator.stopAnimating()
             }
         }
     }
