@@ -102,7 +102,7 @@ extension ReviewMainVC {
     /// section0: 이미지 삽입
     private func initImgList() {
         imgList.append(contentsOf: [
-            ReviewImgData(reviewImgName: "img_review_main")
+            ReviewImgData(reviewImgName: "Frame 149")
         ])
     }
     
