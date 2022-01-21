@@ -50,7 +50,6 @@ class QuestionMainVC: BaseVC {
         configureUI()
         setUpDelegate()
         setUpTapInfoBtn()
-        adjustAutolayout()
         registerCell()
         setUpTapPersonalQuestionBtn()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
@@ -133,14 +132,6 @@ extension QuestionMainVC {
             }
         }
         originalHeight = tvHeight
-    }
-    
-    func adjustAutolayout() {
-        let screenHeight = UIScreen.main.bounds.size.height
-        
-        if screenHeight == 667 {
-            entireQuestionTitleLabel.font = .PretendardR(size: 13.0)
-        }
     }
 }
 
