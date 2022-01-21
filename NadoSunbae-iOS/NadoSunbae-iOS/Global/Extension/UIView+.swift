@@ -13,6 +13,7 @@ enum VerticalLocation {
     case left
     case right
     case bottomRight
+    case nadoBotttom
 }
 
 extension UIView {
@@ -30,14 +31,17 @@ extension UIView {
         case .bottom:
             addShadow(offset: CGSize(width: 0, height: 10), color: color, opacity: opacity, radius: radius)
         case .top:
-            addShadow(offset: CGSize(width: 0, height: -3), color: color, opacity: opacity, radius: radius)
+            addShadow(offset: CGSize(width: 0, height: -4), color: color, opacity: opacity, radius: radius)
         case .left:
             addShadow(offset: CGSize(width: -10, height: 0), color: color, opacity: opacity, radius: radius)
         case .right:
             addShadow(offset: CGSize(width: 10, height: 0), color: color, opacity: opacity, radius: radius)
         case .bottomRight:
             addShadow(offset: CGSize(width: 3, height: 3), color: color, opacity: opacity, radius: radius)
+        case .nadoBotttom:
+            addShadow(offset: CGSize(width: 0, height: 4), color: color, opacity: opacity, radius: radius)
         }
+        
     }
     
     /// UIView의 그림자를 설정하는 메서드
