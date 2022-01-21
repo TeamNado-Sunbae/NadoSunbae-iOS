@@ -16,12 +16,18 @@ class ClassroomQuestionTVC: BaseTVC {
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
     @IBOutlet var questionContentTextView: UITextView!
-    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var likeBtn: UIButton! {
+        didSet {
+            likeBtn.press(vibrate: true, for: .touchUpInside){}
+        }
+    }
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var uploadDateLabel: UILabel!
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
     weak var changeCellDelegate: TVCContentUpdate?
+    var tapLikeBtnAction : (() -> ())?
     var tapMoreBtnAction : (() -> ())?
     
     // MARK: LifeCycle
@@ -36,6 +42,10 @@ class ClassroomQuestionTVC: BaseTVC {
     }
     
     // MARK: IBAction
+    @IBAction func tapLikeBtn(_ sender: UIButton) {
+        tapLikeBtnAction?()
+    }
+    
     @IBAction func tapMoreBtn(_ sender: UIButton) {
         tapMoreBtnAction?()
         
@@ -78,6 +88,12 @@ extension ClassroomQuestionTVC {
         nicknameLabel.text = model.writer.nickname
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         questionContentTextView.text = model.content
+        uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
+    }
+    
+    func bindLikeData(_ model: ClassroomQuestionLike) {
+        likeCountLabel.text = model.likeCount
+        likeBtn.setBackgroundImage(UIImage(named: model.isLiked ? "btnDiamondMint" : "btnDiamond") , for: .normal)
     }
 }
 

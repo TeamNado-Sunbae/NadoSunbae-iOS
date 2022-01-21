@@ -73,14 +73,20 @@
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkZ-Xq-Tbg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkZ-Xq-Tbg">
                                 <rect key="frame" x="8" y="157" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="7g3-xz-20x"/>
                                     <constraint firstAttribute="width" secondItem="hkZ-Xq-Tbg" secondAttribute="height" multiplier="1:1" id="k7P-Ye-b9p"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="btnDiamond"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="btnDiamond">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" backgroundImage="btnDiamondMint"/>
+                                <connections>
+                                    <action selector="tapLikeBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FlB-at-LLu"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-wy-Tk1">
                                 <rect key="frame" x="40" y="166" width="13" height="14"/>
@@ -135,19 +141,21 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="backView" destination="YaZ-yA-JAB" id="bVz-xJ-Csb"/>
-                <outlet property="likeBtn" destination="hkZ-Xq-Tbg" id="O7a-21-Kx3"/>
-                <outlet property="likeCountLabel" destination="XwU-wy-Tk1" id="bMk-Z8-htz"/>
+                <outlet property="likeBtn" destination="hkZ-Xq-Tbg" id="gCE-k2-DwT"/>
+                <outlet property="likeCountLabel" destination="XwU-wy-Tk1" id="UnP-Yo-4dO"/>
                 <outlet property="majorLabel" destination="OT9-0t-ckE" id="oDy-Ih-rX3"/>
                 <outlet property="moreBtn" destination="aK2-Jo-OMJ" id="63P-4q-lz0"/>
                 <outlet property="nicknameLabel" destination="udq-eX-F8j" id="TlL-ky-WBX"/>
                 <outlet property="questionContentTextView" destination="CFZ-tM-j9m" id="2pc-09-apb"/>
                 <outlet property="titleLabel" destination="4Jn-Qv-vH7" id="J2H-fQ-gLK"/>
+                <outlet property="uploadDateLabel" destination="1Ac-01-sRD" id="6bP-ig-1jj"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="177.12053571428569"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="btnDiamond" width="32" height="32"/>
+        <image name="btnDiamondMint" width="32" height="32"/>
         <image name="btnMoreVertChatGray" width="24" height="24"/>
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
