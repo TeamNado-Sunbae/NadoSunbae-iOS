@@ -69,7 +69,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIU-LS-kTe">
-                                <rect key="frame" x="0.0" y="104" width="374" height="895.00000000000011"/>
+                                <rect key="frame" x="0.0" y="104" width="374" height="895"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgh-ef-uvF" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="845.66666666666663"/>
@@ -359,10 +359,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Zgk-i2-YWI"/>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-fq-33Y">
-                                <rect key="frame" x="24" y="258" width="326" height="717"/>
+                                <rect key="frame" x="24" y="429.66666666666669" width="326" height="545.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 1:1 질문이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-aJ-nVo">
-                                        <rect key="frame" x="87.666666666666686" y="350" width="151" height="17"/>
+                                        <rect key="frame" x="87.666666666666686" y="264.33333333333331" width="151" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
@@ -400,6 +400,7 @@
                         <outlet property="navTitleBottomSpace" destination="i7D-yr-MUG" id="idH-qc-Jua"/>
                         <outlet property="navView" destination="frH-g3-cFN" id="ZfX-WY-GyF"/>
                         <outlet property="nickNameLabel" destination="DkH-uk-mr1" id="m5B-5q-bse"/>
+                        <outlet property="profileImgView" destination="Whs-Ow-1T6" id="F89-UM-8Wz"/>
                         <outlet property="profileView" destination="Qll-4v-JzH" id="Kb7-qO-fav"/>
                         <outlet property="questionEmptyView" destination="uF1-fq-33Y" id="OHN-bF-clq"/>
                         <outlet property="questionTV" destination="yck-ZF-BPb" id="ZN2-jP-vJ0"/>

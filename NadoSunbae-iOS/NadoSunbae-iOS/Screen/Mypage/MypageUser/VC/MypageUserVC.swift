@@ -11,6 +11,7 @@ class MypageUserVC: BaseVC {
     
     // MARK: @IBOutlet
     @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var majorReviewView: UIView!
     @IBOutlet weak var userStateView: UIView!
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
@@ -90,6 +91,7 @@ extension MypageUserVC {
         questionEmptyView.makeRounded(cornerRadius: 8.adjusted)
         questionTV.separatorColor = .separatorGray
         
+        profileImgView.image = UIImage(named: "profileImage\(userInfo.profileImageID)")!
         nickNameLabel.text = userInfo.nickname
         firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"
         secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"

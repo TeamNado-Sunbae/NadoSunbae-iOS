@@ -18,6 +18,7 @@ class MypageMainVC: UIViewController {
     @IBOutlet weak var navTitleBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
     @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var likeListView: UIView!
     @IBOutlet weak var questionTV: UITableView!
     @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
@@ -91,6 +92,7 @@ extension MypageMainVC {
         questionTV.makeRounded(cornerRadius: 8.adjusted)
         questionTV.removeSeparatorsOfEmptyCellsAndLastCell()
         
+        profileImgView.image = UIImage(named: "profileImage\(userInfo.profileImageID)")!
         nickNameLabel.text = userInfo.nickname
         firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"
         secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
