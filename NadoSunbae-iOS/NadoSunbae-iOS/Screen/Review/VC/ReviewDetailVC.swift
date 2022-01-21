@@ -34,7 +34,6 @@ class ReviewDetailVC: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpPostId()
         registerTVC()
         setUpTV()
         configureUI()
@@ -46,7 +45,7 @@ class ReviewDetailVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-        requestGetReviewPostDetail(postID: postId ?? 5)
+        requestGetReviewPostDetail(postID: postId ?? -1)
     }
 }
 
@@ -68,13 +67,6 @@ extension ReviewDetailVC {
 
 // MARK: - Custom Methods
 extension ReviewDetailVC {
-    private func setUpPostId() {
-//        if let postId = postId {
-//            // TODO: 서버통신 시 해당 PostId로 후기글 상세 조회 API 호출할 것임!!
-//            print(postId)
-//        }
-    }
-    
     private func registerTVC() {
         ReviewDetailPostWithImgTVC.register(target: reviewPostTV)
         ReviewDetailPostTVC.register(target: reviewPostTV)
