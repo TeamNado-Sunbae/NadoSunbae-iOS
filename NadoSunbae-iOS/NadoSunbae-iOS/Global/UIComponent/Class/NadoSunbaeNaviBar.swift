@@ -180,21 +180,21 @@ extension NadoSunbaeNaviBar {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
-        dismissBtn.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalTo(self).offset(4)
-            $0.height.width.equalTo(40)
-        }
-        
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(dismissBtn)
+            $0.bottom.equalTo(self.snp.bottom).offset(-25)
+        }
+        
+        dismissBtn.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.height.width.equalTo(48)
+            $0.centerY.equalTo(titleLabel)
         }
         
         rightCustomBtn.snp.makeConstraints {
             $0.trailing.equalTo(self.snp.trailing).offset(-8)
             $0.height.equalTo(44)
-            $0.centerY.equalTo(dismissBtn)
+            $0.centerY.equalTo(titleLabel)
         }
         titleLabel.setLabel(text: "제목", color: .black, size: 16, weight: .medium)
     }
@@ -206,22 +206,22 @@ extension NadoSunbaeNaviBar {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
-        dismissBtn.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.height.width.equalTo(48)
-        }
-        
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(dismissBtn)
+            $0.bottom.equalTo(self.snp.bottom).offset(-25)
+        }
+        
+        dismissBtn.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.height.width.equalTo(48)
+            $0.centerY.equalTo(titleLabel)
         }
         
         rightActivateBtn.snp.makeConstraints {
             $0.trailing.equalTo(self.snp.trailing).offset(-16)
             $0.height.equalTo(36)
             $0.width.equalTo(rightActivateBtn.snp.height).multipliedBy(52.0 / 36.0)
-            $0.centerY.equalTo(dismissBtn)
+            $0.centerY.equalTo(titleLabel)
         }
         titleLabel.setLabel(text: "제목", color: .black, size: 16, weight: .medium)
     }

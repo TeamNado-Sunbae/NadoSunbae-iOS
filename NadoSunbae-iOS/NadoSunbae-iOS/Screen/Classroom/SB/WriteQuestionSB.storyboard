@@ -15,13 +15,30 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ran-OV-Rah" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="Woo-fu-gLk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ran-OV-Rah" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6D1-Ff-JGK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ran-OV-Rah" secondAttribute="trailing" id="ECo-m8-Ns7"/>
+                            <constraint firstItem="ran-OV-Rah" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="jmB-GP-3hd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="questionWriteNaviBar" destination="ran-OV-Rah" id="8bb-DV-vpc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="123" y="80"/>
+            <point key="canvasLocation" x="121.73913043478262" y="79.6875"/>
         </scene>
     </scenes>
     <resources>

@@ -19,7 +19,17 @@ class WriteQuestionVC: BaseVC {
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
     private var isTextViewEmpty: Bool = true
-    private let questionWriteNaviBar = NadoSunbaeNaviBar() 
+    @IBOutlet weak var questionWriteNaviBar: NadoSunbaeNaviBar! {
+        didSet {
+            questionWriteNaviBar.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 1, radius: 16)
+        }
+    }
+    //    private var questionWriteNaviBar = NadoSunbaeNaviBar() {
+//        didSet {
+//            questionWriteNaviBar.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
+//        }
+//    }
+    
     private let questionTitleTextField = UITextField().then {
         $0.borderStyle = .none
         $0.backgroundColor = .white
@@ -71,15 +81,16 @@ extension WriteQuestionVC {
     
     /// UI 구성하는 메서드
     private func configureUI() {
-        view.addSubviews([questionWriteNaviBar, questionSV])
+        view.addSubviews([questionSV])
         questionSV.addSubview(contentView)
         contentView.addSubviews([questionTitleTextField, textHighlightView, contentHeaderLabel, questionWriteTextView])
         
-        questionWriteNaviBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(56)
-        }
-        
+//        questionWriteNaviBar.snp.makeConstraints {
+//            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+//            $0.bottom.equalTo(backView)
+//            $0.height.equalTo(56)
+//        }
+//
         questionSV.snp.makeConstraints {
             $0.top.equalTo(questionWriteNaviBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()

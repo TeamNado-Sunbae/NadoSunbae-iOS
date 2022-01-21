@@ -18,7 +18,7 @@ class QuestionMainVC: BaseVC {
     private let contentView = UIView()
     private let personalQuestionBtn = UIButton().then {
         $0.setBackgroundImage(UIImage(named: "imgRoomMain"), for: .normal)
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
     }
     
     private let entireQuestionTitleLabel = UILabel().then {
@@ -37,8 +37,8 @@ class QuestionMainVC: BaseVC {
         $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
-    private var questionList: [ClassroomPostList] = []
     let questionSegmentView = NadoSegmentView()
+    private var questionList: [ClassroomPostList] = []
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     let halfVC = HalfModalVC()
     var tvHeight = 0
@@ -50,6 +50,7 @@ class QuestionMainVC: BaseVC {
         configureUI()
         setUpDelegate()
         setUpTapInfoBtn()
+        adjustAutolayout()
         registerCell()
         setUpTapPersonalQuestionBtn()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
@@ -93,6 +94,8 @@ extension QuestionMainVC {
             $0.leading.equalToSuperview().offset(24)
             $0.trailing.equalToSuperview().offset(-24)
             $0.height.equalTo(176.adjustedH)
+            $0.width.equalTo(327.adjustedH)
+            $0.centerX.equalToSuperview()
         }
         
         entireQuestionTitleLabel.snp.makeConstraints {
@@ -130,6 +133,14 @@ extension QuestionMainVC {
             }
         }
         originalHeight = tvHeight
+    }
+    
+    func adjustAutolayout() {
+        let screenHeight = UIScreen.main.bounds.size.height
+        
+        if screenHeight == 667 {
+            entireQuestionTitleLabel.font = .PretendardR(size: 13.0)
+        }
     }
 }
 

@@ -17,7 +17,7 @@ class NotificationMainVC: BaseVC {
     }
     @IBOutlet weak var navView: UIView! {
         didSet {
-            navView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
+            navView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 0.5, radius: 16)
         }
     }
     

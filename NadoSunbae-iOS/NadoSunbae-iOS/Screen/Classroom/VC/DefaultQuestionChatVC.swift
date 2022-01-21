@@ -71,6 +71,7 @@ class DefaultQuestionChatVC: UIViewController {
     var chatPostID: Int?
     var isCommentSend: Bool = false
     var actionSheetString: [String] = []
+    let screenHeight = UIScreen.main.bounds.size.height
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
     private let textViewMaxHeight: CGFloat = 85
@@ -576,9 +577,17 @@ extension DefaultQuestionChatVC {
     
     @objc
     private func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            sendAreaTextViewBottom.constant = keyboardSize.height - 25
-            sendBtnBottom.constant = keyboardSize.height - 30
+        
+        if screenHeight == 667 {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                sendAreaTextViewBottom.constant = keyboardSize.height + 6
+                sendBtnBottom.constant = keyboardSize.height + 1
+            }
+        } else {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                sendAreaTextViewBottom.constant = keyboardSize.height - 25
+                sendBtnBottom.constant = keyboardSize.height - 30
+            }
         }
     }
     
