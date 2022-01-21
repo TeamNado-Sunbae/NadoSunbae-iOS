@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewMainVC: UIViewController {
+class ReviewMainVC: BaseVC {
     
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: UIView!
@@ -311,6 +311,7 @@ extension ReviewMainVC {
 /// 후기글 리스트 조회
 extension ReviewMainVC {
     func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int]) {
+        self.activityIndicator.startAnimating()
         ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter) { networkResult in
             switch networkResult {
                 
@@ -321,17 +322,22 @@ extension ReviewMainVC {
                         self.postList = data
                         self.reviewTV.reloadData()
                     }
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
                 }
+                self.activityIndicator.stopAnimating()
             case .pathErr:
                 print("pathErr")
+                self.activityIndicator.stopAnimating()
             case .serverErr:
                 print("serverErr")
+                self.activityIndicator.stopAnimating()
             case .networkFail:
                 print("networkFail")
+                self.activityIndicator.stopAnimating()
             }
         }
     }
