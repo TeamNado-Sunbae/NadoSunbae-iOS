@@ -42,7 +42,7 @@ class ReviewMainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setUpMajorLabel()
         self.tabBarController?.tabBar.isHidden = false
-        requestGetReviewPostList(majorID: 5, writerFilter: 1, tagFilter: [1,2,3,4,5])
+        setUpRequestData()
     }
     
     // MARK: IBAction
@@ -140,6 +140,11 @@ extension ReviewMainVC {
     /// 전공 Label text를 set하는 메서드
     private func setUpMajorLabel() {
         majorLabel.text = (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
+    }
+    
+    /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
+    private func setUpRequestData() {
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5])
     }
 }
 
@@ -262,12 +267,11 @@ extension ReviewMainVC: UITableViewDataSource {
 
 // MARK: - SendUpdateModalDelegate
 extension ReviewMainVC: SendUpdateModalDelegate {
+    
+    /// 학과 선택 시 해당 학과의 게시글 리스트가 로드될 수 있도록 요청
     func sendUpdate(data: Any) {
         majorLabel.text = data as? String
-        // TODO: 은주의 할일!
-        /// 서버통신. get.
-        /// 여기서는 selected된 ID를 유저디폴트에서 뽑아오고.
-        /// UserDefaults.standard.integer(forKey: UserDefaults.Keys.SelectedMajorID))
+        setUpRequestData()
     }
 }
 

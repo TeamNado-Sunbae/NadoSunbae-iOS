@@ -63,7 +63,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJH-yj-Sga">
-                        <rect key="frame" x="16" y="34.5" width="40" height="19.5"/>
+                        <rect key="frame" x="16" y="34.5" width="311.5" height="19.5"/>
                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -125,6 +125,7 @@
                     <constraint firstItem="bya-cZ-gzh" firstAttribute="centerY" secondItem="6vD-vQ-dab" secondAttribute="centerY" id="Ezx-8h-lGG"/>
                     <constraint firstItem="Mwc-Fl-BXw" firstAttribute="centerY" secondItem="uE4-0F-UpK" secondAttribute="centerY" id="Fv4-4D-RHl"/>
                     <constraint firstItem="6vD-vQ-dab" firstAttribute="leading" secondItem="bya-cZ-gzh" secondAttribute="trailing" id="Iet-Vv-yJt"/>
+                    <constraint firstItem="sJH-yj-Sga" firstAttribute="trailing" secondItem="5Hi-d0-c0y" secondAttribute="trailing" id="K0d-Fr-CBj"/>
                     <constraint firstItem="mnz-fO-zkk" firstAttribute="centerY" secondItem="7QH-jM-GOf" secondAttribute="centerY" id="RLL-oB-Mcj"/>
                     <constraint firstItem="WTF-gu-mXm" firstAttribute="top" secondItem="u7e-V6-05r" secondAttribute="bottom" constant="8" id="Tq1-RT-lXR"/>
                     <constraint firstItem="mnz-fO-zkk" firstAttribute="leading" secondItem="7QH-jM-GOf" secondAttribute="trailing" constant="4" id="VJg-Wf-IPc"/>

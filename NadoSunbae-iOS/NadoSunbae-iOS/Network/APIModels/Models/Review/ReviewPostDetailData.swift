@@ -12,12 +12,12 @@ struct ReviewPostDetailData: Codable {
     var post: PostDetail = PostDetail()
     var writer: PostWriter = PostWriter()
     var like: PostLike = PostLike()
-    var backgroundImage: BackgroundImage = BackgroundImage()
+    var backgroundImage: BackgroundImage
 }
 
 // MARK: - BackgroundImage
 struct BackgroundImage: Codable {
-    let imageID: Int = 6
+    let imageID: Int
     let imageURL: String = ""
 
     enum CodingKeys: String, CodingKey {
@@ -30,6 +30,11 @@ struct BackgroundImage: Codable {
 struct PostLike: Codable {
     let isLiked: Bool = false
     let likeCount: String = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case isLiked = "isLiked"
+        case likeCount = "likeCount"
+    }
 }
 
 // MARK: - PostDetail
