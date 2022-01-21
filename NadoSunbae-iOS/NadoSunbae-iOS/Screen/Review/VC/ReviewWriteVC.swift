@@ -29,7 +29,21 @@ class ReviewWriteVC: UIViewController {
     @IBOutlet weak var choiceTagView: UIView!
     @IBOutlet weak var majorNameView: UIView!
     @IBOutlet weak var bgImgCV: UICollectionView!
-    @IBOutlet weak var majorNameLabel: UILabel!
+    @IBOutlet weak var majorNameLabel: UILabel! {
+        didSet {
+            majorNameLabel.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
+        }
+    }
+    @IBOutlet weak var majorChangeBtn: UIButton! {
+        
+        /// 회원가입 시 본전공만 존재하는 유저인 경우 버튼 비활성화 처리
+        didSet {
+            if UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) == "미진입" {
+                majorChangeBtn.isEnabled = false
+                majorChangeBtn.tintColor = UIColor.gray3
+            }
+        }
+    }
     @IBOutlet weak var oneLineReviewTextView: NadoTextView!
     @IBOutlet weak var prosAndConsTextView: NadoTextView!
     @IBOutlet weak var learnInfoTextView: NadoTextView!
@@ -70,21 +84,23 @@ class ReviewWriteVC: UIViewController {
         setUpTapCompleteBtn()
     }
     
-    // TODO: 회원가입 시 본전공만 존재하는 유저인 경우 버튼 비활성화 처리 예정
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
+        let firstMajor: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
+        let secondMajor: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? ""
+        
         let alert = UIAlertController(title: "후기 작성 학과", message: nil, preferredStyle: .actionSheet)
-        let majorName = UIAlertAction(title: "본전공명", style: .default) { action in
-            self.majorNameLabel.text = "국어국문학과"
+        let majorName = UIAlertAction(title: firstMajor, style: .default) { action in
+            self.majorNameLabel.text = firstMajor
         }
-        let secondMajorName = UIAlertAction(title: "제2전공명", style: .default) { action in
-            self.majorNameLabel.text = "디지털미디어학과"
+        let secondMajorName = UIAlertAction(title: secondMajor, style: .default) { action in
+            self.majorNameLabel.text = secondMajor
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        
+
         alert.addAction(majorName)
         alert.addAction(secondMajorName)
         alert.addAction(cancel)
-        
+
         present(alert, animated: true, completion: nil)
     }
 }

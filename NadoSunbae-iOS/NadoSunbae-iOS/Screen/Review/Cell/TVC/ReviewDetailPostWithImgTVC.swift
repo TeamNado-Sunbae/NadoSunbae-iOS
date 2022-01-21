@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ReviewDetailPostWithImgTVC: BaseTVC {
 
@@ -13,7 +14,12 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
     @IBOutlet weak var bgImgView: UIImageView!
     @IBOutlet weak var postContentView: UIView!
     @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.sizeToFit()
+        }
+    }
+    
     @IBOutlet weak var tagLabel: UILabel!
     
     // MARK: Life Cycle
@@ -31,6 +37,11 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
 extension ReviewDetailPostWithImgTVC {
     private func configureUI() {
         postContentView.makeRounded(cornerRadius: 40.adjusted)
+        titleLabel.snp.makeConstraints {
+            $0.centerY.equalTo(bgImgView)
+            $0.centerX.equalTo(bgImgView.frame.size.height - 40)
+            $0.width.equalTo(312.adjusted)
+        }
     }  
 }
 

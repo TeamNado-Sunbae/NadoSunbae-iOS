@@ -28,25 +28,24 @@ class ReviewDetailVC: UIViewController {
     @IBOutlet weak var likeCountView: UIView!
     
     // MARK: Properties
-    var detailPost: ReviewPostDetailData = ReviewPostDetailData()
+    var detailPost: ReviewPostDetailData = ReviewPostDetailData(backgroundImage: BackgroundImage(imageID: 0))
     var postId: Int?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpPostId()
         registerTVC()
         setUpTV()
         configureUI()
         addShadowToNaviBar()
         showActionSheet()
         setUpTapNaviBackBtn()
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestGetReviewPostDetail(postID: postId ?? 5)
+        self.tabBarController?.tabBar.isHidden = true
+        requestGetReviewPostDetail(postID: postId ?? -1)
     }
 }
 
@@ -68,13 +67,6 @@ extension ReviewDetailVC {
 
 // MARK: - Custom Methods
 extension ReviewDetailVC {
-    private func setUpPostId() {
-//        if let postId = postId {
-//            // TODO: 서버통신 시 해당 PostId로 후기글 상세 조회 API 호출할 것임!!
-//            print(postId)
-//        }
-    }
-    
     private func registerTVC() {
         ReviewDetailPostWithImgTVC.register(target: reviewPostTV)
         ReviewDetailPostTVC.register(target: reviewPostTV)

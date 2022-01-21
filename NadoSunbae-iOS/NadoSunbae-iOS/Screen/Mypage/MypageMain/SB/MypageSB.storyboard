@@ -35,13 +35,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="374" height="104"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbM-qh-GYq">
-                                        <rect key="frame" x="16" y="54.666666666666664" width="87" height="23.333333333333336"/>
+                                        <rect key="frame" x="16" y="56.666666666666664" width="87" height="23.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-mL-hP7">
-                                        <rect key="frame" x="314" y="44.333333333333343" width="44" height="44"/>
+                                        <rect key="frame" x="314" y="46.333333333333343" width="44" height="44"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="btnSetting"/>
                                         <connections>
@@ -60,16 +60,16 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="nbM-qh-GYq" secondAttribute="bottom" constant="24" id="0aI-Sv-JS1"/>
+                                    <constraint firstItem="bRa-mL-hP7" firstAttribute="centerY" secondItem="nbM-qh-GYq" secondAttribute="centerY" id="Cf5-CL-TnK"/>
                                     <constraint firstItem="nbM-qh-GYq" firstAttribute="leading" secondItem="frH-g3-cFN" secondAttribute="leading" constant="16" id="MsQ-v7-BiE"/>
                                     <constraint firstAttribute="trailing" secondItem="bRa-mL-hP7" secondAttribute="trailing" constant="16" id="NQL-U1-RBw"/>
-                                    <constraint firstItem="bRa-mL-hP7" firstAttribute="centerY" secondItem="nbM-qh-GYq" secondAttribute="centerY" id="Q7n-AG-JeQ"/>
                                     <constraint firstItem="bRa-mL-hP7" firstAttribute="width" secondItem="frH-g3-cFN" secondAttribute="width" multiplier="0.117333" id="eXv-Kz-fmX"/>
-                                    <constraint firstAttribute="bottom" secondItem="nbM-qh-GYq" secondAttribute="bottom" constant="26" id="i7D-yr-MUG"/>
                                     <constraint firstAttribute="height" constant="104" id="txf-UB-xxH"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIU-LS-kTe">
-                                <rect key="frame" x="0.0" y="104" width="374" height="895.00000000000011"/>
+                                <rect key="frame" x="0.0" y="104" width="374" height="895"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgh-ef-uvF" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="845.66666666666663"/>
@@ -359,10 +359,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Zgk-i2-YWI"/>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-fq-33Y">
-                                <rect key="frame" x="24" y="258" width="326" height="717"/>
+                                <rect key="frame" x="24" y="429.66666666666669" width="326" height="545.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 1:1 질문이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-aJ-nVo">
-                                        <rect key="frame" x="87.666666666666686" y="350" width="151" height="17"/>
+                                        <rect key="frame" x="87.666666666666686" y="264.33333333333331" width="151" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
@@ -397,8 +397,7 @@
                     <connections>
                         <outlet property="firstMajorLabel" destination="9cd-WG-iJ5" id="LG3-gk-KJj"/>
                         <outlet property="likeListView" destination="xRv-Yq-z9u" id="YCz-Dy-OOG"/>
-                        <outlet property="navTitleBottomSpace" destination="i7D-yr-MUG" id="idH-qc-Jua"/>
-                        <outlet property="navView" destination="frH-g3-cFN" id="ZfX-WY-GyF"/>
+                        <outlet property="navTitleLabel" destination="nbM-qh-GYq" id="bDK-WR-Kgc"/>
                         <outlet property="nickNameLabel" destination="DkH-uk-mr1" id="m5B-5q-bse"/>
                         <outlet property="profileView" destination="Qll-4v-JzH" id="Kb7-qO-fav"/>
                         <outlet property="questionEmptyView" destination="uF1-fq-33Y" id="OHN-bF-clq"/>

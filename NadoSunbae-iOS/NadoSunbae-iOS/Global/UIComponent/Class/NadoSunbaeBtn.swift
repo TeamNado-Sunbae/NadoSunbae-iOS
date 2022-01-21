@@ -24,6 +24,7 @@ class NadoSunbaeBtn: UIButton {
         didSet {
             self.backgroundColor = self.isActivated ? activatedBgColor : normalBgColor
             self.setTitleColor(self.isActivated ? activatedFontColor : normalFontColor, for: .normal)
+            self.isEnabled = isActivated
         }
     }
     
