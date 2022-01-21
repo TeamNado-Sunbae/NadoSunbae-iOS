@@ -59,7 +59,7 @@ extension ReviewService: TargetType {
                 "nonRecommendLecture" : nonRecommendLecture,
                 "tip" : tip
             ]
-            return .requestParameters(parameters: body, encoding: URLEncoding.httpBody)
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
             
         /// 후기 메인 뷰에서 리스트를 요청하는 경우
         case .getReviewMainPostList(let majorID, let writerFilter, let tagFilter, let sort):

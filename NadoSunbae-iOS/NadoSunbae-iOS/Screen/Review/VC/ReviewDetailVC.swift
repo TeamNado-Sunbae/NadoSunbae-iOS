@@ -28,7 +28,7 @@ class ReviewDetailVC: UIViewController {
     @IBOutlet weak var likeCountView: UIView!
     
     // MARK: Properties
-    var detailPost: ReviewPostDetailData = ReviewPostDetailData()
+    var detailPost: ReviewPostDetailData = ReviewPostDetailData(backgroundImage: BackgroundImage(imageID: 0))
     var postId: Int?
     
     // MARK: Life Cycle
