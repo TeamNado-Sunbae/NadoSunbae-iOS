@@ -23,6 +23,7 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var secondMajorLabel: UILabel!
     @IBOutlet weak var privateQuestionNickNameLabel: UILabel!
     @IBOutlet weak var majorReviewCountLabel: UILabel!
+    @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var floatingBtn: UIButton! {
         didSet {
             floatingBtn.setImage(UIImage(named: "btn_floating_plus")!, for: .normal)
@@ -48,13 +49,14 @@ class MypageUserVC: BaseVC {
     var targetUserID = 1
     var userInfo = MypageUserInfoModel()
     var questionList: [ClassroomPostList] = []
+    var sortType: ListSortType = .recent
     
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeVisibleTabBar()
         getUserInfo()
-        getUserPersonalQuestionList()
+        getUserPersonalQuestionList(sort: sortType)
     }
     
     override func viewDidLoad() {
@@ -80,8 +82,14 @@ class MypageUserVC: BaseVC {
     @IBAction func tapSortBtn(_ sender: UIButton) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let latestAction = UIAlertAction(title: "최신순", style: .default, handler: nil)
-        let moreLikeAction = UIAlertAction(title: "좋아요순", style: .default, handler: nil)
+        let latestAction = UIAlertAction(title: "최신순", style: .default) { alert in
+            self.sortType = .recent
+            self.getUserPersonalQuestionList(sort: self.sortType)
+        }
+        let moreLikeAction = UIAlertAction(title: "좋아요순", style: .default) { alert in
+            self.sortType = .like
+            self.getUserPersonalQuestionList(sort: self.sortType)
+        }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         [latestAction, moreLikeAction, cancelAction].forEach { action in
@@ -169,8 +177,8 @@ extension MypageUserVC {
         })
     }
     
-    private func getUserPersonalQuestionList() {
-        MypageAPI.shared.getUserPersonalQuestionList(userID: targetUserID, sort: .recent, completion: { networkResult in
+    private func getUserPersonalQuestionList(sort: ListSortType) {
+        MypageAPI.shared.getUserPersonalQuestionList(userID: targetUserID, sort: sort, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? QuestionOrInfoListModel {
@@ -185,6 +193,7 @@ extension MypageUserVC {
                         self.questionTV.layoutIfNeeded()
                         self.questionTV.rowHeight = UITableView.automaticDimension
                         self.questionTVHeight.constant = self.questionTV.contentSize.height
+                        self.sortBtn.setImage(UIImage(named: sort == .recent ? "btnArray" : "property1Variant3"), for: .normal)
                     }
                 }
             case .requestErr(let msg):
