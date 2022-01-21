@@ -67,7 +67,6 @@
                             <constraint firstItem="i64-89-Zot" firstAttribute="top" secondItem="w3u-RK-JCO" secondAttribute="bottom" constant="36" id="KT0-bs-MYU"/>
                             <constraint firstItem="szZ-Sv-F8y" firstAttribute="top" secondItem="Gi7-n0-Lnt" secondAttribute="top" constant="15" id="Wg3-Gt-UVU"/>
                             <constraint firstAttribute="trailing" secondItem="i64-89-Zot" secondAttribute="trailing" constant="24" id="dmo-f1-qkG"/>
-                            <constraint firstAttribute="height" constant="313" id="fKe-Ks-qKy"/>
                             <constraint firstItem="w3u-RK-JCO" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="24" id="slE-R3-hqH"/>
                             <constraint firstItem="szZ-Sv-F8y" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="9" id="tSG-nJ-KIW"/>
                             <constraint firstAttribute="bottom" secondItem="i64-89-Zot" secondAttribute="bottom" constant="37" id="urd-2G-Jlt"/>
