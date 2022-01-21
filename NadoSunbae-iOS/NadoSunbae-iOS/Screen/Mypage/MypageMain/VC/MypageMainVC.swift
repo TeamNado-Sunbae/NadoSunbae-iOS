@@ -22,6 +22,7 @@ class MypageMainVC: UIViewController {
     }
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
     @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var likeListView: UIView!
     @IBOutlet weak var questionTV: UITableView!
     @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
@@ -52,11 +53,6 @@ class MypageMainVC: UIViewController {
     }
     
     // MARK: @IBAction
-    @IBAction func goMypageUser(_ sender: UIButton) {
-        guard let vc = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     @IBAction func tapEditProfileBtn(_ sender: Any) {
         /// 1순위!
         self.navigationController?.pushViewController(UIViewController(), animated: true)
@@ -95,9 +91,14 @@ extension MypageMainVC {
         questionTV.makeRounded(cornerRadius: 8.adjusted)
         questionTV.removeSeparatorsOfEmptyCellsAndLastCell()
         
+        profileImgView.image = UIImage(named: "profileImage\(userInfo.profileImageID)")!
         nickNameLabel.text = userInfo.nickname
         firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"
-        secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
+        if userInfo.secondMajorName == "미진입" {
+            secondMajorLabel.text = "\(userInfo.secondMajorName)"
+        } else {
+            secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
+        }
         
         DispatchQueue.main.async {
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true

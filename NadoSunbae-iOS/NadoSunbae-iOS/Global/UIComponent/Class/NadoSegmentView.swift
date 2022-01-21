@@ -20,12 +20,14 @@ class NadoSegmentView: UIView {
         $0.setBtnColors(normalBgColor: .paleGray, normalFontColor: .gray3, activatedBgColor: .mainLight, activatedFontColor: .mainDefault)
         $0.setTitleWithStyle(title: "질문", size: 14.0)
         $0.isActivated = true
+        $0.isEnabled = true
     }
     
     let infoBtn = NadoSunbaeBtn().then {
         $0.setBtnColors(normalBgColor: .paleGray, normalFontColor: .gray3, activatedBgColor: .mainLight, activatedFontColor: .mainDefault)
         $0.setTitleWithStyle(title: "정보", size: 14.0)
         $0.isActivated = false
+        $0.isEnabled = true
     }
 
     // MARK: init

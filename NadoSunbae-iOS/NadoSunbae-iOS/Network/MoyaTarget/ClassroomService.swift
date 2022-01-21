@@ -12,6 +12,7 @@ enum ClassroomService {
     case getQuestionDetail(chatPostID: Int)
     case getGroupQuestionOrInfoList(majorID: Int, postTypeID: Int, sort: ListSortType)
     case postComment(chatPostID: Int, comment: String)
+    case getMajorUserList(majorID: Int)
     case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
 }
 
@@ -29,6 +30,8 @@ extension ClassroomService: TargetType {
             return "/classroom-post/\(postTypeID)/major/\(majorID)/list"
         case .postComment:
             return "/comment"
+        case .getMajorUserList(let majorID):
+            return "/user/mypage/list/major/\(majorID)"
         case .postClassroomContent:
             return "/classroom-post"
         }
@@ -37,7 +40,7 @@ extension ClassroomService: TargetType {
     var method: Moya.Method {
         switch self {
             
-        case .getQuestionDetail, .getGroupQuestionOrInfoList:
+        case .getQuestionDetail, .getGroupQuestionOrInfoList, .getMajorUserList:
             return .get
         case .postComment, .postClassroomContent:
             return .post
@@ -58,6 +61,9 @@ extension ClassroomService: TargetType {
                 "content": comment
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .getMajorUserList(let majorID):
+            let body = ["majorId": majorID]
+            return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         case .postClassroomContent(let majorID, let answerID, let postTypeID, let title, let content):
             let body: [String: Any] = [
                 "majorId": majorID,

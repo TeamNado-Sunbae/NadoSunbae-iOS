@@ -26,7 +26,15 @@ class QuestionPersonListVC: UIViewController {
         $0.showsVerticalScrollIndicator = false
     }
     
+    var majorID: Int = 0
+    var majorUserList = MajorUserListDataModel()
+    
     // MARK: Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getMajorUserList()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -105,9 +113,9 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return OnQuestionUserList.count
+            return majorUserList.onQuestionUserList.count
         case 1:
-            return offQuestionUserList.count
+            return majorUserList.offQuestionUserList.count
         default:
             return 0
         }
@@ -116,15 +124,8 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
     /// cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let questionPeopleCell = collectionView.dequeueReusableCell(withReuseIdentifier: QuestionPersonCVC.className, for: indexPath) as? QuestionPersonCVC else { return UICollectionViewCell() }
-        switch indexPath.section {
-        case 0:
-            questionPeopleCell.onSetData(model: OnQuestionUserList[indexPath.row])
-            return questionPeopleCell
-        case 1:
-            questionPeopleCell.offSetData(model: offQuestionUserList[indexPath.row])
-            return questionPeopleCell
-        default: return UICollectionViewCell()
-        }
+        questionPeopleCell.setData(model: indexPath.section == 0 ? majorUserList.onQuestionUserList[indexPath.row] : majorUserList.offQuestionUserList[indexPath.row])
+        return questionPeopleCell
     }
     
     /// viewForSupplementaryElementOfKind
@@ -154,6 +155,13 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 96.0, height: 120.0)
     }
+    
+    /// sizeForItemAt
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+        myPageUserVC.targetUserID = indexPath.section == 0 ? majorUserList.onQuestionUserList[indexPath.row].userID : majorUserList.offQuestionUserList[indexPath.row].userID
+        self.navigationController?.pushViewController(myPageUserVC, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -169,5 +177,28 @@ extension QuestionPersonListVC: UICollectionViewDelegateFlowLayout {
         let width: CGFloat = collectionView.frame.width
         let height: CGFloat = 35
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: - Network
+extension QuestionPersonListVC {
+    
+    /// 특정 학과 User List 조회를 요청하는 API
+    private func getMajorUserList() {
+        ClassroomAPI.shared.getMajorUserListAPI(majorID: majorID, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MajorUserListDataModel {
+                    self.majorUserList = data
+                    self.questionPersonCV.reloadData()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        })
     }
 }

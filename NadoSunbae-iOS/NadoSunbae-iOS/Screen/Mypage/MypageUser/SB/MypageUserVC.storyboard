@@ -318,6 +318,7 @@
                         <outlet property="navView" destination="fn2-Vh-Q2Y" id="XfA-VX-IW5"/>
                         <outlet property="nickNameLabel" destination="Mi7-WZ-SNo" id="fyx-UP-xKK"/>
                         <outlet property="privateQuestionNickNameLabel" destination="Klz-nd-7t8" id="YS8-UX-t9t"/>
+                        <outlet property="profileImgView" destination="YmN-sz-FGk" id="DCy-lc-CsC"/>
                         <outlet property="profileView" destination="yRX-c9-EEe" id="JzK-kz-Kt2"/>
                         <outlet property="questionEmptyView" destination="x0n-Mc-DWP" id="p8D-Tw-fD8"/>
                         <outlet property="questionTV" destination="kXs-pO-uLu" id="c9i-Dw-cxu"/>

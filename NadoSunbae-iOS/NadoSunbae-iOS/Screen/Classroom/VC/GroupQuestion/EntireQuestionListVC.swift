@@ -98,31 +98,6 @@ extension EntireQuestionListVC {
         entireQuestionListTV.register(nib, forHeaderFooterViewReuseIdentifier: ReviewStickyHeaderView.className)
     }
     
-    /// ActionSheet Show 메서드
-    private func showActionSheet() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        // TODO: 액션 추가 예정
-        let new = UIAlertAction(title: "최신순", style: .default) { action in
-            self.selectActionSheetIndex = 0
-            self.entireQuestionListTV.reloadSections([0], with: .fade)
-        }
-        
-        // TODO: 액션 추가 예정
-        let like = UIAlertAction(title: "좋아요순", style: .default) { action in
-            self.selectActionSheetIndex = 1
-            self.entireQuestionListTV.reloadSections([0], with: .fade)
-        }
-        
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        
-        [new, like, cancel].forEach {
-            alert.addAction($0)
-        }
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
     /// 질문작성 floatingBtn tap 메서드
     private func setUpTapFloatingBtn() {
         questionFloatingBtn.press {
@@ -197,7 +172,17 @@ extension EntireQuestionListVC: UITableViewDelegate {
         }
         
         headerView.tapArrangeBtnAction = {
-            self.showActionSheet()
+            self.makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순",
+                                        okAction: { _ in
+                self.selectActionSheetIndex = 0
+                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .recent)
+                self.entireQuestionListTV.reloadSections([0], with: .fade)
+            },
+                                        secondOkAction: { _ in
+                self.selectActionSheetIndex = 1
+                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .like)
+                self.entireQuestionListTV.reloadSections([0], with: .fade)
+            })
         }
         
         [headerView.headerTitleLabel, headerView.filterBtn].forEach {
@@ -227,7 +212,7 @@ extension EntireQuestionListVC: UITableViewDelegate {
 
 // MARK: - Network
 extension EntireQuestionListVC {
-   
+    
     /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
     func requestGetGroupOrInfoListData(majorID: Int, postTypeID: ClassroomPostType, sort: ListSortType) {
         self.activityIndicator.startAnimating()
