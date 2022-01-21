@@ -167,7 +167,11 @@ extension ReviewWriteVC {
             }
             
             /// 서버통신
-            self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+            if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) {
+                self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+            } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
+                self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+            }
         }
     }
 }
