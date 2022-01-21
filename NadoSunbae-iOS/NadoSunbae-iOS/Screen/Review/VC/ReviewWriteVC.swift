@@ -311,13 +311,10 @@ extension ReviewWriteVC: UITextViewDelegate {
             if textView == $0 {
                 for _ in 0...4 {
                     if ($0?.text.count)! >= 100 {
-                        print(1, choiceTextViewStatus, $0?.text.count)
                         choiceTextViewStatus = true
                     } else if $0?.text.isEmpty == false {
-                        print(2, choiceTextViewStatus, $0?.text.count)
                         choiceTextViewStatus = false
                     } else if $0?.text.isEmpty == true {
-                        print(3, choiceTextViewStatus, $0?.text.count)
                         //  선택 textView가 최소1개 이상채워졌는지 분기처리
                         if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
                             choiceTextViewStatus = true
@@ -325,7 +322,6 @@ extension ReviewWriteVC: UITextViewDelegate {
                             choiceTextViewStatus = false
                         }
                     } else {
-                        print(4, choiceTextViewStatus, $0?.text.count)
                         choiceTextViewStatus = false
                     }
                 }
