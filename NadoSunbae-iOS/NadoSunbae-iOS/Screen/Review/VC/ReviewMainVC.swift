@@ -14,7 +14,7 @@ class ReviewMainVC: BaseVC {
     @IBOutlet var majorLabel: UILabel! {
         didSet {
             majorLabel.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
-            majorLabel.font = .PretendardM(size: 20.adjusted)
+            majorLabel.font = .PretendardM(size: 20)
         }
     }
     @IBOutlet weak var reviewTV: UITableView!

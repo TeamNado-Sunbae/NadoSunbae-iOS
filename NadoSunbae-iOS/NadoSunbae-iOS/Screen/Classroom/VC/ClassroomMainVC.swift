@@ -15,7 +15,7 @@ class ClassroomMainVC: UIViewController {
     private let screenWidth = UIScreen.main.bounds.size.width
     private let majorLabel = UILabel().then {
         $0.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
-        $0.font = .PretendardM(size: 20.adjusted)
+        $0.font = .PretendardM(size: 20)
         $0.textColor = .black
         $0.sizeToFit()
     }

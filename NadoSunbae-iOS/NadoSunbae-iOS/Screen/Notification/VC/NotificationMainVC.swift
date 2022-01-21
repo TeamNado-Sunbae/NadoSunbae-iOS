@@ -12,7 +12,7 @@ class NotificationMainVC: BaseVC {
     // MARK: @IBOutlet
     @IBOutlet weak var navTitleLabel: UILabel! {
         didSet {
-            navTitleLabel.font = .PretendardM(size: 20.adjusted)
+            navTitleLabel.font = .PretendardM(size: 20)
         }
     }
     @IBOutlet weak var navView: UIView! {
