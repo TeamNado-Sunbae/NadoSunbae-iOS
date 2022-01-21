@@ -35,13 +35,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="374" height="104"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbM-qh-GYq">
-                                        <rect key="frame" x="16" y="54.666666666666664" width="87" height="23.333333333333336"/>
+                                        <rect key="frame" x="16" y="56.666666666666664" width="87" height="23.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-mL-hP7">
-                                        <rect key="frame" x="314" y="44.333333333333343" width="44" height="44"/>
+                                        <rect key="frame" x="314" y="46.333333333333343" width="44" height="44"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="btnSetting"/>
                                         <connections>
@@ -60,11 +60,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="nbM-qh-GYq" secondAttribute="bottom" constant="24" id="0aI-Sv-JS1"/>
+                                    <constraint firstItem="bRa-mL-hP7" firstAttribute="centerY" secondItem="nbM-qh-GYq" secondAttribute="centerY" id="Cf5-CL-TnK"/>
                                     <constraint firstItem="nbM-qh-GYq" firstAttribute="leading" secondItem="frH-g3-cFN" secondAttribute="leading" constant="16" id="MsQ-v7-BiE"/>
                                     <constraint firstAttribute="trailing" secondItem="bRa-mL-hP7" secondAttribute="trailing" constant="16" id="NQL-U1-RBw"/>
-                                    <constraint firstItem="bRa-mL-hP7" firstAttribute="centerY" secondItem="nbM-qh-GYq" secondAttribute="centerY" id="Q7n-AG-JeQ"/>
                                     <constraint firstItem="bRa-mL-hP7" firstAttribute="width" secondItem="frH-g3-cFN" secondAttribute="width" multiplier="0.117333" id="eXv-Kz-fmX"/>
-                                    <constraint firstAttribute="bottom" secondItem="nbM-qh-GYq" secondAttribute="bottom" constant="26" id="i7D-yr-MUG"/>
                                     <constraint firstAttribute="height" constant="104" id="txf-UB-xxH"/>
                                 </constraints>
                             </view>
@@ -397,8 +397,7 @@
                     <connections>
                         <outlet property="firstMajorLabel" destination="9cd-WG-iJ5" id="LG3-gk-KJj"/>
                         <outlet property="likeListView" destination="xRv-Yq-z9u" id="YCz-Dy-OOG"/>
-                        <outlet property="navTitleBottomSpace" destination="i7D-yr-MUG" id="idH-qc-Jua"/>
-                        <outlet property="navView" destination="frH-g3-cFN" id="ZfX-WY-GyF"/>
+                        <outlet property="navTitleLabel" destination="nbM-qh-GYq" id="bDK-WR-Kgc"/>
                         <outlet property="nickNameLabel" destination="DkH-uk-mr1" id="m5B-5q-bse"/>
                         <outlet property="profileImgView" destination="Whs-Ow-1T6" id="F89-UM-8Wz"/>
                         <outlet property="profileView" destination="Qll-4v-JzH" id="Kb7-qO-fav"/>

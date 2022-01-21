@@ -10,6 +10,11 @@ import UIKit
 class NotificationMainVC: BaseVC {
     
     // MARK: @IBOutlet
+    @IBOutlet weak var navTitleLabel: UILabel! {
+        didSet {
+            navTitleLabel.font = .PretendardM(size: 20.adjusted)
+        }
+    }
     @IBOutlet weak var navView: UIView! {
         didSet {
             navView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
