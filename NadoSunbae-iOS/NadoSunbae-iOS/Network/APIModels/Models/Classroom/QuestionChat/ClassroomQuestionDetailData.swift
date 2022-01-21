@@ -63,7 +63,7 @@ struct ClassroomQuestionWriter: Codable {
 
 func convertToMajorInfoString(_ firstMajorName: String, _ firstMajorStart: String, _ secondMajorName: String, _ secondMajorStart: String) -> String {
     if secondMajorName == "미진입" {
-        return firstMajorName + " " + firstMajorStart + " "
+        return firstMajorName + " " + firstMajorStart + " " + "|" + " " + secondMajorName
     } else {
         return firstMajorName + " " + firstMajorStart + " " + "|" + " " + secondMajorName + " " + secondMajorStart
     }
