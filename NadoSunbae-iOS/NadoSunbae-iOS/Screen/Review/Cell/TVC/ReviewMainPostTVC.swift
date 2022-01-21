@@ -110,7 +110,6 @@ extension ReviewMainPostTVC: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDataSource
 extension ReviewMainPostTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(tagImgList.count)
         return tagImgList.count
     }
     
