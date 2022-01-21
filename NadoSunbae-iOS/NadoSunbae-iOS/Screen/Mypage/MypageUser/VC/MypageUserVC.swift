@@ -94,7 +94,11 @@ extension MypageUserVC {
         profileImgView.image = UIImage(named: "profileImage\(userInfo.profileImageID)")!
         nickNameLabel.text = userInfo.nickname
         firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"
-        secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
+        if userInfo.secondMajorName == "미진입" {
+            secondMajorLabel.text = "\(userInfo.secondMajorName)"
+        } else {
+            secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
+        }
         privateQuestionNickNameLabel.text = userInfo.nickname
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
