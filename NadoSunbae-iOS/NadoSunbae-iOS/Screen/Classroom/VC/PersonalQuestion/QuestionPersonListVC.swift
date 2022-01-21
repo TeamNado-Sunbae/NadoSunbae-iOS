@@ -124,7 +124,7 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
     /// cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let questionPeopleCell = collectionView.dequeueReusableCell(withReuseIdentifier: QuestionPersonCVC.className, for: indexPath) as? QuestionPersonCVC else { return UICollectionViewCell() }
-        questionPeopleCell.setData(model: majorUserList.onQuestionUserList[indexPath.row])
+        questionPeopleCell.setData(model: indexPath.section == 0 ? majorUserList.onQuestionUserList[indexPath.row] : majorUserList.offQuestionUserList[indexPath.row])
         return questionPeopleCell
     }
     
@@ -160,6 +160,7 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
         myPageUserVC.targetUserID = indexPath.section == 0 ? majorUserList.onQuestionUserList[indexPath.row].userID : majorUserList.offQuestionUserList[indexPath.row].userID
+        print(majorUserList.offQuestionUserList)
         self.navigationController?.pushViewController(myPageUserVC, animated: true)
     }
 }
