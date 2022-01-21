@@ -49,7 +49,7 @@ class ReviewAPI {
     }
     
     /// [GET] 후기글 상세 조회 API
-    func getReviewPostDetailAPI (postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+    func getReviewPostDetailAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         userProvider.request(.getReviewPostDetail(postID: postID)) { result in
             switch result {
                 
@@ -58,6 +58,23 @@ class ReviewAPI {
                 let data = response.data
                 
                 completion(self.getReviewPostDetailJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    /// [GET] 후기탭 홈페이지 조회 API
+    func getHomePageUrlAPI(majorID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        userProvider.request(.getReviewHomepageURL(majorID: majorID) ) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getReviewHomepageJudgeData(status: statusCode, data: data))
                 
             case .failure(let err):
                 print(err)
@@ -107,6 +124,23 @@ extension ReviewAPI {
     func getReviewPostDetailJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         let decodedData = try? decoder.decode(GenericResponse<ReviewPostDetailData>.self, from: data)
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData?.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData?.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// getReviewHomepageJudgeData
+    func getReviewHomepageJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        let decodedData = try? decoder.decode(GenericResponse<ReviewHomePageData>.self, from: data)
         
         switch status {
         case 200...204:

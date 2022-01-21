@@ -40,6 +40,7 @@ class ReviewMainVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUpMajorLabel()
         self.tabBarController?.tabBar.isHidden = false
         setUpRequestData()
