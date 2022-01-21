@@ -103,7 +103,7 @@
                         <color key="textColor" name="gray3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5Hi-d0-c0y">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5Hi-d0-c0y">
                         <rect key="frame" x="15.5" y="62" width="312" height="28"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
