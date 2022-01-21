@@ -66,7 +66,7 @@ class ClassroomAPI {
     }
     
     /// [POST] 1:1질문, 전체 질문, 정보글에 글 등록 API 메서드
-    func createClassroomContentAPI(majorID: Int, answerID: Int, postTypeID: Int, title: String, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+    func createClassroomContentAPI(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         classroomProvider.request(.postClassroomContent(majorID: majorID, answerID: answerID, postTypeID: postTypeID, title: title, content: content)) { result in
             switch result {
             
@@ -143,7 +143,7 @@ extension ClassroomAPI {
     /// 1:1질문, 전체 질문, 정보글에 글 등록
     private func createClassroomPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<AddCommentData>.self, from: data) else {
+        guard let decodedData = try? decoder.decode(GenericResponse<CreateClassroomPostModel>.self, from: data) else {
             return .pathErr }
         
         switch status {
