@@ -76,18 +76,9 @@ extension QuestionPersonCVC {
 
 // MARK: - Custom Methods
 extension QuestionPersonCVC {
-    func onSetData(model: OnQuestionUserListModel) {
+    func setData(model: QuestionUser) {
         nicknameLabel.text = model.nickname
-        if model.isFirstMajor == true {
-            majorLabel.text = "본"
-        } else {
-            majorLabel.text = "제2"
-        }
-        majorStartLabel.text = model.majorStart + "진입"
-    }
-    
-    func offSetData(model: OffQuestionUserListModel) {
-        nicknameLabel.text = model.nickname
+        personProfileImageView.image = UIImage(named: "profileImage\(model.profileImageID)")!
         if model.isFirstMajor == true {
             majorLabel.text = "본"
         } else {

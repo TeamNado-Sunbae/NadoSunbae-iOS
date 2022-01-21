@@ -173,6 +173,7 @@ extension QuestionMainVC {
     private func setUpTapPersonalQuestionBtn() {
         personalQuestionBtn.press(vibrate: true) {
             let questionPersonVC = QuestionPersonListVC()
+            questionPersonVC.majorID = MajorInfo.shared.selecteMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
             self.navigationController?.pushViewController(questionPersonVC, animated: true)
         }
     }
