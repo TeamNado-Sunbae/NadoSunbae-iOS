@@ -55,7 +55,6 @@
 		331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */; };
 		331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53742795B7830052B309 /* QuestionPersonListVC.swift */; };
 		331C53772795B9CA0052B309 /* QuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */; };
-		331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */; };
 		331C537C2795F4EF0052B309 /* QuestionPeopleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */; };
 		331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */; };
 		331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */; };
@@ -122,6 +121,7 @@
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
 		5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */; };
 		5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */; };
+		5C91647E279A9F0B008DD44B /* MajorUserListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */; };
 		5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73378278A8F4900806B17 /* NadoAlertVC.swift */; };
 		5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */; };
 		5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */; };
@@ -244,7 +244,6 @@
 		331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		331C53742795B7830052B309 /* QuestionPersonListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPersonListVC.swift; sourceTree = "<group>"; };
 		331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPersonCVC.swift; sourceTree = "<group>"; };
-		331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnQuestionUserListModel.swift; sourceTree = "<group>"; };
 		331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionPeopleHeaderView.xib; sourceTree = "<group>"; };
 		331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPeopleHeaderView.swift; sourceTree = "<group>"; };
 		331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListVC.swift; sourceTree = "<group>"; };
@@ -312,6 +311,7 @@
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
 		5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpMajorInfoVC.storyboard; sourceTree = "<group>"; };
 		5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMajorInfoVC.swift; sourceTree = "<group>"; };
+		5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorUserListDataModel.swift; sourceTree = "<group>"; };
 		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
 		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
 		5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalVC.swift; sourceTree = "<group>"; };
@@ -805,6 +805,7 @@
 		33C1B8A027974A13004BABEC /* Classroom */ = {
 			isa = PBXGroup;
 			children = (
+				5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */,
 				33C1B8A127974A24004BABEC /* QuestionChat */,
 			);
 			path = Classroom;
@@ -1244,7 +1245,6 @@
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
 				5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
-				331C53792795EADB0052B309 /* OnQuestionUserListModel.swift */,
 				5C3280162797207200781EBE /* Mypage */,
 			);
 			path = Models;
@@ -1435,6 +1435,7 @@
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
+				5C91647E279A9F0B008DD44B /* MajorUserListDataModel.swift in Sources */,
 				331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */,
 				5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */,
 				5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */,
@@ -1495,7 +1496,6 @@
 				5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */,
 				77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
-				331C537A2795EADB0052B309 /* OnQuestionUserListModel.swift in Sources */,
 				5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
