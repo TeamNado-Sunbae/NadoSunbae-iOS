@@ -33,7 +33,7 @@ class MypageUserVC: BaseVC {
             navView.setUpNaviStyle(state: .backDefault)
             navView.configureTitleLabel(title: "선배 닉네임")
             navView.rightActivateBtn.isActivated = false
-            navView.dismissBtn.press {
+            navView.backBtn.press {
                 self.navigationController?.popViewController(animated: true)
             }
         }
