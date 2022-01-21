@@ -64,6 +64,24 @@ class ClassroomAPI {
             }
         }
     }
+    
+    /// [GET] 선택한 학과 user 구성원 목록 조회
+    func getMajorUserListAPI(majorID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.getMajorUserList(majorID: majorID)) { result in
+            switch result {
+            
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getMajorUserListJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
 }
 
 // MARK: - JudgeData
@@ -109,6 +127,24 @@ extension ClassroomAPI {
     private func createCommentJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<AddCommentData>.self, from: data) else {
+            return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// 선택한 학과 user 구성원 목록 조회
+    private func getMajorUserListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<MajorUserListDataModel>.self, from: data) else {
             return .pathErr }
         
         switch status {
