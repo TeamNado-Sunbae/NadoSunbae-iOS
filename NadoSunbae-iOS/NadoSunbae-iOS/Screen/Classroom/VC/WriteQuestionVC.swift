@@ -21,14 +21,9 @@ class WriteQuestionVC: BaseVC {
     private var isTextViewEmpty: Bool = true
     @IBOutlet weak var questionWriteNaviBar: NadoSunbaeNaviBar! {
         didSet {
-            questionWriteNaviBar.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 1, radius: 16)
+            questionWriteNaviBar.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 0.3, radius: 16)
         }
     }
-    //    private var questionWriteNaviBar = NadoSunbaeNaviBar() {
-//        didSet {
-//            questionWriteNaviBar.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
-//        }
-//    }
     
     private let questionTitleTextField = UITextField().then {
         $0.borderStyle = .none

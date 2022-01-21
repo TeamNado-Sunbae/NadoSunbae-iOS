@@ -25,15 +25,10 @@ class ClassroomMainVC: UIViewController {
     }
     
     private let majorSelectBtn = UIButton()
+    private let classroomContainerView = NadoHorizonContainerViews()
     
     // MARK: IBOutlet
-    @IBOutlet var topNaviView: UIView! {
-        didSet {
-            topNaviView.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 0.5, radius: 16)
-        }
-    }
-    
-    private let classroomContainerView = NadoHorizonContainerViews()
+    @IBOutlet var topNaviView: UIView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
