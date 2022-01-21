@@ -39,9 +39,12 @@ class WriteQuestionVC: BaseVC {
     }
     
     private let questionWriteTextView = NadoTextView()
-    var questionType: QuestionType?
-    var majorID: Int = 0
-    var answerID: Int = 0
+    
+    var questionType: QuestionType = .group
+    private var majorID: Int = MajorInfo.shared.selecteMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
+    
+    /// 1:1 질문 호출할 때에는 answerID 필수!!!!! 나머지는 설정 X
+    var answerID: Int?
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -178,7 +181,6 @@ extension WriteQuestionVC {
     
     /// btn Action set 메서드
     private func setTapBtnAction() {
-        
         /// rightActivat Btn Press
         questionWriteNaviBar.rightActivateBtn.press {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
@@ -188,7 +190,13 @@ extension WriteQuestionVC {
     """
                                 , confirmBtnTitle: "네", cancelBtnTitle: "아니요")
             alert.confirmBtn.press {
-                createClassroomPost(majorID: majorID, answerID: , postTypeID: questionType.row, title: <#T##String#>, content: <#T##String#>)
+                switch self.questionType {
+                case .group, .info:
+                    self.answerID = nil
+                default:
+                    break
+                }
+                self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType.rawValue, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
             }
         }
         
@@ -241,18 +249,16 @@ extension WriteQuestionVC {
     private func setUpInitStyle() {
         questionWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
         
-        if let questionType = questionType {
-            switch questionType {
-            case .personal:
-                questionWriteNaviBar.configureTitleLabel(title: "1:1 질문 작성")
-                questionWriteTextView.setDefaultStyle(placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
-            case .group:
-                questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
-                questionWriteTextView.setDefaultStyle(placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
-            case .info:
-                questionWriteNaviBar.configureTitleLabel(title: "정보글 작성")
-                questionWriteTextView.setDefaultStyle(placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
-            }
+        switch questionType {
+        case .personal:
+            questionWriteNaviBar.configureTitleLabel(title: "1:1 질문 작성")
+            questionWriteTextView.setDefaultStyle(placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
+        case .group:
+            questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
+            questionWriteTextView.setDefaultStyle(placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
+        case .info:
+            questionWriteNaviBar.configureTitleLabel(title: "정보글 작성")
+            questionWriteTextView.setDefaultStyle(placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
         }
     }
 }
@@ -284,15 +290,13 @@ extension WriteQuestionVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            if let questionType = questionType {
-                switch questionType {
-                case .personal:
-                    textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
-                case .group:
-                    textView.text = "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!"
-                case .info:
-                    textView.text = "구성원에게 유용한 학과 정보를 공유해주세요."
-                }
+            switch questionType {
+            case .personal:
+                textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
+            case .group:
+                textView.text = "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!"
+            case .info:
+                textView.text = "구성원에게 유용한 학과 정보를 공유해주세요."
             }
             textView.textColor = .gray2
             isTextViewEmpty = true
@@ -323,19 +327,13 @@ extension WriteQuestionVC {
 
 // MARK: - Network
 extension WriteQuestionVC {
-    private func createClassroomPost(majorID: Int, answerID: Int, postTypeID: Int, title: String, content: String) {
+    private func createClassroomPost(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.createClassroomContentAPI(majorID: majorID, answerID: answerID, postTypeID: postTypeID, title: title, content: content) { networkResult in
+        ClassroomAPI.shared.createClassroomContentAPI(majorID: majorID, answerID: answerID ?? nil, postTypeID: postTypeID, title: title, content: content) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? [ClassroomPostList] {
-//                    self.questionList = data
-//                    DispatchQueue.main.async {
-//                        self.entireQuestionTV.reloadData()
-//                        self.configureQuestionTVHeight()
-//                    }
-                    self.activityIndicator.stopAnimating()
-                }
+                self.activityIndicator.stopAnimating()
+                self.dismiss(animated: true, completion: nil)
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
