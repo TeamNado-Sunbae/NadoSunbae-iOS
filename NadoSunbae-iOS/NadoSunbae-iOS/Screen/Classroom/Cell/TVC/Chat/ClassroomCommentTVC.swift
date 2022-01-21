@@ -14,6 +14,7 @@ class ClassroomCommentTVC: BaseTVC {
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
     @IBOutlet var commentContentTextView: UITextView!
+    @IBOutlet weak var uploadDateLabel: UILabel!
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
@@ -67,7 +68,9 @@ extension ClassroomCommentTVC {
     func bindData(_ model: ClassroomMessageList) {
         nicknameLabel.text = model.writer.nickname
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
+        print("converted: ", convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart))
         commentContentTextView.text = model.content
+        uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
     }
 }
 

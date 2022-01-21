@@ -97,6 +97,24 @@ class ClassroomAPI {
             }
         }
     }
+    
+    /// [POST] 1:1질문, 전체 질문, 정보글에 좋아요 다는 API 메서드
+    func postClassroomLikeAPI(chatPostID: Int, postTypeID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.postLike(chatPostID: chatPostID, postTypeID: postTypeID)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.postClassroomLikeJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+
 }
 
 
@@ -175,10 +193,29 @@ extension ClassroomAPI {
             return .networkFail
         }
     }
+    
     /// 1:1질문, 전체 질문, 정보글에 글 등록
     private func createClassroomPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<CreateClassroomPostModel>.self, from: data) else {
+            return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// 1:1질문, 전체 질문, 정보글에 글 등록
+    private func postClassroomLikeJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<PostLike>.self, from: data) else {
             return .pathErr }
         
         switch status {

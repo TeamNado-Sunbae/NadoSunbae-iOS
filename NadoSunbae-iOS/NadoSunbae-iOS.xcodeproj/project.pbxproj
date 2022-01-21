@@ -720,6 +720,7 @@
 				33A15F7027995274006FE040 /* GroupQuestion */,
 				33CF635527945DE300E92C04 /* InfoMainVC.swift */,
 				331364A12785D8DD00E0C118 /* ClassroomMainVC.swift */,
+				331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */,
 				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
 				33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */,
 				33CF636727955D9500E92C04 /* ClassroomNC.swift */,
@@ -788,7 +789,6 @@
 		33A15F7027995274006FE040 /* GroupQuestion */ = {
 			isa = PBXGroup;
 			children = (
-				331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */,
 			);
 			path = GroupQuestion;
 			sourceTree = "<group>";

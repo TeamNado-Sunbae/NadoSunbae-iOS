@@ -112,6 +112,7 @@
                 <outlet property="commentContentTextView" destination="LMH-SD-I1n" id="jrP-Nj-oQm"/>
                 <outlet property="majorLabel" destination="XsY-Xa-ot0" id="OI9-E1-ICU"/>
                 <outlet property="nicknameLabel" destination="OlX-jq-iUU" id="jRy-ln-VIy"/>
+                <outlet property="uploadDateLabel" destination="5pt-bF-h5S" id="dca-j1-002"/>
             </connections>
             <point key="canvasLocation" x="42.028985507246382" y="100.78125"/>
         </tableViewCell>

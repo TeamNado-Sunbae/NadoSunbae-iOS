@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DefaultQuestionChatVC: UIViewController {
+class DefaultQuestionChatVC: BaseVC {
     
     // MARK: IBOutlet
     @IBOutlet var sendAreaTextViewHeight: NSLayoutConstraint!
@@ -60,6 +60,7 @@ class DefaultQuestionChatVC: UIViewController {
     var naviStyle: NaviType?
     var questionType: QuestionType?
     var questionChatData: [ClassroomMessageList] = []
+    var questionLikeData: ClassroomQuestionLike?
     var questionerID: Int?
     var answererID: Int?
     var userID: Int?
@@ -453,6 +454,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     moreBtnTapIndex = [0,indexPath.row]
                 }
                 questionCell.bindData(questionChatData[indexPath.row])
+                questionCell.bindLikeData(questionLikeData ?? ClassroomQuestionLike(isLiked: false, likeCount: "0"))
+                questionCell.tapLikeBtnAction = { [unowned self] in
+                    requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: .groupQuestion)
+                }
                 return questionCell
             }
         } else {
@@ -607,6 +612,7 @@ extension DefaultQuestionChatVC {
             case .success(let res):
                 if let data = res as? ClassroomQuestionDetailData {
                     self.questionChatData = data.messageList
+                    self.questionLikeData = data.like
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.userType = self.identifyUserType(questionerID: data.questionerID, answererID: data.answererID)
                     self.setUpSendBtnEnabledState(questionType: self.questionType ?? .personal, textView: self.sendAreaTextView)
@@ -650,6 +656,38 @@ extension DefaultQuestionChatVC {
                 print("serverErr")
             case .networkFail:
                 print("networkFail")
+            }
+        }
+    }
+    
+    /// 전체 질문, 정보글 전체 목록에서 좋아요 API 요청 메서드
+    func requestPostClassroomLikeData(chatID: Int, postTypeID: ClassroomPostType) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: chatID, postTypeID: postTypeID.rawValue) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let _ = res as? PostLike {
+                    self.activityIndicator.stopAnimating()
+                    self.requestGetDetailQuestionData(chatPostID: self.chatPostID ?? 0)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .pathErr:
+                print("pathErr")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .serverErr:
+                print("serverErr")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "서버 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            case .networkFail:
+                print("networkFail")
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
