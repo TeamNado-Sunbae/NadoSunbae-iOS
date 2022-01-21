@@ -10,7 +10,7 @@ import Moya
 
 class ClassroomAPI {
     static let shared = ClassroomAPI()
-    var classroomProvider = MoyaProvider<ClassroomService>(plugins: [NetworkLoggerPlugin()])
+    var classroomProvider = MoyaProvider<ClassroomService>()
     
     private init() {}
     
