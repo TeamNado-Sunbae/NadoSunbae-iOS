@@ -197,6 +197,15 @@ extension ReviewDetailVC: UITableViewDataSource {
             return UITableViewCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            guard let nextVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+            
+            nextVC.targetUserID = detailPost.writer.writerID
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+    }
 }
 
 // MARK: - Network
