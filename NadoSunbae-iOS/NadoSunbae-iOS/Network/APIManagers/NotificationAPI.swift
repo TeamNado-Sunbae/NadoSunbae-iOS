@@ -10,7 +10,7 @@ import Moya
 
 class NotificationAPI {
     static let shared = NotificationAPI()
-    private var provider = MoyaProvider<NotificationService>(plugins: [NetworkLoggerPlugin()])
+    private var provider = MoyaProvider<NotificationService>()
     
     private init() {}
 }
