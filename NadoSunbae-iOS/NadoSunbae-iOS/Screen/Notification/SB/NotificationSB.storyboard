@@ -160,6 +160,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4ux-ge-Nus"/>
                     <connections>
+                        <outlet property="navTitleLabel" destination="Gz8-It-2OG" id="Bax-A5-w9K"/>
                         <outlet property="navView" destination="SgZ-z0-ye5" id="3em-Fb-IHU"/>
                         <outlet property="noNotiLabel" destination="NgC-Y7-gAY" id="lNN-Kb-drq"/>
                         <outlet property="notificationTV" destination="2Dg-vn-V8b" id="s3O-EE-csf"/>
