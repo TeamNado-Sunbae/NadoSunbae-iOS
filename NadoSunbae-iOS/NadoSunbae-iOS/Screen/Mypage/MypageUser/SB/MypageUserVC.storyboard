@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -205,7 +205,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlK-2x-mgE">
-                                                <rect key="frame" x="291" y="235.33333333333331" width="68" height="28"/>
+                                                <rect key="frame" x="283" y="235.33333333333331" width="68" height="28"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="btnArray"/>
                                                 <connections>
@@ -239,7 +239,6 @@
                                             <constraint firstAttribute="bottom" secondItem="kXs-pO-uLu" secondAttribute="bottom" constant="20" id="Ti3-SZ-7mR"/>
                                             <constraint firstItem="1KN-MV-zEV" firstAttribute="leading" secondItem="uJl-mK-oSe" secondAttribute="leading" id="W4D-EM-QKr"/>
                                             <constraint firstItem="kXs-pO-uLu" firstAttribute="leading" secondItem="uJl-mK-oSe" secondAttribute="leading" constant="24" id="Xt8-IZ-dhs"/>
-                                            <constraint firstAttribute="trailing" secondItem="YlK-2x-mgE" secondAttribute="trailing" constant="16" id="Zm7-WO-ufz"/>
                                             <constraint firstItem="ifh-6A-2YM" firstAttribute="top" secondItem="yRX-c9-EEe" secondAttribute="bottom" constant="8" id="b2B-Ah-l3D"/>
                                             <constraint firstItem="SI3-3i-n9G" firstAttribute="centerY" secondItem="Klz-nd-7t8" secondAttribute="centerY" id="dIC-e9-dCY"/>
                                             <constraint firstItem="SI3-3i-n9G" firstAttribute="leading" secondItem="Klz-nd-7t8" secondAttribute="trailing" id="dJ9-fO-H9n"/>
@@ -312,6 +311,7 @@
                             <constraint firstItem="ee4-3M-m9V" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="rNZ-dc-F1F"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="x0n-Mc-DWP" secondAttribute="bottom" constant="24" id="rfa-tM-HbC"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Si5-3Y-Tl8" secondAttribute="bottom" id="uvh-SD-HaE"/>
+                            <constraint firstItem="YlK-2x-mgE" firstAttribute="trailing" secondItem="x0n-Mc-DWP" secondAttribute="trailing" id="yvQ-Eg-Rwb"/>
                             <constraint firstItem="Si5-3Y-Tl8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zav-Nu-kMZ"/>
                         </constraints>
                     </view>
@@ -331,6 +331,7 @@
                         <outlet property="questionTVHeight" destination="9Eh-OO-Be7" id="cHm-PC-Cy0"/>
                         <outlet property="responseRateLabel" destination="E7l-XF-nO7" id="wzk-e0-3jA"/>
                         <outlet property="secondMajorLabel" destination="QdH-XR-kIi" id="PY0-W5-go8"/>
+                        <outlet property="sortBtn" destination="YlK-2x-mgE" id="ijw-06-d5o"/>
                         <outlet property="userStateView" destination="1KN-MV-zEV" id="nlC-vs-Xrm"/>
                         <outlet property="userStateViewHeight" destination="SE4-AW-N5H" id="bH1-ac-X8L"/>
                     </connections>

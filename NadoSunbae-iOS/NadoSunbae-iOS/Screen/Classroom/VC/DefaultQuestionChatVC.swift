@@ -52,11 +52,7 @@ class DefaultQuestionChatVC: BaseVC {
         }
     }
     
-    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar! {
-        didSet {
-            questionNaviBar.addShadow(offset: CGSize(width: 0, height: 4), color: .shadowDefault, opacity: 1, radius: 16)
-        }
-    }
+    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar! 
     
     // MARK: Properties
     var editIndex: [Int]?

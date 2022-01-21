@@ -18,7 +18,7 @@ class MypageAPI {
 // MARK: - API
 extension MypageAPI {
     
-    /// [GET] 특정 유저 정보 조회
+    /// [GET] 특정 유저(본인) 정보 조회
     func getMyInfo(completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.getMyInfo) { result in
             switch result {
@@ -34,7 +34,7 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 특정 유저 정보 조회
+    /// [GET] 특정 유저(타인) 정보 조회
     func getUserInfo(userID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.getUserInfo(userID: userID)) { result in
             switch result {
