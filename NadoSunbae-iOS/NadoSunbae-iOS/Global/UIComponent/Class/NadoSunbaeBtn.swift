@@ -49,6 +49,7 @@ class NadoSunbaeBtn: UIButton {
         self.makeRounded(cornerRadius: 14.adjusted)
         self.titleLabel?.font = .PretendardSB(size: 16)
         self.backgroundColor = self.normalBgColor
+        self.tintColor = UIColor.mainDefault
         self.setTitleColor(self.normalFontColor, for: .normal)
     }
     

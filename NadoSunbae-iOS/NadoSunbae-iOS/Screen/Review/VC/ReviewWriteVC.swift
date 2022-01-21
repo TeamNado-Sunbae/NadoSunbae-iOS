@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewWriteVC: UIViewController {
+class ReviewWriteVC: BaseVC {
     
     // MARK: IBOutlet
     @IBOutlet weak var reviewWriteNaviBar: NadoSunbaeNaviBar! {
@@ -156,6 +156,24 @@ extension ReviewWriteVC {
     
     private func setUpTapCompleteBtn() {
         reviewWriteNaviBar.rightActivateBtn.press {
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+            
+            /// 취소 버튼 클릭 시
+            alert.cancelBtn.press {
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            /// 완료 버튼 클릭 시
+            alert.confirmBtn.press {
+                
+                /// 서버통신
+                if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) {
+                    self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
+                    self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                }
+            }
             
             /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
             [self.learnInfoTextView, self.recommendClassTextView, self.badClassTextView, self.futureTextView, self.tipTextView].forEach {
@@ -165,9 +183,6 @@ extension ReviewWriteVC {
                     }
                 }
             }
-            
-            /// 서버통신
-            self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
         }
     }
 }
@@ -214,6 +229,13 @@ extension ReviewWriteVC: UICollectionViewDataSource {
 
 // MARK: - UITextViewDelegate
 extension ReviewWriteVC: UITextViewDelegate {
+    
+    /// scrollViewDidScroll
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        DispatchQueue.main.async() {
+            scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+        }
+    }
     
     /// textViewDidBeginEditing
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -290,7 +312,10 @@ extension ReviewWriteVC: UITextViewDelegate {
         /// 필수 항목 모두 작성되었을 때
         if oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
             essentialTextViewStatus = true
+        } else {
+            essentialTextViewStatus = false
         }
+        
         
         /// 선택 항목 분기 처리
         [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
@@ -301,7 +326,14 @@ extension ReviewWriteVC: UITextViewDelegate {
                     } else if $0?.text.isEmpty == false {
                         choiceTextViewStatus = false
                     } else if $0?.text.isEmpty == true {
-                        choiceTextViewStatus = true
+                        //  선택 textView가 최소1개 이상채워졌는지 분기처리
+                        if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
+                            choiceTextViewStatus = true
+                        } else {
+                            choiceTextViewStatus = false
+                        }
+                    } else {
+                        choiceTextViewStatus = false
                     }
                 }
             }
@@ -309,14 +341,6 @@ extension ReviewWriteVC: UITextViewDelegate {
         
         /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
         reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
-        
-        
-        /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            DispatchQueue.main.async() {
-                scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
-            }
-        }
     }
 }
 
