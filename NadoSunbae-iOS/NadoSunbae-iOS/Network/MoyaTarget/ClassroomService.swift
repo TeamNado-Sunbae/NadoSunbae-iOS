@@ -67,7 +67,7 @@ extension ClassroomService: TargetType {
         case .postClassroomContent(let majorID, let answerID, let postTypeID, let title, let content):
             let body: [String: Any] = [
                 "majorId": majorID,
-                "answerId": answerID,
+                "answererId": answerID,
                 "postTypeId": postTypeID,
                 "title": title,
                 "content": content
