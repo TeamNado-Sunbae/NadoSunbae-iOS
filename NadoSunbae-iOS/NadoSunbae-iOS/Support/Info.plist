@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>FirebaseMessagingAutoInitEnabled</key>
-	<false/>
+	<string>NO</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
+	<string>NO</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
