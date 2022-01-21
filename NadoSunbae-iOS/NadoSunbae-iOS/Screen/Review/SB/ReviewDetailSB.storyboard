@@ -61,7 +61,7 @@
                                 <rect key="frame" x="0.0" y="729" width="375" height="83"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21/12/23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKA-XN-TcD">
-                                        <rect key="frame" x="20" y="19" width="48" height="15"/>
+                                        <rect key="frame" x="20" y="19" width="48" height="14"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
@@ -76,22 +76,34 @@
                                                     <constraint firstAttribute="height" constant="32" id="TSS-1f-3zr"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLM-G7-RMB">
-                                                <rect key="frame" x="36" y="11.666666666666629" width="13" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLM-G7-RMB">
+                                                <rect key="frame" x="36" y="11.666666666666629" width="9" height="17"/>
                                                 <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
                                                 <color key="textColor" name="mainDefault"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRq-ia-AHa">
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="tapLikeBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Mqg-r2-ARW"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="gray0"/>
                                         <constraints>
                                             <constraint firstItem="DLM-G7-RMB" firstAttribute="leading" secondItem="Lcb-ZO-cgX" secondAttribute="trailing" id="2D4-Vq-Krr"/>
+                                            <constraint firstAttribute="bottom" secondItem="rRq-ia-AHa" secondAttribute="bottom" id="Kib-zy-6TS"/>
                                             <constraint firstAttribute="width" constant="64" id="PRk-5H-HBv"/>
                                             <constraint firstAttribute="bottom" secondItem="Lcb-ZO-cgX" secondAttribute="bottom" constant="4" id="Qud-oA-1Hk"/>
                                             <constraint firstItem="Lcb-ZO-cgX" firstAttribute="top" secondItem="Mfc-eR-2Hs" secondAttribute="top" constant="4" id="a7A-rd-e3S"/>
+                                            <constraint firstItem="rRq-ia-AHa" firstAttribute="leading" secondItem="Mfc-eR-2Hs" secondAttribute="leading" id="bfx-jr-TWW"/>
+                                            <constraint firstAttribute="trailing" secondItem="rRq-ia-AHa" secondAttribute="trailing" id="eUb-ys-k3f"/>
                                             <constraint firstItem="DLM-G7-RMB" firstAttribute="centerY" secondItem="Lcb-ZO-cgX" secondAttribute="centerY" id="nGW-FF-NG4"/>
                                             <constraint firstItem="Lcb-ZO-cgX" firstAttribute="leading" secondItem="Mfc-eR-2Hs" secondAttribute="leading" constant="4" id="pkP-vD-dGQ"/>
                                             <constraint firstAttribute="height" constant="40" id="qlL-Ny-zAh"/>
+                                            <constraint firstItem="rRq-ia-AHa" firstAttribute="top" secondItem="Mfc-eR-2Hs" secondAttribute="top" id="zCu-7J-nIr"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -125,6 +137,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="AlL-q4-9qg"/>
                     <connections>
+                        <outlet property="diamondImgView" destination="Lcb-ZO-cgX" id="KBK-2B-oe9"/>
+                        <outlet property="likeCountLabel" destination="DLM-G7-RMB" id="TpV-mp-Ywp"/>
                         <outlet property="likeCountView" destination="Mfc-eR-2Hs" id="xBy-de-EVI"/>
                         <outlet property="naviBarView" destination="d9w-EZ-U4M" id="bWG-qY-E36"/>
                         <outlet property="reviewPostTV" destination="DA4-Xx-KZ1" id="hyP-wX-Xyg"/>

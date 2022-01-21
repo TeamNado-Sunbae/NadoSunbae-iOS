@@ -26,10 +26,18 @@ class ReviewDetailVC: BaseVC {
     }
     
     @IBOutlet weak var likeCountView: UIView!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var diamondImgView: UIImageView!
     
     // MARK: Properties
     var detailPost: ReviewPostDetailData = ReviewPostDetailData(backgroundImage: BackgroundImage(imageID: 0))
     var postId: Int?
+    
+    var isLikeBtnSelected = false {
+        didSet {
+            setLikeImg()
+        }
+    }
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -47,12 +55,25 @@ class ReviewDetailVC: BaseVC {
         self.tabBarController?.tabBar.isHidden = true
         requestGetReviewPostDetail(postID: postId ?? -1)
     }
+    @IBAction func tapLikeBtn(_ sender: Any) {
+        isLikeBtnSelected = !isLikeBtnSelected
+    }
 }
 
 // MARK: - UI
 extension ReviewDetailVC {
     private func configureUI() {
         likeCountView.makeRounded(cornerRadius: 16.adjusted)
+    }
+    
+    private func setLikeImg() {
+        if isLikeBtnSelected {
+            diamondImgView.image = UIImage(named: "colorFilledDiamond")
+            likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
+        } else {
+            diamondImgView.image = UIImage(named: "emptyDiamond")
+            likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
+        }
     }
     
     /// NaviBar dropShadow 설정 함수
