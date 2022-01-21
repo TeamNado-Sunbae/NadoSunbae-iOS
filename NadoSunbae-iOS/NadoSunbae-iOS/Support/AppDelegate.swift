@@ -11,8 +11,9 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        /// Firebase 초기화
+        UNUserNotificationCenter.current().delegate = self
+
+        // MARK: Firebase 초기화
         FirebaseApp.configure()
         
         // APN에 토큰 매핑하는 프로세스
@@ -21,23 +22,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UNUserNotificationCenter.current().delegate = self
         
-        setUpRemoteNotification()
-        setUpMessagingDelegate()
+        // 원격 알림 등록
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { _, _ in }
+        )
+        
+        // 메시지 대리자 설정
+        Messaging.messaging().delegate = self
         
         // 자동 초기화 방지
         Messaging.messaging().isAutoInitEnabled = true
+        
         
         // 현재 등록 토큰 가져오기
         Messaging.messaging().token { token, error in
             if let error = error {
                 print("Error fetching FCM registration token: \(error)")
             } else if let token = token {
-                /// 여기 프린트는 나중에 서버에 넘겨줄 token인데 알림 받고싶으면 콘솔에 찍힌 token값 저한테 알려주세용
                 print("FCM registration token: \(token)")
                 UserDefaults.standard.set(token, forKey: UserDefaults.Keys.FCMTokenForDevice)
             }
         }
-        
         return true
     }
     
@@ -58,23 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // APN 토큰과 등록 토큰 매핑
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("apn Token setting", "called")
         Messaging.messaging().apnsToken = deviceToken
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("APN 토큰 등록 실패", "fail")
     }
-}
-
-// MARK - FCM Setting
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    
-    /// 토큰 갱신 모니터링
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        UserDefaults.standard.set(fcmToken, forKey: UserDefaults.Keys.FCMTokenForDevice)
-    }
-}
-extension AppDelegate: MessagingDelegate {
     
     /// 원격 알림 등록
     private func setUpRemoteNotification() {
@@ -90,13 +88,35 @@ extension AppDelegate: MessagingDelegate {
     private func setUpMessagingDelegate() {
         Messaging.messaging().delegate = self
     }
-    
-    /// foreGround에서 실행 중일 때
-    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.list, .badge, .sound])
+}
+
+extension AppDelegate : MessagingDelegate {
+    // 토큰 갱신 모니터링
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(String(describing: fcmToken))")
+        UserDefaults.standard.set(fcmToken, forKey: UserDefaults.Keys.FCMTokenForDevice)
+        let dataDict: [String: String] = ["token": fcmToken ?? ""]
+        NotificationCenter.default.post(
+            name: Notification.Name("FCMToken"),
+            object: nil,
+            userInfo: dataDict
+        )
+        
+
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
-    /// backGround에서 실행 중일 때
+    
+}
+
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    // foreGround에서 실행 중일 때
+    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.badge, .sound])
+    }
+    
+    // backGround에서 실행 중일 때
     func userNotificationCenter(_ center: UNUserNotificationCenter,didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
     }
