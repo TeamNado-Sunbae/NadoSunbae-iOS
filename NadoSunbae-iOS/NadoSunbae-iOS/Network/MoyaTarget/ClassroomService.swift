@@ -60,7 +60,7 @@ extension ClassroomService: TargetType {
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         case .getMajorUserList(let majorID):
             let body = ["majorId": majorID]
-            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+            return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         }
     }
     
