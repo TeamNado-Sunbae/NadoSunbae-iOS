@@ -8,7 +8,7 @@
 import UIKit
 
 class ReviewDetailVC: BaseVC {
-
+    
     // MARK: IBOutlet
     @IBOutlet weak var naviBarView: NadoSunbaeNaviBar! {
         didSet {
@@ -33,12 +33,6 @@ class ReviewDetailVC: BaseVC {
     var detailPost: ReviewPostDetailData = ReviewPostDetailData(backgroundImage: BackgroundImage(imageID: 0))
     var postId: Int?
     
-    var isLikeBtnSelected = false {
-        didSet {
-            setLikeImg()
-        }
-    }
-    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +48,9 @@ class ReviewDetailVC: BaseVC {
         self.tabBarController?.tabBar.isHidden = true
         requestGetReviewPostDetail(postID: postId ?? -1)
     }
+    
     @IBAction func tapLikeBtn(_ sender: Any) {
-        isLikeBtnSelected = !isLikeBtnSelected
+        self.requestPostReviewDetailLikeData(postID: postId ?? 0, postTypeID: .review)
     }
 }
 
@@ -63,16 +58,6 @@ class ReviewDetailVC: BaseVC {
 extension ReviewDetailVC {
     private func configureUI() {
         likeCountView.makeRounded(cornerRadius: 16.adjusted)
-    }
-    
-    private func setLikeImg() {
-        if isLikeBtnSelected {
-            diamondImgView.image = UIImage(named: "colorFilledDiamond")
-            likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
-        } else {
-            diamondImgView.image = UIImage(named: "emptyDiamond")
-            likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
-        }
     }
     
     /// NaviBar dropShadow 설정 함수
@@ -96,7 +81,6 @@ extension ReviewDetailVC {
     private func setUpTV() {
         reviewPostTV.dataSource = self
         reviewPostTV.delegate = self
-    
     }
     
     /// 액션 시트
@@ -135,6 +119,17 @@ extension ReviewDetailVC {
         if scrollView.contentOffset.y < 0 {
             scrollView.contentOffset.y = 0
         }
+    }
+    
+    func setUpLikeStatus(model: PostLike) {
+        if model.isLiked ?? true {
+            diamondImgView.image = UIImage(named: "colorFilledDiamond")
+            likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
+        } else {
+            diamondImgView.image = UIImage(named: "emptyDiamond")
+            likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
+        }
+        likeCountLabel.text = model.likeCount
     }
 }
 
@@ -212,27 +207,49 @@ extension ReviewDetailVC: UITableViewDataSource {
 /// 후기글 상세 조회
 extension ReviewDetailVC {
     func requestGetReviewPostDetail(postID: Int) {
+        self.activityIndicator.startAnimating()
         ReviewAPI.shared.getReviewPostDetailAPI(postID: postID) { networkResult in
             switch networkResult {
                 
             case .success(let res):
                 if let data = res as? ReviewPostDetailData {
-
                     self.detailPost = data
-                    print(data)
-
+                    self.setUpLikeStatus(model: self.detailPost.like)
                     self.reviewPostTV.reloadData()
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
                 }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류입니다.")
+            }
+        }
+    }
+    
+    /// 후기 상세뷰에서 좋아요 API 요청 메서드
+    func requestPostReviewDetailLikeData(postID: Int, postTypeID: QuestionType) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: postID, postTypeID: postTypeID.rawValue) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let _ = res as? PostLike {
+                    self.requestGetReviewPostDetail(postID: postID)
+                    print("!!!!!!!! 여기 !!!!!!!!")
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }

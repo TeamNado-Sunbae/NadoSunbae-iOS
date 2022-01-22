@@ -85,7 +85,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRq-ia-AHa">
                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="40"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=""/>
                                                 <connections>
                                                     <action selector="tapLikeBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Mqg-r2-ARW"/>
                                                 </connections>
