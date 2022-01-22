@@ -153,6 +153,8 @@ extension ReviewWriteVC {
             ReviewWriteBgImgData(bgImgName: "property1Orange"),
             ReviewWriteBgImgData(bgImgName: "property1Purple")
         ])
+        
+        self.bgImgCV.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
     }
     
     private func setUpTapCompleteBtn() {
