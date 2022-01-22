@@ -25,6 +25,7 @@ class ReviewMainVC: BaseVC {
     var tagList: [ReviewTagList] = []
     var postList: [ReviewMainPostListData] = []
     var majorInfo: String = ""
+    var sortType: ListSortType = .recent
     private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
@@ -114,13 +115,15 @@ extension ReviewMainVC {
         
         // TODO: 액션 추가 예정
         let new = UIAlertAction(title: "최신순", style: .default) { action in
-            self.selectActionSheetIndex = 0
+            self.sortType = .recent
+            self.requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
             self.reviewTV.reloadSections([2], with: .fade)
         }
         
         // TODO: 액션 추가 예정
         let like = UIAlertAction(title: "좋아요순", style: .default) { action in
-            self.selectActionSheetIndex = 1
+            self.sortType = .like
+            self.requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .like)
             self.reviewTV.reloadSections([2], with: .fade)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -146,7 +149,7 @@ extension ReviewMainVC {
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
-        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5])
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
     }
 }
 
@@ -200,12 +203,14 @@ extension ReviewMainVC: UITableViewDelegate {
         if section == 2 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReviewStickyHeaderView.className) as? ReviewStickyHeaderView else { return UIView() }
             
-            // ActionSheet 항목 클릭 시 버튼 타이틀 변경
-            if selectActionSheetIndex == 1 {
-                headerView.arrangeBtn.setImage(UIImage(named: "property1Variant3"), for: .normal)
-            } else {
+            switch sortType {
+                
+            case .recent:
                 headerView.arrangeBtn.setImage(UIImage(named: "btnArray"), for: .normal)
+            case .like:
+                headerView.arrangeBtn.setImage(UIImage(named: "property1Variant3"), for: .normal)
             }
+            
             headerView.tapArrangeBtnAction = {
                 self.showActionSheet()
             }
@@ -291,7 +296,8 @@ extension ReviewMainVC: SendUpdateModalDelegate {
     /// 학과 선택 시 해당 학과의 게시글 리스트가 로드될 수 있도록 요청
     func sendUpdate(data: Any) {
         majorLabel.text = data as? String
-        setUpRequestData()
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
+        self.sortType = .recent
     }
 }
 
@@ -330,9 +336,9 @@ extension ReviewMainVC {
 
 /// 후기글 리스트 조회
 extension ReviewMainVC {
-    func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int]) {
+    func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int], sort: ListSortType) {
         self.activityIndicator.startAnimating()
-        ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter) { networkResult in
+        ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter, sort: sort) { networkResult in
             switch networkResult {
                 
             case .success(let res):

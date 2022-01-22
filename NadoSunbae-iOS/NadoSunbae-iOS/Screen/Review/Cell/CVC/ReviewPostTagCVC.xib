@@ -18,20 +18,23 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="foC-HU-EyU">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="9gb-Oh-oxi"/>
+                        </constraints>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="foC-HU-EyU" secondAttribute="bottom" id="2GC-wS-hEQ"/>
-                <constraint firstItem="foC-HU-EyU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4bW-bS-zgk"/>
-                <constraint firstItem="foC-HU-EyU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="S5e-bt-6Ve"/>
-                <constraint firstAttribute="trailing" secondItem="foC-HU-EyU" secondAttribute="trailing" id="cjA-wH-m5s"/>
+                <constraint firstAttribute="bottom" secondItem="foC-HU-EyU" secondAttribute="bottom" id="U5t-OZ-vmg"/>
+                <constraint firstItem="foC-HU-EyU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YCT-LO-cC2"/>
+                <constraint firstItem="foC-HU-EyU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dkJ-wu-HwC"/>
             </constraints>
             <connections>
                 <outlet property="tagImgView" destination="foC-HU-EyU" id="zod-AO-oUv"/>
+                <outlet property="tagImgWidth" destination="9gb-Oh-oxi" id="EGz-Cv-Vbt"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
+            <point key="canvasLocation" x="262" y="90"/>
         </collectionViewCell>
     </objects>
 </document>
