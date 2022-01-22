@@ -195,6 +195,11 @@ extension DefaultQuestionChatVC {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             self.sendAreaTextView.text = ""
             self.sendAreaTextViewHeight.constant = 38
+            if self.sendAreaTextView.textColor == .gray2 {
+                self.sendAreaTextView.text = nil
+                self.sendAreaTextView.textColor = UIColor.black
+                self.sendAreaTextView.backgroundColor = .white
+            }
         })
     }
     
@@ -624,12 +629,13 @@ extension DefaultQuestionChatVC {
                     self.questionLikeData = data.like
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.userType = self.identifyUserType(questionerID: data.questionerID, answererID: data.answererID)
-                    self.configueTextViewPlaceholder(userType: self.userType ?? -1, questionType: self.questionType ?? .personal)
                     self.setUpSendBtnEnabledState(questionType: self.questionType ?? .personal, textView: self.sendAreaTextView)
                     self.defaultQuestionChatTV.reloadData()
                     if self.isCommentSend {
                         self.scrollTVtoBottom(animate: true)
                         self.isCommentSend = false
+                    } else {
+                        self.configueTextViewPlaceholder(userType: self.userType ?? -1, questionType: self.questionType ?? .personal)
                     }
                     self.activityIndicator.stopAnimating()
                 }
