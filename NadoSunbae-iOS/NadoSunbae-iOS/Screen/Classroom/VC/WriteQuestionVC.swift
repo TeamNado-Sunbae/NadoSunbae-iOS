@@ -188,7 +188,7 @@ extension WriteQuestionVC {
     /// btn Action set 메서드
     private func setTapBtnAction() {
         /// rightActivat Btn Press
-        questionWriteNaviBar.rightActivateBtn.press {
+        questionWriteNaviBar.rightActivateBtn.press(vibrate: true, for: .touchUpInside) {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
             alert.showNadoAlert(vc: self, message:
     """

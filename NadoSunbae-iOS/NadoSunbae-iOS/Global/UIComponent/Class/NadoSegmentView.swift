@@ -34,6 +34,7 @@ class NadoSegmentView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configureUI()
+        setUpBtnVibrateAction()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -63,6 +64,17 @@ extension NadoSegmentView {
             $0.leading.equalTo(questionBtn.snp.trailing).offset(16)
             $0.width.equalTo(56)
             $0.height.equalToSuperview()
+        }
+    }
+}
+
+// MARK: - Custom Methods
+extension NadoSegmentView {
+    func setUpBtnVibrateAction() {
+        [questionBtn, infoBtn].forEach() {
+            $0.press(vibrate: true, for: .touchUpInside) {
+                return
+            }
         }
     }
 }
