@@ -11,7 +11,7 @@ import Foundation
 struct ReviewPostDetailData: Codable {
     var post: PostDetail = PostDetail()
     var writer: PostWriter = PostWriter()
-    var like: PostLike = PostLike()
+    var like: PostLike = PostLike(isLiked: false, likeCount: "")
     var backgroundImage: BackgroundImage
 }
 
@@ -28,8 +28,8 @@ struct BackgroundImage: Codable {
 
 // MARK: - PostLike
 struct PostLike: Codable {
-    let isLiked: Bool = false
-    let likeCount: String = ""
+    let isLiked: Bool?
+    let likeCount: String?
     
     enum CodingKeys: String, CodingKey {
         case isLiked = "isLiked"
