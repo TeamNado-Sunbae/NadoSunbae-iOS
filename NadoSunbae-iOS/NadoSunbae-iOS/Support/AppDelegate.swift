@@ -112,13 +112,12 @@ extension AppDelegate : MessagingDelegate {
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
-    
 }
 
 extension AppDelegate : UNUserNotificationCenterDelegate {
     // foreGround에서 실행 중일 때
     func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.badge, .sound])
+        completionHandler([.badge, .sound, .list, .banner])
     }
     
     // backGround에서 실행 중일 때
