@@ -156,7 +156,7 @@ extension ReviewWriteVC {
     }
     
     private func setUpTapCompleteBtn() {
-        reviewWriteNaviBar.rightActivateBtn.press {
+        reviewWriteNaviBar.rightActivateBtn.press(vibrate: true, for: .touchUpInside) {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
             alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
             

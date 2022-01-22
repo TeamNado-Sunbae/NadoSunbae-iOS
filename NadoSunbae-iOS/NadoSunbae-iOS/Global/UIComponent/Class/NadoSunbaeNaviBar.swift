@@ -259,4 +259,10 @@ extension NadoSunbaeNaviBar {
             configureDismissWithNadoBtnUI()
         }
     }
+    
+    func setUpBtnVibrateAction() {
+        rightActivateBtn.press(vibrate: true, for: .touchUpInside) {
+            return
+        }
+    }
 }

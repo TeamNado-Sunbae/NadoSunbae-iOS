@@ -228,7 +228,7 @@ extension DefaultQuestionChatVC {
                 questionNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
                 questionNaviBar.rightCustomBtn.isHidden = true
                 
-                questionNaviBar.backBtn.press {
+                questionNaviBar.backBtn.press(vibrate: true, for: .touchUpInside) {
                     self.navigationController?.popViewController(animated: true)
                 }
                 
@@ -246,7 +246,7 @@ extension DefaultQuestionChatVC {
                 }
             case .present:
                 questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
-                questionNaviBar.dismissBtn.press {
+                questionNaviBar.dismissBtn.press(vibrate: true, for: .touchUpInside) {
                     self.dismiss(animated: true, completion: nil)
                 }
                 

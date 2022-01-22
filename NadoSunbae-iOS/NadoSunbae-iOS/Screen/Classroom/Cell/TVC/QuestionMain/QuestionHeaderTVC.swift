@@ -72,7 +72,7 @@ extension QuestionHeaderTVC {
     
     /// '질문 작성' 버튼을 눌렀을 때 액션 set 메서드
     private func setUpTapQuestionWriteBtn() {
-        questionWriteBtn.press {
+        questionWriteBtn.press(vibrate: true, for: .touchUpInside) {
             self.tapWriteBtnAction?()
         }
     }
