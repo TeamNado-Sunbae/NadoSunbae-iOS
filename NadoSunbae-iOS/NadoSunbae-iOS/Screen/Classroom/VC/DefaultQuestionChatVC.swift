@@ -237,7 +237,7 @@ extension DefaultQuestionChatVC {
                     case .group:
                         questionNaviBar.configureTitleLabel(title: "질문")
                     case .info:
-                        questionNaviBar.configureTitleLabel(title: "정보글 작성")
+                        questionNaviBar.configureTitleLabel(title: "정보글")
                     }
                 }
             case .present:
@@ -253,7 +253,7 @@ extension DefaultQuestionChatVC {
                     case .group:
                         questionNaviBar.configureTitleLabel(title: "질문")
                     case .info:
-                        questionNaviBar.configureTitleLabel(title: "정보글 작성")
+                        questionNaviBar.configureTitleLabel(title: "정보글")
                     }
                 }
             }
@@ -273,6 +273,8 @@ extension DefaultQuestionChatVC {
             if questionType == .personal {
                 if userType == 2 {
                     sendBtn.isEnabled = false
+                } else {
+                    sendBtn.isEnabled = true
                 }
             } else {
                 sendBtn.isEnabled = true
@@ -456,7 +458,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 questionCell.bindData(questionChatData[indexPath.row])
                 questionCell.bindLikeData(questionLikeData ?? ClassroomQuestionLike(isLiked: false, likeCount: "0"))
                 questionCell.tapLikeBtnAction = { [unowned self] in
-                    requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: .groupQuestion)
+                    requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: self.questionType ?? .personal)
                 }
                 return questionCell
             }
@@ -607,6 +609,7 @@ extension DefaultQuestionChatVC {
     
     /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
     func requestGetDetailQuestionData(chatPostID: Int) {
+        self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getQuestionDetailAPI(chatPostID: chatPostID) { networkResult in
             switch networkResult {
             case .success(let res):
@@ -615,79 +618,72 @@ extension DefaultQuestionChatVC {
                     self.questionLikeData = data.like
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.userType = self.identifyUserType(questionerID: data.questionerID, answererID: data.answererID)
+                    self.configueTextViewPlaceholder(userType: self.userType ?? -1, questionType: self.questionType ?? .personal)
                     self.setUpSendBtnEnabledState(questionType: self.questionType ?? .personal, textView: self.sendAreaTextView)
                     self.defaultQuestionChatTV.reloadData()
                     if self.isCommentSend {
                         self.scrollTVtoBottom(animate: true)
                         self.isCommentSend = false
                     }
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
     
     /// 1:1질문, 전체 질문, 정보글에 댓글 등록 API 요청 메서드
     func requestCreateComment(chatPostID: Int, comment: String) {
+        self.activityIndicator.startAnimating()
         ClassroomAPI.shared.createCommentAPI(chatID: chatPostID, comment: comment) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
                         self.requestGetDetailQuestionData(chatPostID: chatPostID)
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
     
     /// 전체 질문, 정보글 전체 목록에서 좋아요 API 요청 메서드
-    func requestPostClassroomLikeData(chatID: Int, postTypeID: ClassroomPostType) {
+    func requestPostClassroomLikeData(chatID: Int, postTypeID: QuestionType) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: chatID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? PostLike {
-                    self.activityIndicator.stopAnimating()
                     self.requestGetDetailQuestionData(chatPostID: self.chatPostID ?? 0)
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
+            default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            case .pathErr:
-                print("pathErr")
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            case .serverErr:
-                print("serverErr")
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "서버 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            case .networkFail:
-                print("networkFail")
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
