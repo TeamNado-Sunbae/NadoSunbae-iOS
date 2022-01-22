@@ -12,7 +12,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
-
+        
         // MARK: Firebase 초기화
         FirebaseApp.configure()
         
@@ -74,13 +74,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("APN 토큰 등록 실패", "fail")
     }
     
+    /// 디바이스 세로방향으로 고정
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    
     /// 원격 알림 등록
     private func setUpRemoteNotification() {
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(
-          options: authOptions,
-          completionHandler: { _, _ in }
+            options: authOptions,
+            completionHandler: { _, _ in }
         )
     }
     
@@ -102,7 +107,7 @@ extension AppDelegate : MessagingDelegate {
             userInfo: dataDict
         )
         
-
+        
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
