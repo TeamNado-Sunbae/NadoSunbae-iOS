@@ -121,7 +121,7 @@ extension EntireQuestionListVC {
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
-        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .groupQuestion, sort: .recent)
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .group, sort: .recent)
     }
     
     /// activityIndicator 설정 메서드
@@ -175,12 +175,12 @@ extension EntireQuestionListVC: UITableViewDelegate {
             self.makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순",
                                         okAction: { _ in
                 self.selectActionSheetIndex = 0
-                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .recent)
+                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .group, sort: .recent)
                 self.entireQuestionListTV.reloadSections([0], with: .fade)
             },
                                         secondOkAction: { _ in
                 self.selectActionSheetIndex = 1
-                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .like)
+                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .group, sort: .like)
                 self.entireQuestionListTV.reloadSections([0], with: .fade)
             })
         }
@@ -214,7 +214,7 @@ extension EntireQuestionListVC: UITableViewDelegate {
 extension EntireQuestionListVC {
     
     /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
-    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: ClassroomPostType, sort: ListSortType) {
+    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: QuestionType, sort: ListSortType) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getGroupQuestionOrInfoListAPI(majorID: majorID, postTypeID: postTypeID.rawValue, sort: sort) { networkResult in
             switch networkResult {

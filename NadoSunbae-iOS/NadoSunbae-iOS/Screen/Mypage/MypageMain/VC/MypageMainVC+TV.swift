@@ -33,14 +33,13 @@ extension MypageMainVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-        guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+        let chatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
+        guard let personalChatVC = chatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
         
-        // TODO: 추후에 Usertype, isWriter 정보도 함께 넘길 예정(?)
-        groupChatVC.questionType = .personal
-        groupChatVC.naviStyle = .push
-        groupChatVC.chatPostID = self.questionList[indexPath.row].postID
+        personalChatVC.questionType = .personal
+        personalChatVC.naviStyle = .push
+        personalChatVC.chatPostID = self.questionList[indexPath.row].postID
         
-        self.navigationController?.pushViewController(groupChatVC, animated: true)
+        self.navigationController?.pushViewController(personalChatVC, animated: true)
     }
 }
