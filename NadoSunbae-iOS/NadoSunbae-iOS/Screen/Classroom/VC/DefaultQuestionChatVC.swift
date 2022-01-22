@@ -182,6 +182,8 @@ extension DefaultQuestionChatVC {
             sendAreaTextView.text = "답글쓰기"
         case .info:
             print("info")
+        default:
+            print("Review")
         }
         
         sendAreaTextView.textColor = .gray2
@@ -238,6 +240,8 @@ extension DefaultQuestionChatVC {
                         questionNaviBar.configureTitleLabel(title: "질문")
                     case .info:
                         questionNaviBar.configureTitleLabel(title: "정보글")
+                    default:
+                        print("Review")
                     }
                 }
             case .present:
@@ -254,6 +258,8 @@ extension DefaultQuestionChatVC {
                         questionNaviBar.configureTitleLabel(title: "질문")
                     case .info:
                         questionNaviBar.configureTitleLabel(title: "정보글")
+                    default:
+                        print("None-Data")
                     }
                 }
             }
