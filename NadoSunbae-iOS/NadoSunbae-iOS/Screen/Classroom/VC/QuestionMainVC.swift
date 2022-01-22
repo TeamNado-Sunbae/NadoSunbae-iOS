@@ -183,12 +183,12 @@ extension QuestionMainVC {
     /// 선택된 전공정보에 따라 서버통신 요청하는 메서드
     @objc
     func updateDataBySelectedMajor() {
-        requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .groupQuestion, sort: .recent)
+        requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .group, sort: .recent)
     }
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
-        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .groupQuestion, sort: .recent)
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .group, sort: .recent)
     }
     
     /// ActivateIndicator 추가 메서드
@@ -285,7 +285,7 @@ extension QuestionMainVC: UITableViewDelegate {
 extension QuestionMainVC {
     
     /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
-    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: ClassroomPostType, sort: ListSortType) {
+    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: QuestionType, sort: ListSortType) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getGroupQuestionOrInfoListAPI(majorID: majorID, postTypeID: postTypeID.rawValue, sort: sort) { networkResult in
             switch networkResult {

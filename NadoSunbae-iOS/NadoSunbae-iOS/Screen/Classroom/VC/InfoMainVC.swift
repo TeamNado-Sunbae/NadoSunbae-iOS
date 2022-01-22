@@ -264,7 +264,7 @@ extension InfoMainVC: UITableViewDelegate {
 extension InfoMainVC {
     
     /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
-    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: ClassroomPostType, sort: ListSortType) {
+    func requestGetGroupOrInfoListData(majorID: Int, postTypeID: QuestionType, sort: ListSortType) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getGroupQuestionOrInfoListAPI(majorID: majorID, postTypeID: postTypeID.rawValue, sort: sort) { networkResult in
             switch networkResult {

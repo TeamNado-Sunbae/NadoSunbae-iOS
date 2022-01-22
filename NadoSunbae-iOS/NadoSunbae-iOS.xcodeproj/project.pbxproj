@@ -72,7 +72,6 @@
 		338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338CDB05278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib */; };
 		3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */; };
 		3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */; };
-		33A15F6B27994FAD006FE040 /* ClassroomPostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A15F6A27994FAD006FE040 /* ClassroomPostType.swift */; };
 		33A15F732799DDDE006FE040 /* AddCommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A15F722799DDDE006FE040 /* AddCommentData.swift */; };
 		33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFCFE278C004700BFF6BE /* ClassroomCommentTVC.swift */; };
 		33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */; };
@@ -265,7 +264,6 @@
 		338CDB05278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomQuestionEditTVC.xib; sourceTree = "<group>"; };
 		3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionTVC.swift; sourceTree = "<group>"; };
 		3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomQuestionTVC.xib; sourceTree = "<group>"; };
-		33A15F6A27994FAD006FE040 /* ClassroomPostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomPostType.swift; sourceTree = "<group>"; };
 		33A15F722799DDDE006FE040 /* AddCommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentData.swift; sourceTree = "<group>"; };
 		33BAFCFE278C004700BFF6BE /* ClassroomCommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomCommentTVC.swift; sourceTree = "<group>"; };
 		33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomCommentTVC.xib; sourceTree = "<group>"; };
@@ -521,7 +519,6 @@
 				5C32801E27973E1A00781EBE /* ListSortType.swift */,
 				3386010327988D0500C47D36 /* ActionSheetCase.swift */,
 				338601052798B1F800C47D36 /* NaviType.swift */,
-				33A15F6A27994FAD006FE040 /* ClassroomPostType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1542,7 +1539,6 @@
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
-				33A15F6B27994FAD006FE040 /* ClassroomPostType.swift in Sources */,
 				5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */,
 				77AEEB482789AF4D0016880B /* AppContentDataModel.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
