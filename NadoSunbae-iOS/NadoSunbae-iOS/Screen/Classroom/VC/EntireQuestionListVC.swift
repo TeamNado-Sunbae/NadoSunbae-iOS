@@ -41,7 +41,6 @@ class EntireQuestionListVC: BaseVC {
         registerXib()
         setUpTapFloatingBtn()
         setUpTapNaviBackBtn()
-        addActivateIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,12 +121,6 @@ extension EntireQuestionListVC {
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
         requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .group, sort: .recent)
-    }
-    
-    /// activityIndicator 설정 메서드
-    private func addActivateIndicator() {
-        activityIndicator.center = CGPoint(x: 100.adjusted, y: view.center.y)
-        self.view.addSubview(self.activityIndicator)
     }
 }
 
@@ -215,7 +208,6 @@ extension EntireQuestionListVC {
     
     /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
     func requestGetGroupOrInfoListData(majorID: Int, postTypeID: QuestionType, sort: ListSortType) {
-        self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getGroupQuestionOrInfoListAPI(majorID: majorID, postTypeID: postTypeID.rawValue, sort: sort) { networkResult in
             switch networkResult {
             case .success(let res):
@@ -224,25 +216,20 @@ extension EntireQuestionListVC {
                     DispatchQueue.main.async {
                         self.entireQuestionListTV.reloadData()
                     }
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
                 }
-                self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             case .pathErr:
                 print("pathErr")
-                self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             case .serverErr:
                 print("serverErr")
-                self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "서버 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             case .networkFail:
                 print("networkFail")
-                self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
