@@ -67,7 +67,7 @@ class MypageUserVC: BaseVC {
     }
     
     // MARK: @IBAction
-    @IBAction func tapPersonalQuestionBtn(_ sender: Any) {
+    @IBAction func tapPersonalQuestionWriteBtn(_ sender: Any) {
         if self.userInfo.isOnQuestion {
             let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
             guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
@@ -79,6 +79,7 @@ class MypageUserVC: BaseVC {
             self.present(writeQuestionVC, animated: true, completion: nil)
         }
     }
+    
     @IBAction func tapSortBtn(_ sender: UIButton) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -204,5 +205,27 @@ extension MypageUserVC {
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
+    }
+    
+    /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
+    func requestGetDetailQuestionData(chatPostID: Int) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.getQuestionDetailAPI(chatPostID: chatPostID) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let _ = res as? ClassroomQuestionDetailData {
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }

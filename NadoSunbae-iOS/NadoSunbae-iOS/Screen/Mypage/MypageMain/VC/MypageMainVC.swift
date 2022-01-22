@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MypageMainVC: UIViewController {
+class MypageMainVC: BaseVC {
     
     // MARK: @IBOutlet
     @IBOutlet weak var navView: UIView!
@@ -150,6 +150,7 @@ extension MypageMainVC {
     }
     
     private func getUserPersonalQuestionList() {
+        self.activityIndicator.startAnimating()
         MypageAPI.shared.getUserPersonalQuestionList(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, sort: .recent, completion: { networkResult in
             switch networkResult {
             case .success(let res):
@@ -165,14 +166,17 @@ extension MypageMainVC {
                         self.questionTV.layoutIfNeeded()
                         self.questionTV.rowHeight = UITableView.automaticDimension
                         self.questionTVHeight.constant = self.questionTV.contentSize.height
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
                 }
             default:
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
             }
         }) 
     }
