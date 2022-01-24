@@ -142,3 +142,4 @@ iOSInjectionProject/
 # End of https://www.toptal.com/developers/gitignore/api/xcode,swift,macos,cocoapods
 CertificateSigningRequest.certSigningRequest
 nadosunbae-cert.p12
+나도선배 릴리즈 apn 인증키.p12
