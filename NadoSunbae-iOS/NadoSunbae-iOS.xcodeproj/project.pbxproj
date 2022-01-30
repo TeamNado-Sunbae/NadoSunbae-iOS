@@ -123,6 +123,7 @@
 		5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */; };
 		5C91647E279A9F0B008DD44B /* MajorUserListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */; };
 		5C9A93F727A64B550097310B /* SignUpBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9A93F627A64B550097310B /* SignUpBodyModel.swift */; };
+		5C9A93F927A64FB20097310B /* SignUpDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9A93F827A64FB20097310B /* SignUpDataModel.swift */; };
 		5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA73378278A8F4900806B17 /* NadoAlertVC.swift */; };
 		5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */; };
 		5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */; };
@@ -317,6 +318,7 @@
 		5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMajorInfoVC.swift; sourceTree = "<group>"; };
 		5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorUserListDataModel.swift; sourceTree = "<group>"; };
 		5C9A93F627A64B550097310B /* SignUpBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBodyModel.swift; sourceTree = "<group>"; };
+		5C9A93F827A64FB20097310B /* SignUpDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataModel.swift; sourceTree = "<group>"; };
 		5CA73378278A8F4900806B17 /* NadoAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoAlertVC.swift; sourceTree = "<group>"; };
 		5CA7337A278A91BE00806B17 /* NadoAlertVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoAlertVC.xib; sourceTree = "<group>"; };
 		5CA7E40F278BC18D00D748E0 /* SelectMajorModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorModalVC.swift; sourceTree = "<group>"; };
@@ -1019,6 +1021,7 @@
 			children = (
 				5C873A4A279978650050EE43 /* SignInDataModel.swift */,
 				5C9A93F627A64B550097310B /* SignUpBodyModel.swift */,
+				5C9A93F827A64FB20097310B /* SignUpDataModel.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -1453,6 +1456,7 @@
 				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
 				5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */,
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
+				5C9A93F927A64FB20097310B /* SignUpDataModel.swift in Sources */,
 				5C87EC22279A2D2C0039D935 /* CreateClassroomPostModel.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
