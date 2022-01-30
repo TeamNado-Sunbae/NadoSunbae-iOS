@@ -33,6 +33,22 @@ extension SignAPI {
             }
         }
     }
+    
+    /// [POST] 회원가입 요청
+    func signUp(userData: SignUpBodyModel, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.signUp(userData: userData)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.signUpJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - judgeData
@@ -41,6 +57,23 @@ extension SignAPI {
         let decoder = JSONDecoder()
         
         guard let decodedData = try? decoder.decode(GenericResponse<SignInDataModel>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func signUpJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        
+        guard let decodedData = try? decoder.decode(GenericResponse<SignUpDataModel>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
