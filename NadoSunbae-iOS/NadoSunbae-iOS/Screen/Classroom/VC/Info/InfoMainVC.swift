@@ -31,11 +31,11 @@ class InfoMainVC: BaseVC {
     
     private let infoQuestionListTV = UITableView().then {
         $0.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        $0.removeSeparatorsOfEmptyCellsAndLastCell()
         $0.isScrollEnabled = false
         $0.layer.cornerRadius = 8
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray0.cgColor
+        $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
     private let infoFloatingBtn = UIButton().then {
@@ -47,8 +47,6 @@ class InfoMainVC: BaseVC {
     private var selectActionSheetIndex = 0
     private var questionList: [ClassroomPostList] = []
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
-    var tvHeight = 0
-    var originalHeight = 0
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -102,6 +100,7 @@ extension InfoMainVC {
             $0.top.equalTo(arrangeBtn.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(24)
             $0.trailing.equalToSuperview().offset(-24)
+            $0.height.equalTo(500)
             $0.bottom.equalToSuperview().offset(-24)
         }
         
@@ -127,7 +126,7 @@ extension InfoMainVC {
     
     /// 셀 등록 메서드
     private func registerCell() {
-        infoQuestionListTV.register(InfoListTVC.self, forCellReuseIdentifier: InfoListTVC.className)
+        infoQuestionListTV.register(BaseQuestionTVC.self, forCellReuseIdentifier: BaseQuestionTVC.className)
         infoQuestionListTV.register(QuestionEmptyTVC.self, forCellReuseIdentifier: QuestionEmptyTVC.className)
     }
     
@@ -165,35 +164,14 @@ extension InfoMainVC {
             }, secondOkAction: { _ in
                 self.arrangeBtn.setBackgroundImage(UIImage(named: "property1Variant3"), for: .normal)
                 self.setUpRequestData(sortType: .like)
-//                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .info, sort: .like)
             })
         }
-    }
-    
-    /// entireQuestionTV 높이를 구성하는 메서드
-    private func configureQuestionTVHeight() {
-        if questionList.count == 0 {
-            tvHeight = Int(515.adjustedH)
-        } else {
-            tvHeight = questionList.count * Int(116.adjustedH)
-        }
-        
-        if originalHeight == 0 {
-            self.infoQuestionListTV.snp.makeConstraints {
-                $0.height.equalTo(tvHeight)
-            }
-        } else if originalHeight != tvHeight {
-            self.infoQuestionListTV.snp.updateConstraints {
-                $0.height.equalTo(tvHeight)
-            }
-        }
-        originalHeight = tvHeight
     }
     
     /// 선택된 전공정보로 서버통신 요청하는 메서드
     @objc
     func updateDataBySelectedMajor() {
-        requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .info, sort: .recent)
+        setUpRequestData(sortType: .recent)
     }
     
     /// 정보 segment를 눌렀을 때 실행되는 액션 메서드
@@ -225,7 +203,7 @@ extension InfoMainVC: UITableViewDataSource {
             emptyCell.setUpEmptyQuestionLabelText(text: "등록된 정보글이 없습니다.")
             return emptyCell
         } else {
-            guard let infoCell = tableView.dequeueReusableCell(withIdentifier: InfoListTVC.className, for: indexPath) as? InfoListTVC else { return UITableViewCell() }
+            guard let infoCell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath) as? BaseQuestionTVC else { return UITableViewCell() }
             infoCell.setData(data: questionList[indexPath.row])
             infoCell.backgroundColor = .white
             infoCell.layoutIfNeeded()
@@ -237,12 +215,21 @@ extension InfoMainVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension InfoMainVC: UITableViewDelegate {
     
+    /// estimatedHeightForRowAt
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if questionList.count == 0 {
+            return 515
+        } else {
+            return 120
+        }
+    }
+    
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if questionList.count == 0 {
-            return 515.adjustedH
+            return 515
         } else {
-            return 116.adjustedH
+            return UITableView.automaticDimension
         }
     }
     
@@ -272,8 +259,10 @@ extension InfoMainVC {
                 if let data = res as? [ClassroomPostList] {
                     self.questionList = data
                     DispatchQueue.main.async {
-                        self.configureQuestionTVHeight()
                         self.infoQuestionListTV.reloadData()
+                        self.infoQuestionListTV.snp.updateConstraints {
+                            $0.height.equalTo(self.infoQuestionListTV.contentSize.height)
+                        }
                     }
                     self.activityIndicator.stopAnimating()
                 }
