@@ -19,6 +19,7 @@ class EntireQuestionListVC: BaseVC {
     }
     
     private let entireQuestionListTV = UITableView().then {
+        $0.rowHeight = UITableView.automaticDimension
         $0.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
@@ -44,7 +45,7 @@ class EntireQuestionListVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpRequestData()
+        setUpRequestData(sortType: .recent)
         self.tabBarController?.tabBar.isHidden = false
     }
 }
@@ -65,6 +66,7 @@ extension EntireQuestionListVC {
         entireQuestionListTV.snp.makeConstraints {
             $0.top.equalTo(entireQuestionNaviBar.snp.bottom)
             $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(236)
             $0.bottom.equalToSuperview()
         }
         
@@ -119,8 +121,8 @@ extension EntireQuestionListVC {
     }
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
-    private func setUpRequestData() {
-        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .group, sort: .recent)
+    private func setUpRequestData(sortType: ListSortType) {
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .group, sort: sortType)
     }
 }
 
@@ -146,8 +148,8 @@ extension EntireQuestionListVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension EntireQuestionListVC: UITableViewDelegate {
     
-    /// heightForRowAt
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    /// estimatedHeightForRowAt
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
     
@@ -168,12 +170,13 @@ extension EntireQuestionListVC: UITableViewDelegate {
             self.makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순",
                                         okAction: { _ in
                 self.selectActionSheetIndex = 0
+                self.setUpRequestData(sortType: .recent)
                 self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .group, sort: .recent)
                 self.entireQuestionListTV.reloadSections([0], with: .fade)
             },
                                         secondOkAction: { _ in
                 self.selectActionSheetIndex = 1
-                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .group, sort: .like)
+                self.setUpRequestData(sortType: .like)
                 self.entireQuestionListTV.reloadSections([0], with: .fade)
             })
         }
@@ -215,6 +218,10 @@ extension EntireQuestionListVC {
                     self.questionList = data
                     DispatchQueue.main.async {
                         self.entireQuestionListTV.reloadData()
+                        self.entireQuestionListTV.layoutIfNeeded()
+                        self.entireQuestionListTV.snp.updateConstraints {
+                            $0.height.equalTo(self.entireQuestionListTV.contentSize.height)
+                        }
                     }
                 }
             case .requestErr(let msg):
