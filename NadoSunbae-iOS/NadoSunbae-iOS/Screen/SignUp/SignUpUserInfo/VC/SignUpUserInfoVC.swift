@@ -11,7 +11,7 @@ import RxCocoa
 
 class SignUpUserInfoVC: BaseVC {
     
-    // MARK: Properties
+    // MARK: @IBOutlet
     @IBOutlet weak var checkDuplicateBtn: NadoSunbaeBtn!
     @IBOutlet weak var checkEmailBtn: NadoSunbaeBtn!
     @IBOutlet weak var nickNameTextField: NadoTextField!
@@ -30,8 +30,10 @@ class SignUpUserInfoVC: BaseVC {
     @IBOutlet weak var prevBtn: NadoSunbaeBtn!
     @IBOutlet weak var completeBtn: NadoSunbaeBtn!
     
+    // MARK: Properties
     let disposeBag = DisposeBag()
     var isCompleteList = [false, false, false]
+    var signUpData = SignUpBodyModel()
     
     // MARK: LifeCycle
     override func viewDidLoad() {

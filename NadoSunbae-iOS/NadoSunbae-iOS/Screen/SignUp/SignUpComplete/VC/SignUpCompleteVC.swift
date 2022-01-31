@@ -9,10 +9,13 @@ import UIKit
 
 class SignUpCompleteVC: BaseVC {
     
-    // MARK: Properties
+    // MARK: @IBOutlet
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var enterBtn: NadoSunbaeBtn!
+    
+    // MARK: Properties
+    var signUpData = SignUpBodyModel()
     
     // MARK: LifeCycle
     override func viewDidLoad() {
