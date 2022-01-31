@@ -8,14 +8,14 @@
 import Foundation
 
 struct SignUpBodyModel: Codable {
-    var email: String
-    var nickName: String
-    var PW: String
-    var universityID: Int
-    var firstMajorID: Int
-    var firstMajorStart: String
-    var secondMajorID: Int
-    var secondMajorStart: String
+    var email: String = ""
+    var nickName: String = ""
+    var PW: String = ""
+    var universityID: Int = 0
+    var firstMajorID: Int = 0
+    var firstMajorStart: String = ""
+    var secondMajorID: Int = 0
+    var secondMajorStart: String = ""
     
     enum CodingKeys: String, CodingKey {
         case email = "email"
