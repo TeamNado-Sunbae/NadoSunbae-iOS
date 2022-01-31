@@ -41,8 +41,6 @@ class QuestionMainVC: BaseVC {
     private var questionList: [ClassroomPostList] = []
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     let halfVC = HalfModalVC()
-    var tvHeight = 0
-    var originalHeight = 0
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -52,8 +50,8 @@ class QuestionMainVC: BaseVC {
         setUpTapInfoBtn()
         registerCell()
         setUpTapPersonalQuestionBtn()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
         addActivateIndicator()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +65,7 @@ extension QuestionMainVC {
     
     /// 전체 UI를 구성하는 메서드
     private func configureUI() {
-        
+
         view.addSubview(questionSV)
         questionSV.addSubview(contentView)
         contentView.addSubviews([questionSegmentView, personalQuestionBtn, entireQuestionTitleLabel, entireQuestionTV])
@@ -106,32 +104,11 @@ extension QuestionMainVC {
         entireQuestionTV.snp.makeConstraints {
             $0.top.equalTo(entireQuestionTitleLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalTo(personalQuestionBtn)
+            $0.height.equalTo(236)
             $0.bottom.equalToSuperview().offset(-24)
         }
         
         entireQuestionTV.separatorColor = .gray1
-    }
-    
-    /// entireQuestionTV 높이를 구성하는 메서드
-    private func configureQuestionTVHeight() {
-        if self.questionList.count > 5 {
-            tvHeight = 70 + 5 * 120 + 40
-        } else if self.questionList.count == 0 {
-            tvHeight = 70 + 236
-        } else {
-            tvHeight = 70 + self.questionList.count * 120
-        }
-        
-        if originalHeight == 0 {
-            self.entireQuestionTV.snp.makeConstraints {
-                $0.height.equalTo(tvHeight)
-            }
-        } else if originalHeight != tvHeight {
-            self.entireQuestionTV.snp.updateConstraints {
-                $0.height.equalTo(tvHeight)
-            }
-        }
-        originalHeight = tvHeight
     }
 }
 
@@ -248,13 +225,27 @@ extension QuestionMainVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension QuestionMainVC: UITableViewDelegate {
     
+    /// estimatedHeightForRowAt
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 70
+        case 1:
+            return (questionList.count == 0 ? 236 : 120)
+        case 2:
+            return (questionList.count > 5 ? 40 : 0)
+        default:
+            return 0
+        }
+    }
+    
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
             return 70
         case 1:
-            return (questionList.count == 0 ? 236 : 120)
+            return (questionList.count == 0 ? 236 : UITableView.automaticDimension)
         case 2:
             return (questionList.count > 5 ? 40 : 0)
         default:
@@ -294,7 +285,10 @@ extension QuestionMainVC {
                     self.questionList = data
                     DispatchQueue.main.async {
                         self.entireQuestionTV.reloadData()
-                        self.configureQuestionTVHeight()
+                        self.entireQuestionTV.layoutIfNeeded()
+                        self.entireQuestionTV.snp.updateConstraints {
+                            $0.height.equalTo(self.entireQuestionTV.contentSize.height)
+                        }
                     }
                     self.activityIndicator.stopAnimating()
                 }
