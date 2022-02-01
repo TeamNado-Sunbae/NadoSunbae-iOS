@@ -79,7 +79,6 @@ class DefaultQuestionChatVC: BaseVC {
         setUpNaviInitStyle()
         registerXib()
         optionalBindingData()
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -94,7 +93,7 @@ class DefaultQuestionChatVC: BaseVC {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+        removeKeyboardObserver()
     }
     
     // MARK: IBAction
@@ -211,7 +210,6 @@ extension DefaultQuestionChatVC {
             self.defaultQuestionChatTV.scrollToRow(at: pathToLastRow as IndexPath, at: UITableView.ScrollPosition.none, animated: animate)
         }
     }
-    
 }
 
 // MARK: - Custom Methods
@@ -612,6 +610,12 @@ extension DefaultQuestionChatVC {
             sendBtnBottom.constant = 0
             defaultQuestionChatTV.fitContentInset(inset: .zero)
         }
+    }
+    
+    /// Keyboard Observer remove 메서드
+    private func removeKeyboardObserver() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 

@@ -29,7 +29,7 @@
                         <rect key="frame" x="32" y="8" width="272" height="197"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6시 30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvn-5I-kJU">
-                                <rect key="frame" x="16" y="16" width="39.5" height="21"/>
+                                <rect key="frame" x="16" y="16" width="42.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="vy4-lL-3uV"/>
                                 </constraints>
@@ -38,7 +38,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 때를 놓치면 큰일나요 !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upB-yU-3X8">
-                                <rect key="frame" x="16" y="37" width="120.5" height="14"/>
+                                <rect key="frame" x="16" y="37" width="119" height="14"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <color key="textColor" name="mainDark"/>
                                 <nil key="highlightedColor"/>

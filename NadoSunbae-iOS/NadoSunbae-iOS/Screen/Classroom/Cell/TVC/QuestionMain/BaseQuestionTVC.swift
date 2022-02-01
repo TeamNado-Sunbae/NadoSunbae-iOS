@@ -73,12 +73,6 @@ class BaseQuestionTVC: BaseTVC {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16))
-    }
 }
 
 // MARK: - UI
@@ -89,20 +83,20 @@ extension BaseQuestionTVC {
         contentView.addSubviews([questionTitleLabel, questionContentLabel, nicknameLabel, questionTimeLabel, commentImgView, commentCountLabel, likeImgView, likeCountLabel])
         
         questionTitleLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(12)
-            $0.trailing.equalToSuperview().offset(-4)
+            $0.top.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
         }
         
         questionContentLabel.snp.makeConstraints {
             $0.top.equalTo(questionTitleLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview().offset(12)
-            $0.trailing.equalToSuperview().offset(-4)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.height.lessThanOrEqualTo(44)
         }
         
         nicknameLabel.snp.makeConstraints {
             $0.top.equalTo(questionContentLabel.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(12)
+            $0.leading.equalToSuperview().offset(16)
             $0.bottom.equalToSuperview().offset(-18)
         }
         
