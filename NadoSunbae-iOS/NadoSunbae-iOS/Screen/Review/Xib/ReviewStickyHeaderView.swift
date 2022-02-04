@@ -16,6 +16,7 @@ class ReviewStickyHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Properties
     var tapArrangeBtnAction : (() -> ())?
+    var tapFilterBtnAction : (() -> ())?
     
     // TODO: drop shadow 효과 추가 예정
     func addShadowToHeaderView() {
@@ -25,5 +26,9 @@ class ReviewStickyHeaderView: UITableViewHeaderFooterView {
     // MARK: IBAction
     @IBAction func tapArrangeBtn(_ sender: UIButton) {
         tapArrangeBtnAction?()
+    }
+    
+    @IBAction func tapFilterBtn(_ sender: UIButton) {
+        tapFilterBtnAction?()
     }
 }

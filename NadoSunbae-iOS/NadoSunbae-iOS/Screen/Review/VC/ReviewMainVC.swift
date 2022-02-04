@@ -156,10 +156,18 @@ extension ReviewMainVC {
 // MARK: - @objc Function Part
 extension ReviewMainVC {
     
-    /// 바텀시트 호출
+    /// 학과 선택 바텀시트 호출
     @objc func showHalfModalView() {
         let slideVC = HalfModalVC()
         slideVC.selectMajorDelegate = self
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
+    /// 필터 선택 바텀시트 호출
+    @objc func showFilterVC() {
+        let slideVC = FilterVC()
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         self.present(slideVC, animated: true, completion: nil)
@@ -213,6 +221,9 @@ extension ReviewMainVC: UITableViewDelegate {
             
             headerView.tapArrangeBtnAction = {
                 self.showActionSheet()
+            }
+            headerView.tapFilterBtnAction = {
+                self.showFilterVC()
             }
             return headerView
         } else {
