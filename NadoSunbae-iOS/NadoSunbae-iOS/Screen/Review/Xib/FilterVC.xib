@@ -1,22 +1,325 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Medium.otf">
+            <string>Pretendard-Medium</string>
+        </array>
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterVC" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="badClassView" destination="h17-UJ-iC3" id="iJr-eK-IUw"/>
+                <outlet property="completeBtn" destination="fV4-sr-RBq" id="KBM-aV-B8R"/>
+                <outlet property="futureJobView" destination="ZxZ-mP-U21" id="MUa-ur-tiX"/>
+                <outlet property="learnInfoView" destination="n4f-c7-fSn" id="eqP-WI-0eI"/>
+                <outlet property="majorView" destination="0X7-UM-SiY" id="1RZ-Mj-1Gp"/>
+                <outlet property="recommendClassView" destination="5kd-6E-U6m" id="Yb2-qL-AWZ"/>
+                <outlet property="resetView" destination="EOc-2Q-VRq" id="xj8-Fi-iNb"/>
+                <outlet property="secondMajorView" destination="Lsv-rH-G4y" id="hQ5-B5-OHP"/>
+                <outlet property="tipView" destination="ILQ-9b-IYK" id="9gH-hg-C9J"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="632"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필터" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTi-hF-c7b">
+                    <rect key="frame" x="24" y="24" width="28" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ws3-FI-Bfg">
+                    <rect key="frame" x="16" y="58.5" width="343" height="1"/>
+                    <color key="backgroundColor" name="mainDefault"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fhF-nV-YM6"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uef-0b-BCs">
+                    <rect key="frame" x="319" y="14" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Lio-ck-R1y"/>
+                        <constraint firstAttribute="height" constant="40" id="Ltx-GX-skY"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="btnX"/>
+                    <connections>
+                        <action selector="tapDismissBtn:" destination="-1" eventType="touchUpInside" id="3ic-bS-8xg"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작성자" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZy-N6-xJE">
+                    <rect key="frame" x="32" y="102.5" width="41.5" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0X7-UM-SiY">
+                    <rect key="frame" x="32" y="138" width="72" height="32"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nlf-F3-Buw">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="32"/>
+                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="본전공생">
+                                <color key="titleColor" name="gray3"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="gray0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="00g-GF-NJ5"/>
+                        <constraint firstAttribute="trailing" secondItem="Nlf-F3-Buw" secondAttribute="trailing" id="1ay-2G-jSD"/>
+                        <constraint firstAttribute="bottom" secondItem="Nlf-F3-Buw" secondAttribute="bottom" id="3LR-RJ-KbA"/>
+                        <constraint firstItem="Nlf-F3-Buw" firstAttribute="leading" secondItem="0X7-UM-SiY" secondAttribute="leading" id="6oK-Pc-TLa"/>
+                        <constraint firstAttribute="height" constant="32" id="8tU-3z-JGX"/>
+                        <constraint firstItem="Nlf-F3-Buw" firstAttribute="top" secondItem="0X7-UM-SiY" secondAttribute="top" id="CrK-oQ-WRX"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lsv-rH-G4y">
+                    <rect key="frame" x="116" y="138" width="81" height="32"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SfP-yG-q78">
+                            <rect key="frame" x="0.0" y="0.0" width="81" height="32"/>
+                            <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="제2전공생">
+                                <color key="titleColor" name="gray3"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="gray0"/>
+                    <constraints>
+                        <constraint firstItem="SfP-yG-q78" firstAttribute="top" secondItem="Lsv-rH-G4y" secondAttribute="top" id="Gae-xI-bDV"/>
+                        <constraint firstAttribute="trailing" secondItem="SfP-yG-q78" secondAttribute="trailing" id="H3F-ey-xXt"/>
+                        <constraint firstAttribute="bottom" secondItem="SfP-yG-q78" secondAttribute="bottom" id="Jfd-y6-V89"/>
+                        <constraint firstAttribute="height" constant="32" id="MxB-Wu-iip"/>
+                        <constraint firstItem="SfP-yG-q78" firstAttribute="leading" secondItem="Lsv-rH-G4y" secondAttribute="leading" id="fqg-VU-dFG"/>
+                        <constraint firstAttribute="width" constant="81" id="hv6-zf-Prg"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후기 내용" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6N-dF-cCb">
+                    <rect key="frame" x="32" y="218" width="59.5" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3mr-jU-71b">
+                    <rect key="frame" x="32" y="253.5" width="270" height="32"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4f-c7-fSn">
+                            <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cN9-ZN-NTJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="뭘 배우나요?">
+                                        <color key="titleColor" name="gray3"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="gray0"/>
+                            <constraints>
+                                <constraint firstItem="cN9-ZN-NTJ" firstAttribute="leading" secondItem="n4f-c7-fSn" secondAttribute="leading" id="Txp-pb-QLe"/>
+                                <constraint firstItem="cN9-ZN-NTJ" firstAttribute="top" secondItem="n4f-c7-fSn" secondAttribute="top" id="b5P-pm-Zsg"/>
+                                <constraint firstAttribute="bottom" secondItem="cN9-ZN-NTJ" secondAttribute="bottom" id="bKx-Oe-oM3"/>
+                                <constraint firstAttribute="width" constant="94" id="gSq-C4-ouA"/>
+                                <constraint firstAttribute="trailing" secondItem="cN9-ZN-NTJ" secondAttribute="trailing" id="yfX-lv-4lt"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h17-UJ-iC3">
+                            <rect key="frame" x="106" y="0.0" width="76" height="32"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9He-4K-Q59">
+                                    <rect key="frame" x="0.0" y="0.0" width="76" height="32"/>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="비추 수업">
+                                        <color key="titleColor" name="gray3"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="gray0"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="9He-4K-Q59" secondAttribute="bottom" id="1Cn-Em-QwU"/>
+                                <constraint firstItem="9He-4K-Q59" firstAttribute="top" secondItem="h17-UJ-iC3" secondAttribute="top" id="6Ot-vY-3ye"/>
+                                <constraint firstAttribute="width" constant="76" id="9vu-tv-nB7"/>
+                                <constraint firstItem="9He-4K-Q59" firstAttribute="leading" secondItem="h17-UJ-iC3" secondAttribute="leading" id="B51-I5-3bf"/>
+                                <constraint firstAttribute="trailing" secondItem="9He-4K-Q59" secondAttribute="trailing" id="Nwp-2g-lL5"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kd-6E-U6m">
+                            <rect key="frame" x="194" y="0.0" width="76" height="32"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sq1-hO-UE8">
+                                    <rect key="frame" x="0.0" y="0.0" width="76" height="32"/>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="추천 수업">
+                                        <color key="titleColor" name="gray3"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="gray0"/>
+                            <constraints>
+                                <constraint firstItem="Sq1-hO-UE8" firstAttribute="top" secondItem="5kd-6E-U6m" secondAttribute="top" id="65c-ir-yLS"/>
+                                <constraint firstAttribute="trailing" secondItem="Sq1-hO-UE8" secondAttribute="trailing" id="JOX-Ah-Kt7"/>
+                                <constraint firstItem="Sq1-hO-UE8" firstAttribute="leading" secondItem="5kd-6E-U6m" secondAttribute="leading" id="UpN-F4-vrq"/>
+                                <constraint firstAttribute="width" constant="76" id="nwJ-zJ-sMk"/>
+                                <constraint firstAttribute="bottom" secondItem="Sq1-hO-UE8" secondAttribute="bottom" id="uaT-Qm-i8G"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="MZb-i8-64T"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wzb-qW-0sd">
+                    <rect key="frame" x="32" y="297.5" width="137" height="32"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZxZ-mP-U21">
+                            <rect key="frame" x="0.0" y="0.0" width="76" height="32"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJh-2M-oLE">
+                                    <rect key="frame" x="0.0" y="0.0" width="76" height="32"/>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="향후 진로">
+                                        <color key="titleColor" name="gray3"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="gray0"/>
+                            <constraints>
+                                <constraint firstItem="mJh-2M-oLE" firstAttribute="top" secondItem="ZxZ-mP-U21" secondAttribute="top" id="0KZ-ZK-vst"/>
+                                <constraint firstAttribute="bottom" secondItem="mJh-2M-oLE" secondAttribute="bottom" id="BdW-1N-KYt"/>
+                                <constraint firstAttribute="trailing" secondItem="mJh-2M-oLE" secondAttribute="trailing" id="Pev-Ms-LVb"/>
+                                <constraint firstItem="mJh-2M-oLE" firstAttribute="leading" secondItem="ZxZ-mP-U21" secondAttribute="leading" id="UM2-XG-Ctu"/>
+                                <constraint firstAttribute="width" constant="76" id="kw2-rT-Wqs"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILQ-9b-IYK">
+                            <rect key="frame" x="88" y="0.0" width="49" height="32"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpd-FI-XJ8">
+                                    <rect key="frame" x="0.0" y="0.0" width="49" height="32"/>
+                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="꿀팁">
+                                        <color key="titleColor" name="gray3"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="gray0"/>
+                            <constraints>
+                                <constraint firstItem="jpd-FI-XJ8" firstAttribute="top" secondItem="ILQ-9b-IYK" secondAttribute="top" id="Jlh-KV-Sun"/>
+                                <constraint firstAttribute="width" constant="49" id="RLr-Za-QPk"/>
+                                <constraint firstAttribute="trailing" secondItem="jpd-FI-XJ8" secondAttribute="trailing" id="dW3-Nv-E4G"/>
+                                <constraint firstItem="jpd-FI-XJ8" firstAttribute="leading" secondItem="ILQ-9b-IYK" secondAttribute="leading" id="oyd-NA-Rkl"/>
+                                <constraint firstAttribute="bottom" secondItem="jpd-FI-XJ8" secondAttribute="bottom" id="tiE-M0-w2S"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="7vs-az-9fo"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOc-2Q-VRq">
+                    <rect key="frame" x="32" y="538" width="84" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rM9-nQ-SmJ">
+                            <rect key="frame" x="24" y="12" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="36" id="ALe-qJ-iQc"/>
+                                <constraint firstAttribute="height" constant="36" id="a4l-eF-ve2"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="icRestart"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="mainLight"/>
+                    <constraints>
+                        <constraint firstItem="rM9-nQ-SmJ" firstAttribute="centerX" secondItem="EOc-2Q-VRq" secondAttribute="centerX" id="0Yj-D5-hYa"/>
+                        <constraint firstItem="rM9-nQ-SmJ" firstAttribute="centerY" secondItem="EOc-2Q-VRq" secondAttribute="centerY" id="PhI-BF-yva"/>
+                        <constraint firstAttribute="height" constant="60" id="mpW-s8-2lX"/>
+                        <constraint firstAttribute="width" constant="84" id="rk6-uB-99B"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fV4-sr-RBq" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                    <rect key="frame" x="128" y="538" width="215" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="gbD-m1-2Kt"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                </button>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ws3-FI-Bfg" firstAttribute="top" secondItem="hTi-hF-c7b" secondAttribute="bottom" constant="15" id="AuK-dq-ZtM"/>
+                <constraint firstItem="v6N-dF-cCb" firstAttribute="top" secondItem="0X7-UM-SiY" secondAttribute="bottom" constant="48" id="DyX-6E-XSg"/>
+                <constraint firstItem="3mr-jU-71b" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Eal-7O-Qgv"/>
+                <constraint firstItem="EOc-2Q-VRq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="FZa-dS-JPx"/>
+                <constraint firstItem="ws3-FI-Bfg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Gui-sL-wQk"/>
+                <constraint firstItem="Lsv-rH-G4y" firstAttribute="leading" secondItem="0X7-UM-SiY" secondAttribute="trailing" constant="12" id="JRP-1D-ief"/>
+                <constraint firstItem="Lsv-rH-G4y" firstAttribute="centerY" secondItem="Nlf-F3-Buw" secondAttribute="centerY" id="Jq0-LP-c7D"/>
+                <constraint firstItem="3mr-jU-71b" firstAttribute="top" secondItem="v6N-dF-cCb" secondAttribute="bottom" constant="16" id="KMN-s6-gU3"/>
+                <constraint firstItem="Uef-0b-BCs" firstAttribute="centerY" secondItem="hTi-hF-c7b" secondAttribute="centerY" id="LRW-2c-im8"/>
+                <constraint firstItem="0X7-UM-SiY" firstAttribute="top" secondItem="dZy-N6-xJE" secondAttribute="bottom" constant="16" id="PMC-gL-OfR"/>
+                <constraint firstItem="Wzb-qW-0sd" firstAttribute="top" secondItem="3mr-jU-71b" secondAttribute="bottom" constant="12" id="RJf-jL-Edg"/>
+                <constraint firstItem="v6N-dF-cCb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="TVJ-re-aUq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fV4-sr-RBq" secondAttribute="trailing" constant="32" id="UlE-uP-emD"/>
+                <constraint firstItem="fV4-sr-RBq" firstAttribute="leading" secondItem="EOc-2Q-VRq" secondAttribute="trailing" constant="12" id="V5i-0p-1Hb"/>
+                <constraint firstItem="dZy-N6-xJE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Xd5-Hw-gD0"/>
+                <constraint firstItem="hTi-hF-c7b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="dXJ-5I-xW5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Uef-0b-BCs" secondAttribute="trailing" constant="16" id="ed4-2Y-kWo"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ws3-FI-Bfg" secondAttribute="trailing" constant="16" id="f8E-1W-HPc"/>
+                <constraint firstItem="0X7-UM-SiY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="hbb-CO-mG2"/>
+                <constraint firstItem="hTi-hF-c7b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="sHG-F0-qa8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EOc-2Q-VRq" secondAttribute="bottom" constant="34" id="ss9-Hg-LiT"/>
+                <constraint firstItem="fV4-sr-RBq" firstAttribute="centerY" secondItem="EOc-2Q-VRq" secondAttribute="centerY" id="unl-KU-Wmu"/>
+                <constraint firstItem="Wzb-qW-0sd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="xvR-oT-URI"/>
+                <constraint firstItem="dZy-N6-xJE" firstAttribute="top" secondItem="ws3-FI-Bfg" secondAttribute="bottom" constant="43" id="zhc-MW-Su7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="97"/>
         </view>
     </objects>
+    <resources>
+        <image name="btnX" width="40" height="40"/>
+        <image name="icRestart" width="36" height="36"/>
+        <namedColor name="gray0">
+            <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray3">
+            <color red="0.58039215686274515" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainDefault">
+            <color red="0.0" green="0.78431372549019607" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainLight">
+            <color red="0.87450980392156863" green="0.96470588235294119" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
