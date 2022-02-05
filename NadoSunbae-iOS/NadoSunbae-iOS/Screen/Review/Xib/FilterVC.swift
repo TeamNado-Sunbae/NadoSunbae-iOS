@@ -16,14 +16,9 @@ class FilterVC: UIViewController {
     var isSelectedRecommendClassBtn = false
     var isSelectedFutureJobBtn = false
     var isSelectedTipBtn = false
+    var selectFilterDelegate: SendUpdateStatusDelegate?
 
-    @IBOutlet weak var completeBtn: NadoSunbaeBtn! {
-        didSet {
-            completeBtn.press {
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
+    @IBOutlet weak var completeBtn: NadoSunbaeBtn!
     @IBOutlet weak var resetBtn: UIButton! {
         didSet {
             resetBtn.press {
@@ -49,6 +44,7 @@ class FilterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tapCompleteBtnAction()
         configureDefaultUI()
     }
     
@@ -89,6 +85,18 @@ class FilterVC: UIViewController {
     @IBAction func tapTipBtn(_ sender: UIButton) {
         isSelectedTipBtn.toggle()
         configureBtnUI()
+    }
+    
+    private func tapCompleteBtnAction() {
+        completeBtn.press {
+            let filterStatus = true
+            if let selectFilterDelegate = self.selectFilterDelegate {
+                selectFilterDelegate.sendStatus(data: filterStatus)
+            }
+            self.dismiss(animated: true, completion: {
+                NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+            })
+        }
     }
 }
 
