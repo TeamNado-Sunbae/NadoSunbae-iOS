@@ -8,16 +8,8 @@
 import UIKit
 
 class FilterVC: UIViewController {
-    
-    var isSelectedMajorBtn = false
-    var isSelectedSecondMajorBtn = false
-    var isSelectedLearnInfoBtn = false
-    var isSelectedBadClassBtn = false
-    var isSelectedRecommendClassBtn = false
-    var isSelectedFutureJobBtn = false
-    var isSelectedTipBtn = false
-    var selectFilterDelegate: SendUpdateStatusDelegate?
 
+    // MARK: IBOutlet
     @IBOutlet weak var completeBtn: NadoSunbaeBtn!
     @IBOutlet weak var resetBtn: UIButton! {
         didSet {
@@ -42,12 +34,24 @@ class FilterVC: UIViewController {
     @IBOutlet weak var futureJobBtn: UIButton!
     @IBOutlet weak var tipBtn: UIButton!
     
+    // MARK: Properties
+    var isSelectedMajorBtn = false
+    var isSelectedSecondMajorBtn = false
+    var isSelectedLearnInfoBtn = false
+    var isSelectedBadClassBtn = false
+    var isSelectedRecommendClassBtn = false
+    var isSelectedFutureJobBtn = false
+    var isSelectedTipBtn = false
+    var selectFilterDelegate: SendUpdateStatusDelegate?
+    
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tapCompleteBtnAction()
         configureDefaultUI()
+        tapCompleteBtnAction()
     }
     
+    // MARK: IBAction
     @IBAction func tapDismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -86,20 +90,9 @@ class FilterVC: UIViewController {
         isSelectedTipBtn.toggle()
         configureBtnUI()
     }
-    
-    private func tapCompleteBtnAction() {
-        completeBtn.press {
-            let filterStatus = true
-            if let selectFilterDelegate = self.selectFilterDelegate {
-                selectFilterDelegate.sendStatus(data: filterStatus)
-            }
-            self.dismiss(animated: true, completion: {
-                NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
-            })
-        }
-    }
 }
 
+// MARK: - UI
 extension FilterVC {
     private func configureDefaultUI() {
         completeBtn.isActivated = false
@@ -184,6 +177,21 @@ extension FilterVC {
             completeBtn.isActivated = true
         } else {
             completeBtn.isActivated = false
+        }
+    }
+}
+
+// MARK: - Private Methods
+extension FilterVC {
+    private func tapCompleteBtnAction() {
+        completeBtn.press {
+            let filterStatus = true
+            if let selectFilterDelegate = self.selectFilterDelegate {
+                selectFilterDelegate.sendStatus(data: filterStatus)
+            }
+            self.dismiss(animated: true, completion: {
+                NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+            })
         }
     }
 }
