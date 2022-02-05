@@ -24,7 +24,21 @@ class FilterVC: UIViewController {
             }
         }
     }
-    @IBOutlet weak var resetBtn: UIButton!
+    @IBOutlet weak var resetBtn: UIButton! {
+        didSet {
+            resetBtn.press {
+                self.isSelectedMajorBtn = false
+                self.isSelectedSecondMajorBtn = false
+                self.isSelectedLearnInfoBtn = false
+                self.isSelectedLearnInfoBtn = false
+                self.isSelectedBadClassBtn = false
+                self.isSelectedRecommendClassBtn = false
+                self.isSelectedFutureJobBtn = false
+                self.isSelectedTipBtn = false
+                self.configureBtnUI()
+            }
+        }
+    }
     @IBOutlet weak var majorBtn: UIButton!
     @IBOutlet weak var secondMajorBtn: UIButton!
     @IBOutlet weak var learnInfoBtn: UIButton!
@@ -76,7 +90,6 @@ class FilterVC: UIViewController {
         isSelectedTipBtn.toggle()
         configureBtnUI()
     }
-    
 }
 
 extension FilterVC {
