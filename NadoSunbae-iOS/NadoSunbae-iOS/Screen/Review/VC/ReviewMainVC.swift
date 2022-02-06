@@ -166,7 +166,7 @@ extension ReviewMainVC {
     }
     
     /// 필터 선택 바텀시트 호출
-    @objc func showFilterVC() {
+    @objc func showHalfModalFilterView() {
         let slideVC = FilterVC()
         slideVC.selectFilterDelegate = self
         slideVC.modalPresentationStyle = .custom
@@ -230,7 +230,7 @@ extension ReviewMainVC: UITableViewDelegate {
                 headerView.filterBtn.setImage(UIImage(named: "btnFilter"), for: .normal)
             }
             headerView.tapFilterBtnAction = {
-                self.showFilterVC()
+                self.showHalfModalFilterView()
             }
             return headerView
         } else {
