@@ -19,13 +19,13 @@ class ReviewMainVC: BaseVC {
     }
     @IBOutlet weak var reviewTV: UITableView!
     
-    
     // MARK: Properties
     var imgList: [ReviewImgData] = []
     var tagList: [ReviewTagList] = []
     var postList: [ReviewMainPostListData] = []
     var majorInfo: String = ""
     var sortType: ListSortType = .recent
+    var filterStatus = false
     private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
@@ -156,10 +156,19 @@ extension ReviewMainVC {
 // MARK: - @objc Function Part
 extension ReviewMainVC {
     
-    /// 바텀시트 호출
+    /// 학과 선택 바텀시트 호출
     @objc func showHalfModalView() {
         let slideVC = HalfModalVC()
         slideVC.selectMajorDelegate = self
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
+    /// 필터 선택 바텀시트 호출
+    @objc func showHalfModalFilterView() {
+        let slideVC = FilterVC()
+        slideVC.selectFilterDelegate = self
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         self.present(slideVC, animated: true, completion: nil)
@@ -213,6 +222,15 @@ extension ReviewMainVC: UITableViewDelegate {
             
             headerView.tapArrangeBtnAction = {
                 self.showActionSheet()
+            }
+            
+            if filterStatus == true {
+                headerView.filterBtn.setImage(UIImage(named: "filterSelected"), for: .normal)
+            } else {
+                headerView.filterBtn.setImage(UIImage(named: "btnFilter"), for: .normal)
+            }
+            headerView.tapFilterBtnAction = {
+                self.showHalfModalFilterView()
             }
             return headerView
         } else {
@@ -298,6 +316,14 @@ extension ReviewMainVC: SendUpdateModalDelegate {
         majorLabel.text = data as? String
         requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
         self.sortType = .recent
+    }
+}
+
+// MARK: - SendUpdateStatusDelegate
+extension ReviewMainVC: SendUpdateStatusDelegate {
+    func sendStatus(data: Bool) {
+        filterStatus = data
+        reviewTV.reloadData()
     }
 }
 
