@@ -15,10 +15,10 @@ class FilterVC: UIViewController {
         didSet {
             resetBtn.press {
                 [self.majorBtn, self.secondMajorBtn, self.learnInfoBtn, self.recommendClassBtn, self.badClassBtn, self.futureJobBtn, self.tipBtn].forEach {
-                    UIButton in UIButton?.isSelected = false
+                    btn in btn?.isSelected = false
                 }
                 [self.majorBtn, self.secondMajorBtn, self.learnInfoBtn, self.recommendClassBtn, self.badClassBtn, self.futureJobBtn, self.tipBtn].forEach {
-                    UIButton in self.setBtnStatus(btn: UIButton)
+                    btn in self.setBtnStatus(btn: btn)
                 }
             }
         }
