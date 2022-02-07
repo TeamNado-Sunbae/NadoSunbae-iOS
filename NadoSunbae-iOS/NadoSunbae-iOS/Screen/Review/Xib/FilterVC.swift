@@ -115,7 +115,10 @@ extension FilterVC {
 extension FilterVC {
     private func tapCompleteBtnAction() {
         completeBtn.press {
-            let filterStatus = true
+            var filterStatus = false
+            if self.majorBtn.isSelected || self.secondMajorBtn.isSelected || self.learnInfoBtn.isSelected || self.recommendClassBtn.isSelected || self.badClassBtn.isSelected || self.futureJobBtn.isSelected || self.tipBtn.isSelected {
+                filterStatus = true
+            }
             if let selectFilterDelegate = self.selectFilterDelegate {
                 selectFilterDelegate.sendStatus(data: filterStatus)
             }
