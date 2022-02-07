@@ -86,11 +86,11 @@ class FilterVC: UIViewController {
 extension FilterVC {
     private func configureDefaultUI() {
         [majorBtn, secondMajorBtn, learnInfoBtn, badClassBtn, recommendClassBtn, futureJobBtn, tipBtn].forEach {
-            UIButton in UIButton?.makeRounded(cornerRadius: 12)
+            btn in btn?.makeRounded(cornerRadius: 12)
         }
         resetBtn.makeRounded(cornerRadius: 14.adjusted)
         
-        completeBtn.isActivated = false
+        completeBtn.isActivated = true
         completeBtn.setTitle("적용하기", for: .normal)
     }
     
@@ -107,12 +107,6 @@ extension FilterVC {
             configureBtnUI(btn: btn, btnBgColor: .mainLight, titleFont: .PretendardSB(size: 14), btnTitleColor: .mainDefault)
         } else {
             configureBtnUI(btn: btn, btnBgColor: .gray0, titleFont: .PretendardR(size: 14), btnTitleColor: .gray3)
-        }
-        
-        if majorBtn.isSelected || secondMajorBtn.isSelected || learnInfoBtn.isSelected || recommendClassBtn.isSelected || badClassBtn.isSelected || futureJobBtn.isSelected || tipBtn.isSelected == true {
-            completeBtn.isActivated = true
-        } else {
-            completeBtn.isActivated = false
         }
     }
 }
