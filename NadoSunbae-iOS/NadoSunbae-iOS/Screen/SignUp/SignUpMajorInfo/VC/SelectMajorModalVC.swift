@@ -17,8 +17,8 @@ class SelectMajorModalVC: BaseVC {
     /// 진입된 버튼의 태그, 0: 본전공, 1: 본전공진입시기, 2: 제2전공, 3: 제2전공진입시기
     var enterdBtnTag = 0
     
-    var startList = ["19-1", "19-2", "20-1", "20-2"]
     var majorList: [MajorInfoModel] = []
+    var startList: [String] = []
     var selectMajorDelegate: SendUpdateModalDelegate?
     
     // MARK: LifeCycle
@@ -39,11 +39,13 @@ class SelectMajorModalVC: BaseVC {
                 requestGetMajorList(univID: 1, filterType: "firstMajor")
                 return "본전공"
             case 1:
+                setStartList()
                 return "본전공 진입시기"
             case 2:
                 requestGetMajorList(univID: 1, filterType: "secondMajor")
                 return "제2전공"
             case 3:
+                setStartList()
                 return "제2전공 진입시기"
             default:
                 return ""
@@ -54,6 +56,14 @@ class SelectMajorModalVC: BaseVC {
     private func setUpTV() {
         selectMajorTV.dataSource = self
         selectMajorTV.delegate = self
+    }
+    
+    private func setStartList() {
+        for i in stride(from: 22, to: 14, by: -1) {
+            self.startList.append("\(i)-1")
+            self.startList.append("\(i)-2")
+        }
+        self.startList.append("15년 이전")
     }
     
     // MARK: IBAction

@@ -24,7 +24,7 @@ extension SelectMajorModalVC: UITableViewDataSource {
         
         switch enterdBtnTag {
         case 0, 2:
-            cell.setData(majorName: majorList[indexPath.row])
+            cell.setData(majorName: majorList[indexPath.row].majorName)
         case 1, 3:
             cell.setData(majorName: startList[indexPath.row])
         default:
