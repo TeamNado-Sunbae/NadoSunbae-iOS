@@ -92,6 +92,20 @@ extension FilterVC {
         
         completeBtn.isActivated = true
         completeBtn.setTitle("적용하기", for: .normal)
+        
+        /// 필터 버튼이 이전 적용 상태값으로 보이도록
+        let btnStatus = FilterInfo.shared.selectedBtnList
+        
+        majorBtn.isSelected = btnStatus[0]
+        secondMajorBtn.isSelected = btnStatus[1]
+        learnInfoBtn.isSelected = btnStatus[2]
+        recommendClassBtn.isSelected = btnStatus[3]
+        badClassBtn.isSelected = btnStatus[4]
+        futureJobBtn.isSelected = btnStatus[5]
+        tipBtn.isSelected = btnStatus[6]
+        [majorBtn, secondMajorBtn, learnInfoBtn, recommendClassBtn, badClassBtn, futureJobBtn, tipBtn].forEach {
+            btn in self.setBtnStatus(btn: btn)
+        }
     }
     
     /// 버튼 UI 설정해주는 함수
@@ -109,6 +123,17 @@ extension FilterVC {
             configureBtnUI(btn: btn, btnBgColor: .gray0, titleFont: .PretendardR(size: 14), btnTitleColor: .gray3)
         }
     }
+    
+    /// 버튼 상태 싱글톤에 저장
+    private func saveBtnStatus() {
+        FilterInfo.shared.selectedBtnList[0] = majorBtn.isSelected
+        FilterInfo.shared.selectedBtnList[1] = secondMajorBtn.isSelected
+        FilterInfo.shared.selectedBtnList[2] = learnInfoBtn.isSelected
+        FilterInfo.shared.selectedBtnList[3] = recommendClassBtn.isSelected
+        FilterInfo.shared.selectedBtnList[4] = badClassBtn.isSelected
+        FilterInfo.shared.selectedBtnList[5] = futureJobBtn.isSelected
+        FilterInfo.shared.selectedBtnList[6] = tipBtn.isSelected
+    }
 }
 
 // MARK: - Private Methods
@@ -120,6 +145,7 @@ extension FilterVC {
                 filterStatus = true
             }
             if let selectFilterDelegate = self.selectFilterDelegate {
+                self.saveBtnStatus()
                 selectFilterDelegate.sendStatus(data: filterStatus)
             }
             self.dismiss(animated: true, completion: {
