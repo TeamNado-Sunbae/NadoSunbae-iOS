@@ -86,6 +86,7 @@ class SignUpMajorInfoVC: BaseVC {
     
     @IBAction func tapNextBtn(_ sender: UIButton) {
         guard let vc = UIStoryboard.init(name: SignUpUserInfoVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpUserInfoVC.className) as? SignUpUserInfoVC else { return }
+        vc.signUpData = signUpData
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -120,6 +121,7 @@ extension SignUpMajorInfoVC {
             (alert: UIAlertAction!) -> Void in
             targetTextField.text = title
             self.checkSelectBtnStatus(btn: self.univSelectBtn, textField: self.univTextField)
+            self.signUpData.universityID = 1
         })
         return alertAction
     }
@@ -158,13 +160,25 @@ extension SignUpMajorInfoVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         switch enterBtnTag {
         case 0:
-            self.firstMajorTextField.text = data as? String
+            if let majorInfoData = data as? MajorInfoModel {
+                self.firstMajorTextField.text = majorInfoData.majorName
+                self.signUpData.firstMajorID = majorInfoData.majorID
+            }
         case 1:
             self.firstMajorStartTextField.text = data as? String
+            self.signUpData.firstMajorStart = data as? String ?? ""
         case 2:
-            self.secondMajorTextField.text = data as? String
+            if let majorInfoData = data as? MajorInfoModel {
+                self.secondMajorTextField.text = majorInfoData.majorName
+                self.signUpData.secondMajorID = majorInfoData.majorID
+                // TODO: 서버 어떻게 나오는지에 따라 "미진입" 수정 가능
+                if majorInfoData.majorName == "미진입" {
+                    self.signUpData.secondMajorStart = "미진입"
+                }
+            }
         case 3:
             self.secondMajorStartTextField.text = data as? String
+            self.signUpData.secondMajorStart = data as? String ?? ""
         default:
             #if DEBUG
             print("SignUpMajorInfoVC SendUpdateDelegate error")

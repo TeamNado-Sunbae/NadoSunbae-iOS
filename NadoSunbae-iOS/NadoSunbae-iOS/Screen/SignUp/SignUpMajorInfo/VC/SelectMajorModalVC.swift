@@ -69,17 +69,21 @@ class SelectMajorModalVC: BaseVC {
     // MARK: IBAction
     @IBAction func tapCompleteBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        let sendData = { () -> String in
-            switch self.enterdBtnTag {
-            case 0, 2:
+        
+        switch self.enterdBtnTag {
+        case 0, 2:
+            let sendData = { () -> MajorInfoModel in
                 return self.majorList[self.selectMajorTV.indexPathForSelectedRow?.row ?? 0]
-            case 1, 3:
+            }()
+            selectMajorDelegate?.sendUpdate(data: sendData)
+        case 1, 3:
+            let sendData = { () -> String in
                 return self.startList[self.selectMajorTV.indexPathForSelectedRow?.row ?? 0]
-            default:
-                return ""
-            }
-        }()
-        selectMajorDelegate?.sendUpdate(data: sendData)
+            }()
+            selectMajorDelegate?.sendUpdate(data: sendData)
+        default:
+            break
+        }
     }
     
     @IBAction func tapDismissBtn(_ sender: UIButton) {
