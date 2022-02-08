@@ -103,7 +103,7 @@ extension FilterVC {
     
     /// 버튼 상태에 따른 UI 설정 함수
     private func setBtnStatus(btn: UIButton) {
-        if btn.isSelected == true {
+        if btn.isSelected {
             configureBtnUI(btn: btn, btnBgColor: .mainLight, titleFont: .PretendardSB(size: 14), btnTitleColor: .mainDefault)
         } else {
             configureBtnUI(btn: btn, btnBgColor: .gray0, titleFont: .PretendardR(size: 14), btnTitleColor: .gray3)
