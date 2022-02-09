@@ -196,6 +196,7 @@
 		77ED045027AD75E700D077CA /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED044E27AD75E700D077CA /* FilterVC.swift */; };
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
 		77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */; };
+		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -391,6 +392,7 @@
 		77ED044E27AD75E700D077CA /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
+		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1212,6 +1214,7 @@
 			isa = PBXGroup;
 			children = (
 				77A7592E27981A0E00A8E48B /* MajorInfo.swift */,
+				77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -1557,6 +1560,7 @@
 				33A15F732799DDDE006FE040 /* AddCommentData.swift in Sources */,
 				77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */,
 				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
+				77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */,
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,

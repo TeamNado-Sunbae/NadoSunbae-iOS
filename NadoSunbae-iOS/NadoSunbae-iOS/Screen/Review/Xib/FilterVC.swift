@@ -32,6 +32,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var tipBtn: UIButton!
     
     // MARK: Properties
+    var filterItemArray: [UIButton] = []
     var selectFilterDelegate: SendUpdateStatusDelegate?
     
     // MARK: Life Cycle
@@ -86,12 +87,24 @@ class FilterVC: UIViewController {
 extension FilterVC {
     private func configureDefaultUI() {
         [majorBtn, secondMajorBtn, learnInfoBtn, badClassBtn, recommendClassBtn, futureJobBtn, tipBtn].forEach {
-            UIButton in UIButton?.makeRounded(cornerRadius: 12)
+            btn in btn?.makeRounded(cornerRadius: 12)
         }
         resetBtn.makeRounded(cornerRadius: 14.adjusted)
         
-        completeBtn.isActivated = false
+        completeBtn.isActivated = true
         completeBtn.setTitle("적용하기", for: .normal)
+        
+        /// 필터 버튼이 이전 적용 상태값으로 보이도록
+        let filterItemStatus = ReviewFilterInfo.shared.selectedBtnList
+        
+        filterItemArray.append(contentsOf: [majorBtn, secondMajorBtn, learnInfoBtn, recommendClassBtn, badClassBtn, futureJobBtn, tipBtn])
+        
+        for i in 0..<filterItemArray.count {
+            filterItemArray[i].isSelected = filterItemStatus[i]
+        }
+        filterItemArray.forEach {
+            btn in self.setBtnStatus(btn: btn)
+        }
     }
     
     /// 버튼 UI 설정해주는 함수
@@ -103,16 +116,17 @@ extension FilterVC {
     
     /// 버튼 상태에 따른 UI 설정 함수
     private func setBtnStatus(btn: UIButton) {
-        if btn.isSelected == true {
+        if btn.isSelected {
             configureBtnUI(btn: btn, btnBgColor: .mainLight, titleFont: .PretendardSB(size: 14), btnTitleColor: .mainDefault)
         } else {
             configureBtnUI(btn: btn, btnBgColor: .gray0, titleFont: .PretendardR(size: 14), btnTitleColor: .gray3)
         }
-        
-        if majorBtn.isSelected || secondMajorBtn.isSelected || learnInfoBtn.isSelected || recommendClassBtn.isSelected || badClassBtn.isSelected || futureJobBtn.isSelected || tipBtn.isSelected == true {
-            completeBtn.isActivated = true
-        } else {
-            completeBtn.isActivated = false
+    }
+    
+    /// 버튼 상태 싱글톤에 저장
+    private func saveBtnStatus() {
+        for i in 0..<filterItemArray.count {
+            ReviewFilterInfo.shared.selectedBtnList[i] = filterItemArray[i].isSelected
         }
     }
 }
@@ -121,8 +135,12 @@ extension FilterVC {
 extension FilterVC {
     private func tapCompleteBtnAction() {
         completeBtn.press {
-            let filterStatus = true
+            var filterStatus = false
+            if self.majorBtn.isSelected || self.secondMajorBtn.isSelected || self.learnInfoBtn.isSelected || self.recommendClassBtn.isSelected || self.badClassBtn.isSelected || self.futureJobBtn.isSelected || self.tipBtn.isSelected {
+                filterStatus = true
+            }
             if let selectFilterDelegate = self.selectFilterDelegate {
+                self.saveBtnStatus()
                 selectFilterDelegate.sendStatus(data: filterStatus)
             }
             self.dismiss(animated: true, completion: {
