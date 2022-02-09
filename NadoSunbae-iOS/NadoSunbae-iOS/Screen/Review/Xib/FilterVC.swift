@@ -99,7 +99,7 @@ extension FilterVC {
         
         filterItemArray.append(contentsOf: [majorBtn, secondMajorBtn, learnInfoBtn, recommendClassBtn, badClassBtn, futureJobBtn, tipBtn])
         
-        for i in 0...6 {
+        for i in 0..<filterItemArray.count {
             filterItemArray[i].isSelected = filterItemStatus[i]
         }
         filterItemArray.forEach {
@@ -125,7 +125,7 @@ extension FilterVC {
     
     /// 버튼 상태 싱글톤에 저장
     private func saveBtnStatus() {
-        for i in 0...6 {
+        for i in 0..<filterItemArray.count {
             ReviewFilterInfo.shared.selectedBtnList[i] = filterItemArray[i].isSelected
         }
     }
