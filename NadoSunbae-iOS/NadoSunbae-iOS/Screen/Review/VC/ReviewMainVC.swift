@@ -254,7 +254,7 @@ extension ReviewMainVC: UITableViewDelegate {
             if !postList.isEmpty {
                 
                 /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
-                if UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed) == false {
+                if UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed) {
                     guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                     
                     /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
