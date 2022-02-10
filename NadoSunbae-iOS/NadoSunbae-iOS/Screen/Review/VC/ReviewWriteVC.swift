@@ -176,6 +176,7 @@ extension ReviewWriteVC {
                 } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
                     self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
                 }
+                UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
             }
             
             /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
