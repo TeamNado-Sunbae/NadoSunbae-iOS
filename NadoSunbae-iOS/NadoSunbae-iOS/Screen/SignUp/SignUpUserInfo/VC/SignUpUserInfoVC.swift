@@ -172,14 +172,16 @@ extension SignUpUserInfoVC {
         /// 비밀번호 유효성 검사
         PWTextField.rx.text
             .orEmpty
-            .skip(1)
+            .skip(2)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
                 let regex = "^(?=.*[A-Za-z])(?=.*[0-9]).{6,20}"
                 if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
                     self.checkPWTextFIeld.isUserInteractionEnabled = true
+                    self.changeLabelColor(isOK: true, label: self.PWRuleLabel)
                 } else {
                     self.checkPWTextFIeld.isUserInteractionEnabled = false
+                    self.changeLabelColor(isOK: false, label: self.PWRuleLabel)
                 }
             })
             .disposed(by: disposeBag)
