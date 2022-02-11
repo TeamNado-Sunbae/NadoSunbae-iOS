@@ -32,16 +32,22 @@ class SelectMajorModalVC: BaseVC {
     private func configureUI() {
         completeBtn.setTitleWithStyle(title: "선택 완료", size: 16, weight: .semiBold)
         completeBtn.isEnabled = false
+        DispatchQueue.main.async {
+            self.activityIndicator.center.y = self.selectMajorTV.center.y
+        }
+        
         /// enterBtnTag에 맞춰서 타이틀, 데이터 변경
         titleLabel.text = { () -> String in
             switch enterdBtnTag {
             case 0:
+                self.activityIndicator.startAnimating()
                 requestGetMajorList(univID: 1, filterType: "firstMajor")
                 return "본전공"
             case 1:
                 setStartList()
                 return "본전공 진입시기"
             case 2:
+                self.activityIndicator.startAnimating()
                 requestGetMajorList(univID: 1, filterType: "secondMajor")
                 return "제2전공"
             case 3:
@@ -103,15 +109,18 @@ extension SelectMajorModalVC {
                         for i in 0...data.count - 3 {
                             self.majorList.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }
+                        self.activityIndicator.stopAnimating()
                         self.selectMajorTV.reloadData()
                     }
                 }
             case .requestErr(let msg):
+                self.activityIndicator.stopAnimating()
                 if let message = msg as? String {
                     print(message)
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
             default:
+                self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
