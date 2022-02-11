@@ -20,30 +20,17 @@ class ReviewDetailPostTVC: BaseTVC {
     @IBOutlet weak var contentLabel: UILabel! {
         didSet {
             contentLabel.sizeToFit()
+            contentLabel.setLineSpacing(lineSpacing: 5)
         }
     }
     
     // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-}
-
-// MARK: - UI
-extension ReviewDetailPostTVC {
-    func configureUI() {
-        
-        /// contentLabel 행간격 설정
-        let attrString = NSMutableAttributedString(string: contentLabel.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
-        contentLabel.attributedText = attrString
     }
 }
 

@@ -37,18 +37,12 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
 extension ReviewDetailPostWithImgTVC {
     private func configureUI() {
         postContentView.makeRounded(cornerRadius: 40.adjusted)
+        contentLabel.setLineSpacing(lineSpacing: 5)
         titleLabel.snp.makeConstraints {
             $0.centerY.equalTo(bgImgView)
             $0.centerX.equalTo(bgImgView.frame.size.height - 40)
             $0.width.equalTo(312.adjusted)
         }
-        
-        /// contentLabel 행간격 설정
-        let attrString = NSMutableAttributedString(string: contentLabel.text!)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
-        contentLabel.attributedText = attrString
     }  
 }
 
