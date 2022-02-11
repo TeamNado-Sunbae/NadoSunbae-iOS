@@ -12,6 +12,7 @@ enum SignService {
     case signIn(email: String, PW: String, deviceToken: String)
     case signUp(userData: SignUpBodyModel)
     case checkNickNameDuplicate(nickName: String)
+    case checkEmailDuplicate(email: String)
 }
 
 extension SignService: TargetType {
@@ -27,12 +28,14 @@ extension SignService: TargetType {
             return "/auth/signup"
         case .checkNickNameDuplicate:
             return "/auth/duplication-check/nickname"
+        case .checkEmailDuplicate:
+            return "/auth/duplication-check/email"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .signIn, .signUp, .checkNickNameDuplicate:
+        case .signIn, .signUp, .checkNickNameDuplicate, .checkEmailDuplicate:
             return .post
         }
     }
@@ -54,6 +57,8 @@ extension SignService: TargetType {
             ], encoding: JSONEncoding.default)
         case .checkNickNameDuplicate(let nickName):
             return .requestParameters(parameters: ["nickname": nickName], encoding: JSONEncoding.default)
+        case .checkEmailDuplicate(let email):
+            return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
         }
     }
     

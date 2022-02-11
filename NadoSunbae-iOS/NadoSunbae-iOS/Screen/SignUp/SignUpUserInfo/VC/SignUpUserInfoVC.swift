@@ -50,18 +50,7 @@ class SignUpUserInfoVC: BaseVC {
     }
     
     @IBAction func tapCheckEmailBtn(_ sender: UIButton) {
-        // TODO: 이메일 확인 검사 실행 후 다시 여기 기능 세팅!
-        if true {
-            self.emailInfoLabel.textColor = .mainDark
-            self.emailInfoLabel.text = "인증 메일이 전송되었습니다."
-            self.emailClearBtn.isHidden = true
-            self.isCompleteList[1] = true
-        } else { // 요기 워닝 떠서 주석처리함
-//            self.emailInfoLabel.textColor = .red
-//            self.emailInfoLabel.text = "이미 가입된 메일입니다."
-//            self.isCompleteList[1] = false
-        }
-        self.checkIsCompleted()
+        requestCheckEmail(email: self.emailTextField.text ?? "")
         self.emailInfoLabel.isHidden = false
     }
     
@@ -91,7 +80,7 @@ class SignUpUserInfoVC: BaseVC {
 extension SignUpUserInfoVC {
     private func configureUI() {
         checkDuplicateBtn.setTitleWithStyle(title: "중복 확인", size: 14, weight: .semiBold)
-        checkEmailBtn.setTitleWithStyle(title: "이메일 확인", size: 14, weight: .semiBold)
+        checkEmailBtn.setTitleWithStyle(title: "중복 확인", size: 14, weight: .semiBold)
         [checkDuplicateBtn, checkEmailBtn].forEach { btn in
             btn?.makeRounded(cornerRadius: 8.adjusted)
             btn?.isEnabled = false
@@ -130,8 +119,10 @@ extension SignUpUserInfoVC {
                 switch textField {
                 case self.nickNameTextField:
                     self.changeNadoBtnState(isOn: false, btn: self.checkDuplicateBtn)
+                    self.isCompleteList[0] = false
                 case self.emailTextField:
                     self.changeNadoBtnState(isOn: false, btn: self.checkEmailBtn)
+                    self.isCompleteList[1] = false
                 default:
                     break
                 }
@@ -244,6 +235,8 @@ extension SignUpUserInfoVC {
             .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
+                self.isCompleteList[1] = false
+                self.emailInfoLabel.text = ""
                 let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
                 if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
                     self.changeNadoBtnState(isOn: true, btn: self.checkEmailBtn)
@@ -290,11 +283,38 @@ extension SignUpUserInfoVC {
                 self.checkIsCompleted()
             case .requestErr(let success):
                 self.activityIndicator.stopAnimating()
-                print(success)
                 if success is Bool {
                     self.nickNameInfoLabel.textColor = .red
                     self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
                     self.isCompleteList[0] = false
+                    self.checkIsCompleted()
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.checkIsCompleted()
+            }
+        }
+    }
+    
+    /// 이메일 중복 확인 메소드
+    private func requestCheckEmail(email: String) {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.checkEmailDuplicate(email: email) { networkResult in
+            switch networkResult {
+            case .success:
+                self.activityIndicator.stopAnimating()
+                self.emailInfoLabel.textColor = .mainDark
+                self.emailInfoLabel.text = "사용 가능한 이메일입니다."
+                self.emailClearBtn.isHidden = true
+                self.isCompleteList[1] = true
+                self.checkIsCompleted()
+            case .requestErr(let success):
+                self.activityIndicator.stopAnimating()
+                if success is Bool {
+                    self.emailInfoLabel.textColor = .red
+                    self.emailInfoLabel.text = "이미 가입된 메일입니다."
+                    self.isCompleteList[1] = false
                     self.checkIsCompleted()
                 }
             default:
