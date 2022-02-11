@@ -60,7 +60,6 @@
 		331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */; };
 		331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5381279629620052B309 /* BaseQuestionTVC.swift */; };
 		331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5383279629D30052B309 /* EntireQuestionListTVC.swift */; };
-		33495870279A4AB2000BBA2B /* InfoListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3349586F279A4AB2000BBA2B /* InfoListTVC.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385636F278DC74D003C60A6 /* BaseTVC.swift */; };
 		3386010427988D0500C47D36 /* ActionSheetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3386010327988D0500C47D36 /* ActionSheetCase.swift */; };
@@ -196,6 +195,10 @@
 		77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4B2789AF900016880B /* TVRegisterable.swift */; };
 		77AEEB4E2789AF900016880B /* CVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4C2789AF900016880B /* CVRegisterable.swift */; };
 		77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */; };
+		77ED045027AD75E700D077CA /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED044E27AD75E700D077CA /* FilterVC.swift */; };
+		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
+		77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */; };
+		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -254,7 +257,6 @@
 		331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListVC.swift; sourceTree = "<group>"; };
 		331C5381279629620052B309 /* BaseQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionTVC.swift; sourceTree = "<group>"; };
 		331C5383279629D30052B309 /* EntireQuestionListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListTVC.swift; sourceTree = "<group>"; };
-		3349586F279A4AB2000BBA2B /* InfoListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoListTVC.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		3385636F278DC74D003C60A6 /* BaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVC.swift; sourceTree = "<group>"; };
 		3386010327988D0500C47D36 /* ActionSheetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCase.swift; sourceTree = "<group>"; };
@@ -391,6 +393,10 @@
 		77AEEB4B2789AF900016880B /* TVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4C2789AF900016880B /* CVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		77ED044E27AD75E700D077CA /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
+		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
+		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -717,14 +723,11 @@
 		3313649B2785D8A800E0C118 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				33A15F712799528C006FE040 /* PersonalQuestion */,
-				33CF635527945DE300E92C04 /* InfoMainVC.swift */,
+				33BE55A927A807F700E6F998 /* Info */,
+				33A15F712799528C006FE040 /* Question */,
 				331364A12785D8DD00E0C118 /* ClassroomMainVC.swift */,
-				331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */,
-				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
 				33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */,
 				33CF636727955D9500E92C04 /* ClassroomNC.swift */,
-				33CF635627945DE300E92C04 /* QuestionMainVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -786,12 +789,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		33A15F712799528C006FE040 /* PersonalQuestion */ = {
+		33A15F712799528C006FE040 /* Question */ = {
 			isa = PBXGroup;
 			children = (
 				331C53742795B7830052B309 /* QuestionPersonListVC.swift */,
+				33CF635627945DE300E92C04 /* QuestionMainVC.swift */,
+				33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */,
+				331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */,
 			);
-			path = PersonalQuestion;
+			path = Question;
 			sourceTree = "<group>";
 		};
 		33B69FF2278F155400A8E3D3 /* TVC */ = {
@@ -801,6 +807,14 @@
 				33CF63632794A04C00E92C04 /* QuestionMain */,
 			);
 			path = TVC;
+			sourceTree = "<group>";
+		};
+		33BE55A927A807F700E6F998 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				33CF635527945DE300E92C04 /* InfoMainVC.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		33C1B8A027974A13004BABEC /* Classroom */ = {
@@ -856,6 +870,8 @@
 			children = (
 				777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */,
 				777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */,
+				77ED044E27AD75E700D077CA /* FilterVC.swift */,
+				77ED044F27AD75E700D077CA /* FilterVC.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -869,7 +885,6 @@
 				33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */,
 				331C5381279629620052B309 /* BaseQuestionTVC.swift */,
 				331C5383279629D30052B309 /* EntireQuestionListTVC.swift */,
-				3349586F279A4AB2000BBA2B /* InfoListTVC.swift */,
 			);
 			path = QuestionMain;
 			sourceTree = "<group>";
@@ -1205,6 +1220,7 @@
 			isa = PBXGroup;
 			children = (
 				77A7592E27981A0E00A8E48B /* MajorInfo.swift */,
+				77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -1232,6 +1248,7 @@
 			isa = PBXGroup;
 			children = (
 				33CF635327945C1200E92C04 /* SendSegmentStateDelegate.swift */,
+				77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */,
 				77AEEB4C2789AF900016880B /* CVRegisterable.swift */,
 				77AEEB4B2789AF900016880B /* TVRegisterable.swift */,
 				33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */,
@@ -1358,6 +1375,7 @@
 				3313647D2785BBAD00E0C118 /* Pretendard-Medium.otf in Resources */,
 				7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */,
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
+				77ED045127AD75E700D077CA /* FilterVC.xib in Resources */,
 				77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
 				33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */,
@@ -1454,6 +1472,7 @@
 				77A7593C2799C81B00A8E48B /* ReviewPostDetailData.swift in Sources */,
 				5C32801C2797292B00781EBE /* MypageAPI.swift in Sources */,
 				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
+				77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */,
 				5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */,
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
 				5C9A93F927A64FB20097310B /* SignUpDataModel.swift in Sources */,
@@ -1537,6 +1556,7 @@
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
+				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
 				5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */,
@@ -1548,11 +1568,11 @@
 				33A15F732799DDDE006FE040 /* AddCommentData.swift in Sources */,
 				77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */,
 				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
+				77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */,
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
-				33495870279A4AB2000BBA2B /* InfoListTVC.swift in Sources */,
 				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
 				77A759282797FEB400A8E48B /* PublicService.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
@@ -1698,7 +1718,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2ZS26WP93H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
@@ -1729,7 +1749,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2ZS26WP93H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";

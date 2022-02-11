@@ -46,16 +46,7 @@ class HalfModalVC: UIViewController {
     /// 선택완료 버튼 UI  setting 함수
     private func configureBtnUI() {
         majorChooseBtn.isActivated = false
-        
-        switch majorChooseBtn.isActivated {
-            
-        case true:
-            print("true")
-            majorChooseBtn.setTitle("선택 완료", for: .normal)
-        case false:
-            print("false")
-            majorChooseBtn.setTitle("선택 완료", for: .normal)
-        }
+        majorChooseBtn.setTitle("선택 완료", for: .normal)
     }
     
     /// 선택완료 버튼 클릭 시 데이터 전달

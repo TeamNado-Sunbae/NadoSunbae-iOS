@@ -20,6 +20,7 @@ class ReviewDetailPostTVC: BaseTVC {
     @IBOutlet weak var contentLabel: UILabel! {
         didSet {
             contentLabel.sizeToFit()
+            contentLabel.setLineSpacing(lineSpacing: 5)
         }
     }
     
@@ -32,7 +33,6 @@ class ReviewDetailPostTVC: BaseTVC {
         super.setSelected(selected, animated: animated)
     }
 }
-
 
 // MARK: - Custom Methods
 extension ReviewDetailPostTVC {

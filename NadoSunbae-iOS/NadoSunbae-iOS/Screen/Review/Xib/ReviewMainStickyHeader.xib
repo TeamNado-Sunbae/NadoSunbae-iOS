@@ -50,6 +50,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="btnFilter"/>
+                    <connections>
+                        <action selector="tapFilterBtn:" destination="-1" eventType="touchUpInside" id="B5P-tu-gYO"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
