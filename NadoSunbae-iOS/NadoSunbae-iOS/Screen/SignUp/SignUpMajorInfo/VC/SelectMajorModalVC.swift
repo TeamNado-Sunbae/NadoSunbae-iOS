@@ -106,7 +106,7 @@ extension SelectMajorModalVC {
             case .success(let res):
                 DispatchQueue.main.async {
                     if let data = res as? [MajorListData] {
-                        for i in 0...data.count - 3 {
+                        for i in 0..<data.count {
                             self.majorList.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }
                         self.activityIndicator.stopAnimating()

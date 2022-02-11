@@ -11,6 +11,8 @@ extension SelectMajorModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch enterdBtnTag {
         case 0, 2:
+            print("majorList: ", majorList)
+            print("majorListCount: ", majorList.count)
             return majorList.count
         case 1, 3:
             return startList.count

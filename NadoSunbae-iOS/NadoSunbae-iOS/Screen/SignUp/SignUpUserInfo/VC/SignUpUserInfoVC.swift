@@ -36,11 +36,17 @@ class SignUpUserInfoVC: BaseVC {
     let disposeBag = DisposeBag()
     var isCompleteList = [false, false, false]
     var signUpData = SignUpBodyModel()
+    let screenHeight = UIScreen.main.bounds.size.height
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeKeyboardObserver()
     }
     
     // MARK: IBAction
@@ -99,6 +105,8 @@ extension SignUpUserInfoVC {
         checkNickNameIsValid()
         prevBtn.setBackgroundColor(.mainLight, for: .normal)
         completeBtn.isEnabled = false
+        PWTextField.delegate = self
+        checkPWTextFIeld.delegate = self
     }
     
     /// textField-btn 에 clear 기능 세팅하는 함수
@@ -350,5 +358,49 @@ extension SignUpUserInfoVC {
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
+    }
+}
+
+extension SignUpUserInfoVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addKeyboardObserver()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        removeKeyboardObserver()
+    }
+}
+
+// MARK: - Keyboard
+extension SignUpUserInfoVC {
+    
+    /// Keyboard Observer add 메서드
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    private func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(_ notification:Notification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        }
+    }
+    
+    /// Keyboard Observer remove 메서드
+    private func removeKeyboardObserver() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
