@@ -37,6 +37,7 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
 extension ReviewDetailPostWithImgTVC {
     private func configureUI() {
         postContentView.makeRounded(cornerRadius: 40.adjusted)
+        contentLabel.setLineSpacing(lineSpacing: 5)
         titleLabel.snp.makeConstraints {
             $0.centerY.equalTo(bgImgView)
             $0.centerX.equalTo(bgImgView.frame.size.height - 40)

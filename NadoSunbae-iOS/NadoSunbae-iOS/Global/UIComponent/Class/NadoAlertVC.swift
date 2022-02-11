@@ -32,6 +32,8 @@ class NadoAlertVC: BaseVC {
         confirmBtn.isActivated = true
         cancelBtn.isActivated = false
         cancelBtn.isEnabled = true
+        messageLabel.setLineSpacing(lineSpacing: 5)
+        messageLabel.textAlignment = .center
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
     }
