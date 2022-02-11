@@ -182,6 +182,13 @@ class SignUpUserInfoVC: BaseVC {
         }
     }
     
+    /// SignUp을 위한 Data 세팅
+    private func setSignUpData() {
+        signUpData.nickName = self.nickNameTextField.text ?? ""
+        signUpData.email = self.emailTextField.text ?? ""
+        signUpData.PW = self.checkPWTextFIeld.text ?? ""
+    }
+    
     // MARK: IBAction
     @IBAction func tapCheckDuplicateBtn(_ sender: UIButton) {
         // TODO: 중복 검사 실행 후 다시 여기 기능 세팅!
@@ -220,8 +227,8 @@ class SignUpUserInfoVC: BaseVC {
     }
     
     @IBAction func tapCompleteBtn(_ sender: UIButton) {
-        guard let vc = UIStoryboard.init(name: SignUpCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpCompleteVC.className) as? SignUpCompleteVC else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
+        setSignUpData()
+        requestSignUp(userData: signUpData)
     }
     
     @IBAction func tapDismissBtn(_ sender: UIButton) {
@@ -234,5 +241,34 @@ class SignUpUserInfoVC: BaseVC {
 회원가입이 취소돼요.
 """
                             , confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+    }
+}
+
+// MARK: - Network
+extension SignUpUserInfoVC {
+    
+    /// 회원가입 요청 메소드
+    private func requestSignUp(userData: SignUpBodyModel) {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.signUp(userData: userData) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let res = res as? SignUpDataModel {
+                    self.activityIndicator.stopAnimating()
+                    print("signUp response data: ", res)
+                    guard let vc = UIStoryboard.init(name: SignUpCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpCompleteVC.className) as? SignUpCompleteVC else { return }
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    print("requestSignUp requestErr", message)
+                    self.activityIndicator.stopAnimating()
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
