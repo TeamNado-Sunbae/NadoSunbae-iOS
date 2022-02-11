@@ -187,33 +187,33 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tnM-gU-puq">
                                 <rect key="frame" x="0.0" y="261" width="375" height="120"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학교 이메일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3e-0Y-6le">
-                                        <rect key="frame" x="20" y="8" width="55" height="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학교 이메일: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3e-0Y-6le">
+                                        <rect key="frame" x="20" y="8" width="61" height="15"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@korea.ac.kr" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dlP-ck-Dxk" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="30" width="255" height="48"/>
+                                        <rect key="frame" x="16" y="31" width="255" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7l5-T9-3Nv" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="279" y="30" width="80" height="48"/>
+                                        <rect key="frame" x="279" y="31" width="80" height="48"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="이메일 확인"/>
+                                        <state key="normal" title="중복 확인"/>
                                         <connections>
                                             <action selector="tapCheckEmailBtn:" destination="kPv-Cn-mrK" eventType="touchUpInside" id="pTr-gf-ZRW"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-Fu-ey7">
-                                        <rect key="frame" x="24" y="86" width="327" height="0.0"/>
+                                        <rect key="frame" x="24" y="87" width="327" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vax-ki-FdO">
-                                        <rect key="frame" x="223" y="30" width="48" height="48"/>
+                                        <rect key="frame" x="223" y="31" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="vax-ki-FdO" secondAttribute="height" multiplier="1:1" id="Zn5-sW-eNh"/>
                                         </constraints>
@@ -222,18 +222,27 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인 시 아이디로 사용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1f-x9-c7D">
+                                        <rect key="frame" x="83" y="8" width="113" height="15"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                        <color key="textColor" name="gray3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="7l5-T9-3Nv" secondAttribute="trailing" constant="16" id="17J-pd-EoF"/>
+                                    <constraint firstItem="R1f-x9-c7D" firstAttribute="bottom" secondItem="i3e-0Y-6le" secondAttribute="bottom" id="5QA-c0-2hv"/>
                                     <constraint firstItem="dlP-ck-Dxk" firstAttribute="width" secondItem="tnM-gU-puq" secondAttribute="width" multiplier="0.68" id="65u-K3-Ma9"/>
                                     <constraint firstAttribute="trailing" secondItem="1DH-Fu-ey7" secondAttribute="trailing" constant="24" id="Ad3-o1-Yuv"/>
                                     <constraint firstItem="7l5-T9-3Nv" firstAttribute="top" secondItem="dlP-ck-Dxk" secondAttribute="top" id="Adp-z3-86K"/>
                                     <constraint firstItem="i3e-0Y-6le" firstAttribute="top" secondItem="tnM-gU-puq" secondAttribute="top" constant="8" id="AiN-F1-XYc"/>
                                     <constraint firstItem="1DH-Fu-ey7" firstAttribute="leading" secondItem="tnM-gU-puq" secondAttribute="leading" constant="24" id="D8a-Du-tKu"/>
+                                    <constraint firstItem="R1f-x9-c7D" firstAttribute="leading" secondItem="i3e-0Y-6le" secondAttribute="trailing" constant="2" id="FZZ-cI-uup"/>
                                     <constraint firstItem="vax-ki-FdO" firstAttribute="top" secondItem="dlP-ck-Dxk" secondAttribute="top" id="IkD-xy-HLZ"/>
                                     <constraint firstItem="dlP-ck-Dxk" firstAttribute="leading" secondItem="tnM-gU-puq" secondAttribute="leading" constant="16" id="Ocb-Ox-5Uj"/>
                                     <constraint firstAttribute="height" constant="120" id="Q54-iO-fXy"/>
                                     <constraint firstItem="7l5-T9-3Nv" firstAttribute="leading" secondItem="dlP-ck-Dxk" secondAttribute="trailing" constant="8" id="TgP-g8-j4K"/>
+                                    <constraint firstItem="R1f-x9-c7D" firstAttribute="top" secondItem="i3e-0Y-6le" secondAttribute="top" id="gIS-AY-PR8"/>
                                     <constraint firstItem="1DH-Fu-ey7" firstAttribute="top" secondItem="dlP-ck-Dxk" secondAttribute="bottom" constant="8" id="lKZ-3G-GTN"/>
                                     <constraint firstItem="vax-ki-FdO" firstAttribute="bottom" secondItem="dlP-ck-Dxk" secondAttribute="bottom" id="rBR-5b-hzB"/>
                                     <constraint firstItem="7l5-T9-3Nv" firstAttribute="bottom" secondItem="dlP-ck-Dxk" secondAttribute="bottom" id="rVm-UV-4Zs"/>
