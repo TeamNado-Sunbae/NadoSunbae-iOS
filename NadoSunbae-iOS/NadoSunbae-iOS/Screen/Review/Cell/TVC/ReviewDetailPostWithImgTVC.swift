@@ -42,6 +42,13 @@ extension ReviewDetailPostWithImgTVC {
             $0.centerX.equalTo(bgImgView.frame.size.height - 40)
             $0.width.equalTo(312.adjusted)
         }
+        
+        /// contentLabel 행간격 설정
+        let attrString = NSMutableAttributedString(string: contentLabel.text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        contentLabel.attributedText = attrString
     }  
 }
 

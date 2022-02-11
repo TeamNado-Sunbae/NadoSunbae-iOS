@@ -26,6 +26,7 @@ class ReviewDetailPostTVC: BaseTVC {
     // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,6 +34,18 @@ class ReviewDetailPostTVC: BaseTVC {
     }
 }
 
+// MARK: - UI
+extension ReviewDetailPostTVC {
+    func configureUI() {
+        
+        /// contentLabel 행간격 설정
+        let attrString = NSMutableAttributedString(string: contentLabel.text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        contentLabel.attributedText = attrString
+    }
+}
 
 // MARK: - Custom Methods
 extension ReviewDetailPostTVC {
