@@ -18,6 +18,7 @@ class SignUpUserInfoVC: BaseVC {
     @IBOutlet weak var nickNameClearBtn: UIButton!
     @IBOutlet weak var emailTextField: NadoTextField!
     @IBOutlet weak var emailClearBtn: UIButton!
+    @IBOutlet weak var nickNameRuleLabel: UILabel!
     @IBOutlet weak var nickNameInfoLabel: UILabel!
     @IBOutlet weak var emailInfoLabel: UILabel!
     
@@ -25,6 +26,7 @@ class SignUpUserInfoVC: BaseVC {
     @IBOutlet weak var PWClearBtn: UIButton!
     @IBOutlet weak var checkPWTextFIeld: NadoTextField!
     @IBOutlet weak var checkPWClearBtn: UIButton!
+    @IBOutlet weak var PWRuleLabel: UILabel!
     @IBOutlet weak var PWInfoLabel: UILabel!
     
     @IBOutlet weak var prevBtn: NadoSunbaeBtn!
