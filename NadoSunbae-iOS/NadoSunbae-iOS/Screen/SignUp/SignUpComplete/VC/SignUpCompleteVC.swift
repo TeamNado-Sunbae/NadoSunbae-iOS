@@ -9,10 +9,13 @@ import UIKit
 
 class SignUpCompleteVC: BaseVC {
     
-    // MARK: Properties
+    // MARK: @IBOutlet
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var enterBtn: NadoSunbaeBtn!
+    
+    // MARK: Properties
+    var signUpData = SignUpBodyModel()
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -32,8 +35,9 @@ class SignUpCompleteVC: BaseVC {
     // MARK: IBAction
     @IBAction func tapEnterBtn(_ sender: UIButton) {
         // TODO: 회원가입 성공 시 이전 화면에서 메일/비번 정보 UserDefault에 저장, 여기에서 자동로그인 구현
-        let vc = NadoSunbaeTBC()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        
+//        let vc = NadoSunbaeTBC()
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
     }
 }

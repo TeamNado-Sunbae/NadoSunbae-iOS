@@ -24,22 +24,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="92a-uo-27h">
-                                <rect key="frame" x="39.666666666666657" y="144" width="296" height="200"/>
-                                <color key="backgroundColor" name="mainLight"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup_complete" translatesAutoresizingMaskIntoConstraints="NO" id="92a-uo-27h">
+                                <rect key="frame" x="63.666666666666657" y="148" width="247.99999999999997" height="248"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="296" id="J63-At-akL"/>
-                                    <constraint firstAttribute="height" constant="200" id="UPl-oD-tJU"/>
+                                    <constraint firstAttribute="width" secondItem="92a-uo-27h" secondAttribute="height" multiplier="1:1" id="aeU-0S-bz8"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나도 이제 선배!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hL-YA-f6L">
-                                <rect key="frame" x="16" y="374" width="343" height="29"/>
+                                <rect key="frame" x="16" y="426" width="343" height="29"/>
                                 <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="24"/>
                                 <color key="textColor" name="mainDefault"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나도 이제 선배!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hd-AW-A9e">
-                                <rect key="frame" x="16" y="427" width="343" height="17"/>
+                                <rect key="frame" x="16" y="479" width="343" height="17"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -62,10 +60,11 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7Hd-AW-A9e" secondAttribute="trailing" constant="16" id="BZt-65-EKh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Gla-T6-7lj" secondAttribute="trailing" constant="16" id="Gox-hj-dvJ"/>
                             <constraint firstItem="7Hd-AW-A9e" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Iaw-Us-IQF"/>
+                            <constraint firstItem="92a-uo-27h" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.661333" id="Vcb-99-nex"/>
                             <constraint firstItem="92a-uo-27h" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="dPF-Xw-Xnb"/>
                             <constraint firstItem="4hL-YA-f6L" firstAttribute="top" secondItem="92a-uo-27h" secondAttribute="bottom" constant="30" id="dPi-99-oD1"/>
                             <constraint firstItem="7Hd-AW-A9e" firstAttribute="top" secondItem="4hL-YA-f6L" secondAttribute="bottom" constant="24" id="hoD-3I-VpE"/>
-                            <constraint firstItem="92a-uo-27h" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="iaq-KH-fyo"/>
+                            <constraint firstItem="92a-uo-27h" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="104" id="iaq-KH-fyo"/>
                             <constraint firstItem="Gla-T6-7lj" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" constant="-34" id="ner-1Z-f44"/>
                             <constraint firstItem="Gla-T6-7lj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="qPx-Yr-rX5"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4hL-YA-f6L" secondAttribute="trailing" constant="16" id="t9A-g6-UmP"/>
@@ -84,11 +83,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="signup_complete" width="248" height="248"/>
         <namedColor name="mainDefault">
             <color red="0.0" green="0.78431372549019607" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="mainLight">
-            <color red="0.87450980392156863" green="0.96470588235294119" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="paleGray">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
