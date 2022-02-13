@@ -45,37 +45,71 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqR-DW-kR4">
-                        <rect key="frame" x="24" y="140" width="272" height="75"/>
+                        <rect key="frame" x="24" y="140" width="272" height="108.5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ROj-mZ-6b9"/>
                         </constraints>
-                        <mutableString key="text">벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. </mutableString>
+                        <string key="text">벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. 네 .. 벌써.. 6시 .. 36분이네 .. 벌써.. 6시 .. 36분이네 .. </string>
                         <color key="textColor" name="mainText"/>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 5:42" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwe-DB-Ahe">
-                        <rect key="frame" x="24" y="282" width="48.5" height="14"/>
+                        <rect key="frame" x="24" y="281.5" width="48.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                         <color key="textColor" name="gray2"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="본전명 18-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9E-DM-PWs">
-                        <rect key="frame" x="173.5" y="91.5" width="122.5" height="14"/>
+                        <rect key="frame" x="173.5" y="91.5" width="122.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
                         <color key="textColor" name="gray2"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQx-xX-r8L">
+                        <rect key="frame" x="233.5" y="271" width="70.5" height="36"/>
+                        <color key="backgroundColor" name="gray0"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                        <connections>
+                            <action selector="tapInfoLikeBtn:" destination="Ruq-qR-max" eventType="touchUpInside" id="xtD-OT-gFz"/>
+                        </connections>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="nnp-hp-Mva">
+                        <rect key="frame" x="245.5" y="283" width="46.5" height="12"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="Xkk-hc-Vop">
+                                <rect key="frame" x="0.0" y="0.0" width="16" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="5dG-He-p6c"/>
+                                    <constraint firstAttribute="height" constant="12" id="KSx-Pm-ucV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ruc-zw-Wox">
+                                <rect key="frame" x="25" y="0.0" width="21.5" height="12"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" name="mainDefault"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="Eln-o3-5l2"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="bwe-DB-Ahe" firstAttribute="top" secondItem="bqR-DW-kR4" secondAttribute="bottom" constant="67" id="3zP-dJ-yJX"/>
+                    <constraint firstItem="RQx-xX-r8L" firstAttribute="leading" secondItem="nnp-hp-Mva" secondAttribute="leading" constant="-12" id="2N0-do-zng"/>
+                    <constraint firstItem="bwe-DB-Ahe" firstAttribute="top" secondItem="bqR-DW-kR4" secondAttribute="bottom" constant="33" id="3zP-dJ-yJX"/>
                     <constraint firstItem="j6d-96-rol" firstAttribute="top" secondItem="Ldg-mB-RdQ" secondAttribute="bottom" constant="8" id="B8m-jY-qPg"/>
                     <constraint firstItem="H9E-DM-PWs" firstAttribute="leading" secondItem="j6d-96-rol" secondAttribute="trailing" constant="4" id="C12-jx-4bP"/>
                     <constraint firstItem="H9E-DM-PWs" firstAttribute="trailing" secondItem="Ldg-mB-RdQ" secondAttribute="trailing" id="Fsz-EG-0Ov"/>
+                    <constraint firstItem="RQx-xX-r8L" firstAttribute="centerY" secondItem="bwe-DB-Ahe" secondAttribute="centerY" id="HtV-oq-Oih"/>
                     <constraint firstItem="bwe-DB-Ahe" firstAttribute="leading" secondItem="Ldg-mB-RdQ" secondAttribute="leading" id="JZz-If-KXp"/>
                     <constraint firstItem="Ldg-mB-RdQ" firstAttribute="leading" secondItem="X0y-co-BjG" secondAttribute="leading" constant="24" id="WzK-0E-fhj"/>
+                    <constraint firstAttribute="trailing" secondItem="RQx-xX-r8L" secondAttribute="trailing" constant="16" id="hy6-oP-U9H"/>
+                    <constraint firstItem="RQx-xX-r8L" firstAttribute="top" secondItem="nnp-hp-Mva" secondAttribute="top" constant="-12" id="jMx-6Q-pt0"/>
                     <constraint firstItem="bqR-DW-kR4" firstAttribute="leading" secondItem="Ldg-mB-RdQ" secondAttribute="leading" id="jNV-3r-Qg6"/>
                     <constraint firstItem="bqR-DW-kR4" firstAttribute="trailing" secondItem="Ldg-mB-RdQ" secondAttribute="trailing" id="jP5-vt-8dM"/>
                     <constraint firstItem="bqR-DW-kR4" firstAttribute="top" secondItem="j6d-96-rol" secondAttribute="bottom" constant="33" id="mSF-4H-aYV"/>
@@ -83,24 +117,30 @@
                     <constraint firstAttribute="trailing" secondItem="Ldg-mB-RdQ" secondAttribute="trailing" constant="24" id="pi8-ub-4JI"/>
                     <constraint firstItem="Ldg-mB-RdQ" firstAttribute="top" secondItem="X0y-co-BjG" secondAttribute="top" constant="24" id="rsw-uz-Caw"/>
                     <constraint firstItem="H9E-DM-PWs" firstAttribute="centerY" secondItem="j6d-96-rol" secondAttribute="centerY" id="tSX-VL-kyy"/>
-                    <constraint firstAttribute="bottom" secondItem="bwe-DB-Ahe" secondAttribute="bottom" constant="20" id="vko-Gd-oll"/>
+                    <constraint firstAttribute="bottom" secondItem="bwe-DB-Ahe" secondAttribute="bottom" constant="20" id="uT4-aa-lLb"/>
+                    <constraint firstItem="RQx-xX-r8L" firstAttribute="bottom" secondItem="nnp-hp-Mva" secondAttribute="bottom" constant="12" id="wwA-FA-Cc8"/>
+                    <constraint firstItem="RQx-xX-r8L" firstAttribute="trailing" secondItem="nnp-hp-Mva" secondAttribute="trailing" constant="12" id="ypw-iz-Hlo"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="viJ-78-gos"/>
             <connections>
+                <outlet property="infoLikeBtn" destination="RQx-xX-r8L" id="2qp-TU-n2W"/>
+                <outlet property="infoLikeCountLabel" destination="Ruc-zw-Wox" id="ng4-wA-VJB"/>
+                <outlet property="infoLikeImgView" destination="Xkk-hc-Vop" id="ISw-Nv-BVI"/>
                 <outlet property="infoTitleLabel" destination="Ldg-mB-RdQ" id="h5A-sb-YW9"/>
-                <outlet property="likeCountLabel" destination="bwe-DB-Ahe" id="Qti-jS-xBb"/>
                 <outlet property="majorInfoLabel" destination="H9E-DM-PWs" id="OB4-aX-3Vo"/>
-                <outlet property="majorLabel" destination="H9E-DM-PWs" id="j0p-re-ASv"/>
                 <outlet property="nicknameLabel" destination="j6d-96-rol" id="HRK-Ga-p8W"/>
                 <outlet property="postDateLabel" destination="bwe-DB-Ahe" id="3oN-ey-jiR"/>
                 <outlet property="questionContentTextView" destination="bqR-DW-kR4" id="zpi-N9-XSE"/>
-                <outlet property="titleLabel" destination="Ldg-mB-RdQ" id="JwE-ov-crP"/>
             </connections>
             <point key="canvasLocation" x="679.71014492753625" y="200.22321428571428"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="heart" width="17" height="13"/>
+        <namedColor name="gray0">
+            <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
