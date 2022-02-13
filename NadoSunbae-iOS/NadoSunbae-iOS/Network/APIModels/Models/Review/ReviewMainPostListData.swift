@@ -14,7 +14,7 @@ struct ReviewMainPostListData: Codable {
     let createdAt: String
     let writer: ReviewWriter
     let tagList: [ReviewTagList]
-    let likeCount: String
+    let likeCount: Int
 
     enum CodingKeys: String, CodingKey {
         case postID = "postId"
