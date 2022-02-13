@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ReviewMainVC: BaseVC {
     
@@ -150,6 +151,13 @@ extension ReviewMainVC {
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
         requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
+    }
+    
+    /// 링크에 해당하는 웹사이트로 연결하는 함수
+    private func showSafariVC(link: String) {
+        let webLink = NSURL(string: link)
+        let safariVC: SFSafariViewController = SFSafariViewController(url: webLink! as URL)
+        self.present(safariVC, animated: true, completion: nil)
     }
 }
 
@@ -306,6 +314,14 @@ extension ReviewMainVC: UITableViewDataSource {
             reviewMainImgTVC.setData(ImgData: imgList[indexPath.row])
             return reviewMainImgTVC
         } else if indexPath.section == 1 {
+            reviewMainLinkTVC.tapHomePageBtnAction = {
+                let homePageLink = reviewMainLinkTVC.homePageLink
+                self.showSafariVC(link: homePageLink)
+            }
+            reviewMainLinkTVC.tapSubjectBtnAction = {
+                let subjectTableLink = reviewMainLinkTVC.subjectTableLink
+                self.showSafariVC(link: subjectTableLink)
+            }
             return reviewMainLinkTVC
         } else if indexPath.section == 2 {
             
