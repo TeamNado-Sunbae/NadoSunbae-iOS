@@ -825,10 +825,10 @@
 		33B9B0D427B8EAF500066C1F /* InfoDetail */ = {
 			isa = PBXGroup;
 			children = (
-				33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */,
-				33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */,
-				33B9B0D927B8EB4400066C1F /* InfoQuestionTVC.swift */,
 				33B9B0DA27B8EB4400066C1F /* InfoQuestionTVC.xib */,
+				33B9B0D927B8EB4400066C1F /* InfoQuestionTVC.swift */,
+				33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */,
+				33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */,
 				33B9B0DD27B8EB6700066C1F /* InfoCommentHeaderTVC.swift */,
 			);
 			path = InfoDetail;

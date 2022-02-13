@@ -9,6 +9,12 @@ import UIKit
 
 class InfoQuestionTVC: UITableViewCell {
 
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var majorInfoLabel: UILabel!
+    @IBOutlet weak var questionContentTextView: UITextView!
+    @IBOutlet weak var postDateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
