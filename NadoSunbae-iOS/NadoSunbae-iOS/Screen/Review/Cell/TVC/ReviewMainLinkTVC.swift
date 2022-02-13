@@ -9,8 +9,11 @@ import UIKit
 
 class ReviewMainLinkTVC: BaseTVC {
     
-    var homepageURL: String = ""
-    var subjectTableURL: String = ""
+    // MARK: Properties
+    var homePageLink: String = ""
+    var subjectTableLink: String = ""
+    var tapHomePageBtnAction : (() -> ())?
+    var tapSubjectBtnAction : (() -> ())?
     
     // MARK: Life Cycle
     override func awakeFromNib() {
@@ -23,15 +26,11 @@ class ReviewMainLinkTVC: BaseTVC {
     }
 
     @IBAction func tapHomePageBtn(_ sender: Any) {
-        if let url = URL(string: "\(self.homepageURL)") {
-            UIApplication.shared.open(url, options: [:])
-        }
+        tapHomePageBtnAction?()
     }
     
     @IBAction func tapSubjectBtn(_ sender: Any) {
-        if let url = URL(string: "\(self.subjectTableURL)") {
-            UIApplication.shared.open(url, options: [:])
-        }
+        tapSubjectBtnAction?()
     }
 }
 
@@ -44,8 +43,8 @@ extension ReviewMainLinkTVC {
             case .success(let res):
                 print(res)
                 if let data = res as? ReviewHomePageData {
-                    self.homepageURL = data.homepage
-                    self.subjectTableURL = data.subjectTable
+                    self.homePageLink = data.homepage
+                    self.subjectTableLink = data.subjectTable
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {

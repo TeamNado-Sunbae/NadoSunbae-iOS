@@ -39,7 +39,7 @@ class ReviewDetailVC: BaseVC {
         registerTVC()
         setUpTV()
         configureUI()
-        showActionSheet()
+        presentActionSheet()
         setUpTapNaviBackBtn()
     }
     
@@ -84,7 +84,7 @@ extension ReviewDetailVC {
     }
     
     /// 액션 시트
-    private func showActionSheet() {
+    private func presentActionSheet() {
         naviBarView.rightCustomBtn.press {
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let edit = UIAlertAction(title: "수정", style: .default) { action in

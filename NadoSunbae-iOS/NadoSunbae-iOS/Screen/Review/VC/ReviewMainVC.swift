@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ReviewMainVC: BaseVC {
     
@@ -49,7 +50,7 @@ class ReviewMainVC: BaseVC {
     
     // MARK: IBAction
     @IBAction func tapNaviBarBtn(_ sender: Any) {
-        showHalfModalView()
+        presentHalfModalView()
     }
     
     @IBAction func tapFloatingBtn(_ sender: Any) {
@@ -110,7 +111,7 @@ extension ReviewMainVC {
     }
     
     /// 액션시트
-    func showActionSheet() {
+    func presentActionSheet() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // TODO: 액션 추가 예정
@@ -151,13 +152,20 @@ extension ReviewMainVC {
     private func setUpRequestData() {
         requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
     }
+    
+    /// 링크에 해당하는 웹사이트로 연결하는 함수
+    private func presentSafariVC(link: String) {
+        let webLink = NSURL(string: link)
+        let safariVC: SFSafariViewController = SFSafariViewController(url: webLink! as URL)
+        self.present(safariVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: - @objc Function Part
 extension ReviewMainVC {
     
     /// 학과 선택 바텀시트 호출
-    @objc func showHalfModalView() {
+    @objc func presentHalfModalView() {
         let slideVC = HalfModalVC()
         slideVC.selectMajorDelegate = self
         slideVC.modalPresentationStyle = .custom
@@ -166,7 +174,7 @@ extension ReviewMainVC {
     }
     
     /// 필터 선택 바텀시트 호출
-    @objc func showHalfModalFilterView() {
+    @objc func presentHalfModalFilterView() {
         let slideVC = FilterVC()
         slideVC.selectFilterDelegate = self
         slideVC.modalPresentationStyle = .custom
@@ -221,7 +229,7 @@ extension ReviewMainVC: UITableViewDelegate {
             }
             
             headerView.tapArrangeBtnAction = {
-                self.showActionSheet()
+                self.presentActionSheet()
             }
             
             if filterStatus == true {
@@ -230,7 +238,7 @@ extension ReviewMainVC: UITableViewDelegate {
                 headerView.filterBtn.setImage(UIImage(named: "btnFilter"), for: .normal)
             }
             headerView.tapFilterBtnAction = {
-                self.showHalfModalFilterView()
+                self.presentHalfModalFilterView()
             }
             return headerView
         } else {
@@ -306,6 +314,14 @@ extension ReviewMainVC: UITableViewDataSource {
             reviewMainImgTVC.setData(ImgData: imgList[indexPath.row])
             return reviewMainImgTVC
         } else if indexPath.section == 1 {
+            reviewMainLinkTVC.tapHomePageBtnAction = {
+                let homePageLink = reviewMainLinkTVC.homePageLink
+                self.presentSafariVC(link: homePageLink)
+            }
+            reviewMainLinkTVC.tapSubjectBtnAction = {
+                let subjectTableLink = reviewMainLinkTVC.subjectTableLink
+                self.presentSafariVC(link: subjectTableLink)
+            }
             return reviewMainLinkTVC
         } else if indexPath.section == 2 {
             
