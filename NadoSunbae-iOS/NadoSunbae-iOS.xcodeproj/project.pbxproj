@@ -846,6 +846,7 @@
 		33C1B8A027974A13004BABEC /* Classroom */ = {
 			isa = PBXGroup;
 			children = (
+				5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */,
 				5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */,
 				33C1B8A127974A24004BABEC /* QuestionChat */,
 			);
@@ -1293,7 +1294,6 @@
 				77A7591C2797628F00A8E48B /* Review */,
 				33C1B8A027974A13004BABEC /* Classroom */,
 				77AEEB472789AF4D0016880B /* AppContentDataModel.swift */,
-				5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */,
 				33BAFD06278C2D6100BFF6BE /* DefaultQuestionDataModel.swift */,
 				5C3280162797207200781EBE /* Mypage */,
 			);

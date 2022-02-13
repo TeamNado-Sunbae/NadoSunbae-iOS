@@ -23,8 +23,8 @@ struct ClassroomPostList: Codable {
     var content: String = ""
     var createdAt: String = ""
     var writer: Writer = Writer()
-    var commentCount: String = ""
-    var likeCount: String = ""
+    var commentCount: Int = 0
+    var likeCount: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case postID = "postId"
