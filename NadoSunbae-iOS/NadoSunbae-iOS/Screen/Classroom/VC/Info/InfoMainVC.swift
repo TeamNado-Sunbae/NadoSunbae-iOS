@@ -48,7 +48,7 @@ class InfoMainVC: BaseVC {
     private var questionList: [ClassroomPostList] = []
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     
-    // MARK: LifeCycle
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -235,14 +235,11 @@ extension InfoMainVC: UITableViewDelegate {
     
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-        guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+        let infoDetailVC = InfoDetailVC()
         
         if questionList.count != 0 {
-            groupChatVC.questionType = .info
-            groupChatVC.naviStyle = .push
-            groupChatVC.chatPostID = questionList[indexPath.row].postID
-            self.navigationController?.pushViewController(groupChatVC, animated: true)
+            infoDetailVC.chatPostID = questionList[indexPath.row].postID
+            self.navigationController?.pushViewController(infoDetailVC, animated: true)
         }
     }
 }

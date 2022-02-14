@@ -42,7 +42,7 @@ class QuestionMainVC: BaseVC {
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     let halfVC = HalfModalVC()
     
-    // MARK: LifeCycle
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
