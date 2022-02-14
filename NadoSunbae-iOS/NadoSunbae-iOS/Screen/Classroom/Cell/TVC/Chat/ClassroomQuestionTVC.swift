@@ -92,7 +92,7 @@ extension ClassroomQuestionTVC {
     }
     
     func bindLikeData(_ model: ClassroomQuestionLike) {
-        likeCountLabel.text = model.likeCount
+        likeCountLabel.text = "\(model.likeCount)"
         likeBtn.setBackgroundImage(UIImage(named: model.isLiked ? "btnDiamondMint" : "btnDiamond") , for: .normal)
     }
 }

@@ -23,7 +23,7 @@ struct ClassroomQuestionDetailData: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         questionerID = (try? values.decode(Int.self, forKey: .questionerID)) ?? -1
         answererID = (try? values.decode(Int.self, forKey: .answererID)) ?? 0
-        like = (try? values.decode(ClassroomQuestionLike.self, forKey: .like)) ?? ClassroomQuestionLike(isLiked: true, likeCount: "1")
+        like = (try? values.decode(ClassroomQuestionLike.self, forKey: .like)) ?? ClassroomQuestionLike(isLiked: true, likeCount: 1)
         messageList = (try? values.decode([ClassroomMessageList].self, forKey: .messageList)) ?? []
     }
 }
@@ -31,7 +31,7 @@ struct ClassroomQuestionDetailData: Codable {
 // MARK: - ClassroomQuestionLike
 struct ClassroomQuestionLike: Codable {
     let isLiked: Bool
-    let likeCount: String
+    let likeCount: Int
 }
 
 // MARK: - ClassroomMessageList

@@ -11,4 +11,8 @@ import Foundation
 struct Like: Codable {
     let isLiked: Bool
     let likeCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case isLiked, likeCount
+    }
 }
