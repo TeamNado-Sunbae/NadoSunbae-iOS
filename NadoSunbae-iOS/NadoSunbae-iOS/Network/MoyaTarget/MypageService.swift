@@ -9,7 +9,6 @@ import Foundation
 import Moya
 
 enum MypageService {
-    case getMyInfo
     case getUserInfo(userID: Int)
     case getUserPersonalQuestionList(userID: Int, sort: ListSortType)
 }
@@ -21,8 +20,6 @@ extension MypageService: TargetType {
     
     var path: String {
         switch self {
-        case .getMyInfo:
-            return "/user/mypage"
         case .getUserInfo(let userID):
             return "/user/mypage/\(userID)"
         case .getUserPersonalQuestionList(let userID, _):
@@ -32,15 +29,13 @@ extension MypageService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .getMyInfo, .getUserInfo, .getUserPersonalQuestionList:
+        case .getUserInfo, .getUserPersonalQuestionList:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .getMyInfo:
-            return .requestPlain
         case .getUserInfo(let userID):
             return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
         case .getUserPersonalQuestionList(_, let sort):

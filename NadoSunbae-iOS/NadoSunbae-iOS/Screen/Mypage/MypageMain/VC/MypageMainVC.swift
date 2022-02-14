@@ -29,7 +29,7 @@ class MypageMainVC: BaseVC {
     @IBOutlet weak var likeCountLabel: UILabel!
     
     // MARK: Properties
-    var userInfo = MypageMyInfoModel()
+    var userInfo = MypageUserInfoModel()
     
     var questionList: [ClassroomPostList] = []
     
@@ -96,7 +96,7 @@ extension MypageMainVC {
         } else {
             secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         }
-        likeCountLabel.text = userInfo.likeCount
+        likeCountLabel.text = "\(userInfo.count)"
         
         DispatchQueue.main.async {
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
@@ -132,11 +132,12 @@ extension MypageMainVC {
 // MARK: - Network
 extension MypageMainVC {
     private func getMyInfo() {
-        MypageAPI.shared.getMyInfo(completion: { networkResult in
+        MypageAPI.shared.getUserInfo(userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID), completion: { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? MypageMyInfoModel {
+                if let data = res as? MypageUserInfoModel {
                     self.userInfo = data
+                    print("user info: ", self.userInfo)
                     self.configureUI()
                 }
             case .requestErr(let msg):
