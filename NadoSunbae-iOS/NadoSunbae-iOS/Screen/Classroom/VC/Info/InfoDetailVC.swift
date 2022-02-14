@@ -26,7 +26,7 @@ class InfoDetailVC: BaseVC {
     var userType: Int?
     var questionerID: Int?
     var infoDetailData: [ClassroomMessageList] = []
-    var infoDetailLikeData: ClassroomQuestionLike?
+    var infoDetailLikeData: Like?
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -119,7 +119,7 @@ extension InfoDetailVC: UITableViewDataSource {
 
         if indexPath.row == 0 {
             infoQuestionCell.bindData(infoDetailData[0])
-            infoQuestionCell.bindLikeData(infoDetailLikeData ?? ClassroomQuestionLike(isLiked: false, likeCount: 1))
+            infoQuestionCell.bindLikeData(infoDetailLikeData ?? Like(isLiked: false, likeCount: 1))
             infoQuestionCell.tapLikeBtnAction = { [unowned self] in
                 requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: .info)
             }

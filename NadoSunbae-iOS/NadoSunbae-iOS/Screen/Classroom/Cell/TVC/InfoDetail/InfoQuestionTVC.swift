@@ -65,7 +65,7 @@ extension InfoQuestionTVC {
         postDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
     }
     
-    func bindLikeData(_ model: ClassroomQuestionLike) {
+    func bindLikeData(_ model: Like) {
         infoLikeImgView.image = model.isLiked ? UIImage(named: "heart_mint") : UIImage(named: "heart")
         infoLikeCountLabel.text = "\(model.likeCount)"
     }

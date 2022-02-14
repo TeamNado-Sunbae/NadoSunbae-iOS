@@ -60,7 +60,7 @@ class DefaultQuestionChatVC: BaseVC {
     var naviStyle: NaviType?
     var questionType: QuestionType?
     var questionChatData: [ClassroomMessageList] = []
-    var questionLikeData: ClassroomQuestionLike?
+    var questionLikeData: Like?
     var questionerID: Int?
     var answererID: Int?
     var userID: Int?
@@ -465,7 +465,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     moreBtnTapIndex = [0,indexPath.row]
                 }
                 questionCell.bindData(questionChatData[indexPath.row])
-                questionCell.bindLikeData(questionLikeData ?? ClassroomQuestionLike(isLiked: false, likeCount: 0))
+                questionCell.bindLikeData(questionLikeData ?? Like(isLiked: false, likeCount: 0))
                 questionCell.tapLikeBtnAction = { [unowned self] in
                     requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: self.questionType ?? .personal)
                 }
