@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import SafariServices
 
 class InfoDetailVC: BaseVC {
     
@@ -25,7 +26,8 @@ class InfoDetailVC: BaseVC {
     var userID: Int?
     var userType: Int?
     var questionerID: Int?
-    var infoDetailData: [ClassroomMessageList] = []
+    var infoDetailData: InfoDetailDataModel?
+    var infoDetailCommentData: [InfoDetailCommentList] = []
     var infoDetailLikeData: Like?
 
     // MARK: Life Cycle
@@ -109,7 +111,7 @@ extension InfoDetailVC: UITableViewDataSource {
     
     /// numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return infoDetailData.count
+        return 1 + infoDetailCommentData.count
     }
     
     /// cellForRowAt
@@ -117,14 +119,21 @@ extension InfoDetailVC: UITableViewDataSource {
         guard let infoQuestionCell = tableView.dequeueReusableCell(withIdentifier: InfoQuestionTVC.className, for: indexPath) as? InfoQuestionTVC,
               let infoCommentCell = tableView.dequeueReusableCell(withIdentifier: InfoCommentTVC.className, for: indexPath) as? InfoCommentTVC else { return UITableViewCell() }
 
+        /// 정보글 원글
         if indexPath.row == 0 {
-            infoQuestionCell.bindData(infoDetailData[0])
-            infoQuestionCell.bindLikeData(infoDetailLikeData ?? Like(isLiked: false, likeCount: 1))
+            infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
+            
             infoQuestionCell.tapLikeBtnAction = { [unowned self] in
-                requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: .info)
+                requestPostLikeData(chatID: chatPostID ?? 0, postTypeID: .info)
+            }
+            
+            infoQuestionCell.interactURL = { url in
+                let safariView: SFSafariViewController = SFSafariViewController(url: url)
+                self.present(safariView, animated: true, completion: nil)
             }
             return infoQuestionCell
         } else {
+            /// 정보글 댓글
 //            infoCommentCell.bindData(infoDetailData[indexPath.row + 1])
             return infoCommentCell
         }
@@ -143,15 +152,15 @@ extension InfoDetailVC: UITableViewDelegate {
 // MARK: - Network
 extension InfoDetailVC {
     
-    /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
+    /// 정보글 상세 조회 API 요청 메서드
     func requestGetDetailInfoData(chatPostID: Int) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getQuestionDetailAPI(chatPostID: chatPostID) { networkResult in
+        ClassroomAPI.shared.getInfoDetailAPI(chatPostID: chatPostID) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? ClassroomQuestionDetailData {
-                    self.infoDetailData = data.messageList
-                    self.infoDetailLikeData = data.like
+                if let data = res as? InfoDetailDataModel {
+                    self.infoDetailData = data
+                    self.infoDetailCommentData = data.commentList
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     DispatchQueue.main.async {
                         self.infoDetailTV.reloadData()
@@ -197,13 +206,15 @@ extension InfoDetailVC {
     }
     
     /// 좋아요 API 요청 메서드
-    func requestPostClassroomLikeData(chatID: Int, postTypeID: QuestionType) {
+    func requestPostLikeData(chatID: Int, postTypeID: QuestionType) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: chatID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? PostLike {
-                    self.requestGetDetailInfoData(chatPostID: self.chatPostID ?? 0)
+                if let _ = res as? PostLikeResModel {
+                    DispatchQueue.main.async {
+                        self.requestGetDetailInfoData(chatPostID: self.chatPostID ?? 0)
+                    }
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):

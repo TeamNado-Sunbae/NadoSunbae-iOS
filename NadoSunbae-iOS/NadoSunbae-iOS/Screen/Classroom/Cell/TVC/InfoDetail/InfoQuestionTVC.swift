@@ -15,22 +15,29 @@ class InfoQuestionTVC: BaseTVC {
     @IBOutlet var majorInfoLabel: UILabel!
     @IBOutlet var questionContentTextView: UITextView! {
         didSet {
+            questionContentTextView.delegate = self
+            questionContentTextView.isEditable = false
             questionContentTextView.isScrollEnabled = false
+            questionContentTextView.dataDetectorTypes = .link
         }
     }
     @IBOutlet var postDateLabel: UILabel!
-    @IBOutlet var infoLikeBackView: UIView!
+    @IBOutlet var infoLikeBackView: UIView! {
+        didSet {
+            infoLikeBackView.layer.cornerRadius = 16
+        }
+    }
     @IBOutlet var infoLikeBtn: UIButton!
     @IBOutlet var infoLikeImgView: UIImageView!
     @IBOutlet var infoLikeCountLabel: UILabel!
     
-    // MARK: Propertie
+    // MARK: Properties
     var tapLikeBtnAction : (() -> ())?
+    var interactURL: ((_ data: URL) -> Void)?
     
     // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureUI()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,28 +53,29 @@ class InfoQuestionTVC: BaseTVC {
     }
 }
 
-// MARK: - UI
-extension InfoQuestionTVC {
-    private func configureUI() {
-        infoLikeBackView.layer.cornerRadius = 16
-    }
-}
-
 // MARK: - Custom Methods
 extension InfoQuestionTVC {
     
     /// 데이터 바인딩하는 메서드
-    func bindData(_ model: ClassroomMessageList) {
-        infoTitleLabel.text = model.title
+    func bindData(_ model: InfoDetailDataModel) {
+        infoTitleLabel.text = model.post.title
         nicknameLabel.text = model.writer.nickname
         majorInfoLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
-        questionContentTextView.text = model.content
-        postDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
-    }
-    
-    func bindLikeData(_ model: Like) {
-        infoLikeImgView.image = model.isLiked ? UIImage(named: "heart_mint") : UIImage(named: "heart")
-        infoLikeCountLabel.text = "\(model.likeCount)"
+        questionContentTextView.text = model.post.content
+        postDateLabel.text = model.post.createdAt.serverTimeToString(forUse: .forDefault)
+        infoLikeBtn.isSelected = model.like.isLiked
+        infoLikeBackView.backgroundColor =  model.like.isLiked ? UIColor.nadoBlack : UIColor.gray0
+        infoLikeImgView.image = model.like.isLiked ? UIImage(named: "heart_mint") : UIImage(named: "heart")
+        infoLikeCountLabel.text = "\(model.like.likeCount)"
     }
 }
 
+// MARK: - UITextViewDelegate
+extension InfoQuestionTVC: UITextViewDelegate {
+    
+    /// shouldInteractWith URL - 텍스트뷰 내 link와 interact하는 메서드
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        interactURL?(URL)
+        return false
+    }
+}
