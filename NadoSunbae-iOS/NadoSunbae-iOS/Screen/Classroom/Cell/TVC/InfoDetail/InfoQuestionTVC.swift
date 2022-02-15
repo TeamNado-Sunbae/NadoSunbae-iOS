@@ -19,6 +19,7 @@ class InfoQuestionTVC: BaseTVC {
             questionContentTextView.isEditable = false
             questionContentTextView.isScrollEnabled = false
             questionContentTextView.dataDetectorTypes = .link
+            questionContentTextView.textContainer.lineFragmentPadding = 0
             questionContentTextView.setCharacterSpacing(-0.14)
             questionContentTextView.setLineSpacing(lineSpacing: 7)
             questionContentTextView.font = .PretendardR(size: 14.0)

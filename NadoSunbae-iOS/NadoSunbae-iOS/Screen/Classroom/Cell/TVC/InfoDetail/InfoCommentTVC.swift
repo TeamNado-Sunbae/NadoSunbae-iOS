@@ -19,6 +19,7 @@ class InfoCommentTVC: BaseTVC {
             commentTextView.isEditable = false
             commentTextView.isScrollEnabled = false
             commentTextView.dataDetectorTypes = .link
+            commentTextView.textContainer.lineFragmentPadding = 0
             commentTextView.setCharacterSpacing(-0.14)
             commentTextView.setLineSpacing(lineSpacing: 5)
             commentTextView.font = .PretendardR(size: 14.0)
