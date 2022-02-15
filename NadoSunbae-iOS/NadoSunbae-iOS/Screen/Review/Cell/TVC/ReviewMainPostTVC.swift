@@ -13,7 +13,7 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nickNameLabel: UILabel!
-    @IBOutlet weak var diamondCountLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var majorNameLabel: UILabel!
     @IBOutlet weak var firstMajorStartLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
@@ -65,7 +65,7 @@ extension ReviewMainPostTVC {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
         nickNameLabel.text = postData.writer.nickname
-        diamondCountLabel.text = "\(postData.like.likeCount)"
+        likeCountLabel.text = "\(postData.like.likeCount)"
         majorNameLabel.text = postData.writer.firstMajorName
         secondMajorNameLabel.text = postData.writer.secondMajorName
         firstMajorStartLabel.text = postData.writer.firstMajorStart
