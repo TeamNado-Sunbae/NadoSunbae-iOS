@@ -62,3 +62,4 @@ func convertToMajorInfoString(_ firstMajorName: String, _ firstMajorStart: Strin
         return firstMajorName + " " + firstMajorStart + " " + "|" + " " + secondMajorName + " " + secondMajorStart
     }
 }
+
