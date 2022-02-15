@@ -24,10 +24,9 @@ class ReviewDetailVC: BaseVC {
             reviewPostTV.rowHeight = UITableView.automaticDimension
         }
     }
-    
     @IBOutlet weak var likeCountView: UIView!
     @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var diamondImgView: UIImageView!
+    @IBOutlet weak var likeImgView: UIImageView!
     
     // MARK: Properties
     var detailPost: ReviewPostDetailData = ReviewPostDetailData(like: Like(isLiked: false, likeCount: 0), backgroundImage: BackgroundImage(imageID: 0))
@@ -123,10 +122,10 @@ extension ReviewDetailVC {
     
     func setUpLikeStatus(model: Like) {
         if model.isLiked {
-            diamondImgView.image = UIImage(named: "colorFilledDiamond")
+            likeImgView.image = UIImage(named: "heart_filled")
             likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
         } else {
-            diamondImgView.image = UIImage(named: "emptyDiamond")
+            likeImgView.image = UIImage(named: "btn_heart")
             likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
         }
         likeCountLabel.text = "\(model.likeCount)"

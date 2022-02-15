@@ -88,15 +88,6 @@
                             <constraint firstAttribute="width" constant="1" id="8gs-bM-89y"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bya-cZ-gzh">
-                        <rect key="frame" x="289.5" y="5.5" width="32" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="32" id="i1Y-gE-KVF"/>
-                            <constraint firstAttribute="width" constant="32" id="vzD-x5-16b"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="btnDiamond"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vD-vQ-dab">
                         <rect key="frame" x="321.5" y="14" width="5.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="Pretendard-Light" family="Pretendard" pointSize="12"/>
@@ -116,20 +107,27 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_heart" translatesAutoresizingMaskIntoConstraints="NO" id="CLl-nK-iba">
+                        <rect key="frame" x="289.5" y="5.5" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="3yn-pU-Vmv"/>
+                            <constraint firstAttribute="width" constant="32" id="sPd-Zq-U2K"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" name="paleGray"/>
                 <constraints>
                     <constraint firstItem="uE4-0F-UpK" firstAttribute="leading" secondItem="WTF-gu-mXm" secondAttribute="trailing" constant="8" id="0BJ-lr-I5R"/>
+                    <constraint firstItem="6vD-vQ-dab" firstAttribute="leading" secondItem="CLl-nK-iba" secondAttribute="trailing" id="4v6-Ms-xzY"/>
                     <constraint firstAttribute="bottom" secondItem="dBq-LS-2t6" secondAttribute="bottom" constant="9" id="7Kb-yn-9G3"/>
                     <constraint firstAttribute="trailing" secondItem="5Hi-d0-c0y" secondAttribute="trailing" constant="15.5" id="8rh-6G-7PK"/>
-                    <constraint firstItem="bya-cZ-gzh" firstAttribute="centerY" secondItem="6vD-vQ-dab" secondAttribute="centerY" id="Ezx-8h-lGG"/>
                     <constraint firstItem="Mwc-Fl-BXw" firstAttribute="centerY" secondItem="uE4-0F-UpK" secondAttribute="centerY" id="Fv4-4D-RHl"/>
-                    <constraint firstItem="6vD-vQ-dab" firstAttribute="leading" secondItem="bya-cZ-gzh" secondAttribute="trailing" id="Iet-Vv-yJt"/>
                     <constraint firstItem="sJH-yj-Sga" firstAttribute="trailing" secondItem="5Hi-d0-c0y" secondAttribute="trailing" id="K0d-Fr-CBj"/>
                     <constraint firstItem="mnz-fO-zkk" firstAttribute="centerY" secondItem="7QH-jM-GOf" secondAttribute="centerY" id="RLL-oB-Mcj"/>
                     <constraint firstItem="WTF-gu-mXm" firstAttribute="top" secondItem="u7e-V6-05r" secondAttribute="bottom" constant="8" id="Tq1-RT-lXR"/>
                     <constraint firstItem="mnz-fO-zkk" firstAttribute="leading" secondItem="7QH-jM-GOf" secondAttribute="trailing" constant="4" id="VJg-Wf-IPc"/>
                     <constraint firstItem="Kcu-lx-xPX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Y2q-Ja-RhK"/>
+                    <constraint firstItem="CLl-nK-iba" firstAttribute="centerY" secondItem="6vD-vQ-dab" secondAttribute="centerY" id="YvT-8g-xWM"/>
                     <constraint firstItem="7QH-jM-GOf" firstAttribute="centerY" secondItem="Mwc-Fl-BXw" secondAttribute="centerY" id="a78-fr-zbi"/>
                     <constraint firstItem="sJH-yj-Sga" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="b6b-23-cxi"/>
                     <constraint firstItem="Mwc-Fl-BXw" firstAttribute="leading" secondItem="uE4-0F-UpK" secondAttribute="trailing" constant="4" id="bGc-ki-Cwh"/>
@@ -154,8 +152,9 @@
             <gestureRecognizers/>
             <connections>
                 <outlet property="dateLabel" destination="Kcu-lx-xPX" id="21C-n3-8IU"/>
-                <outlet property="diamondCountLabel" destination="6vD-vQ-dab" id="NVD-Am-Alw"/>
                 <outlet property="firstMajorStartLabel" destination="Mwc-Fl-BXw" id="m8d-F8-yXb"/>
+                <outlet property="likeCountLabel" destination="6vD-vQ-dab" id="4A1-eZ-hdu"/>
+                <outlet property="likeImgView" destination="CLl-nK-iba" id="3W9-b9-Ls6"/>
                 <outlet property="majorNameLabel" destination="uE4-0F-UpK" id="N2Q-kj-siR"/>
                 <outlet property="nickNameLabel" destination="WTF-gu-mXm" id="FU5-eN-NMc"/>
                 <outlet property="secondMajorNameLabel" destination="7QH-jM-GOf" id="lWN-5d-wY4"/>
@@ -167,7 +166,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btnDiamond" width="32" height="32"/>
+        <image name="btn_heart" width="32" height="32"/>
         <namedColor name="gray1">
             <color red="0.90980392156862744" green="0.90980392156862744" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
