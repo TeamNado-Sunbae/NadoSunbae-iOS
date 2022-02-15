@@ -687,7 +687,7 @@ extension DefaultQuestionChatVC {
         ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: chatID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? PostLike {
+                if let _ = res as? PostLikeResModel {
                     self.requestGetDetailQuestionData(chatPostID: self.chatPostID ?? 0)
                     self.activityIndicator.stopAnimating()
                 }

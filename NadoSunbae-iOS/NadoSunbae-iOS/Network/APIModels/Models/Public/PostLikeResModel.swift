@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+// MARK: - PostLikeResModel
+struct PostLikeResModel: Codable {
+    let postID: Int
+    let isLiked: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case postID = "postId"
+        case isLiked
+    }
+}

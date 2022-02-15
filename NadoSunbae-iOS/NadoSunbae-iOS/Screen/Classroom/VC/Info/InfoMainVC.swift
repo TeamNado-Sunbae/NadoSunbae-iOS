@@ -45,7 +45,7 @@ class InfoMainVC: BaseVC {
     }
     
     private var selectActionSheetIndex = 0
-    private var questionList: [ClassroomPostList] = []
+    private var infoList: [ClassroomPostList] = []
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     
     // MARK: Life Cycle
@@ -189,22 +189,22 @@ extension InfoMainVC: UITableViewDataSource {
     
     /// numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if questionList.count == 0 {
+        if infoList.count == 0 {
             return 1
         } else {
-            return questionList.count
+            return infoList.count
         }
     }
     
     /// cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if questionList.count == 0 {
+        if infoList.count == 0 {
             let emptyCell = QuestionEmptyTVC()
             emptyCell.setUpEmptyQuestionLabelText(text: "등록된 정보글이 없습니다.")
             return emptyCell
         } else {
             guard let infoCell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath) as? BaseQuestionTVC else { return UITableViewCell() }
-            infoCell.setData(data: questionList[indexPath.row])
+            infoCell.setData(data: infoList[indexPath.row])
             infoCell.backgroundColor = .white
             infoCell.layoutIfNeeded()
             return infoCell
@@ -217,7 +217,7 @@ extension InfoMainVC: UITableViewDelegate {
     
     /// estimatedHeightForRowAt
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if questionList.count == 0 {
+        if infoList.count == 0 {
             return 515
         } else {
             return 120
@@ -226,7 +226,7 @@ extension InfoMainVC: UITableViewDelegate {
     
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if questionList.count == 0 {
+        if infoList.count == 0 {
             return 515
         } else {
             return UITableView.automaticDimension
@@ -237,8 +237,8 @@ extension InfoMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let infoDetailVC = InfoDetailVC()
         
-        if questionList.count != 0 {
-            infoDetailVC.chatPostID = questionList[indexPath.row].postID
+        if infoList.count != 0 {
+            infoDetailVC.chatPostID = infoList[indexPath.row].postID
             self.navigationController?.pushViewController(infoDetailVC, animated: true)
         }
     }
@@ -254,7 +254,7 @@ extension InfoMainVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? [ClassroomPostList] {
-                    self.questionList = data
+                    self.infoList = data
                     DispatchQueue.main.async {
                         self.infoQuestionListTV.reloadData()
                         self.infoQuestionListTV.snp.updateConstraints {
