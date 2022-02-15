@@ -36,6 +36,7 @@ extension UILabel {
         self.text = text
     }
     
+    /// 행간 조정 메서드
     func setLineSpacing(lineSpacing: CGFloat) {
         if let text = self.text {
             let attributeString = NSMutableAttributedString(string: text)

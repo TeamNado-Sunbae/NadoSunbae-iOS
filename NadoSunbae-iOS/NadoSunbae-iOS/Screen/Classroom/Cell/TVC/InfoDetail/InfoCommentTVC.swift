@@ -19,6 +19,10 @@ class InfoCommentTVC: BaseTVC {
             commentTextView.isEditable = false
             commentTextView.isScrollEnabled = false
             commentTextView.dataDetectorTypes = .link
+            commentTextView.setCharacterSpacing(-0.14)
+            commentTextView.setLineSpacing(lineSpacing: 5)
+            commentTextView.font = .PretendardR(size: 14.0)
+            commentTextView.textColor = .gray4
         }
     }
     @IBOutlet var commentDateLabel: UILabel!
