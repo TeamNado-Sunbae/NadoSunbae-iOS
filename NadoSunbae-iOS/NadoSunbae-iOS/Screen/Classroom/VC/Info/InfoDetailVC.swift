@@ -37,9 +37,11 @@ class InfoDetailVC: BaseVC {
         registerXib()
         setUpTV()
         setUpNaviStyle()
+        addActivateIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
         optionalBindingData()
     }
 }
@@ -104,6 +106,12 @@ extension InfoDetailVC {
             }
         }
     }
+    
+    /// ActivateIndicator 추가 메서드
+    private func addActivateIndicator() {
+        activityIndicator.center = CGPoint(x: self.view.center.x, y: view.center.y)
+        view.addSubview(self.activityIndicator)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -122,7 +130,7 @@ extension InfoDetailVC: UITableViewDataSource {
         /// 정보글 원글
         if indexPath.row == 0 {
             infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
-            
+    
             infoQuestionCell.tapLikeBtnAction = { [unowned self] in
                 requestPostLikeData(chatID: chatPostID ?? 0, postTypeID: .info)
             }
@@ -134,7 +142,18 @@ extension InfoDetailVC: UITableViewDataSource {
             return infoQuestionCell
         } else {
             /// 정보글 댓글
-//            infoCommentCell.bindData(infoDetailData[indexPath.row + 1])
+            infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 1])
+            infoCommentCell.tapMoreInfoBtn = { [unowned self] in
+                // TODO: 추후에 권한 분기처리 예정
+                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
+                    // TODO: 추후에 기능 추가 예정
+                })
+            }
+            
+            infoQuestionCell.interactURL = { url in
+                let safariView: SFSafariViewController = SFSafariViewController(url: url)
+                self.present(safariView, animated: true, completion: nil)
+            }
             return infoCommentCell
         }
     }
