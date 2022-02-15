@@ -65,7 +65,7 @@ extension ReviewMainPostTVC {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
         nickNameLabel.text = postData.writer.nickname
-        diamondCountLabel.text = postData.likeCount
+        diamondCountLabel.text = "\(postData.like.likeCount)"
         majorNameLabel.text = postData.writer.firstMajorName
         secondMajorNameLabel.text = postData.writer.secondMajorName
         firstMajorStartLabel.text = postData.writer.firstMajorStart
