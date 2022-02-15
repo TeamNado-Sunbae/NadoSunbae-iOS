@@ -84,11 +84,6 @@ extension InfoDetailVC {
         InfoCommentTVC.register(target: infoDetailTV)
     }
     
-    /// 셀 등록 메서드
-    private func registerCell() {
-        infoDetailTV.register(InfoQuestionTVC.self, forCellReuseIdentifier: InfoQuestionTVC.className)
-    }
-    
     /// 네비 set 메서드
     private func setUpNaviStyle() {
         infoDetailNaviBar.titleLabel.text = "정보글"
@@ -119,7 +114,7 @@ extension InfoDetailVC: UITableViewDataSource {
     
     /// numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 + infoDetailCommentData.count
+        return 2 + infoDetailCommentData.count
     }
     
     /// cellForRowAt
@@ -127,7 +122,7 @@ extension InfoDetailVC: UITableViewDataSource {
         guard let infoQuestionCell = tableView.dequeueReusableCell(withIdentifier: InfoQuestionTVC.className, for: indexPath) as? InfoQuestionTVC,
               let infoCommentCell = tableView.dequeueReusableCell(withIdentifier: InfoCommentTVC.className, for: indexPath) as? InfoCommentTVC else { return UITableViewCell() }
 
-        /// 정보글 원글
+        /// 정보글 원글 Cell
         if indexPath.row == 0 {
             infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
     
@@ -140,9 +135,15 @@ extension InfoDetailVC: UITableViewDataSource {
                 self.present(safariView, animated: true, completion: nil)
             }
             return infoQuestionCell
-        } else {
-            /// 정보글 댓글
-            infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 1])
+        } else if indexPath.row == 1 {
+            /// 정보글 댓글 수 header Cell
+            let infoCommentHeaderCell = InfoCommentHeaderTVC()
+            infoCommentHeaderCell.bindData(commentCount: infoDetailData?.commentCount ?? -1)
+            return infoCommentHeaderCell
+        }
+        else {
+            /// 정보글 댓글 Cell
+            infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 2])
             infoCommentCell.tapMoreInfoBtn = { [unowned self] in
                 // TODO: 추후에 권한 분기처리 예정
                 self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
