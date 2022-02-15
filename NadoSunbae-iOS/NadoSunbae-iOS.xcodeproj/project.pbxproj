@@ -115,6 +115,8 @@
 		5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */; };
 		5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */; };
 		5C5AFCBD279400060045E47A /* MypageMainVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */; };
+		5C70A4FB27BA4C300096B20A /* MypagePostListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C70A4FA27BA4C300096B20A /* MypagePostListVC.storyboard */; };
+		5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */; };
 		5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C873A4A279978650050EE43 /* SignInDataModel.swift */; };
 		5C87EC22279A2D2C0039D935 /* CreateClassroomPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */; };
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
@@ -313,6 +315,8 @@
 		5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpCompleteVC.storyboard; sourceTree = "<group>"; };
 		5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteVC.swift; sourceTree = "<group>"; };
 		5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MypageMainVC+TV.swift"; sourceTree = "<group>"; };
+		5C70A4FA27BA4C300096B20A /* MypagePostListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypagePostListVC.storyboard; sourceTree = "<group>"; };
+		5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypagePostListVC.swift; sourceTree = "<group>"; };
 		5C873A4A279978650050EE43 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassroomPostModel.swift; sourceTree = "<group>"; };
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
@@ -699,6 +703,7 @@
 				5CD4213B2790863100D09DEE /* MypageNVC */,
 				5CD4213327907E4900D09DEE /* MypageUser */,
 				5CA51FF8278F2A95001A1A40 /* MypageMain */,
+				5C70A4F527BA4BC10096B20A /* MypagePostList */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1029,6 +1034,31 @@
 				5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */,
 			);
 			path = SB;
+			sourceTree = "<group>";
+		};
+		5C70A4F527BA4BC10096B20A /* MypagePostList */ = {
+			isa = PBXGroup;
+			children = (
+				5C70A4F627BA4C030096B20A /* SB */,
+				5C70A4F727BA4C090096B20A /* VC */,
+			);
+			path = MypagePostList;
+			sourceTree = "<group>";
+		};
+		5C70A4F627BA4C030096B20A /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				5C70A4FA27BA4C300096B20A /* MypagePostListVC.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		5C70A4F727BA4C090096B20A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		5C873A492799785A0050EE43 /* Sign */ = {
@@ -1366,6 +1396,7 @@
 				7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
 				33CF635C279464FD00E92C04 /* InfoSB.storyboard in Resources */,
+				5C70A4FB27BA4C300096B20A /* MypagePostListVC.storyboard in Resources */,
 				33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */,
 				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
 				5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */,
@@ -1491,6 +1522,7 @@
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
+				5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
