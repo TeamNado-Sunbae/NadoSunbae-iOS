@@ -1,5 +1,5 @@
 //
-//  AppContentDataModel.swift
+//  ReviewImgModel.swift
 //  NadoSunbae-iOS
 //
 //  Created by EUNJU on 2022/01/08.
@@ -24,3 +24,5 @@ struct ReviewWriteBgImgData {
         return UIImage(named: bgImgName)
     }
 }
+
+

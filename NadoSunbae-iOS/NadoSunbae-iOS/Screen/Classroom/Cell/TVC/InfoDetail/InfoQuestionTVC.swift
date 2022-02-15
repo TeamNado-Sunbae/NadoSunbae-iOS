@@ -46,9 +46,6 @@ class InfoQuestionTVC: BaseTVC {
     
     // MARK: IBAction
     @IBAction func tapInfoLikeBtn(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        infoLikeBackView.backgroundColor = sender.isSelected ? UIColor.nadoBlack : UIColor.gray0
-        infoLikeImgView.image = sender.isSelected ? UIImage(named: "heart_mint") : UIImage(named: "heart")
         tapLikeBtnAction?()
     }
 }
@@ -63,7 +60,6 @@ extension InfoQuestionTVC {
         majorInfoLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         questionContentTextView.text = model.post.content
         postDateLabel.text = model.post.createdAt.serverTimeToString(forUse: .forDefault)
-        infoLikeBtn.isSelected = model.like.isLiked
         infoLikeBackView.backgroundColor =  model.like.isLiked ? UIColor.nadoBlack : UIColor.gray0
         infoLikeImgView.image = model.like.isLiked ? UIImage(named: "heart_mint") : UIImage(named: "heart")
         infoLikeCountLabel.text = "\(model.like.likeCount)"
