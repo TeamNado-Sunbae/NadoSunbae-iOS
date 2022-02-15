@@ -70,16 +70,8 @@ extension ReviewMainPostTVC {
         majorNameLabel.text = postData.writer.firstMajorName
         secondMajorNameLabel.text = postData.writer.secondMajorName
         firstMajorStartLabel.text = postData.writer.firstMajorStart
-        if postData.writer.secondMajorStart == "미진입" {
-            secondMajorStartLabel.text = ""
-        } else {
-            secondMajorStartLabel.text = postData.writer.secondMajorStart
-        }
-        if postData.like.isLiked {
-            likeImgView.image = UIImage(named: "heart_filled")
-        } else {
-            likeImgView.image = UIImage(named: "btn_heart")
-        }
+        secondMajorStartLabel.text = postData.writer.secondMajorStart == "미진입" ? "" : postData.writer.secondMajorStart
+        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
     private func registerCVC() {
