@@ -30,7 +30,7 @@ class ReviewDetailVC: BaseVC {
     @IBOutlet weak var diamondImgView: UIImageView!
     
     // MARK: Properties
-    var detailPost: ReviewPostDetailData = ReviewPostDetailData(backgroundImage: BackgroundImage(imageID: 0))
+    var detailPost: ReviewPostDetailData = ReviewPostDetailData(like: Like(isLiked: false, likeCount: 0), backgroundImage: BackgroundImage(imageID: 0))
     var postId: Int?
     
     // MARK: Life Cycle
@@ -121,15 +121,15 @@ extension ReviewDetailVC {
         }
     }
     
-    func setUpLikeStatus(model: PostLike) {
-        if model.isLiked ?? true {
+    func setUpLikeStatus(model: Like) {
+        if model.isLiked {
             diamondImgView.image = UIImage(named: "colorFilledDiamond")
             likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
         } else {
             diamondImgView.image = UIImage(named: "emptyDiamond")
             likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
         }
-        likeCountLabel.text = model.likeCount
+        likeCountLabel.text = "\(model.likeCount)"
     }
 }
 
@@ -236,9 +236,9 @@ extension ReviewDetailVC {
         ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? PostLike {
+                if let _ = res as? Like {
                     self.requestGetReviewPostDetail(postID: postID)
-                    print("!!!!!!!! 여기 !!!!!!!!")
+                    print(res)
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
