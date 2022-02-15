@@ -8,7 +8,7 @@
 import UIKit
 
 class InfoCommentTVC: BaseTVC {
-
+    
     // MARK: IBOutlet
     @IBOutlet var profileImgView: UIImageView!
     @IBOutlet var nicknameLabel: UILabel!

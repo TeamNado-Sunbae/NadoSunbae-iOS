@@ -21,7 +21,7 @@ class InfoQuestionTVC: BaseTVC {
             questionContentTextView.dataDetectorTypes = .link
             questionContentTextView.textContainer.lineFragmentPadding = 0
             questionContentTextView.setCharacterSpacing(-0.14)
-            questionContentTextView.setLineSpacing(lineSpacing: 7)
+            questionContentTextView.setLineSpacing(lineSpacing: 5)
             questionContentTextView.font = .PretendardR(size: 14.0)
             questionContentTextView.textColor = .mainText
         }
