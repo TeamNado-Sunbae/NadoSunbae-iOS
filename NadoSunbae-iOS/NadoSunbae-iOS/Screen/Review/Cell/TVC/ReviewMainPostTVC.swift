@@ -18,6 +18,7 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var firstMajorStartLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
     @IBOutlet weak var secondMajorStartLabel: UILabel!
+    @IBOutlet weak var likeImgView: UIImageView!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
@@ -73,6 +74,11 @@ extension ReviewMainPostTVC {
             secondMajorStartLabel.text = ""
         } else {
             secondMajorStartLabel.text = postData.writer.secondMajorStart
+        }
+        if postData.like.isLiked {
+            likeImgView.image = UIImage(named: "heart_filled")
+        } else {
+            likeImgView.image = UIImage(named: "btn_heart")
         }
     }
     
