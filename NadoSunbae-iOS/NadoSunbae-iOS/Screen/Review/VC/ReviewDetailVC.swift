@@ -235,7 +235,7 @@ extension ReviewDetailVC {
         ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? Like {
+                if let _ = res as? PostLikeResModel {
                     self.requestGetReviewPostDetail(postID: postID)
                     print(res)
                     self.activityIndicator.stopAnimating()
