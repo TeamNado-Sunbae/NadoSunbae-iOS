@@ -179,6 +179,7 @@
 		777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */; };
 		777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */; };
 		777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */; };
+		77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */; };
 		77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */; };
 		77A7591B279712B700A8E48B /* ReviewPostTagCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A75919279712B700A8E48B /* ReviewPostTagCVC.xib */; };
 		77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */; };
@@ -384,6 +385,7 @@
 		777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainPostTVC.xib; sourceTree = "<group>"; };
 		777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainStickyHeader.xib; sourceTree = "<group>"; };
 		777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStickyHeaderView.swift; sourceTree = "<group>"; };
+		77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeleteResModel.swift; sourceTree = "<group>"; };
 		77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostTagCVC.swift; sourceTree = "<group>"; };
 		77A75919279712B700A8E48B /* ReviewPostTagCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewPostTagCVC.xib; sourceTree = "<group>"; };
 		77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostRegisterData.swift; sourceTree = "<group>"; };
@@ -1257,6 +1259,7 @@
 				77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */,
 				77A7593B2799C81B00A8E48B /* ReviewPostDetailData.swift */,
 				77A75943279B111300A8E48B /* ReviewHomePageData.swift */,
+				77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -1557,6 +1560,7 @@
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */,
+				77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
