@@ -16,6 +16,7 @@ class AutoSignInVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        requestSignIn()
     }
 }
 
@@ -41,7 +42,7 @@ extension AutoSignInVC {
     /// 로그인 요청하는 메서드
     private func requestSignIn() {
         self.activityIndicator.startAnimating()
-        SignAPI.shared.signIn(email: email, PW: PW, deviceToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.FCMTokenForDevice) as! String) { networkResult in
+        SignAPI.shared.signIn(email: email, PW: PW, deviceToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.FCMTokenForDevice) ?? "") { networkResult in
             switch networkResult {
             case .success(let res):
                 self.activityIndicator.stopAnimating()
@@ -55,6 +56,7 @@ extension AutoSignInVC {
                 self.activityIndicator.stopAnimating()
                 print("Failed Auto SignIn")
                 guard let signInVC = self.storyboard?.instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+                signInVC.modalPresentationStyle = .fullScreen
                 self.present(signInVC, animated: true, completion: nil)
             }
         }
