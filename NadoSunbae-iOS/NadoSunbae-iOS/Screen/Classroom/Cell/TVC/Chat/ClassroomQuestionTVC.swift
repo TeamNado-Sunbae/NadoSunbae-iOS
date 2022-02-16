@@ -91,8 +91,8 @@ extension ClassroomQuestionTVC {
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
     }
     
-    func bindLikeData(_ model: ClassroomQuestionLike) {
-        likeCountLabel.text = model.likeCount
+    func bindLikeData(_ model: Like) {
+        likeCountLabel.text = "\(model.likeCount)"
         likeBtn.setBackgroundImage(UIImage(named: model.isLiked ? "btnDiamondMint" : "btnDiamond") , for: .normal)
     }
 }

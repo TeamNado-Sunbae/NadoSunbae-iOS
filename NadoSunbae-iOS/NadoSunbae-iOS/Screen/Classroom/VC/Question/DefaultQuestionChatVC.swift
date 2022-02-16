@@ -60,7 +60,7 @@ class DefaultQuestionChatVC: BaseVC {
     var naviStyle: NaviType?
     var questionType: QuestionType?
     var questionChatData: [ClassroomMessageList] = []
-    var questionLikeData: ClassroomQuestionLike?
+    var questionLikeData: Like?
     var questionerID: Int?
     var answererID: Int?
     var userID: Int?
@@ -73,7 +73,7 @@ class DefaultQuestionChatVC: BaseVC {
     private var sendTextViewLineCount: Int = 1
     private let textViewMaxHeight: CGFloat = 85
     
-    // MARK: LifeCycle
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNaviInitStyle()
@@ -465,7 +465,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     moreBtnTapIndex = [0,indexPath.row]
                 }
                 questionCell.bindData(questionChatData[indexPath.row])
-                questionCell.bindLikeData(questionLikeData ?? ClassroomQuestionLike(isLiked: false, likeCount: "0"))
+                questionCell.bindLikeData(questionLikeData ?? Like(isLiked: false, likeCount: 0))
                 questionCell.tapLikeBtnAction = { [unowned self] in
                     requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: self.questionType ?? .personal)
                 }
@@ -522,6 +522,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                             }
                         }
                     }
+                    
                     if actionSheetString.count > 1 {
                         self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
                             if actionSheetString[0] == "수정" {
@@ -589,7 +590,6 @@ extension DefaultQuestionChatVC {
     
     @objc
     private func keyboardWillShow(_ notification: Notification) {
-        
         if screenHeight == 667 {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 sendAreaTextViewBottom.constant = keyboardSize.height + 6
@@ -687,7 +687,7 @@ extension DefaultQuestionChatVC {
         ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: chatID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? PostLike {
+                if let _ = res as? PostLikeResModel {
                     self.requestGetDetailQuestionData(chatPostID: self.chatPostID ?? 0)
                     self.activityIndicator.stopAnimating()
                 }

@@ -23,7 +23,24 @@ class ClassroomAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(getQuestionDetaiJudgeData(status: statusCode, data: data))
+                completion(getQuestionDetailJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    /// [GET] 정보글 상세 조회 API 메서드
+    func getInfoDetailAPI(chatPostID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.getInfoDetail(chatPostID: chatPostID)) { [self] result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(getInfoDetailJudgeData(status: statusCode, data: data))
                 
             case .failure(let err):
                 print(err)
@@ -122,14 +139,32 @@ class ClassroomAPI {
 extension ClassroomAPI {
     
     /// 1:1질문, 전체 질문 상세 조회
-    private func getQuestionDetaiJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+    private func getQuestionDetailJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<ClassroomQuestionDetailData>.self, from: data) else {
             return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData.data.self as Any)
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// 정보글 상세 조회
+    private func getInfoDetailJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<InfoDetailDataModel>.self, from: data) else {
+            return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
         case 400...409:
             return .requestErr(decodedData.message)
         case 500:
@@ -212,10 +247,10 @@ extension ClassroomAPI {
         }
     }
     
-    /// 1:1질문, 전체 질문, 정보글에 글 등록
+    /// 좋아요 요청
     private func postClassroomLikeJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<PostLike>.self, from: data) else {
+        guard let decodedData = try? decoder.decode(GenericResponse<PostLikeResModel>.self, from: data) else {
             return .pathErr }
         
         switch status {

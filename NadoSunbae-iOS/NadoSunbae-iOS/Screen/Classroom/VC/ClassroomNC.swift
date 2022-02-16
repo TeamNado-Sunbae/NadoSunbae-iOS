@@ -9,6 +9,7 @@ import UIKit
 
 class ClassroomNC: BaseNC {
 
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         

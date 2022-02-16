@@ -51,7 +51,7 @@ class WriteQuestionVC: BaseVC {
     /// 1:1 질문 호출할 때에는 answerID 필수!!!!! 나머지는 설정 X
     var answerID: Int?
     
-    // MARK: LifeCycle
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
@@ -80,12 +80,6 @@ extension WriteQuestionVC {
         questionSV.addSubview(contentView)
         contentView.addSubviews([questionTitleTextField, textHighlightView, contentHeaderLabel, questionWriteTextView])
         
-//        questionWriteNaviBar.snp.makeConstraints {
-//            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-//            $0.bottom.equalTo(backView)
-//            $0.height.equalTo(56)
-//        }
-//
         questionSV.snp.makeConstraints {
             $0.top.equalTo(questionWriteNaviBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
