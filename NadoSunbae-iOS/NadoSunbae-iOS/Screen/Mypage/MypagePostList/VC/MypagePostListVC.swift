@@ -20,6 +20,58 @@ class MypagePostListVC: BaseVC {
         }
     }
     
+    @IBOutlet weak var postListContainerView: NadoHorizonContainerViews!
+    
     // MARK: Properties
     var isPostOrAnswer = true
+    private let screenWidth = UIScreen.main.bounds.size.width
+
+    // MARK: LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureContainerView()
+    }
+}
+
+// MARK: - UI
+extension MypagePostListVC {
+    private func configureContainerView() {
+        guard let mypageQuestionListVC = storyboard?.instantiateViewController(withIdentifier: MypageQuestionListVC.className) as? MypageQuestionListVC else { return }
+        guard let mypageInfoListVC = storyboard?.instantiateViewController(withIdentifier: MypageInfoListVC.className) as? MypageInfoListVC else { return }
+        
+        mypageQuestionListVC.sendSegmentStateDelegate = self
+        mypageInfoListVC.sendSegmentStateDelegate = self
+        
+        mypageQuestionListVC.view.frame = self.view.bounds
+        mypageInfoListVC.view.frame = self.view.bounds
+        
+        addChild(mypageQuestionListVC)
+        addChild(mypageInfoListVC)
+        
+        mypageQuestionListVC.view.translatesAutoresizingMaskIntoConstraints = false
+        mypageInfoListVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        postListContainerView.firstContainerView.addSubview(mypageQuestionListVC.view)
+        postListContainerView.secondContainerView.addSubview(mypageInfoListVC.view)
+        
+        mypageQuestionListVC.view.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalTo(self.postListContainerView)
+        }
+        
+        mypageInfoListVC.view.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalTo(postListContainerView.secondContainerView)
+        }
+        
+        mypageQuestionListVC.didMove(toParent: self)
+    }
+}
+
+extension MypagePostListVC: SendSegmentStateDelegate {
+    func sendSegmentClicked(index: Int) {
+        if index == 0 {
+            postListContainerView.externalSV.contentOffset.x = 0
+        } else {
+            postListContainerView.externalSV.contentOffset.x += screenWidth
+        }
+    }
 }

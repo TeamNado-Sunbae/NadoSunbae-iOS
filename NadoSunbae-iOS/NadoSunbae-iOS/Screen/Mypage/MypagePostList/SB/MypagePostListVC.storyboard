@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,25 +24,100 @@
                                     <constraint firstAttribute="height" constant="104" id="fro-Dc-jXB"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03L-TJ-I7n" customClass="NadoHorizonContainerViews" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="03L-TJ-I7n" firstAttribute="top" secondItem="Fjp-8B-deY" secondAttribute="bottom" id="8NY-Ch-Uhx"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="03L-TJ-I7n" secondAttribute="trailing" id="SL1-qn-Mh8"/>
                             <constraint firstItem="Fjp-8B-deY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Vwm-rU-ROx"/>
                             <constraint firstItem="Fjp-8B-deY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="drf-Fi-mpA"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Fjp-8B-deY" secondAttribute="trailing" id="gQj-qU-Zxo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="03L-TJ-I7n" secondAttribute="bottom" id="ivB-cv-NIk"/>
+                            <constraint firstItem="03L-TJ-I7n" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rE2-AA-Lbl"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="navView" destination="Fjp-8B-deY" id="2Qm-Ce-5uh"/>
+                        <outlet property="postListContainerView" destination="03L-TJ-I7n" id="vCn-yZ-tVH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-16" y="62"/>
         </scene>
+        <!--Mypage Question ListVC-->
+        <scene sceneID="WWq-IU-uLw">
+            <objects>
+                <viewController storyboardIdentifier="MypageQuestionListVC" id="7bi-Ku-82G" customClass="MypageQuestionListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qbj-vk-rZp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN0-Ey-Jfe" customClass="NadoSegmentView" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="60" width="414" height="38"/>
+                                <color key="backgroundColor" name="bgGray"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="7BX-d3-dIy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ye5-wt-iGV"/>
+                        <color key="backgroundColor" name="bgGray"/>
+                        <constraints>
+                            <constraint firstItem="bN0-Ey-Jfe" firstAttribute="leading" secondItem="ye5-wt-iGV" secondAttribute="leading" id="iNL-x5-WqD"/>
+                            <constraint firstItem="bN0-Ey-Jfe" firstAttribute="top" secondItem="ye5-wt-iGV" secondAttribute="top" constant="16" id="qpd-yK-FJ5"/>
+                            <constraint firstItem="bN0-Ey-Jfe" firstAttribute="trailing" secondItem="ye5-wt-iGV" secondAttribute="trailing" id="uO9-pn-sCw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="questionSegmentView" destination="bN0-Ey-Jfe" id="o0T-Wq-bXF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YrX-5S-YjV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="65"/>
+        </scene>
+        <!--Mypage Info ListVC-->
+        <scene sceneID="DsC-Kd-dIE">
+            <objects>
+                <viewController storyboardIdentifier="MypageInfoListVC" id="u2k-Pz-YVd" customClass="MypageInfoListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="to6-Oa-eIu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grf-Ud-m53" customClass="NadoSegmentView" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="60" width="414" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="bqX-4f-IdA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uFs-6h-QFm"/>
+                        <color key="backgroundColor" name="bgGray"/>
+                        <constraints>
+                            <constraint firstItem="grf-Ud-m53" firstAttribute="trailing" secondItem="uFs-6h-QFm" secondAttribute="trailing" id="7m7-Bt-0ew"/>
+                            <constraint firstItem="grf-Ud-m53" firstAttribute="leading" secondItem="uFs-6h-QFm" secondAttribute="leading" id="R2I-Ne-424"/>
+                            <constraint firstItem="grf-Ud-m53" firstAttribute="top" secondItem="uFs-6h-QFm" secondAttribute="top" constant="16" id="vee-NL-in6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoSegmentView" destination="grf-Ud-m53" id="kZv-Ua-rTM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9A1-Yd-BL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1358" y="65"/>
+        </scene>
     </scenes>
     <resources>
+        <namedColor name="bgGray">
+            <color red="0.97299998998641968" green="0.97600001096725464" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
