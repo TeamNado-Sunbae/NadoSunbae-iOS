@@ -85,24 +85,15 @@ extension ReviewDetailVC {
     /// 액션 시트
     private func presentActionSheet() {
         naviBarView.rightCustomBtn.press {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let edit = UIAlertAction(title: "수정", style: .default) { action in
-                
-                // TODO: 액션 추가 예정
-                print("수정")
-            }
-            let delete = UIAlertAction(title: "삭제", style: .default) { action in
-                
-                // TODO: 화면전환 방식 navigation 방식으로 변경 후 팝업 추가 예정
-                print("삭제")
-            }
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
             
-            alert.addAction(edit)
-            alert.addAction(delete)
-            alert.addAction(cancel)
-            
-            self.present(alert, animated: true, completion: nil)
+            /// 내가 작성한 글인 경우 수정, 삭제
+            if self.detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+                self.makeTwoAlertWithCancel(okTitle: "수정", secondOkTitle: "삭제", okAction: { _ in print("수정")}, secondOkAction: { _ in print("삭제")})
+            } else {
+                
+                /// 타인 작성 글인 경우 신고
+                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in print("신고")})
+            }
         }
     }
     
