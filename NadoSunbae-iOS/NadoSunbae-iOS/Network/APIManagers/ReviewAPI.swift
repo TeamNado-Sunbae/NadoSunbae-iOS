@@ -81,6 +81,23 @@ class ReviewAPI {
             }
         }
     }
+    
+    /// [DELETE] 후기글 삭제 API
+    func deleteReviewPostAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        userProvider.request(.deleteReviewPost(postID: postID)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.deleteReviewPostJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
@@ -141,6 +158,23 @@ extension ReviewAPI {
     func getReviewHomepageJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         let decodedData = try? decoder.decode(GenericResponse<ReviewHomePageData>.self, from: data)
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData?.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData?.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// deleteReviewPostJudgeData
+    func deleteReviewPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        let decodedData = try? decoder.decode(GenericResponse<ReviewDeleteResModel>.self, from: data)
         
         switch status {
         case 200...204:
