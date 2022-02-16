@@ -88,7 +88,13 @@ extension ReviewDetailVC {
             
             /// 내가 작성한 글인 경우 수정, 삭제
             if self.detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-                self.makeTwoAlertWithCancel(okTitle: "수정", secondOkTitle: "삭제", okAction: { _ in print("수정")}, secondOkAction: { _ in print("삭제")})
+                self.makeTwoAlertWithCancel(okTitle: "수정", secondOkTitle: "삭제", okAction: { _ in print("수정")}, secondOkAction: { _ in
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "삭제하시겠습니까?", confirmBtnTitle: "삭제", cancelBtnTitle: "아니요")
+                    alert.confirmBtn.press {
+                        self.requestDeleteReviewPost(postID: self.postId ?? -1)
+                    }
+                })
             } else {
                 
                 /// 타인 작성 글인 경우 신고
@@ -111,7 +117,8 @@ extension ReviewDetailVC {
         }
     }
     
-    func setUpLikeStatus(model: Like) {
+    /// 좋아요 클릭 시 상태에 따라 아이콘, 배경색, label 설정
+    private func setUpLikeStatus(model: Like) {
         if model.isLiked {
             likeImgView.image = UIImage(named: "heart_filled")
             likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
@@ -120,6 +127,11 @@ extension ReviewDetailVC {
             likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
         }
         likeCountLabel.text = "\(model.likeCount)"
+    }
+    
+    /// UserDefaults의 isReviewed 값 설정
+    private func setUpIsReviewedStatus(model: ReviewDeleteResModel) {
+        UserDefaults.standard.set(model.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
     }
 }
 
@@ -240,6 +252,30 @@ extension ReviewDetailVC {
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 후기글 삭제 API 요청 메서드
+    func requestDeleteReviewPost(postID: Int) {
+        self.activityIndicator.startAnimating()
+        ReviewAPI.shared.deleteReviewPostAPI(postID: postID) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? ReviewDeleteResModel {
+                    self.setUpIsReviewedStatus(model: data)
+                    self.activityIndicator.stopAnimating()
+                    self.navigationController?.popViewController(animated: true)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류입니다.")
             }
         }
     }
