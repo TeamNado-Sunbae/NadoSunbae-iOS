@@ -333,7 +333,7 @@ extension ReviewWriteVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         
         /// 필수 항목 모두 작성되었을 때
-        if oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
+        if oneLineReviewTextView.text != "학과를 한줄로 표현한다면?" && oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
             essentialTextViewStatus = true
         } else {
             essentialTextViewStatus = false

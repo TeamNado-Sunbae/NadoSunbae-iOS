@@ -137,7 +137,7 @@ extension BaseQuestionTVC {
         nicknameLabel.text = data.writer.nickname
         questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
-        likeCountLabel.text = "\(data.likeCount)"
+        likeCountLabel.text = "\(data.like.likeCount)"
     }
 }
 

@@ -13,6 +13,7 @@ enum ReviewService {
     case getReviewMainPostList(majorID: Int, writerFilter: Int, tagFilter:[Int], sort: String)
     case getReviewPostDetail(postID: Int)
     case getReviewHomepageURL(majorID: Int)
+    case deleteReviewPost(postID: Int)
 }
 
 extension ReviewService: TargetType {
@@ -27,7 +28,7 @@ extension ReviewService: TargetType {
             return "/review-post"
         case .getReviewMainPostList:
             return "/review-post/list"
-        case .getReviewPostDetail(let postID):
+        case .getReviewPostDetail(let postID), .deleteReviewPost(let postID):
             return "/review-post/\(postID)"
         case .getReviewHomepageURL(let majorID):
             return "/major/\(majorID)"
@@ -41,6 +42,8 @@ extension ReviewService: TargetType {
             return .post
         case .getReviewPostDetail, .getReviewHomepageURL:
             return .get
+        case .deleteReviewPost:
+            return .delete
         }
     }
     
@@ -75,7 +78,7 @@ extension ReviewService: TargetType {
             // 배열값([Int])을 보낼 때는 JSONEncoding.prettyPrinted 사용해야함
             return .requestCompositeParameters(bodyParameters: body, bodyEncoding: JSONEncoding.prettyPrinted, urlParameters: query)
             
-        case .getReviewPostDetail, .getReviewHomepageURL:
+        case .getReviewPostDetail, .getReviewHomepageURL, .deleteReviewPost:
             return .requestPlain
         }
     }
@@ -86,7 +89,7 @@ extension ReviewService: TargetType {
         
         switch self {
             
-        case .createReviewPost, .getReviewMainPostList, .getReviewPostDetail, .getReviewHomepageURL:
+        case .createReviewPost, .getReviewMainPostList, .getReviewPostDetail, .getReviewHomepageURL, .deleteReviewPost:
             return ["accesstoken" : accessToken]
         }
     }

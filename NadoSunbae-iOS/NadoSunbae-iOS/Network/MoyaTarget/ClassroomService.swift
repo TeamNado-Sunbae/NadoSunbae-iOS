@@ -10,6 +10,7 @@ import Moya
 
 enum ClassroomService {
     case getQuestionDetail(chatPostID: Int)
+    case getInfoDetail(chatPostID: Int)
     case getGroupQuestionOrInfoList(majorID: Int, postTypeID: Int, sort: ListSortType)
     case postComment(chatPostID: Int, comment: String)
     case getMajorUserList(majorID: Int)
@@ -27,6 +28,8 @@ extension ClassroomService: TargetType {
             
         case .getQuestionDetail(let chatPostID):
             return "/classroom-post/question/\(chatPostID)"
+        case .getInfoDetail(let chatPostID):
+            return "/classroom-post/information/\(chatPostID)"
         case .getGroupQuestionOrInfoList(let majorID, let postTypeID, _):
             return "/classroom-post/\(postTypeID)/major/\(majorID)/list"
         case .postComment:
@@ -43,7 +46,7 @@ extension ClassroomService: TargetType {
     var method: Moya.Method {
         switch self {
             
-        case .getQuestionDetail, .getGroupQuestionOrInfoList, .getMajorUserList:
+        case .getQuestionDetail, .getInfoDetail, .getGroupQuestionOrInfoList, .getMajorUserList:
             return .get
         case .postComment, .postClassroomContent, .postLike:
             return .post
@@ -53,7 +56,7 @@ extension ClassroomService: TargetType {
     var task: Task {
         switch self {
             
-        case .getQuestionDetail:
+        case .getQuestionDetail, .getInfoDetail:
             return .requestPlain
         case .getGroupQuestionOrInfoList(_, _, let sort):
             let body = ["sort": sort]

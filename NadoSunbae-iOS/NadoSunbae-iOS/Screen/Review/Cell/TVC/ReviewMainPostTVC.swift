@@ -13,11 +13,12 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nickNameLabel: UILabel!
-    @IBOutlet weak var diamondCountLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var majorNameLabel: UILabel!
     @IBOutlet weak var firstMajorStartLabel: UILabel!
     @IBOutlet weak var secondMajorNameLabel: UILabel!
     @IBOutlet weak var secondMajorStartLabel: UILabel!
+    @IBOutlet weak var likeImgView: UIImageView!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
@@ -65,15 +66,12 @@ extension ReviewMainPostTVC {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
         nickNameLabel.text = postData.writer.nickname
-        diamondCountLabel.text = postData.likeCount
+        likeCountLabel.text = "\(postData.like.likeCount)"
         majorNameLabel.text = postData.writer.firstMajorName
         secondMajorNameLabel.text = postData.writer.secondMajorName
         firstMajorStartLabel.text = postData.writer.firstMajorStart
-        if postData.writer.secondMajorStart == "미진입" {
-            secondMajorStartLabel.text = ""
-        } else {
-            secondMajorStartLabel.text = postData.writer.secondMajorStart
-        }
+        secondMajorStartLabel.text = postData.writer.secondMajorStart == "미진입" ? "" : postData.writer.secondMajorStart
+        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
     private func registerCVC() {

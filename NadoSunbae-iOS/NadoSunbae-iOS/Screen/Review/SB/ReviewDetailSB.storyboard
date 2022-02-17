@@ -69,15 +69,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfc-eR-2Hs">
                                         <rect key="frame" x="291" y="6" width="64" height="40"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyDiamond" translatesAutoresizingMaskIntoConstraints="NO" id="Lcb-ZO-cgX">
-                                                <rect key="frame" x="4" y="4" width="32" height="32"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_heart" translatesAutoresizingMaskIntoConstraints="NO" id="Lcb-ZO-cgX">
+                                                <rect key="frame" x="8" y="4" width="32" height="32"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="Mwo-f8-vCI"/>
-                                                    <constraint firstAttribute="height" constant="32" id="TSS-1f-3zr"/>
+                                                    <constraint firstAttribute="width" constant="32" id="S1w-W7-S8k"/>
+                                                    <constraint firstAttribute="height" constant="32" id="fwL-yS-yxK"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLM-G7-RMB">
-                                                <rect key="frame" x="36" y="11.666666666666629" width="9" height="17"/>
+                                                <rect key="frame" x="41" y="11.666666666666629" width="9" height="17"/>
                                                 <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
                                                 <color key="textColor" name="mainDefault"/>
                                                 <nil key="highlightedColor"/>
@@ -93,16 +93,15 @@
                                         </subviews>
                                         <color key="backgroundColor" name="gray0"/>
                                         <constraints>
-                                            <constraint firstItem="DLM-G7-RMB" firstAttribute="leading" secondItem="Lcb-ZO-cgX" secondAttribute="trailing" id="2D4-Vq-Krr"/>
+                                            <constraint firstItem="Lcb-ZO-cgX" firstAttribute="leading" secondItem="Mfc-eR-2Hs" secondAttribute="leading" constant="8" id="Bto-UE-eB3"/>
+                                            <constraint firstItem="Lcb-ZO-cgX" firstAttribute="centerY" secondItem="Mfc-eR-2Hs" secondAttribute="centerY" id="IYR-Pt-PBD"/>
                                             <constraint firstAttribute="bottom" secondItem="rRq-ia-AHa" secondAttribute="bottom" id="Kib-zy-6TS"/>
                                             <constraint firstAttribute="width" constant="64" id="PRk-5H-HBv"/>
-                                            <constraint firstAttribute="bottom" secondItem="Lcb-ZO-cgX" secondAttribute="bottom" constant="4" id="Qud-oA-1Hk"/>
-                                            <constraint firstItem="Lcb-ZO-cgX" firstAttribute="top" secondItem="Mfc-eR-2Hs" secondAttribute="top" constant="4" id="a7A-rd-e3S"/>
                                             <constraint firstItem="rRq-ia-AHa" firstAttribute="leading" secondItem="Mfc-eR-2Hs" secondAttribute="leading" id="bfx-jr-TWW"/>
                                             <constraint firstAttribute="trailing" secondItem="rRq-ia-AHa" secondAttribute="trailing" id="eUb-ys-k3f"/>
-                                            <constraint firstItem="DLM-G7-RMB" firstAttribute="centerY" secondItem="Lcb-ZO-cgX" secondAttribute="centerY" id="nGW-FF-NG4"/>
-                                            <constraint firstItem="Lcb-ZO-cgX" firstAttribute="leading" secondItem="Mfc-eR-2Hs" secondAttribute="leading" constant="4" id="pkP-vD-dGQ"/>
+                                            <constraint firstItem="DLM-G7-RMB" firstAttribute="leading" secondItem="Lcb-ZO-cgX" secondAttribute="trailing" constant="1" id="gWU-Ud-KXk"/>
                                             <constraint firstAttribute="height" constant="40" id="qlL-Ny-zAh"/>
+                                            <constraint firstItem="DLM-G7-RMB" firstAttribute="centerY" secondItem="Lcb-ZO-cgX" secondAttribute="centerY" id="vbd-23-jIU"/>
                                             <constraint firstItem="rRq-ia-AHa" firstAttribute="top" secondItem="Mfc-eR-2Hs" secondAttribute="top" id="zCu-7J-nIr"/>
                                         </constraints>
                                     </view>
@@ -137,9 +136,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="AlL-q4-9qg"/>
                     <connections>
-                        <outlet property="diamondImgView" destination="Lcb-ZO-cgX" id="KBK-2B-oe9"/>
                         <outlet property="likeCountLabel" destination="DLM-G7-RMB" id="TpV-mp-Ywp"/>
                         <outlet property="likeCountView" destination="Mfc-eR-2Hs" id="xBy-de-EVI"/>
+                        <outlet property="likeImgView" destination="Lcb-ZO-cgX" id="wNy-Q3-XAO"/>
                         <outlet property="naviBarView" destination="d9w-EZ-U4M" id="bWG-qY-E36"/>
                         <outlet property="reviewPostTV" destination="DA4-Xx-KZ1" id="hyP-wX-Xyg"/>
                     </connections>
@@ -150,7 +149,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="emptyDiamond" width="32" height="32"/>
+        <image name="btn_heart" width="32" height="32"/>
         <namedColor name="gray0">
             <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -10,10 +10,12 @@ import Foundation
 struct SignInDataModel: Codable {
     var user: User
     var accesstoken: String
+    var refreshtoken: String
 
     enum CodingKeys: String, CodingKey {
         case user = "user"
         case accesstoken = "accesstoken"
+        case refreshtoken = "refreshtoken"
     }
     
     struct User: Codable {

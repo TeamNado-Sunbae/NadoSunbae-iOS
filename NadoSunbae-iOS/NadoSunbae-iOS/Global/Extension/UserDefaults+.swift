@@ -44,5 +44,11 @@ extension UserDefaults {
         
         /// String
         static var SelectedMajorName = "SelectedMajorName"
+        
+        /// String
+        static var Email = "Email"
+        
+        /// String
+        static var PW = "PW"
     }
 }
