@@ -111,14 +111,13 @@ extension BaseQuestionTVC {
         }
         
         likeImgView.snp.makeConstraints {
-            $0.trailing.equalTo(likeCountLabel.snp.leading).offset(-8)
-            $0.width.equalTo(16)
-            $0.height.equalTo(12)
+            $0.trailing.equalTo(likeCountLabel.snp.leading)
+            $0.width.height.equalTo(32)
             $0.centerY.equalTo(nicknameLabel)
         }
         
         commentCountLabel.snp.makeConstraints {
-            $0.trailing.equalTo(likeImgView.snp.leading).offset(-16)
+            $0.trailing.equalTo(likeImgView.snp.leading).offset(-8)
             $0.centerY.equalTo(nicknameLabel)
         }
         
@@ -139,6 +138,7 @@ extension BaseQuestionTVC {
         questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
         likeCountLabel.text = "\(data.like.likeCount)"
+        likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
 }
 
