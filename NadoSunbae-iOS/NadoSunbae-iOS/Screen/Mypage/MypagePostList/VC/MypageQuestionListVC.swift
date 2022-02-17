@@ -23,6 +23,12 @@ class MypageQuestionListVC: BaseVC {
     var questionList: [MypageMyPostModel] = []
     
     // MARK: LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getUserPersonalQuestionList()
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTapInfoBtn()
@@ -44,6 +50,8 @@ extension MypageQuestionListVC {
     func setUpTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
+        questionTV.makeRounded(cornerRadius: 8)
+        questionTV.separatorColor = .separatorGray
     }
     
     private func registerCell() {
@@ -102,6 +110,7 @@ extension MypageQuestionListVC {
                         self.questionTV.reloadData()
 
                         self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+//                        self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
 
                         self.questionTV.layoutIfNeeded()
                         self.questionTV.rowHeight = UITableView.automaticDimension
