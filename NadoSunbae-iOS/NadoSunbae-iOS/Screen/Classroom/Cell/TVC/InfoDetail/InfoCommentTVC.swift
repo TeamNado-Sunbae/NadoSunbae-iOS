@@ -28,7 +28,11 @@ class InfoCommentTVC: BaseTVC {
     }
     @IBOutlet var commentDateLabel: UILabel!
     @IBOutlet var showWriterLabel: UILabel!
-    @IBOutlet var showWriterBackView: UIView!
+    @IBOutlet var showWriterBackView: UIView! {
+        didSet {
+            showWriterBackView.layer.cornerRadius = 6
+        }
+    }
     
     // MARK: Properties
     var tapMoreInfoBtn: (() -> ())?

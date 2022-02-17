@@ -235,7 +235,7 @@ extension InfoMainVC: UITableViewDelegate {
     
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let infoDetailVC = InfoDetailVC()
+        guard let infoDetailVC = self.storyboard?.instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
         
         if infoList.count != 0 {
             infoDetailVC.chatPostID = infoList[indexPath.row].postID

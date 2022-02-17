@@ -3,10 +3,16 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Info MainVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -23,8 +29,91 @@
             </objects>
             <point key="canvasLocation" x="-23" y="107"/>
         </scene>
+        <!--Info DetailVC-->
+        <scene sceneID="yjk-zE-fgV">
+            <objects>
+                <viewController storyboardIdentifier="InfoDetailVC" id="5fc-ZN-nYv" customClass="InfoDetailVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RI6-M2-M4p">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="답글쓰기" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m1A-mY-Z0L">
+                                <rect key="frame" x="16" y="819" width="350" height="38"/>
+                                <color key="backgroundColor" name="gray0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="250" constant="38" id="5FC-uL-5NI"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="Kwj-LQ-L1Q"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="90" id="akL-Wt-LGn"/>
+                                </constraints>
+                                <color key="textColor" name="gray2"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSx-pQ-fz7">
+                                <rect key="frame" x="366" y="818" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="1us-iV-4gN"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="btnSend" title=""/>
+                                <connections>
+                                    <action selector="tapSendBtn:" destination="5fc-ZN-nYv" eventType="touchUpInside" id="1B6-qH-Shk"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nRL-BL-JiF">
+                                <rect key="frame" x="0.0" y="104" width="414" height="709"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zP-Zw-k4z" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="aZ3-yv-zgK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z51-Cd-vs1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nRL-BL-JiF" firstAttribute="leading" secondItem="Z51-Cd-vs1" secondAttribute="leading" id="2j9-Wn-fBN"/>
+                            <constraint firstItem="m1A-mY-Z0L" firstAttribute="leading" secondItem="Z51-Cd-vs1" secondAttribute="leading" constant="16" id="4UT-Ix-mrJ"/>
+                            <constraint firstItem="NSx-pQ-fz7" firstAttribute="leading" secondItem="m1A-mY-Z0L" secondAttribute="trailing" id="5W9-u0-bqp"/>
+                            <constraint firstItem="Z51-Cd-vs1" firstAttribute="bottom" secondItem="m1A-mY-Z0L" secondAttribute="bottom" constant="5" id="Cl8-Xm-esi"/>
+                            <constraint firstItem="0zP-Zw-k4z" firstAttribute="leading" secondItem="Z51-Cd-vs1" secondAttribute="leading" id="Km9-U2-wK9"/>
+                            <constraint firstItem="nRL-BL-JiF" firstAttribute="top" secondItem="0zP-Zw-k4z" secondAttribute="bottom" id="PhM-Fb-QXf"/>
+                            <constraint firstItem="Z51-Cd-vs1" firstAttribute="trailing" secondItem="NSx-pQ-fz7" secondAttribute="trailing" constant="4" id="V4v-Jy-RfC"/>
+                            <constraint firstItem="NSx-pQ-fz7" firstAttribute="width" secondItem="NSx-pQ-fz7" secondAttribute="height" multiplier="1:1" id="XiW-9P-NOO"/>
+                            <constraint firstItem="Z51-Cd-vs1" firstAttribute="trailing" secondItem="0zP-Zw-k4z" secondAttribute="trailing" id="aw7-6c-4Qg"/>
+                            <constraint firstItem="Z51-Cd-vs1" firstAttribute="bottom" secondItem="NSx-pQ-fz7" secondAttribute="bottom" id="dSC-pL-cEC"/>
+                            <constraint firstItem="Z51-Cd-vs1" firstAttribute="trailing" secondItem="nRL-BL-JiF" secondAttribute="trailing" id="lRk-28-gu3"/>
+                            <constraint firstItem="0zP-Zw-k4z" firstAttribute="top" secondItem="RI6-M2-M4p" secondAttribute="top" id="ndT-Gk-ODX"/>
+                            <constraint firstItem="m1A-mY-Z0L" firstAttribute="top" secondItem="nRL-BL-JiF" secondAttribute="bottom" constant="6" id="p73-nX-5q2"/>
+                            <constraint firstItem="NSx-pQ-fz7" firstAttribute="top" secondItem="nRL-BL-JiF" secondAttribute="bottom" priority="250" constant="5" id="u3b-fA-1WM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commentTextView" destination="m1A-mY-Z0L" id="tOV-Gw-LpG"/>
+                        <outlet property="commentTextViewBottom" destination="Cl8-Xm-esi" id="6YN-2D-ro2"/>
+                        <outlet property="commentTextViewHeight" destination="5FC-uL-5NI" id="AYR-Jr-96I"/>
+                        <outlet property="infoDetailNaviBar" destination="0zP-Zw-k4z" id="g1h-04-g0u"/>
+                        <outlet property="infoDetailTV" destination="nRL-BL-JiF" id="gSX-dz-4Bu"/>
+                        <outlet property="sendBtn" destination="NSx-pQ-fz7" id="oIN-tS-7Yl"/>
+                        <outlet property="sendBtnBottom" destination="dSC-pL-cEC" id="nss-Ev-w9a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="goR-bQ-KL9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757" y="106"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="btnSend" width="44" height="44"/>
+        <namedColor name="gray0">
+            <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray2">
+            <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -37,21 +37,21 @@
                         <rect key="frame" x="23" y="192" width="328" height="313"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cube" translatesAutoresizingMaskIntoConstraints="NO" id="szZ-Sv-F8y">
-                                <rect key="frame" x="9" y="15" width="80" height="80"/>
+                                <rect key="frame" x="16" y="16" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="f2B-PH-kpf"/>
-                                    <constraint firstAttribute="height" constant="80" id="nCK-NE-Hei"/>
+                                    <constraint firstAttribute="width" constant="60" id="f2B-PH-kpf"/>
+                                    <constraint firstAttribute="height" constant="60" id="nCK-NE-Hei"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i64-89-Zot">
-                                <rect key="frame" x="24" y="175" width="280" height="101"/>
+                                <rect key="frame" x="24" y="143" width="280" height="138"/>
                                 <string key="text">난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고난 자유롭고 싶어 지금 전투력 수치 111퍼난 자유롭고 싶어 지금 전투력 수치 111퍼</string>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <color key="textColor" name="gray4"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장단점" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3u-RK-JCO">
-                                <rect key="frame" x="24" y="116" width="49.5" height="23"/>
+                                <rect key="frame" x="24" y="88" width="49.5" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="hkT-9J-bj6"/>
                                 </constraints>
@@ -63,13 +63,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="i64-89-Zot" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="24" id="1xZ-lI-FD1"/>
-                            <constraint firstItem="w3u-RK-JCO" firstAttribute="top" secondItem="szZ-Sv-F8y" secondAttribute="bottom" constant="21" id="K0Q-D0-dtX"/>
-                            <constraint firstItem="i64-89-Zot" firstAttribute="top" secondItem="w3u-RK-JCO" secondAttribute="bottom" constant="36" id="KT0-bs-MYU"/>
-                            <constraint firstItem="szZ-Sv-F8y" firstAttribute="top" secondItem="Gi7-n0-Lnt" secondAttribute="top" constant="15" id="Wg3-Gt-UVU"/>
+                            <constraint firstItem="w3u-RK-JCO" firstAttribute="top" secondItem="szZ-Sv-F8y" secondAttribute="bottom" constant="12" id="K0Q-D0-dtX"/>
+                            <constraint firstItem="i64-89-Zot" firstAttribute="top" secondItem="w3u-RK-JCO" secondAttribute="bottom" constant="32" id="KT0-bs-MYU"/>
+                            <constraint firstItem="szZ-Sv-F8y" firstAttribute="top" secondItem="Gi7-n0-Lnt" secondAttribute="top" constant="16" id="Wg3-Gt-UVU"/>
                             <constraint firstAttribute="trailing" secondItem="i64-89-Zot" secondAttribute="trailing" constant="24" id="dmo-f1-qkG"/>
                             <constraint firstItem="w3u-RK-JCO" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="24" id="slE-R3-hqH"/>
-                            <constraint firstItem="szZ-Sv-F8y" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="9" id="tSG-nJ-KIW"/>
-                            <constraint firstAttribute="bottom" secondItem="i64-89-Zot" secondAttribute="bottom" constant="37" id="urd-2G-Jlt"/>
+                            <constraint firstItem="szZ-Sv-F8y" firstAttribute="leading" secondItem="Gi7-n0-Lnt" secondAttribute="leading" constant="16" id="tSG-nJ-KIW"/>
+                            <constraint firstAttribute="bottom" secondItem="i64-89-Zot" secondAttribute="bottom" constant="32" id="urd-2G-Jlt"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLb-kY-18s">
@@ -103,7 +103,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cube" width="80" height="80"/>
+        <image name="cube" width="60" height="60"/>
         <image name="imgReviewBg" width="375" height="232"/>
         <namedColor name="gray4">
             <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
