@@ -11,6 +11,7 @@ import Moya
 enum MypageService {
     case getUserInfo(userID: Int)
     case getUserPersonalQuestionList(userID: Int, sort: ListSortType)
+    case getMypageMyPostList(postType: MypageMyPostType)
 }
 
 extension MypageService: TargetType {
@@ -24,12 +25,14 @@ extension MypageService: TargetType {
             return "/user/mypage/\(userID)"
         case .getUserPersonalQuestionList(let userID, _):
             return "/user/mypage/\(userID)/classroom-post/list"
+        case .getMypageMyPostList:
+            return "/user/mypage/classroom-post/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getUserInfo, .getUserPersonalQuestionList:
+        case .getUserInfo, .getUserPersonalQuestionList, .getMypageMyPostList:
             return .get
         }
     }
@@ -40,6 +43,8 @@ extension MypageService: TargetType {
             return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
         case .getUserPersonalQuestionList(_, let sort):
             return .requestParameters(parameters: ["sort": sort.rawValue], encoding: URLEncoding.queryString)
+        case .getMypageMyPostList(let postType):
+            return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)
         }
     }
     
