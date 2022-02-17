@@ -108,7 +108,6 @@ class DefaultQuestionChatVC: BaseVC {
             DispatchQueue.main.async {
                 self.isCommentSend = true
                 self.requestCreateComment(chatPostID: self.chatPostID ?? 0, comment: self.sendAreaTextView.text)
-                self.clearTextView()
             }
         }
     }
@@ -185,21 +184,9 @@ extension DefaultQuestionChatVC {
             print("Review")
         }
         
+        sendAreaTextView.endEditing(true)
         sendAreaTextView.textColor = .gray2
         sendAreaTextView.backgroundColor = .gray0
-    }
-    
-    /// TextView의 content를 초기상태로 되돌리는 메서드
-    private func clearTextView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.sendAreaTextView.text = ""
-            self.sendAreaTextViewHeight.constant = 38
-            if self.sendAreaTextView.textColor == .gray2 {
-                self.sendAreaTextView.text = nil
-                self.sendAreaTextView.textColor = UIColor.black
-                self.sendAreaTextView.backgroundColor = .white
-            }
-        })
     }
     
     private func scrollTVtoBottom(animate: Bool) {
@@ -638,9 +625,8 @@ extension DefaultQuestionChatVC {
                     if self.isCommentSend {
                         self.scrollTVtoBottom(animate: true)
                         self.isCommentSend = false
-                    } else {
-                        self.configueTextViewPlaceholder(userType: self.userType ?? -1, questionType: self.questionType ?? .personal)
                     }
+                    self.configueTextViewPlaceholder(userType: self.userType ?? -1, questionType: self.questionType ?? .personal)
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
