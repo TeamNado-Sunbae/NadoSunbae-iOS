@@ -168,7 +168,6 @@ extension MypageMainVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? QuestionOrInfoListModel {
-                    self.questionList = []
                     self.questionList = data.classroomPostList
                     DispatchQueue.main.async {
                         self.questionTV.reloadData()

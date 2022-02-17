@@ -1,5 +1,5 @@
 //
-//  MypageMyPostModel.swift
+//  MypageMyPostListModel.swift
 //  NadoSunbae-iOS
 //
 //  Created by 1v1 on 2022/02/18.
@@ -7,7 +7,14 @@
 
 import Foundation
 
-// MARK: - ClassroomPostList
+struct MypageMyPostListModel: Codable {
+    var classroomPostList: [MypageMyPostModel]
+
+    enum CodingKeys: String, CodingKey {
+        case classroomPostList = "classroomPostList"
+    }
+}
+
 struct MypageMyPostModel: Codable {
     var postID: Int
     var title: String

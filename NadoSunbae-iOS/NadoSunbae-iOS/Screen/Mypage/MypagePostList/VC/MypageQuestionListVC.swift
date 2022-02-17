@@ -88,3 +88,36 @@ extension MypageQuestionListVC: UITableViewDelegate {
     }
 }
 
+// MARK: - Network
+extension MypageQuestionListVC {
+    private func getUserPersonalQuestionList() {
+        self.activityIndicator.startAnimating()
+        MypageAPI.shared.getMypageMyPostList(postType: .question, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageMyPostListModel {
+                    self.questionList = data.classroomPostList
+                    print(self.questionList)
+                    DispatchQueue.main.async {
+                        self.questionTV.reloadData()
+
+                        self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+
+                        self.questionTV.layoutIfNeeded()
+                        self.questionTV.rowHeight = UITableView.automaticDimension
+                        self.questionTVHeight.constant = self.questionTV.contentSize.height
+                        self.activityIndicator.stopAnimating()
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
+            }
+        })
+    }
+}
