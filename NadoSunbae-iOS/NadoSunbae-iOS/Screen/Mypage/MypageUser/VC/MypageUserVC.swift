@@ -121,7 +121,7 @@ extension MypageUserVC {
             secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         }
         privateQuestionNickNameLabel.text = userInfo.nickname
-        majorReviewCountLabel.text = userInfo.reviewPostCount
+        majorReviewCountLabel.text = "\(userInfo.count)"
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         

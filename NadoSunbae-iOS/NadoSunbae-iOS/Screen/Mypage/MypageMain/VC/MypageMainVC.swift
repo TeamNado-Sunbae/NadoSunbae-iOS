@@ -29,7 +29,7 @@ class MypageMainVC: BaseVC {
     @IBOutlet weak var likeCountLabel: UILabel!
     
     // MARK: Properties
-    var userInfo = MypageMyInfoModel()
+    var userInfo = MypageUserInfoModel()
     
     var questionList: [ClassroomPostList] = []
     
@@ -77,6 +77,18 @@ class MypageMainVC: BaseVC {
 //        
 //        self.present(optionMenu, animated: true, completion: nil)
     }
+    
+    @IBAction func tapPostListBtn(_ sender: Any) {
+        guard let postListVC = UIStoryboard.init(name: MypagePostListVC.className, bundle: nil).instantiateViewController(withIdentifier: MypagePostListVC.className) as? MypagePostListVC else { return }
+        postListVC.isPostOrAnswer = true
+        self.navigationController?.pushViewController(postListVC, animated: true)
+    }
+    
+    @IBAction func tapAnswerListBtn(_ sender: Any) {
+        guard let answerListVC = UIStoryboard.init(name: MypagePostListVC.className, bundle: nil).instantiateViewController(withIdentifier: MypagePostListVC.className) as? MypagePostListVC else { return }
+        answerListVC.isPostOrAnswer = false
+        self.navigationController?.pushViewController(answerListVC, animated: true)
+    }
 }
 
 // MARK: - UI
@@ -96,7 +108,7 @@ extension MypageMainVC {
         } else {
             secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         }
-        likeCountLabel.text = userInfo.likeCount
+        likeCountLabel.text = "\(userInfo.count)"
         
         DispatchQueue.main.async {
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
@@ -132,11 +144,12 @@ extension MypageMainVC {
 // MARK: - Network
 extension MypageMainVC {
     private func getMyInfo() {
-        MypageAPI.shared.getMyInfo(completion: { networkResult in
+        MypageAPI.shared.getUserInfo(userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID), completion: { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? MypageMyInfoModel {
+                if let data = res as? MypageUserInfoModel {
                     self.userInfo = data
+                    print("user info: ", self.userInfo)
                     self.configureUI()
                 }
             case .requestErr(let msg):
@@ -155,7 +168,6 @@ extension MypageMainVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? QuestionOrInfoListModel {
-                    self.questionList = []
                     self.questionList = data.classroomPostList
                     DispatchQueue.main.async {
                         self.questionTV.reloadData()

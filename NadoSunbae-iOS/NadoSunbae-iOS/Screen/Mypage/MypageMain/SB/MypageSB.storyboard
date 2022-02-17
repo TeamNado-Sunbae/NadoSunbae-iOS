@@ -176,6 +176,9 @@
                                                         <state key="normal" title="내가 쓴 글">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="tapPostListBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qrg-Id-5l0"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUl-OA-mh4">
                                                         <rect key="frame" x="109" y="108.66666666666669" width="108" height="51"/>
@@ -184,6 +187,9 @@
                                                         <state key="normal" title="내가 쓴 답글">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="tapAnswerListBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="law-98-iy1"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kk7-KC-p6s">
                                                         <rect key="frame" x="218" y="108.66666666666669" width="108" height="51"/>

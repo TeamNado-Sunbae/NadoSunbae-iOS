@@ -116,6 +116,8 @@
 		5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32801E27973E1A00781EBE /* ListSortType.swift */; };
 		5C328021279741C200781EBE /* QuestionOrInfoListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C328020279741C200781EBE /* QuestionOrInfoListModel.swift */; };
 		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
+		5C49668F27BB5C0D00983689 /* MypageQuestionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49668E27BB5C0D00983689 /* MypageQuestionListVC.swift */; };
+		5C49669127BB5C1900983689 /* MypageInfoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49669027BB5C1900983689 /* MypageInfoListVC.swift */; };
 		5C49669327BD469200983689 /* AutoSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49669227BD469200983689 /* AutoSignInVC.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
@@ -124,6 +126,8 @@
 		5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */; };
 		5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */; };
 		5C5AFCBD279400060045E47A /* MypageMainVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */; };
+		5C70A4FB27BA4C300096B20A /* MypagePostListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C70A4FA27BA4C300096B20A /* MypagePostListVC.storyboard */; };
+		5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */; };
 		5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C873A4A279978650050EE43 /* SignInDataModel.swift */; };
 		5C87EC22279A2D2C0039D935 /* CreateClassroomPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */; };
 		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
@@ -152,6 +156,8 @@
 		5CC0BFE12798A3C300B96905 /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFE02798A3C300B96905 /* SignService.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
+		5CCCE06C27BEA4E300F0E5FD /* MypageMyPostListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCE06B27BEA4E300F0E5FD /* MypageMyPostListModel.swift */; };
+		5CCCE06F27BEA57300F0E5FD /* MypagePostListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCE06E27BEA57300F0E5FD /* MypagePostListTVC.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
 		5CD4213A279080C100D09DEE /* MypageUserVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CD42139279080C100D09DEE /* MypageUserVC.storyboard */; };
 		5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD4213C2790865A00D09DEE /* MypageNVC.swift */; };
@@ -323,6 +329,8 @@
 		5C328020279741C200781EBE /* QuestionOrInfoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOrInfoListModel.swift; sourceTree = "<group>"; };
 		5C485F21278965D000FCA5DF /* NadoTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoTextField.xib; sourceTree = "<group>"; };
 		5C485F232789661F00FCA5DF /* NadoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextField.swift; sourceTree = "<group>"; };
+		5C49668E27BB5C0D00983689 /* MypageQuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageQuestionListVC.swift; sourceTree = "<group>"; };
+		5C49669027BB5C1900983689 /* MypageInfoListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageInfoListVC.swift; sourceTree = "<group>"; };
 		5C49669227BD469200983689 /* AutoSignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInVC.swift; sourceTree = "<group>"; };
 		5C4ED929278949AC001EA6BB /* SignInSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInSB.storyboard; sourceTree = "<group>"; };
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -331,6 +339,8 @@
 		5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpCompleteVC.storyboard; sourceTree = "<group>"; };
 		5C54CECE278DF6190054136D /* SignUpCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteVC.swift; sourceTree = "<group>"; };
 		5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MypageMainVC+TV.swift"; sourceTree = "<group>"; };
+		5C70A4FA27BA4C300096B20A /* MypagePostListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypagePostListVC.storyboard; sourceTree = "<group>"; };
+		5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypagePostListVC.swift; sourceTree = "<group>"; };
 		5C873A4A279978650050EE43 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassroomPostModel.swift; sourceTree = "<group>"; };
 		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
@@ -359,6 +369,8 @@
 		5CC0BFDE2798A3B900B96905 /* SignAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignAPI.swift; sourceTree = "<group>"; };
 		5CC0BFE02798A3C300B96905 /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
+		5CCCE06B27BEA4E300F0E5FD /* MypageMyPostListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyPostListModel.swift; sourceTree = "<group>"; };
+		5CCCE06E27BEA57300F0E5FD /* MypagePostListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypagePostListTVC.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
 		5CD4213C2790865A00D09DEE /* MypageNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageNVC.swift; sourceTree = "<group>"; };
@@ -717,6 +729,7 @@
 				5CD4213B2790863100D09DEE /* MypageNVC */,
 				5CD4213327907E4900D09DEE /* MypageUser */,
 				5CA51FF8278F2A95001A1A40 /* MypageMain */,
+				5C70A4F527BA4BC10096B20A /* MypagePostList */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1002,6 +1015,7 @@
 			isa = PBXGroup;
 			children = (
 				5C3280192797284800781EBE /* MypageUserInfoModel.swift */,
+				5CCCE06B27BEA4E300F0E5FD /* MypageMyPostListModel.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1088,6 +1102,34 @@
 				5C54CECC278DF6120054136D /* SignUpCompleteVC.storyboard */,
 			);
 			path = SB;
+			sourceTree = "<group>";
+		};
+		5C70A4F527BA4BC10096B20A /* MypagePostList */ = {
+			isa = PBXGroup;
+			children = (
+				5CCCE06D27BEA55600F0E5FD /* Cell */,
+				5C70A4F627BA4C030096B20A /* SB */,
+				5C70A4F727BA4C090096B20A /* VC */,
+			);
+			path = MypagePostList;
+			sourceTree = "<group>";
+		};
+		5C70A4F627BA4C030096B20A /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				5C70A4FA27BA4C300096B20A /* MypagePostListVC.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		5C70A4F727BA4C090096B20A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */,
+				5C49668E27BB5C0D00983689 /* MypageQuestionListVC.swift */,
+				5C49669027BB5C1900983689 /* MypageInfoListVC.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		5C873A492799785A0050EE43 /* Sign */ = {
@@ -1207,6 +1249,14 @@
 				5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */,
 			);
 			path = NotificationNVC;
+			sourceTree = "<group>";
+		};
+		5CCCE06D27BEA55600F0E5FD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5CCCE06E27BEA57300F0E5FD /* MypagePostListTVC.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5CD4213327907E4900D09DEE /* MypageUser */ = {
@@ -1427,6 +1477,7 @@
 				7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
 				33CF635C279464FD00E92C04 /* InfoSB.storyboard in Resources */,
+				5C70A4FB27BA4C300096B20A /* MypagePostListVC.storyboard in Resources */,
 				33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */,
 				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
 				5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */,
@@ -1553,6 +1604,7 @@
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
+				5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
@@ -1568,6 +1620,7 @@
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
+				5C49669127BB5C1900983689 /* MypageInfoListVC.swift in Sources */,
 				5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */,
@@ -1592,6 +1645,8 @@
 				77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
 				5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */,
+				5CCCE06F27BEA57300F0E5FD /* MypagePostListTVC.swift in Sources */,
+				5CCCE06C27BEA4E300F0E5FD /* MypageMyPostListModel.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
 				338601062798B1F800C47D36 /* NaviType.swift in Sources */,
@@ -1603,6 +1658,7 @@
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
+				5C49668F27BB5C0D00983689 /* MypageQuestionListVC.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
 				33CF635827945DE300E92C04 /* QuestionMainVC.swift in Sources */,
 				5C9A93F727A64B550097310B /* SignUpBodyModel.swift in Sources */,
