@@ -29,7 +29,7 @@ class BaseQuestionTVC: BaseTVC {
         $0.sizeToFit()
     }
     
-    private let questionTimeLabel = UILabel().then {
+    let questionTimeLabel = UILabel().then {
         $0.textColor = .gray2
         $0.font = .PretendardR(size: 12.0)
         $0.sizeToFit()
@@ -40,7 +40,7 @@ class BaseQuestionTVC: BaseTVC {
         $0.contentMode = .scaleAspectFill
     }
     
-    private let commentCountLabel = UILabel().then {
+    let commentCountLabel = UILabel().then {
         $0.textColor = .gray2
         $0.font = .PretendardL(size: 12.0)
         $0.sizeToFit()
@@ -51,7 +51,7 @@ class BaseQuestionTVC: BaseTVC {
         $0.contentMode = .scaleAspectFill
     }
     
-    private let likeCountLabel = UILabel().then {
+    let likeCountLabel = UILabel().then {
         $0.textColor = .gray2
         $0.font = .PretendardL(size: 12.0)
         $0.sizeToFit()
