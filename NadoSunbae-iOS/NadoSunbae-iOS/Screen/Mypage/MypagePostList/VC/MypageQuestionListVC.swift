@@ -37,7 +37,7 @@ class MypageQuestionListVC: BaseVC {
     }
 }
 
-// MARK: Custom Methods
+// MARK: - Custom Methods
 extension MypageQuestionListVC {
     func setUpTapInfoBtn() {
         questionSegmentView.infoBtn.press {
@@ -59,7 +59,7 @@ extension MypageQuestionListVC {
     }
 }
 
-// MARK: UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension MypageQuestionListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questionList.count
