@@ -59,7 +59,7 @@ class InfoDetailVC: BaseVC {
     private var isCommentSend: Bool = false
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
-    private let textViewMaxHeight: CGFloat = 85
+    private let textViewMaxHeight: CGFloat = 85.adjustedH
     
     // MARK: Life Cycle
     override func viewDidLoad() {
