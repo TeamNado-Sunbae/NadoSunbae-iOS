@@ -149,7 +149,7 @@ extension ReviewDetailVC: UITableViewDelegate {
         } else if indexPath.section == 1 {
             return UITableView.automaticDimension
         } else if indexPath.section == 2{
-            return 255
+            return 172
         } else {
             return 0
         }
