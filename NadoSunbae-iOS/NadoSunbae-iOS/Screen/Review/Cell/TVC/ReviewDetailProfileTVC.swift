@@ -36,7 +36,7 @@ extension ReviewDetailProfileTVC {
     /// TVC 사이 간격 설정
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 12, left: 16, bottom: 107, right: 16))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 12, left: 16, bottom: 24, right: 16))
     }
 }
 

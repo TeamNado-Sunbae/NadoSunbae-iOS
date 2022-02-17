@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "honey.png",
+      "filename" : "honey1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "honey@2x.png",
+      "filename" : "honey1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "honey@3x.png",
+      "filename" : "honey1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
