@@ -26,17 +26,6 @@ struct BackgroundImage: Codable {
     }
 }
 
-// MARK: - PostLike
-struct PostLike: Codable {
-    let isLiked: Bool?
-    let likeCount: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case isLiked = "isLiked"
-        case likeCount = "likeCount"
-    }
-}
-
 // MARK: - PostDetail
 struct PostDetail: Codable {
     var postID: Int = -1

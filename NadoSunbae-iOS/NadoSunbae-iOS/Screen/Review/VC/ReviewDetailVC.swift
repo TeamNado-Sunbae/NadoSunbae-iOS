@@ -85,24 +85,21 @@ extension ReviewDetailVC {
     /// 액션 시트
     private func presentActionSheet() {
         naviBarView.rightCustomBtn.press {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let edit = UIAlertAction(title: "수정", style: .default) { action in
-                
-                // TODO: 액션 추가 예정
-                print("수정")
-            }
-            let delete = UIAlertAction(title: "삭제", style: .default) { action in
-                
-                // TODO: 화면전환 방식 navigation 방식으로 변경 후 팝업 추가 예정
-                print("삭제")
-            }
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
             
-            alert.addAction(edit)
-            alert.addAction(delete)
-            alert.addAction(cancel)
-            
-            self.present(alert, animated: true, completion: nil)
+            /// 내가 작성한 글인 경우 수정, 삭제
+            if self.detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+                self.makeTwoAlertWithCancel(okTitle: "수정", secondOkTitle: "삭제", okAction: { _ in print("수정")}, secondOkAction: { _ in
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "삭제하시겠습니까?", confirmBtnTitle: "삭제", cancelBtnTitle: "아니요")
+                    alert.confirmBtn.press {
+                        self.requestDeleteReviewPost(postID: self.postId ?? -1)
+                    }
+                })
+            } else {
+                
+                /// 타인 작성 글인 경우 신고
+                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in print("신고")})
+            }
         }
     }
     
@@ -120,7 +117,8 @@ extension ReviewDetailVC {
         }
     }
     
-    func setUpLikeStatus(model: Like) {
+    /// 좋아요 클릭 시 상태에 따라 아이콘, 배경색, label 설정
+    private func setUpLikeStatus(model: Like) {
         if model.isLiked {
             likeImgView.image = UIImage(named: "heart_filled")
             likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
@@ -129,6 +127,11 @@ extension ReviewDetailVC {
             likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
         }
         likeCountLabel.text = "\(model.likeCount)"
+    }
+    
+    /// UserDefaults의 isReviewed 값 설정
+    private func setUpIsReviewedStatus(model: ReviewDeleteResModel) {
+        UserDefaults.standard.set(model.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
     }
 }
 
@@ -224,7 +227,7 @@ extension ReviewDetailVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류입니다.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
@@ -235,7 +238,7 @@ extension ReviewDetailVC {
         ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? Like {
+                if let _ = res as? PostLikeResModel {
                     self.requestGetReviewPostDetail(postID: postID)
                     print(res)
                     self.activityIndicator.stopAnimating()
@@ -244,11 +247,35 @@ extension ReviewDetailVC {
                 if let message = msg as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 후기글 삭제 API 요청 메서드
+    func requestDeleteReviewPost(postID: Int) {
+        self.activityIndicator.startAnimating()
+        ReviewAPI.shared.deleteReviewPostAPI(postID: postID) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? ReviewDeleteResModel {
+                    self.setUpIsReviewedStatus(model: data)
+                    self.activityIndicator.stopAnimating()
+                    self.navigationController?.popViewController(animated: true)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
