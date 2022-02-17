@@ -47,7 +47,7 @@ class BaseQuestionTVC: BaseTVC {
     }
     
     private let likeImgView = UIImageView().then {
-        $0.image = UIImage(named: "btnDiamond")
+        $0.image = UIImage(named: "heart")
         $0.contentMode = .scaleAspectFill
     }
     
@@ -111,13 +111,14 @@ extension BaseQuestionTVC {
         }
         
         likeImgView.snp.makeConstraints {
-            $0.trailing.equalTo(likeCountLabel.snp.leading)
-            $0.height.width.equalTo(32)
+            $0.trailing.equalTo(likeCountLabel.snp.leading).offset(-8)
+            $0.width.equalTo(16)
+            $0.height.equalTo(12)
             $0.centerY.equalTo(nicknameLabel)
         }
         
         commentCountLabel.snp.makeConstraints {
-            $0.trailing.equalTo(likeImgView.snp.leading).offset(-8)
+            $0.trailing.equalTo(likeImgView.snp.leading).offset(-16)
             $0.centerY.equalTo(nicknameLabel)
         }
         
