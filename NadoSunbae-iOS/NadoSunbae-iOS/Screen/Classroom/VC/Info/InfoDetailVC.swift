@@ -12,71 +12,85 @@ import SafariServices
 
 class InfoDetailVC: BaseVC {
     
+    // MARK: IBOutlet
+    @IBOutlet var infoDetailNaviBar: NadoSunbaeNaviBar! {
+        didSet {
+            infoDetailNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
+        }
+    }
+    
+    @IBOutlet var infoDetailTV: UITableView! {
+        didSet {
+            infoDetailTV.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+            infoDetailTV.removeSeparatorsOfEmptyCellsAndLastCell()
+            infoDetailTV.dataSource = self
+            infoDetailTV.allowsSelection = false
+            infoDetailTV.rowHeight  = UITableView.automaticDimension
+            infoDetailTV.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
+            infoDetailTV.backgroundColor = .paleGray
+        }
+    }
+    
+    @IBOutlet var commentTextView: UITextView! {
+        didSet {
+            commentTextView.delegate = self
+            commentTextView.isScrollEnabled = false
+            commentTextView.layer.cornerRadius = 18
+            commentTextView.layer.borderWidth = 1
+            commentTextView.layer.borderColor = UIColor.gray1.cgColor
+            commentTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
+            commentTextView.sizeToFit()
+        }
+    }
+    
+    @IBOutlet var commentTextViewHeight: NSLayoutConstraint!
+    @IBOutlet var commentTextViewBottom: NSLayoutConstraint!
+    @IBOutlet var sendBtn: UIButton!
+    @IBOutlet var sendBtnBottom: NSLayoutConstraint!
+    
     // MARK: Properties
-    private let infoDetailNaviBar = NadoSunbaeNaviBar().then {
-        $0.setUpNaviStyle(state: .backWithCenterTitle)
-    }
-    
-    private let infoDetailTV = UITableView().then {
-        $0.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-        $0.removeSeparatorsOfEmptyCellsAndLastCell()
-    }
-    
     var chatPostID: Int?
     var userID: Int?
-    var userType: Int?
     var questionerID: Int?
-    var infoDetailData: InfoDetailDataModel?
-    var infoDetailCommentData: [InfoDetailCommentList] = []
-    var infoDetailLikeData: Like?
-
+    private var infoDetailData: InfoDetailDataModel?
+    private var infoDetailCommentData: [InfoDetailCommentList] = []
+    private var infoDetailLikeData: Like?
+    private let screenHeight = UIScreen.main.bounds.size.height
+    private var isCommentSend: Bool = false
+    private var isTextViewEmpty: Bool = true
+    private var sendTextViewLineCount: Int = 1
+    private let textViewMaxHeight: CGFloat = 85.adjustedH
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
         registerXib()
-        setUpTV()
         setUpNaviStyle()
         addActivateIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        addKeyboardObserver()
         optionalBindingData()
     }
-}
-
-// MARK: - UI
-extension InfoDetailVC {
-    private func configureUI() {
-        self.view.addSubviews([infoDetailNaviBar, infoDetailTV])
-        
-        infoDetailNaviBar.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(104)
-        }
-        
-        infoDetailTV.snp.makeConstraints {
-            $0.top.equalTo(infoDetailNaviBar.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(236)
-            $0.bottom.equalToSuperview()
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeKeyboardObserver()
+    }
+    
+    // MARK: IBOutlet
+    @IBAction func tapSendBtn(_ sender: UIButton) {
+        DispatchQueue.main.async {
+            self.isCommentSend = true
+            self.requestCreateComment(chatPostID: self.chatPostID ?? 0, comment: self.commentTextView.text)
         }
     }
 }
 
 // MARK: - Custom Methods
 extension InfoDetailVC {
-    
-    /// infoDetailTV 구성 메서드
-    private func setUpTV() {
-        infoDetailTV.dataSource = self
-        infoDetailTV.allowsSelection = false
-        infoDetailTV.separatorStyle = .none
-        infoDetailTV.rowHeight  = UITableView.automaticDimension
-        infoDetailTV.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
-        infoDetailTV.backgroundColor = .paleGray
-    }
     
     /// xib 등록 메서드
     private func registerXib() {
@@ -90,6 +104,12 @@ extension InfoDetailVC {
         infoDetailNaviBar.rightCustomBtn.setImgByName(name: "btnMoreVertChatGray", selectedName: "btnMoreVertChatGray")
         infoDetailNaviBar.backBtn.press {
             self.navigationController?.popViewController(animated: true)
+        }
+        infoDetailNaviBar.rightCustomBtn.press {
+            // TODO: 추후에 권한 분기처리 예정
+            self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
+                // TODO: 추후에 기능 추가 예정
+            })
         }
     }
     
@@ -107,6 +127,46 @@ extension InfoDetailVC {
         activityIndicator.center = CGPoint(x: self.view.center.x, y: view.center.y)
         view.addSubview(self.activityIndicator)
     }
+    
+    /// 전송 버튼의 상태를 setUp하는 메서드
+    private func setUpSendBtnEnabledState() {
+        sendBtn.isEnabled = isTextViewEmpty ? false : true
+    }
+    
+    /// 전송 영역 TextView Height 조정하는 메서드
+    private func sendAreaDynamicHeight(textView: UITextView) {
+        if textView.contentSize.height >= self.textViewMaxHeight {
+            commentTextViewHeight.constant = self.textViewMaxHeight
+            textView.isScrollEnabled = true
+        } else {
+            commentTextViewHeight.constant = textView.contentSize.height
+            textView.isScrollEnabled = false
+        }
+    }
+    
+    /// 전송 영역 height값이 커짐에 따라 TableView contentOffset 조정하는 메서드
+    private func adjustTVContentOffset(textView: UITextView) {
+        var isLineAdded = true
+        
+        if sendTextViewLineCount != textView.numberOfLines() && textView.numberOfLines() > 1 {
+            isLineAdded = sendTextViewLineCount > textView.numberOfLines() ? false : true
+            
+            if isLineAdded {
+                if textView.contentSize.height <= self.textViewMaxHeight {
+                    self.infoDetailTV.contentOffset.y += 38
+                }
+            }
+        }
+        sendTextViewLineCount = textView.numberOfLines()
+    }
+    
+    /// TextView의 placeholder 지정하는 메서드
+    private func configueTextViewPlaceholder() {
+        commentTextView.endEditing(true)
+        commentTextView.text = "답글쓰기"
+        commentTextView.textColor = .gray2
+        commentTextView.backgroundColor = .gray0
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -121,11 +181,11 @@ extension InfoDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let infoQuestionCell = tableView.dequeueReusableCell(withIdentifier: InfoQuestionTVC.className, for: indexPath) as? InfoQuestionTVC,
               let infoCommentCell = tableView.dequeueReusableCell(withIdentifier: InfoCommentTVC.className, for: indexPath) as? InfoCommentTVC else { return UITableViewCell() }
-
+        
         /// 정보글 원글 Cell
         if indexPath.row == 0 {
             infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
-    
+            
             infoQuestionCell.tapLikeBtnAction = { [unowned self] in
                 requestPostLikeData(chatID: chatPostID ?? 0, postTypeID: .info)
             }
@@ -134,11 +194,15 @@ extension InfoDetailVC: UITableViewDataSource {
                 let safariView: SFSafariViewController = SFSafariViewController(url: url)
                 self.present(safariView, animated: true, completion: nil)
             }
+            
+            infoQuestionCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+            
             return infoQuestionCell
         } else if indexPath.row == 1 {
             /// 정보글 댓글 수 header Cell
             let infoCommentHeaderCell = InfoCommentHeaderTVC()
-            infoCommentHeaderCell.bindData(commentCount: infoDetailData?.commentCount ?? -1)
+            infoCommentHeaderCell.bindData(commentCount: infoDetailData?.commentCount ?? 0)
+            infoCommentHeaderCell .separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
             return infoCommentHeaderCell
         }
         else {
@@ -151,7 +215,7 @@ extension InfoDetailVC: UITableViewDataSource {
                 })
             }
             
-            infoQuestionCell.interactURL = { url in
+            infoCommentCell.interactURL = { url in
                 let safariView: SFSafariViewController = SFSafariViewController(url: url)
                 self.present(safariView, animated: true, completion: nil)
             }
@@ -166,6 +230,75 @@ extension InfoDetailVC: UITableViewDelegate {
     /// estimatedHeightForRowAt
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension InfoDetailVC: UITextViewDelegate {
+    
+    /// textViewDidChange
+    func textViewDidChange(_ textView: UITextView) {
+        isTextViewEmpty = textView.text.isEmpty ? true : false
+        sendAreaDynamicHeight(textView: textView)
+        adjustTVContentOffset(textView: textView)
+        setUpSendBtnEnabledState()
+    }
+    
+    /// textViewDidBeginEditing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray2 {
+            textView.text = nil
+            textView.textColor = UIColor.black
+            textView.backgroundColor = .white
+        }
+    }
+    
+    /// textViewDidEndEditing
+    func textViewDidEndEditing(_ textView: UITextView) {
+        isTextViewEmpty = textView.text.isEmpty ? true : false
+        setUpSendBtnEnabledState()
+        configueTextViewPlaceholder()
+    }
+}
+
+
+// MARK: - Keyboard
+extension InfoDetailVC {
+    
+    /// Keyboard Observer add 메서드
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    private func keyboardWillShow(_ notification: Notification) {
+        if screenHeight == 667 {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                commentTextViewBottom.constant = keyboardSize.height + 6
+                sendBtnBottom.constant = keyboardSize.height + 1
+            }
+        } else {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                commentTextViewBottom.constant = keyboardSize.height - 25
+                sendBtnBottom.constant = keyboardSize.height - 30
+            }
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(_ notification:Notification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            commentTextViewBottom.constant = 5
+            sendBtnBottom.constant = 0
+            infoDetailTV.fitContentInset(inset: .zero)
+        }
+    }
+    
+    /// Keyboard Observer remove 메서드
+    private func removeKeyboardObserver() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 
@@ -184,6 +317,8 @@ extension InfoDetailVC {
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     DispatchQueue.main.async {
                         self.infoDetailTV.reloadData()
+                        self.setUpSendBtnEnabledState()
+                        self.configueTextViewPlaceholder()
                     }
                     self.activityIndicator.stopAnimating()
                 }
@@ -191,16 +326,16 @@ extension InfoDetailVC {
                 if let message = msg as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
     
-    /// 1:1질문, 전체 질문, 정보글에 댓글 등록 API 요청 메서드
+    /// 정보글에 댓글 등록 API 요청 메서드
     func requestCreateComment(chatPostID: Int, comment: String) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.createCommentAPI(chatID: chatPostID, comment: comment) { networkResult in
@@ -216,11 +351,11 @@ extension InfoDetailVC {
                 if let message = msg as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
@@ -241,11 +376,11 @@ extension InfoDetailVC {
                 if let message = msg as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
