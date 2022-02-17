@@ -79,7 +79,6 @@
                                                 </constraints>
                                             </tableView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="bN0-Ey-Jfe" secondAttribute="trailing" id="56H-nW-69L"/>
                                             <constraint firstItem="bN0-Ey-Jfe" firstAttribute="top" secondItem="uGy-1w-xdl" secondAttribute="top" constant="16" id="E0h-J1-AHb"/>

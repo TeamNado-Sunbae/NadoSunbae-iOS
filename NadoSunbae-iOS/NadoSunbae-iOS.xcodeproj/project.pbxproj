@@ -156,6 +156,8 @@
 		5CC0BFE12798A3C300B96905 /* SignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFE02798A3C300B96905 /* SignService.swift */; };
 		5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C485F21278965D000FCA5DF /* NadoTextField.xib */; };
 		5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */; };
+		5CCCE06C27BEA4E300F0E5FD /* MypageMyPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCE06B27BEA4E300F0E5FD /* MypageMyPostModel.swift */; };
+		5CCCE06F27BEA57300F0E5FD /* MypagePostListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCCE06E27BEA57300F0E5FD /* MypagePostListTVC.swift */; };
 		5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD42136279080A600D09DEE /* MypageUserVC.swift */; };
 		5CD4213A279080C100D09DEE /* MypageUserVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CD42139279080C100D09DEE /* MypageUserVC.storyboard */; };
 		5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD4213C2790865A00D09DEE /* MypageNVC.swift */; };
@@ -367,6 +369,8 @@
 		5CC0BFDE2798A3B900B96905 /* SignAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignAPI.swift; sourceTree = "<group>"; };
 		5CC0BFE02798A3C300B96905 /* SignService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignService.swift; sourceTree = "<group>"; };
 		5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateModalDelegate.swift; sourceTree = "<group>"; };
+		5CCCE06B27BEA4E300F0E5FD /* MypageMyPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyPostModel.swift; sourceTree = "<group>"; };
+		5CCCE06E27BEA57300F0E5FD /* MypagePostListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypagePostListTVC.swift; sourceTree = "<group>"; };
 		5CD42136279080A600D09DEE /* MypageUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserVC.swift; sourceTree = "<group>"; };
 		5CD42139279080C100D09DEE /* MypageUserVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageUserVC.storyboard; sourceTree = "<group>"; };
 		5CD4213C2790865A00D09DEE /* MypageNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageNVC.swift; sourceTree = "<group>"; };
@@ -1011,6 +1015,7 @@
 			isa = PBXGroup;
 			children = (
 				5C3280192797284800781EBE /* MypageUserInfoModel.swift */,
+				5CCCE06B27BEA4E300F0E5FD /* MypageMyPostModel.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1102,6 +1107,7 @@
 		5C70A4F527BA4BC10096B20A /* MypagePostList */ = {
 			isa = PBXGroup;
 			children = (
+				5CCCE06D27BEA55600F0E5FD /* Cell */,
 				5C70A4F627BA4C030096B20A /* SB */,
 				5C70A4F727BA4C090096B20A /* VC */,
 			);
@@ -1243,6 +1249,14 @@
 				5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */,
 			);
 			path = NotificationNVC;
+			sourceTree = "<group>";
+		};
+		5CCCE06D27BEA55600F0E5FD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5CCCE06E27BEA57300F0E5FD /* MypagePostListTVC.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5CD4213327907E4900D09DEE /* MypageUser */ = {
@@ -1631,6 +1645,8 @@
 				77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
 				5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */,
+				5CCCE06F27BEA57300F0E5FD /* MypagePostListTVC.swift in Sources */,
+				5CCCE06C27BEA4E300F0E5FD /* MypageMyPostModel.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
 				338601062798B1F800C47D36 /* NaviType.swift in Sources */,
