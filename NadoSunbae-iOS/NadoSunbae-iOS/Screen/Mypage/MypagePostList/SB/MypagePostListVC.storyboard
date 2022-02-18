@@ -53,7 +53,7 @@
         <!--Mypage My Post ListVC-->
         <scene sceneID="WWq-IU-uLw">
             <objects>
-                <viewController storyboardIdentifier="MypageQuestionListVC" id="7bi-Ku-82G" customClass="MypageMyPostListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MypageMyPostListVC" id="7bi-Ku-82G" customClass="MypageMyPostListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qbj-vk-rZp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,37 +120,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YrX-5S-YjV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="692.75362318840587" y="64.955357142857139"/>
-        </scene>
-        <!--Mypage Info ListVC-->
-        <scene sceneID="DsC-Kd-dIE">
-            <objects>
-                <viewController storyboardIdentifier="MypageInfoListVC" id="u2k-Pz-YVd" customClass="MypageInfoListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="to6-Oa-eIu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grf-Ud-m53" customClass="NadoSegmentView" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="60" width="414" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="bqX-4f-IdA"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="uFs-6h-QFm"/>
-                        <color key="backgroundColor" name="paleGray"/>
-                        <constraints>
-                            <constraint firstItem="grf-Ud-m53" firstAttribute="trailing" secondItem="uFs-6h-QFm" secondAttribute="trailing" id="7m7-Bt-0ew"/>
-                            <constraint firstItem="grf-Ud-m53" firstAttribute="leading" secondItem="uFs-6h-QFm" secondAttribute="leading" id="R2I-Ne-424"/>
-                            <constraint firstItem="grf-Ud-m53" firstAttribute="top" secondItem="uFs-6h-QFm" secondAttribute="top" constant="16" id="vee-NL-in6"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="infoSegmentView" destination="grf-Ud-m53" id="kZv-Ua-rTM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9A1-Yd-BL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1358" y="65"/>
         </scene>
     </scenes>
     <resources>
