@@ -98,6 +98,23 @@ class ReviewAPI {
             }
         }
     }
+    
+    /// [PUT] 후기글 수정 API
+    func editReviewPostAPI(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        userProvider.request(.editReviewPost(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.editReviewPostJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
@@ -175,6 +192,23 @@ extension ReviewAPI {
     func deleteReviewPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         let decodedData = try? decoder.decode(GenericResponse<ReviewDeleteResModel>.self, from: data)
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData?.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData?.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// editReviewPostJudgeData
+    func editReviewPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        let decodedData = try? decoder.decode(GenericResponse<ReviewEditData>.self, from: data)
         
         switch status {
         case 200...204:
