@@ -30,11 +30,12 @@ class MypageMyPostListVC: BaseVC {
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     var postList: [MypageMyPostModel] = []
     var postType = MypageMyPostType.question
+    var isPostOrAnswer = true
     
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getMypageMyPostList()
+        isPostOrAnswer ? getMypageMyPostList() : getMypageMyAnswerList()
         self.tabBarController?.tabBar.isHidden = false
     }
     
@@ -150,5 +151,9 @@ extension MypageMyPostListVC {
                 self.activityIndicator.stopAnimating()
             }
         })
+    }
+    
+    private func getMypageMyAnswerList() {
+        
     }
 }

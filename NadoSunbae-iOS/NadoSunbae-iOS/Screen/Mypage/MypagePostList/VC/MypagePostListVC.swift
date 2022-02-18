@@ -39,6 +39,8 @@ extension MypagePostListVC {
         guard let mypageQuestionListVC = storyboard?.instantiateViewController(withIdentifier: MypageMyPostListVC.className) as? MypageMyPostListVC else { return }
         guard let mypageInfoListVC = storyboard?.instantiateViewController(withIdentifier: MypageMyPostListVC.className) as? MypageMyPostListVC else { return }
         
+        mypageQuestionListVC.isPostOrAnswer = isPostOrAnswer
+        mypageInfoListVC.isPostOrAnswer = isPostOrAnswer
         mypageInfoListVC.postType = .information
         mypageQuestionListVC.sendSegmentStateDelegate = self
         mypageInfoListVC.sendSegmentStateDelegate = self
