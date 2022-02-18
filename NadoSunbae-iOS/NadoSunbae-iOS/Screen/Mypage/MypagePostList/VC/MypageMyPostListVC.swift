@@ -154,6 +154,30 @@ extension MypageMyPostListVC {
     }
     
     private func getMypageMyAnswerList() {
-        
+        self.activityIndicator.startAnimating()
+        MypageAPI.shared.getMypageMyAnswerList(postType: self.postType, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageMyAnswerListModel {
+                    self.answerList = data.classroomPostListByMyCommentList
+                    DispatchQueue.main.async {
+                        self.postListTV.reloadData()
+
+                        self.postListTV.layoutIfNeeded()
+                        self.postListTV.rowHeight = UITableView.automaticDimension
+                        self.postListTVHeight.constant = self.postListTV.contentSize.height
+                        self.activityIndicator.stopAnimating()
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
+            }
+        })
     }
 }
