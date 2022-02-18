@@ -98,7 +98,6 @@ extension ReviewDetailVC {
                     self.present(nextVC, animated: true, completion: nil)
                     
                     /// 기존 작성 내용 전달
-                    nextVC.isPosting = false
                     nextVC.oneLineReviewTextView.textColor = .mainText
                     nextVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
                     
@@ -256,7 +255,6 @@ extension ReviewDetailVC {
             case .success(let res):
                 if let data = res as? ReviewPostDetailData {
                     self.detailPost = data
-                    print("여기", self.detailPost)
                     self.setUpLikeStatus(model: self.detailPost.like)
                     self.reviewPostTV.reloadData()
                     self.activityIndicator.stopAnimating()
