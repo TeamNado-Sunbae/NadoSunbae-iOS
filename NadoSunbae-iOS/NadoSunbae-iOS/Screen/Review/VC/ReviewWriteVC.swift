@@ -70,6 +70,9 @@ class ReviewWriteVC: BaseVC {
     private var bgImgList: [ReviewWriteBgImgData] = []
     let screenHeight = UIScreen.main.bounds.size.height
     
+    // 새글 작성, 기존글 수정 구분 위한 변수
+    var isPosting: Bool = true
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
