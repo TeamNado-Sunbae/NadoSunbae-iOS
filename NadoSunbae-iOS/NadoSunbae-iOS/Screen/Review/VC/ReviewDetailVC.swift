@@ -98,7 +98,7 @@ extension ReviewDetailVC {
                     self.present(nextVC, animated: true, completion: nil)
                     
                     /// 기존 작성 내용 전달
-                    nextVC.setIsPostingStatus(status: false)
+                    nextVC.setReceivedData(status: false, postId: self.detailPost.post.postID)
                     nextVC.oneLineReviewTextView.textColor = .mainText
                     nextVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
                     

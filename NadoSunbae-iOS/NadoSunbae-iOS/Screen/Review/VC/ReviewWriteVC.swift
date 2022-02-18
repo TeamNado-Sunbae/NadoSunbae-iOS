@@ -76,6 +76,7 @@ class ReviewWriteVC: BaseVC {
     
     // 새글 작성, 기존글 수정 구분 위한 변수
     var isPosting: Bool = true
+    var postID: Int = 0
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -207,8 +208,9 @@ extension ReviewWriteVC {
     }
     
     /// ReviewDetailVC에서 상태값 받아오기 위한 함수
-    func setIsPostingStatus(status: Bool) {
+    func setReceivedData(status: Bool, postId: Int) {
         isPosting = status
+        postID = postId
     }
     
     private func setUpTapCompleteBtn() {
@@ -223,14 +225,20 @@ extension ReviewWriteVC {
             
             /// 완료 버튼 클릭 시
             alert.confirmBtn.press {
-                
-                /// 서버통신
-                if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) {
-                    self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
-                } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
-                    self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                if self.isPosting {
+                    
+                    /// 게시글 등록 서버통신
+                    if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) {
+                        self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                    } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
+                        self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                    }
+                    UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
+                } else {
+                    
+                    /// 게시글 수정 서버통신
+                    self.requestEditReviewPost(postID: self.postID, bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
                 }
-                UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
             }
             
             /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
@@ -278,10 +286,7 @@ extension ReviewWriteVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        // TODO: 서버통신을 위해 선택된 배경이미지 index값 저장
         self.postBgImgId = indexPath.row + 6
-        print(postBgImgId)
     }
 }
 
@@ -421,6 +426,8 @@ extension ReviewWriteVC {
 
 // MARK: - Network
 extension ReviewWriteVC {
+    
+    /// 게시글 등록
     func requestCreateReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
         ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
             switch networkResult {
@@ -429,6 +436,29 @@ extension ReviewWriteVC {
                 if let data = res as? ReviewPostRegisterData {
                     self.dismiss(animated: true)
                     print(data)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    /// 게시글 수정
+    func requestEditReviewPost(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
+        ReviewAPI.shared.editReviewPostAPI(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? ReviewEditData {
+                    self.dismiss(animated: true)
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
