@@ -88,6 +88,11 @@ class ReviewWriteVC: BaseVC {
         setUpTapCompleteBtn()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach { textView in setUpCompleteBtnStatus(textView: textView)}
+    }
+    
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
         let firstMajor: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
         let secondMajor: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? ""
@@ -111,12 +116,12 @@ class ReviewWriteVC: BaseVC {
 
 // MARK: - UI
 extension ReviewWriteVC {
-    func configureNaviUI() {
+    private func configureNaviUI() {
         reviewWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
         reviewWriteNaviBar.configureTitleLabel(title: "후기작성")
     }
     
-    func configureTagViewUI() {
+    private func configureTagViewUI() {
         essentialTagView.makeRounded(cornerRadius: 4.adjusted)
         choiceTagView.makeRounded(cornerRadius: 4.adjusted)
     }
@@ -158,6 +163,43 @@ extension ReviewWriteVC {
         ])
         
         self.bgImgCV.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
+    }
+    
+    /// 조건에 따라 완료버튼 상태 설정하는 함수
+    private func setUpCompleteBtnStatus(textView: UITextView) {
+        
+        /// 필수 항목 모두 작성되었을 때
+        if oneLineReviewTextView.text != "학과를 한줄로 표현한다면?" && oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
+            essentialTextViewStatus = true
+        } else {
+            essentialTextViewStatus = false
+        }
+        
+        
+        /// 선택 항목 분기 처리
+        [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
+            if textView == $0 {
+                for _ in 0...4 {
+                    if ($0?.text.count)! >= 100 {
+                        choiceTextViewStatus = true
+                    } else if $0?.text.isEmpty == false {
+                        choiceTextViewStatus = false
+                    } else if $0?.text.isEmpty == true {
+                        //  선택 textView가 최소1개 이상채워졌는지 분기처리
+                        if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
+                            choiceTextViewStatus = true
+                        } else {
+                            choiceTextViewStatus = false
+                        }
+                    } else {
+                        choiceTextViewStatus = false
+                    }
+                }
+            }
+        }
+        
+        /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
+        reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
     }
     
     private func setUpTapCompleteBtn() {
@@ -335,39 +377,9 @@ extension ReviewWriteVC: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         
-        /// 필수 항목 모두 작성되었을 때
-        if oneLineReviewTextView.text != "학과를 한줄로 표현한다면?" && oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
-            essentialTextViewStatus = true
-        } else {
-            essentialTextViewStatus = false
-        }
-        
-        
-        /// 선택 항목 분기 처리
-        [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
-            if textView == $0 {
-                for _ in 0...4 {
-                    if ($0?.text.count)! >= 100 {
-                        choiceTextViewStatus = true
-                    } else if $0?.text.isEmpty == false {
-                        choiceTextViewStatus = false
-                    } else if $0?.text.isEmpty == true {
-                        //  선택 textView가 최소1개 이상채워졌는지 분기처리
-                        if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
-                            choiceTextViewStatus = true
-                        } else {
-                            choiceTextViewStatus = false
-                        }
-                    } else {
-                        choiceTextViewStatus = false
-                    }
-                }
-            }
-        }
-        
-        /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
-        reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
-        
+        /// 텍스트뷰의 내용이 바뀔때 마다 조건 판단하기 위한 함수 호출
+        setUpCompleteBtnStatus(textView: textView)
+
         /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             DispatchQueue.main.async() {
