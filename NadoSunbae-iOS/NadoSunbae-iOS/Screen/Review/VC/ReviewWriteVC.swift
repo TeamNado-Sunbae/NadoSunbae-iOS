@@ -202,6 +202,11 @@ extension ReviewWriteVC {
         reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
     }
     
+    /// ReviewDetailVC에서 상태값 받아오기 위한 함수
+    func setIsPostingStatus(status: Bool) {
+        isPosting = status
+    }
+    
     private func setUpTapCompleteBtn() {
         reviewWriteNaviBar.rightActivateBtn.press(vibrate: true, for: .touchUpInside) {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
