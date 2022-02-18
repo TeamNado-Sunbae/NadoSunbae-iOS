@@ -99,15 +99,22 @@ extension MypageMyPostListVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: post type에 따라 분기처리 필요
-        let chatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-        guard let chatVC = chatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-        
-        chatVC.questionType = .group
-        chatVC.naviStyle = .push
-        chatVC.chatPostID = self.postList[indexPath.row].postID
-        
-        self.navigationController?.pushViewController(chatVC, animated: true)
+        switch postType {
+        case .question:
+            guard let chatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+            
+            chatVC.questionType = .group
+            chatVC.naviStyle = .push
+            chatVC.chatPostID = self.postList[indexPath.row].postID
+            
+            self.navigationController?.pushViewController(chatVC, animated: true)
+        case .information:
+            guard let infoVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+            
+            infoVC.chatPostID = self.postList[indexPath.row].postID
+            
+            self.navigationController?.pushViewController(infoVC, animated: true)
+        }
     }
 }
 
