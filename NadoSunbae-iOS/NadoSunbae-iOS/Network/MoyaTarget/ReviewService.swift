@@ -14,6 +14,7 @@ enum ReviewService {
     case getReviewPostDetail(postID: Int)
     case getReviewHomepageURL(majorID: Int)
     case deleteReviewPost(postID: Int)
+    case editReviewPost(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String)
 }
 
 extension ReviewService: TargetType {
@@ -32,6 +33,8 @@ extension ReviewService: TargetType {
             return "/review-post/\(postID)"
         case .getReviewHomepageURL(let majorID):
             return "/major/\(majorID)"
+        case .editReviewPost(let postID, _, _, _, _, _, _, _, _ ):
+            return "/review-post/\(postID)"
         }
     }
     
@@ -44,6 +47,8 @@ extension ReviewService: TargetType {
             return .get
         case .deleteReviewPost:
             return .delete
+        case .editReviewPost:
+            return .put
         }
     }
     
@@ -54,6 +59,20 @@ extension ReviewService: TargetType {
         case .createReviewPost(let majorID, let bgImgID, let oneLineReview, let prosCons, let curriculum, let career, let recommendLecture, let nonRecommendLecture, let tip):
             let body: [String : Any] = [
                 "majorId" : majorID,
+                "backgroundImageId" : bgImgID,
+                "oneLineReview" : oneLineReview,
+                "prosCons" : prosCons,
+                "curriculum" : curriculum,
+                "career" : career,
+                "recommendLecture" : recommendLecture,
+                "nonRecommendLecture" : nonRecommendLecture,
+                "tip" : tip
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        
+        /// 후기글 수정 경우
+        case .editReviewPost( _, let bgImgID, let oneLineReview, let prosCons, let curriculum, let career, let recommendLecture, let nonRecommendLecture, let tip):
+            let body: [String : Any] = [
                 "backgroundImageId" : bgImgID,
                 "oneLineReview" : oneLineReview,
                 "prosCons" : prosCons,
@@ -89,7 +108,7 @@ extension ReviewService: TargetType {
         
         switch self {
             
-        case .createReviewPost, .getReviewMainPostList, .getReviewPostDetail, .getReviewHomepageURL, .deleteReviewPost:
+        case .createReviewPost, .getReviewMainPostList, .getReviewPostDetail, .getReviewHomepageURL, .deleteReviewPost, .editReviewPost:
             return ["accesstoken" : accessToken]
         }
     }
