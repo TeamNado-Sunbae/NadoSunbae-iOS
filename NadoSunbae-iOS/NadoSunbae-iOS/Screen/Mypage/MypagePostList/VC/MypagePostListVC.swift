@@ -36,9 +36,10 @@ class MypagePostListVC: BaseVC {
 // MARK: - UI
 extension MypagePostListVC {
     private func configureContainerView() {
-        guard let mypageQuestionListVC = storyboard?.instantiateViewController(withIdentifier: MypageQuestionListVC.className) as? MypageQuestionListVC else { return }
-        guard let mypageInfoListVC = storyboard?.instantiateViewController(withIdentifier: MypageInfoListVC.className) as? MypageInfoListVC else { return }
+        guard let mypageQuestionListVC = storyboard?.instantiateViewController(withIdentifier: MypageMyPostListVC.className) as? MypageMyPostListVC else { return }
+        guard let mypageInfoListVC = storyboard?.instantiateViewController(withIdentifier: MypageMyPostListVC.className) as? MypageMyPostListVC else { return }
         
+        mypageInfoListVC.postType = .information
         mypageQuestionListVC.sendSegmentStateDelegate = self
         mypageInfoListVC.sendSegmentStateDelegate = self
         

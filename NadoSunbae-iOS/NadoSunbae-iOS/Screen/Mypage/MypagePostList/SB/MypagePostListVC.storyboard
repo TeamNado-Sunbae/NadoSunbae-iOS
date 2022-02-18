@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="-16" y="62"/>
         </scene>
-        <!--Mypage Question ListVC-->
+        <!--Mypage My Post ListVC-->
         <scene sceneID="WWq-IU-uLw">
             <objects>
-                <viewController storyboardIdentifier="MypageQuestionListVC" id="7bi-Ku-82G" customClass="MypageQuestionListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MypageQuestionListVC" id="7bi-Ku-82G" customClass="MypageMyPostListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qbj-vk-rZp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,9 +112,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="questionSegmentView" destination="bN0-Ey-Jfe" id="o0T-Wq-bXF"/>
-                        <outlet property="questionTV" destination="5Ku-ZJ-fGx" id="x64-Vt-fsQ"/>
-                        <outlet property="questionTVHeight" destination="QR6-fS-fa4" id="nnY-Im-bSs"/>
+                        <outlet property="postListTV" destination="5Ku-ZJ-fGx" id="x64-Vt-fsQ"/>
+                        <outlet property="postListTVHeight" destination="QR6-fS-fa4" id="nnY-Im-bSs"/>
+                        <outlet property="segmentView" destination="bN0-Ey-Jfe" id="o0T-Wq-bXF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YrX-5S-YjV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

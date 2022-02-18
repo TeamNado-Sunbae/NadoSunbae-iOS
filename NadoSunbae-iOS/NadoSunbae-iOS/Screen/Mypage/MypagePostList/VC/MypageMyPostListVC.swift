@@ -7,67 +7,81 @@
 
 import UIKit
 
-class MypageQuestionListVC: BaseVC {
+class MypageMyPostListVC: BaseVC {
     
     // MARK: @IBOutlet
-    @IBOutlet weak var questionSegmentView: NadoSegmentView! {
+    @IBOutlet weak var segmentView: NadoSegmentView! {
         didSet {
-            questionSegmentView.backgroundColor = .bgGray
+            switch postType {
+            case .question:
+                break
+            case .information:
+                segmentView.questionBtn.isActivated = false
+                segmentView.questionBtn.isEnabled = true
+                segmentView.infoBtn.isActivated = true
+                segmentView.infoBtn.isEnabled = false
+            }
         }
     }
-    @IBOutlet weak var questionTV: UITableView!
-    @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
+    @IBOutlet weak var postListTV: UITableView!
+    @IBOutlet weak var postListTVHeight: NSLayoutConstraint!
     
     // MARK: Properties
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
-    var questionList: [MypageMyPostModel] = []
+    var postList: [MypageMyPostModel] = []
+    var postType = MypageMyPostType.question
     
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getUserPersonalQuestionList()
+        getMypageMyPostList()
         self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTapInfoBtn()
+        setUpTapSegmentBtn()
         setUpTV()
         registerCell()
     }
 }
 
 // MARK: - Custom Methods
-extension MypageQuestionListVC {
-    func setUpTapInfoBtn() {
-        questionSegmentView.infoBtn.press {
+extension MypageMyPostListVC {
+    func setUpTapSegmentBtn() {
+        segmentView.infoBtn.press {
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 1)
+            }
+        }
+        segmentView.questionBtn.press {
+            if let delegate = self.sendSegmentStateDelegate {
+                delegate.sendSegmentClicked(index: 0)
             }
         }
     }
     
     func setUpTV() {
-        questionTV.delegate = self
-        questionTV.dataSource = self
-        questionTV.makeRounded(cornerRadius: 8)
-        questionTV.separatorColor = .separatorGray
+        postListTV.delegate = self
+        postListTV.dataSource = self
+        postListTV.makeRounded(cornerRadius: 8)
+        postListTV.separatorColor = .separatorGray
     }
     
     private func registerCell() {
-        questionTV.register(MypagePostListTVC.self, forCellReuseIdentifier: MypagePostListTVC.className)
+        postListTV.register(MypagePostListTVC.self, forCellReuseIdentifier: MypagePostListTVC.className)
     }
 }
 
 // MARK: - UITableViewDataSource
-extension MypageQuestionListVC: UITableViewDataSource {
+extension MypageMyPostListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questionList.count
+        return postList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MypagePostListTVC.className, for: indexPath) as? MypagePostListTVC else { return UITableViewCell() }
-        cell.setMypageMyPostData(data: self.questionList[indexPath.row])
+        cell.setMypageMyPostData(data: self.postList[indexPath.row])
         cell.layoutIfNeeded()
         
         return cell
@@ -75,7 +89,7 @@ extension MypageQuestionListVC: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension MypageQuestionListVC: UITableViewDelegate {
+extension MypageMyPostListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -85,36 +99,37 @@ extension MypageQuestionListVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: post type에 따라 분기처리 필요
         let chatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
         guard let chatVC = chatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
         
         chatVC.questionType = .group
         chatVC.naviStyle = .push
-        chatVC.chatPostID = self.questionList[indexPath.row].postID
+        chatVC.chatPostID = self.postList[indexPath.row].postID
         
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
 }
 
 // MARK: - Network
-extension MypageQuestionListVC {
-    private func getUserPersonalQuestionList() {
+extension MypageMyPostListVC {
+    private func getMypageMyPostList() {
         self.activityIndicator.startAnimating()
-        MypageAPI.shared.getMypageMyPostList(postType: .question, completion: { networkResult in
+        MypageAPI.shared.getMypageMyPostList(postType: self.postType, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageMyPostListModel {
-                    self.questionList = data.classroomPostList
-                    print(self.questionList)
+                    self.postList = data.classroomPostList
+                    print(self.postList)
                     DispatchQueue.main.async {
-                        self.questionTV.reloadData()
+                        self.postListTV.reloadData()
 
-                        self.questionTV.isHidden = self.questionList.isEmpty ? true : false
+                        self.postListTV.isHidden = self.postList.isEmpty ? true : false
 //                        self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
 
-                        self.questionTV.layoutIfNeeded()
-                        self.questionTV.rowHeight = UITableView.automaticDimension
-                        self.questionTVHeight.constant = self.questionTV.contentSize.height
+                        self.postListTV.layoutIfNeeded()
+                        self.postListTV.rowHeight = UITableView.automaticDimension
+                        self.postListTVHeight.constant = self.postListTV.contentSize.height
                         self.activityIndicator.stopAnimating()
                     }
                 }
