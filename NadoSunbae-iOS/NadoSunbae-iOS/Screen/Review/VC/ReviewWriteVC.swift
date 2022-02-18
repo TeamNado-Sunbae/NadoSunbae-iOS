@@ -94,7 +94,9 @@ class ReviewWriteVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach { textView in setUpCompleteBtnStatus(textView: textView)}
+        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
+            textView in setUpCompleteBtnStatus(textView: textView)
+        }
     }
     
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
