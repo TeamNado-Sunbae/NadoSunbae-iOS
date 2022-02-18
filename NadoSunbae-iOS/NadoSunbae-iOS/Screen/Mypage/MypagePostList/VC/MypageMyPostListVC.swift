@@ -29,6 +29,7 @@ class MypageMyPostListVC: BaseVC {
     // MARK: Properties
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     var postList: [MypageMyPostModel] = []
+    var answerList: [MypageMyAnswerModel] = []
     var postType = MypageMyPostType.question
     var isPostOrAnswer = true
     
@@ -77,12 +78,12 @@ extension MypageMyPostListVC {
 // MARK: - UITableViewDataSource
 extension MypageMyPostListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postList.count
+        return isPostOrAnswer ? postList.count : answerList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MypagePostListTVC.className, for: indexPath) as? MypagePostListTVC else { return UITableViewCell() }
-        cell.setMypageMyPostData(data: self.postList[indexPath.row])
+        isPostOrAnswer ? cell.setMypageMyPostData(data: self.postList[indexPath.row]) : cell.setMypageMyAnswerData(data: self.answerList[indexPath.row])
         cell.layoutIfNeeded()
         
         return cell
@@ -106,13 +107,13 @@ extension MypageMyPostListVC: UITableViewDelegate {
             
             chatVC.questionType = .group
             chatVC.naviStyle = .push
-            chatVC.chatPostID = self.postList[indexPath.row].postID
+            chatVC.chatPostID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
             
             self.navigationController?.pushViewController(chatVC, animated: true)
         case .information:
             guard let infoVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
             
-            infoVC.chatPostID = self.postList[indexPath.row].postID
+            infoVC.chatPostID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
             
             self.navigationController?.pushViewController(infoVC, animated: true)
         }
@@ -128,7 +129,6 @@ extension MypageMyPostListVC {
             case .success(let res):
                 if let data = res as? MypageMyPostListModel {
                     self.postList = data.classroomPostList
-                    print(self.postList)
                     DispatchQueue.main.async {
                         self.postListTV.reloadData()
 
