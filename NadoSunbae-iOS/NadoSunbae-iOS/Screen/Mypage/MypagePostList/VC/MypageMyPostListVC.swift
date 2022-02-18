@@ -25,6 +25,12 @@ class MypageMyPostListVC: BaseVC {
     }
     @IBOutlet weak var postListTV: UITableView!
     @IBOutlet weak var postListTVHeight: NSLayoutConstraint!
+    @IBOutlet weak var postEmptyView: UIView! {
+        didSet {
+            postEmptyView.makeRounded(cornerRadius: 8)
+        }
+    }
+    @IBOutlet weak var postEmptyLabel: UILabel!
     
     // MARK: Properties
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
@@ -50,7 +56,7 @@ class MypageMyPostListVC: BaseVC {
 
 // MARK: - Custom Methods
 extension MypageMyPostListVC {
-    func setUpTapSegmentBtn() {
+    private func setUpTapSegmentBtn() {
         segmentView.infoBtn.press {
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 1)
@@ -63,7 +69,7 @@ extension MypageMyPostListVC {
         }
     }
     
-    func setUpTV() {
+    private func setUpTV() {
         postListTV.delegate = self
         postListTV.dataSource = self
         postListTV.makeRounded(cornerRadius: 8)
@@ -72,6 +78,15 @@ extension MypageMyPostListVC {
     
     private func registerCell() {
         postListTV.register(MypagePostListTVC.self, forCellReuseIdentifier: MypagePostListTVC.className)
+    }
+    
+    private func setEmptyLabel() {
+        switch postType {
+        case .information:
+            postEmptyLabel.text = "등록된 정보글이 없습니다."
+        case .question:
+            postEmptyLabel.text = "등록된 질문글이 없습니다."
+        }
     }
 }
 
@@ -133,8 +148,9 @@ extension MypageMyPostListVC {
                         self.postListTV.reloadData()
 
                         self.postListTV.isHidden = self.postList.isEmpty ? true : false
-//                        self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
-
+                        self.postEmptyView.isHidden = self.postList.isEmpty ? false : true
+                        self.setEmptyLabel()
+                        
                         self.postListTV.layoutIfNeeded()
                         self.postListTV.rowHeight = UITableView.automaticDimension
                         self.postListTVHeight.constant = self.postListTV.contentSize.height
@@ -162,6 +178,10 @@ extension MypageMyPostListVC {
                     self.answerList = data.classroomPostListByMyCommentList
                     DispatchQueue.main.async {
                         self.postListTV.reloadData()
+
+                        self.postListTV.isHidden = self.answerList.isEmpty ? true : false
+                        self.postEmptyView.isHidden = self.answerList.isEmpty ? false : true
+                        self.setEmptyLabel()
 
                         self.postListTV.layoutIfNeeded()
                         self.postListTV.rowHeight = UITableView.automaticDimension
