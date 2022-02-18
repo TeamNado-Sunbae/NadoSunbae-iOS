@@ -80,7 +80,7 @@
                                     <constraint firstAttribute="width" secondItem="hkZ-Xq-Tbg" secondAttribute="height" multiplier="1:1" id="k7P-Ye-b9p"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="btnDiamond">
+                                <state key="normal" backgroundImage="btn_heart">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <state key="selected" backgroundImage="btnDiamondMint"/>
@@ -154,9 +154,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btnDiamond" width="32" height="32"/>
         <image name="btnDiamondMint" width="32" height="32"/>
         <image name="btnMoreVertChatGray" width="24" height="24"/>
+        <image name="btn_heart" width="32" height="32"/>
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
