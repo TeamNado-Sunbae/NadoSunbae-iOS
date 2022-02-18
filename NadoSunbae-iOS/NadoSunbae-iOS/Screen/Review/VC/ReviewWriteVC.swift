@@ -186,8 +186,6 @@ extension ReviewWriteVC {
                 for _ in 0...4 {
                     if ($0?.text.count)! >= 100 {
                         choiceTextViewStatus = true
-                    } else if $0?.text.isEmpty == false {
-                        choiceTextViewStatus = false
                     } else if $0?.text.isEmpty == true {
                         //  선택 textView가 최소1개 이상채워졌는지 분기처리
                         if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
@@ -195,7 +193,7 @@ extension ReviewWriteVC {
                         } else {
                             choiceTextViewStatus = false
                         }
-                    } else {
+                    } else if $0?.textColor != .gray2 {
                         choiceTextViewStatus = false
                     }
                 }
