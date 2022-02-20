@@ -27,7 +27,7 @@ class MypageMyPostListVC: BaseVC {
     @IBOutlet weak var postListTVHeight: NSLayoutConstraint!
     @IBOutlet weak var postEmptyView: UIView! {
         didSet {
-            postEmptyView.makeRounded(cornerRadius: 8)
+            postEmptyView.makeRounded(cornerRadius: 8.adjusted)
         }
     }
     @IBOutlet weak var postEmptyLabel: UILabel!
@@ -72,7 +72,7 @@ extension MypageMyPostListVC {
     private func setUpTV() {
         postListTV.delegate = self
         postListTV.dataSource = self
-        postListTV.makeRounded(cornerRadius: 8)
+        postListTV.makeRounded(cornerRadius: 8.adjusted)
         postListTV.separatorColor = .separatorGray
     }
     
