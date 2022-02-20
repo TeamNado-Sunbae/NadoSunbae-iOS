@@ -339,9 +339,9 @@ extension InfoDetailVC {
                         self.infoDetailTV.reloadData()
                         self.setUpSendBtnEnabledState()
                         self.configueTextViewPlaceholder()
+                        addLoadBackView ? self.removeWhiteBackView() : nil
+                        self.activityIndicator.stopAnimating()
                     }
-                    addLoadBackView ? self.removeWhiteBackView() : nil
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
