@@ -189,6 +189,7 @@
 		777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */; };
 		777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */; };
 		77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */; };
+		77A049F827BEBD2B00D09C69 /* ReviewEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A049F727BEBD2B00D09C69 /* ReviewEditData.swift */; };
 		77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */; };
 		77A7591B279712B700A8E48B /* ReviewPostTagCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A75919279712B700A8E48B /* ReviewPostTagCVC.xib */; };
 		77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */; };
@@ -404,6 +405,7 @@
 		777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainStickyHeader.xib; sourceTree = "<group>"; };
 		777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStickyHeaderView.swift; sourceTree = "<group>"; };
 		77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeleteResModel.swift; sourceTree = "<group>"; };
+		77A049F727BEBD2B00D09C69 /* ReviewEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEditData.swift; sourceTree = "<group>"; };
 		77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostTagCVC.swift; sourceTree = "<group>"; };
 		77A75919279712B700A8E48B /* ReviewPostTagCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewPostTagCVC.xib; sourceTree = "<group>"; };
 		77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostRegisterData.swift; sourceTree = "<group>"; };
@@ -1314,6 +1316,7 @@
 			isa = PBXGroup;
 			children = (
 				77A7591D279762BF00A8E48B /* ReviewPostRegisterData.swift */,
+				77A049F727BEBD2B00D09C69 /* ReviewEditData.swift */,
 				77A759232797656B00A8E48B /* ReviewPostData.swift */,
 				77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */,
 				77A7593B2799C81B00A8E48B /* ReviewPostDetailData.swift */,
@@ -1594,6 +1597,7 @@
 				77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */,
 				5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */,
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
+				77A049F827BEBD2B00D09C69 /* ReviewEditData.swift in Sources */,
 				5C9A93F927A64FB20097310B /* SignUpDataModel.swift in Sources */,
 				5C87EC22279A2D2C0039D935 /* CreateClassroomPostModel.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,

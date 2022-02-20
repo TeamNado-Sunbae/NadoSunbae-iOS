@@ -16,7 +16,11 @@ class ReviewWriteVC: BaseVC {
             /// x버튼 클릭 시 커스텀 팝업창 띄움
             reviewWriteNaviBar.dismissBtn.press {
                 guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                alert.showNadoAlert(vc: self, message: "페이지를 나가면 \n 작성중인 글이 삭제돼요.", confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+                if self.isPosting {
+                    alert.showNadoAlert(vc: self, message: "페이지를 나가면 \n 작성중인 글이 삭제돼요.", confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+                } else {
+                    alert.showNadoAlert(vc: self, message: "페이지를 나가면 \n 수정한 내용이 저장되지 않아요.", confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+                }
                 alert.cancelBtn.press {
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -70,6 +74,10 @@ class ReviewWriteVC: BaseVC {
     private var bgImgList: [ReviewWriteBgImgData] = []
     let screenHeight = UIScreen.main.bounds.size.height
     
+    // 새글 작성, 기존글 수정 구분 위한 변수
+    var isPosting: Bool = true
+    var postID: Int = 0
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +91,13 @@ class ReviewWriteVC: BaseVC {
         addKeyboardObserver()
         hideKeyboardWhenTappedAround()
         setUpTapCompleteBtn()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
+            textView in setUpCompleteBtnStatus(textView: textView)
+        }
     }
     
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
@@ -108,12 +123,12 @@ class ReviewWriteVC: BaseVC {
 
 // MARK: - UI
 extension ReviewWriteVC {
-    func configureNaviUI() {
+    private func configureNaviUI() {
         reviewWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
         reviewWriteNaviBar.configureTitleLabel(title: "후기작성")
     }
     
-    func configureTagViewUI() {
+    private func configureTagViewUI() {
         essentialTagView.makeRounded(cornerRadius: 4.adjusted)
         choiceTagView.makeRounded(cornerRadius: 4.adjusted)
     }
@@ -157,26 +172,68 @@ extension ReviewWriteVC {
         self.bgImgCV.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
     }
     
+    /// 조건에 따라 완료버튼 상태 설정하는 함수
+    private func setUpCompleteBtnStatus(textView: UITextView) {
+        
+        /// 필수 항목 모두 작성되었을 때
+        if oneLineReviewTextView.text != "학과를 한줄로 표현한다면?" && oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
+            essentialTextViewStatus = true
+        } else {
+            essentialTextViewStatus = false
+        }
+        
+        
+        /// 선택 항목 분기 처리
+        [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
+            if textView == $0 {
+                for _ in 0...4 {
+                    if ($0?.text.count)! >= 100 {
+                        choiceTextViewStatus = true
+                    } else if $0?.text.isEmpty == true {
+                        //  선택 textView가 최소1개 이상채워졌는지 분기처리
+                        if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
+                            choiceTextViewStatus = true
+                        } else {
+                            choiceTextViewStatus = false
+                        }
+                    } else if $0?.textColor != .gray2 {
+                        choiceTextViewStatus = false
+                    }
+                }
+            }
+        }
+        
+        /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
+        reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
+    }
+    
+    /// ReviewDetailVC에서 상태값 받아오기 위한 함수
+    func setReceivedData(status: Bool, postId: Int) {
+        isPosting = status
+        postID = postId
+    }
+    
     private func setUpTapCompleteBtn() {
         reviewWriteNaviBar.rightActivateBtn.press(vibrate: true, for: .touchUpInside) {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
             alert.showNadoAlert(vc: self, message: "글을 올리시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
             
-            /// 취소 버튼 클릭 시
-            alert.cancelBtn.press {
-                self.dismiss(animated: true, completion: nil)
-            }
-            
             /// 완료 버튼 클릭 시
             alert.confirmBtn.press {
-                
-                /// 서버통신
-                if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) {
-                    self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
-                } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
-                    self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                if self.isPosting {
+                    
+                    /// 게시글 등록 서버통신
+                    if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) {
+                        self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                    } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
+                        self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                    }
+                    UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
+                } else {
+                    
+                    /// 게시글 수정 서버통신
+                    self.requestEditReviewPost(postID: self.postID, bgImgID: self.postBgImgId, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
                 }
-                UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
             }
             
             /// TextView의 text가 placeholder일 때 텍스트가 서버에 넘어가지 않도록 분기 처리
@@ -224,10 +281,7 @@ extension ReviewWriteVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        // TODO: 서버통신을 위해 선택된 배경이미지 index값 저장
         self.postBgImgId = indexPath.row + 6
-        print(postBgImgId)
     }
 }
 
@@ -332,39 +386,9 @@ extension ReviewWriteVC: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         
-        /// 필수 항목 모두 작성되었을 때
-        if oneLineReviewTextView.text != "학과를 한줄로 표현한다면?" && oneLineReviewTextView.text.count > 0 && prosAndConsTextView.text.count >= 100  {
-            essentialTextViewStatus = true
-        } else {
-            essentialTextViewStatus = false
-        }
-        
-        
-        /// 선택 항목 분기 처리
-        [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
-            if textView == $0 {
-                for _ in 0...4 {
-                    if ($0?.text.count)! >= 100 {
-                        choiceTextViewStatus = true
-                    } else if $0?.text.isEmpty == false {
-                        choiceTextViewStatus = false
-                    } else if $0?.text.isEmpty == true {
-                        //  선택 textView가 최소1개 이상채워졌는지 분기처리
-                        if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
-                            choiceTextViewStatus = true
-                        } else {
-                            choiceTextViewStatus = false
-                        }
-                    } else {
-                        choiceTextViewStatus = false
-                    }
-                }
-            }
-        }
-        
-        /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
-        reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
-        
+        /// 텍스트뷰의 내용이 바뀔때 마다 조건 판단하기 위한 함수 호출
+        setUpCompleteBtnStatus(textView: textView)
+
         /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             DispatchQueue.main.async() {
@@ -397,6 +421,8 @@ extension ReviewWriteVC {
 
 // MARK: - Network
 extension ReviewWriteVC {
+    
+    /// 게시글 등록
     func requestCreateReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
         ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
             switch networkResult {
@@ -405,6 +431,29 @@ extension ReviewWriteVC {
                 if let data = res as? ReviewPostRegisterData {
                     self.dismiss(animated: true)
                     print(data)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    /// 게시글 수정
+    func requestEditReviewPost(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
+        ReviewAPI.shared.editReviewPostAPI(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? ReviewEditData {
+                    self.dismiss(animated: true)
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {

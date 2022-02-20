@@ -18,20 +18,9 @@ struct ReviewPostRegisterData: Codable {
 // MARK: - ReviewPostBackgroundImg
 struct ReviewPostBackgroundImg: Codable {
     let imgID: Int
-    let imgURL: ReviewPostImageURL
 
     enum CodingKeys: String, CodingKey {
         case imgID = "imageId"
-        case imgURL = "imageUrl"
-    }
-}
-
-// MARK: - ImageURL
-struct ReviewPostImageURL: Codable {
-    let imgURL: String
-
-    enum CodingKeys: String, CodingKey {
-        case imgURL = "imageUrl"
     }
 }
 
