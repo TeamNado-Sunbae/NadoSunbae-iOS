@@ -89,45 +89,7 @@ extension ReviewDetailVC {
             /// 내가 작성한 글인 경우 수정, 삭제
             if self.detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
                 self.makeTwoAlertWithCancel(okTitle: "수정", secondOkTitle: "삭제", okAction: { _ in
-                    
-                    /// 후기 작성 뷰로 이동
-                    let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-                    guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-                    
-                    nextVC.modalPresentationStyle = .fullScreen
-                    self.present(nextVC, animated: true, completion: nil)
-                    
-                    /// 기존 작성 내용 전달
-                    nextVC.setReceivedData(status: false, postId: self.detailPost.post.postID)
-                    nextVC.oneLineReviewTextView.textColor = .mainText
-                    nextVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
-                    
-                    for i in 0..<self.detailPost.post.contentList.count {
-                        let contentTitle = self.detailPost.post.contentList[i].title
-                        
-                        switch contentTitle {
-                        case "장단점":
-                            nextVC.prosAndConsTextView.textColor = .mainText
-                            nextVC.prosAndConsTextView.text = self.detailPost.post.contentList[i].content
-                        case "뭘 배우나요?":
-                            nextVC.learnInfoTextView.textColor = .mainText
-                            nextVC.learnInfoTextView.text = self.detailPost.post.contentList[i].content
-                        case "추천 수업":
-                            nextVC.recommendClassTextView.textColor = .mainText
-                            nextVC.recommendClassTextView.text = self.detailPost.post.contentList[i].content
-                        case "비추 수업":
-                            nextVC.badClassTextView.textColor = .mainText
-                            nextVC.badClassTextView.text = self.detailPost.post.contentList[i].content
-                        case "향후 진로":
-                            nextVC.futureTextView.textColor = .mainText
-                            nextVC.futureTextView.text = self.detailPost.post.contentList[i].content
-                        case "꿀팁":
-                            nextVC.tipTextView.textColor = .mainText
-                            nextVC.tipTextView.text = self.detailPost.post.contentList[i].content
-                        default:
-                            break
-                        }
-                    }
+                    self.sendDetailPostData()
                 }, secondOkAction: { _ in
                     guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                     alert.showNadoAlert(vc: self, message: "삭제하시겠습니까?", confirmBtnTitle: "삭제", cancelBtnTitle: "아니요")
@@ -172,6 +134,36 @@ extension ReviewDetailVC {
     /// UserDefaults의 isReviewed 값 설정
     private func setUpIsReviewedStatus(model: ReviewDeleteResModel) {
         UserDefaults.standard.set(model.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
+    }
+    
+    /// 후기 수정 위한 기존 데이터 전달 함수
+    private func sendDetailPostData() {
+        
+        /// 후기 작성 뷰로 이동
+        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
+        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+        
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+        
+        /// 기존 작성 내용 전달
+        nextVC.setReceivedData(status: false, postId: self.detailPost.post.postID)
+        nextVC.oneLineReviewTextView.textColor = .mainText
+        nextVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
+        
+        let contentTitleDict: [String : UITextView] = ["장단점" : nextVC.prosAndConsTextView, "뭘 배우나요?" : nextVC.learnInfoTextView, "추천 수업" : nextVC.recommendClassTextView, "비추 수업" :  nextVC.badClassTextView, "향후 진로" : nextVC.futureTextView, "꿀팁" : nextVC.tipTextView]
+        var newContentTitleDict = [String : UITextView]()
+        var newContentDict = [String : String]()
+        
+        for i in 0..<self.detailPost.post.contentList.count {
+            newContentTitleDict.updateValue(contentTitleDict[self.detailPost.post.contentList[i].title] ?? UITextView(), forKey: self.detailPost.post.contentList[i].title)
+            newContentDict.updateValue(self.detailPost.post.contentList[i].content, forKey: self.detailPost.post.contentList[i].title)
+        }
+        
+        newContentTitleDict.forEach {
+            $0.value.textColor = .mainText
+            $0.value.text = newContentDict[$0.key]
+        }
     }
 }
 
