@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mypage My ReviewVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MypageMyReviewVC" id="Y6W-OH-hqX" customClass="MypageMyReviewVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUN-r1-6Kk" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="BPN-CB-X2V"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="paleGray"/>
+                        <constraints>
+                            <constraint firstItem="UUN-r1-6Kk" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="FNE-OR-LFf"/>
+                            <constraint firstItem="UUN-r1-6Kk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="RQg-2V-vK5"/>
+                            <constraint firstItem="UUN-r1-6Kk" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qkN-1o-i7Q"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navView" destination="UUN-r1-6Kk" id="gbK-f3-xDp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16" y="35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

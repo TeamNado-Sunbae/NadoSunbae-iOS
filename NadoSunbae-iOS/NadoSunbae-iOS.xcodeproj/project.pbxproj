@@ -116,9 +116,11 @@
 		5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32801E27973E1A00781EBE /* ListSortType.swift */; };
 		5C328021279741C200781EBE /* QuestionOrInfoListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C328020279741C200781EBE /* QuestionOrInfoListModel.swift */; };
 		5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C485F232789661F00FCA5DF /* NadoTextField.swift */; };
-		5C49668F27BB5C0D00983689 /* MypageQuestionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49668E27BB5C0D00983689 /* MypageQuestionListVC.swift */; };
-		5C49669127BB5C1900983689 /* MypageInfoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49669027BB5C1900983689 /* MypageInfoListVC.swift */; };
+		5C49668F27BB5C0D00983689 /* MypageMyPostListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49668E27BB5C0D00983689 /* MypageMyPostListVC.swift */; };
 		5C49669327BD469200983689 /* AutoSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49669227BD469200983689 /* AutoSignInVC.swift */; };
+		5C4B5A9C27BFF5200012A898 /* MypageMyAnswerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4B5A9B27BFF5200012A898 /* MypageMyAnswerListModel.swift */; };
+		5C4B5A9E27BFFDD40012A898 /* MypageMyReviewVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4B5A9D27BFFDD40012A898 /* MypageMyReviewVC.storyboard */; };
+		5C4B5AA027BFFDEC0012A898 /* MypageMyReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4B5A9F27BFFDEC0012A898 /* MypageMyReviewVC.swift */; };
 		5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ED929278949AC001EA6BB /* SignInSB.storyboard */; };
 		5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4ED92B278949C4001EA6BB /* SignInVC.swift */; };
 		5C54CEC6278D9CBB0054136D /* SignUpUserInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */; };
@@ -329,9 +331,11 @@
 		5C328020279741C200781EBE /* QuestionOrInfoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOrInfoListModel.swift; sourceTree = "<group>"; };
 		5C485F21278965D000FCA5DF /* NadoTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NadoTextField.xib; sourceTree = "<group>"; };
 		5C485F232789661F00FCA5DF /* NadoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextField.swift; sourceTree = "<group>"; };
-		5C49668E27BB5C0D00983689 /* MypageQuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageQuestionListVC.swift; sourceTree = "<group>"; };
-		5C49669027BB5C1900983689 /* MypageInfoListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageInfoListVC.swift; sourceTree = "<group>"; };
+		5C49668E27BB5C0D00983689 /* MypageMyPostListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyPostListVC.swift; sourceTree = "<group>"; };
 		5C49669227BD469200983689 /* AutoSignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInVC.swift; sourceTree = "<group>"; };
+		5C4B5A9B27BFF5200012A898 /* MypageMyAnswerListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyAnswerListModel.swift; sourceTree = "<group>"; };
+		5C4B5A9D27BFFDD40012A898 /* MypageMyReviewVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageMyReviewVC.storyboard; sourceTree = "<group>"; };
+		5C4B5A9F27BFFDEC0012A898 /* MypageMyReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyReviewVC.swift; sourceTree = "<group>"; };
 		5C4ED929278949AC001EA6BB /* SignInSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInSB.storyboard; sourceTree = "<group>"; };
 		5C4ED92B278949C4001EA6BB /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		5C54CEC5278D9CBB0054136D /* SignUpUserInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpUserInfoVC.storyboard; sourceTree = "<group>"; };
@@ -1016,6 +1020,7 @@
 			children = (
 				5C3280192797284800781EBE /* MypageUserInfoModel.swift */,
 				5CCCE06B27BEA4E300F0E5FD /* MypageMyPostListModel.swift */,
+				5C4B5A9B27BFF5200012A898 /* MypageMyAnswerListModel.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1118,6 +1123,7 @@
 			isa = PBXGroup;
 			children = (
 				5C70A4FA27BA4C300096B20A /* MypagePostListVC.storyboard */,
+				5C4B5A9D27BFFDD40012A898 /* MypageMyReviewVC.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -1126,8 +1132,8 @@
 			isa = PBXGroup;
 			children = (
 				5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */,
-				5C49668E27BB5C0D00983689 /* MypageQuestionListVC.swift */,
-				5C49669027BB5C1900983689 /* MypageInfoListVC.swift */,
+				5C49668E27BB5C0D00983689 /* MypageMyPostListVC.swift */,
+				5C4B5A9F27BFFDEC0012A898 /* MypageMyReviewVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1489,6 +1495,7 @@
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
 				77ED045127AD75E700D077CA /* FilterVC.xib in Resources */,
 				77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */,
+				5C4B5A9E27BFFDD40012A898 /* MypageMyReviewVC.storyboard in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
 				33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */,
 				5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */,
@@ -1567,6 +1574,7 @@
 				33C1B8A327974A4F004BABEC /* ClassroomQuestionDetailData.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
 				777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */,
+				5C4B5A9C27BFF5200012A898 /* MypageMyAnswerListModel.swift in Sources */,
 				33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
 				77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */,
@@ -1620,7 +1628,6 @@
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
-				5C49669127BB5C1900983689 /* MypageInfoListVC.swift in Sources */,
 				5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */,
@@ -1648,6 +1655,7 @@
 				5CCCE06F27BEA57300F0E5FD /* MypagePostListTVC.swift in Sources */,
 				5CCCE06C27BEA4E300F0E5FD /* MypageMyPostListModel.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
+				5C4B5AA027BFFDEC0012A898 /* MypageMyReviewVC.swift in Sources */,
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
 				338601062798B1F800C47D36 /* NaviType.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
@@ -1658,7 +1666,7 @@
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
-				5C49668F27BB5C0D00983689 /* MypageQuestionListVC.swift in Sources */,
+				5C49668F27BB5C0D00983689 /* MypageMyPostListVC.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
 				33CF635827945DE300E92C04 /* QuestionMainVC.swift in Sources */,
 				5C9A93F727A64B550097310B /* SignUpBodyModel.swift in Sources */,

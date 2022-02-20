@@ -89,6 +89,11 @@ class MypageMainVC: BaseVC {
         answerListVC.isPostOrAnswer = false
         self.navigationController?.pushViewController(answerListVC, animated: true)
     }
+    
+    @IBAction func tapReviewBtn(_ sender: Any) {
+        guard let reviewVC = UIStoryboard.init(name: MypageMyReviewVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageMyReviewVC.className) as? MypageMyReviewVC else { return }
+        self.navigationController?.pushViewController(reviewVC, animated: true)
+    }
 }
 
 // MARK: - UI

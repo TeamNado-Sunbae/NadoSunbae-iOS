@@ -9,10 +9,6 @@ import Foundation
 
 struct MypageMyPostListModel: Codable {
     var classroomPostList: [MypageMyPostModel]
-
-    enum CodingKeys: String, CodingKey {
-        case classroomPostList = "classroomPostList"
-    }
 }
 
 struct MypageMyPostModel: Codable {

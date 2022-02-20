@@ -21,4 +21,13 @@ class MypagePostListTVC: BaseQuestionTVC {
         commentCountLabel.text = "\(data.commentCount)"
         likeCountLabel.text = "\(data.like.likeCount)"
     }
+    
+    func setMypageMyAnswerData(data: MypageMyAnswerModel) {
+        self.questionTitleLabel.text = data.title
+        questionContentLabel.text = data.content
+        nicknameLabel.text = data.writer.nickname
+        questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
+        commentCountLabel.text = "\(data.commentCount)"
+        likeCountLabel.text = "\(data.like.likeCount)"
+    }
 }

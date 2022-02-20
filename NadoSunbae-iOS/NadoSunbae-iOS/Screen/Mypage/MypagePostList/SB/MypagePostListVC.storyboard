@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Mypage Post ListVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -50,10 +55,10 @@
             </objects>
             <point key="canvasLocation" x="-16" y="62"/>
         </scene>
-        <!--Mypage Question ListVC-->
+        <!--Mypage My Post ListVC-->
         <scene sceneID="WWq-IU-uLw">
             <objects>
-                <viewController storyboardIdentifier="MypageQuestionListVC" id="7bi-Ku-82G" customClass="MypageQuestionListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MypageMyPostListVC" id="7bi-Ku-82G" customClass="MypageMyPostListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qbj-vk-rZp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,12 +95,31 @@
                                             <constraint firstItem="bN0-Ey-Jfe" firstAttribute="leading" secondItem="uGy-1w-xdl" secondAttribute="leading" id="tlA-N7-4hV"/>
                                         </constraints>
                                     </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4P-uw-d0d">
+                                        <rect key="frame" x="24" y="70" width="366" height="724"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 1:1 질문이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhM-ka-rxd">
+                                                <rect key="frame" x="107.5" y="353.5" width="151" height="17"/>
+                                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                                <color key="textColor" name="gray2"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="LhM-ka-rxd" firstAttribute="centerX" secondItem="W4P-uw-d0d" secondAttribute="centerX" id="Pqy-cv-Ev7"/>
+                                            <constraint firstItem="LhM-ka-rxd" firstAttribute="centerY" secondItem="W4P-uw-d0d" secondAttribute="centerY" id="xce-1P-rmk"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="uGy-1w-xdl" firstAttribute="leading" secondItem="FdM-HJ-VSH" secondAttribute="leading" id="6sC-AN-7JD"/>
+                                    <constraint firstItem="W4P-uw-d0d" firstAttribute="leading" secondItem="uGy-1w-xdl" secondAttribute="leading" constant="24" id="7Zp-dD-Ygt"/>
                                     <constraint firstItem="uGy-1w-xdl" firstAttribute="trailing" secondItem="FdM-HJ-VSH" secondAttribute="trailing" id="CeE-V0-fvC"/>
                                     <constraint firstItem="uGy-1w-xdl" firstAttribute="top" secondItem="FdM-HJ-VSH" secondAttribute="top" id="Ey5-zh-jDo"/>
                                     <constraint firstItem="uGy-1w-xdl" firstAttribute="width" secondItem="QVX-eN-C9t" secondAttribute="width" id="T8x-FH-5lN"/>
+                                    <constraint firstItem="W4P-uw-d0d" firstAttribute="trailing" secondItem="uGy-1w-xdl" secondAttribute="trailing" constant="-24" id="WgC-np-S2B"/>
+                                    <constraint firstItem="W4P-uw-d0d" firstAttribute="top" secondItem="bN0-Ey-Jfe" secondAttribute="bottom" constant="16" id="h5b-Yq-FqB"/>
                                     <constraint firstItem="uGy-1w-xdl" firstAttribute="bottom" secondItem="FdM-HJ-VSH" secondAttribute="bottom" id="j1g-AD-Yh7"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="FdM-HJ-VSH"/>
@@ -109,53 +133,28 @@
                             <constraint firstItem="yhA-MS-cKe" firstAttribute="top" secondItem="ye5-wt-iGV" secondAttribute="top" id="Chv-1o-e19"/>
                             <constraint firstItem="ye5-wt-iGV" firstAttribute="trailing" secondItem="yhA-MS-cKe" secondAttribute="trailing" id="WzC-rW-0e3"/>
                             <constraint firstItem="yhA-MS-cKe" firstAttribute="leading" secondItem="ye5-wt-iGV" secondAttribute="leading" id="xog-Nm-OTy"/>
+                            <constraint firstItem="ye5-wt-iGV" firstAttribute="bottom" secondItem="W4P-uw-d0d" secondAttribute="bottom" constant="24" id="yLG-pK-ykb"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="questionSegmentView" destination="bN0-Ey-Jfe" id="o0T-Wq-bXF"/>
-                        <outlet property="questionTV" destination="5Ku-ZJ-fGx" id="x64-Vt-fsQ"/>
-                        <outlet property="questionTVHeight" destination="QR6-fS-fa4" id="nnY-Im-bSs"/>
+                        <outlet property="postEmptyLabel" destination="LhM-ka-rxd" id="wiQ-ZW-3yV"/>
+                        <outlet property="postEmptyView" destination="W4P-uw-d0d" id="Of1-W7-jo3"/>
+                        <outlet property="postListTV" destination="5Ku-ZJ-fGx" id="x64-Vt-fsQ"/>
+                        <outlet property="postListTVHeight" destination="QR6-fS-fa4" id="nnY-Im-bSs"/>
+                        <outlet property="segmentView" destination="bN0-Ey-Jfe" id="o0T-Wq-bXF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YrX-5S-YjV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="692.75362318840587" y="64.955357142857139"/>
         </scene>
-        <!--Mypage Info ListVC-->
-        <scene sceneID="DsC-Kd-dIE">
-            <objects>
-                <viewController storyboardIdentifier="MypageInfoListVC" id="u2k-Pz-YVd" customClass="MypageInfoListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="to6-Oa-eIu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grf-Ud-m53" customClass="NadoSegmentView" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="60" width="414" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="bqX-4f-IdA"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="uFs-6h-QFm"/>
-                        <color key="backgroundColor" name="paleGray"/>
-                        <constraints>
-                            <constraint firstItem="grf-Ud-m53" firstAttribute="trailing" secondItem="uFs-6h-QFm" secondAttribute="trailing" id="7m7-Bt-0ew"/>
-                            <constraint firstItem="grf-Ud-m53" firstAttribute="leading" secondItem="uFs-6h-QFm" secondAttribute="leading" id="R2I-Ne-424"/>
-                            <constraint firstItem="grf-Ud-m53" firstAttribute="top" secondItem="uFs-6h-QFm" secondAttribute="top" constant="16" id="vee-NL-in6"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="infoSegmentView" destination="grf-Ud-m53" id="kZv-Ua-rTM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9A1-Yd-BL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1358" y="65"/>
-        </scene>
     </scenes>
     <resources>
         <namedColor name="bgGray">
             <color red="0.97299998998641968" green="0.97600001096725464" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray2">
+            <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="paleGray">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
