@@ -133,6 +133,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="AlL-q4-9qg"/>
                     <connections>
+                        <outlet property="dateLabel" destination="NKA-XN-TcD" id="A6S-hj-BHF"/>
                         <outlet property="likeCountLabel" destination="DLM-G7-RMB" id="TpV-mp-Ywp"/>
                         <outlet property="likeCountView" destination="Mfc-eR-2Hs" id="xBy-de-EVI"/>
                         <outlet property="likeImgView" destination="Lcb-ZO-cgX" id="wNy-Q3-XAO"/>
