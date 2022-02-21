@@ -60,13 +60,13 @@ class InfoDetailVC: BaseVC {
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
     private let textViewMaxHeight: CGFloat = 85.adjustedH
+    private let whiteBackView = UIView()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
         setUpNaviStyle()
-        addActivateIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +86,26 @@ class InfoDetailVC: BaseVC {
             self.isCommentSend = true
             self.requestCreateComment(chatPostID: self.chatPostID ?? 0, comment: self.commentTextView.text)
         }
+    }
+}
+
+// MARK: - UI
+extension InfoDetailVC {
+    
+    /// 첫 진입시 데이터 로딩되는 동안 backView를 띄우기 위한 whiteBackView 구성 메서드
+    private func configureWhiteBackView() {
+        self.view.addSubview(whiteBackView)
+        addActivateIndicator()
+        
+        whiteBackView.backgroundColor = .white
+        whiteBackView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    /// whiteBackView remove 메서드
+    private func removeWhiteBackView() {
+        whiteBackView.removeFromSuperview()
     }
 }
 
@@ -117,7 +137,7 @@ extension InfoDetailVC {
     private func optionalBindingData() {
         if let chatPostID = chatPostID {
             DispatchQueue.main.async {
-                self.requestGetDetailInfoData(chatPostID: chatPostID)
+                self.requestGetDetailInfoData(chatPostID: chatPostID, addLoadBackView: true)
             }
         }
     }
@@ -196,13 +216,12 @@ extension InfoDetailVC: UITableViewDataSource {
             }
             
             infoQuestionCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
-            
             return infoQuestionCell
         } else if indexPath.row == 1 {
             /// 정보글 댓글 수 header Cell
             let infoCommentHeaderCell = InfoCommentHeaderTVC()
             infoCommentHeaderCell.bindData(commentCount: infoDetailData?.commentCount ?? 0)
-            infoCommentHeaderCell .separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+            infoCommentHeaderCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
             return infoCommentHeaderCell
         }
         else {
@@ -306,7 +325,8 @@ extension InfoDetailVC {
 extension InfoDetailVC {
     
     /// 정보글 상세 조회 API 요청 메서드
-    func requestGetDetailInfoData(chatPostID: Int) {
+    func requestGetDetailInfoData(chatPostID: Int, addLoadBackView: Bool) {
+        addLoadBackView ? self.configureWhiteBackView() : nil
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getInfoDetailAPI(chatPostID: chatPostID) { networkResult in
             switch networkResult {
@@ -319,8 +339,9 @@ extension InfoDetailVC {
                         self.infoDetailTV.reloadData()
                         self.setUpSendBtnEnabledState()
                         self.configueTextViewPlaceholder()
+                        addLoadBackView ? self.removeWhiteBackView() : nil
+                        self.activityIndicator.stopAnimating()
                     }
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
@@ -343,7 +364,7 @@ extension InfoDetailVC {
             case .success(let res):
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
-                        self.requestGetDetailInfoData(chatPostID: chatPostID)
+                        self.requestGetDetailInfoData(chatPostID: chatPostID, addLoadBackView: false)
                         self.activityIndicator.stopAnimating()
                     }
                 }
@@ -368,7 +389,7 @@ extension InfoDetailVC {
             case .success(let res):
                 if let _ = res as? PostLikeResModel {
                     DispatchQueue.main.async {
-                        self.requestGetDetailInfoData(chatPostID: self.chatPostID ?? 0)
+                        self.requestGetDetailInfoData(chatPostID: self.chatPostID ?? 0, addLoadBackView: false)
                     }
                     self.activityIndicator.stopAnimating()
                 }
