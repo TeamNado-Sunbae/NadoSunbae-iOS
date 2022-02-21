@@ -78,12 +78,12 @@ extension QuestionPersonCVC {
 extension QuestionPersonCVC {
     func setData(model: QuestionUser) {
         nicknameLabel.text = model.nickname
-        personProfileImageView.image = UIImage(named: "profileImage\(model.profileImageID)")!
+        personProfileImageView.image = UIImage(named: "grayProfileImage\(model.profileImageID)")!
         if model.isFirstMajor == true {
             majorLabel.text = "본"
         } else {
             majorLabel.text = "제2"
         }
-        majorStartLabel.text = model.majorStart + "진입"
+        majorStartLabel.text = model.majorStart + " " + "진입"
     }
 }
