@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -22,51 +22,51 @@
             <objects>
                 <viewController storyboardIdentifier="MypageMyReviewVC" id="Y6W-OH-hqX" customClass="MypageMyReviewVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUN-r1-6Kk" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="104" id="BPN-CB-X2V"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8mL-F0-YDQ">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="674"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifb-p1-FlH" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="8032"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vr6-O5-Gfy">
-                                                <rect key="frame" x="16" y="52" width="382" height="700"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vr6-O5-Gfy">
+                                                <rect key="frame" x="0.0" y="16" width="375" height="8000"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="700" id="6gW-fB-NUv"/>
+                                                    <constraint firstAttribute="height" constant="8000" id="6gW-fB-NUv"/>
                                                 </constraints>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtB-MD-8ew">
-                                                <rect key="frame" x="16" y="16" width="382" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtB-MD-8ew">
+                                                <rect key="frame" x="16" y="16" width="343" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="vr6-O5-Gfy" secondAttribute="trailing" id="3TT-w7-0oE"/>
                                             <constraint firstAttribute="trailing" secondItem="GtB-MD-8ew" secondAttribute="trailing" constant="16" id="5Zf-j3-jPJ"/>
-                                            <constraint firstItem="vr6-O5-Gfy" firstAttribute="top" secondItem="GtB-MD-8ew" secondAttribute="bottom" constant="16" id="7LR-BP-BUl"/>
-                                            <constraint firstItem="vr6-O5-Gfy" firstAttribute="trailing" secondItem="GtB-MD-8ew" secondAttribute="trailing" id="QWN-k3-Sha"/>
+                                            <constraint firstItem="vr6-O5-Gfy" firstAttribute="top" secondItem="GtB-MD-8ew" secondAttribute="bottom" id="7LR-BP-BUl"/>
                                             <constraint firstItem="GtB-MD-8ew" firstAttribute="top" secondItem="Ifb-p1-FlH" secondAttribute="top" constant="16" id="STM-N3-74e"/>
+                                            <constraint firstItem="vr6-O5-Gfy" firstAttribute="leading" secondItem="Ifb-p1-FlH" secondAttribute="leading" id="V9N-uz-ZbT"/>
                                             <constraint firstItem="GtB-MD-8ew" firstAttribute="leading" secondItem="Ifb-p1-FlH" secondAttribute="leading" constant="16" id="c80-pI-ZK0"/>
-                                            <constraint firstItem="vr6-O5-Gfy" firstAttribute="leading" secondItem="GtB-MD-8ew" secondAttribute="leading" id="chI-GS-vI6"/>
                                             <constraint firstAttribute="bottom" secondItem="vr6-O5-Gfy" secondAttribute="bottom" constant="16" id="mNb-2n-jXp"/>
                                         </constraints>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6Y-qI-j4A">
-                                        <rect key="frame" x="16" y="52" width="382" height="690"/>
+                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6Y-qI-j4A">
+                                        <rect key="frame" x="16" y="32" width="343" height="762"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 학과후기가 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-vg-5BE">
-                                                <rect key="frame" x="113" y="336.5" width="156" height="17"/>
+                                                <rect key="frame" x="93.666666666666686" y="372.66666666666669" width="156" height="17"/>
                                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                                 <color key="textColor" name="gray2"/>
                                                 <nil key="highlightedColor"/>
@@ -107,6 +107,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="Ifb-p1-FlH" id="DeM-YK-5G5"/>
                         <outlet property="emptyView" destination="b6Y-qI-j4A" id="3lt-20-iiX"/>
                         <outlet property="navView" destination="UUN-r1-6Kk" id="gbK-f3-xDp"/>
                         <outlet property="reviewTV" destination="vr6-O5-Gfy" id="pnA-Ok-TFW"/>
@@ -116,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17.39130434782609" y="34.821428571428569"/>
+            <point key="canvasLocation" x="-910" y="-731"/>
         </scene>
     </scenes>
     <resources>

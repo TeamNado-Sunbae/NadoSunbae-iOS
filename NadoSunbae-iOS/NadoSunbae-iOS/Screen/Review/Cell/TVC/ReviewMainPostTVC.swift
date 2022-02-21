@@ -19,6 +19,7 @@ class ReviewMainPostTVC: BaseTVC {
     @IBOutlet weak var secondMajorNameLabel: UILabel!
     @IBOutlet weak var secondMajorStartLabel: UILabel!
     @IBOutlet weak var likeImgView: UIImageView!
+    @IBOutlet weak var majorSeparatorView: UIView!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
@@ -71,6 +72,18 @@ extension ReviewMainPostTVC {
         secondMajorNameLabel.text = postData.writer.secondMajorName
         firstMajorStartLabel.text = postData.writer.firstMajorStart
         secondMajorStartLabel.text = postData.writer.secondMajorStart == "미진입" ? "" : postData.writer.secondMajorStart
+        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
+    
+    /// 마이페이지 후기 리스트 데이터 세팅 함수
+    func setUserReviewData(postData: MypageMyReviewPostModel) {
+        dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
+        titleLabel.text = postData.oneLineReview
+        nickNameLabel.text = postData.majorName
+        likeCountLabel.text = "\(postData.like.likeCount)"
+        [majorNameLabel, secondMajorNameLabel, firstMajorStartLabel, secondMajorStartLabel, majorSeparatorView].forEach { view in
+            view?.isHidden = true
+        }
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
