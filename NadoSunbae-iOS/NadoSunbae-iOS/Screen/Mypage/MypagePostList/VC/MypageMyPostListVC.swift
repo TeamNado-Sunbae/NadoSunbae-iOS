@@ -75,6 +75,7 @@ extension MypageMyPostListVC {
         postListTV.dataSource = self
         postListTV.makeRounded(cornerRadius: 8.adjusted)
         postListTV.separatorColor = .separatorGray
+        postListTV.isScrollEnabled = false
     }
     
     private func registerCell() {
