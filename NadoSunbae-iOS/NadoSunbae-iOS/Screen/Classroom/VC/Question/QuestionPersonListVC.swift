@@ -19,10 +19,10 @@ class QuestionPersonListVC: UIViewController {
     private let questionPersonCV = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 4
+        layout.minimumLineSpacing = 12
         $0.collectionViewLayout = layout
         $0.backgroundColor = .paleGray
-        $0.contentInset = UIEdgeInsets.init(top: 16, left: 27, bottom: 0, right: 28)
+        $0.contentInset = UIEdgeInsets.init(top: 16, left: 24, bottom: 0, right: 24)
         $0.showsVerticalScrollIndicator = false
     }
     
@@ -153,7 +153,7 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
     
     /// sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 96.0, height: 120.0)
+        return CGSize(width: 88.0, height: 120.0)
     }
     
     /// sizeForItemAt
