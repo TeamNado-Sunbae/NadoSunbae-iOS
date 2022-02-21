@@ -109,6 +109,7 @@
 		33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83B279153A400214CA8 /* BaseCVC.swift */; };
 		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
 		33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBC3182796F6C900741730 /* ReviewAPI.swift */; };
+		5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */; };
 		5C3280152796F2B700781EBE /* MypageSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 331364A92785D96100E0C118 /* MypageSB.storyboard */; };
 		5C3280182797217E00781EBE /* MypageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3280172797217E00781EBE /* MypageService.swift */; };
 		5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3280192797284800781EBE /* MypageUserInfoModel.swift */; };
@@ -324,6 +325,7 @@
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
 		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
 		33FBC3182796F6C900741730 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
+		5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyReviewModel.swift; sourceTree = "<group>"; };
 		5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserInfoModel.swift; sourceTree = "<group>"; };
 		5C3280172797217E00781EBE /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
 		5C3280192797284800781EBE /* MypageUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserInfoModel.swift; sourceTree = "<group>"; };
@@ -1023,6 +1025,7 @@
 				5C3280192797284800781EBE /* MypageUserInfoModel.swift */,
 				5CCCE06B27BEA4E300F0E5FD /* MypageMyPostListModel.swift */,
 				5C4B5A9B27BFF5200012A898 /* MypageMyAnswerListModel.swift */,
+				5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1649,6 +1652,7 @@
 				331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */,
 				33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
+				5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */,
 				33A666A527BB958800779351 /* ReviewImgModel.swift in Sources */,
 				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
 				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
