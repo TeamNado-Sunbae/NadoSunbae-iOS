@@ -24,7 +24,6 @@ class ClassroomCommentTVC: BaseTVC {
     // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureQuestionContentTextView()
         configureBackView()
     }
     
@@ -50,13 +49,16 @@ extension ClassroomCommentTVC {
         commentContentTextView.delegate = self
         commentContentTextView.isScrollEnabled = false
         commentContentTextView.isEditable = false
-        commentContentTextView.sizeToFit()
+        commentContentTextView.setCharacterSpacing(-0.14)
+        commentContentTextView.setLineSpacing(lineSpacing: 5)
+        commentContentTextView.font = .PretendardR(size: 14.0)
+        commentContentTextView.textColor = .mainText
     }
     
     /// backView style 구성하는 메서드
     private func configureBackView() {
         backView.layer.borderWidth = 1
-        backView.layer.borderColor = UIColor.gray1.cgColor
+        backView.layer.borderColor = UIColor.chatStroke.cgColor
         backView.layer.cornerRadius = 8
     }
 }
@@ -70,6 +72,7 @@ extension ClassroomCommentTVC {
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         print("converted: ", convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart))
         commentContentTextView.text = model.content
+        configureQuestionContentTextView()
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
     }
 }
