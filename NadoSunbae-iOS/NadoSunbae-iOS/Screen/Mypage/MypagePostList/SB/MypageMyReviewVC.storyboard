@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Medium.otf">
+            <string>Pretendard-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Mypage My ReviewVC-->
         <scene sceneID="s0d-6b-0kx">
@@ -24,17 +29,32 @@
                                     <constraint firstAttribute="height" constant="104" id="BPN-CB-X2V"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtB-MD-8ew">
+                                <rect key="frame" x="16" y="120" width="382" height="20"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vr6-O5-Gfy">
+                                <rect key="frame" x="69" y="249" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
+                            <constraint firstItem="GtB-MD-8ew" firstAttribute="top" secondItem="UUN-r1-6Kk" secondAttribute="bottom" constant="16" id="E3l-Ei-p2d"/>
                             <constraint firstItem="UUN-r1-6Kk" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="FNE-OR-LFf"/>
                             <constraint firstItem="UUN-r1-6Kk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="RQg-2V-vK5"/>
+                            <constraint firstItem="GtB-MD-8ew" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="glw-5K-f8h"/>
                             <constraint firstItem="UUN-r1-6Kk" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qkN-1o-i7Q"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="GtB-MD-8ew" secondAttribute="trailing" constant="16" id="xzi-aO-mUt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="navView" destination="UUN-r1-6Kk" id="gbK-f3-xDp"/>
+                        <outlet property="titleLabel" destination="GtB-MD-8ew" id="qAs-hA-tTW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
