@@ -13,14 +13,7 @@ class ClassroomCommentEditTVC: BaseTVC {
     @IBOutlet var backView: UIView!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
-    @IBOutlet var commentContentTextView: UITextView! {
-        didSet {
-            commentContentTextView.layer.borderWidth = 1
-            commentContentTextView.layer.borderColor = UIColor.gray1.cgColor
-            commentContentTextView.layer.cornerRadius = 4
-        }
-    }
-    
+    @IBOutlet var commentContentTextView: UITextView!
     @IBOutlet var confirmBtn: NadoSunbaeBtn! {
         didSet {
             confirmBtn.isActivated = true
@@ -50,7 +43,6 @@ class ClassroomCommentEditTVC: BaseTVC {
     // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureQuestionContentTextView()
         configureBackView()
     }
     
@@ -76,13 +68,19 @@ extension ClassroomCommentEditTVC {
         commentContentTextView.delegate = self
         commentContentTextView.isScrollEnabled = false
         commentContentTextView.isEditable = true
-        commentContentTextView.sizeToFit()
+        commentContentTextView.layer.borderWidth = 1
+        commentContentTextView.layer.borderColor = UIColor.gray1.cgColor
+        commentContentTextView.layer.cornerRadius = 4
+        commentContentTextView.setCharacterSpacing(-0.14)
+        commentContentTextView.setLineSpacing(lineSpacing: 5)
+        commentContentTextView.font = .PretendardR(size: 14.0)
+        commentContentTextView.textColor = .mainText
     }
     
     /// backView style 구성하는 메서드
     private func configureBackView() {
         backView.layer.borderWidth = 1
-        backView.layer.borderColor = UIColor.gray1.cgColor
+        backView.layer.borderColor = UIColor.chatStroke.cgColor
         backView.layer.cornerRadius = 8
         backView.addShadow(location: .bottomRight, color: UIColor.gray3, opacity: 0.5, radius: 8)
     }
@@ -96,6 +94,7 @@ extension ClassroomCommentEditTVC {
         nicknameLabel.text = model.writer.nickname
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         commentContentTextView.text = model.content
+        configureQuestionContentTextView()
     }
 }
 

@@ -33,7 +33,6 @@ class ClassroomQuestionTVC: BaseTVC {
     // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureQuestionContentTextView()
         configureBackView()
     }
     
@@ -63,7 +62,10 @@ extension ClassroomQuestionTVC {
         questionContentTextView.delegate = self
         questionContentTextView.isScrollEnabled = false
         questionContentTextView.isEditable = false
-        questionContentTextView.sizeToFit()
+        questionContentTextView.setCharacterSpacing(-0.14)
+        questionContentTextView.setLineSpacing(lineSpacing: 5)
+        questionContentTextView.font = .PretendardR(size: 14.0)
+        questionContentTextView.textColor = .nadoBlack
     }
     
     /// backView style 구성하는 메서드
@@ -88,6 +90,7 @@ extension ClassroomQuestionTVC {
         nicknameLabel.text = model.writer.nickname
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         questionContentTextView.text = model.content
+        configureQuestionContentTextView()
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
     }
     
