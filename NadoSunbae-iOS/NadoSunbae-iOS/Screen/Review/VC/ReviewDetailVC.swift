@@ -127,11 +127,11 @@ extension ReviewDetailVC {
         if model.like.isLiked {
             likeImgView.image = UIImage(named: "heart_filled")
             likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
-            likeCountLabel.setLabel( text: "\(model.like.likeCount)", color: UIColor.mainDefault, size: 14, weight: .semiBold)
+            likeCountLabel.setLabel(text: "\(model.like.likeCount)", color: UIColor.mainDefault, size: 14, weight: .semiBold)
         } else {
             likeImgView.image = UIImage(named: "btn_heart")
             likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
-            likeCountLabel.setLabel( text: "\(model.like.likeCount)", color: UIColor.gray2, size: 14, weight: .regular)
+            likeCountLabel.setLabel(text: "\(model.like.likeCount)", color: UIColor.gray2, size: 14, weight: .regular)
         }
     }
     
