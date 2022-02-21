@@ -43,7 +43,7 @@ class InfoCommentHeaderTVC: BaseTVC {
 extension InfoCommentHeaderTVC {
     
     /// UI 구성 메서드
-    func configureUI(isCommentZero: Bool) {
+    private func configureUI(isCommentZero: Bool) {
         self.backgroundColor = .paleGray
         self.addSubview(commentCountLabel)
         
