@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="mainLight"/>
+                        <color key="backgroundColor" name="chatFill"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kYD-bX-I2J" secondAttribute="trailing" constant="8" id="3Bv-9l-2SU"/>
                             <constraint firstAttribute="bottom" secondItem="5pt-bF-h5S" secondAttribute="bottom" constant="12" id="8OR-AC-DMJ"/>
@@ -119,6 +119,9 @@
     </objects>
     <resources>
         <image name="btnMoreVertMint" width="24" height="24"/>
+        <namedColor name="chatFill">
+            <color red="0.91764705882352937" green="0.98039215686274506" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

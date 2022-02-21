@@ -85,7 +85,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="mainLight"/>
+                        <color key="backgroundColor" name="chatFill"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GFj-lp-vBs" secondAttribute="trailing" constant="16" id="0b4-6l-2Ri"/>
                             <constraint firstItem="upB-yU-3X8" firstAttribute="leading" secondItem="gvn-5I-kJU" secondAttribute="leading" id="0ch-qX-NNT"/>
@@ -134,14 +134,14 @@
     </objects>
     <resources>
         <image name="btnMoreVertMint" width="24" height="24"/>
+        <namedColor name="chatFill">
+            <color red="0.91764705882352937" green="0.98039215686274506" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="gray4">
             <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="mainDark">
             <color red="0.019607843137254902" green="0.63137254901960782" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="mainLight">
-            <color red="0.87450980392156863" green="0.96470588235294119" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="mainText">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -61,7 +61,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="LMD-AY-519"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="lRI-7V-MYb"/>
                                 </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
+                                <color key="textColor" name="nadoBlack"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -135,9 +135,9 @@
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="nadoBlack">
+            <color red="0.0" green="0.11372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
