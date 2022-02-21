@@ -31,7 +31,7 @@ class NadoSunbaeBtn: UIButton {
     private var normalBgColor: UIColor = .gray1
     private var normalFontColor: UIColor = .gray3
     private var activatedBgColor: UIColor = .nadoBlack
-    private var activatedFontColor: UIColor = .mainDefault
+    var activatedFontColor: UIColor = .mainDefault
     
     init() {
         super.init(frame: .zero)
