@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
 
 class InfoCommentHeaderTVC: BaseTVC {
     
@@ -29,7 +30,6 @@ class InfoCommentHeaderTVC: BaseTVC {
     // MARK: init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureUI()
         selectionStyle = .none
     }
     
@@ -43,14 +43,18 @@ class InfoCommentHeaderTVC: BaseTVC {
 extension InfoCommentHeaderTVC {
     
     /// UI 구성 메서드
-    private func configureUI() {
+    private func configureUI(isCommentZero: Bool) {
         self.backgroundColor = .paleGray
         self.addSubview(commentCountLabel)
         
         commentCountLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.leading.equalToSuperview().offset(16)
-            $0.bottom.equalToSuperview().offset(0)
+            if isCommentZero {
+                $0.bottom.equalToSuperview().offset(-8)
+            } else {
+                $0.bottom.equalToSuperview()
+            }
         }
     }
 }
@@ -62,5 +66,6 @@ extension InfoCommentHeaderTVC {
     func bindData(commentCount: Int) {
         commentCountLabel.text = "댓글 \(commentCount)개"
         commentCountLabel.sizeToFit()
+        commentCount > 0 ? configureUI(isCommentZero: false) : configureUI(isCommentZero: true)
     }
 }
