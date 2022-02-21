@@ -33,7 +33,7 @@ struct MypageMyReviewPostModel: Codable {
     var majorName: String
     var oneLineReview: String
     var createdAt: String
-    var tagList: [TagList]
+    var tagList: [ReviewTagList]
     var like: Like
 
     enum CodingKeys: String, CodingKey {
@@ -43,13 +43,5 @@ struct MypageMyReviewPostModel: Codable {
         case createdAt = "createdAt"
         case tagList = "tagList"
         case like = "like"
-    }
-    
-    struct TagList: Codable {
-        var tagName: String
-
-        enum CodingKeys: String, CodingKey {
-            case tagName = "tagName"
-        }
     }
 }

@@ -83,6 +83,21 @@ extension MypageMyReviewVC: UITableViewDelegate {
 // MARK: - Network
 extension MypageMyReviewVC {
     private func getMypageMyReview() {
-        setEmptyView()
+        self.activityIndicator.startAnimating()
+        MypageAPI.shared.getMypageMyReviewList(userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let reviewData = res as? MypageMyReviewModel {
+            case .requestErr(let msg):
+                self.activityIndicator.stopAnimating()
+                if let message = msg as? String {
+                    print(message)
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
