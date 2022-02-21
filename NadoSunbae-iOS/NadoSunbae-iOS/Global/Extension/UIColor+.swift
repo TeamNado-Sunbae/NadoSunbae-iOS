@@ -84,4 +84,12 @@ extension UIColor {
     @nonobjc class var lightMint: UIColor {
         return UIColor(red: 169.0 / 255.0, green: 244.0 / 255.0, blue: 235.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var chatFill: UIColor {
+        return UIColor(red: 234.0 / 255.0, green: 250.0 / 255.0, blue: 248.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var chatStroke: UIColor {
+        return UIColor(red: 208.0 / 255.0, green: 242.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
+    }
 }
