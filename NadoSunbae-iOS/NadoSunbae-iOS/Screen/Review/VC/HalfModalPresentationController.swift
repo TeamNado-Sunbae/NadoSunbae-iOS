@@ -10,18 +10,17 @@ import UIKit
 class HalfModalPresentationController: UIPresentationController {
     
     // MARK: Properties
-    let blurEffectView: UIVisualEffectView!
+    let backView = UIView()
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
     
     /// 뒷 배경 블랙 블러 처리
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
-        let blurEffect = UIBlurEffect(style: .dark)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        backView.backgroundColor = UIColor.black
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.blurEffectView.isUserInteractionEnabled = true
-        self.blurEffectView.addGestureRecognizer(tapGestureRecognizer)
+        backView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.backView.isUserInteractionEnabled = true
+        self.backView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     /// 보여질 하프 모달 뷰 프레임 설정(높이 180 ~ 632 슬라이드, 보여지는 높이는 632)
@@ -33,19 +32,19 @@ class HalfModalPresentationController: UIPresentationController {
     
     /// present 시작할 때
     override func presentationTransitionWillBegin() {
-        self.blurEffectView.alpha = 0
-        self.containerView?.addSubview(blurEffectView)
+        self.backView.alpha = 0
+        self.containerView?.addSubview(backView)
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
-            self.blurEffectView.alpha = 0.5
+            self.backView.alpha = 0.5
         }, completion: { (UIViewControllerTransitionCoordinatorContext) in })
     }
     
     /// dismiss 시작될 때
     override func dismissalTransitionWillBegin() {
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
-            self.blurEffectView.alpha = 0
+            self.backView.alpha = 0
         }, completion: { (UIViewControllerTransitionCoordinatorContext) in
-            self.blurEffectView.removeFromSuperview()
+            self.backView.removeFromSuperview()
         })
     }
     
@@ -58,7 +57,7 @@ class HalfModalPresentationController: UIPresentationController {
     override func containerViewDidLayoutSubviews() {
         super.containerViewDidLayoutSubviews()
         presentedView?.frame = frameOfPresentedViewInContainerView
-        blurEffectView.frame = containerView!.bounds
+        backView.frame = containerView!.bounds
     }
     
     /// dismiss처리

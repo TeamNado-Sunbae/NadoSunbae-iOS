@@ -27,6 +27,7 @@ class ReviewDetailVC: BaseVC {
     @IBOutlet weak var likeCountView: UIView!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var likeImgView: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: Properties
     var detailPost: ReviewPostDetailData = ReviewPostDetailData(like: Like(isLiked: false, likeCount: 0), backgroundImage: BackgroundImage(imageID: 0))
@@ -119,16 +120,19 @@ extension ReviewDetailVC {
         }
     }
     
-    /// 좋아요 클릭 시 상태에 따라 아이콘, 배경색, label 설정
-    private func setUpLikeStatus(model: Like) {
-        if model.isLiked {
+    /// 하단 네비 바 데이터 설정
+    private func setUpBottomNaviData(model: ReviewPostDetailData) {
+        dateLabel.text = model.post.createdAt.serverTimeToString(forUse: .forDefault)
+        
+        if model.like.isLiked {
             likeImgView.image = UIImage(named: "heart_filled")
             likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
+            likeCountLabel.setLabel(text: "\(model.like.likeCount)", color: UIColor.mainDefault, size: 14, weight: .semiBold)
         } else {
             likeImgView.image = UIImage(named: "btn_heart")
             likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
+            likeCountLabel.setLabel(text: "\(model.like.likeCount)", color: UIColor.gray2, size: 14, weight: .regular)
         }
-        likeCountLabel.text = "\(model.likeCount)"
     }
     
     /// UserDefaults의 isReviewed 값 설정
@@ -248,7 +252,7 @@ extension ReviewDetailVC {
             case .success(let res):
                 if let data = res as? ReviewPostDetailData {
                     self.detailPost = data
-                    self.setUpLikeStatus(model: self.detailPost.like)
+                    self.setUpBottomNaviData(model: data)
                     self.reviewPostTV.reloadData()
                     self.activityIndicator.stopAnimating()
                 }
