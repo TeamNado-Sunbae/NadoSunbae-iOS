@@ -57,7 +57,7 @@
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니" translatesAutoresizingMaskIntoConstraints="NO" id="LMH-SD-I1n">
                                 <rect key="frame" x="16" y="75" width="240" height="82"/>
-                                <color key="backgroundColor" name="mainLight"/>
+                                <color key="backgroundColor" name="chatFill"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="2MN-Nb-oRn"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="6cw-fg-h34"/>
@@ -130,9 +130,6 @@
         </namedColor>
         <namedColor name="mainDark">
             <color red="0.019607843137254902" green="0.63137254901960782" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="mainLight">
-            <color red="0.87450980392156863" green="0.96470588235294119" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="mainText">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
