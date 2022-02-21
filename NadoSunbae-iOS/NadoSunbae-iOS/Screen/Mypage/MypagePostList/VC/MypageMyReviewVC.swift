@@ -20,34 +20,44 @@ class MypageMyReviewVC: BaseVC {
         }
     }
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var reviewTV: UITableView!
     @IBOutlet weak var reviewTVHeight: NSLayoutConstraint!
-    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var emptyView: UIView! {
+        didSet {
+            emptyView.makeRounded(cornerRadius: 8.adjusted)
+        }
+    }
     
     // MARK: Properties
-    var reviewList: [MypageMyReviewModel] = []
+    var reviewList: [MypageMyReviewPostModel] = []
     
     // MARK: Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getMypageMyReview()
+        hideTabbar()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        showTabbar()
+    }
 }
 
 // MARK: - UI
 extension MypageMyReviewVC {
     private func configureUI() {
-        setTitleLabel()
-        emptyView.makeRounded(cornerRadius: 8.adjusted)
+        setUpTV()
+        registerTVC()
     }
     
-    private func setTitleLabel() {
-        let userName = "내 닉네임"
+    private func setTitleLabel(userName: String) {
         let titleText = "\(userName)님이 쓴 학과 후기"
         let attributedString = NSMutableAttributedString(string: titleText)
         attributedString.addAttribute(.foregroundColor, value: UIColor.mainDefault, range: (titleText as NSString).range(of: userName))
@@ -61,7 +71,11 @@ extension MypageMyReviewVC {
     private func setUpTV() {
         reviewTV.delegate = self
         reviewTV.dataSource = self
-        reviewTVHeight.constant = reviewTV.contentSize.height
+        reviewTV.separatorStyle = .none
+    }
+    
+    private func registerTVC() {
+        ReviewMainPostTVC.register(target: reviewTV)
     }
 }
 
@@ -72,12 +86,24 @@ extension MypageMyReviewVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let reviewMainPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className) as? ReviewMainPostTVC else { return UITableViewCell() }
+        reviewMainPostTVC.tagImgList = reviewList[indexPath.row].tagList
+        reviewMainPostTVC.setUserReviewData(postData: reviewList[indexPath.row])
+        return reviewMainPostTVC
     }
 }
 
 extension MypageMyReviewVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
+        guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+        nextVC.postId = reviewList[indexPath.row].postID
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 156.adjustedH
+    }
 }
 
 // MARK: - Network
@@ -88,6 +114,17 @@ extension MypageMyReviewVC {
             switch networkResult {
             case .success(let res):
                 if let reviewData = res as? MypageMyReviewModel {
+                    self.setTitleLabel(userName: reviewData.writer.nickname)
+                    self.reviewList = reviewData.reviewPostList
+                    self.setEmptyView()
+                    self.reviewTV.reloadData()
+                    DispatchQueue.main.async {
+                        self.contentView.layoutIfNeeded()
+                        self.reviewTVHeight.constant = self.reviewTV.contentSize.height
+                        self.contentView.layoutIfNeeded()
+                    }
+                }
+                self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
                 self.activityIndicator.stopAnimating()
                 if let message = msg as? String {
