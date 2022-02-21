@@ -124,11 +124,12 @@ extension ReviewDetailVC {
         if model.isLiked {
             likeImgView.image = UIImage(named: "heart_filled")
             likeCountView.layer.backgroundColor = UIColor.mainBlack.cgColor
+            likeCountLabel.setLabel( text: "\(model.likeCount)", color: UIColor.mainDefault, size: 14, weight: .semiBold)
         } else {
             likeImgView.image = UIImage(named: "btn_heart")
             likeCountView.layer.backgroundColor = UIColor.gray0.cgColor
+            likeCountLabel.setLabel( text: "\(model.likeCount)", color: UIColor.gray2, size: 14, weight: .regular)
         }
-        likeCountLabel.text = "\(model.likeCount)"
     }
     
     /// UserDefaults의 isReviewed 값 설정
