@@ -41,7 +41,8 @@ class MypageMyReviewVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        setUpTV()
+        registerTVC()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,11 +53,6 @@ class MypageMyReviewVC: BaseVC {
 
 // MARK: - UI
 extension MypageMyReviewVC {
-    private func configureUI() {
-        setUpTV()
-        registerTVC()
-    }
-    
     private func setTitleLabel(userName: String) {
         let titleText = "\(userName)님이 쓴 학과 후기"
         let attributedString = NSMutableAttributedString(string: titleText)
