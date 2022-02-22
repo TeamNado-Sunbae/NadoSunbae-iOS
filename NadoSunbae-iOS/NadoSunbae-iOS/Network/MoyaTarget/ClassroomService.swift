@@ -9,13 +9,13 @@ import Foundation
 import Moya
 
 enum ClassroomService {
-    case getQuestionDetail(chatPostID: Int)
-    case getInfoDetail(chatPostID: Int)
+    case getQuestionDetail(postID: Int)
+    case getInfoDetail(postID: Int)
     case getGroupQuestionOrInfoList(majorID: Int, postTypeID: Int, sort: ListSortType)
-    case postComment(chatPostID: Int, comment: String)
+    case postComment(postID: Int, comment: String)
     case getMajorUserList(majorID: Int)
     case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
-    case postLike(chatPostID: Int, postTypeID: Int)
+    case postLike(postID: Int, postTypeID: Int)
 }
 
 extension ClassroomService: TargetType {
@@ -26,10 +26,10 @@ extension ClassroomService: TargetType {
     var path: String {
         switch self {
             
-        case .getQuestionDetail(let chatPostID):
-            return "/classroom-post/question/\(chatPostID)"
-        case .getInfoDetail(let chatPostID):
-            return "/classroom-post/information/\(chatPostID)"
+        case .getQuestionDetail(let postID):
+            return "/classroom-post/question/\(postID)"
+        case .getInfoDetail(let postID):
+            return "/classroom-post/information/\(postID)"
         case .getGroupQuestionOrInfoList(let majorID, let postTypeID, _):
             return "/classroom-post/\(postTypeID)/major/\(majorID)/list"
         case .postComment:
@@ -61,9 +61,9 @@ extension ClassroomService: TargetType {
         case .getGroupQuestionOrInfoList(_, _, let sort):
             let body = ["sort": sort]
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
-        case .postComment(let chatPostID, let comment):
+        case .postComment(let postID, let comment):
             let body: [String: Any] = [
-                "postId": chatPostID,
+                "postId": postID,
                 "content": comment
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
@@ -79,9 +79,9 @@ extension ClassroomService: TargetType {
                 "content": content
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
-        case .postLike(let chatPostID, let postTypeID):
+        case .postLike(let postID, let postTypeID):
             let body: [String: Any] = [
-                "postId": chatPostID,
+                "postId": postID,
                 "postTypeId": postTypeID
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)

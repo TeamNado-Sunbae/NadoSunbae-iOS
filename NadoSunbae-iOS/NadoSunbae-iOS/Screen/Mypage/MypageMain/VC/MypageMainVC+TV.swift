@@ -38,7 +38,7 @@ extension MypageMainVC: UITableViewDelegate {
         
         personalChatVC.questionType = .personal
         personalChatVC.naviStyle = .push
-        personalChatVC.chatPostID = self.questionList[indexPath.row].postID
+        personalChatVC.postID = self.questionList[indexPath.row].postID
         
         self.navigationController?.pushViewController(personalChatVC, animated: true)
     }

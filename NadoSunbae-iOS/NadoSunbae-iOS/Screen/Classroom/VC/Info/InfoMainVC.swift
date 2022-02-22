@@ -238,7 +238,7 @@ extension InfoMainVC: UITableViewDelegate {
         guard let infoDetailVC = self.storyboard?.instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
         
         if infoList.count != 0 {
-            infoDetailVC.chatPostID = infoList[indexPath.row].postID
+            infoDetailVC.postID = infoList[indexPath.row].postID
             self.navigationController?.pushViewController(infoDetailVC, animated: true)
         }
     }

@@ -205,7 +205,7 @@ extension MypageUserVC {
     /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
     func requestGetDetailQuestionData(chatPostID: Int) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getQuestionDetailAPI(chatPostID: chatPostID) { networkResult in
+        ClassroomAPI.shared.getQuestionDetailAPI(postID: chatPostID) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? ClassroomQuestionDetailData {

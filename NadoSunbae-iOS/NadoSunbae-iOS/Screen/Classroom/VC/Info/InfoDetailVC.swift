@@ -49,7 +49,7 @@ class InfoDetailVC: BaseVC {
     @IBOutlet var sendBtnBottom: NSLayoutConstraint!
     
     // MARK: Properties
-    var chatPostID: Int?
+    var postID: Int?
     var userID: Int?
     var questionerID: Int?
     private var infoDetailData: InfoDetailDataModel?
@@ -84,7 +84,7 @@ class InfoDetailVC: BaseVC {
     @IBAction func tapSendBtn(_ sender: UIButton) {
         DispatchQueue.main.async {
             self.isCommentSend = true
-            self.requestCreateComment(chatPostID: self.chatPostID ?? 0, comment: self.commentTextView.text)
+            self.requestCreateComment(postID: self.postID ?? 0, comment: self.commentTextView.text)
         }
     }
 }
@@ -135,9 +135,9 @@ extension InfoDetailVC {
     
     /// 전달받은 데이터를 바인딩하는 메서드
     private func optionalBindingData() {
-        if let chatPostID = chatPostID {
+        if let postID = postID {
             DispatchQueue.main.async {
-                self.requestGetDetailInfoData(chatPostID: chatPostID, addLoadBackView: true)
+                self.requestGetDetailInfoData(postID: postID, addLoadBackView: true)
             }
         }
     }
@@ -207,7 +207,7 @@ extension InfoDetailVC: UITableViewDataSource {
             infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
             
             infoQuestionCell.tapLikeBtnAction = { [unowned self] in
-                requestPostLikeData(chatID: chatPostID ?? 0, postTypeID: .info)
+                requestPostLikeData(postID: postID ?? 0, postTypeID: .info)
             }
             
             infoQuestionCell.interactURL = { url in
@@ -325,10 +325,10 @@ extension InfoDetailVC {
 extension InfoDetailVC {
     
     /// 정보글 상세 조회 API 요청 메서드
-    func requestGetDetailInfoData(chatPostID: Int, addLoadBackView: Bool) {
+    func requestGetDetailInfoData(postID: Int, addLoadBackView: Bool) {
         addLoadBackView ? self.configureWhiteBackView() : nil
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getInfoDetailAPI(chatPostID: chatPostID) { networkResult in
+        ClassroomAPI.shared.getInfoDetailAPI(postID: postID) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? InfoDetailDataModel {
@@ -357,14 +357,14 @@ extension InfoDetailVC {
     }
     
     /// 정보글에 댓글 등록 API 요청 메서드
-    func requestCreateComment(chatPostID: Int, comment: String) {
+    func requestCreateComment(postID: Int, comment: String) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.createCommentAPI(chatID: chatPostID, comment: comment) { networkResult in
+        ClassroomAPI.shared.createCommentAPI(postID: postID, comment: comment) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
-                        self.requestGetDetailInfoData(chatPostID: chatPostID, addLoadBackView: false)
+                        self.requestGetDetailInfoData(postID: postID, addLoadBackView: false)
                         self.activityIndicator.stopAnimating()
                     }
                 }
@@ -382,14 +382,14 @@ extension InfoDetailVC {
     }
     
     /// 좋아요 API 요청 메서드
-    func requestPostLikeData(chatID: Int, postTypeID: QuestionType) {
+    func requestPostLikeData(postID: Int, postTypeID: QuestionType) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: chatID, postTypeID: postTypeID.rawValue) { networkResult in
+        ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? PostLikeResModel {
                     DispatchQueue.main.async {
-                        self.requestGetDetailInfoData(chatPostID: self.chatPostID ?? 0, addLoadBackView: false)
+                        self.requestGetDetailInfoData(postID: self.postID ?? 0, addLoadBackView: false)
                     }
                     self.activityIndicator.stopAnimating()
                 }

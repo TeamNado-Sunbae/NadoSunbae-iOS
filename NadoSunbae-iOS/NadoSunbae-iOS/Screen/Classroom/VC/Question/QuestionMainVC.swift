@@ -262,7 +262,7 @@ extension QuestionMainVC: UITableViewDelegate {
             if questionList.count != 0 {
                 groupChatVC.questionType = .group
                 groupChatVC.naviStyle = .push
-                groupChatVC.chatPostID = questionList[indexPath.row].postID
+                groupChatVC.postID = questionList[indexPath.row].postID
                 self.navigationController?.pushViewController(groupChatVC, animated: true)
             }
         } else if indexPath.section == 2 {
