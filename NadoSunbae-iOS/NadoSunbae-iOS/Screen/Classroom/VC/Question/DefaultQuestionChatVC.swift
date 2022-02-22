@@ -65,7 +65,7 @@ class DefaultQuestionChatVC: BaseVC {
     var answererID: Int?
     var userID: Int?
     var userType: Int?
-    var chatPostID: Int?
+    var postID: Int?
     var isCommentSend: Bool = false
     var actionSheetString: [String] = []
     let screenHeight = UIScreen.main.bounds.size.height
@@ -107,7 +107,7 @@ class DefaultQuestionChatVC: BaseVC {
             
             DispatchQueue.main.async {
                 self.isCommentSend = true
-                self.requestCreateComment(chatPostID: self.chatPostID ?? 0, comment: self.sendAreaTextView.text)
+                self.requestCreateComment(postID: self.postID ?? 0, comment: self.sendAreaTextView.text)
             }
         }
     }
@@ -319,9 +319,9 @@ extension DefaultQuestionChatVC {
     
     /// 전달받은 데이터를 바인딩하는 메서드
     private func optionalBindingData() {
-        if let chatPostID = chatPostID {
+        if let postID = postID {
             DispatchQueue.main.async {
-                self.requestGetDetailQuestionData(chatPostID: chatPostID)
+                self.requestGetDetailQuestionData(postID: postID)
             }
         }
     }
@@ -454,7 +454,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 questionCell.bindData(questionChatData[indexPath.row])
                 questionCell.bindLikeData(questionLikeData ?? Like(isLiked: false, likeCount: 0))
                 questionCell.tapLikeBtnAction = { [unowned self] in
-                    requestPostClassroomLikeData(chatID: chatPostID ?? 0, postTypeID: self.questionType ?? .personal)
+                    requestPostClassroomLikeData(postID: postID ?? 0, postTypeID: self.questionType ?? .personal)
                 }
                 return questionCell
             }
@@ -610,9 +610,9 @@ extension DefaultQuestionChatVC {
 extension DefaultQuestionChatVC {
     
     /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
-    func requestGetDetailQuestionData(chatPostID: Int) {
+    func requestGetDetailQuestionData(postID: Int) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getQuestionDetailAPI(chatPostID: chatPostID) { networkResult in
+        ClassroomAPI.shared.getQuestionDetailAPI(postID: postID) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? ClassroomQuestionDetailData {
@@ -643,14 +643,14 @@ extension DefaultQuestionChatVC {
     }
     
     /// 1:1질문, 전체 질문, 정보글에 댓글 등록 API 요청 메서드
-    func requestCreateComment(chatPostID: Int, comment: String) {
+    func requestCreateComment(postID: Int, comment: String) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.createCommentAPI(chatID: chatPostID, comment: comment) { networkResult in
+        ClassroomAPI.shared.createCommentAPI(postID: postID, comment: comment) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
-                        self.requestGetDetailQuestionData(chatPostID: chatPostID)
+                        self.requestGetDetailQuestionData(postID: postID)
                         self.activityIndicator.stopAnimating()
                     }
                 }
@@ -668,13 +668,13 @@ extension DefaultQuestionChatVC {
     }
     
     /// 전체 질문, 정보글 전체 목록에서 좋아요 API 요청 메서드
-    func requestPostClassroomLikeData(chatID: Int, postTypeID: QuestionType) {
+    func requestPostClassroomLikeData(postID: Int, postTypeID: QuestionType) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: chatID, postTypeID: postTypeID.rawValue) { networkResult in
+        ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? PostLikeResModel {
-                    self.requestGetDetailQuestionData(chatPostID: self.chatPostID ?? 0)
+                    self.requestGetDetailQuestionData(postID: self.postID ?? 0)
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):

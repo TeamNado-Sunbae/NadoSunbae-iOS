@@ -201,7 +201,7 @@ extension EntireQuestionListVC: UITableViewDelegate {
         
         groupChatVC.questionType = .group
         groupChatVC.naviStyle = .push
-        groupChatVC.chatPostID = questionList[indexPath.row].postID
+        groupChatVC.postID = questionList[indexPath.row].postID
         self.navigationController?.pushViewController(groupChatVC, animated: true)
     }
 }

@@ -271,7 +271,7 @@ extension ReviewDetailVC {
     /// 후기 상세뷰에서 좋아요 API 요청 메서드
     func requestPostReviewDetailLikeData(postID: Int, postTypeID: QuestionType) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.postClassroomLikeAPI(chatPostID: postID, postTypeID: postTypeID.rawValue) { networkResult in
+        ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? PostLikeResModel {

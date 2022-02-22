@@ -123,13 +123,13 @@ extension MypageMyPostListVC: UITableViewDelegate {
             
             chatVC.questionType = .group
             chatVC.naviStyle = .push
-            chatVC.chatPostID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
+            chatVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
             
             self.navigationController?.pushViewController(chatVC, animated: true)
         case .information:
             guard let infoVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
             
-            infoVC.chatPostID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
+            infoVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
             
             self.navigationController?.pushViewController(infoVC, animated: true)
         }

@@ -15,8 +15,8 @@ class ClassroomAPI {
     private init() {}
     
     /// [GET] 1:1질문, 전체 질문 상세 조회 API 메서드
-    func getQuestionDetailAPI(chatPostID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.getQuestionDetail(chatPostID: chatPostID)) { [self] result in
+    func getQuestionDetailAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.getQuestionDetail(postID: postID)) { [self] result in
             switch result {
                 
             case .success(let response):
@@ -32,8 +32,8 @@ class ClassroomAPI {
     }
     
     /// [GET] 정보글 상세 조회 API 메서드
-    func getInfoDetailAPI(chatPostID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.getInfoDetail(chatPostID: chatPostID)) { [self] result in
+    func getInfoDetailAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.getInfoDetail(postID: postID)) { [self] result in
             switch result {
                 
             case .success(let response):
@@ -66,8 +66,8 @@ class ClassroomAPI {
     }
     
     /// [POST] 1:1질문, 전체 질문, 정보글에 댓글 등록 API 메서드
-    func createCommentAPI(chatID: Int, comment: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.postComment(chatPostID: chatID, comment: comment)) { result in
+    func createCommentAPI(postID: Int, comment: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.postComment(postID: postID, comment: comment)) { result in
             switch result {
                 
             case .success(let response):
@@ -116,8 +116,8 @@ class ClassroomAPI {
     }
     
     /// [POST] 1:1질문, 전체 질문, 정보글에 좋아요 다는 API 메서드
-    func postClassroomLikeAPI(chatPostID: Int, postTypeID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.postLike(chatPostID: chatPostID, postTypeID: postTypeID)) { result in
+    func postClassroomLikeAPI(postID: Int, postTypeID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.postLike(postID: postID, postTypeID: postTypeID)) { result in
             switch result {
                 
             case .success(let response):
