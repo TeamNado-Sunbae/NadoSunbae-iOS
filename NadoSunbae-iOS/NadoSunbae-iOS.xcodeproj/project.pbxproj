@@ -107,6 +107,7 @@
 		33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636B279567AF00E92C04 /* QuestionType.swift */; };
 		33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */; };
 		33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83B279153A400214CA8 /* BaseCVC.swift */; };
+		33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */; };
 		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
 		33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBC3182796F6C900741730 /* ReviewAPI.swift */; };
 		5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */; };
@@ -323,6 +324,7 @@
 		33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteQuestionVC.swift; sourceTree = "<group>"; };
 		33DAB83B279153A400214CA8 /* BaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVC.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
+		33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostQuestionModel.swift; sourceTree = "<group>"; };
 		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
 		33FBC3182796F6C900741730 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
 		5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyReviewModel.swift; sourceTree = "<group>"; };
@@ -859,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				33A15F722799DDDE006FE040 /* AddCommentData.swift */,
+				33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1633,6 +1636,7 @@
 				77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
+				33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
 				5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */,

@@ -132,6 +132,22 @@ class ClassroomAPI {
         }
     }
 
+    /// [PUT] 1:1질문, 전체 질문, 정보글 질문 수정 API 메서드
+    func editPostQuestionAPI(postID: Int, title: String, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.postTitleEdit(postID: postID, title: title, content: content)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.editPostQuestionJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 
@@ -251,6 +267,24 @@ extension ClassroomAPI {
     private func postClassroomLikeJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<PostLikeResModel>.self, from: data) else {
+            return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// 질문글 수정
+    private func editPostQuestionJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<EditPostQuestionModel>.self, from: data) else {
             return .pathErr }
         
         switch status {
