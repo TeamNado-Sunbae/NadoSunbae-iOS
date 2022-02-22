@@ -26,4 +26,12 @@ class BaseVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(activityIndicator)
     }
+    
+    func hideTabbar() {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func showTabbar() {
+        self.tabBarController?.tabBar.isHidden = false
+    }
 }

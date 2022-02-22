@@ -43,7 +43,7 @@ class MypageMyPostListVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isPostOrAnswer ? getMypageMyPostList() : getMypageMyAnswerList()
-        self.tabBarController?.tabBar.isHidden = false
+        hideTabbar()
     }
     
     override func viewDidLoad() {
@@ -74,6 +74,7 @@ extension MypageMyPostListVC {
         postListTV.dataSource = self
         postListTV.makeRounded(cornerRadius: 8.adjusted)
         postListTV.separatorColor = .separatorGray
+        postListTV.isScrollEnabled = false
     }
     
     private func registerCell() {

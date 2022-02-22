@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -156,6 +156,7 @@
                 <outlet property="likeCountLabel" destination="6vD-vQ-dab" id="4A1-eZ-hdu"/>
                 <outlet property="likeImgView" destination="CLl-nK-iba" id="3W9-b9-Ls6"/>
                 <outlet property="majorNameLabel" destination="uE4-0F-UpK" id="N2Q-kj-siR"/>
+                <outlet property="majorSeparatorView" destination="dBq-LS-2t6" id="SgW-uN-BcT"/>
                 <outlet property="nickNameLabel" destination="WTF-gu-mXm" id="FU5-eN-NMc"/>
                 <outlet property="secondMajorNameLabel" destination="7QH-jM-GOf" id="lWN-5d-wY4"/>
                 <outlet property="secondMajorStartLabel" destination="mnz-fO-zkk" id="zk9-ZV-X8c"/>
