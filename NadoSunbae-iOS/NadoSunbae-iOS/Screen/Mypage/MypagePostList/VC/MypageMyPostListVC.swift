@@ -43,7 +43,6 @@ class MypageMyPostListVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isPostOrAnswer ? getMypageMyPostList() : getMypageMyAnswerList()
-        self.tabBarController?.tabBar.isHidden = false
         hideTabbar()
     }
     

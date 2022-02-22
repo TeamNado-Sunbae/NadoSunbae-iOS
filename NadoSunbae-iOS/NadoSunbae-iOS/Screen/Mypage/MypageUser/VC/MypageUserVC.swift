@@ -52,18 +52,18 @@ class MypageUserVC: BaseVC {
     var sortType: ListSortType = .recent
     
     // MARK: LifeCycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        makeVisibleTabBar()
-        getUserInfo()
-        getUserPersonalQuestionList(sort: sortType)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         setUpTV()
         registerCell()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabbar()
+        getUserInfo()
+        getUserPersonalQuestionList(sort: sortType)
     }
     
     // MARK: @IBAction
@@ -136,11 +136,6 @@ extension MypageUserVC {
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
         }
-    }
-    
-    /// 1:1 질문글 들어갔다 나오면 사라져 있는 탭바를 다시 보이게 함
-    private func makeVisibleTabBar() {
-        self.tabBarController?.tabBar.isHidden = false
     }
 }
 

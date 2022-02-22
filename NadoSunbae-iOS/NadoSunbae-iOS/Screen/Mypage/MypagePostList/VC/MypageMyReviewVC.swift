@@ -33,16 +33,16 @@ class MypageMyReviewVC: BaseVC {
     var reviewList: [MypageMyReviewPostModel] = []
     
     // MARK: Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getMypageMyReview()
-        hideTabbar()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTV()
         registerTVC()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getMypageMyReview()
+        hideTabbar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -42,15 +42,15 @@ class NotificationMainVC: BaseVC {
     var emptyViewForTV = UIView()
     
     // MARK: LifeCycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        makeVisibleTabBar()
-        getNotiList()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabbar()
+        getNotiList()
     }
 }
 
@@ -62,10 +62,6 @@ extension NotificationMainVC {
     
     private func setEmptyState() {
         noNotiLabel.isHidden = notificationList.isEmpty ? false : true
-    }
-    
-    private func makeVisibleTabBar() {
-        self.tabBarController?.tabBar.isHidden = false
     }
 }
 
