@@ -133,8 +133,8 @@ extension WriteQuestionVC {
     /// 컴포넌트의 초기 스타일을 구성하는 메서드
     private func setUpInitStyle() {
         questionWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
- 
-        if isEditState {
+        
+        if isEditState == true {
             questionWriteTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "")
             
             if let title = originTitle {
@@ -267,7 +267,7 @@ extension WriteQuestionVC {
     
     /// 수정상태인지 아닌지에 따라 Alert Message를 지정하는 메서드
     private func setUpAlertMsgByEditState() {
-        if isEditState {
+        if isEditState == true {
             confirmAlertMsg =
     """
     글을 수정하시겠습니까?

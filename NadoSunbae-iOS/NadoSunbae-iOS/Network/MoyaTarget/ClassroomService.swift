@@ -16,7 +16,8 @@ enum ClassroomService {
     case getMajorUserList(majorID: Int)
     case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
     case postLike(postID: Int, postTypeID: Int)
-    case postTitleEdit(postID: Int, title: String, content: String)
+    case editPostQuestion(postID: Int, title: String, content: String)
+    case editPostComment(commentID: Int, content: String)
 }
 
 extension ClassroomService: TargetType {
@@ -41,8 +42,10 @@ extension ClassroomService: TargetType {
             return "/classroom-post"
         case .postLike:
             return "/like"
-        case .postTitleEdit(let postID, _, _):
+        case .editPostQuestion(let postID, _, _):
             return "/classroom-post/\(postID)"
+        case .editPostComment(let commentID, _):
+            return "/comment/\(commentID)"
         }
     }
     
@@ -53,7 +56,7 @@ extension ClassroomService: TargetType {
             return .get
         case .postComment, .postClassroomContent, .postLike:
             return .post
-        case .postTitleEdit:
+        case .editPostQuestion, .editPostComment:
             return .put
         }
     }
@@ -90,12 +93,14 @@ extension ClassroomService: TargetType {
                 "postTypeId": postTypeID
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
-            
-        case .postTitleEdit(_, let title, let content):
+        case .editPostQuestion(_, let title, let content):
             let body = [
                 "title": title,
                 "content": content
             ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .editPostComment(_, let content):
+            let body = ["content": content]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
