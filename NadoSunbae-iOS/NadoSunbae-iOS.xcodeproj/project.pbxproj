@@ -107,6 +107,7 @@
 		33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636B279567AF00E92C04 /* QuestionType.swift */; };
 		33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */; };
 		33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83B279153A400214CA8 /* BaseCVC.swift */; };
+		33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */; };
 		33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */; };
 		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
 		33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBC3182796F6C900741730 /* ReviewAPI.swift */; };
@@ -323,6 +324,7 @@
 		33CF636B279567AF00E92C04 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
 		33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteQuestionVC.swift; sourceTree = "<group>"; };
 		33DAB83B279153A400214CA8 /* BaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVC.swift; sourceTree = "<group>"; };
+		33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostCommentModel.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
 		33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostQuestionModel.swift; sourceTree = "<group>"; };
 		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 			children = (
 				33A15F722799DDDE006FE040 /* AddCommentData.swift */,
 				33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */,
+				33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1697,6 +1700,7 @@
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
+				33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */,
 				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
 				33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,

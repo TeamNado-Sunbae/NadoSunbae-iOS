@@ -10,7 +10,7 @@ import Foundation
 // MARK: - EditPostQuestionModel
 struct EditPostQuestionModel: Codable {
     let post: EditedPostQuestion
-    let writer: EditPostQuestionWriter
+    let writer: EditPostWriter
     let like: Like
 }
 
@@ -25,8 +25,8 @@ struct EditedPostQuestion: Codable {
     }
 }
 
-// MARK: - EditPostQuestionWriter
-struct EditPostQuestionWriter: Codable {
+// MARK: - EditPostWriter
+struct EditPostWriter: Codable {
     let writerID, profileImageID: Int
     let nickname, firstMajorName, firstMajorStart, secondMajorName: String
     let secondMajorStart: String
