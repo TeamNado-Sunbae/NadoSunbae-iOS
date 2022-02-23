@@ -133,7 +133,7 @@ extension WriteQuestionVC {
     /// 컴포넌트의 초기 스타일을 구성하는 메서드
     private func setUpInitStyle() {
         questionWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
-        
+ 
         if isEditState {
             questionWriteTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "")
             
