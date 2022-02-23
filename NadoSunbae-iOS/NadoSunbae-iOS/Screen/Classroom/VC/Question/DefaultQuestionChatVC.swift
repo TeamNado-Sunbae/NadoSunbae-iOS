@@ -59,16 +59,18 @@ class DefaultQuestionChatVC: BaseVC {
     var moreBtnTapIndex: [Int]?
     var naviStyle: NaviType?
     var questionType: QuestionType?
-    var questionChatData: [ClassroomMessageList] = []
-    var questionLikeData: Like?
     var questionerID: Int?
     var answererID: Int?
     var userID: Int?
     var userType: Int?
     var postID: Int?
-    var isCommentSend: Bool = false
-    var actionSheetString: [String] = []
-    let screenHeight = UIScreen.main.bounds.size.height
+    private var questionChatData: [ClassroomMessageList] = []
+    private var questionLikeData: Like?
+    private var isCommentEdited: Bool = false
+    private var editedCommentIndexPath: [IndexPath] = []
+    private var isCommentSend: Bool = false
+    private var actionSheetString: [String] = []
+    private let screenHeight = UIScreen.main.bounds.size.height
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
     private let textViewMaxHeight: CGFloat = 85
@@ -382,9 +384,9 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 questionEditCell.dynamicUpdateDelegate = self
                 questionEditCell.bindData(questionChatData[indexPath.row])
                 questionEditCell.tapConfirmBtnAction = { [unowned self] in
-                    // TODO: 수정 API 연결
                     editIndex = []
-                    defaultQuestionChatTV.reloadData()
+                    requestEditPostComment(commentID: questionChatData[indexPath.row].messageID, content: questionEditCell.commentContentTextView.text)
+                    editedCommentIndexPath = [IndexPath(row: indexPath.row, section: indexPath.section)]
                 }
                 
                 questionEditCell.tapCancelBtnAction = { [unowned self] in
@@ -424,7 +426,6 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                         if userType == 0 {
                             /// 작성자 본인
                             actionSheetString = returnActionSheetType(type: .editAndDelete)
-                            
                         } else if userType == 1 {
                             /// 답변자
                             actionSheetString = returnActionSheetType(type: .onlyReport)
@@ -474,14 +475,14 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
         } else {
             if editIndex == [1,indexPath.row] {
                 
-                /// 1:1 답변자 답변 수정 셀
+                /// 답변자 답변 수정 셀
                 commentEditCell.dynamicUpdateDelegate = self
                 commentEditCell.changeCellDelegate = self
                 commentEditCell.bindData(questionChatData[indexPath.row])
                 commentEditCell.tapConfirmBtnAction = { [unowned self] in
-                    // TODO: 수정 API 연결
                     editIndex = []
-                    defaultQuestionChatTV.reloadData()
+                    requestEditPostComment(commentID: questionChatData[indexPath.row].messageID, content: commentEditCell.commentContentTextView.text)
+                    editedCommentIndexPath = [IndexPath(row: indexPath.row, section: indexPath.section)]
                 }
                 
                 commentEditCell.tapCancelBtnAction = { [unowned self] in
@@ -529,7 +530,6 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                                 editIndex = [1,indexPath.row]
                             }
                             defaultQuestionChatTV.reloadData()
-                            // TODO: 추후에 기능 추가 예정
                         }, secondOkAction: { _ in
                             // TODO: 추후에 기능 추가 예정
                         })
@@ -541,6 +541,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     editIndex = []
                     moreBtnTapIndex = [1,indexPath.row]
                 }
+              
                 commentCell.bindData(questionChatData[indexPath.row])
                 return commentCell
             }
@@ -623,7 +624,7 @@ extension DefaultQuestionChatVC {
 extension DefaultQuestionChatVC {
     
     /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
-    func requestGetDetailQuestionData(postID: Int) {
+    private func requestGetDetailQuestionData(postID: Int) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getQuestionDetailAPI(postID: postID) { networkResult in
             switch networkResult {
@@ -634,7 +635,7 @@ extension DefaultQuestionChatVC {
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.userType = self.identifyUserType(questionerID: data.questionerID, answererID: data.answererID)
                     self.setUpSendBtnEnabledState(questionType: self.questionType ?? .personal, textView: self.sendAreaTextView)
-                    self.defaultQuestionChatTV.reloadData()
+                    self.isCommentEdited ? self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic) : self.defaultQuestionChatTV.reloadData()
                     if self.isCommentSend {
                         self.scrollTVtoBottom(animate: true)
                         self.isCommentSend = false
@@ -656,7 +657,7 @@ extension DefaultQuestionChatVC {
     }
     
     /// 1:1질문, 전체 질문, 정보글에 댓글 등록 API 요청 메서드
-    func requestCreateComment(postID: Int, comment: String) {
+    private func requestCreateComment(postID: Int, comment: String) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.createCommentAPI(postID: postID, comment: comment) { networkResult in
             switch networkResult {
@@ -681,7 +682,7 @@ extension DefaultQuestionChatVC {
     }
     
     /// 전체 질문, 정보글 전체 목록에서 좋아요 API 요청 메서드
-    func requestPostClassroomLikeData(postID: Int, postTypeID: QuestionType) {
+    private func requestPostClassroomLikeData(postID: Int, postTypeID: QuestionType) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
@@ -699,6 +700,28 @@ extension DefaultQuestionChatVC {
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 답변 수정 API 요청 메서드
+    private func requestEditPostComment(commentID: Int, content: String) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.editPostCommentAPI(commentID: commentID, content: content) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.isCommentEdited = true
+                self.requestGetDetailQuestionData(postID: self.postID ?? 0)
+                self.activityIndicator.stopAnimating()
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
