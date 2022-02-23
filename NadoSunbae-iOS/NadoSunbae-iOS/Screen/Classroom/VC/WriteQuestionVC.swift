@@ -19,6 +19,7 @@ class WriteQuestionVC: BaseVC {
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
     private var isTextViewEmpty: Bool = true
+    private var majorID: Int = MajorInfo.shared.selecteMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
     @IBOutlet weak var questionWriteNaviBar: NadoSunbaeNaviBar! {
         didSet {
             questionWriteNaviBar.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 0.3, radius: 16)
@@ -44,26 +45,33 @@ class WriteQuestionVC: BaseVC {
     }
     
     private let questionWriteTextView = NadoTextView()
-    
     var questionType: QuestionType = .group
-    private var majorID: Int = MajorInfo.shared.selecteMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
+    var isEditState: Bool = false
+    var confirmAlertMsg: String = ""
+    var dismissAlertMsg: String = ""
     
     /// 1:1 질문 호출할 때에는 answerID 필수!!!!! 나머지는 설정 X
     var answerID: Int?
     
+    /// 질문 수정할 때에는 postID 필수!!!!! 나머지는 설정 X
+    var postID: Int?
+    var originTitle: String?
+    var originContent: String?
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = true
         setUpInitStyle()
         configureUI()
         setTextViewDelegate()
         setTapBtnAction()
+        setUpAlertMsgByEditState()
         hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         addKeyboardObserver()
+        hideTabbar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -122,6 +130,46 @@ extension WriteQuestionVC {
 // MARK: - Custom Method
 extension WriteQuestionVC {
     
+    /// 컴포넌트의 초기 스타일을 구성하는 메서드
+    private func setUpInitStyle() {
+        questionWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
+        
+        if isEditState == true {
+            questionWriteTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "")
+            
+            if let title = originTitle {
+                questionTitleTextField.text = title
+            }
+            
+            if let content = originContent {
+                self.isTextViewEmpty = false
+                questionWriteTextView.text = content
+            }
+        } else {
+            switch questionType {
+            case .personal:
+                questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
+            case .group:
+                questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
+            case .info:
+                questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
+            default:
+                print("default")
+            }
+        }
+        
+        switch questionType {
+        case .personal:
+            questionWriteNaviBar.configureTitleLabel(title: "1:1 질문 작성")
+        case .group:
+            questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
+        case .info:
+            questionWriteNaviBar.configureTitleLabel(title: "정보글 작성")
+        default:
+            print("default")
+        }
+    }
+    
     /// textView delegate 설정하는 메서드
     private func setTextViewDelegate() {
         questionWriteTextView.delegate = self
@@ -150,7 +198,6 @@ extension WriteQuestionVC {
         
         textField.rx.text
             .orEmpty
-            .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
                 if changedText.isEmpty {
@@ -163,7 +210,6 @@ extension WriteQuestionVC {
         
         textView.rx.text
             .orEmpty
-            .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] changedText in
                 if changedText.isEmpty || self?.isTextViewEmpty == true {
@@ -177,18 +223,20 @@ extension WriteQuestionVC {
         Observable.combineLatest(a, b) {$0 && $1}
         .bind(to: questionWriteNaviBar.rightActivateBtn.rx.isActivated)
         .disposed(by: disposeBag)
+        
+        /// 수정상태일 때 (title, content가 있는 상황이므로) 첫 진입상태를 isActivate로 하기 위한 분기처리
+        if isEditState {
+            questionWriteNaviBar.rightActivateBtn.isActivated = true
+        }
     }
     
     /// btn Action set 메서드
     private func setTapBtnAction() {
-        /// rightActivat Btn Press
+        
+        /// rightActivate Btn Press
         questionWriteNaviBar.rightActivateBtn.press(vibrate: true, for: .touchUpInside) {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-            alert.showNadoAlert(vc: self, message:
-    """
-    글을 올리시겠습니까?
-    """
-                                , confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+            alert.showNadoAlert(vc: self, message: self.confirmAlertMsg, confirmBtnTitle: "네", cancelBtnTitle: "아니요")
             alert.confirmBtn.press {
                 switch self.questionType {
                 case .group, .info:
@@ -196,22 +244,50 @@ extension WriteQuestionVC {
                 default:
                     break
                 }
-                self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType.rawValue, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                
+                if self.isEditState {
+                    if let postID = self.postID {
+                        self.editClassroomPost(postID: postID, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                        
+                    }
+                } else {
+                    self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType.rawValue, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                }
             }
         }
         
         /// dismissBtn Press
         questionWriteNaviBar.dismissBtn.press {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-            alert.showNadoAlert(vc: self, message:
+            alert.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+            alert.cancelBtn.press {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    /// 수정상태인지 아닌지에 따라 Alert Message를 지정하는 메서드
+    private func setUpAlertMsgByEditState() {
+        if isEditState == true {
+            confirmAlertMsg =
+    """
+    글을 수정하시겠습니까?
+    """
+            dismissAlertMsg =
+    """
+    페이지를 나가면
+    수정중인 글이 삭제돼요.
+    """
+        } else {
+            confirmAlertMsg =
+    """
+    글을 올리시겠습니까?
+    """
+            dismissAlertMsg =
     """
     페이지를 나가면
     작성중인 글이 삭제돼요.
     """
-                                , confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
-            alert.cancelBtn.press {
-                self.dismiss(animated: true, completion: nil)
-            }
         }
     }
     
@@ -244,24 +320,6 @@ extension WriteQuestionVC {
             }
         }
         questionTextViewLineCount = textView.numberOfLines()
-    }
-    
-    private func setUpInitStyle() {
-        questionWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
-        
-        switch questionType {
-        case .personal:
-            questionWriteNaviBar.configureTitleLabel(title: "1:1 질문 작성")
-            questionWriteTextView.setDefaultStyle(placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
-        case .group:
-            questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
-            questionWriteTextView.setDefaultStyle(placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
-        case .info:
-            questionWriteNaviBar.configureTitleLabel(title: "정보글 작성")
-            questionWriteTextView.setDefaultStyle(placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
-        case .review:
-            print("Review")
-        }
     }
 }
 
@@ -335,7 +393,7 @@ extension WriteQuestionVC {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.createClassroomContentAPI(majorID: majorID, answerID: answerID ?? nil, postTypeID: postTypeID, title: title, content: content) { networkResult in
             switch networkResult {
-            case .success(let res):
+            case .success(_):
                 self.activityIndicator.stopAnimating()
                 self.dismiss(animated: true, completion: nil)
             case .requestErr(let msg):
@@ -343,12 +401,32 @@ extension WriteQuestionVC {
                     print(message)
                 }
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
-                print("pathErr")
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
+        }
+    }
+    
+    private func editClassroomPost(postID: Int, title: String, content: String) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.editPostQuestionAPI(postID: postID, title: title, content: content) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.activityIndicator.stopAnimating()
+                self.dismiss(animated: true, completion: nil)
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+            
         }
     }
 }
