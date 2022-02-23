@@ -78,7 +78,6 @@ class DefaultQuestionChatVC: BaseVC {
         super.viewDidLoad()
         setUpNaviInitStyle()
         registerXib()
-        optionalBindingData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -88,7 +87,8 @@ class DefaultQuestionChatVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addKeyboardObserver()
-        self.tabBarController?.tabBar.isHidden = true
+        optionalBindingData()
+        hideTabbar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -436,12 +436,25 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     
                     if actionSheetString.count > 1 {
                         self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
-                            // TODO: 추후에 기능 추가 예정
-                            /// 신고, 삭제 분기처리 해야함
-                            editIndex = (indexPath.row != 0) ? [0,indexPath.row] : []
+                            if indexPath.row == 0 {
+                                let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
+                                guard let editPostVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
+                                
+                                editPostVC.questionType = questionType ?? .personal
+                                editPostVC.isEditState = true
+                                editPostVC.postID = postID
+                                editPostVC.originTitle = questionChatData[0].title
+                                editPostVC.originContent = questionChatData[0].content
+                                editPostVC.modalPresentationStyle = .fullScreen
+                                
+                                self.present(editPostVC, animated: true, completion: nil)
+                            } else {
+                                editIndex = [0,indexPath.row]
+                            }
                             defaultQuestionChatTV.reloadData()
                         }, secondOkAction: { _ in
                             // TODO: 추후에 기능 추가 예정
+                            print("삭제")
                         })
                     } else {
                         self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { _ in
