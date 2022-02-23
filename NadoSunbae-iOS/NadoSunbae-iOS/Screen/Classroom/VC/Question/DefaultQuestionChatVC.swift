@@ -635,11 +635,21 @@ extension DefaultQuestionChatVC {
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.userType = self.identifyUserType(questionerID: data.questionerID, answererID: data.answererID)
                     self.setUpSendBtnEnabledState(questionType: self.questionType ?? .personal, textView: self.sendAreaTextView)
-                    self.isCommentEdited ? self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic) : self.defaultQuestionChatTV.reloadData()
+                    
+                    /// 댓글 수정되었을 때
+                    if self.isCommentEdited {
+                        self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic)
+                        self.isCommentEdited = false
+                    } else {
+                        self.defaultQuestionChatTV.reloadData()
+                    }
+                    
+                    /// 댓글 send되었을 때
                     if self.isCommentSend {
                         self.scrollTVtoBottom(animate: true)
                         self.isCommentSend = false
                     }
+                    
                     self.configueTextViewPlaceholder(userType: self.userType ?? -1, questionType: self.questionType ?? .personal)
                     self.activityIndicator.stopAnimating()
                 }
