@@ -179,7 +179,6 @@ extension WriteQuestionVC {
     private func setHighlightViewState(textField: UITextField, highlightView: UIView) {
         textField.rx.text
             .orEmpty
-            .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] changedText in
                 if self?.questionTitleTextField.text?.isEmpty == true {
