@@ -56,9 +56,9 @@ class ReviewWriteVC: BaseVC {
     @IBOutlet weak var futureTextView: NadoTextView!
     @IBOutlet weak var tipTextView: NadoTextView! {
         didSet {
-            oneLineReviewTextView.setDefaultStyle(placeholderText: "학과를 한줄로 표현한다면?")
+            oneLineReviewTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "학과를 한줄로 표현한다면?")
             [prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach { textView in
-                textView?.setDefaultStyle(placeholderText: "내용을 입력해주세요")
+                textView?.setDefaultStyle(isUsePlaceholder: true, placeholderText: "내용을 입력해주세요")
             }
         }
     }
