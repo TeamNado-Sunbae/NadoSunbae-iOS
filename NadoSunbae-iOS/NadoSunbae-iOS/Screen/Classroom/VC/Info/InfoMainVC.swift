@@ -69,9 +69,9 @@ class InfoMainVC: BaseVC {
 // MARK: - UI
 extension InfoMainVC {
     func configureUI() {
-        view.addSubview(infoSV)
+        view.addSubviews([infoSV, infoFloatingBtn])
         infoSV.addSubview(contentView)
-        contentView.addSubviews([infoSegmentView, arrangeBtn, infoQuestionListTV, infoFloatingBtn])
+        contentView.addSubviews([infoSegmentView, arrangeBtn, infoQuestionListTV])
         
         infoSV.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
