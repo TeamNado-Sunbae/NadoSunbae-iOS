@@ -25,6 +25,7 @@ extension PublicService: TargetType {
             return "/major/list/\(univID)"
         }
     }
+    
     var method: Moya.Method {
         switch self {
             
@@ -37,21 +38,12 @@ extension PublicService: TargetType {
         switch self {
             
         case .getMajorList(_, let filter):
-            let body = ["filter" : filter]
+            let body = ["filter": filter]
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         }
     }
     
-    var headers: [String : String]? {
-        //let accessToken: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken) ?? ""
-        
-        switch self {
-            
-        case .getMajorList:
-            return ["Content-Type" : "application/json"]
-        }
+    var headers: [String: String]? {
+        return ["Content-Type": "application/json"]
     }
 }
-    
-    
-

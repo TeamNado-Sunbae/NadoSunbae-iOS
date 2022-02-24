@@ -52,7 +52,7 @@ class DefaultQuestionChatVC: BaseVC {
         }
     }
     
-    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar! 
+    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar!
     
     // MARK: Properties
     var editIndex: [Int]?
@@ -330,11 +330,11 @@ extension DefaultQuestionChatVC {
     /// 나도선배 delete alert를 만드는 메서드
     private func makeNadoDeleteAlert(qnaType: QnAType) {
         guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-        let alertMsgdict: [QnAType : String] = [
-            .question :  """
+        let alertMsgdict: [QnAType: String] = [
+            .question: """
                 글을 삭제하시겠습니까?
                 """,
-            .comment : """
+            .comment: """
                 댓글을 삭제하시겠습니까?
                 """
         ]
@@ -571,7 +571,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     editIndex = []
                     moreBtnTapIndex = [1,indexPath.row]
                 }
-              
+                
                 commentCell.bindData(questionChatData[indexPath.row])
                 return commentCell
             }
