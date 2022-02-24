@@ -25,6 +25,7 @@ class EditProfileVC: BaseVC {
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var nickNameChangeBtn: UIButton! {
         didSet {
+            nickNameChangeBtn.isEnabled = false
             nickNameChangeBtn.setTitleColor(.mainDefault, for: .normal)
             nickNameChangeBtn.setTitleColor(.gray2, for: .disabled)
         }
