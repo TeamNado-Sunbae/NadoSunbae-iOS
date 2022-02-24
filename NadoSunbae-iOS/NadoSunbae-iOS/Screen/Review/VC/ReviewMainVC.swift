@@ -26,9 +26,9 @@ class ReviewMainVC: BaseVC {
     var postList: [ReviewMainPostListData] = []
     var majorInfo: String = ""
     var sortType: ListSortType = .recent
-    var filterStatus = false
-    var selectedWriterFilter: Int = 1
-    var selectedTagFilter: [Int] = []
+    private var filterStatus = false
+    private var selectedWriterFilter: Int = 1
+    private var selectedTagFilter: [Int] = []
     private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
@@ -113,7 +113,7 @@ extension ReviewMainVC {
     }
     
     /// 액션시트
-    func presentActionSheet() {
+    private func presentActionSheet() {
         makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순", okAction: { _ in
             self.sortType = .recent
             self.setUpRequestData()
@@ -374,7 +374,6 @@ extension ReviewMainVC: SendUpdateStatusDelegate {
         } else {
             /// 필터 off 상태일 때
             requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
-            
         }
         reviewTV.reloadData()
     }
@@ -384,7 +383,7 @@ extension ReviewMainVC: SendUpdateStatusDelegate {
 
 /// 학과 정보 리스트 조회
 extension ReviewMainVC {
-    func requestGetMajorList(univID: Int, filterType: String) {
+    private func requestGetMajorList(univID: Int, filterType: String) {
         PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
             switch networkResult {
                 
@@ -415,13 +414,12 @@ extension ReviewMainVC {
 
 /// 후기글 리스트 조회
 extension ReviewMainVC {
-    func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int], sort: ListSortType) {
+    private func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int], sort: ListSortType) {
         self.activityIndicator.startAnimating()
         ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter, sort: sort) { networkResult in
             switch networkResult {
                 
             case .success(let res):
-                print(res)
                 self.activityIndicator.stopAnimating()
                 if let data = res as? [ReviewMainPostListData] {
                     DispatchQueue.main.async {

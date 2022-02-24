@@ -32,7 +32,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var tipBtn: UIButton!
     
     // MARK: Properties
-    var filterStatus = false
+    private var filterStatus = false
     var filterItemArray: [UIButton] = []
     var selectFilterDelegate: SendUpdateStatusDelegate?
     

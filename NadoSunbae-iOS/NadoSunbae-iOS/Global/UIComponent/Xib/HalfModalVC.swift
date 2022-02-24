@@ -15,7 +15,7 @@ class HalfModalVC: UIViewController {
     @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
     
     // MARK: Properties
-    var majorList: [MajorInfoModel] = []
+    private var majorList: [MajorInfoModel] = []
     var selectMajorDelegate: SendUpdateModalDelegate?
     var selectFilterDelegate: SendUpdateStatusDelegate?
     
@@ -51,7 +51,7 @@ class HalfModalVC: UIViewController {
     }
     
     /// 선택완료 버튼 클릭 시 데이터 전달
-    func tapMajorChooseBtnAction() {
+    private func tapMajorChooseBtnAction() {
         majorChooseBtn.press {
             let selectedMajorName = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
             let selectedMajorID = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
@@ -61,6 +61,7 @@ class HalfModalVC: UIViewController {
                 MajorInfo.shared.selectedMajorID = selectedMajorID
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
+            
             if self.selectFilterDelegate != nil {
                 ReviewFilterInfo.shared.selectedBtnList = [false, false, false, false, false, false, false]
                 self.selectFilterDelegate?.sendStatus(data: false)
