@@ -40,7 +40,6 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5gb-Ep-3Xu">
                                                 <rect key="frame" x="151.66666666666666" y="22" width="72" height="72"/>
-                                                <color key="backgroundColor" name="mainDefault"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="5gb-Ep-3Xu" secondAttribute="height" multiplier="1:1" id="vOt-69-Nff"/>
                                                 </constraints>
@@ -353,13 +352,17 @@
                     </view>
                     <size key="freeformSize" width="375" height="991"/>
                     <connections>
-                        <outlet property="isQuestionOnToggleBtn" destination="FcP-rM-8Kp" id="t8z-3e-bCH"/>
+                        <outlet property="firstMajorStartTextField" destination="6os-Af-bg4" id="15E-WV-Lfr"/>
+                        <outlet property="firstMajorTextField" destination="0Id-FO-cOf" id="agy-fd-Ulh"/>
+                        <outlet property="isOnQuestionToggleBtn" destination="FcP-rM-8Kp" id="t8z-3e-bCH"/>
                         <outlet property="navView" destination="mwr-Rv-tsA" id="ilw-fz-lmg"/>
                         <outlet property="nickNameChangeBtn" destination="btV-gX-V3e" id="1jd-M5-j4T"/>
                         <outlet property="nickNameInfoLabel" destination="Ne5-k1-x9f" id="j7c-60-4f3"/>
                         <outlet property="nickNameRuleLabel" destination="Ryd-VX-cuU" id="gn2-eK-3IN"/>
                         <outlet property="nickNameTextField" destination="Se9-Pm-suD" id="HMe-Z1-lO4"/>
                         <outlet property="profileImgView" destination="5gb-Ep-3Xu" id="I4f-Ri-6Yi"/>
+                        <outlet property="secondMajorStartTextField" destination="f41-2G-Zfn" id="Uho-2j-TcD"/>
+                        <outlet property="secondMajorTextField" destination="rKj-Cv-S40" id="pQR-EX-DUq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
