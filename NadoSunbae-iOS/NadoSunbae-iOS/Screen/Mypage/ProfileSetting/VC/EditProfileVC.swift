@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class EditProfileVC: BaseVC {
     
@@ -21,7 +23,12 @@ class EditProfileVC: BaseVC {
         }
     }
     @IBOutlet weak var profileImgView: UIImageView!
-    @IBOutlet weak var nickNameChangeBtn: UIButton!
+    @IBOutlet weak var nickNameChangeBtn: UIButton! {
+        didSet {
+            nickNameChangeBtn.setTitleColor(.mainDefault, for: .normal)
+            nickNameChangeBtn.setTitleColor(.gray2, for: .disabled)
+        }
+    }
     @IBOutlet weak var nickNameRuleLabel: UILabel!
     @IBOutlet weak var nickNameTextField: NadoTextField!
     @IBOutlet weak var nickNameInfoLabel: UILabel!
@@ -40,11 +47,13 @@ class EditProfileVC: BaseVC {
     @IBOutlet weak var secondMajorStartTextField: NadoTextField!
     
     // MARK: Properties
+    let disposeBag = DisposeBag()
     var userInfo = MypageUserInfoModel()
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkNickNameIsValid()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +62,28 @@ class EditProfileVC: BaseVC {
     }
     
     // MARK: Custom Methods
+    
+    /// 닉네임 유효성 검사
+    private func checkNickNameIsValid() {
+        nickNameTextField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                //                self.isCompleteList[0] = false
+                let regex = "[가-힣ㄱ-ㅎㅏ-ㅣA-Za-z0-9]{2,8}"
+                if changedText.count == 0 {
+                    self.changeLabelColor(isOK: true, label: self.nickNameRuleLabel)
+                    self.nickNameChangeBtn.isEnabled = false
+                } else if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
+                    self.changeLabelColor(isOK: true, label: self.nickNameRuleLabel)
+                    self.nickNameChangeBtn.isEnabled = true
+                } else {
+                    self.changeLabelColor(isOK: false, label: self.nickNameRuleLabel)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: - UI
@@ -65,6 +96,10 @@ extension EditProfileVC {
         firstMajorStartTextField.text = userInfo.firstMajorStart
         secondMajorTextField.text = userInfo.secondMajorName
         secondMajorStartTextField.text = userInfo.secondMajorStart
+    }
+    
+    private func changeLabelColor(isOK: Bool, label: UILabel) {
+        label.textColor = isOK ? .gray3 : .red
     }
 }
 
