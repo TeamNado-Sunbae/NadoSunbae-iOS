@@ -18,7 +18,7 @@ class ReviewMainLinkTVC: BaseTVC {
     // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        requestGetHomePageList(majorID: MajorInfo.shared.selecteMajorID ?? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID))
+        requestGetHomePageList(majorID: MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

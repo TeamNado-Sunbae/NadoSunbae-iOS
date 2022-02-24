@@ -26,7 +26,9 @@ class ReviewMainVC: BaseVC {
     var postList: [ReviewMainPostListData] = []
     var majorInfo: String = ""
     var sortType: ListSortType = .recent
-    var filterStatus = false
+    private var filterStatus = false
+    private var selectedWriterFilter: Int = 1
+    private var selectedTagFilter: [Int] = []
     private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
@@ -111,29 +113,16 @@ extension ReviewMainVC {
     }
     
     /// 액션시트
-    func presentActionSheet() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        // TODO: 액션 추가 예정
-        let new = UIAlertAction(title: "최신순", style: .default) { action in
+    private func presentActionSheet() {
+        makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순", okAction: { _ in
             self.sortType = .recent
-            self.requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
+            self.setUpRequestData()
             self.reviewTV.reloadSections([2], with: .fade)
-        }
-        
-        // TODO: 액션 추가 예정
-        let like = UIAlertAction(title: "좋아요순", style: .default) { action in
+        }, secondOkAction: { _ in
             self.sortType = .like
-            self.requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .like)
+            self.setUpRequestData()
             self.reviewTV.reloadSections([2], with: .fade)
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        
-        alert.addAction(new)
-        alert.addAction(like)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true, completion: nil)
+        })
     }
     
     /// 화면 상단에 닿으면 스크롤 disable
@@ -150,7 +139,7 @@ extension ReviewMainVC {
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
-        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: self.selectedWriterFilter, tagFilter: self.selectedTagFilter == [] ? [1, 2, 3, 4, 5] : self.selectedTagFilter, sort: sortType)
     }
     
     /// 링크에 해당하는 웹사이트로 연결하는 함수
@@ -168,6 +157,7 @@ extension ReviewMainVC {
     @objc func presentHalfModalView() {
         let slideVC = HalfModalVC()
         slideVC.selectMajorDelegate = self
+        slideVC.selectFilterDelegate = self
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         self.present(slideVC, animated: true, completion: nil)
@@ -346,7 +336,7 @@ extension ReviewMainVC: SendUpdateModalDelegate {
     /// 학과 선택 시 해당 학과의 게시글 리스트가 로드될 수 있도록 요청
     func sendUpdate(data: Any) {
         majorLabel.text = data as? String
-        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
         self.sortType = .recent
     }
 }
@@ -354,7 +344,37 @@ extension ReviewMainVC: SendUpdateModalDelegate {
 // MARK: - SendUpdateStatusDelegate
 extension ReviewMainVC: SendUpdateStatusDelegate {
     func sendStatus(data: Bool) {
+        let selectedList = ReviewFilterInfo.shared.selectedBtnList
+        
+        /// 필터 on/off 판단
         filterStatus = data
+        
+        /// 태그 필터 초기화
+        selectedTagFilter = []
+        
+        /// 작성자 필터 판단
+        if selectedList[0] == true  && selectedList[1] == false {
+            selectedWriterFilter = 2
+        } else if selectedList[1] == false && selectedList[1] == true {
+            selectedWriterFilter = 3
+        } else {
+            selectedWriterFilter = 1
+        }
+        
+        /// 태그 필터 판단
+        for i in 2...selectedList.count - 1 {
+            if selectedList[i] == true {
+                selectedTagFilter.append(Int(i - 1))
+            }
+        }
+        
+        if filterStatus {
+            /// 필터 on 상태일 때
+            requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: selectedWriterFilter, tagFilter: selectedTagFilter == [] ? [1, 2, 3, 4, 5] : selectedTagFilter, sort: sortType)
+        } else {
+            /// 필터 off 상태일 때
+            requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
+        }
         reviewTV.reloadData()
     }
 }
@@ -363,7 +383,7 @@ extension ReviewMainVC: SendUpdateStatusDelegate {
 
 /// 학과 정보 리스트 조회
 extension ReviewMainVC {
-    func requestGetMajorList(univID: Int, filterType: String) {
+    private func requestGetMajorList(univID: Int, filterType: String) {
         PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
             switch networkResult {
                 
@@ -394,19 +414,18 @@ extension ReviewMainVC {
 
 /// 후기글 리스트 조회
 extension ReviewMainVC {
-    func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int], sort: ListSortType) {
+    private func requestGetReviewPostList(majorID: Int, writerFilter: Int, tagFilter: [Int], sort: ListSortType) {
         self.activityIndicator.startAnimating()
         ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter, sort: sort) { networkResult in
             switch networkResult {
                 
             case .success(let res):
-                print(res)
+                self.activityIndicator.stopAnimating()
                 if let data = res as? [ReviewMainPostListData] {
                     DispatchQueue.main.async {
                         self.postList = data
                         self.reviewTV.reloadData()
                     }
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {

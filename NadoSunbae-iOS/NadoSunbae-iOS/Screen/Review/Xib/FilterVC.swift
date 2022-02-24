@@ -32,6 +32,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var tipBtn: UIButton!
     
     // MARK: Properties
+    private var filterStatus = false
     var filterItemArray: [UIButton] = []
     var selectFilterDelegate: SendUpdateStatusDelegate?
     
@@ -135,13 +136,12 @@ extension FilterVC {
 extension FilterVC {
     private func tapCompleteBtnAction() {
         completeBtn.press {
-            var filterStatus = false
             if self.majorBtn.isSelected || self.secondMajorBtn.isSelected || self.learnInfoBtn.isSelected || self.recommendClassBtn.isSelected || self.badClassBtn.isSelected || self.futureJobBtn.isSelected || self.tipBtn.isSelected {
-                filterStatus = true
+                self.filterStatus = true
             }
             if let selectFilterDelegate = self.selectFilterDelegate {
                 self.saveBtnStatus()
-                selectFilterDelegate.sendStatus(data: filterStatus)
+                selectFilterDelegate.sendStatus(data: self.filterStatus)
             }
             self.dismiss(animated: true, completion: {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)

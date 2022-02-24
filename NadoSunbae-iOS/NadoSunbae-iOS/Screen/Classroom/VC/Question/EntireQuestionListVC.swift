@@ -122,7 +122,7 @@ extension EntireQuestionListVC {
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData(sortType: ListSortType) {
-        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .group, sort: sortType)
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), postTypeID: .group, sort: sortType)
     }
 }
 
@@ -171,7 +171,7 @@ extension EntireQuestionListVC: UITableViewDelegate {
                                         okAction: { _ in
                 self.selectActionSheetIndex = 0
                 self.setUpRequestData(sortType: .recent)
-                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .group, sort: .recent)
+                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selectedMajorID ?? 0, postTypeID: .group, sort: .recent)
                 self.entireQuestionListTV.reloadSections([0], with: .fade)
             },
                                         secondOkAction: { _ in
