@@ -27,6 +27,8 @@ class ReviewMainVC: BaseVC {
     var majorInfo: String = ""
     var sortType: ListSortType = .recent
     var filterStatus = false
+    var selectedWriterFilter: Int = 1
+    var selectedTagFilter: [Int] = []
     private var selectActionSheetIndex: Int = 0
     
     // MARK: Life Cycle Part
@@ -150,7 +152,7 @@ extension ReviewMainVC {
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
-        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: self.selectedWriterFilter, tagFilter: self.selectedTagFilter == [] ? [1, 2, 3, 4, 5] : self.selectedTagFilter, sort: sortType)
     }
     
     /// 링크에 해당하는 웹사이트로 연결하는 함수
@@ -354,7 +356,38 @@ extension ReviewMainVC: SendUpdateModalDelegate {
 // MARK: - SendUpdateStatusDelegate
 extension ReviewMainVC: SendUpdateStatusDelegate {
     func sendStatus(data: Bool) {
+        let selectedList = ReviewFilterInfo.shared.selectedBtnList
+        
+        /// 필터 on/off 판단
         filterStatus = data
+        
+        /// 태그 필터 초기화
+        selectedTagFilter = []
+        
+        /// 작성자 필터 판단
+        if selectedList[0] == true  && selectedList[1] == false {
+            selectedWriterFilter = 2
+        } else if selectedList[1] == false && selectedList[1] == true {
+            selectedWriterFilter = 3
+        } else {
+            selectedWriterFilter = 1
+        }
+        
+        /// 태그 필터 판단
+        for i in 2...selectedList.count-1 {
+            if selectedList[i] == true {
+                selectedTagFilter.append(Int(i-1))
+            }
+        }
+        
+        if filterStatus == true {
+            /// 필터 on 상태일 때
+            requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: selectedWriterFilter, tagFilter: selectedTagFilter == [] ? [1, 2, 3, 4, 5] : selectedTagFilter, sort: sortType)
+        } else {
+            /// 필터 off 상태일 때
+            requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
+            
+        }
         reviewTV.reloadData()
     }
 }
