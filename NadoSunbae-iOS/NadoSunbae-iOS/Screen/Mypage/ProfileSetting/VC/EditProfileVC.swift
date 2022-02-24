@@ -45,10 +45,19 @@ class EditProfileVC: BaseVC {
     @IBOutlet weak var firstMajorStartTextField: NadoTextField!
     @IBOutlet weak var secondMajorTextField: NadoTextField!
     @IBOutlet weak var secondMajorStartTextField: NadoTextField!
+    @IBOutlet weak var secondMajorStartBtn: UIButton! {
+        didSet {
+            secondMajorStartBtn.setTitleColor(.mainDefault, for: .normal)
+            secondMajorStartBtn.setTitleColor(.gray2, for: .disabled)
+        }
+    }
     
     // MARK: Properties
     let disposeBag = DisposeBag()
     var userInfo = MypageUserInfoModel()
+    
+    /// 내가 선택을 위해 '진입하는' 버튼의 태그
+    var enterBtnTag = 0
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -67,6 +76,23 @@ class EditProfileVC: BaseVC {
         requestCheckNickName(nickName: nickNameTextField.text!)
     }
     
+    @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
+        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
+        
+        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
+        if sender.tag == 3 && secondMajorTextField.text == "미진입" {
+            // TODO: 처리 어떻게 하지...? 일단 modal 안 뜨게 막아둠
+        } else {
+            slideVC.enterdBtnTag = sender.tag
+            self.enterBtnTag = sender.tag
+            
+            slideVC.modalPresentationStyle = .custom
+            slideVC.transitioningDelegate = self
+            slideVC.selectMajorDelegate = self
+            
+            self.present(slideVC, animated: true, completion: nil)
+        }
+    }
     
     // MARK: Custom Methods
     
@@ -77,7 +103,6 @@ class EditProfileVC: BaseVC {
             .skip(2)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
-                //                self.isCompleteList[0] = false
                 let regex = "[가-힣ㄱ-ㅎㅏ-ㅣA-Za-z0-9]{2,8}"
                 if changedText.count == 0 {
                     self.changeLabelColor(isOK: true, label: self.nickNameRuleLabel)
@@ -106,10 +131,21 @@ extension EditProfileVC {
         firstMajorStartTextField.text = userInfo.firstMajorStart
         secondMajorTextField.text = userInfo.secondMajorName
         secondMajorStartTextField.text = userInfo.secondMajorStart
+        checkSecondMajorStatus()
     }
     
     private func changeLabelColor(isOK: Bool, label: UILabel) {
         label.textColor = isOK ? .gray3 : .red
+    }
+    
+    private func checkSecondMajorStatus() {
+        if secondMajorTextField.text == "미진입" {
+            secondMajorStartBtn.setTitle("선택", for: .normal)
+            secondMajorStartTextField.text = ""
+            secondMajorStartBtn.isEnabled = false
+        } else {
+            secondMajorStartBtn.isEnabled = true
+        }
     }
 }
 
@@ -160,6 +196,43 @@ extension EditProfileVC {
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
+        }
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension EditProfileVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+// MARK: - SendUpdateModalDelegate
+extension EditProfileVC: SendUpdateModalDelegate {
+    func sendUpdate(data: Any) {
+        switch enterBtnTag {
+        case 0:
+            if let majorInfoData = data as? MajorInfoModel {
+                self.firstMajorTextField.text = majorInfoData.majorName
+//                self.signUpData.firstMajorID = majorInfoData.majorID
+            }
+        case 1:
+            self.firstMajorStartTextField.text = data as? String
+//            self.signUpData.firstMajorStart = data as? String ?? ""
+        case 2:
+            if let majorInfoData = data as? MajorInfoModel {
+                self.secondMajorTextField.text = majorInfoData.majorName
+//                self.signUpData.secondMajorID = majorInfoData.majorID
+                checkSecondMajorStatus()
+            }
+        case 3:
+            self.secondMajorStartTextField.text = data as? String
+            self.secondMajorStartBtn.setTitle("변경", for: .normal)
+//            self.signUpData.secondMajorStart = data as? String ?? ""
+        default:
+            #if DEBUG
+            print("SignUpMajorInfoVC SendUpdateDelegate error")
+            #endif
         }
     }
 }

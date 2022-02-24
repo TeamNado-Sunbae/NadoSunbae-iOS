@@ -158,6 +158,9 @@
                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="변경"/>
+                                                        <connections>
+                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Pfv-eZ-cz0"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -194,6 +197,9 @@
                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="변경"/>
+                                                        <connections>
+                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jba-YD-B0F"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -230,6 +236,9 @@
                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="변경"/>
+                                                        <connections>
+                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GkH-hl-vW6"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -254,7 +263,7 @@
                                                         <color key="textColor" name="gray3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f41-2G-Zfn" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="미진입" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f41-2G-Zfn" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="30" width="343" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -266,6 +275,9 @@
                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="선택"/>
+                                                        <connections>
+                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Vsp-vY-cOr"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -366,6 +378,7 @@
                         <outlet property="nickNameRuleLabel" destination="Ryd-VX-cuU" id="gn2-eK-3IN"/>
                         <outlet property="nickNameTextField" destination="Se9-Pm-suD" id="HMe-Z1-lO4"/>
                         <outlet property="profileImgView" destination="5gb-Ep-3Xu" id="I4f-Ri-6Yi"/>
+                        <outlet property="secondMajorStartBtn" destination="pEJ-dA-VQf" id="P4f-nb-czx"/>
                         <outlet property="secondMajorStartTextField" destination="f41-2G-Zfn" id="Uho-2j-TcD"/>
                         <outlet property="secondMajorTextField" destination="rKj-Cv-S40" id="pQR-EX-DUq"/>
                     </connections>
