@@ -72,6 +72,9 @@
                                                         <state key="normal" title="변경">
                                                             <color key="titleColor" name="mainDefault"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="tapNickNameChangeBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="MmO-jv-UwU"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>

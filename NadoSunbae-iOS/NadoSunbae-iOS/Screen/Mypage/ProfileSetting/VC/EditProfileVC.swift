@@ -54,6 +54,7 @@ class EditProfileVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkNickNameIsValid()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,13 +62,19 @@ class EditProfileVC: BaseVC {
         getMyInfo()
     }
     
+    // MARK: @IBAction
+    @IBAction func tapNickNameChangeBtn(_ sender: Any) {
+        requestCheckNickName(nickName: nickNameTextField.text!)
+    }
+    
+    
     // MARK: Custom Methods
     
     /// 닉네임 유효성 검사
     private func checkNickNameIsValid() {
         nickNameTextField.rx.text
             .orEmpty
-            .skip(1)
+            .skip(2)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
                 //                self.isCompleteList[0] = false
@@ -78,8 +85,11 @@ class EditProfileVC: BaseVC {
                 } else if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
                     self.changeLabelColor(isOK: true, label: self.nickNameRuleLabel)
                     self.nickNameChangeBtn.isEnabled = true
+                    self.nickNameInfoLabel.text = ""
                 } else {
                     self.changeLabelColor(isOK: false, label: self.nickNameRuleLabel)
+                    self.nickNameChangeBtn.isEnabled = false
+                    self.nickNameInfoLabel.text = ""
                 }
             })
             .disposed(by: disposeBag)
@@ -126,5 +136,30 @@ extension EditProfileVC {
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
+    }
+    
+    private func requestCheckNickName(nickName: String) {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.checkNickNameDuplicate(nickName: nickName) { networkResult in
+            switch networkResult {
+            case .success:
+                self.activityIndicator.stopAnimating()
+                self.nickNameInfoLabel.textColor = .mainDark
+                self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
+//                self.isCompleteList[0] = true
+                self.nickNameTextField.placeholder = nickName
+                self.nickNameTextField.text = ""
+            case .requestErr(let success):
+                self.activityIndicator.stopAnimating()
+                if success is Bool {
+                    self.nickNameInfoLabel.textColor = .red
+                    self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
+//                    self.isCompleteList[0] = false
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
