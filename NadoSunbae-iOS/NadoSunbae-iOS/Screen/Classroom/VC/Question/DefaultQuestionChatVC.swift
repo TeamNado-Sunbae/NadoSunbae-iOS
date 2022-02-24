@@ -458,6 +458,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                         /// 작성자 본인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
                         self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
                             if indexPath.row == 0 {
+                                /// 수정
                                 /// 질문 원글일 경우
                                 let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
                                 guard let editPostVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
@@ -476,13 +477,8 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                             }
                             defaultQuestionChatTV.reloadData()
                         }, secondOkAction: { _ in
-                            if indexPath.row == 0 {
-                                /// 질문 원글일 경우
-                                self.makeNadoDeleteAlert(qnaType: .question)
-                            } else {
-                                /// 질문 답변일 경우
-                                self.makeNadoDeleteAlert(qnaType: .comment)
-                            }
+                            /// 삭제
+                            indexPath.row == 0 ? self.makeNadoDeleteAlert(qnaType: .question) : self.makeNadoDeleteAlert(qnaType: .comment)
                         })
                     } else {
                         /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
