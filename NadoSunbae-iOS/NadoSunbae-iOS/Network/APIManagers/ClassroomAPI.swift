@@ -117,7 +117,7 @@ class ClassroomAPI {
     
     /// [POST] 1:1질문, 전체 질문, 정보글에 좋아요 다는 API 메서드
     func postClassroomLikeAPI(postID: Int, postTypeID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.postLike(postID: postID, postTypeID: postTypeID)) { result in
+        classroomProvider.request(.likePost(postID: postID, postTypeID: postTypeID)) { result in
             switch result {
                 
             case .success(let response):
