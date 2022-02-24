@@ -1,5 +1,5 @@
 //
-//  ProfileSettingVC.swift
+//  EditProfileVC.swift
 //  NadoSunbae-iOS
 //
 //  Created by madilyn on 2022/02/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileSettingVC: BaseVC {
+class EditProfileVC: BaseVC {
     
     // MARK: @IBOutlet
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {

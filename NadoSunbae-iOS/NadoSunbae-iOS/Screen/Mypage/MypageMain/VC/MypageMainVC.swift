@@ -50,7 +50,7 @@ class MypageMainVC: BaseVC {
     
     // MARK: @IBAction
     @IBAction func tapEditProfileBtn(_ sender: Any) {
-        guard let profileSettingVC = UIStoryboard.init(name: ProfileSettingVC.className, bundle: nil).instantiateViewController(withIdentifier: ProfileSettingVC.className) as? ProfileSettingVC else { return }
+        guard let profileSettingVC = UIStoryboard.init(name: EditProfileVC.className, bundle: nil).instantiateViewController(withIdentifier: EditProfileVC.className) as? EditProfileVC else { return }
         self.navigationController?.pushViewController(profileSettingVC, animated: true)
     }
     
