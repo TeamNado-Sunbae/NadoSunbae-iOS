@@ -17,6 +17,7 @@ class HalfModalVC: UIViewController {
     // MARK: Properties
     var majorList: [MajorInfoModel] = []
     var selectMajorDelegate: SendUpdateModalDelegate?
+    var selectFilterDelegate: SendUpdateStatusDelegate?
     
     // MARK: Life Cycle Part
     override func viewDidLoad() {
@@ -60,6 +61,11 @@ class HalfModalVC: UIViewController {
                 MajorInfo.shared.selecteMajorID = selectedMajorID
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
+            if self.selectFilterDelegate != nil {
+                ReviewFilterInfo.shared.selectedBtnList = [false, false, false, false, false, false, false]
+                self.selectFilterDelegate?.sendStatus(data: false)
+            }
+    
             self.dismiss(animated: true, completion: {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
             })

@@ -114,28 +114,15 @@ extension ReviewMainVC {
     
     /// 액션시트
     func presentActionSheet() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        // TODO: 액션 추가 예정
-        let new = UIAlertAction(title: "최신순", style: .default) { action in
+        makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순", okAction: { _ in
             self.sortType = .recent
-            self.requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
+            self.setUpRequestData()
             self.reviewTV.reloadSections([2], with: .fade)
-        }
-        
-        // TODO: 액션 추가 예정
-        let like = UIAlertAction(title: "좋아요순", style: .default) { action in
+        }, secondOkAction: { _ in
             self.sortType = .like
-            self.requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .like)
+            self.setUpRequestData()
             self.reviewTV.reloadSections([2], with: .fade)
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        
-        alert.addAction(new)
-        alert.addAction(like)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true, completion: nil)
+        })
     }
     
     /// 화면 상단에 닿으면 스크롤 disable
@@ -170,6 +157,7 @@ extension ReviewMainVC {
     @objc func presentHalfModalView() {
         let slideVC = HalfModalVC()
         slideVC.selectMajorDelegate = self
+        slideVC.selectFilterDelegate = self
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         self.present(slideVC, animated: true, completion: nil)
@@ -434,12 +422,12 @@ extension ReviewMainVC {
                 
             case .success(let res):
                 print(res)
+                self.activityIndicator.stopAnimating()
                 if let data = res as? [ReviewMainPostListData] {
                     DispatchQueue.main.async {
                         self.postList = data
                         self.reviewTV.reloadData()
                     }
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
