@@ -165,6 +165,23 @@ class ClassroomAPI {
             }
         }
     }
+    
+    /// [DELETE] 1:1질문, 전체 질문, 정보글 질문 삭제 API 메서드
+    func deletePostQuestionAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.deletePostQuestion(postID: postID)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.deletePostQuestionJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 
@@ -320,6 +337,24 @@ extension ClassroomAPI {
     private func editPostCommentJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<EditPostCommentModel>.self, from: data) else {
+            return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// 질문 삭제
+    private func deletePostQuestionJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data) else {
             return .pathErr }
         
         switch status {

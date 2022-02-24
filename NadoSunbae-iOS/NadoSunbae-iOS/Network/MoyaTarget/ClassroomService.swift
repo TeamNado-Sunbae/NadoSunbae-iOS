@@ -18,6 +18,7 @@ enum ClassroomService {
     case likePost(postID: Int, postTypeID: Int)
     case editPostQuestion(postID: Int, title: String, content: String)
     case editPostComment(commentID: Int, content: String)
+    case deletePostQuestion(postID: Int)
 }
 
 extension ClassroomService: TargetType {
@@ -42,7 +43,7 @@ extension ClassroomService: TargetType {
             return "/classroom-post"
         case .likePost:
             return "/like"
-        case .editPostQuestion(let postID, _, _):
+        case .editPostQuestion(let postID, _, _), .deletePostQuestion(let postID):
             return "/classroom-post/\(postID)"
         case .editPostComment(let commentID, _):
             return "/comment/\(commentID)"
@@ -58,6 +59,8 @@ extension ClassroomService: TargetType {
             return .post
         case .editPostQuestion, .editPostComment:
             return .put
+        case .deletePostQuestion:
+            return .delete
         }
     }
     
@@ -102,6 +105,8 @@ extension ClassroomService: TargetType {
         case .editPostComment(_, let content):
             let body = ["content": content]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .deletePostQuestion(_):
+            return .requestPlain
         }
     }
     
