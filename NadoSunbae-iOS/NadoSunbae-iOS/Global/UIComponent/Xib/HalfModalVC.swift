@@ -58,7 +58,7 @@ class HalfModalVC: UIViewController {
 
             if let selectMajorDelegate = self.selectMajorDelegate {
                 MajorInfo.shared.selectedMajorName = selectedMajorName
-                MajorInfo.shared.selecteMajorID = selectedMajorID
+                MajorInfo.shared.selectedMajorID = selectedMajorID
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
             if self.selectFilterDelegate != nil {

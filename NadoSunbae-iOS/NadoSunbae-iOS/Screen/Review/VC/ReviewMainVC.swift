@@ -139,7 +139,7 @@ extension ReviewMainVC {
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
-        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: self.selectedWriterFilter, tagFilter: self.selectedTagFilter == [] ? [1, 2, 3, 4, 5] : self.selectedTagFilter, sort: sortType)
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: self.selectedWriterFilter, tagFilter: self.selectedTagFilter == [] ? [1, 2, 3, 4, 5] : self.selectedTagFilter, sort: sortType)
     }
     
     /// 링크에 해당하는 웹사이트로 연결하는 함수
@@ -336,7 +336,7 @@ extension ReviewMainVC: SendUpdateModalDelegate {
     /// 학과 선택 시 해당 학과의 게시글 리스트가 로드될 수 있도록 요청
     func sendUpdate(data: Any) {
         majorLabel.text = data as? String
-        requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
+        requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: .recent)
         self.sortType = .recent
     }
 }
@@ -370,10 +370,10 @@ extension ReviewMainVC: SendUpdateStatusDelegate {
         
         if filterStatus == true {
             /// 필터 on 상태일 때
-            requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: selectedWriterFilter, tagFilter: selectedTagFilter == [] ? [1, 2, 3, 4, 5] : selectedTagFilter, sort: sortType)
+            requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: selectedWriterFilter, tagFilter: selectedTagFilter == [] ? [1, 2, 3, 4, 5] : selectedTagFilter, sort: sortType)
         } else {
             /// 필터 off 상태일 때
-            requestGetReviewPostList(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
+            requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: 1, tagFilter: [1, 2, 3, 4, 5], sort: sortType)
             
         }
         reviewTV.reloadData()

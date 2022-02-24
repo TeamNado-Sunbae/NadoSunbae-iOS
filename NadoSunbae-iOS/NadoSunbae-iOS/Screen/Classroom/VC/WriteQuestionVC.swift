@@ -19,7 +19,7 @@ class WriteQuestionVC: BaseVC {
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
     private var isTextViewEmpty: Bool = true
-    private var majorID: Int = MajorInfo.shared.selecteMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
+    private var majorID: Int = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
     @IBOutlet weak var questionWriteNaviBar: NadoSunbaeNaviBar! {
         didSet {
             questionWriteNaviBar.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 0.3, radius: 16)

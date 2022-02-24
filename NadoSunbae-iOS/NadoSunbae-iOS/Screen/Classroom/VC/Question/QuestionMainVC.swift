@@ -152,7 +152,7 @@ extension QuestionMainVC {
     private func setUpTapPersonalQuestionBtn() {
         personalQuestionBtn.press(vibrate: true) {
             let questionPersonVC = QuestionPersonListVC()
-            questionPersonVC.majorID = MajorInfo.shared.selecteMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
+            questionPersonVC.majorID = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
             self.navigationController?.pushViewController(questionPersonVC, animated: true)
         }
     }
@@ -160,12 +160,12 @@ extension QuestionMainVC {
     /// 선택된 전공정보에 따라 서버통신 요청하는 메서드
     @objc
     func updateDataBySelectedMajor() {
-        requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selecteMajorID ?? 0, postTypeID: .group, sort: .recent)
+        requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selectedMajorID ?? 0, postTypeID: .group, sort: .recent)
     }
     
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData() {
-        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selecteMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selecteMajorID ?? -1), postTypeID: .group, sort: .recent)
+        requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), postTypeID: .group, sort: .recent)
     }
     
     /// ActivateIndicator 추가 메서드
