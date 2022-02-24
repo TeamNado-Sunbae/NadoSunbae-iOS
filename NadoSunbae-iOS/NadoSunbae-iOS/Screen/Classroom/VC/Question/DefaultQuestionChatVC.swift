@@ -762,7 +762,7 @@ extension DefaultQuestionChatVC {
         }
     }
     
-    /// 답변 수정 API 요청 메서드
+    /// 1:1질문, 전체 질문 질문 원글 삭제 API 요청 메서드
     private func requestDeletePostQuestion(postID: Int) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.deletePostQuestionAPI(postID: postID) { networkResult in
