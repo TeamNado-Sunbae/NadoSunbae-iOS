@@ -362,13 +362,13 @@ extension ReviewMainVC: SendUpdateStatusDelegate {
         }
         
         /// 태그 필터 판단
-        for i in 2...selectedList.count-1 {
+        for i in 2...selectedList.count - 1 {
             if selectedList[i] == true {
-                selectedTagFilter.append(Int(i-1))
+                selectedTagFilter.append(Int(i - 1))
             }
         }
         
-        if filterStatus == true {
+        if filterStatus {
             /// 필터 on 상태일 때
             requestGetReviewPostList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: selectedWriterFilter, tagFilter: selectedTagFilter == [] ? [1, 2, 3, 4, 5] : selectedTagFilter, sort: sortType)
         } else {
