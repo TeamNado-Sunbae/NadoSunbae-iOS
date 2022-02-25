@@ -59,6 +59,7 @@ class InfoDetailVC: BaseVC {
     private var isCommentSend: Bool = false
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
+    private var isWriter: Bool?
     private let textViewMaxHeight: CGFloat = 85.adjustedH
     private let whiteBackView = UIView()
     
@@ -126,9 +127,15 @@ extension InfoDetailVC {
             self.navigationController?.popViewController(animated: true)
         }
         infoDetailNaviBar.rightCustomBtn.press {
-            // TODO: 추후에 권한 분기처리 예정
+            if self.isWriter == true {
+                self.makeTwoAlertWithCancel(okTitle: "수정", secondOkTitle: "삭제", okAction: { _ in
+                    self.presentWriteQuestionVC()
+                }, secondOkAction: { _ in
+                    
+                })
+            }
             self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
-                // TODO: 추후에 기능 추가 예정
+                // TODO: 추후에 신고 기능 추가 예정
             })
         }
     }
@@ -186,6 +193,21 @@ extension InfoDetailVC {
         commentTextView.text = "답글쓰기"
         commentTextView.textColor = .gray2
         commentTextView.backgroundColor = .gray0
+    }
+    
+    /// 정보글 원글을 수정하기 위해 WriteQuestionVC로 화면전환하는 메서드
+    private func presentWriteQuestionVC() {
+        let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
+        guard let editPostVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
+        
+        editPostVC.questionType = .info
+        editPostVC.isEditState = true
+        editPostVC.postID = self.postID
+        editPostVC.originTitle = self.infoDetailData?.post.title
+        editPostVC.originContent = self.infoDetailData?.post.content
+        editPostVC.modalPresentationStyle = .fullScreen
+        
+        self.present(editPostVC, animated: true, completion: nil)
     }
 }
 
@@ -335,6 +357,8 @@ extension InfoDetailVC {
                     self.infoDetailData = data
                     self.infoDetailCommentData = data.commentList
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
+                    self.isWriter = (self.userID == self.infoDetailData?.writer.writerID) ? true : false
+                    
                     DispatchQueue.main.async {
                         self.infoDetailTV.reloadData()
                         self.setUpSendBtnEnabledState()
