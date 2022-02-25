@@ -347,7 +347,7 @@ extension InfoDetailVC {
 extension InfoDetailVC {
     
     /// 정보글 상세 조회 API 요청 메서드
-    func requestGetDetailInfoData(postID: Int, addLoadBackView: Bool) {
+    private func requestGetDetailInfoData(postID: Int, addLoadBackView: Bool) {
         addLoadBackView ? self.configureWhiteBackView() : nil
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getInfoDetailAPI(postID: postID) { networkResult in
@@ -381,7 +381,7 @@ extension InfoDetailVC {
     }
     
     /// 정보글에 댓글 등록 API 요청 메서드
-    func requestCreateComment(postID: Int, comment: String) {
+    private func requestCreateComment(postID: Int, comment: String) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.createCommentAPI(postID: postID, comment: comment) { networkResult in
             switch networkResult {
@@ -407,7 +407,7 @@ extension InfoDetailVC {
     }
     
     /// 좋아요 API 요청 메서드
-    func requestPostLikeData(postID: Int, postTypeID: QuestionType) {
+    private func requestPostLikeData(postID: Int, postTypeID: QuestionType) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
             switch networkResult {
