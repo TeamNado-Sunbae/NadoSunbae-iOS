@@ -389,6 +389,7 @@ extension InfoDetailVC {
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
                         self.requestGetDetailInfoData(postID: postID, addLoadBackView: false)
+                        self.isTextViewEmpty = true
                         self.activityIndicator.stopAnimating()
                     }
                 }
