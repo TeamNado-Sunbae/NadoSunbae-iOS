@@ -478,7 +478,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                             defaultQuestionChatTV.reloadData()
                         }, secondOkAction: { _ in
                             /// 삭제
-                            indexPath.row == 0 ? self.makeNadoDeleteAlert(qnaType: .question) : self.makeNadoDeleteAlert(qnaType: .comment)
+                            self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment)
                         })
                     } else {
                         /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
