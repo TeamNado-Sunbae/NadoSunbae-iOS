@@ -148,6 +148,28 @@ extension EditProfileVC {
             secondMajorStartBtn.isEnabled = true
         }
     }
+    
+    private func setNavViewNadoRightBtn(status: Bool) {
+        self.navView.rightActivateBtn.isActivated = status
+        self.navView.rightActivateBtn.isEnabled = status
+    }
+    
+    private func setSaveBtn() {
+        navView.rightActivateBtn.press {
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            
+            alert.cancelBtn.press {
+                alert.dismiss(animated: true, completion: nil)
+            }
+            
+            alert.confirmBtn.press {
+                self.setProfileData()
+                self.requestEditProfile(data: self.profileData)
+            }
+            
+            alert.showNadoAlert(vc: self, message: "내 정보를 수정하시겠습니까?", confirmBtnTitle: "저장", cancelBtnTitle: "아니요")
+        }
+    }
 }
 
 // MARK:- Network
