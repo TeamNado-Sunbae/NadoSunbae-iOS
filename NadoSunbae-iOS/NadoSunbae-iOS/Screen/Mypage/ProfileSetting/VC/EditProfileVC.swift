@@ -131,6 +131,11 @@ class EditProfileVC: BaseVC {
         profileData.isOnQuestion = isOnQuestionToggleBtn.isSelected
     }
     
+    private func judgeSaveBtnState() {
+        if (userInfo.secondMajorID != 1 && secondMajorStartTextField.text == "") {
+            setNavViewNadoRightBtn(status: false)
+        }
+    }
 }
 
 // MARK: - UI
