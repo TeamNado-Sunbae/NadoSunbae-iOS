@@ -11,8 +11,10 @@ struct MypageUserInfoModel: Codable {
     var userID: Int = 0
     var profileImageID: Int = 0
     var nickname: String = ""
+    var firstMajorID: Int = 0
     var firstMajorName: String = ""
     var firstMajorStart: String = ""
+    var secondMajorID: Int = 0
     var secondMajorName: String = ""
     var secondMajorStart: String = ""
     var isOnQuestion: Bool = true
@@ -22,8 +24,10 @@ struct MypageUserInfoModel: Codable {
         case userID = "userId"
         case profileImageID = "profileImageId"
         case nickname = "nickname"
+        case firstMajorID = "firstMajorId"
         case firstMajorName = "firstMajorName"
         case firstMajorStart = "firstMajorStart"
+        case secondMajorID = "secondMajorId"
         case secondMajorName = "secondMajorName"
         case secondMajorStart = "secondMajorStart"
         case isOnQuestion = "isOnQuestion"
