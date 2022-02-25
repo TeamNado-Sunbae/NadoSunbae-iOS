@@ -225,10 +225,8 @@ extension InfoDetailVC {
         ]
         
         alert.showNadoAlert(vc: self, message: (qnaType == .question ? alertMsgdict[.question] : alertMsgdict[.comment]) ?? "", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
-        
-        // TODO: 추후에 답변 삭제 함수 추가 후 nil부분 답변 삭제 함수로 변경 예정
         alert.confirmBtn.press(vibrate: true, for: .touchUpInside) {
-            qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : nil
+            qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : self.requestDeletePostComment(commentID: commentID, indexPath: indexPath)
         }
     }
 }
@@ -272,10 +270,15 @@ extension InfoDetailVC: UITableViewDataSource {
             /// 정보글 댓글 Cell
             infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 2])
             infoCommentCell.tapMoreInfoBtn = { [unowned self] in
-                // TODO: 추후에 권한 분기처리 예정
-                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
-                    // TODO: 추후에 기능 추가 예정
-                })
+                if userID == infoDetailCommentData[indexPath.row - 2].writer.writerID {
+                    makeAlertWithCancel(okTitle: "삭제", okAction: { _ in
+                        makeNadoDeleteAlert(qnaType: .comment, commentID: infoDetailCommentData[indexPath.row - 2].commentID, indexPath: [IndexPath(row: indexPath.row - 2, section: 0)])
+                    })
+                } else {
+                    makeAlertWithCancel(okTitle: "신고", okAction: { _ in
+                        // TODO: 추후에 신고 기능 추가 예정
+                    })
+                }
             }
             
             infoCommentCell.interactURL = { url in
@@ -455,13 +458,34 @@ extension InfoDetailVC {
         }
     }
     
-    /// 정보글 질문 원글 삭제 API 요청 메서드
+    /// 정보글 원글 삭제 API 요청 메서드
     private func requestDeletePostQuestion(postID: Int) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.deletePostQuestionAPI(postID: postID) { networkResult in
             switch networkResult {
             case .success(_):
                 self.navigationController?.popViewController(animated: true)
+                self.activityIndicator.stopAnimating()
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 정보글 댓글 삭제 API 요청 메서드
+    private func requestDeletePostComment(commentID: Int, indexPath: [IndexPath]) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.deletePostCommentAPI(commentID: commentID) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.requestGetDetailInfoData(postID: self.postID ?? 0, addLoadBackView: false)
                 self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
                 if let message = msg as? String {
