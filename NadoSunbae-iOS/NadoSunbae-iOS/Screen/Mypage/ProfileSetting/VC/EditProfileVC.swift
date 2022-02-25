@@ -39,6 +39,7 @@ class EditProfileVC: BaseVC {
             isOnQuestionToggleBtn.setImage(UIImage(named: "toggle_on"), for: .selected)
             isOnQuestionToggleBtn.press {
                 self.isOnQuestionToggleBtn.isSelected.toggle()
+                self.setNavViewNadoRightBtn(status: true)
             }
         }
     }
@@ -56,6 +57,7 @@ class EditProfileVC: BaseVC {
     // MARK: Properties
     let disposeBag = DisposeBag()
     var userInfo = MypageUserInfoModel()
+    var profileData = EditProfileRequestModel()
     
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
     var enterBtnTag = 0
@@ -65,6 +67,7 @@ class EditProfileVC: BaseVC {
         super.viewDidLoad()
         checkNickNameIsValid()
         hideKeyboardWhenTappedAround()
+        setSaveBtn()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,10 +115,12 @@ class EditProfileVC: BaseVC {
                     self.changeLabelColor(isOK: true, label: self.nickNameRuleLabel)
                     self.nickNameChangeBtn.isEnabled = true
                     self.nickNameInfoLabel.text = ""
+                    self.setNavViewNadoRightBtn(status: false)
                 } else {
                     self.changeLabelColor(isOK: false, label: self.nickNameRuleLabel)
                     self.nickNameChangeBtn.isEnabled = false
                     self.nickNameInfoLabel.text = ""
+                    self.setNavViewNadoRightBtn(status: false)
                 }
             })
             .disposed(by: disposeBag)
@@ -285,25 +290,29 @@ extension EditProfileVC: SendUpdateModalDelegate {
         case 0:
             if let majorInfoData = data as? MajorInfoModel {
                 self.firstMajorTextField.text = majorInfoData.majorName
-//                self.signUpData.firstMajorID = majorInfoData.majorID
+                self.userInfo.firstMajorID = majorInfoData.majorID
+                self.setNavViewNadoRightBtn(status: true)
             }
         case 1:
             self.firstMajorStartTextField.text = data as? String
-//            self.signUpData.firstMajorStart = data as? String ?? ""
+            self.userInfo.firstMajorStart = data as? String ?? ""
+            self.setNavViewNadoRightBtn(status: true)
         case 2:
             if let majorInfoData = data as? MajorInfoModel {
                 self.secondMajorTextField.text = majorInfoData.majorName
-//                self.signUpData.secondMajorID = majorInfoData.majorID
+                self.userInfo.secondMajorID = majorInfoData.majorID
                 checkSecondMajorStatus()
             }
         case 3:
             self.secondMajorStartTextField.text = data as? String
             self.secondMajorStartBtn.setTitle("변경", for: .normal)
-//            self.signUpData.secondMajorStart = data as? String ?? ""
+            self.userInfo.secondMajorStart = data as? String ?? ""
+            self.setNavViewNadoRightBtn(status: true)
         default:
             #if DEBUG
             print("SignUpMajorInfoVC SendUpdateDelegate error")
             #endif
         }
+        self.judgeSaveBtnState()
     }
 }
