@@ -134,10 +134,11 @@ extension InfoDetailVC {
                 }, secondOkAction: { _ in
                     self.makeNadoDeleteAlert(qnaType: .question, commentID: 0, indexPath: [[]])
                 })
+            } else {
+                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
+                    // TODO: 추후에 신고 기능 추가 예정
+                })
             }
-            self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
-                // TODO: 추후에 신고 기능 추가 예정
-            })
         }
     }
     
