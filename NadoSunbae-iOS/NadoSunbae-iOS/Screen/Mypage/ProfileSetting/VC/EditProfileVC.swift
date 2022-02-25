@@ -212,28 +212,24 @@ extension EditProfileVC {
         }
     }
     
+    private func requestEditProfile(data: EditProfileRequestModel) {
         self.activityIndicator.startAnimating()
-        SignAPI.shared.checkNickNameDuplicate(nickName: nickName) { networkResult in
+        MypageSettingAPI.shared.editProfile(data: data, completion: { networkResult in
             switch networkResult {
             case .success:
                 self.activityIndicator.stopAnimating()
-                self.nickNameInfoLabel.textColor = .mainDark
-                self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
-//                self.isCompleteList[0] = true
-                self.nickNameTextField.placeholder = nickName
-                self.nickNameTextField.text = ""
-            case .requestErr(let success):
-                self.activityIndicator.stopAnimating()
-                if success is Bool {
-                    self.nickNameInfoLabel.textColor = .red
-                    self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
-//                    self.isCompleteList[0] = false
+                self.navigationController?.popViewController(animated: true)
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
                 }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
-        }
+        })
     }
 }
 
