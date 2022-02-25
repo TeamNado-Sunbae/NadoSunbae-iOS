@@ -176,6 +176,42 @@ extension EditProfileVC {
     }
     
     private func requestCheckNickName(nickName: String) {
+        if nickName == userInfo.nickname {
+            self.nickNameInfoLabel.textColor = .mainDark
+            self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
+            self.setNavViewNadoRightBtn(status: true)
+            self.nickNameTextField.placeholder = nickName
+            self.nickNameTextField.text = ""
+            self.setNavViewNadoRightBtn(status: true)
+            self.judgeSaveBtnState()
+        } else {
+            self.activityIndicator.startAnimating()
+            SignAPI.shared.checkNickNameDuplicate(nickName: nickName) { networkResult in
+                switch networkResult {
+                case .success:
+                    self.activityIndicator.stopAnimating()
+                    self.nickNameInfoLabel.textColor = .mainDark
+                    self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
+                    self.setNavViewNadoRightBtn(status: true)
+                    self.nickNameTextField.placeholder = nickName
+                    self.nickNameTextField.text = ""
+                    self.setNavViewNadoRightBtn(status: true)
+                    self.judgeSaveBtnState()
+                case .requestErr(let success):
+                    self.activityIndicator.stopAnimating()
+                    if success is Bool {
+                        self.nickNameInfoLabel.textColor = .red
+                        self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
+                        self.judgeSaveBtnState()
+                    }
+                default:
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                }
+            }
+        }
+    }
+    
         self.activityIndicator.startAnimating()
         SignAPI.shared.checkNickNameDuplicate(nickName: nickName) { networkResult in
             switch networkResult {
