@@ -703,6 +703,7 @@ extension DefaultQuestionChatVC {
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
                         self.requestGetDetailQuestionData(postID: postID)
+                        self.isTextViewEmpty = true
                         self.activityIndicator.stopAnimating()
                     }
                 }
