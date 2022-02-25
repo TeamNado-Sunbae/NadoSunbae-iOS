@@ -55,11 +55,12 @@ class InfoDetailVC: BaseVC {
     private var infoDetailData: InfoDetailDataModel?
     private var infoDetailCommentData: [InfoDetailCommentList] = []
     private var infoDetailLikeData: Like?
-    private let screenHeight = UIScreen.main.bounds.size.height
+    private var qnaType: QnAType?
     private var isCommentSend: Bool = false
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
     private var isWriter: Bool?
+    private let screenHeight = UIScreen.main.bounds.size.height
     private let textViewMaxHeight: CGFloat = 85.adjustedH
     private let whiteBackView = UIView()
     
@@ -131,7 +132,7 @@ extension InfoDetailVC {
                 self.makeTwoAlertWithCancel(okTitle: "수정", secondOkTitle: "삭제", okAction: { _ in
                     self.presentWriteQuestionVC()
                 }, secondOkAction: { _ in
-                    
+                    self.makeNadoDeleteAlert(qnaType: .question, commentID: 0, indexPath: [[]])
                 })
             }
             self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
@@ -208,6 +209,26 @@ extension InfoDetailVC {
         editPostVC.modalPresentationStyle = .fullScreen
         
         self.present(editPostVC, animated: true, completion: nil)
+    }
+    
+    /// 나도선배 delete alert를 만드는 메서드
+    private func makeNadoDeleteAlert(qnaType: QnAType, commentID: Int, indexPath: [IndexPath]) {
+        guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        let alertMsgdict: [QnAType: String] = [
+            .question: """
+                글을 삭제하시겠습니까?
+                """,
+            .comment: """
+                댓글을 삭제하시겠습니까?
+                """
+        ]
+        
+        alert.showNadoAlert(vc: self, message: (qnaType == .question ? alertMsgdict[.question] : alertMsgdict[.comment]) ?? "", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+        
+        // TODO: 추후에 답변 삭제 함수 추가 후 nil부분 답변 삭제 함수로 변경 예정
+        alert.confirmBtn.press(vibrate: true, for: .touchUpInside) {
+            qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : nil
+        }
     }
 }
 
@@ -424,6 +445,27 @@ extension InfoDetailVC {
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 정보글 질문 원글 삭제 API 요청 메서드
+    private func requestDeletePostQuestion(postID: Int) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.deletePostQuestionAPI(postID: postID) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.navigationController?.popViewController(animated: true)
+                self.activityIndicator.stopAnimating()
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
