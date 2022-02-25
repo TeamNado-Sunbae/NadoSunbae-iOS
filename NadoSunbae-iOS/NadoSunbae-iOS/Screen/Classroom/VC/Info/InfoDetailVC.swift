@@ -317,7 +317,9 @@ extension InfoDetailVC: UITextViewDelegate {
     
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
-        isTextViewEmpty = textView.text.isEmpty ? true : false
+        if textView.text.isEmpty {
+            isTextViewEmpty = true
+        }
         setUpSendBtnEnabledState()
         configueTextViewPlaceholder()
     }
@@ -409,8 +411,8 @@ extension InfoDetailVC {
             case .success(let res):
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
-                        self.requestGetDetailInfoData(postID: postID, addLoadBackView: false)
                         self.isTextViewEmpty = true
+                        self.requestGetDetailInfoData(postID: postID, addLoadBackView: false)
                         self.activityIndicator.stopAnimating()
                     }
                 }
