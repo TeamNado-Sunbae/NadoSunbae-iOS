@@ -18,7 +18,17 @@ class EditProfileVC: BaseVC {
             navView.configureTitleLabel(title: "프로필 수정")
             navView.rightActivateBtn.setTitleWithStyle(title: "저장", size: 14)
             navView.backBtn.press {
-                self.navigationController?.popViewController(animated: true)
+                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                
+                alert.cancelBtn.press {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+                alert.confirmBtn.press {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                
+                alert.showNadoAlert(vc: self, message: "페이지를 나가면\n수정한 내용이 저장되지 않아요.", confirmBtnTitle: "계속 수정", cancelBtnTitle: "나갈래요")
             }
         }
     }
