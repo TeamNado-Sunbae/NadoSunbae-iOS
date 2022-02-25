@@ -15,9 +15,10 @@ enum ClassroomService {
     case postComment(postID: Int, comment: String)
     case getMajorUserList(majorID: Int)
     case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
-    case postLike(postID: Int, postTypeID: Int)
+    case likePost(postID: Int, postTypeID: Int)
     case editPostQuestion(postID: Int, title: String, content: String)
     case editPostComment(commentID: Int, content: String)
+    case deletePostQuestion(postID: Int)
 }
 
 extension ClassroomService: TargetType {
@@ -40,9 +41,9 @@ extension ClassroomService: TargetType {
             return "/user/mypage/list/major/\(majorID)"
         case .postClassroomContent:
             return "/classroom-post"
-        case .postLike:
+        case .likePost:
             return "/like"
-        case .editPostQuestion(let postID, _, _):
+        case .editPostQuestion(let postID, _, _), .deletePostQuestion(let postID):
             return "/classroom-post/\(postID)"
         case .editPostComment(let commentID, _):
             return "/comment/\(commentID)"
@@ -54,10 +55,12 @@ extension ClassroomService: TargetType {
             
         case .getQuestionDetail, .getInfoDetail, .getGroupQuestionOrInfoList, .getMajorUserList:
             return .get
-        case .postComment, .postClassroomContent, .postLike:
+        case .postComment, .postClassroomContent, .likePost:
             return .post
         case .editPostQuestion, .editPostComment:
             return .put
+        case .deletePostQuestion:
+            return .delete
         }
     }
     
@@ -87,7 +90,7 @@ extension ClassroomService: TargetType {
                 "content": content
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
-        case .postLike(let postID, let postTypeID):
+        case .likePost(let postID, let postTypeID):
             let body: [String: Any] = [
                 "postId": postID,
                 "postTypeId": postTypeID
@@ -102,6 +105,8 @@ extension ClassroomService: TargetType {
         case .editPostComment(_, let content):
             let body = ["content": content]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .deletePostQuestion(_):
+            return .requestPlain
         }
     }
     

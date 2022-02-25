@@ -52,7 +52,7 @@ class DefaultQuestionChatVC: BaseVC {
         }
     }
     
-    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar! 
+    @IBOutlet var questionNaviBar: NadoSunbaeNaviBar!
     
     // MARK: Properties
     var editIndex: [Int]?
@@ -64,6 +64,7 @@ class DefaultQuestionChatVC: BaseVC {
     var userID: Int?
     var userType: Int?
     var postID: Int?
+    private var qnaType: QnAType?
     private var questionChatData: [ClassroomMessageList] = []
     private var questionLikeData: Like?
     private var isCommentEdited: Bool = false
@@ -180,10 +181,8 @@ extension DefaultQuestionChatVC {
         case .group:
             sendAreaTextView.isEditable = true
             sendAreaTextView.text = "답글쓰기"
-        case .info:
-            print("info")
         default:
-            print("Review")
+            print("info or Review")
         }
         
         sendAreaTextView.endEditing(true)
@@ -327,6 +326,26 @@ extension DefaultQuestionChatVC {
             }
         }
     }
+    
+    /// 나도선배 delete alert를 만드는 메서드
+    private func makeNadoDeleteAlert(qnaType: QnAType) {
+        guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        let alertMsgdict: [QnAType: String] = [
+            .question: """
+                글을 삭제하시겠습니까?
+                """,
+            .comment: """
+                댓글을 삭제하시겠습니까?
+                """
+        ]
+        
+        alert.showNadoAlert(vc: self, message: (qnaType == .question ? alertMsgdict[.question] : alertMsgdict[.comment]) ?? "", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+        
+        // TODO: 추후에 답변 삭제 함수 추가 후 nil부분 답변 삭제 함수로 변경 예정
+        alert.confirmBtn.press(vibrate: true, for: .touchUpInside) {
+            qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : nil
+        }
+    }
 }
 
 // MARK: - UITextViewDelegate
@@ -436,8 +455,11 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     }
                     
                     if actionSheetString.count > 1 {
+                        /// 작성자 본인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
                         self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
                             if indexPath.row == 0 {
+                                /// 수정
+                                /// 질문 원글일 경우
                                 let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
                                 guard let editPostVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
                                 
@@ -450,16 +472,18 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                                 
                                 self.present(editPostVC, animated: true, completion: nil)
                             } else {
+                                /// 질문 답변일 경우
                                 editIndex = [0,indexPath.row]
                             }
                             defaultQuestionChatTV.reloadData()
                         }, secondOkAction: { _ in
-                            // TODO: 추후에 기능 추가 예정
-                            print("삭제")
+                            /// 삭제
+                            self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment)
                         })
                     } else {
+                        /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
                         self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { _ in
-                            // TODO: 추후에 기능 추가 예정
+                            // TODO: 추후에 질문 신고 기능 추가 예정
                         })
                     }
                     editIndex = []
@@ -525,23 +549,25 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     }
                     
                     if actionSheetString.count > 1 {
+                        /// 작성자 본인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
                         self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
                             if actionSheetString[0] == "수정" {
                                 editIndex = [1,indexPath.row]
                             }
                             defaultQuestionChatTV.reloadData()
                         }, secondOkAction: { _ in
-                            // TODO: 추후에 기능 추가 예정
+                            // TODO: 추후에 답변 삭제 기능 추가 예정
                         })
                     } else {
+                        /// 타인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
                         self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { _ in
-                            // TODO: 추후에 기능 추가 예정
+                            // TODO: 추후에 답변 신고 기능 추가 예정
                         })
                     }
                     editIndex = []
                     moreBtnTapIndex = [1,indexPath.row]
                 }
-              
+                
                 commentCell.bindData(questionChatData[indexPath.row])
                 return commentCell
             }
@@ -723,6 +749,26 @@ extension DefaultQuestionChatVC {
                 self.isCommentEdited = true
                 self.requestGetDetailQuestionData(postID: self.postID ?? 0)
                 self.activityIndicator.stopAnimating()
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 1:1질문, 전체 질문 질문 원글 삭제 API 요청 메서드
+    private func requestDeletePostQuestion(postID: Int) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.deletePostQuestionAPI(postID: postID) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.navigationController?.popViewController(animated: true)
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
