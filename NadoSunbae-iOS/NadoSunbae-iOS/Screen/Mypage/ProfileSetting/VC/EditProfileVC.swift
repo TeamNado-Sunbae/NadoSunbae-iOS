@@ -120,6 +120,17 @@ class EditProfileVC: BaseVC {
             })
             .disposed(by: disposeBag)
     }
+    
+    /// 변경할 profileData 세팅
+    private func setProfileData() {
+        profileData.nickName = nickNameTextField.placeholder ?? userInfo.nickname
+        profileData.firstMajorID = userInfo.firstMajorID
+        profileData.secondMajorID = userInfo.secondMajorID
+        profileData.firstMajorStart = userInfo.firstMajorStart
+        profileData.secondMajorStart = userInfo.secondMajorID == 1 ? "미진입" : userInfo.secondMajorStart
+        profileData.isOnQuestion = isOnQuestionToggleBtn.isSelected
+    }
+    
 }
 
 // MARK: - UI
