@@ -458,7 +458,7 @@ extension InfoDetailVC {
         }
     }
     
-    /// 정보글 원글 삭제 API 요청 메서드
+    /// 정보글 질문 원글 삭제 API 요청 메서드
     private func requestDeletePostQuestion(postID: Int) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.deletePostQuestionAPI(postID: postID) { networkResult in
