@@ -50,7 +50,7 @@ extension NotificationTVC {
     func setData(data: NotificationList) {
         redCircleImgView.isHidden = data.isRead
         profileImgView.image = UIImage(named: "profileImage\(data.sender.profileImageID)")
-        let notiType = data.notificationType.getNotiType()
+        let notiType = data.notificationTypeID.getNotiType()
         
         titleLabel.text = "\(notiType!.rawValue)에 \(data.sender.nickname)님이 \(notiType != .mypageQuestion ? "답글" : "1:1 질문")을 남겼습니다."
         contentLabel.text = "\(data.content)"

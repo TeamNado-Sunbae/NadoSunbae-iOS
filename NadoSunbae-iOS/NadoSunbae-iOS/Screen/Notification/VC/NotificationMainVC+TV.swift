@@ -38,7 +38,7 @@ extension NotificationMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         /// 뷰 이동 및 읽음 처리, 현재 질문글만 뷰 이동 가능
-        switch notificationList[indexPath.section].notificationType.getNotiType() {
+        switch notificationList[indexPath.section].notificationTypeID.getNotiType() {
         case .writtenInfo:
             break
             
