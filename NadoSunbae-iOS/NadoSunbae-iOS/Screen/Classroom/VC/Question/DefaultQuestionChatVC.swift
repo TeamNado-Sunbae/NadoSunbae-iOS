@@ -328,7 +328,7 @@ extension DefaultQuestionChatVC {
     }
     
     /// 나도선배 delete alert를 만드는 메서드
-    private func makeNadoDeleteAlert(qnaType: QnAType) {
+    private func makeNadoDeleteAlert(qnaType: QnAType, commentID: Int, indexPath: [IndexPath]) {
         guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
         let alertMsgdict: [QnAType: String] = [
             .question: """
@@ -343,7 +343,7 @@ extension DefaultQuestionChatVC {
         
         // TODO: 추후에 답변 삭제 함수 추가 후 nil부분 답변 삭제 함수로 변경 예정
         alert.confirmBtn.press(vibrate: true, for: .touchUpInside) {
-            qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : nil
+            qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : self.requestDeletePostComment(commentID: commentID, indexPath: indexPath)
         }
     }
 }
@@ -478,7 +478,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                             defaultQuestionChatTV.reloadData()
                         }, secondOkAction: { _ in
                             /// 삭제
-                            self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment)
+                            self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: questionChatData[indexPath.row].messageID, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
                         })
                     } else {
                         /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
@@ -664,7 +664,9 @@ extension DefaultQuestionChatVC {
                     
                     /// 댓글 수정되었을 때
                     if self.isCommentEdited {
-                        self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic)
+                        self.defaultQuestionChatTV.performBatchUpdates {
+                            self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic)
+                        }
                         self.isCommentEdited = false
                     } else {
                         self.defaultQuestionChatTV.reloadData()
@@ -701,6 +703,7 @@ extension DefaultQuestionChatVC {
                 if let _ = res as? AddCommentData {
                     DispatchQueue.main.async {
                         self.requestGetDetailQuestionData(postID: postID)
+                        self.isTextViewEmpty = true
                         self.activityIndicator.stopAnimating()
                     }
                 }
@@ -769,6 +772,34 @@ extension DefaultQuestionChatVC {
             switch networkResult {
             case .success(_):
                 self.navigationController?.popViewController(animated: true)
+                self.activityIndicator.stopAnimating()
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 1:1질문, 전체 질문 질문 댓글 삭제 API 요청 메서드
+    private func requestDeletePostComment(commentID: Int, indexPath: [IndexPath]) {
+        self.activityIndicator.startAnimating()
+        ClassroomAPI.shared.deletePostCommentAPI(commentID: commentID) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.questionChatData.remove(at: indexPath.first!.row)
+                self.defaultQuestionChatTV.performBatchUpdates {
+                    self.defaultQuestionChatTV.deleteRows(at: indexPath, with: .fade)
+                } completion: { (done) in
+                    let indexPathsToUpdate = (0...self.defaultQuestionChatTV.numberOfRows(inSection: 0)).map { IndexPath(row: $0, section: 0) }
+                    self.defaultQuestionChatTV.reloadRows(at: indexPathsToUpdate, with: .none)
+                }
+                self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
