@@ -340,8 +340,6 @@ extension DefaultQuestionChatVC {
         ]
         
         alert.showNadoAlert(vc: self, message: (qnaType == .question ? alertMsgdict[.question] : alertMsgdict[.comment]) ?? "", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
-        
-        // TODO: 추후에 답변 삭제 함수 추가 후 nil부분 답변 삭제 함수로 변경 예정
         alert.confirmBtn.press(vibrate: true, for: .touchUpInside) {
             qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : self.requestDeletePostComment(commentID: commentID, indexPath: indexPath)
         }
