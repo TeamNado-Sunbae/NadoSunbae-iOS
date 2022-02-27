@@ -27,6 +27,11 @@ class SettingVC: BaseVC {
             settingTV.rowHeight = 63.adjustedH
         }
     }
+    @IBOutlet weak var settingTVHeight: NSLayoutConstraint! {
+        didSet {
+            settingTVHeight.constant = 320.adjustedH
+        }
+    }
     
     // MARK: Properties
     let menuList = ["프로필 수정", "비밀번호 변경", "알림 설정", "앱정보", "차단 사용자 목록"]

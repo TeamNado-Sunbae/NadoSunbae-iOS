@@ -86,6 +86,7 @@
                     <connections>
                         <outlet property="navView" destination="DjM-IW-1d3" id="ifV-z1-5To"/>
                         <outlet property="settingTV" destination="9u4-kQ-yIE" id="n2d-dv-edu"/>
+                        <outlet property="settingTVHeight" destination="uEs-03-8OT" id="QB5-B0-Vmj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
