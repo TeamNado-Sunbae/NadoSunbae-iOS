@@ -23,22 +23,34 @@
                                     <constraint firstAttribute="height" constant="104" id="IPU-Eh-J0c"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8OM-Sa-I08">
+                                <rect key="frame" x="0.0" y="104" width="375" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Qmh-yV-usi"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8OM-Sa-I08" secondAttribute="trailing" id="1A7-Xu-Y08"/>
+                            <constraint firstItem="8OM-Sa-I08" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Hj0-FO-dNa"/>
                             <constraint firstItem="6wm-Fa-bke" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="UPz-8j-kBW"/>
+                            <constraint firstItem="8OM-Sa-I08" firstAttribute="top" secondItem="6wm-Fa-bke" secondAttribute="bottom" id="dQO-dm-ALl"/>
                             <constraint firstItem="6wm-Fa-bke" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="nnm-97-mvd"/>
                             <constraint firstItem="6wm-Fa-bke" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="tU2-fY-k3M"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="appInfoTV" destination="8OM-Sa-I08" id="Cah-Mh-Z74"/>
+                        <outlet property="appInfoTVHeight" destination="Qmh-yV-usi" id="UqT-u1-QYu"/>
                         <outlet property="navView" destination="6wm-Fa-bke" id="4jK-ph-8u9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16" y="81"/>
+            <point key="canvasLocation" x="-16.800000000000001" y="80.541871921182263"/>
         </scene>
     </scenes>
     <resources>

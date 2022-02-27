@@ -36,40 +36,6 @@
                                     <constraint firstAttribute="height" constant="320" id="uEs-03-8OT"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTVC" rowHeight="54" id="ASQ-7P-ds0" customClass="SettingTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="54"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ASQ-7P-ds0" id="Qqg-rr-fKp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pf-7H-Aix">
-                                                    <rect key="frame" x="20" y="17" width="39" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
-                                                    <color key="textColor" name="mainText"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="ko7-R3-dji">
-                                                    <rect key="frame" x="319" y="3" width="48" height="48"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="ko7-R3-dji" secondAttribute="height" multiplier="1:1" id="Rew-Xx-0v2"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ko7-R3-dji" firstAttribute="width" secondItem="Qqg-rr-fKp" secondAttribute="width" multiplier="0.128" id="Akg-cz-iuT"/>
-                                                <constraint firstItem="8pf-7H-Aix" firstAttribute="centerY" secondItem="Qqg-rr-fKp" secondAttribute="centerY" id="Hq6-3E-uW0"/>
-                                                <constraint firstItem="ko7-R3-dji" firstAttribute="centerY" secondItem="Qqg-rr-fKp" secondAttribute="centerY" id="XXU-NE-ygB"/>
-                                                <constraint firstItem="8pf-7H-Aix" firstAttribute="leading" secondItem="Qqg-rr-fKp" secondAttribute="leading" constant="20" id="b3m-WV-V0X"/>
-                                                <constraint firstAttribute="trailing" secondItem="ko7-R3-dji" secondAttribute="trailing" constant="8" id="vVq-mf-7Gy"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="titleLabel" destination="8pf-7H-Aix" id="0g2-jc-GT2"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJc-HG-40I">
                                 <rect key="frame" x="16" y="432" width="49" height="29"/>
@@ -134,12 +100,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btn_arrow" width="48" height="48"/>
         <namedColor name="gray4">
             <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="mainText">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

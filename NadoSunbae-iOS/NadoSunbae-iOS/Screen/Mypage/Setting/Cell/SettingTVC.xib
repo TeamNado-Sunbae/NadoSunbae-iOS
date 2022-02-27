@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTVC" rowHeight="54" id="QeB-vq-dux" customClass="SettingTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QeB-vq-dux" id="fi3-uR-563">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xra-72-IdV">
+                        <rect key="frame" x="20" y="17" width="39" height="20"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                        <color key="textColor" name="mainText"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="2JB-J1-jXt">
+                        <rect key="frame" x="319" y="3" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="2JB-J1-jXt" secondAttribute="height" multiplier="1:1" id="dDR-EG-jh5"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="2JB-J1-jXt" firstAttribute="centerY" secondItem="fi3-uR-563" secondAttribute="centerY" id="RBd-oA-DuP"/>
+                    <constraint firstItem="xra-72-IdV" firstAttribute="centerY" secondItem="fi3-uR-563" secondAttribute="centerY" id="RMU-4g-TaR"/>
+                    <constraint firstAttribute="trailing" secondItem="2JB-J1-jXt" secondAttribute="trailing" constant="8" id="avx-pq-W0a"/>
+                    <constraint firstItem="2JB-J1-jXt" firstAttribute="width" secondItem="fi3-uR-563" secondAttribute="width" multiplier="0.128" id="khU-nz-sdG"/>
+                    <constraint firstItem="xra-72-IdV" firstAttribute="leading" secondItem="fi3-uR-563" secondAttribute="leading" constant="20" id="uvb-Y3-AwJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="xra-72-IdV" id="TFs-FV-8UO"/>
+            </connections>
+            <point key="canvasLocation" x="-114" y="82"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_arrow" width="48" height="48"/>
+        <namedColor name="mainText">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
