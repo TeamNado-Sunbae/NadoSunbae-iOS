@@ -55,7 +55,8 @@ class MypageMainVC: BaseVC {
     }
     
     @IBAction func tapSettingBtn(_ sender: Any) {
-        /// 4순위댱
+        guard let settingVC = UIStoryboard.init(name: SettingVC.className, bundle: nil).instantiateViewController(withIdentifier: SettingVC.className) as? SettingVC else { return }
+        self.navigationController?.pushViewController(settingVC, animated: true)
     }
     
     @IBAction func tapLikeListBtn(_ sender: Any) {
