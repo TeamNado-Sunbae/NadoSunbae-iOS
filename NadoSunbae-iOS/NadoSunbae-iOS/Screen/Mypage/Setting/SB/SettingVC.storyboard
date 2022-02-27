@@ -71,6 +71,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJc-HG-40I">
+                                <rect key="frame" x="16" y="432" width="49" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" name="gray4"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapSignOutBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lQz-84-T91"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ts8-or-Q9q">
+                                <rect key="frame" x="16" y="461" width="30" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="탈퇴">
+                                    <color key="titleColor" name="gray4"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapWithDrawBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RBY-L7-mzu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7N-oH-hjd">
+                                <rect key="frame" x="16" y="490" width="65" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="서비스 문의">
+                                    <color key="titleColor" name="gray4"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapServiceContactBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GLz-VU-7fc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -78,8 +111,14 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9u4-kQ-yIE" secondAttribute="trailing" id="3pA-MR-YNm"/>
                             <constraint firstItem="DjM-IW-1d3" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="6JQ-FL-l0u"/>
                             <constraint firstItem="DjM-IW-1d3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="COh-go-dbB"/>
+                            <constraint firstItem="DJc-HG-40I" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="GaW-Xf-ZyL"/>
                             <constraint firstItem="9u4-kQ-yIE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="TLx-gF-vZ6"/>
                             <constraint firstItem="9u4-kQ-yIE" firstAttribute="top" secondItem="DjM-IW-1d3" secondAttribute="bottom" id="Vfs-9W-Ifu"/>
+                            <constraint firstItem="ts8-or-Q9q" firstAttribute="leading" secondItem="DJc-HG-40I" secondAttribute="leading" id="Vqu-0q-dDI"/>
+                            <constraint firstItem="Z7N-oH-hjd" firstAttribute="top" secondItem="ts8-or-Q9q" secondAttribute="bottom" id="etC-NU-k2j"/>
+                            <constraint firstItem="Z7N-oH-hjd" firstAttribute="leading" secondItem="DJc-HG-40I" secondAttribute="leading" id="h3Y-qg-AUQ"/>
+                            <constraint firstItem="ts8-or-Q9q" firstAttribute="top" secondItem="DJc-HG-40I" secondAttribute="bottom" id="mBN-ai-czG"/>
+                            <constraint firstItem="DJc-HG-40I" firstAttribute="top" secondItem="9u4-kQ-yIE" secondAttribute="bottom" constant="8" id="uNe-yB-Qb3"/>
                             <constraint firstItem="DjM-IW-1d3" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="z0O-oT-pc7"/>
                         </constraints>
                     </view>
@@ -96,6 +135,9 @@
     </scenes>
     <resources>
         <image name="btn_arrow" width="48" height="48"/>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="mainText">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

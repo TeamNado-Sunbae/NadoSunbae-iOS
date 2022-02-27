@@ -41,6 +41,16 @@ class SettingVC: BaseVC {
         super.viewDidLoad()
     }
     
+    // MARK: @IBAction
+    @IBAction func tapSignOutBtn(_ sender: Any) {
+    }
+    
+    @IBAction func tapWithDrawBtn(_ sender: Any) {
+    }
+    
+    @IBAction func tapServiceContactBtn(_ sender: Any) {
+    }
+    
     // MARK: Custom Methods
     private func pushVC(vc: BaseVC) {
         guard let pushedVC = UIStoryboard.init(name: vc.className, bundle: nil).instantiateViewController(withIdentifier: vc.className) as? BaseVC else { return }
