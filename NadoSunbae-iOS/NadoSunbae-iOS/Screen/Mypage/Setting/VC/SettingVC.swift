@@ -44,9 +44,31 @@ class SettingVC: BaseVC {
     
     // MARK: @IBAction
     @IBAction func tapSignOutBtn(_ sender: Any) {
+        guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        
+        alert.cancelBtn.press {
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.confirmBtn.press {
+            self.requestSignOut()
+        }
+        
+        alert.showNadoAlert(vc: self, message: "로그아웃할래?(미정)", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
     }
     
     @IBAction func tapWithDrawBtn(_ sender: Any) {
+        guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        
+        alert.cancelBtn.press {
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.confirmBtn.press {
+            self.requestWithDraw()
+        }
+        
+        alert.showNadoAlert(vc: self, message: "탈퇴할래?(미정)", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
     }
     
     @IBAction func tapServiceContactBtn(_ sender: Any) {
@@ -110,5 +132,16 @@ extension SettingVC: UITableViewDelegate {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - Network
+extension SettingVC {
+    private func requestSignOut() {
+        
+    }
+    
+    private func requestWithDraw() {
+        
     }
 }
