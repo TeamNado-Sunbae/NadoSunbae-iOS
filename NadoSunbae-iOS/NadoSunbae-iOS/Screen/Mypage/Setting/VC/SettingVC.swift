@@ -14,12 +14,17 @@ class SettingVC: BaseVC {
         didSet {
             navView.setUpNaviStyle(state: .backDefault)
             navView.configureTitleLabel(title: "내 설정")
+            navView.backBtn.press {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     @IBOutlet weak var settingTV: UITableView! {
         didSet {
             settingTV.dataSource = self
             settingTV.delegate = self
+            settingTV.isScrollEnabled = false
+            settingTV.rowHeight = 63.adjustedH
         }
     }
     
