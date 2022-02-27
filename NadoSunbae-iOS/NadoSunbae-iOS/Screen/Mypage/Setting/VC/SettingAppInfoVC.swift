@@ -96,11 +96,11 @@ extension SettingAppInfoVC: UITableViewDelegate {
             
         /// 서비스 이용약관
         case 1:
-            break
+            presentSafariVC(link: "https://nadosunbae.notion.site/V-1-0-2022-3-1-d1d15e411b0b417198b2405468894dea")
             
         /// 오픈소스 라이선스
         case 2:
-            break
+            presentSafariVC(link: "https://nadosunbae.notion.site/V-1-0-2442b1af796041d09bc6e8729c172438")
             
         default:
             break
