@@ -72,6 +72,9 @@ class SettingVC: BaseVC {
     }
     
     @IBAction func tapServiceContactBtn(_ sender: Any) {
+        if let url = URL(string: "http://pf.kakao.com/_pxcFib") {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
     
     // MARK: Custom Methods
