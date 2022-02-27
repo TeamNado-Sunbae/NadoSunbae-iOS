@@ -11,6 +11,10 @@ class SettingVC: BaseVC {
     
     // MARK: @IBOutlet
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
+        didSet {
+            navView.setUpNaviStyle(state: .backDefault)
+            navView.configureTitleLabel(title: "내 설정")
+        }
     }
     @IBOutlet weak var settingTV: UITableView! {
         didSet {
