@@ -20,7 +20,7 @@ struct NotificationList: Codable {
     var notificationID: Int = 0
     var sender: Sender = Sender()
     var postID: Int = 0
-    var notificationType: Int = 0
+    var notificationTypeID: Int = 0
     var content: String = ""
     var isRead: Bool = false
     var isDeleted: Bool = false
@@ -31,7 +31,7 @@ struct NotificationList: Codable {
         case notificationID = "notificationId"
         case sender = "sender"
         case postID = "postId"
-        case notificationType = "notificationType"
+        case notificationTypeID = "notificationTypeId"
         case content = "content"
         case isRead = "isRead"
         case isDeleted = "isDeleted"
