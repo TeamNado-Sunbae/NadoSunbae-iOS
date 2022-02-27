@@ -43,6 +43,10 @@ class SettingAppInfoVC: BaseVC {
         registerXIB()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getLatestVersion()
+    }
     
     // MARK: Custom Methods
     private func registerXIB() {
@@ -99,5 +103,26 @@ extension SettingAppInfoVC: UITableViewDelegate {
     }
 }
 
+// MARK: - Network
+extension SettingAppInfoVC {
+    private func getLatestVersion() {
+        MypageSettingAPI.shared.getLatestVersion { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let response = res as? GetLatestVersionResponseModel {
+                    self.latestVersion = response.iOS
+                    self.appInfoTV.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print("request err: ", message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
