@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingAppInfoVC: BaseVC {
     
@@ -52,6 +53,12 @@ class SettingAppInfoVC: BaseVC {
     private func registerXIB() {
         SettingTVC.register(target: appInfoTV)
         SettingVersionTVC.register(target: appInfoTV)
+    }
+    
+    private func presentSafariVC(link: String) {
+        let webLink = NSURL(string: link)
+        let safariVC = SFSafariViewController(url: webLink! as URL)
+        self.present(safariVC, animated: true, completion: nil)
     }
 }
 
