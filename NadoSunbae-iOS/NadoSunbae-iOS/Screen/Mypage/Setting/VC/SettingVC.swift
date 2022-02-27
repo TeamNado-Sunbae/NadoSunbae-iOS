@@ -39,6 +39,7 @@ class SettingVC: BaseVC {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerXIB()
     }
     
     // MARK: @IBAction
@@ -55,6 +56,10 @@ class SettingVC: BaseVC {
     private func pushVC(vc: BaseVC) {
         guard let pushedVC = UIStoryboard.init(name: vc.className, bundle: nil).instantiateViewController(withIdentifier: vc.className) as? BaseVC else { return }
         self.navigationController?.pushViewController(pushedVC, animated: true)
+    }
+    
+    private func registerXIB() {
+        SettingTVC.register(target: settingTV)
     }
 }
 

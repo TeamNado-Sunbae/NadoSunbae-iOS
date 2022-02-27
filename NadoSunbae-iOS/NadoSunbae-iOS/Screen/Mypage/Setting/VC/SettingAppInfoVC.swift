@@ -23,6 +23,12 @@ class SettingAppInfoVC: BaseVC {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+    // MARK: Custom Methods
+    private func registerXIB() {
+        SettingTVC.register(target: appInfoTV)
+        SettingVersionTVC.register(target: appInfoTV)
+    }
         
     }
 }
