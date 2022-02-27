@@ -39,6 +39,12 @@ class SettingVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // MARK: Custom Methods
+    private func pushVC(vc: BaseVC) {
+        guard let pushedVC = UIStoryboard.init(name: vc.className, bundle: nil).instantiateViewController(withIdentifier: vc.className) as? BaseVC else { return }
+        self.navigationController?.pushViewController(pushedVC, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
