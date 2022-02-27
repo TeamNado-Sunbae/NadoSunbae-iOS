@@ -30,19 +30,52 @@ class MypageSettingAPI {
             }
         }
     }
+    
+    /// [GET] 앱 최신 버전 받기
+    func getLatestVersion(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getLatestVersion) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getLatestVersionJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
 extension MypageSettingAPI {
     private func editProfileJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<EditProfileResponseModel>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<EditProfileResponseModel>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
+            return .success(decodedData.data ?? "None-Data")
         case 400...409:
-            return .requestErr(decodedData?.message)
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func getLatestVersionJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<GetLatestVersionResponseModel>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:
