@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--SettingVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SettingVC" id="Y6W-OH-hqX" customClass="SettingVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjM-IW-1d3" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="FSb-tc-eSz"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9u4-kQ-yIE">
+                                <rect key="frame" x="0.0" y="104" width="375" height="320"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="uEs-03-8OT"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTVC" rowHeight="54" id="ASQ-7P-ds0" customClass="SettingTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ASQ-7P-ds0" id="Qqg-rr-fKp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pf-7H-Aix">
+                                                    <rect key="frame" x="20" y="17" width="39" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                                                    <color key="textColor" name="mainText"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="ko7-R3-dji">
+                                                    <rect key="frame" x="319" y="3" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="ko7-R3-dji" secondAttribute="height" multiplier="1:1" id="Rew-Xx-0v2"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ko7-R3-dji" firstAttribute="width" secondItem="Qqg-rr-fKp" secondAttribute="width" multiplier="0.128" id="Akg-cz-iuT"/>
+                                                <constraint firstItem="8pf-7H-Aix" firstAttribute="centerY" secondItem="Qqg-rr-fKp" secondAttribute="centerY" id="Hq6-3E-uW0"/>
+                                                <constraint firstItem="ko7-R3-dji" firstAttribute="centerY" secondItem="Qqg-rr-fKp" secondAttribute="centerY" id="XXU-NE-ygB"/>
+                                                <constraint firstItem="8pf-7H-Aix" firstAttribute="leading" secondItem="Qqg-rr-fKp" secondAttribute="leading" constant="20" id="b3m-WV-V0X"/>
+                                                <constraint firstAttribute="trailing" secondItem="ko7-R3-dji" secondAttribute="trailing" constant="8" id="vVq-mf-7Gy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="8pf-7H-Aix" id="0g2-jc-GT2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9u4-kQ-yIE" secondAttribute="trailing" id="3pA-MR-YNm"/>
+                            <constraint firstItem="DjM-IW-1d3" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="6JQ-FL-l0u"/>
+                            <constraint firstItem="DjM-IW-1d3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="COh-go-dbB"/>
+                            <constraint firstItem="9u4-kQ-yIE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="TLx-gF-vZ6"/>
+                            <constraint firstItem="9u4-kQ-yIE" firstAttribute="top" secondItem="DjM-IW-1d3" secondAttribute="bottom" id="Vfs-9W-Ifu"/>
+                            <constraint firstItem="DjM-IW-1d3" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="z0O-oT-pc7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navView" destination="DjM-IW-1d3" id="ifV-z1-5To"/>
+                        <outlet property="settingTV" destination="9u4-kQ-yIE" id="n2d-dv-edu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16.800000000000001" y="80.541871921182263"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="btn_arrow" width="48" height="48"/>
+        <namedColor name="mainText">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
