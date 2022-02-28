@@ -35,11 +35,12 @@ class NotificationSettingVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXIB()
+        setNotificationCenter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getSystemNotiSetting()
+        checkNotificationStatus()
     }
     
     // MARK: Custom Methods
@@ -48,18 +49,19 @@ class NotificationSettingVC: BaseVC {
     }
     
     /// 나도선배 앱 알림 설정을 시스템에서 받아오는 함수
-    private func getSystemNotiSetting() {
+    @objc
+    private func checkNotificationStatus() {
         UNUserNotificationCenter.current().getNotificationSettings { setting in
-            switch setting.alertSetting {
-            case .enabled:
-                self.isSystemNotiSettingOn = true
-            default:
-                break
-            }
+            self.isSystemNotiSettingOn = setting.authorizationStatus == .authorized
             DispatchQueue.main.async {
                 self.settingTV.reloadData()
             }
         }
+    }
+    
+    /// 앱 상태 변화 observer 세팅 함수
+    private func setNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 }
 
@@ -74,9 +76,7 @@ extension NotificationSettingVC: UITableViewDataSource {
         cell.isOnToggleBtn.press {
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
             if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    self.navigationController?.popViewController(animated: true)
-                })
+                UIApplication.shared.open(settingsUrl)
             }
         }
         return cell
