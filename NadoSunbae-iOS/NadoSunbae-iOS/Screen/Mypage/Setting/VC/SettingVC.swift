@@ -119,7 +119,8 @@ extension SettingVC: UITableViewDelegate {
             
         /// 알림 설정
         case 2:
-            break
+            let notificationSettingVC = NotificationSettingVC()
+            pushVC(vc: notificationSettingVC)
             
         /// 앱정보
         case 3:

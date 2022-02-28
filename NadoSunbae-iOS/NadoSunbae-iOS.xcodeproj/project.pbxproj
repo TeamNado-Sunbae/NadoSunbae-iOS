@@ -221,6 +221,10 @@
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
 		77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */; };
 		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
+		C71BF22F27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF22E27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard */; };
+		C71BF23127CCD2CB0030DCB9 /* NotificationSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF23027CCD2CB0030DCB9 /* NotificationSettingVC.swift */; };
+		C71BF23427CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF23227CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift */; };
+		C71BF23527CCD4A20030DCB9 /* NotificationSettingBasicTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C71BF23327CCD4A20030DCB9 /* NotificationSettingBasicTVC.xib */; };
 		C71BF22327CCB1EE0030DCB9 /* BlockListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */; };
 		C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22427CCB2070030DCB9 /* BlockListVC.swift */; };
 		C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */; };
@@ -462,6 +466,10 @@
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
 		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C71BF22E27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationSettingVC.storyboard; sourceTree = "<group>"; };
+		C71BF23027CCD2CB0030DCB9 /* NotificationSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingVC.swift; sourceTree = "<group>"; };
+		C71BF23227CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingBasicTVC.swift; sourceTree = "<group>"; };
+		C71BF23327CCD4A20030DCB9 /* NotificationSettingBasicTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSettingBasicTVC.xib; sourceTree = "<group>"; };
 		C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockListVC.storyboard; sourceTree = "<group>"; };
 		C71BF22427CCB2070030DCB9 /* BlockListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListVC.swift; sourceTree = "<group>"; };
 		C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockListResponseModel.swift; sourceTree = "<group>"; };
@@ -1491,6 +1499,7 @@
 				C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */,
 				C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */,
 				C7ACE63327CBD3130011B23F /* SettingAppInfoVC.storyboard */,
+				C71BF22E27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -1500,6 +1509,7 @@
 			children = (
 				C7ACE62E27CB71FA0011B23F /* SettingVC.swift */,
 				C7ACE63527CBD3280011B23F /* SettingAppInfoVC.swift */,
+				C71BF23027CCD2CB0030DCB9 /* NotificationSettingVC.swift */,
 				C71BF22427CCB2070030DCB9 /* BlockListVC.swift */,
 			);
 			path = VC;
@@ -1512,6 +1522,8 @@
 				C7ACE63927CBDF550011B23F /* SettingTVC.xib */,
 				C7ACE63B27CBDF9B0011B23F /* SettingVersionTVC.xib */,
 				C7ACE63727CBD8450011B23F /* SettingVersionTVC.swift */,
+				C71BF23227CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift */,
+				C71BF23327CCD4A20030DCB9 /* NotificationSettingBasicTVC.xib */,
 				C71BF22827CCB9550030DCB9 /* BlockListTVC.swift */,
 			);
 			path = Cell;
@@ -1589,6 +1601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				777ABF7D278C844E002D3214 /* ReviewMainLinkTVC.xib in Resources */,
+				C71BF22F27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard in Resources */,
 				5CAB3F28278AE39D00025DA5 /* AgreeTermsVC.storyboard in Resources */,
 				C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */,
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
@@ -1611,6 +1624,7 @@
 				3313648E2785D76400E0C118 /* ReviewSB.storyboard in Resources */,
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
 				77A7591B279712B700A8E48B /* ReviewPostTagCVC.xib in Resources */,
+				C71BF23527CCD4A20030DCB9 /* NotificationSettingBasicTVC.xib in Resources */,
 				5CD4213A279080C100D09DEE /* MypageUserVC.storyboard in Resources */,
 				331364332784D3C000E0C118 /* Assets.xcassets in Resources */,
 				3313647F2785BBB100E0C118 /* Pretendard-SemiBold.otf in Resources */,
@@ -1760,10 +1774,12 @@
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */,
+				C71BF23427CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
+				C71BF23127CCD2CB0030DCB9 /* NotificationSettingVC.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
 				33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
