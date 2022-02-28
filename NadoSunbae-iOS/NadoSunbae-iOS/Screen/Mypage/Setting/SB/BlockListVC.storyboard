@@ -29,22 +29,6 @@
                                     <constraint firstAttribute="height" constant="104" id="SiX-xg-XOG"/>
                                 </constraints>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQU-Ue-USP">
-                                <rect key="frame" x="16" y="120" width="343" height="642"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="차단한 사용자가 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVW-ux-ty9">
-                                        <rect key="frame" x="99" y="312.66666666666669" width="145" height="17"/>
-                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                        <color key="textColor" name="gray2"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="HVW-ux-ty9" firstAttribute="centerY" secondItem="cQU-Ue-USP" secondAttribute="centerY" id="5pt-eJ-gmv"/>
-                                    <constraint firstItem="HVW-ux-ty9" firstAttribute="centerX" secondItem="cQU-Ue-USP" secondAttribute="centerX" id="Qds-Ys-zcg"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hl4-d5-pos">
                                 <rect key="frame" x="0.0" y="104" width="375" height="674"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,6 +81,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQU-Ue-USP">
+                                <rect key="frame" x="16" y="120" width="343" height="642"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="차단한 사용자가 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVW-ux-ty9">
+                                        <rect key="frame" x="99" y="312.66666666666669" width="145" height="17"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                        <color key="textColor" name="gray2"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="HVW-ux-ty9" firstAttribute="centerY" secondItem="cQU-Ue-USP" secondAttribute="centerY" id="5pt-eJ-gmv"/>
+                                    <constraint firstItem="HVW-ux-ty9" firstAttribute="centerX" secondItem="cQU-Ue-USP" secondAttribute="centerX" id="Qds-Ys-zcg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
@@ -116,6 +116,7 @@
                     </view>
                     <connections>
                         <outlet property="blockListTV" destination="hl4-d5-pos" id="Gvk-s8-0QE"/>
+                        <outlet property="emptyView" destination="cQU-Ue-USP" id="5LQ-HP-0P4"/>
                         <outlet property="navView" destination="HZa-2J-z53" id="wNr-sG-aIM"/>
                     </connections>
                 </viewController>

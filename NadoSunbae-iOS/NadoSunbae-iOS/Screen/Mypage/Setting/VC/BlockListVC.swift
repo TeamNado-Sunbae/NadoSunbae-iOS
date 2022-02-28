@@ -25,6 +25,12 @@ class BlockListVC: BaseVC {
             blockListTV.rowHeight = 63.adjustedH
         }
     }
+    @IBOutlet weak var emptyView: UIView! {
+        didSet {
+            emptyView.isHidden = true
+            emptyView.makeRounded(cornerRadius: 8.adjusted)
+        }
+    }
     
     // MARK: Properties
     var blockList: [GetBlockListResponseModel] = []
