@@ -54,15 +54,21 @@ extension BlockListVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BlockListTVC.className, for: indexPath) as? BlockListTVC else { return UITableViewCell() }
+        cell.undoBlockBtn.tag = indexPath.row
         cell.setData(data: blockList[indexPath.row])
-        
+        cell.undoBlockBtn.addTarget(self, action: #selector(doUnblock(_:)), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func doUnblock(_ sender: UIButton) {
+        self.requestUnblockUser(blockUserID: self.blockList[sender.tag].userID)
     }
 }
 
 // MARK: - Network
 extension BlockListVC {
     private func getBlockList() {
+        self.activityIndicator.startAnimating()
         MypageSettingAPI.shared.getBlockList { networkResult in
             switch networkResult {
             case .success(let res):
@@ -70,6 +76,29 @@ extension BlockListVC {
                     self.blockList = response
                     self.emptyView.isHidden = !(self.blockList.isEmpty)
                     self.blockListTV.reloadData()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print("request err: ", message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    private func requestUnblockUser(blockUserID: Int) {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.requestBlockUnBlockUser(blockUserID: blockUserID) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if res is RequestBlockUnblockUserModel {
+                    self.getBlockList()
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
