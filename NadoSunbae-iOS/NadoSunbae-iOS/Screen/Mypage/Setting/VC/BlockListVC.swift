@@ -61,7 +61,17 @@ extension BlockListVC: UITableViewDataSource {
     }
     
     @objc func doUnblock(_ sender: UIButton) {
-        self.requestUnblockUser(blockUserID: self.blockList[sender.tag].userID)
+        guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        
+        alert.cancelBtn.press {
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.confirmBtn.press {
+            self.requestUnblockUser(blockUserID: self.blockList[sender.tag].userID)
+        }
+        
+        alert.showNadoAlert(vc: self, message: "\(self.blockList[sender.tag].nickname)님을\n차단 해제하시겠습니까?", confirmBtnTitle: "차단 해제", cancelBtnTitle: "취소")
     }
 }
 
