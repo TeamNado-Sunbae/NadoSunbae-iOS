@@ -46,7 +46,7 @@
                                 <color key="textColor" name="mainText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1bB-Bt-92D" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="학교 이메일 계정" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1bB-Bt-92D" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="236" width="343" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RFJ-ki-sGD"/>

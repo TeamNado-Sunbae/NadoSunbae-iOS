@@ -29,12 +29,20 @@ class ResetPWVC: BaseVC {
     }
     @IBOutlet weak var emailTextField: NadoTextField!
     @IBOutlet weak var emailClearBtn: UIButton!
-    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel! {
+        didSet {
+            infoLabel.isHidden = true
+        }
+    }
     @IBOutlet weak var confirmBtn: NadoSunbaeBtn!
+    
+    // MARK: Properties
+    let disposeBag = DisposeBag()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTextFieldClearBtn(textField: emailTextField, clearBtn: emailClearBtn)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,4 +54,28 @@ class ResetPWVC: BaseVC {
         super.viewWillDisappear(animated)
         showTabbar()
     }
+    
+    // MARK: Custom Methods
+    
+    /// textField-btn 에 clear 기능 세팅하는 함수
+    private func setTextFieldClearBtn(textField: UITextField, clearBtn: UIButton) {
+        textField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                clearBtn.isHidden = !(changedText != "")
+            })
+            .disposed(by: disposeBag)
+        
+        /// Clear 버튼 액션
+        clearBtn.rx.tap
+            .bind {
+                textField.text = ""
+                clearBtn.isHidden = true
+                self.confirmBtn.isActivated = false
+                self.confirmBtn.isEnabled = false
+            }
+            .disposed(by: disposeBag)
+    }
+    
 }

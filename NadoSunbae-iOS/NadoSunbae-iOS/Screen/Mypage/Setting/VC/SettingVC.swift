@@ -106,7 +106,6 @@ extension SettingVC: UITableViewDataSource {
 extension SettingVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        // TODO: 나머지 case들 뷰 구현되는 대로 추가
             
         /// 프로필 수정
         case 0:
