@@ -1,22 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--ResetPW CompleteVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="ResetPWCompleteVC" id="Y6W-OH-hqX" customClass="ResetPWCompleteVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메일함을 확인해보세요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcu-Ra-u5J">
+                                <rect key="frame" x="24" y="172" width="221" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="24"/>
+                                <color key="textColor" name="mainDefault"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호를 재설정할 수 있는 링크가 전송되었습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsm-0a-KLt">
+                                <rect key="frame" x="24" y="209" width="287.33333333333331" height="17"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" name="mainText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메일이 도착하지 않았다면 스팸 메일함을 확인해보세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtc-xX-Ijg">
+                                <rect key="frame" x="24" y="264" width="256.66666666666669" height="14.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <color key="textColor" name="gray4"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKJ-NL-rWk">
+                                <rect key="frame" x="295.66666666666669" y="257.66666666666669" width="55.333333333333314" height="27.333333333333314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pKJ-NL-rWk" secondAttribute="height" multiplier="61:30" id="QcS-6O-Dhd"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="resendBtn"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZe-qr-9Oe" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="16" y="718" width="343" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Moz-sz-4Ov"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="로그인 페이지로 돌아가기"/>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgMailSent" translatesAutoresizingMaskIntoConstraints="NO" id="XhX-yP-S4Q">
+                                <rect key="frame" x="63.666666666666657" y="314.66666666666669" width="247.99999999999997" height="248.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XhX-yP-S4Q" secondAttribute="height" multiplier="1:1" id="Dhy-Zx-3v7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XhX-yP-S4Q" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.661333" id="184-Yb-TKu"/>
+                            <constraint firstItem="Zsm-0a-KLt" firstAttribute="leading" secondItem="Lcu-Ra-u5J" secondAttribute="leading" id="1gs-jG-aiF"/>
+                            <constraint firstItem="XhX-yP-S4Q" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Ali-YV-fya"/>
+                            <constraint firstItem="Zsm-0a-KLt" firstAttribute="top" secondItem="Lcu-Ra-u5J" secondAttribute="bottom" constant="8" id="BVP-6A-abo"/>
+                            <constraint firstItem="pKJ-NL-rWk" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.147343" id="Ero-1s-ffz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pKJ-NL-rWk" secondAttribute="trailing" constant="24" id="N6h-T8-6f8"/>
+                            <constraint firstItem="Lcu-Ra-u5J" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="128" id="P8n-3M-hQo"/>
+                            <constraint firstItem="Lcu-Ra-u5J" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="UJJ-XV-dYT"/>
+                            <constraint firstItem="TZe-qr-9Oe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="ZsD-uv-crA"/>
+                            <constraint firstItem="pKJ-NL-rWk" firstAttribute="centerY" secondItem="dtc-xX-Ijg" secondAttribute="centerY" id="ag5-kN-3GC"/>
+                            <constraint firstItem="XhX-yP-S4Q" firstAttribute="top" secondItem="dtc-xX-Ijg" secondAttribute="bottom" constant="36" id="ehE-DK-Jqk"/>
+                            <constraint firstAttribute="bottom" secondItem="TZe-qr-9Oe" secondAttribute="bottom" constant="34" id="gkw-DX-6Qu"/>
+                            <constraint firstItem="dtc-xX-Ijg" firstAttribute="leading" secondItem="Zsm-0a-KLt" secondAttribute="leading" id="iO9-Uy-ZZg"/>
+                            <constraint firstItem="dtc-xX-Ijg" firstAttribute="top" secondItem="Zsm-0a-KLt" secondAttribute="bottom" constant="38" id="oQJ-QO-PTj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="TZe-qr-9Oe" secondAttribute="trailing" constant="16" id="tLQ-6Y-WVf"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -25,6 +93,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="imgMailSent" width="248" height="248"/>
+        <image name="resendBtn" width="61" height="30"/>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainDefault">
+            <color red="0.0" green="0.78431372549019607" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainText">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
