@@ -1,23 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--ResetPWVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="ResetPWVC" id="Y6W-OH-hqX" customClass="ResetPWVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpF-Lh-7NK">
+                                <rect key="frame" x="8" y="44" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="1IT-UV-QJE"/>
+                                    <constraint firstAttribute="width" constant="48" id="P7v-yV-pIT"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="btnBack"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호 찾기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt2-jy-OUe">
+                                <rect key="frame" x="24" y="128" width="131" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="24"/>
+                                <color key="textColor" name="mainDefault"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본인 인증을 위해" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWM-5u-hpP">
+                                <rect key="frame" x="24" y="165" width="92" height="17"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <color key="textColor" name="mainText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1bB-Bt-92D" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="16" y="236" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="RFJ-ki-sGD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwl-Ee-4md" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="16" y="718" width="343" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="rz0-51-KMq"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="확인"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d78-WM-6vN">
+                                <rect key="frame" x="311" y="236" width="48" height="48"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="btnXGray">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해당 메일로 가입된 사용자가 없습니다." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itc-2f-WWd">
+                                <rect key="frame" x="24" y="292" width="327" height="15"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="paleGray"/>
+                        <constraints>
+                            <constraint firstItem="rWM-5u-hpP" firstAttribute="leading" secondItem="gt2-jy-OUe" secondAttribute="leading" id="4fo-6I-yfD"/>
+                            <constraint firstItem="1bB-Bt-92D" firstAttribute="top" secondItem="rWM-5u-hpP" secondAttribute="bottom" constant="54" id="5me-Rn-Mk8"/>
+                            <constraint firstItem="rWM-5u-hpP" firstAttribute="top" secondItem="gt2-jy-OUe" secondAttribute="bottom" constant="8" id="6pc-mv-3Qa"/>
+                            <constraint firstItem="Itc-2f-WWd" firstAttribute="top" secondItem="1bB-Bt-92D" secondAttribute="bottom" constant="8" id="9W1-ro-Ekw"/>
+                            <constraint firstAttribute="bottom" secondItem="lwl-Ee-4md" secondAttribute="bottom" constant="34" id="9x2-w0-ovL"/>
+                            <constraint firstItem="gt2-jy-OUe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="HVZ-KH-gi1"/>
+                            <constraint firstItem="gt2-jy-OUe" firstAttribute="top" secondItem="kpF-Lh-7NK" secondAttribute="bottom" constant="36" id="Hal-Dd-CeN"/>
+                            <constraint firstItem="d78-WM-6vN" firstAttribute="top" secondItem="1bB-Bt-92D" secondAttribute="top" id="Jkr-Cr-H2B"/>
+                            <constraint firstItem="d78-WM-6vN" firstAttribute="width" secondItem="d78-WM-6vN" secondAttribute="height" multiplier="1:1" id="PIV-vx-vva"/>
+                            <constraint firstItem="lwl-Ee-4md" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="RYS-ej-k5s"/>
+                            <constraint firstItem="d78-WM-6vN" firstAttribute="trailing" secondItem="1bB-Bt-92D" secondAttribute="trailing" id="YOW-Ah-Tvq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1bB-Bt-92D" secondAttribute="trailing" constant="16" id="ci0-3V-DM3"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lwl-Ee-4md" secondAttribute="trailing" constant="16" id="co9-xX-tKQ"/>
+                            <constraint firstItem="1bB-Bt-92D" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="d45-kQ-LYi"/>
+                            <constraint firstItem="d78-WM-6vN" firstAttribute="bottom" secondItem="1bB-Bt-92D" secondAttribute="bottom" id="dQk-Ax-M0f"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Itc-2f-WWd" secondAttribute="trailing" constant="24" id="pIZ-EP-aid"/>
+                            <constraint firstItem="kpF-Lh-7NK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="urX-RX-wHK"/>
+                            <constraint firstItem="kpF-Lh-7NK" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="44" id="xJ0-fM-ZfB"/>
+                            <constraint firstItem="Itc-2f-WWd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="xuh-Oc-nHg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backBtn" destination="kpF-Lh-7NK" id="XD6-ii-qk2"/>
+                        <outlet property="confirmBtn" destination="lwl-Ee-4md" id="pnv-eo-TfB"/>
+                        <outlet property="contentLabel" destination="rWM-5u-hpP" id="8kl-l3-V2k"/>
+                        <outlet property="emailClearBtn" destination="d78-WM-6vN" id="lp9-jz-Zgo"/>
+                        <outlet property="emailTextField" destination="1bB-Bt-92D" id="ukh-j8-LfF"/>
+                        <outlet property="infoLabel" destination="Itc-2f-WWd" id="LcU-Ei-Cbo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,8 +115,19 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="btnBack" width="48" height="48"/>
+        <image name="btnXGray" width="40" height="40"/>
+        <namedColor name="mainDefault">
+            <color red="0.0" green="0.78431372549019607" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainText">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
