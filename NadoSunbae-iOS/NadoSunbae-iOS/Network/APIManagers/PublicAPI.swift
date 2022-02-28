@@ -30,6 +30,23 @@ class PublicAPI {
             }
         }
     }
+    
+    /// [POST] 차단/차단해제 요청
+    func requestBlockUnBlockUser(blockUserID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.requestBlockUnBlockUser(blockUserID: blockUserID)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.requestBlockUnBlockUserJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
@@ -38,13 +55,30 @@ extension PublicAPI {
     /// majorListJudgeData
     private func majorListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<[MajorListData]>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<[MajorListData]>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
+            return .success(decodedData.data ?? "None-Data")
         case 400...409:
-            return .requestErr(decodedData?.message)
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// requestBlockUnBlockUser
+    private func requestBlockUnBlockUserJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<RequestBlockUnblockUserModel>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:
