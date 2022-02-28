@@ -11,6 +11,7 @@ import Moya
 enum MypageSettingService {
     case editProfile(data: EditProfileRequestModel)
     case getLatestVersion
+    case getBlockList
 }
 
 extension MypageSettingService: TargetType {
@@ -24,6 +25,8 @@ extension MypageSettingService: TargetType {
             return "/user/mypage"
         case .getLatestVersion:
             return "/user/mypage/app-version/recent"
+        case .getBlockList:
+            return "/block/list"
         }
     }
     
@@ -31,7 +34,7 @@ extension MypageSettingService: TargetType {
         switch self {
         case .editProfile:
             return .put
-        case .getLatestVersion:
+        case .getLatestVersion, .getBlockList:
             return .get
         }
     }
@@ -47,7 +50,7 @@ extension MypageSettingService: TargetType {
                 "secondMajorStart": data.secondMajorStart,
                 "isOnQuestion": data.isOnQuestion
             ], encoding: JSONEncoding.default)
-        case .getLatestVersion:
+        case .getLatestVersion, .getBlockList:
             return .requestPlain
         }
     }

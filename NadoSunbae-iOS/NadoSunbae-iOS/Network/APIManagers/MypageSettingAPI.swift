@@ -47,6 +47,23 @@ class MypageSettingAPI {
             }
         }
     }
+    
+    /// [GET] 차단 유저 목록 조회
+    func getBlockList(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getBlockList) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getBlockListJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
@@ -70,6 +87,22 @@ extension MypageSettingAPI {
     private func getLatestVersionJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<GetLatestVersionResponseModel>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func getBlockListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<[GetBlockListResponseModel]>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:

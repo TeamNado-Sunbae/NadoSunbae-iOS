@@ -34,6 +34,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="2JB-J1-jXt" firstAttribute="centerY" secondItem="fi3-uR-563" secondAttribute="centerY" id="RBd-oA-DuP"/>
                     <constraint firstItem="xra-72-IdV" firstAttribute="centerY" secondItem="fi3-uR-563" secondAttribute="centerY" id="RMU-4g-TaR"/>
@@ -42,6 +43,7 @@
                     <constraint firstItem="xra-72-IdV" firstAttribute="leading" secondItem="fi3-uR-563" secondAttribute="leading" constant="20" id="uvb-Y3-AwJ"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="titleLabel" destination="xra-72-IdV" id="TFs-FV-8UO"/>
             </connections>
