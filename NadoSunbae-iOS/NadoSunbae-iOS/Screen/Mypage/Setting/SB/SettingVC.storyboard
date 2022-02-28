@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--SettingVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SettingVC" id="Y6W-OH-hqX" customClass="SettingVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjM-IW-1d3" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="FSb-tc-eSz"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9u4-kQ-yIE">
+                                <rect key="frame" x="0.0" y="104" width="375" height="320"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="uEs-03-8OT"/>
+                                </constraints>
+                                <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJc-HG-40I">
+                                <rect key="frame" x="16" y="432" width="49" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" name="gray4"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapSignOutBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lQz-84-T91"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ts8-or-Q9q">
+                                <rect key="frame" x="16" y="461" width="30" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="탈퇴">
+                                    <color key="titleColor" name="gray4"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapWithDrawBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RBY-L7-mzu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7N-oH-hjd">
+                                <rect key="frame" x="16" y="490" width="65" height="29"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="서비스 문의">
+                                    <color key="titleColor" name="gray4"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapServiceContactBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GLz-VU-7fc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9u4-kQ-yIE" secondAttribute="trailing" id="3pA-MR-YNm"/>
+                            <constraint firstItem="DjM-IW-1d3" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="6JQ-FL-l0u"/>
+                            <constraint firstItem="DjM-IW-1d3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="COh-go-dbB"/>
+                            <constraint firstItem="DJc-HG-40I" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="GaW-Xf-ZyL"/>
+                            <constraint firstItem="9u4-kQ-yIE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="TLx-gF-vZ6"/>
+                            <constraint firstItem="9u4-kQ-yIE" firstAttribute="top" secondItem="DjM-IW-1d3" secondAttribute="bottom" id="Vfs-9W-Ifu"/>
+                            <constraint firstItem="ts8-or-Q9q" firstAttribute="leading" secondItem="DJc-HG-40I" secondAttribute="leading" id="Vqu-0q-dDI"/>
+                            <constraint firstItem="Z7N-oH-hjd" firstAttribute="top" secondItem="ts8-or-Q9q" secondAttribute="bottom" id="etC-NU-k2j"/>
+                            <constraint firstItem="Z7N-oH-hjd" firstAttribute="leading" secondItem="DJc-HG-40I" secondAttribute="leading" id="h3Y-qg-AUQ"/>
+                            <constraint firstItem="ts8-or-Q9q" firstAttribute="top" secondItem="DJc-HG-40I" secondAttribute="bottom" id="mBN-ai-czG"/>
+                            <constraint firstItem="DJc-HG-40I" firstAttribute="top" secondItem="9u4-kQ-yIE" secondAttribute="bottom" constant="8" id="uNe-yB-Qb3"/>
+                            <constraint firstItem="DjM-IW-1d3" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="z0O-oT-pc7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navView" destination="DjM-IW-1d3" id="ifV-z1-5To"/>
+                        <outlet property="settingTV" destination="9u4-kQ-yIE" id="n2d-dv-edu"/>
+                        <outlet property="settingTVHeight" destination="uEs-03-8OT" id="QB5-B0-Vmj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16.800000000000001" y="80.541871921182263"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

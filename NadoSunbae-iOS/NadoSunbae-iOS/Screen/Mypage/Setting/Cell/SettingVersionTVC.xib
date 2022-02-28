@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingVersionTVC" rowHeight="54" id="Cbo-hc-Dk2" customClass="SettingVersionTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cbo-hc-Dk2" id="leu-86-Aaa">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nZ-l2-0u1">
+                        <rect key="frame" x="20" y="17" width="39" height="20"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="16"/>
+                        <color key="textColor" name="mainText"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aW-a6-IfO">
+                        <rect key="frame" x="320.5" y="18.5" width="34.5" height="17"/>
+                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                        <color key="textColor" name="gray4"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="4aW-a6-IfO" secondAttribute="trailing" constant="20" id="Ed8-zy-95v"/>
+                    <constraint firstItem="4aW-a6-IfO" firstAttribute="centerY" secondItem="leu-86-Aaa" secondAttribute="centerY" id="NdD-Ey-PGz"/>
+                    <constraint firstItem="5nZ-l2-0u1" firstAttribute="leading" secondItem="leu-86-Aaa" secondAttribute="leading" constant="20" id="byg-j2-DxS"/>
+                    <constraint firstItem="5nZ-l2-0u1" firstAttribute="centerY" secondItem="leu-86-Aaa" secondAttribute="centerY" id="tsY-Ye-YKw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="5nZ-l2-0u1" id="8MB-7k-Qud"/>
+                <outlet property="versionLabel" destination="4aW-a6-IfO" id="XHu-NM-dF1"/>
+            </connections>
+            <point key="canvasLocation" x="131" y="96"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainText">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

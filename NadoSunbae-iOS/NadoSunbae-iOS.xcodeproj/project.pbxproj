@@ -223,6 +223,15 @@
 		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
 		C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */; };
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
+		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
+		C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE62E27CB71FA0011B23F /* SettingVC.swift */; };
+		C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63127CB73F80011B23F /* SettingTVC.swift */; };
+		C7ACE63427CBD3130011B23F /* SettingAppInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE63327CBD3130011B23F /* SettingAppInfoVC.storyboard */; };
+		C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63527CBD3280011B23F /* SettingAppInfoVC.swift */; };
+		C7ACE63827CBD8450011B23F /* SettingVersionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63727CBD8450011B23F /* SettingVersionTVC.swift */; };
+		C7ACE63A27CBDF550011B23F /* SettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE63927CBDF550011B23F /* SettingTVC.xib */; };
+		C7ACE63D27CBEAB70011B23F /* GetLatestVersionResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63C27CBEAB70011B23F /* GetLatestVersionResponseModel.swift */; };
+		C7ACE63E27CBED1E0011B23F /* SettingVersionTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE63B27CBDF9B0011B23F /* SettingVersionTVC.xib */; };
 		C7C4144927C9392000296C30 /* MypageSettingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144827C9392000296C30 /* MypageSettingAPI.swift */; };
 		C7C4144B27C9392F00296C30 /* MypageSettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144A27C9392F00296C30 /* MypageSettingService.swift */; };
 		C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */; };
@@ -450,6 +459,15 @@
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileVC.storyboard; sourceTree = "<group>"; };
 		C740A85A27C7C58500C4518A /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
+		C7ACE62E27CB71FA0011B23F /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		C7ACE63127CB73F80011B23F /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
+		C7ACE63327CBD3130011B23F /* SettingAppInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingAppInfoVC.storyboard; sourceTree = "<group>"; };
+		C7ACE63527CBD3280011B23F /* SettingAppInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppInfoVC.swift; sourceTree = "<group>"; };
+		C7ACE63727CBD8450011B23F /* SettingVersionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVersionTVC.swift; sourceTree = "<group>"; };
+		C7ACE63927CBDF550011B23F /* SettingTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTVC.xib; sourceTree = "<group>"; };
+		C7ACE63B27CBDF9B0011B23F /* SettingVersionTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVersionTVC.xib; sourceTree = "<group>"; };
+		C7ACE63C27CBEAB70011B23F /* GetLatestVersionResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestVersionResponseModel.swift; sourceTree = "<group>"; };
 		C7C4144827C9392000296C30 /* MypageSettingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingAPI.swift; sourceTree = "<group>"; };
 		C7C4144A27C9392F00296C30 /* MypageSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingService.swift; sourceTree = "<group>"; };
 		C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestModel.swift; sourceTree = "<group>"; };
@@ -755,6 +773,7 @@
 		331364982785D84600E0C118 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				C7ACE62927CA9EC70011B23F /* Setting */,
 				C740A85527C7C50C00C4518A /* ProfileSetting */,
 				5CD4213B2790863100D09DEE /* MypageNVC */,
 				5CD4213327907E4900D09DEE /* MypageUser */,
@@ -1445,11 +1464,51 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		C7ACE62927CA9EC70011B23F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C7ACE63027CB73E10011B23F /* Cell */,
+				C7ACE62B27CB6F870011B23F /* VC */,
+				C7ACE62A27CB6F800011B23F /* SB */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C7ACE62A27CB6F800011B23F /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */,
+				C7ACE63327CBD3130011B23F /* SettingAppInfoVC.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		C7ACE62B27CB6F870011B23F /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				C7ACE62E27CB71FA0011B23F /* SettingVC.swift */,
+				C7ACE63527CBD3280011B23F /* SettingAppInfoVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		C7ACE63027CB73E10011B23F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C7ACE63127CB73F80011B23F /* SettingTVC.swift */,
+				C7ACE63927CBDF550011B23F /* SettingTVC.xib */,
+				C7ACE63B27CBDF9B0011B23F /* SettingVersionTVC.xib */,
+				C7ACE63727CBD8450011B23F /* SettingVersionTVC.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C7C4144C27C939BF00296C30 /* MypageSetting */ = {
 			isa = PBXGroup;
 			children = (
 				C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */,
 				C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */,
+				C7ACE63C27CBEAB70011B23F /* GetLatestVersionResponseModel.swift */,
 			);
 			path = MypageSetting;
 			sourceTree = "<group>";
@@ -1546,12 +1605,14 @@
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */,
+				C7ACE63427CBD3130011B23F /* SettingAppInfoVC.storyboard in Resources */,
 				7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
 				33CF635C279464FD00E92C04 /* InfoSB.storyboard in Resources */,
 				5C70A4FB27BA4C300096B20A /* MypagePostListVC.storyboard in Resources */,
 				33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */,
 				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
+				C7ACE63E27CBED1E0011B23F /* SettingVersionTVC.xib in Resources */,
 				5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */,
 				5C3280152796F2B700781EBE /* MypageSB.storyboard in Resources */,
 				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
@@ -1565,7 +1626,9 @@
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
 				33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */,
 				5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */,
+				C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */,
 				5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */,
+				C7ACE63A27CBDF550011B23F /* SettingTVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1619,6 +1682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C3280182797217E00781EBE /* MypageService.swift in Sources */,
+				C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
 				5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
@@ -1736,11 +1800,13 @@
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
 				33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */,
 				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
+				C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */,
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
 				5C49668F27BB5C0D00983689 /* MypageMyPostListVC.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
+				C7ACE63D27CBEAB70011B23F /* GetLatestVersionResponseModel.swift in Sources */,
 				33CF635827945DE300E92C04 /* QuestionMainVC.swift in Sources */,
 				5C9A93F727A64B550097310B /* SignUpBodyModel.swift in Sources */,
 				5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */,
@@ -1765,6 +1831,7 @@
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
 				5C49669327BD469200983689 /* AutoSignInVC.swift in Sources */,
+				C7ACE63827CBD8450011B23F /* SettingVersionTVC.swift in Sources */,
 				5CD4213D2790865A00D09DEE /* MypageNVC.swift in Sources */,
 				33B9B0DE27B8EB6700066C1F /* InfoCommentHeaderTVC.swift in Sources */,
 				3313645C2785A9F100E0C118 /* UITextField+.swift in Sources */,
@@ -1779,6 +1846,7 @@
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */,
+				C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
