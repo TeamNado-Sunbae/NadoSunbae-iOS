@@ -223,6 +223,7 @@
 		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
 		C71BF22327CCB1EE0030DCB9 /* BlockListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */; };
 		C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22427CCB2070030DCB9 /* BlockListVC.swift */; };
+		C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */; };
 		C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */; };
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
@@ -461,6 +462,7 @@
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockListVC.storyboard; sourceTree = "<group>"; };
 		C71BF22427CCB2070030DCB9 /* BlockListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListVC.swift; sourceTree = "<group>"; };
+		C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockListResponseModel.swift; sourceTree = "<group>"; };
 		C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileVC.storyboard; sourceTree = "<group>"; };
 		C740A85A27C7C58500C4518A /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
@@ -1515,6 +1517,7 @@
 				C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */,
 				C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */,
 				C7ACE63C27CBEAB70011B23F /* GetLatestVersionResponseModel.swift */,
+				C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */,
 			);
 			path = MypageSetting;
 			sourceTree = "<group>";
@@ -1811,6 +1814,7 @@
 				C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */,
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
+				C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */,
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
 				5C49668F27BB5C0D00983689 /* MypageMyPostListVC.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
