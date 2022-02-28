@@ -12,6 +12,7 @@ enum MypageSettingService {
     case editProfile(data: EditProfileRequestModel)
     case getLatestVersion
     case getBlockList
+    case requestResetPW(email: String)
 }
 
 extension MypageSettingService: TargetType {
@@ -27,6 +28,8 @@ extension MypageSettingService: TargetType {
             return "/user/mypage/app-version/recent"
         case .getBlockList:
             return "/block/list"
+        case .requestResetPW:
+            return "/auth/reset/password"
         }
     }
     
@@ -36,6 +39,8 @@ extension MypageSettingService: TargetType {
             return .put
         case .getLatestVersion, .getBlockList:
             return .get
+        case .requestResetPW:
+            return .post
         }
     }
     
@@ -52,6 +57,8 @@ extension MypageSettingService: TargetType {
             ], encoding: JSONEncoding.default)
         case .getLatestVersion, .getBlockList:
             return .requestPlain
+        case .requestResetPW(let email):
+            return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
         }
     }
     

@@ -58,7 +58,22 @@ class MypageSettingAPI {
                 let data = response.data
                 
                 completion(self.getBlockListJudgeData(status: statusCode, data: data))
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    /// [POST] 비밀번호 재설정
+    func requestResetPW(email: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.requestResetPW(email: email)) { result in
+            switch result {
                 
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.requestResetPWJudgeData(status: statusCode, data: data))
             case .failure(let err):
                 print(err)
             }
@@ -109,6 +124,24 @@ extension MypageSettingAPI {
             return .success(decodedData.data ?? "None-Data")
         case 400...409:
             return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+        
+    private func requestResetPWJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400:
+            return .requestErr(decodedData.message)
+        case 401...409:
+            return .serverErr
         case 500:
             return .serverErr
         default:
