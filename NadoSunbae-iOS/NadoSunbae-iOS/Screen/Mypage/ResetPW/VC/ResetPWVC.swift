@@ -43,6 +43,7 @@ class ResetPWVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextFieldClearBtn(textField: emailTextField, clearBtn: emailClearBtn)
+        checkEmailIsValid()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,4 +79,16 @@ class ResetPWVC: BaseVC {
             .disposed(by: disposeBag)
     }
     
+    /// 이메일 유효성 검사
+    private func checkEmailIsValid() {
+        emailTextField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                self.confirmBtn.isActivated = changedText.contains("@") && changedText.contains(".")
+                self.confirmBtn.isEnabled = changedText.contains("@") && changedText.contains(".")
+            })
+            .disposed(by: disposeBag)
+    }
 }
