@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MypageUserInfoModel: Codable {
+struct MypageUserInfoModel: Codable, Equatable {
     var userID: Int = 0
     var profileImageID: Int = 0
     var nickname: String = ""
