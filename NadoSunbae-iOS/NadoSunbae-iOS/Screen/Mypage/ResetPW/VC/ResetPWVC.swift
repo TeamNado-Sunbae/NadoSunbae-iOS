@@ -34,7 +34,13 @@ class ResetPWVC: BaseVC {
             infoLabel.isHidden = true
         }
     }
-    @IBOutlet weak var confirmBtn: NadoSunbaeBtn!
+    @IBOutlet weak var confirmBtn: NadoSunbaeBtn! {
+        didSet {
+            confirmBtn.press {
+                self.requestResetPW(email: self.emailTextField.text ?? "")
+            }
+        }
+    }
     
     // MARK: Properties
     let disposeBag = DisposeBag()
@@ -90,5 +96,27 @@ class ResetPWVC: BaseVC {
                 self.confirmBtn.isEnabled = changedText.contains("@") && changedText.contains(".")
             })
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - Network
+extension ResetPWVC {
+    private func requestResetPW(email: String) {
+        self.activityIndicator.startAnimating()
+        MypageSettingAPI.shared.requestResetPW(email: email) { networkResult in
+            switch networkResult {
+            case .success:
+                self.infoLabel.isHidden = true
+                self.activityIndicator.stopAnimating()
+                guard let resetPWCompleteVC = UIStoryboard.init(name: ResetPWCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWCompleteVC.className) as? ResetPWCompleteVC else { return }
+                self.navigationController?.pushViewController(resetPWCompleteVC, animated: true)
+            case .requestErr:
+                self.infoLabel.isHidden = false
+                self.activityIndicator.stopAnimating()
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
