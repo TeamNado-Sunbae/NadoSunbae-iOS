@@ -52,7 +52,7 @@ class NotificationSettingVC: BaseVC {
     @objc
     private func checkNotificationStatus() {
         UNUserNotificationCenter.current().getNotificationSettings { setting in
-            self.isSystemNotiSettingOn = setting.authorizationStatus == .authorized
+            self.isSystemNotiSettingOn = setting.alertSetting == .enabled
             DispatchQueue.main.async {
                 self.settingTV.reloadData()
             }
@@ -74,9 +74,8 @@ extension NotificationSettingVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NotificationSettingBasicTVC.className, for: indexPath) as? NotificationSettingBasicTVC else { return UITableViewCell() }
         cell.setData(title: "알림", isOn: isSystemNotiSettingOn)
         cell.isOnToggleBtn.press {
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl)
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
         return cell
