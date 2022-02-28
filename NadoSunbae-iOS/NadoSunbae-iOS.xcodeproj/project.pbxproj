@@ -221,6 +221,8 @@
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
 		77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */; };
 		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
+		C71BF22F27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF22E27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard */; };
+		C71BF23127CCD2CB0030DCB9 /* NotificationSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF23027CCD2CB0030DCB9 /* NotificationSettingVC.swift */; };
 		C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */; };
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
@@ -457,6 +459,8 @@
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
 		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C71BF22E27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationSettingVC.storyboard; sourceTree = "<group>"; };
+		C71BF23027CCD2CB0030DCB9 /* NotificationSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingVC.swift; sourceTree = "<group>"; };
 		C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileVC.storyboard; sourceTree = "<group>"; };
 		C740A85A27C7C58500C4518A /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
@@ -1479,6 +1483,7 @@
 			children = (
 				C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */,
 				C7ACE63327CBD3130011B23F /* SettingAppInfoVC.storyboard */,
+				C71BF22E27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard */,
 			);
 			path = SB;
 			sourceTree = "<group>";
@@ -1488,6 +1493,7 @@
 			children = (
 				C7ACE62E27CB71FA0011B23F /* SettingVC.swift */,
 				C7ACE63527CBD3280011B23F /* SettingAppInfoVC.swift */,
+				C71BF23027CCD2CB0030DCB9 /* NotificationSettingVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1574,6 +1580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				777ABF7D278C844E002D3214 /* ReviewMainLinkTVC.xib in Resources */,
+				C71BF22F27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard in Resources */,
 				5CAB3F28278AE39D00025DA5 /* AgreeTermsVC.storyboard in Resources */,
 				C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */,
 				331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */,
@@ -1747,6 +1754,7 @@
 				5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
+				C71BF23127CCD2CB0030DCB9 /* NotificationSettingVC.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
 				33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */,
 				331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */,
