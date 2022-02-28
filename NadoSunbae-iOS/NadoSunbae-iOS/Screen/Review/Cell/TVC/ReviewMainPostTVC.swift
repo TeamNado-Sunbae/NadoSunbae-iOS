@@ -114,7 +114,7 @@ extension ReviewMainPostTVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 9
+        return 6
     }
 }
 
