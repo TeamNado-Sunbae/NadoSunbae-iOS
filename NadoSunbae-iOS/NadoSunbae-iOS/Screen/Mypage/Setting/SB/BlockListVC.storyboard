@@ -33,6 +33,7 @@
                                 <rect key="frame" x="0.0" y="104" width="375" height="674"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlockListTVC" rowHeight="72" id="8R8-uE-6rm" customClass="BlockListTVC" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="72"/>
@@ -62,6 +63,7 @@
                                                     <state key="normal" image="btnUndoBlock"/>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="mmk-4l-ytE" firstAttribute="centerY" secondItem="Hsu-KY-0S5" secondAttribute="centerY" id="4Hk-mE-i86"/>
                                                 <constraint firstItem="mmk-4l-ytE" firstAttribute="width" secondItem="Hsu-KY-0S5" secondAttribute="width" multiplier="0.202667" id="9vD-zq-YGN"/>
@@ -73,6 +75,7 @@
                                                 <constraint firstItem="TX0-TH-A1o" firstAttribute="centerY" secondItem="Hsu-KY-0S5" secondAttribute="centerY" id="v0r-yh-h2C"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="nickNameLabel" destination="vvY-8t-ca5" id="DHv-yN-10P"/>
                                             <outlet property="profileImgView" destination="TX0-TH-A1o" id="64a-LI-UZc"/>
