@@ -95,6 +95,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blockListTV" destination="hl4-d5-pos" id="Gvk-s8-0QE"/>
                         <outlet property="navView" destination="HZa-2J-z53" id="wNr-sG-aIM"/>
                     </connections>
                 </viewController>

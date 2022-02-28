@@ -19,7 +19,37 @@ class BlockListVC: BaseVC {
             }
         }
     }
+    @IBOutlet weak var blockListTV: UITableView! {
+        didSet {
+            blockListTV.dataSource = self
+            blockListTV.rowHeight = 63.adjustedH
+        }
+    }
+    
+    // MARK: Properties
+    var blockList: [GetBlockListResponseModel] = []
+    
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+}
+
+// MARK: - UITableViewDataSource
+extension BlockListVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return blockList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BlockListTVC.className, for: indexPath) as? BlockListTVC else { return UITableViewCell() }
+        cell.setData(data: blockList[indexPath.row])
+        
+        return cell
+    }
+}
+
+// MARK: - Network
+extension BlockListVC {
+    
 }
