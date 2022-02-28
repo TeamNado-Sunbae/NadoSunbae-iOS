@@ -15,9 +15,6 @@ class NotificationSettingBasicTVC: BaseTVC {
         didSet {
             isOnToggleBtn.setImage(UIImage(named: "toggle_off"), for: .normal)
             isOnToggleBtn.setImage(UIImage(named: "toggle_on"), for: .selected)
-            isOnToggleBtn.press {
-                self.isOnToggleBtn.isSelected.toggle()
-            }
         }
     }
     

@@ -71,6 +71,14 @@ extension NotificationSettingVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NotificationSettingBasicTVC.className, for: indexPath) as? NotificationSettingBasicTVC else { return UITableViewCell() }
         cell.setData(title: "알림", isOn: isSystemNotiSettingOn)
+        cell.isOnToggleBtn.press {
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+        }
         return cell
     }
 }
