@@ -29,6 +29,22 @@
                                     <constraint firstAttribute="height" constant="104" id="SiX-xg-XOG"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQU-Ue-USP">
+                                <rect key="frame" x="16" y="120" width="343" height="642"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="차단한 사용자가 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVW-ux-ty9">
+                                        <rect key="frame" x="99" y="312.66666666666669" width="145" height="17"/>
+                                        <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                        <color key="textColor" name="gray2"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="HVW-ux-ty9" firstAttribute="centerY" secondItem="cQU-Ue-USP" secondAttribute="centerY" id="5pt-eJ-gmv"/>
+                                    <constraint firstItem="HVW-ux-ty9" firstAttribute="centerX" secondItem="cQU-Ue-USP" secondAttribute="centerX" id="Qds-Ys-zcg"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hl4-d5-pos">
                                 <rect key="frame" x="0.0" y="104" width="375" height="674"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -85,8 +101,12 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
                         <constraints>
+                            <constraint firstItem="cQU-Ue-USP" firstAttribute="top" secondItem="HZa-2J-z53" secondAttribute="bottom" constant="16" id="1SH-4L-Ieq"/>
+                            <constraint firstItem="cQU-Ue-USP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="2Er-uI-pek"/>
                             <constraint firstItem="hl4-d5-pos" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="39a-Rc-Ydk"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cQU-Ue-USP" secondAttribute="trailing" constant="16" id="PG7-1d-Jie"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hl4-d5-pos" secondAttribute="trailing" id="WPf-Tt-pM4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cQU-Ue-USP" secondAttribute="bottom" constant="16" id="hdW-YG-cmu"/>
                             <constraint firstItem="hl4-d5-pos" firstAttribute="top" secondItem="HZa-2J-z53" secondAttribute="bottom" id="oTv-Pa-pRI"/>
                             <constraint firstItem="HZa-2J-z53" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="q6y-3j-K0P"/>
                             <constraint firstItem="HZa-2J-z53" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rQr-ri-ivH"/>
@@ -106,6 +126,9 @@
     </scenes>
     <resources>
         <image name="btnUndoBlock" width="76" height="32"/>
+        <namedColor name="gray2">
+            <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="mainText">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
