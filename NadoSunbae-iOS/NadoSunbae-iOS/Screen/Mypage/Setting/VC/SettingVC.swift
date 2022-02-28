@@ -128,7 +128,8 @@ extension SettingVC: UITableViewDelegate {
             
         /// 차단 사용자 목록
         case 4:
-            break
+            let blockListVC = BlockListVC()
+            pushVC(vc: blockListVC)
         default:
             print("SettingVC TableView err")
             break
