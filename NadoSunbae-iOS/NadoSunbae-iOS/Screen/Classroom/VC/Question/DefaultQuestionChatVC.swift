@@ -821,6 +821,7 @@ extension DefaultQuestionChatVC {
         PublicAPI.shared.requestReport(reportedTargetID: reportedTargetID, reportedTargetTypeID: reportedTargetTypeID, reason: reason) { networkResult in
             switch networkResult {
             case .success(_):
+                self.makeAlert(title: "신고되었습니다.")
                 self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
                 if let message = msg as? String {
