@@ -111,10 +111,10 @@ extension UIViewController {
         let alertViewController = UIAlertController(title: nil, message: nil,
                                                     preferredStyle: .actionSheet)
         
-        let optionArr: [String] = ["음란/욕설/분쟁", "유출/사칭/사기", "상업적 내용", "우리 학교/학과가 아닌 학생", "서비스 취지에 맞지 않는 글", "기타"]
-        for i in 0...optionArr.count - 1 {
-            alertViewController.addAction(UIAlertAction(title: optionArr[i], style: .default, handler: { (action) in
-                completion(optionArr[i])
+        let reasonList: [String] = ["음란/욕설/분쟁", "유출/사칭/사기", "상업적 내용", "우리 학교/학과가 아닌 학생", "서비스 취지에 맞지 않는 글", "기타"]
+        for i in 0...reasonList.count - 1 {
+            alertViewController.addAction(UIAlertAction(title: reasonList[i], style: .default, handler: { (action) in
+                completion(reasonList[i])
             }))
         }
         
