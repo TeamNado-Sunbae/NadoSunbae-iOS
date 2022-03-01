@@ -118,7 +118,7 @@ class ReviewWriteVC: BaseVC {
 extension ReviewWriteVC {
     private func configureChangeBtnUI() {
         
-        /// 회원가입 시 본전공만 존재하는 유저인 경우 혹은 후기글 수정 시  버튼 비활성화 처리
+        /// 회원가입 시 본전공만 존재하는 유저인 경우 혹은 후기글 수정 시 버튼 비활성화 처리
         if UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) == "미진입" || !isPosting {
             majorChangeBtn.isEnabled = false
             majorChangeBtn.tintColor = UIColor.gray3
