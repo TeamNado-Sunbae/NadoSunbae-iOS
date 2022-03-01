@@ -100,12 +100,12 @@ class ResetPWVC: BaseVC {
     
     private func goResetPWComplete() {
         guard let resetPWCompleteVC = UIStoryboard.init(name: ResetPWCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWCompleteVC.className) as? ResetPWCompleteVC else { return }
+        resetPWCompleteVC.email = self.emailTextField.text ?? ""
         self.navigationController?.pushViewController(resetPWCompleteVC, animated: true)
     }
     
     /// 로그아웃 시 UserDefaults 지우는 함수
     private func setRemoveUserdefaultValues() {
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)

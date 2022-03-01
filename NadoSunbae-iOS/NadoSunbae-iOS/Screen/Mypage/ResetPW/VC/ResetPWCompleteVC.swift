@@ -23,10 +23,13 @@ class ResetPWCompleteVC: BaseVC {
     @IBOutlet weak var resendBtn: UIButton! {
         didSet {
             resendBtn.press {
-                self.resendEmail()
+                self.resendEmail(email: self.email)
             }
         }
     }
+    
+    // MARK: Properties
+    var email = ""
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -42,7 +45,20 @@ class ResetPWCompleteVC: BaseVC {
 
 // MARK: - Network
 extension ResetPWCompleteVC {
-    private func resendEmail() {
-        
+    private func resendEmail(email: String) {
+        self.activityIndicator.startAnimating()
+        MypageSettingAPI.shared.requestResetPW(email: email) { networkResult in
+            switch networkResult {
+            case .success:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "메일이 재전송되었습니다.")
+            case .requestErr:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
