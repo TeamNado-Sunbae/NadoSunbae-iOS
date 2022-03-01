@@ -561,7 +561,9 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     } else {
                         /// 타인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
                         self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { _ in
-                            // TODO: 추후에 답변 신고 기능 추가 예정
+                            self.reportActionSheet { reason in
+                                requestReport(reportedTargetID: questionChatData[indexPath.row].messageID, reportedTargetTypeID: 3, reason: reason)
+                            }
                         })
                     }
                     editIndex = []
