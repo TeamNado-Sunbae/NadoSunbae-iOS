@@ -97,6 +97,30 @@ class ResetPWVC: BaseVC {
             })
             .disposed(by: disposeBag)
     }
+    
+    private func goResetPWComplete() {
+        guard let resetPWCompleteVC = UIStoryboard.init(name: ResetPWCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWCompleteVC.className) as? ResetPWCompleteVC else { return }
+        self.navigationController?.pushViewController(resetPWCompleteVC, animated: true)
+    }
+    
+    /// 로그아웃 시 UserDefaults 지우는 함수
+    private func setRemoveUserdefaultValues() {
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
+    }
+    
+    /// 로그인 상태 판단 함수
+    private func isLogin() -> Bool {
+        return UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) is Int ? true : false
+    }
 }
 
 // MARK: - Network
@@ -108,11 +132,24 @@ extension ResetPWVC {
             case .success:
                 self.infoLabel.isHidden = true
                 self.activityIndicator.stopAnimating()
-                guard let resetPWCompleteVC = UIStoryboard.init(name: ResetPWCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWCompleteVC.className) as? ResetPWCompleteVC else { return }
-                self.navigationController?.pushViewController(resetPWCompleteVC, animated: true)
+                self.isLogin() ? self.requestSignOut() : self.goResetPWComplete()
             case .requestErr:
                 self.infoLabel.isHidden = false
                 self.activityIndicator.stopAnimating()
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    private func requestSignOut() {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.signOut { networkResult in
+            switch networkResult {
+            case .success:
+                self.setRemoveUserdefaultValues()
+                self.goResetPWComplete()
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
