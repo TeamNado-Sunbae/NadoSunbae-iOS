@@ -136,7 +136,9 @@ extension InfoDetailVC {
                 })
             } else {
                 self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
-                    // TODO: 추후에 신고 기능 추가 예정
+                    self.reportActionSheet(completion: { reason in
+                        self.requestReport(reportedTargetID: self.infoDetailData?.post.postID ?? 0, reportedTargetTypeID: 2, reason: reason)
+                    })
                 })
             }
         }
