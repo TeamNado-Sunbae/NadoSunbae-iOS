@@ -278,7 +278,9 @@ extension InfoDetailVC: UITableViewDataSource {
                     })
                 } else {
                     makeAlertWithCancel(okTitle: "신고", okAction: { _ in
-                        // TODO: 추후에 신고 기능 추가 예정
+                        self.reportActionSheet(completion: { reason in
+                            self.requestReport(reportedTargetID: infoDetailCommentData[indexPath.row - 2].commentID, reportedTargetTypeID: 3, reason: reason)
+                        })
                     })
                 }
             }
