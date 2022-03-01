@@ -81,6 +81,22 @@ extension SignAPI {
             }
         }
     }
+    
+    /// [POST] 로그아웃 요청
+    func signOut(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.signOut) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.signOutJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - judgeData
@@ -150,6 +166,23 @@ extension SignAPI {
             return .requestErr(decodedData.message)
         case 409:
             return .requestErr(false)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func signOutJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        
+        guard let decodedData = try? decoder.decode(SignOutResponseModel.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.message)
+        case 400...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:

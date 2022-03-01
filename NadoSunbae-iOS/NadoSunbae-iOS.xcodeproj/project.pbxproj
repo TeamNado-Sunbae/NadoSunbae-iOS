@@ -234,6 +234,7 @@
 		C71BF23C27CD0CC80030DCB9 /* ResetPWVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF23B27CD0CC80030DCB9 /* ResetPWVC.swift */; };
 		C71BF23E27CD0CDF0030DCB9 /* ResetPWCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF23D27CD0CDF0030DCB9 /* ResetPWCompleteVC.storyboard */; };
 		C71BF24027CD0CEB0030DCB9 /* ResetPWCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF23F27CD0CEB0030DCB9 /* ResetPWCompleteVC.swift */; };
+		C71BF24227CDC2B30030DCB9 /* SignOutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF24127CDC2B30030DCB9 /* SignOutResponseModel.swift */; };
 		C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */; };
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
@@ -483,6 +484,7 @@
 		C71BF23B27CD0CC80030DCB9 /* ResetPWVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWVC.swift; sourceTree = "<group>"; };
 		C71BF23D27CD0CDF0030DCB9 /* ResetPWCompleteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetPWCompleteVC.storyboard; sourceTree = "<group>"; };
 		C71BF23F27CD0CEB0030DCB9 /* ResetPWCompleteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPWCompleteVC.swift; sourceTree = "<group>"; };
+		C71BF24127CDC2B30030DCB9 /* SignOutResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutResponseModel.swift; sourceTree = "<group>"; };
 		C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileVC.storyboard; sourceTree = "<group>"; };
 		C740A85A27C7C58500C4518A /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
@@ -1220,6 +1222,7 @@
 				5C873A4A279978650050EE43 /* SignInDataModel.swift */,
 				5C9A93F627A64B550097310B /* SignUpBodyModel.swift */,
 				5C9A93F827A64FB20097310B /* SignUpDataModel.swift */,
+				C71BF24127CDC2B30030DCB9 /* SignOutResponseModel.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -1898,6 +1901,7 @@
 				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
+				C71BF24227CDC2B30030DCB9 /* SignOutResponseModel.swift in Sources */,
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */,

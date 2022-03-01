@@ -13,6 +13,7 @@ enum SignService {
     case signUp(userData: SignUpBodyModel)
     case checkNickNameDuplicate(nickName: String)
     case checkEmailDuplicate(email: String)
+    case signOut
 }
 
 extension SignService: TargetType {
@@ -30,12 +31,14 @@ extension SignService: TargetType {
             return "/auth/duplication-check/nickname"
         case .checkEmailDuplicate:
             return "/auth/duplication-check/email"
+        case .signOut:
+            return "/auth/logout"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .signIn, .signUp, .checkNickNameDuplicate, .checkEmailDuplicate:
+        case .signIn, .signUp, .checkNickNameDuplicate, .checkEmailDuplicate, .signOut:
             return .post
         }
     }
@@ -59,10 +62,18 @@ extension SignService: TargetType {
             return .requestParameters(parameters: ["nickname": nickName], encoding: JSONEncoding.default)
         case .checkEmailDuplicate(let email):
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
+        case .signOut:
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        return ["Content-type": "application/json"]
+        switch self {
+        case .signOut:
+            let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
+            return ["accessToken": accessToken]
+        default:
+            return ["Content-type": "application/json"]
+        }
     }
 }
