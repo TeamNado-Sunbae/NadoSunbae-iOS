@@ -556,7 +556,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                             }
                             defaultQuestionChatTV.reloadData()
                         }, secondOkAction: { _ in
-                            // TODO: 추후에 답변 삭제 기능 추가 예정
+                            self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: questionChatData[indexPath.row].messageID, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
                         })
                     } else {
                         /// 타인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
