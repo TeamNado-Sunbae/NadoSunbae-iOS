@@ -9,23 +9,26 @@ import UIKit
 
 class ResetPWCompleteVC: BaseVC {
     
+    // MARK: @IBOutlet
     @IBOutlet weak var goSignInBtn: NadoSunbaeBtn! {
         didSet {
             goSignInBtn.isActivated = true
             goSignInBtn.isEnabled = true
             goSignInBtn.press {
-                // TODO: 로그아웃 요청
+                guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+                self.navigationController?.pushViewController(signInVC, animated: true)
             }
         }
     }
     @IBOutlet weak var resendBtn: UIButton! {
         didSet {
             resendBtn.press {
-                // TODO: 재전송 요청
+                self.resendEmail()
             }
         }
     }
     
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -34,5 +37,12 @@ class ResetPWCompleteVC: BaseVC {
         super.viewWillAppear(animated)
         hideTabbar()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+}
+
+// MARK: - Network
+extension ResetPWCompleteVC {
+    private func resendEmail() {
+        
     }
 }
