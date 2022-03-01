@@ -30,11 +30,6 @@ class QuestionPersonListVC: UIViewController {
     var majorUserList = MajorUserListDataModel()
     
     // MARK: Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getMajorUserList()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -43,6 +38,7 @@ class QuestionPersonListVC: UIViewController {
         registerXib()
         setUpTapNaviBackBtn()
         setUpMajorLabel()
+        getMajorUserList()
     }
 }
 
