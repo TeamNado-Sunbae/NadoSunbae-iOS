@@ -11,6 +11,7 @@ import Moya
 enum PublicService {
     case getMajorList(univID: Int, filter: String)
     case requestBlockUnBlockUser(blockUserID: Int)
+    case requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String)
 }
 
 extension PublicService: TargetType {
@@ -25,6 +26,8 @@ extension PublicService: TargetType {
             return "/major/list/\(univID)"
         case .requestBlockUnBlockUser:
             return "/block"
+        case .requestReport:
+            return "/report"
         }
     }
     
@@ -32,7 +35,7 @@ extension PublicService: TargetType {
         switch self {
         case .getMajorList:
             return .get
-        case .requestBlockUnBlockUser:
+        case .requestBlockUnBlockUser, .requestReport:
             return .post
         }
     }
@@ -44,12 +47,19 @@ extension PublicService: TargetType {
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         case .requestBlockUnBlockUser(let blockUserID):
             return .requestParameters(parameters: ["blockedUserId": blockUserID], encoding: JSONEncoding.default)
+        case .requestReport(let reportedTargetID, let reportedTargetTypeID, let reason):
+            let body: [String: Any] = [
+                "reportedTargetId": reportedTargetID,
+                "reportedTargetTypeId": reportedTargetTypeID,
+                "reason": reason
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser:
+        case .requestBlockUnBlockUser, .requestReport:
             let accessToken = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken)!
             return ["accessToken": accessToken]
         default:
