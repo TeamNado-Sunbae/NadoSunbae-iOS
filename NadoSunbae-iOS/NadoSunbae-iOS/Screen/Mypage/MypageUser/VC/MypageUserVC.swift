@@ -32,7 +32,6 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
             navView.setUpNaviStyle(state: .backDefault)
-            navView.configureTitleLabel(title: "선배 닉네임")
             navView.rightActivateBtn.isActivated = false
             navView.backBtn.press {
                 self.navigationController?.popViewController(animated: true)
@@ -105,6 +104,7 @@ class MypageUserVC: BaseVC {
 // MARK: - UI
 extension MypageUserVC {
     private func configureUI() {
+        navView.configureTitleLabel(title: "\(userInfo.nickname)")
         profileView.makeRounded(cornerRadius: 8.adjusted)
         majorReviewView.makeRounded(cornerRadius: 8.adjusted)
         questionTV.makeRounded(cornerRadius: 8.adjusted)
