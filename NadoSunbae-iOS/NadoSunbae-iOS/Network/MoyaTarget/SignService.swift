@@ -9,10 +9,11 @@ import Foundation
 import Moya
 
 enum SignService {
-    case signIn(email: String, PW: String, deviceToken: String)
-    case signUp(userData: SignUpBodyModel)
+    case requestSignIn(email: String, PW: String, deviceToken: String)
+    case requestSignUp(userData: SignUpBodyModel)
     case checkNickNameDuplicate(nickName: String)
     case checkEmailDuplicate(email: String)
+    case requestSignOut
 }
 
 extension SignService: TargetType {
@@ -22,29 +23,31 @@ extension SignService: TargetType {
     
     var path: String {
         switch self {
-        case .signIn:
+        case .requestSignIn:
             return "/auth/login"
-        case .signUp:
+        case .requestSignUp:
             return "/auth/signup"
         case .checkNickNameDuplicate:
             return "/auth/duplication-check/nickname"
         case .checkEmailDuplicate:
             return "/auth/duplication-check/email"
+        case .requestSignOut:
+            return "/auth/logout"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .signIn, .signUp, .checkNickNameDuplicate, .checkEmailDuplicate:
+        case .requestSignIn, .requestSignUp, .checkNickNameDuplicate, .checkEmailDuplicate, .requestSignOut:
             return .post
         }
     }
     
     var task: Task {
         switch self {
-        case .signIn(let email, let PW, let deviceToken):
+        case .requestSignIn(let email, let PW, let deviceToken):
             return .requestParameters(parameters: ["email": email, "password": PW, "deviceToken": deviceToken], encoding: JSONEncoding.default)
-        case .signUp(let userData):
+        case .requestSignUp(let userData):
             return .requestParameters(parameters: [
                 "email": userData.email,
                 "nickname": userData.nickName,
@@ -59,10 +62,18 @@ extension SignService: TargetType {
             return .requestParameters(parameters: ["nickname": nickName], encoding: JSONEncoding.default)
         case .checkEmailDuplicate(let email):
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
+        case .requestSignOut:
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        return ["Content-type": "application/json"]
+        switch self {
+        case .requestSignOut:
+            let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
+            return ["accessToken": accessToken]
+        default:
+            return ["Content-type": "application/json"]
+        }
     }
 }

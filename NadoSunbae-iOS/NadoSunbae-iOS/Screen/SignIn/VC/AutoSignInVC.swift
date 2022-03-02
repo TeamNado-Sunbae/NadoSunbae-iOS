@@ -42,7 +42,7 @@ extension AutoSignInVC {
     /// 로그인 요청하는 메서드
     private func requestSignIn() {
         self.activityIndicator.startAnimating()
-        SignAPI.shared.signIn(email: email, PW: PW, deviceToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.FCMTokenForDevice) ?? "") { networkResult in
+        SignAPI.shared.requestSignIn(email: email, PW: PW, deviceToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.FCMTokenForDevice) ?? "") { networkResult in
             switch networkResult {
             case .success(let res):
                 self.activityIndicator.stopAnimating()

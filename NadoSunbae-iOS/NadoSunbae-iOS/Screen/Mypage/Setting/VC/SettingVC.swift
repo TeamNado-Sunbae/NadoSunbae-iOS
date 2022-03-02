@@ -34,7 +34,7 @@ class SettingVC: BaseVC {
     }
     
     // MARK: Properties
-    let menuList = ["프로필 수정", "비밀번호 변경", "알림 설정", "앱정보", "차단 사용자 목록"]
+    let menuList = ["프로필 수정", "비밀번호 재설정", "알림 설정", "앱정보", "차단 사용자 목록"]
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -106,16 +106,16 @@ extension SettingVC: UITableViewDataSource {
 extension SettingVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        // TODO: 나머지 case들 뷰 구현되는 대로 추가
             
         /// 프로필 수정
         case 0:
             let editProfileVC = EditProfileVC()
             pushVC(vc: editProfileVC)
             
-        /// 비밀번호 변경
+        /// 비밀번호 재설정
         case 1:
-            break
+            let resetPWVC = ResetPWVC()
+            pushVC(vc: resetPWVC)
             
         /// 알림 설정
         case 2:
