@@ -47,6 +47,23 @@ class PublicAPI {
             }
         }
     }
+    
+    /// [POST] 신고 요청
+    func requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.requestReport(reportedTargetID: reportedTargetID, reportedTargetTypeID: reportedTargetTypeID, reason: reason)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.requestReportJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
@@ -73,6 +90,23 @@ extension PublicAPI {
     private func requestBlockUnBlockUserJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<RequestBlockUnblockUserModel>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// requestReport
+    private func requestReportJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:

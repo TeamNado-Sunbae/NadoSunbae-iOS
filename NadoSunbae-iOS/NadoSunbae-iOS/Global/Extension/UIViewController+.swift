@@ -102,6 +102,28 @@ extension UIViewController {
         self.present(alertViewController, animated: true, completion: completion)
     }
     
+    /// 신고 ActionSheet 메서드
+    func reportActionSheet(completion: @escaping (String) -> ()) {
+        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        let alertViewController = UIAlertController(title: nil, message: nil,
+                                                    preferredStyle: .actionSheet)
+        
+        let reasonList: [String] = ["음란/욕설/분쟁", "유출/사칭/사기", "상업적 내용", "우리 학교/학과가 아닌 학생", "서비스 취지에 맞지 않는 글", "기타"]
+        for i in 0...reasonList.count - 1 {
+            alertViewController.addAction(UIAlertAction(title: reasonList[i], style: .default, handler: { (action) in
+                completion(reasonList[i])
+            }))
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alertViewController.addAction(cancelAction)
+        
+        self.present(alertViewController, animated: true, completion: nil)
+    }
+    
     /**
      - Description:
      VC나 View 내에서 해당 함수를 호출하면, 햅틱이 발생하는 메서드입니다.
