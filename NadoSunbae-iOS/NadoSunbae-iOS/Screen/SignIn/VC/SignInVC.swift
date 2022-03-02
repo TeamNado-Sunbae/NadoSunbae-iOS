@@ -118,7 +118,7 @@ extension SignInVC {
     /// 로그인 요청하는 메서드
     private func requestSignIn() {
         self.activityIndicator.startAnimating()
-        SignAPI.shared.signIn(email: emailTextField.text ?? "", PW: PWTextField.text ?? "", deviceToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.FCMTokenForDevice) as! String) { networkResult in
+        SignAPI.shared.requestSignIn(email: emailTextField.text ?? "", PW: PWTextField.text ?? "", deviceToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.FCMTokenForDevice) as! String) { networkResult in
             switch networkResult {
             case .success(let res):
                 self.activityIndicator.stopAnimating()

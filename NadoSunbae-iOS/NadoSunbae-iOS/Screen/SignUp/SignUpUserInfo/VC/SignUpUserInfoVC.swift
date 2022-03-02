@@ -338,7 +338,7 @@ extension SignUpUserInfoVC {
     /// 회원가입 요청 메소드
     private func requestSignUp(userData: SignUpBodyModel) {
         self.activityIndicator.startAnimating()
-        SignAPI.shared.signUp(userData: userData) { networkResult in
+        SignAPI.shared.requestSignUp(userData: userData) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let res = res as? SignUpDataModel {

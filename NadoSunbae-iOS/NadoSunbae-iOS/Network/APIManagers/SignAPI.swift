@@ -19,8 +19,8 @@ class SignAPI {
 extension SignAPI {
     
     /// [POST] 로그인 요청
-    func signIn(email: String, PW: String, deviceToken: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.signIn(email: email, PW: PW, deviceToken: deviceToken)) { result in
+    func requestSignIn(email: String, PW: String, deviceToken: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.requestSignIn(email: email, PW: PW, deviceToken: deviceToken)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -35,8 +35,8 @@ extension SignAPI {
     }
     
     /// [POST] 회원가입 요청
-    func signUp(userData: SignUpBodyModel, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.signUp(userData: userData)) { result in
+    func requestSignUp(userData: SignUpBodyModel, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.requestSignUp(userData: userData)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -83,8 +83,8 @@ extension SignAPI {
     }
     
     /// [POST] 로그아웃 요청
-    func signOut(completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.signOut) { result in
+    func requestSignOut(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.requestSignOut) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode

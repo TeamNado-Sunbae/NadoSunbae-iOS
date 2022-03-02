@@ -145,7 +145,7 @@ extension ResetPWVC {
     
     private func requestSignOut() {
         self.activityIndicator.startAnimating()
-        SignAPI.shared.signOut { networkResult in
+        SignAPI.shared.requestSignOut { networkResult in
             switch networkResult {
             case .success:
                 self.setRemoveUserdefaultValues()
