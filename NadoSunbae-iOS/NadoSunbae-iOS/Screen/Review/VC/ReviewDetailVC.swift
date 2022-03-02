@@ -101,7 +101,11 @@ extension ReviewDetailVC {
             } else {
                 
                 /// 타인 작성 글인 경우 신고
-                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in print("신고")})
+                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
+                    self.reportActionSheet { reason in
+                        self.requestReport(reportedTargetID: self.detailPost.post.postID, reportedTargetTypeID: 1, reason: reason)
+                    }
+                })
             }
         }
     }
