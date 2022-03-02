@@ -140,9 +140,7 @@ extension MypageSettingAPI {
             return .success(decodedData.data ?? "None-Data")
         case 400:
             return .requestErr(decodedData.message)
-        case 401...409:
-            return .serverErr
-        case 500:
+        case 401...500:
             return .serverErr
         default:
             return .networkFail
