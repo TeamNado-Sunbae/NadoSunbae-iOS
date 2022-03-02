@@ -38,16 +38,7 @@ class ReviewWriteVC: BaseVC {
             majorNameLabel.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
         }
     }
-    @IBOutlet weak var majorChangeBtn: UIButton! {
-        
-        /// 회원가입 시 본전공만 존재하는 유저인 경우 버튼 비활성화 처리
-        didSet {
-            if UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) == "미진입" {
-                majorChangeBtn.isEnabled = false
-                majorChangeBtn.tintColor = UIColor.gray3
-            }
-        }
-    }
+    @IBOutlet weak var majorChangeBtn: UIButton!
     @IBOutlet weak var oneLineReviewTextView: NadoTextView!
     @IBOutlet weak var prosAndConsTextView: NadoTextView!
     @IBOutlet weak var learnInfoTextView: NadoTextView!
@@ -95,6 +86,7 @@ class ReviewWriteVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureChangeBtnUI()
         [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
             textView in setUpCompleteBtnStatus(textView: textView)
         }
@@ -124,17 +116,26 @@ class ReviewWriteVC: BaseVC {
 
 // MARK: - UI
 extension ReviewWriteVC {
+    private func configureChangeBtnUI() {
+        
+        /// 회원가입 시 본전공만 존재하는 유저인 경우 혹은 후기글 수정 시 버튼 비활성화 처리
+        if UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) == "미진입" || !isPosting {
+            majorChangeBtn.isEnabled = false
+            majorChangeBtn.tintColor = UIColor.gray3
+        }
+    }
+    
     private func configureNaviUI() {
         reviewWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
         reviewWriteNaviBar.configureTitleLabel(title: "후기작성")
     }
-    
+
     private func configureTagViewUI() {
         essentialTagView.makeRounded(cornerRadius: 4.adjusted)
         choiceTagView.makeRounded(cornerRadius: 4.adjusted)
     }
-    
-    func configureMajorNameViewUI() {
+
+    private func configureMajorNameViewUI() {
         majorNameView.makeRounded(cornerRadius: 4.adjusted)
         majorNameView.layer.borderColor = UIColor.gray0.cgColor
         majorNameView.layer.borderWidth = 1
