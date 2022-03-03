@@ -99,6 +99,12 @@ class MypageUserVC: BaseVC {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
+    @IBAction func tapReviewBtn(_ sender: UIButton) {
+        guard let reviewVC = UIStoryboard.init(name: MypageMyReviewVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageMyReviewVC.className) as? MypageMyReviewVC else { return }
+        
+        reviewVC.userID = userInfo.userID
+        self.navigationController?.pushViewController(reviewVC, animated: true)
+    }
 }
 
 // MARK: - UI
