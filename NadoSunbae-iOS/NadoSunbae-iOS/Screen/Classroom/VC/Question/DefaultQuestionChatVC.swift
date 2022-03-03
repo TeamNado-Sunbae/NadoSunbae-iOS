@@ -422,6 +422,22 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     questionCell.likeCountLabel.isHidden = true
                 }
                 
+                /// 1:1 질문자 셀 중 데이터가 삭제된 셀
+                if questionChatData[indexPath.row].isDeleted {
+                    [questionCell.titleLabelTopConstraint, questionCell.contentTextViewTopConstriaint].forEach {
+                        $0?.constant = 0
+                    }
+                    [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
+                        $0?.isHidden = true
+                    }
+                } else {
+                    questionCell.titleLabelTopConstraint.constant = 16
+                    questionCell.contentTextViewTopConstriaint.constant = 24
+                    [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
+                        $0?.isHidden = false
+                    }
+                }
+                
                 questionCell.dynamicUpdateDelegate = self
                 questionCell.changeCellDelegate = self
                 questionCell.tapMoreBtnAction = { [unowned self] in
