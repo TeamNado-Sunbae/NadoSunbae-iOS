@@ -22,7 +22,7 @@ class QuestionMainVC: BaseVC {
         $0.font = .PretendardM(size: 16.0)
         $0.sizeToFit()
     }
-
+    
     private let whiteBoardView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.borderWidth = 1
@@ -69,11 +69,11 @@ class QuestionMainVC: BaseVC {
         registerCell()
         setUpTapFindSunbaeBtn()
         addActivateIndicator()
+        setUpRequestData()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
         setUpRequestData()
     }
 }
@@ -83,7 +83,7 @@ extension QuestionMainVC {
     
     /// 전체 UI를 구성하는 메서드
     private func configureUI() {
-
+        
         view.addSubview(questionSV)
         questionSV.addSubview(contentView)
         contentView.addSubviews([questionSegmentView, personalQuestionLabel, whiteBoardView, questionBoardImgView, findSunbaeImgView, findSunbaeEntireBtn, entireQuestionTitleLabel, entireQuestionTV])
@@ -107,6 +107,7 @@ extension QuestionMainVC {
         personalQuestionLabel.snp.makeConstraints {
             $0.top.equalTo(questionSegmentView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(24)
+            $0.height.equalTo(19)
         }
         
         whiteBoardView.snp.makeConstraints {
@@ -214,6 +215,17 @@ extension QuestionMainVC {
         activityIndicator.center = CGPoint(x: self.view.center.x, y: view.center.y - 106)
         view.addSubview(self.activityIndicator)
     }
+    
+    /// entireQuestionTV 업데이트 메서드
+    private func updateEntireQuestionTV() {
+        DispatchQueue.main.async {
+            self.entireQuestionTV.reloadData()
+            self.entireQuestionTV.layoutIfNeeded()
+            self.entireQuestionTV.snp.updateConstraints {
+                $0.height.equalTo(self.entireQuestionTV.contentSize.height)
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -270,9 +282,9 @@ extension QuestionMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 70
+            return 44
         case 1:
-            return (questionList.count == 0 ? 236 : 120)
+            return (questionList.count == 0 ? 189 : 120)
         case 2:
             return (questionList.count > 5 ? 40 : 0)
         default:
@@ -284,9 +296,9 @@ extension QuestionMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 70
+            return 44
         case 1:
-            return (questionList.count == 0 ? 236 : UITableView.automaticDimension)
+            return (questionList.count == 0 ? 189 : UITableView.automaticDimension)
         case 2:
             return (questionList.count > 5 ? 40 : 0)
         default:
@@ -324,13 +336,7 @@ extension QuestionMainVC {
             case .success(let res):
                 if let data = res as? [ClassroomPostList] {
                     self.questionList = data
-                    DispatchQueue.main.async {
-                        self.entireQuestionTV.reloadData()
-                        self.entireQuestionTV.layoutIfNeeded()
-                        self.entireQuestionTV.snp.updateConstraints {
-                            $0.height.equalTo(self.entireQuestionTV.contentSize.height)
-                        }
-                    }
+                    self.updateEntireQuestionTV()
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
