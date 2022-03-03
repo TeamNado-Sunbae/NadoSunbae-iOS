@@ -27,19 +27,12 @@ extension UIViewController {
     
     /**
      - Description: 화면 터치시 키보드 내리는 Extension
-     */
-    /// 화면 터치시 키보드 내리는 메서드
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
+     */    
     @objc
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
     /**
      - Description: Alert
      */
