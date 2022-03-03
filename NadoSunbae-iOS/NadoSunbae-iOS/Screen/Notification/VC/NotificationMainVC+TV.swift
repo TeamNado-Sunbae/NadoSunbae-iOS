@@ -40,7 +40,13 @@ extension NotificationMainVC: UITableViewDelegate {
         /// 뷰 이동 및 읽음 처리, 현재 질문글만 뷰 이동 가능
         switch notificationList[indexPath.section].notificationTypeID.getNotiType() {
         case .writtenInfo:
-            break
+            guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+            
+            infoDetailVC.postID = notificationList[indexPath.row].postID
+            infoDetailVC.hidesBottomBarWhenPushed = true
+            
+            readNoti(notiID: notificationList[indexPath.section].notificationID)
+            self.navigationController?.pushViewController(infoDetailVC, animated: true)
             
         case .writtenQuestion:
             guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
@@ -54,7 +60,13 @@ extension NotificationMainVC: UITableViewDelegate {
             self.navigationController?.pushViewController(groupChatVC, animated: true)
             
         case .answerInfo:
-            break
+            guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+            
+            infoDetailVC.postID = notificationList[indexPath.row].postID
+            infoDetailVC.hidesBottomBarWhenPushed = true
+            
+            readNoti(notiID: notificationList[indexPath.section].notificationID)
+            self.navigationController?.pushViewController(infoDetailVC, animated: true)
             
         case .answerQuestion:
             guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
