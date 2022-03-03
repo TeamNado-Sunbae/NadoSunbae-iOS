@@ -16,20 +16,38 @@ class QuestionMainVC: BaseVC {
         $0.isScrollEnabled = true
     }
     private let contentView = UIView()
-    private let personalQuestionBtn = UIButton().then {
-        $0.setBackgroundImage(UIImage(named: "imgRoomMain"), for: .normal)
-        $0.contentMode = .scaleToFill
+    private let personalQuestionLabel = UILabel().then {
+        $0.text = "선배에게 1:1 개인 질문"
+        $0.textColor = .black
+        $0.font = .PretendardM(size: 16.0)
+        $0.sizeToFit()
+    }
+
+    private let whiteBoardView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray0.cgColor
+        $0.makeRounded(cornerRadius: 16)
     }
     
+    private let questionBoardImgView = UIImageView().then {
+        $0.image = UIImage(named: "imgRoomMain")
+    }
+    
+    private let findSunbaeImgView = UIImageView().then {
+        $0.image = UIImage(named: "findSunbae")
+    }
+    
+    private let findSunbaeEntireBtn = UIButton()
     private let entireQuestionTitleLabel = UILabel().then {
-        $0.text = "전체에게 질문"
+        $0.text = "선배 전체에게 질문"
         $0.textColor = .black
         $0.font = .PretendardM(size: 16.0)
         $0.sizeToFit()
     }
     
     private let entireQuestionTV = UITableView().then {
-        $0.layer.cornerRadius = 8
+        $0.layer.cornerRadius = 16
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray0.cgColor
         $0.isScrollEnabled = false
@@ -49,7 +67,7 @@ class QuestionMainVC: BaseVC {
         setUpDelegate()
         setUpTapInfoBtn()
         registerCell()
-        setUpTapPersonalQuestionBtn()
+        setUpTapFindSunbaeBtn()
         addActivateIndicator()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
     }
@@ -68,7 +86,7 @@ extension QuestionMainVC {
 
         view.addSubview(questionSV)
         questionSV.addSubview(contentView)
-        contentView.addSubviews([questionSegmentView, personalQuestionBtn, entireQuestionTitleLabel, entireQuestionTV])
+        contentView.addSubviews([questionSegmentView, personalQuestionLabel, whiteBoardView, questionBoardImgView, findSunbaeImgView, findSunbaeEntireBtn, entireQuestionTitleLabel, entireQuestionTV])
         
         questionSV.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
@@ -86,24 +104,47 @@ extension QuestionMainVC {
             $0.height.equalTo(38.adjustedH)
         }
         
-        personalQuestionBtn.snp.makeConstraints {
+        personalQuestionLabel.snp.makeConstraints {
             $0.top.equalTo(questionSegmentView.snp.bottom).offset(16)
             $0.leading.equalToSuperview().offset(24)
+        }
+        
+        whiteBoardView.snp.makeConstraints {
+            $0.top.equalTo(personalQuestionLabel.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(24)
             $0.trailing.equalToSuperview().offset(-24)
-            $0.height.equalTo(176.adjustedH)
+            $0.height.equalTo(188.adjustedH)
             $0.width.equalTo(327.adjustedH)
             $0.centerX.equalToSuperview()
         }
         
+        questionBoardImgView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(whiteBoardView)
+            $0.bottom.equalTo(whiteBoardView.snp.bottom)
+            $0.height.equalTo(144.adjustedH)
+            $0.centerX.equalToSuperview()
+        }
+        
+        findSunbaeImgView.snp.makeConstraints {
+            $0.top.equalTo(whiteBoardView.snp.top).offset(4)
+            $0.trailing.equalTo(whiteBoardView.snp.trailing).offset(-8)
+            $0.width.equalTo(104.adjusted)
+            $0.height.equalTo(36.adjustedH)
+        }
+        
+        findSunbaeEntireBtn.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalTo(whiteBoardView)
+        }
+        
         entireQuestionTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(personalQuestionBtn.snp.bottom).offset(24)
-            $0.leading.equalTo(personalQuestionBtn)
+            $0.top.equalTo(whiteBoardView.snp.bottom).offset(40)
+            $0.leading.equalTo(whiteBoardView)
             $0.height.equalTo(19)
         }
         
         entireQuestionTV.snp.makeConstraints {
             $0.top.equalTo(entireQuestionTitleLabel.snp.bottom).offset(16)
-            $0.leading.trailing.equalTo(personalQuestionBtn)
+            $0.leading.trailing.equalTo(whiteBoardView)
             $0.height.equalTo(236)
             $0.bottom.equalToSuperview().offset(-24)
         }
@@ -149,8 +190,8 @@ extension QuestionMainVC {
     }
     
     /// 질문가능선배Btn tap Action 설정 메서드
-    private func setUpTapPersonalQuestionBtn() {
-        personalQuestionBtn.press(vibrate: true) {
+    private func setUpTapFindSunbaeBtn() {
+        findSunbaeEntireBtn.press(vibrate: true) {
             let questionPersonVC = QuestionPersonListVC()
             questionPersonVC.majorID = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
             self.navigationController?.pushViewController(questionPersonVC, animated: true)
