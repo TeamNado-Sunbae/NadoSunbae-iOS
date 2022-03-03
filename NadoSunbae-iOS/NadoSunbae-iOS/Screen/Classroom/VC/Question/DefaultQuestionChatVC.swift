@@ -533,6 +533,23 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 
             } else {
                 /// 1:1 답변자 셀
+                
+                /// 1:1 답변자 셀 중 데이터가 삭제된 셀
+                if questionChatData[indexPath.row].isDeleted {
+                    [commentCell.titleLabelTopConstraint, commentCell.contentTextViewTopConstriaint].forEach {
+                        $0?.constant = 0
+                    }
+                    [commentCell.majorLabel, commentCell.nicknameLabel, commentCell.moreBtn, commentCell.uploadDateLabel].forEach {
+                        $0?.isHidden = true
+                    }
+                } else {
+                    commentCell.titleLabelTopConstraint.constant = 16
+                    commentCell.contentTextViewTopConstriaint.constant = 24
+                    [commentCell.majorLabel, commentCell.nicknameLabel, commentCell.moreBtn, commentCell.uploadDateLabel].forEach {
+                        $0?.isHidden = false
+                    }
+                }
+                
                 commentCell.dynamicUpdateDelegate = self
                 commentCell.changeCellDelegate = self
                 commentCell.tapMoreBtnAction = { [unowned self] in
