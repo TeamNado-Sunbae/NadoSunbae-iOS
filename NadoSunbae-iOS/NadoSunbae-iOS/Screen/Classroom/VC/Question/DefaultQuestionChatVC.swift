@@ -794,12 +794,8 @@ extension DefaultQuestionChatVC {
         ClassroomAPI.shared.deletePostCommentAPI(commentID: commentID) { networkResult in
             switch networkResult {
             case .success(_):
-                self.questionChatData.remove(at: indexPath.first!.row)
                 self.defaultQuestionChatTV.performBatchUpdates {
-                    self.defaultQuestionChatTV.deleteRows(at: indexPath, with: .fade)
-                } completion: { (done) in
-                    let indexPathsToUpdate = (0...self.defaultQuestionChatTV.numberOfRows(inSection: 0)).map { IndexPath(row: $0, section: 0) }
-                    self.defaultQuestionChatTV.reloadRows(at: indexPathsToUpdate, with: .none)
+                    self.requestGetDetailQuestionData(postID: self.postID ?? 0)
                 }
                 self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
