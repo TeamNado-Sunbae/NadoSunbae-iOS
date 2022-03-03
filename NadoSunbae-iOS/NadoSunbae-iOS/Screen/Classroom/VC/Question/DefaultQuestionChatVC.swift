@@ -80,6 +80,7 @@ class DefaultQuestionChatVC: BaseVC {
         super.viewDidLoad()
         setUpNaviInitStyle()
         registerXib()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewDidLayoutSubviews() {
