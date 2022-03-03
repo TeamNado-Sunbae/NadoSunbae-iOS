@@ -15,6 +15,9 @@ class ClassroomCommentTVC: BaseTVC {
     @IBOutlet var majorLabel: UILabel!
     @IBOutlet var commentContentTextView: UITextView!
     @IBOutlet weak var uploadDateLabel: UILabel!
+    @IBOutlet var moreBtn: UIButton!
+    @IBOutlet var titleLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet var contentTextViewTopConstriaint: NSLayoutConstraint!
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?

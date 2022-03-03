@@ -23,6 +23,8 @@ class ClassroomQuestionTVC: BaseTVC {
     }
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var uploadDateLabel: UILabel!
+    @IBOutlet var contentTextViewTopConstriaint: NSLayoutConstraint!
+    @IBOutlet var titleLabelTopConstraint: NSLayoutConstraint!
     
     // MARK: Properties
     weak var dynamicUpdateDelegate: TVCHeightDynamicUpdate?
