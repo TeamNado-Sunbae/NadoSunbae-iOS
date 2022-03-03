@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -55,17 +55,6 @@
                                     <action selector="tapMoreBtn:" destination="SVq-Rl-eLx" eventType="touchUpInside" id="p33-6s-BuR"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니" translatesAutoresizingMaskIntoConstraints="NO" id="LMH-SD-I1n">
-                                <rect key="frame" x="16" y="75" width="240" height="82"/>
-                                <color key="backgroundColor" name="chatFill"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="2MN-Nb-oRn"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="6cw-fg-h34"/>
-                                </constraints>
-                                <color key="textColor" name="mainText"/>
-                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022/01/10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pt-bF-h5S">
                                 <rect key="frame" x="180" y="165" width="76" height="20"/>
                                 <constraints>
@@ -75,6 +64,17 @@
                                 <color key="textColor" name="gray2"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니" translatesAutoresizingMaskIntoConstraints="NO" id="LMH-SD-I1n">
+                                <rect key="frame" x="16" y="75" width="240" height="82"/>
+                                <color key="backgroundColor" name="chatFill"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="2MN-Nb-oRn"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="6cw-fg-h34"/>
+                                </constraints>
+                                <color key="textColor" name="mainText"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" name="chatFill"/>
                         <constraints>
@@ -91,7 +91,7 @@
                             <constraint firstAttribute="trailing" secondItem="LMH-SD-I1n" secondAttribute="trailing" constant="16" id="WcF-ac-ez0"/>
                             <constraint firstItem="LMH-SD-I1n" firstAttribute="leading" secondItem="OlX-jq-iUU" secondAttribute="leading" id="YCo-fW-BeS"/>
                             <constraint firstItem="5pt-bF-h5S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="38o-sG-EsX" secondAttribute="leading" constant="180" id="a8O-1p-bd6"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="u5x-eI-IfJ"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="u5x-eI-IfJ"/>
                             <constraint firstItem="OlX-jq-iUU" firstAttribute="leading" secondItem="38o-sG-EsX" secondAttribute="leading" constant="16" id="xmc-BG-enZ"/>
                             <constraint firstItem="XsY-Xa-ot0" firstAttribute="top" secondItem="OlX-jq-iUU" secondAttribute="bottom" id="yax-7h-ZWo"/>
                             <constraint firstAttribute="trailing" secondItem="5pt-bF-h5S" secondAttribute="trailing" constant="16" id="yxF-BB-d3o"/>
@@ -110,8 +110,11 @@
             <connections>
                 <outlet property="backView" destination="38o-sG-EsX" id="iqJ-Fx-0Lj"/>
                 <outlet property="commentContentTextView" destination="LMH-SD-I1n" id="jrP-Nj-oQm"/>
+                <outlet property="contentTextViewTopConstriaint" destination="OPb-lD-xjE" id="Ah6-q2-G3j"/>
                 <outlet property="majorLabel" destination="XsY-Xa-ot0" id="OI9-E1-ICU"/>
+                <outlet property="moreBtn" destination="kYD-bX-I2J" id="950-L3-0U8"/>
                 <outlet property="nicknameLabel" destination="OlX-jq-iUU" id="jRy-ln-VIy"/>
+                <outlet property="titleLabelTopConstraint" destination="Off-Po-Uer" id="bhG-Jp-GHl"/>
                 <outlet property="uploadDateLabel" destination="5pt-bF-h5S" id="dca-j1-002"/>
             </connections>
             <point key="canvasLocation" x="42.028985507246382" y="100.78125"/>
@@ -120,7 +123,7 @@
     <resources>
         <image name="btnMoreVertMint" width="24" height="24"/>
         <namedColor name="chatFill">
-            <color red="0.91764705882352937" green="0.98039215686274506" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9179999828338623" green="0.98000001907348633" blue="0.97299998998641968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray2">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
