@@ -101,7 +101,11 @@ extension ReviewDetailVC {
             } else {
                 
                 /// 타인 작성 글인 경우 신고
-                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in print("신고")})
+                self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
+                    self.reportActionSheet { reason in
+                        self.requestReport(reportedTargetID: self.detailPost.post.postID, reportedTargetTypeID: 1, reason: reason)
+                    }
+                })
             }
         }
     }
@@ -309,6 +313,26 @@ extension ReviewDetailVC {
                     print(message)
                     self.activityIndicator.stopAnimating()
                 }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 신고 API 요청 메서드
+    private func requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String) {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.requestReport(reportedTargetID: reportedTargetID, reportedTargetTypeID: reportedTargetTypeID, reason: reason) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.makeAlert(title: "신고되었습니다.")
+                self.activityIndicator.stopAnimating()
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    self.makeAlert(title: message)
+                }
+                self.activityIndicator.stopAnimating()
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
