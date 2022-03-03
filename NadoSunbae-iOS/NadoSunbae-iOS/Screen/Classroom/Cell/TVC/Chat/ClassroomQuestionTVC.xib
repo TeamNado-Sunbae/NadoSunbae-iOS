@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -113,7 +113,7 @@
                             <constraint firstAttribute="trailing" secondItem="CFZ-tM-j9m" secondAttribute="trailing" constant="16" id="WJP-tx-ted"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="311" id="WPb-Oa-v2T"/>
                             <constraint firstItem="CFZ-tM-j9m" firstAttribute="top" secondItem="OT9-0t-ckE" secondAttribute="bottom" constant="24" id="Wbm-tV-X35"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="197" id="a5E-LZ-l2U"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="a5E-LZ-l2U"/>
                             <constraint firstItem="4Jn-Qv-vH7" firstAttribute="leading" secondItem="YaZ-yA-JAB" secondAttribute="leading" constant="16" id="a7O-Kl-MdW"/>
                             <constraint firstItem="hkZ-Xq-Tbg" firstAttribute="leading" secondItem="YaZ-yA-JAB" secondAttribute="leading" constant="8" id="aOP-yq-N38"/>
                             <constraint firstItem="hkZ-Xq-Tbg" firstAttribute="top" secondItem="CFZ-tM-j9m" secondAttribute="bottom" id="c9Y-1S-n24"/>
@@ -141,6 +141,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="backView" destination="YaZ-yA-JAB" id="bVz-xJ-Csb"/>
+                <outlet property="contentTextViewTopConstriaint" destination="Wbm-tV-X35" id="k3G-6S-jPF"/>
                 <outlet property="likeBtn" destination="hkZ-Xq-Tbg" id="gCE-k2-DwT"/>
                 <outlet property="likeCountLabel" destination="XwU-wy-Tk1" id="UnP-Yo-4dO"/>
                 <outlet property="majorLabel" destination="OT9-0t-ckE" id="oDy-Ih-rX3"/>
@@ -148,6 +149,7 @@
                 <outlet property="nicknameLabel" destination="udq-eX-F8j" id="TlL-ky-WBX"/>
                 <outlet property="questionContentTextView" destination="CFZ-tM-j9m" id="2pc-09-apb"/>
                 <outlet property="titleLabel" destination="4Jn-Qv-vH7" id="J2H-fQ-gLK"/>
+                <outlet property="titleLabelTopConstraint" destination="A2q-Ul-nWi" id="WHC-au-fRm"/>
                 <outlet property="uploadDateLabel" destination="1Ac-01-sRD" id="6bP-ig-1jj"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="177.12053571428569"/>
