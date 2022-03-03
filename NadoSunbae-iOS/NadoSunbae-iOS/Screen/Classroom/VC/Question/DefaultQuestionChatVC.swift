@@ -23,7 +23,6 @@ class DefaultQuestionChatVC: BaseVC {
             defaultQuestionChatTV.allowsSelection = false
             defaultQuestionChatTV.separatorStyle = .none
             defaultQuestionChatTV.rowHeight  = UITableView.automaticDimension
-            defaultQuestionChatTV.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
         }
     }
     
