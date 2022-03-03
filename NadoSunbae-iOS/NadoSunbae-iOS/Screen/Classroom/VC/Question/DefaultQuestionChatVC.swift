@@ -652,16 +652,15 @@ extension DefaultQuestionChatVC {
     
     @objc
     private func keyboardWillShow(_ notification: Notification) {
-        if screenHeight == 667 {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                sendAreaTextViewBottom.constant = keyboardSize.height + 6
-                sendBtnBottom.constant = keyboardSize.height + 1
-            }
-        } else {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                sendAreaTextViewBottom.constant = keyboardSize.height - 25
-                sendBtnBottom.constant = keyboardSize.height - 30
-            }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            sendAreaTextViewBottom.constant = screenHeight == 667 ? keyboardSize.height + 6 : keyboardSize.height - 25
+            sendBtnBottom.constant = screenHeight == 667 ? keyboardSize.height  + 1 : keyboardSize.height - 30
+
+            let beginFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            let endFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            let keyboardShowUpY = (endFrame.origin.y - beginFrame.origin.y)
+            self.defaultQuestionChatTV.contentOffset = CGPoint(x: 0, y: self.defaultQuestionChatTV.contentOffset.y - keyboardShowUpY)
+            self.view.layoutIfNeeded()
         }
     }
     
