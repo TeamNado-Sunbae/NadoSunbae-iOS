@@ -239,6 +239,7 @@ extension InfoMainVC: UITableViewDelegate {
         
         if infoList.count != 0 {
             infoDetailVC.postID = infoList[indexPath.row].postID
+            infoDetailVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(infoDetailVC, animated: true)
         }
     }

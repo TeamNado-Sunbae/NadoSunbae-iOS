@@ -48,6 +48,7 @@ extension NotificationMainVC: UITableViewDelegate {
             groupChatVC.questionType = notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
             groupChatVC.naviStyle = .push
             groupChatVC.postID = notificationList[indexPath.section].postID
+            groupChatVC.hidesBottomBarWhenPushed = true
 
             readNoti(notiID: notificationList[indexPath.section].notificationID)
             self.navigationController?.pushViewController(groupChatVC, animated: true)
@@ -61,6 +62,7 @@ extension NotificationMainVC: UITableViewDelegate {
             groupChatVC.questionType = notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
             groupChatVC.naviStyle = .push
             groupChatVC.postID = notificationList[indexPath.section].postID
+            groupChatVC.hidesBottomBarWhenPushed = true
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
             self.navigationController?.pushViewController(groupChatVC, animated: true)
@@ -71,6 +73,7 @@ extension NotificationMainVC: UITableViewDelegate {
             groupChatVC.questionType = .personal
             groupChatVC.naviStyle = .push
             groupChatVC.postID = notificationList[indexPath.section].postID
+            groupChatVC.hidesBottomBarWhenPushed = true
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
             self.navigationController?.pushViewController(groupChatVC, animated: true)

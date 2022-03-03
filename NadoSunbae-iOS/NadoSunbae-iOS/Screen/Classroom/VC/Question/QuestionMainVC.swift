@@ -316,6 +316,7 @@ extension QuestionMainVC: UITableViewDelegate {
                 groupChatVC.questionType = .group
                 groupChatVC.naviStyle = .push
                 groupChatVC.postID = questionList[indexPath.row].postID
+                groupChatVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(groupChatVC, animated: true)
             }
         } else if indexPath.section == 2 {

@@ -39,6 +39,7 @@ extension MypageMainVC: UITableViewDelegate {
         personalChatVC.questionType = .personal
         personalChatVC.naviStyle = .push
         personalChatVC.postID = self.questionList[indexPath.row].postID
+        personalChatVC.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(personalChatVC, animated: true)
     }
