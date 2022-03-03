@@ -413,7 +413,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 return questionEditCell
             } else if questionChatData[indexPath.row].writer.isQuestioner {
                 
-                /// 1:1 질문자 셀
+                /// 1:1 질문자 질문원글 셀
                 if indexPath.row == 0 {
                     questionCell.likeBtn.isHidden = false
                     questionCell.likeCountLabel.isHidden = false
