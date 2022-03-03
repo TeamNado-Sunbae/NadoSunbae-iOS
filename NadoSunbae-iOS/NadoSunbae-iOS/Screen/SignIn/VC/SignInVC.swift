@@ -86,12 +86,20 @@ extension SignInVC {
             .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
-                if changedText.contains("@") && changedText.contains(".") {
-                    self.signInBtn.isActivated = true
-                    self.signInBtn.isEnabled = true
+                if changedText.count == 0 {
                     self.infoLabel.isHidden = true
+                    self.signInBtn.isActivated = false
+                    self.signInBtn.isEnabled = false
                 } else {
-                    self.infoLabel.isHidden = false
+                    if changedText.contains("@") && changedText.contains(".") {
+                        self.signInBtn.isActivated = true
+                        self.signInBtn.isEnabled = true
+                        self.infoLabel.isHidden = true
+                    } else {
+                        self.infoLabel.isHidden = false
+                        self.signInBtn.isActivated = false
+                        self.signInBtn.isEnabled = false
+                    }
                 }
             })
             .disposed(by: disposeBag)
