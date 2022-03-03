@@ -48,7 +48,7 @@ extension NadoSunbaeTBC {
         let mypageTab = makeTabVC(vcType: .mypage, tabBarTitle: "마이페이지", tabBarImg: "icMypageGray", tabBarSelectedImg: "icMypage")
         
         // 탭 구성
-        let tabs =  [reviewTab, classroomTab, alarmTab, mypageTab]
+        let tabs = [reviewTab, classroomTab, alarmTab, mypageTab]
         
         // VC에 루트로 설정
         self.setViewControllers(tabs, animated: false)
