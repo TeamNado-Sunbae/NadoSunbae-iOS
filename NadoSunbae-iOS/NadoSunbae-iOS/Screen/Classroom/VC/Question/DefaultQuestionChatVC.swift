@@ -635,9 +635,6 @@ extension DefaultQuestionChatVC: TVCContentUpdate {
     /// TableView의 내용 or UI를 업데이트하는 메서드
     func updateTV() {
         defaultQuestionChatTV.reloadData()
-        if moreBtnTapIndex?.isEmpty == false {
-            defaultQuestionChatTV.scrollToRow(at: IndexPath(row: moreBtnTapIndex?[1] ?? 0, section: 0), at: .top, animated: true)
-        }
     }
 }
 
