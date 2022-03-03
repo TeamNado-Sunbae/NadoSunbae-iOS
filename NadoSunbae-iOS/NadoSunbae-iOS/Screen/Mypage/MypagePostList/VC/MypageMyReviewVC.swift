@@ -31,6 +31,7 @@ class MypageMyReviewVC: BaseVC {
     
     // MARK: Properties
     var reviewList: [MypageMyReviewPostModel] = []
+    var userID: Int = 0
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -106,7 +107,7 @@ extension MypageMyReviewVC: UITableViewDelegate {
 extension MypageMyReviewVC {
     private func getMypageMyReview() {
         self.activityIndicator.startAnimating()
-        MypageAPI.shared.getMypageMyReviewList(userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)) { networkResult in
+        MypageAPI.shared.getMypageMyReviewList(userID: self.userID == 0 ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) : self.userID) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let reviewData = res as? MypageMyReviewModel {
