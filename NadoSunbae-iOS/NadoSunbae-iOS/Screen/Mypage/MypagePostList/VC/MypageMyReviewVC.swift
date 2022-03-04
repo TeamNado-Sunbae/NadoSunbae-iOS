@@ -76,7 +76,7 @@ extension MypageMyReviewVC {
     }
 }
 
-// MARK: -
+// MARK: - UITableViewDataSource
 extension MypageMyReviewVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviewList.count
@@ -90,6 +90,7 @@ extension MypageMyReviewVC: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MypageMyReviewVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
