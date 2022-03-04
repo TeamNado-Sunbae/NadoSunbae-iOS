@@ -121,6 +121,8 @@ extension MypageMyReviewVC {
                         self.reviewTVHeight.constant = self.reviewTV.contentSize.height
                         self.contentView.layoutIfNeeded()
                     }
+                } else {
+                    self.setEmptyView()
                 }
                 self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
