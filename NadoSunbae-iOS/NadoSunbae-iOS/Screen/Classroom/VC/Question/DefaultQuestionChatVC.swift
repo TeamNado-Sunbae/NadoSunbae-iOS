@@ -488,6 +488,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                                 self.present(editPostVC, animated: true, completion: nil)
                             } else {
                                 /// 질문 답변일 경우
+                                self.dismissKeyboard()
                                 editIndex = [0,indexPath.row]
                             }
                             defaultQuestionChatTV.reloadData()
@@ -586,6 +587,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                         /// 작성자 본인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
                         self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
                             if actionSheetString[0] == "수정" {
+                                self.dismissKeyboard()
                                 editIndex = [1,indexPath.row]
                             }
                             defaultQuestionChatTV.reloadData()
@@ -703,6 +705,7 @@ extension DefaultQuestionChatVC {
                     /// 댓글 수정되었을 때
                     if self.isCommentEdited {
                         self.defaultQuestionChatTV.performBatchUpdates {
+                            self.dismissKeyboard()
                             self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic)
                         }
                         self.isCommentEdited = false
