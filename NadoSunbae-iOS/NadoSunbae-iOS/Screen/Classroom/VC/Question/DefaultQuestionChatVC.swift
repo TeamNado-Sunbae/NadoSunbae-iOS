@@ -73,6 +73,7 @@ class DefaultQuestionChatVC: BaseVC {
     private let screenHeight = UIScreen.main.bounds.size.height
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
+    private var keyboardShowUpY: CGFloat = 0
     private let textViewMaxHeight: CGFloat = 85
     
     // MARK: Life Cycle
@@ -655,18 +656,24 @@ extension DefaultQuestionChatVC {
 
             let beginFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
             let endFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-            let keyboardShowUpY = (endFrame.origin.y - beginFrame.origin.y)
+            
+            guard !beginFrame.equalTo(endFrame) else {
+                    return
+            }
+            
+            keyboardShowUpY = (endFrame.origin.y - beginFrame.origin.y)
             self.defaultQuestionChatTV.contentOffset = CGPoint(x: 0, y: self.defaultQuestionChatTV.contentOffset.y - keyboardShowUpY)
             self.view.layoutIfNeeded()
         }
     }
     
     @objc
-    private func keyboardWillHide(_ notification:Notification) {
+    private func keyboardWillHide(_ notification: Notification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             sendAreaTextViewBottom.constant = 5
             sendBtnBottom.constant = 0
-            defaultQuestionChatTV.fitContentInset(inset: .zero)
+            self.defaultQuestionChatTV.contentOffset = CGPoint(x: 0, y: self.defaultQuestionChatTV.contentOffset.y + keyboardShowUpY)
+            self.view.layoutIfNeeded()
         }
     }
     
