@@ -74,7 +74,7 @@ class PublicAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.requestReportJudgeData(status: statusCode, data: data))
+                completion(self.getAppLinkJudgeData(status: statusCode, data: data))
                 
             case .failure(let err):
                 print(err)
