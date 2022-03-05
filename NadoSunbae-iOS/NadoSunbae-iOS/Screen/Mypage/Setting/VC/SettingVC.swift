@@ -90,6 +90,20 @@ class SettingVC: BaseVC {
     private func registerXIB() {
         SettingTVC.register(target: settingTV)
     }
+    
+    /// 로그아웃 시 UserDefaults 지우는 함수
+    private func setRemoveUserdefaultValues() {
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
+    }
 }
 
 // MARK: - UITableViewDataSource
