@@ -45,6 +45,9 @@ class SignInVC: BaseVC {
     }
     
     @IBAction func tapFindPWBtn(_ sender: UIButton) {
+        guard let resetPWVC = UIStoryboard.init(name: ResetPWVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWVC.className) as? ResetPWVC else { return }
+        resetPWVC.modalPresentationStyle = .fullScreen
+        self.present(resetPWVC, animated: true, completion: nil)
     }
     
     @IBAction func tapContactBtn(_ sender: UIButton) {
