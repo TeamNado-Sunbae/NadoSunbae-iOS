@@ -109,10 +109,10 @@
                     <connections>
                         <outlet property="contentView" destination="Ifb-p1-FlH" id="DeM-YK-5G5"/>
                         <outlet property="emptyView" destination="b6Y-qI-j4A" id="3lt-20-iiX"/>
+                        <outlet property="mypageReviewSV" destination="8mL-F0-YDQ" id="8vt-ln-gG6"/>
                         <outlet property="navView" destination="UUN-r1-6Kk" id="gbK-f3-xDp"/>
                         <outlet property="reviewTV" destination="vr6-O5-Gfy" id="pnA-Ok-TFW"/>
                         <outlet property="reviewTVHeight" destination="6gW-fB-NUv" id="LWN-k1-hJ5"/>
-                        <outlet property="scrollView" destination="8mL-F0-YDQ" id="oVd-7w-nIj"/>
                         <outlet property="titleLabel" destination="GtB-MD-8ew" id="qAs-hA-tTW"/>
                     </connections>
                 </viewController>

@@ -19,7 +19,7 @@ class MypageMyReviewVC: BaseVC {
             }
         }
     }
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var mypageReviewSV: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var reviewTV: UITableView!
@@ -64,7 +64,7 @@ extension MypageMyReviewVC {
     
     private func setEmptyView() {
         emptyView.isHidden = !(reviewList.isEmpty)
-        self.scrollView.contentSize.height = 1.0
+        self.mypageReviewSV.contentSize.height = 1.0
     }
     
     private func setUpTV() {
