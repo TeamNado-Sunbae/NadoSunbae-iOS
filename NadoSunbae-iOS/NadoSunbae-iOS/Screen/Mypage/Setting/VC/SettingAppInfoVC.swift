@@ -35,7 +35,7 @@ class SettingAppInfoVC: BaseVC {
     }
     
     // MARK: Properties
-    let menuList = ["서비스 이용규칙", "서비스 이용약관", "오픈소스 라이선스", "버전 정보"]
+    let menuList = ["개인정보 처리방침", "서비스 이용약관", "오픈소스 라이선스", "버전 정보"]
     var latestVersion = ""
     
     // MARK: Life Cycle
