@@ -12,6 +12,7 @@ enum PublicService {
     case getMajorList(univID: Int, filter: String)
     case requestBlockUnBlockUser(blockUserID: Int)
     case requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String)
+    case getAppLink
 }
 
 extension PublicService: TargetType {
@@ -28,12 +29,14 @@ extension PublicService: TargetType {
             return "/block"
         case .requestReport:
             return "/report"
+        case .getAppLink:
+            return "/app/link"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getMajorList:
+        case .getMajorList, .getAppLink:
             return .get
         case .requestBlockUnBlockUser, .requestReport:
             return .post
@@ -54,6 +57,8 @@ extension PublicService: TargetType {
                 "reason": reason
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .getAppLink:
+            return .requestPlain
         }
     }
     
