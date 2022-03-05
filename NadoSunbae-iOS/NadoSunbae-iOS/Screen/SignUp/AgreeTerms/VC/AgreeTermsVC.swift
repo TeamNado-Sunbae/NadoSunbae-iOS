@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class AgreeTermsVC: BaseVC {
     
@@ -21,10 +22,16 @@ class AgreeTermsVC: BaseVC {
     @IBOutlet weak var checkServiceTermBtn: UIButton!
     @IBOutlet weak var nextBtn: NadoSunbaeBtn!
     
+    // MARK: Properties
+    var appLink: AppLinkResponseModel?
+    
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        getAppLink { appLink in
+            self.appLink = appLink
+        }
     }
     
     // MARK: IBAction
@@ -57,9 +64,7 @@ class AgreeTermsVC: BaseVC {
     }
     
     @IBAction func tapOpenTermBtn(_ sender: UIButton) {
-        guard let termDetailVC = self.storyboard?.instantiateViewController(withIdentifier: TermDetailVC.className) as? TermDetailVC else { return }
-        termDetailVC.termTag = sender.tag
-        self.present(termDetailVC, animated: true, completion: nil)
+        presentSafariVC(link: sender.tag == 0 ? appLink?.personalInformationPolicy ?? "" : appLink?.termsOfService ?? "")
     }
 }
 
@@ -98,5 +103,11 @@ extension AgreeTermsVC {
         }
         nextBtn.isActivated = allCheckBtn.isSelected
         nextBtn.isEnabled = allCheckBtn.isSelected
+    }
+    
+    private func presentSafariVC(link: String) {
+        let webLink = NSURL(string: link)
+        let safariVC = SFSafariViewController(url: webLink! as URL)
+        self.present(safariVC, animated: true, completion: nil)
     }
 }

@@ -136,7 +136,6 @@
 		5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */; };
 		5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C873A4A279978650050EE43 /* SignInDataModel.swift */; };
 		5C87EC22279A2D2C0039D935 /* CreateClassroomPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */; };
-		5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */; };
 		5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */; };
 		5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */; };
 		5C91647E279A9F0B008DD44B /* MajorUserListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */; };
@@ -386,7 +385,6 @@
 		5C70A4FC27BA4C540096B20A /* MypagePostListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypagePostListVC.swift; sourceTree = "<group>"; };
 		5C873A4A279978650050EE43 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		5C87EC21279A2D2C0039D935 /* CreateClassroomPostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassroomPostModel.swift; sourceTree = "<group>"; };
-		5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailVC.swift; sourceTree = "<group>"; };
 		5C8D8BF9278B1E820045E600 /* SignUpMajorInfoVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpMajorInfoVC.storyboard; sourceTree = "<group>"; };
 		5C8D8BFB278B1E8F0045E600 /* SignUpMajorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMajorInfoVC.swift; sourceTree = "<group>"; };
 		5C91647D279A9F0B008DD44B /* MajorUserListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorUserListDataModel.swift; sourceTree = "<group>"; };
@@ -1299,7 +1297,6 @@
 			isa = PBXGroup;
 			children = (
 				5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */,
-				5C8D8BF3278B03C80045E600 /* TermDetailVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1789,7 +1786,6 @@
 				5C91647E279A9F0B008DD44B /* MajorUserListDataModel.swift in Sources */,
 				331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */,
 				5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */,
-				5C8D8BF4278B03C80045E600 /* TermDetailVC.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
 				77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */,
 				5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */,
