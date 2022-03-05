@@ -11,7 +11,7 @@ import RxCocoa
 
 class SignInVC: BaseVC {
     
-    // MARK: Properties
+    // MARK: @IBOutlet
     @IBOutlet weak var emailTextField: NadoTextField!
     @IBOutlet weak var PWTextField: NadoTextField!
     @IBOutlet weak var signInBtn: NadoSunbaeBtn!
@@ -19,15 +19,20 @@ class SignInVC: BaseVC {
     @IBOutlet weak var emailClearBtn: UIButton!
     @IBOutlet weak var PWClearBtn: UIButton!
     
+    // MARK: Properties
     let disposeBag = DisposeBag()
+    var kakaoLink = ""
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        getAppLink { appLink in
+            self.kakaoLink = appLink.kakaoTalkChannel
+        }
     }
     
-    // MARK: IBAction
+    // MARK: @IBAction
     @IBAction func tapSignInBtn(_ sender: UIButton) {
         requestSignIn()
     }
@@ -43,6 +48,9 @@ class SignInVC: BaseVC {
     }
     
     @IBAction func tapContactBtn(_ sender: UIButton) {
+        if let url = URL(string: kakaoLink) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
 }
 
