@@ -16,7 +16,12 @@ class ResetPWCompleteVC: BaseVC {
             goSignInBtn.isEnabled = true
             goSignInBtn.press {
                 guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
-                self.navigationController?.pushViewController(signInVC, animated: true)
+                if self.isLogin() {
+                    self.navigationController?.pushViewController(signInVC, animated: true)
+                } else {
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.present(signInVC, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -40,6 +45,11 @@ class ResetPWCompleteVC: BaseVC {
         super.viewWillAppear(animated)
         hideTabbar()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    // MARK: Custom Methods
+    private func isLogin() -> Bool {
+        return UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) is Int ? true : false
     }
 }
 
