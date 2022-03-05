@@ -161,7 +161,19 @@ extension SettingVC: UITableViewDelegate {
 // MARK: - Network
 extension SettingVC {
     private func requestSignOut() {
-        
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.requestSignOut { networkResult in
+            switch networkResult {
+            case .success:
+                self.setRemoveUserdefaultValues()
+                guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+                signInVC.modalPresentationStyle = .fullScreen
+                self.present(signInVC, animated: true, completion: nil)
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
     
     private func requestWithDraw() {
