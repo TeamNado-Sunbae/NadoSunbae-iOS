@@ -49,6 +49,7 @@ class MypageUserVC: BaseVC {
     var userInfo = MypageUserInfoModel()
     var questionList: [ClassroomPostList] = []
     var sortType: ListSortType = .recent
+    var judgeBlockStatusDelegate: SendUpdateStatusDelegate?
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -231,6 +232,7 @@ extension MypageUserVC {
                     guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                     alert.showNadoAlert(vc: self, message: "해당 유저가 차단되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "취소")
                     alert.confirmBtn.press {
+                        self.judgeBlockStatusDelegate?.sendStatus(data: true)
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
