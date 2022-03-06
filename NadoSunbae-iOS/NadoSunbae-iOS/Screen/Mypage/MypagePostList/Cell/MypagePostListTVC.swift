@@ -20,6 +20,7 @@ class MypagePostListTVC: BaseQuestionTVC {
         questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
         likeCountLabel.text = "\(data.like.likeCount)"
+        likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
     func setMypageMyAnswerData(data: MypageMyAnswerModel) {
@@ -29,5 +30,6 @@ class MypagePostListTVC: BaseQuestionTVC {
         questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
         likeCountLabel.text = "\(data.like.likeCount)"
+        likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
 }
