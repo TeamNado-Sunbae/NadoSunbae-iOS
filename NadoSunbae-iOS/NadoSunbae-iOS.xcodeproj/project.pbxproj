@@ -250,6 +250,7 @@
 		C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */; };
 		C7C4145027C93C4700296C30 /* EditProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */; };
 		C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */; };
+		C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -500,6 +501,7 @@
 		C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestModel.swift; sourceTree = "<group>"; };
 		C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkResponseModel.swift; sourceTree = "<group>"; };
+		C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResponseModel.swift; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1223,6 +1225,7 @@
 				5C9A93F627A64B550097310B /* SignUpBodyModel.swift */,
 				5C9A93F827A64FB20097310B /* SignUpDataModel.swift */,
 				C71BF24127CDC2B30030DCB9 /* SignOutResponseModel.swift */,
+				C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -1780,6 +1783,7 @@
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
 				77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
+				C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
 				C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */,
