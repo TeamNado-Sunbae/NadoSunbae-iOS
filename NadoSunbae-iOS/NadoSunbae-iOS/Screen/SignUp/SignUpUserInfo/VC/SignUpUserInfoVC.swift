@@ -346,6 +346,7 @@ extension SignUpUserInfoVC {
                     guard let mailCompleteVC = UIStoryboard.init(name: MailCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: MailCompleteVC.className) as? MailCompleteVC else { return }
                     mailCompleteVC.completeType = .signUp
                     mailCompleteVC.email = userData.email
+                    mailCompleteVC.PW = userData.PW
                     mailCompleteVC.modalPresentationStyle = .fullScreen
                     self.present(mailCompleteVC, animated: true, completion: nil)
                 }
