@@ -17,12 +17,9 @@ class NadoHorizonContainerViews: UIView {
     
     let xibName = NadoHorizonContainerViews.className
     
-    init(frame: CGRect, containerCount: CGFloat) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
-        
-        /// contentView의 width를 컨테이너의 수만큼 곱해준다
-        contentViewWidth = contentViewWidth.setMultiplier(multiplier: containerCount)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,5 +31,14 @@ class NadoHorizonContainerViews: UIView {
         let view = Bundle.main.loadNibNamed(xibName, owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
+    }
+}
+
+// MARK: - Custom Methods
+extension NadoHorizonContainerViews {
+
+    /// contentView의 width를 컨테이너의 수만큼 곱해주는 메서드
+    func setMultiplier(containerCount: CGFloat) {
+        contentViewWidth = contentViewWidth.setMultiplier(multiplier: containerCount)
     }
 }
