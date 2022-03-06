@@ -25,7 +25,7 @@ class ClassroomMainVC: UIViewController {
     }
     
     private let majorSelectBtn = UIButton()
-    private let classroomContainerView = NadoHorizonContainerViews()
+    private var classroomContainerView: NadoHorizonContainerViews?
     
     // MARK: IBOutlet
     @IBOutlet var topNaviView: UIView!
@@ -49,7 +49,8 @@ class ClassroomMainVC: UIViewController {
 extension ClassroomMainVC {
     private func configureUI() {
         topNaviView.addSubviews([majorLabel, bottomArrowImgView, majorSelectBtn])
-        self.view.addSubview(classroomContainerView)
+        classroomContainerView = NadoHorizonContainerViews(frame: self.view.frame, containerCount: 2)
+        self.view.addSubview(classroomContainerView!)
         
         majorLabel.snp.makeConstraints {
             $0.bottom.equalTo(topNaviView.snp.bottom).offset(-24)
@@ -67,7 +68,7 @@ extension ClassroomMainVC {
             $0.leading.equalTo(majorLabel)
         }
         
-        classroomContainerView.snp.makeConstraints {
+        classroomContainerView?.snp.makeConstraints {
             $0.top.equalTo(topNaviView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -89,15 +90,15 @@ extension ClassroomMainVC {
             $0.view.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        classroomContainerView.firstContainerView.addSubview(questionMainVC.view)
-        classroomContainerView.secondContainerView.addSubview(infoMainVC.view)
+        classroomContainerView?.firstContainerView.addSubview(questionMainVC.view)
+        classroomContainerView?.secondContainerView.addSubview(infoMainVC.view)
         
         questionMainVC.view.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(self.classroomContainerView)
+            $0.top.leading.trailing.bottom.equalTo(self.classroomContainerView!)
         }
         
         infoMainVC.view.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(classroomContainerView.secondContainerView)
+            $0.top.leading.trailing.bottom.equalTo(classroomContainerView!.secondContainerView)
         }
         
         questionMainVC.didMove(toParent: self)
@@ -144,9 +145,9 @@ extension ClassroomMainVC: SendSegmentStateDelegate {
     /// segment가 클릭되면 index에 따라 ContainerView의 ContentOffset.x 좌표를 바꿔주는 메서드
     func sendSegmentClicked(index: Int) {
         if index == 0 {
-            classroomContainerView.externalSV.contentOffset.x = 0
+            classroomContainerView?.externalSV.contentOffset.x = 0
         } else {
-            classroomContainerView.externalSV.contentOffset.x += screenWidth
+            classroomContainerView?.externalSV.contentOffset.x += screenWidth
         }
     }
 }
