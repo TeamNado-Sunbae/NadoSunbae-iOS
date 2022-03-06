@@ -189,7 +189,7 @@ extension InfoMainVC {
         }
     }
     
-    /// infoQuestionListTV height값이 바뀌면 값을 비교하여 constraint를 업데이트하는 메서드
+    /// infoQuestionListTV size값이 바뀌면 값을 비교하여 constraint를 업데이트하는 메서드
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == contentSizeObserverKeyPath) {
             if let newValue = change?[.newKey] {
