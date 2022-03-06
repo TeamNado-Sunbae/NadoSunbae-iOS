@@ -46,9 +46,9 @@ class BaseQuestionTVC: BaseTVC {
         $0.sizeToFit()
     }
     
-    private let likeImgView = UIImageView().then {
-        $0.image = UIImage(named: "heart")
-        $0.contentMode = .scaleAspectFill
+    let likeImgView = UIImageView().then {
+        $0.image = UIImage(named: "btn_heart")
+        $0.contentMode = .scaleAspectFit
     }
     
     let likeCountLabel = UILabel().then {
