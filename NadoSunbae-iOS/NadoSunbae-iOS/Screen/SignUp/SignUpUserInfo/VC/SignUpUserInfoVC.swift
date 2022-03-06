@@ -36,7 +36,6 @@ class SignUpUserInfoVC: BaseVC {
     let disposeBag = DisposeBag()
     var isCompleteList = [false, false, false]
     var signUpData = SignUpBodyModel()
-    let screenHeight = UIScreen.main.bounds.size.height
     
     // MARK: LifeCycle
     override func viewDidLoad() {

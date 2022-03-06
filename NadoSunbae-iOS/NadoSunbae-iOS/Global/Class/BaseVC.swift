@@ -9,6 +9,7 @@ import UIKit
 
 class BaseVC: UIViewController {
     
+    // MARK: Properties
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -22,11 +23,18 @@ class BaseVC: UIViewController {
         return activityIndicator
     }()
     
+    let screenWidth = UIScreen.main.bounds.size.width
+    let screenHeight = UIScreen.main.bounds.size.height
+    
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(activityIndicator)
     }
-    
+}
+
+// MARK: - Custom Methods
+extension BaseVC {
     func hideTabbar() {
         self.tabBarController?.tabBar.isHidden = true
     }
