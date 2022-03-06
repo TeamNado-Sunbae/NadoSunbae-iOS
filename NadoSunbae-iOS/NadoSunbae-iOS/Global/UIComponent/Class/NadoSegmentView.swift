@@ -16,16 +16,20 @@ class NadoSegmentView: UIView {
         $0.backgroundColor = .paleGray
     }
     
-    let questionBtn = NadoSunbaeBtn().then {
+    let firstBtn = NadoSunbaeBtn().then {
         $0.setBtnColors(normalBgColor: .paleGray, normalFontColor: .gray3, activatedBgColor: .mainLight, activatedFontColor: .mainDefault)
-        $0.setTitleWithStyle(title: "질문", size: 14.0)
         $0.isActivated = true
         $0.isEnabled = true
     }
     
-    let infoBtn = NadoSunbaeBtn().then {
+    let secondBtn = NadoSunbaeBtn().then {
         $0.setBtnColors(normalBgColor: .paleGray, normalFontColor: .gray3, activatedBgColor: .mainLight, activatedFontColor: .mainDefault)
-        $0.setTitleWithStyle(title: "정보", size: 14.0)
+        $0.isActivated = false
+        $0.isEnabled = true
+    }
+    
+    let thirdBtn = NadoSunbaeBtn().then {
+        $0.setBtnColors(normalBgColor: .paleGray, normalFontColor: .gray3, activatedBgColor: .mainLight, activatedFontColor: .mainDefault)
         $0.isActivated = false
         $0.isEnabled = true
     }
@@ -46,22 +50,29 @@ class NadoSegmentView: UIView {
 // MARK: - UI
 extension NadoSegmentView {
     func configureUI() {
-        self.addSubviews([backView, questionBtn, infoBtn])
+        self.addSubviews([backView, firstBtn, secondBtn, thirdBtn])
         
         backView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
-        questionBtn.snp.makeConstraints {
+        firstBtn.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.leading.equalTo(backView).offset(24)
             $0.width.equalTo(56)
             $0.height.equalToSuperview()
         }
         
-        infoBtn.snp.makeConstraints {
+        secondBtn.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.leading.equalTo(questionBtn.snp.trailing).offset(16)
+            $0.leading.equalTo(firstBtn.snp.trailing).offset(16)
+            $0.width.equalTo(56)
+            $0.height.equalToSuperview()
+        }
+        
+        thirdBtn.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalTo(secondBtn.snp.trailing).offset(16)
             $0.width.equalTo(56)
             $0.height.equalToSuperview()
         }
@@ -71,7 +82,7 @@ extension NadoSegmentView {
 // MARK: - Custom Methods
 extension NadoSegmentView {
     func setUpBtnVibrateAction() {
-        [questionBtn, infoBtn].forEach() {
+        [firstBtn, secondBtn, thirdBtn].forEach() {
             $0.press(vibrate: true, for: .touchUpInside) {
                 return
             }

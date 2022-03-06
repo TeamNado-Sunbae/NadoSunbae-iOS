@@ -16,10 +16,10 @@ class MypageMyPostListVC: BaseVC {
             case .question:
                 break
             case .information:
-                segmentView.questionBtn.isActivated = false
-                segmentView.questionBtn.isEnabled = true
-                segmentView.infoBtn.isActivated = true
-                segmentView.infoBtn.isEnabled = false
+                segmentView.firstBtn.isActivated = false
+                segmentView.firstBtn.isEnabled = true
+                segmentView.secondBtn.isActivated = true
+                segmentView.secondBtn.isEnabled = false
             }
         }
     }
@@ -57,12 +57,12 @@ class MypageMyPostListVC: BaseVC {
 // MARK: - Custom Methods
 extension MypageMyPostListVC {
     private func setUpTapSegmentBtn() {
-        segmentView.infoBtn.press {
+        segmentView.secondBtn.press {
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 1)
             }
         }
-        segmentView.questionBtn.press {
+        segmentView.firstBtn.press {
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 0)
             }
