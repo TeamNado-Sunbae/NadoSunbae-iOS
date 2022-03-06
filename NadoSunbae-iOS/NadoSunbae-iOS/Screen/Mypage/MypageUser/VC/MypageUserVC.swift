@@ -105,6 +105,16 @@ class MypageUserVC: BaseVC {
         reviewVC.userID = userInfo.userID
         self.navigationController?.pushViewController(reviewVC, animated: true)
     }
+    
+    @IBAction func tapBlockBtn(_ sender: UIButton) {
+        makeAlertWithCancel(okTitle: "차단", okAction: { _ in
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            alert.showNadoAlert(vc: self, message: "해당 유저를 차단하시겠어요?\n차단시, 본인이 쓴 글 및 마이페이지에\n해당유저가 접근할 수 없습니다.", confirmBtnTitle: "차단하기", cancelBtnTitle: "취소")
+            alert.confirmBtn.press {
+                self.requestBlockUser(blockUserID: self.userInfo.userID)
+            }
+        })
+    }
 }
 
 // MARK: - UI
