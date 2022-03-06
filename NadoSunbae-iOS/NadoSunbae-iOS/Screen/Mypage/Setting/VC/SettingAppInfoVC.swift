@@ -35,13 +35,17 @@ class SettingAppInfoVC: BaseVC {
     }
     
     // MARK: Properties
-    let menuList = ["서비스 이용규칙", "서비스 이용약관", "오픈소스 라이선스", "버전 정보"]
+    let menuList = ["개인정보 처리방침", "서비스 이용약관", "오픈소스 라이선스", "버전 정보"]
     var latestVersion = ""
+    var appLink: AppLinkResponseModel?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXIB()
+        getAppLink { appLink in
+            self.appLink = appLink
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,19 +92,17 @@ extension SettingAppInfoVC: UITableViewDataSource {
 extension SettingAppInfoVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        // TODO: 나머지 case들 뷰 구현되는 대로 추가
-            
-        /// 서비스 이용규칙
+        /// 개인정보 처리방침
         case 0:
-            break
+            presentSafariVC(link: appLink?.personalInformationPolicy ?? "")
             
         /// 서비스 이용약관
         case 1:
-            presentSafariVC(link: "https://nadosunbae.notion.site/V-1-0-2022-3-1-d1d15e411b0b417198b2405468894dea")
+            presentSafariVC(link: appLink?.termsOfService ?? "")
             
         /// 오픈소스 라이선스
         case 2:
-            presentSafariVC(link: "https://nadosunbae.notion.site/V-1-0-2442b1af796041d09bc6e8729c172438")
+            presentSafariVC(link: appLink?.openSourceLicense ?? "")
             
         default:
             break

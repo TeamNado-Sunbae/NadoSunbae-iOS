@@ -63,7 +63,12 @@ extension MypageSettingService: TargetType {
     }
     
     var headers: [String : String]? {
-        let accessToken = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken)!
-        return ["accessToken": accessToken]
+        switch self {
+        case .requestResetPW:
+            return ["Content-type": "application/json"]
+        default:
+            let accessToken = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken)!
+            return ["accessToken": accessToken]
+        }
     }
 }

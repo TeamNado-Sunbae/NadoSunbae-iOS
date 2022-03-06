@@ -50,3 +50,30 @@ extension BaseVC: UIGestureRecognizerDelegate {
         return !(touch.view is UIButton)
     }
 }
+
+// MARK: - Network
+extension BaseVC {
+    
+    /// 앱 링크 조회
+    func getAppLink(completion: @escaping (AppLinkResponseModel) -> (Void)) {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.getAppLink { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let response = res as? AppLinkResponseModel {
+                    completion(response)
+                }
+                self.activityIndicator.stopAnimating()
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print("request err: ", message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+}
