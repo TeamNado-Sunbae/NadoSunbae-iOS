@@ -70,7 +70,6 @@ class DefaultQuestionChatVC: BaseVC {
     private var editedCommentIndexPath: [IndexPath] = []
     private var isCommentSend: Bool = false
     private var actionSheetString: [String] = []
-    private let screenHeight = UIScreen.main.bounds.size.height
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
     private var keyboardShowUpY: CGFloat = 0

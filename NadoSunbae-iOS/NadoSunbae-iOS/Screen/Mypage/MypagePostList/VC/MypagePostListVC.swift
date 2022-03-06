@@ -24,7 +24,6 @@ class MypagePostListVC: BaseVC {
     
     // MARK: Properties
     var isPostOrAnswer = true
-    private let screenWidth = UIScreen.main.bounds.size.width
 
     // MARK: LifeCycle
     override func viewDidLoad() {

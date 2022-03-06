@@ -60,7 +60,6 @@ class InfoDetailVC: BaseVC {
     private var isTextViewEmpty: Bool = true
     private var sendTextViewLineCount: Int = 1
     private var isWriter: Bool?
-    private let screenHeight = UIScreen.main.bounds.size.height
     private let textViewMaxHeight: CGFloat = 85.adjustedH
     private let whiteBackView = UIView()
     

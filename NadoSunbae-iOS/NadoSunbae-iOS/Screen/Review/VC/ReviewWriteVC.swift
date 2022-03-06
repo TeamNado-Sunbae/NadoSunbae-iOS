@@ -63,7 +63,6 @@ class ReviewWriteVC: BaseVC {
     
     /// 데이터 삽입을 위한 리스트 변수
     private var bgImgList: [ReviewWriteBgImgData] = []
-    let screenHeight = UIScreen.main.bounds.size.height
     
     // 새글 작성, 기존글 수정 구분 위한 변수
     var isPosting: Bool = true
