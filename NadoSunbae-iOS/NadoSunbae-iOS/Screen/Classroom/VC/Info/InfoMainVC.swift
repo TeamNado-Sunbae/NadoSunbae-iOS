@@ -63,7 +63,12 @@ class InfoMainVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.infoQuestionListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
         setUpRequestData(sortType: .recent)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.infoQuestionListTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
 }
 
