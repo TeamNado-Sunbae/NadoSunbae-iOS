@@ -7,7 +7,12 @@
 
 import UIKit
 
-class ResetPWCompleteVC: BaseVC {
+enum MailCompleteType {
+    case resetPW
+    case signUp
+}
+
+class MailCompleteVC: BaseVC {
     
     // MARK: @IBOutlet
     @IBOutlet weak var goSignInBtn: NadoSunbaeBtn! {
@@ -32,9 +37,20 @@ class ResetPWCompleteVC: BaseVC {
             }
         }
     }
+    @IBOutlet weak var infoLabel: UILabel! {
+        didSet {
+            switch completeType {
+            case .resetPW:
+                infoLabel.text = "비밀번호를 재설정할 수 있는 링크가 전송되었습니다."
+            case .signUp:
+                infoLabel.text = "학교 이메일 인증 링크가 전송되었어요.\n인증을 실시하면 회원가입이 완료됩니다."
+            }
+        }
+    }
     
     // MARK: Properties
     var email = ""
+    var completeType: MailCompleteType = .resetPW
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -54,7 +70,7 @@ class ResetPWCompleteVC: BaseVC {
 }
 
 // MARK: - Network
-extension ResetPWCompleteVC {
+extension MailCompleteVC {
     private func resendEmail(email: String) {
         self.activityIndicator.startAnimating()
         MypageSettingAPI.shared.requestResetPW(email: email) { networkResult in

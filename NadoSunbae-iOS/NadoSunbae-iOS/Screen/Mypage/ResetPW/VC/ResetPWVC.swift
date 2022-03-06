@@ -100,7 +100,7 @@ class ResetPWVC: BaseVC {
     }
     
     private func goResetPWComplete() {
-        guard let resetPWCompleteVC = UIStoryboard.init(name: ResetPWCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWCompleteVC.className) as? ResetPWCompleteVC else { return }
+        guard let resetPWCompleteVC = UIStoryboard.init(name: MailCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: MailCompleteVC.className) as? MailCompleteVC else { return }
         resetPWCompleteVC.email = self.emailTextField.text ?? ""
         if isLogin() {
             self.navigationController?.pushViewController(resetPWCompleteVC, animated: true)
@@ -156,6 +156,7 @@ extension ResetPWVC {
             case .success:
                 self.setRemoveUserdefaultValues()
                 self.goResetPWComplete()
+                self.activityIndicator.stopAnimating()
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")

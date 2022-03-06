@@ -17,10 +17,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--ResetPW CompleteVC-->
+        <!--Mail CompleteVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ResetPWCompleteVC" id="Y6W-OH-hqX" customClass="ResetPWCompleteVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MailCompleteVC" id="Y6W-OH-hqX" customClass="MailCompleteVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,6 +88,7 @@
                     </view>
                     <connections>
                         <outlet property="goSignInBtn" destination="TZe-qr-9Oe" id="4lL-Ok-qPh"/>
+                        <outlet property="infoLabel" destination="Zsm-0a-KLt" id="4aV-yY-7wl"/>
                         <outlet property="resendBtn" destination="pKJ-NL-rWk" id="Xh6-Sh-4OL"/>
                     </connections>
                 </viewController>
