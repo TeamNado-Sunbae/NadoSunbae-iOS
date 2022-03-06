@@ -58,7 +58,7 @@ class SettingVC: BaseVC {
             self.requestSignOut()
         }
         
-        alert.showNadoAlert(vc: self, message: "로그아웃할래?(미정)", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+        alert.showNadoAlert(vc: self, message: "로그아웃하시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
     }
     
     @IBAction func tapWithDrawBtn(_ sender: Any) {
@@ -69,10 +69,10 @@ class SettingVC: BaseVC {
         }
         
         alert.confirmBtn.press {
-            self.requestWithDraw()
+            self.requestWithDraw(PW: alert.textField.text ?? "")
         }
         
-        alert.showNadoAlert(vc: self, message: "탈퇴할래?(미정)", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+        alert.showNadoAlert(vc: self, message: "탈퇴하시겠습니까?", confirmBtnTitle: "확인", cancelBtnTitle: "취소", type: .withTextField)
     }
     
     @IBAction func tapServiceContactBtn(_ sender: Any) {
@@ -89,6 +89,20 @@ class SettingVC: BaseVC {
     
     private func registerXIB() {
         SettingTVC.register(target: settingTV)
+    }
+    
+    /// 로그아웃 시 UserDefaults 지우는 함수
+    private func setRemoveUserdefaultValues() {
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
     }
 }
 
@@ -147,10 +161,54 @@ extension SettingVC: UITableViewDelegate {
 // MARK: - Network
 extension SettingVC {
     private func requestSignOut() {
-        
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.requestSignOut { networkResult in
+            switch networkResult {
+            case .success:
+                self.setRemoveUserdefaultValues()
+                guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+                signInVC.modalPresentationStyle = .fullScreen
+                self.present(signInVC, animated: true, completion: nil)
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
     
-    private func requestWithDraw() {
-        
+    private func requestWithDraw(PW: String) {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.requestWithDraw(PW: PW) { networkResult in
+            switch networkResult {
+            case .success:
+                self.activityIndicator.stopAnimating()
+                self.setRemoveUserdefaultValues()
+
+                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                
+                alert.confirmBtn.press {
+                    alert.dismiss(animated: true, completion: nil)
+                    guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.present(signInVC, animated: true, completion: nil)
+                }
+                
+                alert.showNadoAlert(vc: self, message: "탈퇴가 완료되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    
+                    alert.confirmBtn.press {
+                        alert.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    alert.showNadoAlert(vc: self, message: message, confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)
+                }
+                self.activityIndicator.stopAnimating()
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
