@@ -15,6 +15,7 @@ enum SignService {
     case checkEmailDuplicate(email: String)
     case requestSignOut
     case requestWithDraw(PW: String)
+    case resendSignUpMail(email: String, PW: String)
 }
 
 extension SignService: TargetType {
@@ -36,12 +37,14 @@ extension SignService: TargetType {
             return "/auth/logout"
         case .requestWithDraw:
             return "/auth/secession"
+        case .resendSignUpMail:
+            return "/auth/certification/email"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .requestSignIn, .requestSignUp, .checkNickNameDuplicate, .checkEmailDuplicate, .requestSignOut, .requestWithDraw:
+        case .requestSignIn, .requestSignUp, .checkNickNameDuplicate, .checkEmailDuplicate, .requestSignOut, .resendSignUpMail, .requestWithDraw:
             return .post
         }
     }
@@ -69,6 +72,8 @@ extension SignService: TargetType {
             return .requestPlain
         case .requestWithDraw(let PW):
             return .requestParameters(parameters: ["password": PW], encoding: JSONEncoding.default)
+        case .resendSignUpMail(let email, let PW):
+            return .requestParameters(parameters: ["email": email, "password": PW], encoding: JSONEncoding.default)
         }
     }
     
