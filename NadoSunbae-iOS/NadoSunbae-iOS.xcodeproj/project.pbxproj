@@ -62,6 +62,7 @@
 		331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5383279629D30052B309 /* EntireQuestionListTVC.swift */; };
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
+		3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */; };
 		33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385636F278DC74D003C60A6 /* BaseTVC.swift */; };
 		3386010427988D0500C47D36 /* ActionSheetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3386010327988D0500C47D36 /* ActionSheetCase.swift */; };
 		338601062798B1F800C47D36 /* NaviType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338601052798B1F800C47D36 /* NaviType.swift */; };
@@ -313,6 +314,7 @@
 		331C5383279629D30052B309 /* EntireQuestionListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListTVC.swift; sourceTree = "<group>"; };
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
+		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
 		3385636F278DC74D003C60A6 /* BaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVC.swift; sourceTree = "<group>"; };
 		3386010327988D0500C47D36 /* ActionSheetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCase.swift; sourceTree = "<group>"; };
 		338601052798B1F800C47D36 /* NaviType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviType.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 			children = (
 				331364AB2785D96D00E0C118 /* MypageMainVC.swift */,
 				5C5AFCBC279400060045E47A /* MypageMainVC+TV.swift */,
+				3381083627D53E52005AF1F9 /* LikeList */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -894,6 +897,14 @@
 				331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */,
 			);
 			path = CVC;
+			sourceTree = "<group>";
+		};
+		3381083627D53E52005AF1F9 /* LikeList */ = {
+			isa = PBXGroup;
+			children = (
+				3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */,
+			);
+			path = LikeList;
 			sourceTree = "<group>";
 		};
 		3391E48A278B48EF0079EA31 /* Cell */ = {
@@ -1775,6 +1786,7 @@
 				33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
+				3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */,
 				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
