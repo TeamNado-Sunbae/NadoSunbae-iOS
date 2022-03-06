@@ -58,6 +58,7 @@ class QuestionMainVC: BaseVC {
     let questionSegmentView = NadoSegmentView().then {
         $0.firstBtn.setTitleWithStyle(title: "질문", size: 14.0)
         $0.secondBtn.setTitleWithStyle(title: "정보", size: 14.0)
+        $0.thirdBtn.isHidden = true
     }
     
     private var questionList: [ClassroomPostList] = []

@@ -20,6 +20,7 @@ class InfoMainVC: BaseVC {
         [$0.firstBtn, $0.secondBtn].forEach() {
             $0.isEnabled = true
         }
+        $0.thirdBtn.isHidden = true
     }
     
     private let infoSV = UIScrollView().then {
