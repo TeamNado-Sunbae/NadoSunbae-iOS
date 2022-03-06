@@ -10,14 +10,19 @@ import UIKit
 class NadoHorizonContainerViews: UIView {
     
     @IBOutlet var externalSV: UIScrollView!
+    @IBOutlet var containerStackView: UIStackView!
     @IBOutlet var firstContainerView: UIView!
     @IBOutlet var secondContainerView: UIView!
+    @IBOutlet var contentViewWidth: NSLayoutConstraint!
     
     let xibName = NadoHorizonContainerViews.className
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, containerCount: CGFloat) {
         super.init(frame: frame)
         self.commonInit()
+        
+        /// contentView의 width를 컨테이너의 수만큼 곱해준다
+        contentViewWidth = contentViewWidth.setMultiplier(multiplier: containerCount)
     }
     
     required init?(coder aDecoder: NSCoder) {
