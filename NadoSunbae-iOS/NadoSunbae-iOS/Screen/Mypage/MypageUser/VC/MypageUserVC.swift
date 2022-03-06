@@ -99,6 +99,12 @@ class MypageUserVC: BaseVC {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
+    @IBAction func tapReviewBtn(_ sender: UIButton) {
+        guard let reviewVC = UIStoryboard.init(name: MypageMyReviewVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageMyReviewVC.className) as? MypageMyReviewVC else { return }
+        
+        reviewVC.userID = userInfo.userID
+        self.navigationController?.pushViewController(reviewVC, animated: true)
+    }
 }
 
 // MARK: - UI
@@ -174,10 +180,12 @@ extension MypageUserVC {
     }
     
     private func getUserPersonalQuestionList(sort: ListSortType) {
+        self.activityIndicator.startAnimating()
         MypageAPI.shared.getUserPersonalQuestionList(userID: targetUserID, sort: sort, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? QuestionOrInfoListModel {
+                    self.activityIndicator.stopAnimating()
                     self.questionList = []
                     self.questionList = data.classroomPostList
                     DispatchQueue.main.async {

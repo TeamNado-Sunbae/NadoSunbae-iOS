@@ -186,11 +186,23 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="btn_arrow"/>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGq-cz-wAK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="65.333333333333329"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                        <connections>
+                                                            <action selector="tapReviewBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="rNb-S8-TjV"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="oGq-cz-wAK" secondAttribute="bottom" id="1E1-Wf-i65"/>
                                                     <constraint firstAttribute="bottom" secondItem="hq4-js-NDg" secondAttribute="bottom" constant="4" id="36U-Cc-ih1"/>
                                                     <constraint firstItem="SWl-yB-pDv" firstAttribute="centerY" secondItem="esB-wA-MD4" secondAttribute="centerY" id="EcN-3D-eL3"/>
+                                                    <constraint firstItem="oGq-cz-wAK" firstAttribute="top" secondItem="ifh-6A-2YM" secondAttribute="top" id="HgX-4x-GcO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="oGq-cz-wAK" secondAttribute="trailing" id="PvQ-Up-8Tn"/>
+                                                    <constraint firstItem="oGq-cz-wAK" firstAttribute="leading" secondItem="ifh-6A-2YM" secondAttribute="leading" id="S4I-Za-zR4"/>
                                                     <constraint firstItem="esB-wA-MD4" firstAttribute="leading" secondItem="ifh-6A-2YM" secondAttribute="leading" constant="16" id="euw-wl-bhF"/>
                                                     <constraint firstItem="hq4-js-NDg" firstAttribute="top" secondItem="ifh-6A-2YM" secondAttribute="top" constant="4" id="fOj-I9-GRy"/>
                                                     <constraint firstAttribute="trailing" secondItem="hq4-js-NDg" secondAttribute="trailing" constant="1" id="ilb-KS-VkW"/>

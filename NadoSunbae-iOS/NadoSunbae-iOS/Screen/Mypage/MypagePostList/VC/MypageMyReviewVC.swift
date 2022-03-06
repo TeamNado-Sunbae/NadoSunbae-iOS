@@ -19,6 +19,7 @@ class MypageMyReviewVC: BaseVC {
             }
         }
     }
+    @IBOutlet weak var mypageReviewSV: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var reviewTV: UITableView!
@@ -31,6 +32,7 @@ class MypageMyReviewVC: BaseVC {
     
     // MARK: Properties
     var reviewList: [MypageMyReviewPostModel] = []
+    var userID: Int = 0
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -62,6 +64,7 @@ extension MypageMyReviewVC {
     
     private func setEmptyView() {
         emptyView.isHidden = !(reviewList.isEmpty)
+        self.mypageReviewSV.contentSize.height = 1.0
     }
     
     private func setUpTV() {
@@ -75,7 +78,7 @@ extension MypageMyReviewVC {
     }
 }
 
-// MARK: -
+// MARK: - UITableViewDataSource
 extension MypageMyReviewVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviewList.count
@@ -89,6 +92,7 @@ extension MypageMyReviewVC: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MypageMyReviewVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
@@ -106,7 +110,7 @@ extension MypageMyReviewVC: UITableViewDelegate {
 extension MypageMyReviewVC {
     private func getMypageMyReview() {
         self.activityIndicator.startAnimating()
-        MypageAPI.shared.getMypageMyReviewList(userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)) { networkResult in
+        MypageAPI.shared.getMypageMyReviewList(userID: self.userID == 0 ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) : self.userID) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let reviewData = res as? MypageMyReviewModel {
@@ -119,6 +123,8 @@ extension MypageMyReviewVC {
                         self.reviewTVHeight.constant = self.reviewTV.contentSize.height
                         self.contentView.layoutIfNeeded()
                     }
+                } else {
+                    self.setEmptyView()
                 }
                 self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
