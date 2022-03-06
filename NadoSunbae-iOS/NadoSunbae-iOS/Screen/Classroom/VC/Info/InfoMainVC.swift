@@ -47,6 +47,7 @@ class InfoMainVC: BaseVC {
     private var selectActionSheetIndex = 0
     private var infoList: [ClassroomPostList] = []
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
+    private let contentSizeObserverKeyPath = "contentSize"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -179,6 +180,18 @@ extension InfoMainVC {
         infoSegmentView.questionBtn.press {
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 0)
+            }
+        }
+    }
+    
+    /// infoQuestionListTV height값이 바뀌면 값을 비교하여 constraint를 업데이트하는 메서드
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                let newSize  = newValue as! CGSize
+                self.infoQuestionListTV.snp.updateConstraints {
+                    $0.height.equalTo(newSize.height)
+                }
             }
         }
     }
