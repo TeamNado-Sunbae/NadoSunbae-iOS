@@ -230,7 +230,7 @@ extension MypageUserVC {
                 if res is RequestBlockUnblockUserModel {
                     self.activityIndicator.stopAnimating()
                     guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    alert.showNadoAlert(vc: self, message: "해당 유저가 차단되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "취소")
+                    alert.showNadoAlert(vc: self, message: "해당 유저가 차단되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)
                     alert.confirmBtn.press {
                         self.judgeBlockStatusDelegate?.sendStatus(data: true)
                         self.navigationController?.popViewController(animated: true)
