@@ -28,6 +28,7 @@ class QuestionPersonListVC: UIViewController {
     
     var majorID: Int = 0
     var majorUserList = MajorUserListDataModel()
+    var isBlocked: Bool = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -39,6 +40,13 @@ class QuestionPersonListVC: UIViewController {
         setUpTapNaviBackBtn()
         setUpMajorLabel()
         getMajorUserList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isBlocked {
+            getMajorUserList()
+        }
     }
 }
 
@@ -163,6 +171,7 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
             self.navigationController?.pushViewController(myPageVC, animated: true)
             tabBarController?.selectedIndex = 3
         } else {
+            myPageUserVC.judgeBlockStatusDelegate = self
             self.navigationController?.pushViewController(myPageUserVC, animated: true)
         }
     }
@@ -181,6 +190,13 @@ extension QuestionPersonListVC: UICollectionViewDelegateFlowLayout {
         let width: CGFloat = collectionView.frame.width
         let height: CGFloat = 35
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: - SendUpdateStatusDelegate
+extension QuestionPersonListVC: SendUpdateStatusDelegate {
+    func sendStatus(data: Bool) {
+        self.isBlocked = data
     }
 }
 
