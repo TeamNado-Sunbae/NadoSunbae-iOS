@@ -269,9 +269,6 @@
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="btn_arrow"/>
-                                                        <connections>
-                                                            <action selector="tapLikeListBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TPt-vj-GSd"/>
-                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diamond_mint" translatesAutoresizingMaskIntoConstraints="NO" id="K7s-TV-xyE">
                                                         <rect key="frame" x="20" y="21.666666666666629" width="17.333333333333329" height="17.333333333333329"/>
@@ -285,16 +282,28 @@
                                                         <color key="textColor" name="mainDefault"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wj6-Oh-wII">
+                                                        <rect key="frame" x="0.0" y="0.0" width="326" height="60.666666666666664"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                        <connections>
+                                                            <action selector="tapLikeListBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="yHY-yC-OzH"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="Wj6-Oh-wII" secondAttribute="bottom" id="36S-rH-brq"/>
                                                     <constraint firstItem="kfP-4J-RuM" firstAttribute="top" secondItem="xRv-Yq-z9u" secondAttribute="top" constant="4" id="7Zm-eL-o5b"/>
                                                     <constraint firstItem="K7s-TV-xyE" firstAttribute="leading" secondItem="xRv-Yq-z9u" secondAttribute="leading" constant="20" id="Die-ST-Lvz"/>
+                                                    <constraint firstItem="Wj6-Oh-wII" firstAttribute="leading" secondItem="xRv-Yq-z9u" secondAttribute="leading" id="LCu-U3-MEk"/>
                                                     <constraint firstItem="hxj-K9-WHH" firstAttribute="centerY" secondItem="vcE-un-F0e" secondAttribute="centerY" id="LgJ-VP-3Kx"/>
                                                     <constraint firstItem="hxj-K9-WHH" firstAttribute="leading" secondItem="vcE-un-F0e" secondAttribute="trailing" constant="5" id="R4t-SX-CPN"/>
+                                                    <constraint firstItem="Wj6-Oh-wII" firstAttribute="top" secondItem="xRv-Yq-z9u" secondAttribute="top" id="VvG-0g-z3G"/>
                                                     <constraint firstItem="K7s-TV-xyE" firstAttribute="height" secondItem="xRv-Yq-z9u" secondAttribute="height" multiplier="0.2857" id="WbX-BE-B3G"/>
                                                     <constraint firstItem="vcE-un-F0e" firstAttribute="centerY" secondItem="xRv-Yq-z9u" secondAttribute="centerY" id="akF-Im-uL7"/>
                                                     <constraint firstItem="vcE-un-F0e" firstAttribute="leading" secondItem="K7s-TV-xyE" secondAttribute="trailing" constant="15" id="gld-as-amV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wj6-Oh-wII" secondAttribute="trailing" id="nSg-ga-Aw6"/>
                                                     <constraint firstAttribute="trailing" secondItem="kfP-4J-RuM" secondAttribute="trailing" constant="1" id="ugo-6W-pDq"/>
                                                     <constraint firstAttribute="bottom" secondItem="kfP-4J-RuM" secondAttribute="bottom" constant="4" id="wTT-Qj-5GT"/>
                                                     <constraint firstItem="K7s-TV-xyE" firstAttribute="centerY" secondItem="xRv-Yq-z9u" secondAttribute="centerY" id="yQu-Og-MiW"/>
@@ -322,7 +331,7 @@
                                                 <sections/>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나에게 온 1:1 질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG2-qy-pTf">
-                                                <rect key="frame" x="24.000000000000007" y="300.33333333333331" width="118.66666666666669" height="19"/>
+                                                <rect key="frame" x="23.999999999999993" y="300.33333333333331" width="113.33333333333331" height="19"/>
                                                 <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -365,7 +374,7 @@
                                 <rect key="frame" x="24" y="429.66666666666669" width="326" height="545.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 1:1 질문이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-aJ-nVo">
-                                        <rect key="frame" x="85.000000000000014" y="264.33333333333331" width="156.33333333333337" height="17"/>
+                                        <rect key="frame" x="87.666666666666686" y="264.33333333333331" width="151" height="17"/>
                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                         <color key="textColor" name="gray2"/>
                                         <nil key="highlightedColor"/>
@@ -626,7 +635,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcc-1G-jz2">
-                                                                <rect key="frame" x="16" y="32" width="287" height="16.333333333333329"/>
+                                                                <rect key="frame" x="16" y="32" width="287" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                                                 <color key="textColor" name="gray3"/>
                                                                 <nil key="highlightedColor"/>
@@ -691,7 +700,7 @@
                                             <sections/>
                                         </tableView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="님에게 온 1:1 질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ha-qF-Dwb">
-                                            <rect key="frame" x="94" y="266.66666666666669" width="118.66666666666669" height="19"/>
+                                            <rect key="frame" x="94" y="266.66666666666669" width="113.33333333333331" height="19"/>
                                             <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
