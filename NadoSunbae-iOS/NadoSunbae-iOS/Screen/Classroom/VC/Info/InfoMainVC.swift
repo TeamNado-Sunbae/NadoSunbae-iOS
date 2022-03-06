@@ -217,11 +217,7 @@ extension InfoMainVC: UITableViewDelegate {
     
     /// estimatedHeightForRowAt
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if infoList.count == 0 {
-            return 515
-        } else {
-            return 120
-        }
+        return 0
     }
     
     /// heightForRowAt
@@ -256,12 +252,7 @@ extension InfoMainVC {
             case .success(let res):
                 if let data = res as? [ClassroomPostList] {
                     self.infoList = data
-                    DispatchQueue.main.async {
-                        self.infoQuestionListTV.reloadData()
-                        self.infoQuestionListTV.snp.updateConstraints {
-                            $0.height.equalTo(self.infoQuestionListTV.contentSize.height)
-                        }
-                    }
+                    self.infoQuestionListTV.reloadData()
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
