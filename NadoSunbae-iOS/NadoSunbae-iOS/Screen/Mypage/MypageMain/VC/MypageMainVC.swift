@@ -60,7 +60,8 @@ class MypageMainVC: BaseVC {
     }
     
     @IBAction func tapLikeListBtn(_ sender: Any) {
-        /// 4순위
+        let likeListVC = MypageLikeListVC()
+        self.navigationController?.pushViewController(likeListVC, animated: true)
     }
     
     @IBAction func tapSortBtn(_ sender: Any) {
