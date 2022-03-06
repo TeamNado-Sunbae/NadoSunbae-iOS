@@ -12,6 +12,10 @@ class MypageMyPostListVC: BaseVC {
     // MARK: @IBOutlet
     @IBOutlet weak var segmentView: NadoSegmentView! {
         didSet {
+            segmentView.firstBtn.setTitleWithStyle(title: "질문", size: 14.0)
+            segmentView.secondBtn.setTitleWithStyle(title: "정보", size: 14.0)
+            segmentView.thirdBtn.isHidden = true
+            
             switch postType {
             case .question:
                 break

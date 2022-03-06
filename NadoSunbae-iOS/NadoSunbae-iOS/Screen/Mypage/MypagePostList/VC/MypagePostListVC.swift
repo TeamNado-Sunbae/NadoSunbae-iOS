@@ -20,7 +20,11 @@ class MypagePostListVC: BaseVC {
         }
     }
     
-    @IBOutlet weak var postListContainerView: NadoHorizonContainerViews!
+    @IBOutlet weak var postListContainerView: NadoHorizonContainerViews! {
+        didSet {
+            postListContainerView.setMultiplier(containerCount: 2)
+        }
+    }
     
     // MARK: Properties
     var isPostOrAnswer = true
