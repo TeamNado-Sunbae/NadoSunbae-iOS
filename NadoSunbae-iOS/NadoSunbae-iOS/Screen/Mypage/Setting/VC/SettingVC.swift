@@ -176,7 +176,39 @@ extension SettingVC {
         }
     }
     
-    private func requestWithDraw() {
-        
+    private func requestWithDraw(PW: String) {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.requestWithDraw(PW: PW) { networkResult in
+            switch networkResult {
+            case .success:
+                self.activityIndicator.stopAnimating()
+                self.setRemoveUserdefaultValues()
+
+                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                
+                alert.confirmBtn.press {
+                    alert.dismiss(animated: true, completion: nil)
+                    guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.present(signInVC, animated: true, completion: nil)
+                }
+                
+                alert.showNadoAlert(vc: self, message: "탈퇴가 완료되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    
+                    alert.confirmBtn.press {
+                        alert.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    alert.showNadoAlert(vc: self, message: message, confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)
+                }
+                self.activityIndicator.stopAnimating()
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
 }
