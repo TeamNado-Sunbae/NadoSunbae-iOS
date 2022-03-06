@@ -6,6 +6,20 @@
 //
 
 import UIKit
+import SnapKit
+import Then
+
+enum NadoAlertType {
+    
+    /// confirmBtn, cancelBtn 사용
+    case withDoubleBtn
+    
+    /// confirmBtn만 사용
+    case withSingleBtn
+    
+    /// confirmBtn, cancelBtn 사용
+    case withTextField
+}
 
 class NadoAlertVC: BaseVC {
     
@@ -38,12 +52,32 @@ class NadoAlertVC: BaseVC {
         self.modalTransitionStyle = .crossDissolve
     }
     
-    func showNadoAlert(vc: UIViewController, message: String, confirmBtnTitle: String, cancelBtnTitle: String) {
+    func showNadoAlert(vc: UIViewController, message: String, confirmBtnTitle: String, cancelBtnTitle: String, type: NadoAlertType? = .withDoubleBtn) {
         messageLabel.text = message
-        DispatchQueue.main.async {
-            self.confirmBtn.setTitleWithStyle(title: confirmBtnTitle, size: 14, weight: .bold)
-            self.cancelBtn.setTitleWithStyle(title: cancelBtnTitle, size: 14, weight: .bold)
+        switch type {
+        case .withSingleBtn:
+            DispatchQueue.main.async {
+                self.confirmBtn.setTitleWithStyle(title: confirmBtnTitle, size: 14, weight: .bold)
+                self.cancelBtn.removeFromSuperview()
+                self.confirmBtn.snp.makeConstraints {
+                    $0.leading.equalTo(self.containerView.snp.leading).offset(14)
+                    $0.trailing.equalTo(self.containerView.snp.trailing).offset(-14)
+                    $0.bottom.equalTo(self.containerView.snp.bottom).offset(-14)
+                    $0.height.equalTo(self.containerView.frame.height * 0.3095)
+                }
+            }
+        case .withTextField:
+            DispatchQueue.main.async {
+                self.confirmBtn.setTitleWithStyle(title: confirmBtnTitle, size: 14, weight: .bold)
+                self.cancelBtn.setTitleWithStyle(title: cancelBtnTitle, size: 14, weight: .bold)
+            }
+        default:
+            DispatchQueue.main.async {
+                self.confirmBtn.setTitleWithStyle(title: confirmBtnTitle, size: 14, weight: .bold)
+                self.cancelBtn.setTitleWithStyle(title: cancelBtnTitle, size: 14, weight: .bold)
+            }
         }
+
         vc.present(self, animated: true, completion: nil)
     }
     
