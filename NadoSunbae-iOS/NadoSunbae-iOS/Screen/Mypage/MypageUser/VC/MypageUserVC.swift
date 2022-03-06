@@ -49,6 +49,7 @@ class MypageUserVC: BaseVC {
     var userInfo = MypageUserInfoModel()
     var questionList: [ClassroomPostList] = []
     var sortType: ListSortType = .recent
+    var judgeBlockStatusDelegate: SendUpdateStatusDelegate?
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -104,6 +105,16 @@ class MypageUserVC: BaseVC {
         
         reviewVC.userID = userInfo.userID
         self.navigationController?.pushViewController(reviewVC, animated: true)
+    }
+    
+    @IBAction func tapBlockBtn(_ sender: UIButton) {
+        makeAlertWithCancel(okTitle: "차단", okAction: { _ in
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            alert.showNadoAlert(vc: self, message: "해당 유저를 차단하시겠어요?\n차단시, 본인이 쓴 글 및 마이페이지에\n해당유저가 접근할 수 없습니다.", confirmBtnTitle: "차단하기", cancelBtnTitle: "취소")
+            alert.confirmBtn.press {
+                self.requestBlockUser(blockUserID: self.userInfo.userID)
+            }
+        })
     }
 }
 
@@ -208,6 +219,34 @@ extension MypageUserVC {
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
+    }
+    
+    /// 유저 차단 API 요청 메서드
+    private func requestBlockUser(blockUserID: Int) {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.requestBlockUnBlockUser(blockUserID: blockUserID) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if res is RequestBlockUnblockUserModel {
+                    self.activityIndicator.stopAnimating()
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: "해당 유저가 차단되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)
+                    alert.confirmBtn.press {
+                        self.judgeBlockStatusDelegate?.sendStatus(data: true)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print("request err: ", message)
+                }
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
     }
     
     /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드

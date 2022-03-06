@@ -28,6 +28,7 @@ class QuestionPersonListVC: UIViewController {
     
     var majorID: Int = 0
     var majorUserList = MajorUserListDataModel()
+    var isBlocked: Bool = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -39,6 +40,13 @@ class QuestionPersonListVC: UIViewController {
         setUpTapNaviBackBtn()
         setUpMajorLabel()
         getMajorUserList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isBlocked {
+            getMajorUserList()
+        }
     }
 }
 
@@ -155,8 +163,17 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
     /// sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+        guard let myPageVC = UIStoryboard.init(name: Identifiers.MypageSB, bundle: nil).instantiateViewController(withIdentifier: MypageMainVC.className) as? MypageMainVC else { return }
+        
         myPageUserVC.targetUserID = indexPath.section == 0 ? majorUserList.onQuestionUserList[indexPath.row].userID : majorUserList.offQuestionUserList[indexPath.row].userID
-        self.navigationController?.pushViewController(myPageUserVC, animated: true)
+        if myPageUserVC.targetUserID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.pushViewController(myPageVC, animated: true)
+            tabBarController?.selectedIndex = 3
+        } else {
+            myPageUserVC.judgeBlockStatusDelegate = self
+            self.navigationController?.pushViewController(myPageUserVC, animated: true)
+        }
     }
 }
 
@@ -173,6 +190,13 @@ extension QuestionPersonListVC: UICollectionViewDelegateFlowLayout {
         let width: CGFloat = collectionView.frame.width
         let height: CGFloat = 35
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: - SendUpdateStatusDelegate
+extension QuestionPersonListVC: SendUpdateStatusDelegate {
+    func sendStatus(data: Bool) {
+        self.isBlocked = data
     }
 }
 
