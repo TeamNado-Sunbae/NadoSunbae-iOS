@@ -58,7 +58,7 @@ class SettingVC: BaseVC {
             self.requestSignOut()
         }
         
-        alert.showNadoAlert(vc: self, message: "로그아웃할래?(미정)", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+        alert.showNadoAlert(vc: self, message: "로그아웃하시겠습니까?", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
     }
     
     @IBAction func tapWithDrawBtn(_ sender: Any) {
@@ -69,10 +69,10 @@ class SettingVC: BaseVC {
         }
         
         alert.confirmBtn.press {
-            self.requestWithDraw()
+            self.requestWithDraw(PW: alert.textField.text ?? "")
         }
         
-        alert.showNadoAlert(vc: self, message: "탈퇴할래?(미정)", confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+        alert.showNadoAlert(vc: self, message: "탈퇴하시겠습니까?", confirmBtnTitle: "확인", cancelBtnTitle: "취소", type: .withTextField)
     }
     
     @IBAction func tapServiceContactBtn(_ sender: Any) {
