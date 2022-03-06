@@ -128,6 +128,23 @@ extension SignInVC {
         UserDefaults.standard.set(emailTextField.text, forKey: UserDefaults.Keys.Email)
         UserDefaults.standard.set(PWTextField.text, forKey: UserDefaults.Keys.PW)
     }
+    
+    private func doForIsEmailVerified(data: SignInDataModel) {
+        self.setUpUserdefaultValues(data: data)
+        let nadoSunbaeTBC = NadoSunbaeTBC()
+        nadoSunbaeTBC.modalPresentationStyle = .fullScreen
+        self.present(nadoSunbaeTBC, animated: true, completion: nil)
+    }
+    
+    private func doForIsNotEmailVerified() {
+        guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        
+        alert.showNadoAlert(vc: self, message: "학교 이메일 인증을 완료해야\n로그인이 가능합니다.", confirmBtnTitle: "메일 재전송", cancelBtnTitle: "닫기")
+        alert.confirmBtn.press(vibrate: true, for: .touchUpInside) {
+            self.resendSignUpMail(email: self.emailTextField.text ?? "", PW: self.PWTextField.text ?? "")
+            alert.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: - Network
@@ -141,10 +158,7 @@ extension SignInVC {
             case .success(let res):
                 self.activityIndicator.stopAnimating()
                 if let data = res as? SignInDataModel {
-                    self.setUpUserdefaultValues(data: data)
-                    let nadoSunbaeTBC = NadoSunbaeTBC()
-                    nadoSunbaeTBC.modalPresentationStyle = .fullScreen
-                    self.present(nadoSunbaeTBC, animated: true, completion: nil)
+                    data.user.isEmailVerified ? self.doForIsEmailVerified(data: data) : self.doForIsNotEmailVerified()
                 }
             case .requestErr(let msg):
                 self.activityIndicator.stopAnimating()
@@ -153,6 +167,23 @@ extension SignInVC {
                     self.infoLabel.isHidden = false
                     print("requestSignIn request err", message)
                 }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 회원가입 인증 메일 재전송
+    private func resendSignUpMail(email: String, PW: String) {
+        SignAPI.shared.resendSignUpMail(email: email, PW: PW) { networkResult in
+            switch networkResult {
+            case .success:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "메일이 재전송되었습니다.")
+            case .requestErr:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
