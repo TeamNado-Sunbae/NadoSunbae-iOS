@@ -55,7 +55,11 @@ class QuestionMainVC: BaseVC {
         $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
-    let questionSegmentView = NadoSegmentView()
+    let questionSegmentView = NadoSegmentView().then {
+        $0.firstBtn.setTitleWithStyle(title: "질문", size: 14.0)
+        $0.secondBtn.setTitleWithStyle(title: "정보", size: 14.0)
+    }
+    
     private var questionList: [ClassroomPostList] = []
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     let halfVC = HalfModalVC()
@@ -171,7 +175,7 @@ extension QuestionMainVC {
     
     /// '정보' 버튼을 눌렀을 때 액션 set 메서드
     private func setUpTapInfoBtn() {
-        questionSegmentView.infoBtn.press {
+        questionSegmentView.secondBtn.press {
             
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 1)

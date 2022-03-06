@@ -13,9 +13,11 @@ class InfoMainVC: BaseVC {
     
     // MARK: Properties
     let infoSegmentView = NadoSegmentView().then {
-        $0.questionBtn.isActivated = false
-        $0.infoBtn.isActivated = true
-        [$0.questionBtn, $0.infoBtn].forEach() {
+        $0.firstBtn.setTitleWithStyle(title: "질문", size: 14.0)
+        $0.secondBtn.setTitleWithStyle(title: "정보", size: 14.0)
+        $0.firstBtn.isActivated = false
+        $0.secondBtn.isActivated = true
+        [$0.firstBtn, $0.secondBtn].forEach() {
             $0.isEnabled = true
         }
     }
@@ -182,7 +184,7 @@ extension InfoMainVC {
     
     /// 정보 segment를 눌렀을 때 실행되는 액션 메서드
     func setUpTapQuestionBtn() {
-        infoSegmentView.questionBtn.press {
+        infoSegmentView.firstBtn.press {
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 0)
             }
