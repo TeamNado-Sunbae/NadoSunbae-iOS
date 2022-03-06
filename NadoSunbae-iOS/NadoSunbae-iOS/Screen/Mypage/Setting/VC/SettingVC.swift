@@ -35,11 +35,15 @@ class SettingVC: BaseVC {
     
     // MARK: Properties
     let menuList = ["프로필 수정", "비밀번호 재설정", "알림 설정", "앱정보", "차단 사용자 목록"]
+    var kakaoLink = ""
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXIB()
+        getAppLink { appLink in
+            self.kakaoLink = appLink.kakaoTalkChannel
+        }
     }
     
     // MARK: @IBAction
@@ -72,7 +76,7 @@ class SettingVC: BaseVC {
     }
     
     @IBAction func tapServiceContactBtn(_ sender: Any) {
-        if let url = URL(string: "http://pf.kakao.com/_pxcFib") {
+        if let url = URL(string: kakaoLink) {
             UIApplication.shared.open(url, options: [:])
         }
     }

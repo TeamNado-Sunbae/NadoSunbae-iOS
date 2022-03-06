@@ -16,6 +16,7 @@ class ResetPWVC: BaseVC {
         didSet {
             backBtn.press {
                 self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -101,7 +102,12 @@ class ResetPWVC: BaseVC {
     private func goResetPWComplete() {
         guard let resetPWCompleteVC = UIStoryboard.init(name: ResetPWCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWCompleteVC.className) as? ResetPWCompleteVC else { return }
         resetPWCompleteVC.email = self.emailTextField.text ?? ""
-        self.navigationController?.pushViewController(resetPWCompleteVC, animated: true)
+        if isLogin() {
+            self.navigationController?.pushViewController(resetPWCompleteVC, animated: true)
+        } else {
+            resetPWCompleteVC.modalPresentationStyle = .fullScreen
+            self.present(resetPWCompleteVC, animated: true, completion: nil)
+        }
     }
     
     /// 로그아웃 시 UserDefaults 지우는 함수

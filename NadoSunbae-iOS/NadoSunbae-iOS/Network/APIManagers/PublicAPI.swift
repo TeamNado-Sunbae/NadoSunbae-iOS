@@ -64,6 +64,23 @@ class PublicAPI {
             }
         }
     }
+    
+    /// [GET] 앱 링크 조회
+    func getAppLink(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.getAppLink) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getAppLinkJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
 
 // MARK: - JudgeData
@@ -107,6 +124,23 @@ extension PublicAPI {
     private func requestReportJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data) else { return .pathErr }
+        
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    /// getAppLink
+    private func getAppLinkJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<AppLinkResponseModel>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
