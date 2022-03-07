@@ -156,8 +156,10 @@ extension SignAPI {
         guard let decodedData = try? decoder.decode(GenericResponse<SignInDataModel>.self, from: data) else { return .pathErr }
         
         switch status {
-        case 200...204:
+        case 200, 201, 203, 204:
             return .success(decodedData.data ?? "None-Data")
+        case 202:
+            return .requestErr(false)
         case 400...409:
             return .requestErr(decodedData.message)
         case 500:
