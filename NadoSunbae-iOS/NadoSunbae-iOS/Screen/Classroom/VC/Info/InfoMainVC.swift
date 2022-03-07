@@ -66,12 +66,7 @@ class InfoMainVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.infoQuestionListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
         setUpRequestData(sortType: .recent)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        self.infoQuestionListTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
 }
 
@@ -238,7 +233,11 @@ extension InfoMainVC: UITableViewDelegate {
     
     /// estimatedHeightForRowAt
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0
+        if infoList.count == 0 {
+            return 515
+        } else {
+            return 115
+        }
     }
     
     /// heightForRowAt
@@ -273,7 +272,14 @@ extension InfoMainVC {
             case .success(let res):
                 if let data = res as? [ClassroomPostList] {
                     self.infoList = data
-                    self.infoQuestionListTV.reloadData()
+                    DispatchQueue.main.async {
+                        self.infoQuestionListTV.reloadData()
+                        self.infoQuestionListTV.layoutIfNeeded()
+                        self.infoQuestionListTV.rowHeight = UITableView.automaticDimension
+                        self.infoQuestionListTV.snp.updateConstraints {
+                            $0.height.equalTo(self.infoQuestionListTV.contentSize.height)
+                        }
+                    }
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let msg):
