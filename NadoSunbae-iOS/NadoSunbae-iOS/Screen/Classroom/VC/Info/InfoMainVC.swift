@@ -49,8 +49,8 @@ class InfoMainVC: BaseVC {
     
     private var selectActionSheetIndex = 0
     private var infoList: [ClassroomPostList] = []
+    private var lastSortType: ListSortType = .recent
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
-    private let contentSizeObserverKeyPath = "contentSize"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -66,7 +66,7 @@ class InfoMainVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpRequestData(sortType: .recent)
+        setUpRequestData(sortType: lastSortType)
     }
 }
 
@@ -150,6 +150,7 @@ extension InfoMainVC {
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData(sortType: ListSortType) {
         requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), postTypeID: .info, sort: sortType)
+        lastSortType = sortType
     }
     
     /// activityIndicator 설정 메서드
@@ -183,18 +184,6 @@ extension InfoMainVC {
         infoSegmentView.firstBtn.press {
             if let delegate = self.sendSegmentStateDelegate {
                 delegate.sendSegmentClicked(index: 0)
-            }
-        }
-    }
-    
-    /// infoQuestionListTV size값이 바뀌면 값을 비교하여 constraint를 업데이트하는 메서드
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        if (keyPath == contentSizeObserverKeyPath) {
-            if let newValue = change?[.newKey] {
-                let newSize  = newValue as! CGSize
-                self.infoQuestionListTV.snp.updateConstraints {
-                    $0.height.equalTo(newSize.height)
-                }
             }
         }
     }
