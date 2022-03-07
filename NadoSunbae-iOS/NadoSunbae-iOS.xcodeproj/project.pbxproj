@@ -184,6 +184,7 @@
 		7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */; };
 		7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */; };
 		7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */; };
+		7757289E27D63E7300148C9A /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7757289D27D63E7300148C9A /* Onboarding.storyboard */; };
 		775728A127D652A700148C9A /* FirstOnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */; };
 		775728A227D652A700148C9A /* FirstOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A027D652A700148C9A /* FirstOnboardingCVC.xib */; };
 		775728A527D6572100148C9A /* OnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728A327D6572100148C9A /* OnboardingCVC.swift */; };
@@ -191,6 +192,7 @@
 		775728A927D6593700148C9A /* ThirdOnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */; };
 		775728AA27D6593700148C9A /* ThirdOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */; };
 		775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728AB27D65E8900148C9A /* OnboardingDataModel.swift */; };
+		775728B127D6617300148C9A /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728B027D6617300148C9A /* OnboardingVC.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -443,6 +445,7 @@
 		7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostWithImgTVC.xib; sourceTree = "<group>"; };
 		7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailProfileTVC.swift; sourceTree = "<group>"; };
 		7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailProfileTVC.xib; sourceTree = "<group>"; };
+		7757289D27D63E7300148C9A /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingCVC.swift; sourceTree = "<group>"; };
 		775728A027D652A700148C9A /* FirstOnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstOnboardingCVC.xib; sourceTree = "<group>"; };
 		775728A327D6572100148C9A /* OnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCVC.swift; sourceTree = "<group>"; };
@@ -450,6 +453,7 @@
 		775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingCVC.swift; sourceTree = "<group>"; };
 		775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdOnboardingCVC.xib; sourceTree = "<group>"; };
 		775728AB27D65E8900148C9A /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
+		775728B027D6617300148C9A /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -607,6 +611,7 @@
 		3313643F2785A48200E0C118 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				775728AD27D6613600148C9A /* Onboarding */,
 				5CAB3F23278AE37E00025DA5 /* SignUp */,
 				5C4ED92627894951001EA6BB /* SignIn */,
 				331364842785D64700E0C118 /* TabBar */,
@@ -1676,6 +1681,7 @@
 				7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */,
 				777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */,
 				33CF635A279464EF00E92C04 /* QuestionSB.storyboard in Resources */,
+				7757289E27D63E7300148C9A /* Onboarding.storyboard in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
 				775728A227D652A700148C9A /* FirstOnboardingCVC.xib in Resources */,
@@ -1960,6 +1966,7 @@
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */,
+				775728B127D6617300148C9A /* OnboardingVC.swift in Sources */,
 				C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,

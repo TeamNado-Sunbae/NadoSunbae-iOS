@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+        <array key="Pretendard-SemiBold.otf">
+            <string>Pretendard-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--OnboardingVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingVC" id="Y6W-OH-hqX" customClass="OnboardingVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3zr-i8-dSg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o8X-pK-2Pv">
+                                    <size key="itemSize" width="375" height="812"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Gsa-IM-ViY">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6k8-Hc-sti">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-ZJ-ViN">
+                                <rect key="frame" x="101.33333333333333" y="657" width="172.66666666666669" height="8"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="yQR-cJ-lSh"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" name="gray1"/>
+                                <color key="currentPageIndicatorTintColor" name="mainText"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1MG-Za-xPa" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                <rect key="frame" x="135.66666666666666" y="697" width="104" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="104" id="1Ir-Dy-2GD"/>
+                                    <constraint firstAttribute="height" constant="36" id="BXG-a8-Cvd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-Ri-Qp7">
+                                <rect key="frame" x="124.66666666666669" y="749" width="126" height="27"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="이미 회원이신가요? 로그인">
+                                    <color key="titleColor" name="gray3"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3zr-i8-dSg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Fgz-Hc-G1k"/>
+                            <constraint firstItem="1MG-Za-xPa" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Fpp-iD-EgJ"/>
+                            <constraint firstItem="B9c-Ri-Qp7" firstAttribute="top" secondItem="1MG-Za-xPa" secondAttribute="bottom" constant="16" id="IVU-nS-sNm"/>
+                            <constraint firstItem="1MG-Za-xPa" firstAttribute="top" secondItem="RgJ-ZJ-ViN" secondAttribute="bottom" constant="32" id="P5z-Sg-RJy"/>
+                            <constraint firstItem="B9c-Ri-Qp7" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Pat-Qs-apw"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3zr-i8-dSg" secondAttribute="trailing" id="S4N-D2-KJd"/>
+                            <constraint firstAttribute="bottom" secondItem="3zr-i8-dSg" secondAttribute="bottom" id="clt-Fn-LFf"/>
+                            <constraint firstItem="3zr-i8-dSg" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="ll1-cf-LuN"/>
+                            <constraint firstItem="RgJ-ZJ-ViN" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="ujt-Hv-si9"/>
+                            <constraint firstAttribute="bottom" secondItem="B9c-Ri-Qp7" secondAttribute="bottom" constant="36" id="w2F-br-AAD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="onboardingCV" destination="3zr-i8-dSg" id="af8-M9-IOx"/>
+                        <outlet property="pageControl" destination="RgJ-ZJ-ViN" id="CsM-xp-6S3"/>
+                        <outlet property="signInBtn" destination="B9c-Ri-Qp7" id="b7u-ku-g6A"/>
+                        <outlet property="signUpBtn" destination="1MG-Za-xPa" id="cZ1-6X-5wC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.40000000000001" y="101.97044334975369"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="gray1">
+            <color red="0.90980392156862744" green="0.90980392156862744" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray3">
+            <color red="0.58039215686274515" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainText">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
