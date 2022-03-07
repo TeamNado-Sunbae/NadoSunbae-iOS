@@ -13,6 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         
+        // 스플래시 지속시간 고려한 지연시간
+        sleep(1)
+        
         // MARK: Firebase 초기화
         FirebaseApp.configure()
         

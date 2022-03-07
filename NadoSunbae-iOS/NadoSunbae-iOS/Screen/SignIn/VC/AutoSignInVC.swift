@@ -41,11 +41,9 @@ extension AutoSignInVC {
     
     /// 로그인 요청하는 메서드
     private func requestSignIn() {
-        self.activityIndicator.startAnimating()
         SignAPI.shared.requestSignIn(email: email, PW: PW, deviceToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.FCMTokenForDevice) ?? "") { networkResult in
             switch networkResult {
             case .success(let res):
-                self.activityIndicator.stopAnimating()
                 if let data = res as? SignInDataModel {
                     self.setUpUserdefaultValues(data: data)
                     let nadoSunbaeTBC = NadoSunbaeTBC()
@@ -53,7 +51,6 @@ extension AutoSignInVC {
                     self.present(nadoSunbaeTBC, animated: true, completion: nil)
                 }
             default:
-                self.activityIndicator.stopAnimating()
                 print("Failed Auto SignIn")
                 guard let signInVC = self.storyboard?.instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
                 signInVC.modalPresentationStyle = .fullScreen

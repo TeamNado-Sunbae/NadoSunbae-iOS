@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RDp-6C-syV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RDp-6C-syV">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -210,18 +210,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~ 대충 런치스크린과 동일한 이미지 ~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xz7-fP-PqO">
-                                <rect key="frame" x="63" y="395.66666666666669" width="249" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoLogin" translatesAutoresizingMaskIntoConstraints="NO" id="Sil-ob-9Yz">
+                                <rect key="frame" x="75" y="344" width="225" height="76"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© nadosunbae" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4Y-B9-ein">
+                                <rect key="frame" x="147.66666666666666" y="771" width="80" height="15"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <color key="textColor" name="mainText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학과 후기 열람부터 전공생과의 질의응답까지!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SI-hQ-xtF">
+                                <rect key="frame" x="81" y="428" width="213" height="15"/>
+                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                <color key="textColor" name="mainDark"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5VA-lh-SpP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xz7-fP-PqO" firstAttribute="centerX" secondItem="PkO-Ju-Iqk" secondAttribute="centerX" id="GcA-i3-h0G"/>
-                            <constraint firstItem="xz7-fP-PqO" firstAttribute="centerY" secondItem="PkO-Ju-Iqk" secondAttribute="centerY" id="zVQ-6H-kOh"/>
+                            <constraint firstAttribute="bottom" secondItem="g4Y-B9-ein" secondAttribute="bottom" constant="26" id="A4j-X7-fcq"/>
+                            <constraint firstItem="g4Y-B9-ein" firstAttribute="centerX" secondItem="5VA-lh-SpP" secondAttribute="centerX" id="Jkx-6i-3jx"/>
+                            <constraint firstItem="7SI-hQ-xtF" firstAttribute="top" secondItem="Sil-ob-9Yz" secondAttribute="bottom" constant="8" id="ax6-VB-XT5"/>
+                            <constraint firstItem="7SI-hQ-xtF" firstAttribute="centerX" secondItem="5VA-lh-SpP" secondAttribute="centerX" id="kJ2-Dm-8fk"/>
+                            <constraint firstItem="Sil-ob-9Yz" firstAttribute="centerX" secondItem="5VA-lh-SpP" secondAttribute="centerX" id="uJO-QJ-uCi"/>
+                            <constraint firstItem="Sil-ob-9Yz" firstAttribute="top" secondItem="PkO-Ju-Iqk" secondAttribute="top" constant="344" id="w1K-Tp-zQJ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -241,6 +254,9 @@
         </namedColor>
         <namedColor name="mainDark">
             <color red="0.019607843137254902" green="0.63137254901960782" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainText">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="paleGray">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
