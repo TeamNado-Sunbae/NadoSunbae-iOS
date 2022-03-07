@@ -77,7 +77,9 @@ extension NotificationAPI {
         switch status {
         case 200...204:
             return .success(decodedData.data ?? "None-Data")
-        case 400...409:
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
@@ -94,7 +96,9 @@ extension NotificationAPI {
         switch status {
         case 200...204:
             return .success(decodedData.data ?? "None-Data")
-        case 400...409:
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
@@ -111,7 +115,9 @@ extension NotificationAPI {
         switch status {
         case 200...204:
             return .success(decodedData.data ?? "None-Data")
-        case 400...409:
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
