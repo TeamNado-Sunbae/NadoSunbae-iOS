@@ -158,14 +158,16 @@ extension SignInVC {
             case .success(let res):
                 self.activityIndicator.stopAnimating()
                 if let data = res as? SignInDataModel {
-                    data.user.isEmailVerified ? self.doForIsEmailVerified(data: data) : self.doForIsNotEmailVerified()
+                    self.doForIsEmailVerified(data: data)
                 }
-            case .requestErr(let msg):
+            case .requestErr(let res):
                 self.activityIndicator.stopAnimating()
-                if let message = msg as? String {
+                if let message = res as? String {
                     self.infoLabel.text = message
                     self.infoLabel.isHidden = false
                     print("requestSignIn request err", message)
+                } else if res is Bool {
+                    self.doForIsNotEmailVerified()
                 }
             default:
                 self.activityIndicator.stopAnimating()
