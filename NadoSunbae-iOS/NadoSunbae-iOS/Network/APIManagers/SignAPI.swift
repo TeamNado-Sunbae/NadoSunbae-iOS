@@ -129,6 +129,22 @@ extension SignAPI {
             }
         }
     }
+    
+    /// [POST] 토큰 갱신, 자동로그인
+    func updateToken(refreshToken: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.updateToken(refreshToken: refreshToken)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.updateTokenJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
 
 
@@ -140,8 +156,10 @@ extension SignAPI {
         guard let decodedData = try? decoder.decode(GenericResponse<SignInDataModel>.self, from: data) else { return .pathErr }
         
         switch status {
-        case 200...204:
+        case 200, 201, 203, 204:
             return .success(decodedData.data ?? "None-Data")
+        case 202:
+            return .requestErr(false)
         case 400...409:
             return .requestErr(decodedData.message)
         case 500:
@@ -243,6 +261,22 @@ extension SignAPI {
         let decoder = JSONDecoder()
         
         guard let decodedData = try? decoder.decode(GenericResponse<ResendSignUpMailResponseModel>.self, from: data) else { return .pathErr }
+        switch status {
+        case 200...204:
+            return .success(decodedData.message)
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func updateTokenJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        
+        guard let decodedData = try? decoder.decode(GenericResponse<SignInDataModel>.self, from: data) else { return .pathErr }
         switch status {
         case 200...204:
             return .success(decodedData.message)
