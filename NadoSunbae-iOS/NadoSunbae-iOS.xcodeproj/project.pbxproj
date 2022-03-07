@@ -190,6 +190,7 @@
 		775728A627D6572100148C9A /* OnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A427D6572100148C9A /* OnboardingCVC.xib */; };
 		775728A927D6593700148C9A /* ThirdOnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */; };
 		775728AA27D6593700148C9A /* ThirdOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */; };
+		775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728AB27D65E8900148C9A /* OnboardingDataModel.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -448,6 +449,7 @@
 		775728A427D6572100148C9A /* OnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCVC.xib; sourceTree = "<group>"; };
 		775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingCVC.swift; sourceTree = "<group>"; };
 		775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdOnboardingCVC.xib; sourceTree = "<group>"; };
+		775728AB27D65E8900148C9A /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -1444,6 +1446,7 @@
 		77A7593127984A3800A8E48B /* AppModel */ = {
 			isa = PBXGroup;
 			children = (
+				775728AB27D65E8900148C9A /* OnboardingDataModel.swift */,
 				33A666A427BB958800779351 /* ReviewImgModel.swift */,
 				77A7593227984A7100A8E48B /* MajorInfoModel.swift */,
 			);
@@ -1790,6 +1793,7 @@
 				33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
+				775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */,
 				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
