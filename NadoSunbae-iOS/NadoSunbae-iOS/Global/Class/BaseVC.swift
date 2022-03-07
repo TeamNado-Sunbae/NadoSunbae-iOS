@@ -50,6 +50,32 @@ extension BaseVC {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
+    
+    /// 토큰 갱신, 자동로그인 시 UserDefaults에 값 저장하는 메서드
+    func setUpUserdefaultValues(data: SignInDataModel) {
+        UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
+        UserDefaults.standard.set(data.refreshtoken, forKey: UserDefaults.Keys.RefreshToken)
+        UserDefaults.standard.set(data.user.firstMajorID, forKey: UserDefaults.Keys.FirstMajorID)
+        UserDefaults.standard.set(data.user.firstMajorName, forKey: UserDefaults.Keys.FirstMajorName)
+        UserDefaults.standard.set(data.user.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
+        UserDefaults.standard.set(data.user.secondMajorName, forKey: UserDefaults.Keys.SecondMajorName)
+        UserDefaults.standard.set(data.user.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(data.user.userID, forKey: UserDefaults.Keys.UserID)
+    }
+    
+    /// 로그아웃 시 UserDefaults 지우는 함수
+    private func setRemoveUserdefaultValues() {
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
+        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
@@ -81,6 +107,25 @@ extension BaseVC {
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// access token 갱신
+    func updateAccessToken(completion: @escaping (Bool) -> (Void)) {
+        SignAPI.shared.updateToken(refreshToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.RefreshToken) ?? "") { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? SignInDataModel {
+                    self.setUpUserdefaultValues(data: data)
+                    completion(true)
+                }
+            default:
+                print("Failed update Access Token")
+                self.setRemoveUserdefaultValues()
+                guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+                signInVC.modalPresentationStyle = .fullScreen
+                self.present(signInVC, animated: true, completion: nil)
             }
         }
     }
