@@ -60,7 +60,7 @@ class MypageMainVC: BaseVC {
     }
     
     @IBAction func tapLikeListBtn(_ sender: Any) {
-        let likeListVC = MypageLikeListVC()
+        guard let likeListVC = UIStoryboard.init(name: Identifiers.MypageLikeListSB, bundle: nil).instantiateViewController(withIdentifier: MypageLikeListVC.className) as? MypageLikeListVC else { return }
         self.navigationController?.pushViewController(likeListVC, animated: true)
     }
     
