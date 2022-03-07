@@ -171,7 +171,6 @@ extension EntireQuestionListVC: UITableViewDelegate {
                                         okAction: { _ in
                 self.selectActionSheetIndex = 0
                 self.setUpRequestData(sortType: .recent)
-                self.requestGetGroupOrInfoListData(majorID: MajorInfo.shared.selectedMajorID ?? 0, postTypeID: .group, sort: .recent)
                 self.entireQuestionListTV.reloadSections([0], with: .fade)
             },
                                         secondOkAction: { _ in
