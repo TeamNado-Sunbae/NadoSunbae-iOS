@@ -12,11 +12,12 @@ class AutoSignInVC: BaseVC {
     // MARK: Properties
     let email: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.Email) ?? ""
     let PW: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.PW) ?? ""
+    let refreshToken: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.RefreshToken) ?? ""
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestSignIn()
+        requestAutoSignIn()
     }
 }
 
@@ -39,9 +40,9 @@ extension AutoSignInVC {
 // MARK: Network
 extension AutoSignInVC {
     
-    /// 로그인 요청하는 메서드
-    private func requestSignIn() {
-        SignAPI.shared.requestSignIn(email: email, PW: PW, deviceToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.FCMTokenForDevice) ?? "") { networkResult in
+    /// 자동로그인 요청하는 메서드
+    private func requestAutoSignIn() {
+        SignAPI.shared.updateToken(refreshToken: refreshToken) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? SignInDataModel {
