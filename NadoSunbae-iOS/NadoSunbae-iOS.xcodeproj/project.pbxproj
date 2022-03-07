@@ -1416,6 +1416,53 @@
 			path = CVC;
 			sourceTree = "<group>";
 		};
+		775728AD27D6613600148C9A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				775728B227D6618600148C9A /* Cell */,
+				775728AE27D6614500148C9A /* SB */,
+				775728AF27D6615000148C9A /* VC */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		775728AE27D6614500148C9A /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				7757289D27D63E7300148C9A /* Onboarding.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		775728AF27D6615000148C9A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				775728B027D6617300148C9A /* OnboardingVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		775728B227D6618600148C9A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				775728B327D6619000148C9A /* CVC */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		775728B327D6619000148C9A /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				775728A027D652A700148C9A /* FirstOnboardingCVC.xib */,
+				7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */,
+				775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */,
+				775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */,
+				775728A427D6572100148C9A /* OnboardingCVC.xib */,
+				775728A327D6572100148C9A /* OnboardingCVC.swift */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
 		77A7591C2797628F00A8E48B /* Review */ = {
 			isa = PBXGroup;
 			children = (
