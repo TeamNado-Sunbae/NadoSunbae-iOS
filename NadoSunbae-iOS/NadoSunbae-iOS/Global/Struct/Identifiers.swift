@@ -17,4 +17,5 @@ struct Identifiers {
     static let NotificationSB = "NotificationSB"
     static let MypageSB = "MypageSB"
     static let MypageLikeListSB = "MypageLikeListSB"
+    static let ReviewDetailSB = "ReviewDetailSB"
 }
