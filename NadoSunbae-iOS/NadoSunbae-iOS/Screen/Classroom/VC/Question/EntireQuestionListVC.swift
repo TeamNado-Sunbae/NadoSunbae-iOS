@@ -32,6 +32,7 @@ class EntireQuestionListVC: BaseVC {
     
     private var selectActionSheetIndex = 0
     private var questionList: [ClassroomPostList] = []
+    private var lastSortType: ListSortType = .recent
      
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -45,7 +46,7 @@ class EntireQuestionListVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpRequestData(sortType: .recent)
+        setUpRequestData(sortType: lastSortType)
         self.tabBarController?.tabBar.isHidden = false
     }
 }
@@ -123,6 +124,7 @@ extension EntireQuestionListVC {
     /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청을 보내는 메서드
     private func setUpRequestData(sortType: ListSortType) {
         requestGetGroupOrInfoListData(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), postTypeID: .group, sort: sortType)
+        lastSortType = sortType
     }
 }
 
