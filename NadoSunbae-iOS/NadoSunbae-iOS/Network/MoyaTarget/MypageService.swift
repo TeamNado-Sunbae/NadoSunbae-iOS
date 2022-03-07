@@ -14,6 +14,7 @@ enum MypageService {
     case getMypageMyPostList(postType: MypageMyPostType)
     case getMypageMyAnswerList(postType: MypageMyPostType)
     case getMypageMyReviewList(userID: Int)
+    case getMypageMyLikeList(postType: MypageLikePostType)
 }
 
 extension MypageService: TargetType {
@@ -38,12 +39,14 @@ extension MypageService: TargetType {
             }
         case .getMypageMyReviewList(let userID):
             return "/user/mypage/\(userID)/review-post/list"
+        case .getMypageMyLikeList:
+            return "/user/mypage/like/list/"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getUserInfo, .getUserPersonalQuestionList, .getMypageMyPostList, .getMypageMyAnswerList, .getMypageMyReviewList:
+        case .getUserInfo, .getUserPersonalQuestionList, .getMypageMyPostList, .getMypageMyAnswerList, .getMypageMyReviewList, .getMypageMyLikeList:
             return .get
         }
     }
@@ -58,6 +61,8 @@ extension MypageService: TargetType {
             return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)
         case .getMypageMyAnswerList, .getMypageMyReviewList:
             return .requestPlain
+        case .getMypageMyLikeList(let postType):
+            return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)
         }
     }
     
