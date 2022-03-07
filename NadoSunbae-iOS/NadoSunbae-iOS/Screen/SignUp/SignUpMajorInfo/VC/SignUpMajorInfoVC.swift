@@ -129,14 +129,17 @@ extension SignUpMajorInfoVC {
     /// textField에 값이 들어올 때마다 NextBtn 활성화할지를 체크하는 함수
     private func checkNextBtnIsEnabled() {
         if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) {
-            if !(secondMajorTextField.isEmpty) && (secondMajorStartTextField.isEmpty) {
+            if secondMajorTextField.isEmpty {
+                secondMajorStartSelectBtn.isEnabled = true
                 nextBtn.isActivated = false
                 nextBtn.isEnabled = false
             } else {
-                nextBtn.isActivated = true
-                nextBtn.isEnabled = true
+                secondMajorStartSelectBtn.isEnabled = !(secondMajorTextField.text == "미진입")
+                nextBtn.isActivated = !(secondMajorStartTextField.isEmpty) || secondMajorTextField.text == "미진입"
+                nextBtn.isEnabled = !(secondMajorStartTextField.isEmpty) || secondMajorTextField.text == "미진입"
             }
         } else {
+            secondMajorStartSelectBtn.isEnabled = true
             nextBtn.isActivated = false
             nextBtn.isEnabled = false
         }
@@ -171,9 +174,9 @@ extension SignUpMajorInfoVC: SendUpdateModalDelegate {
             if let majorInfoData = data as? MajorInfoModel {
                 self.secondMajorTextField.text = majorInfoData.majorName
                 self.signUpData.secondMajorID = majorInfoData.majorID
-                // TODO: 서버 어떻게 나오는지에 따라 "미진입" 수정 가능
                 if majorInfoData.majorName == "미진입" {
                     self.signUpData.secondMajorStart = "미진입"
+                    self.secondMajorStartTextField.text = ""
                 }
             }
         case 3:

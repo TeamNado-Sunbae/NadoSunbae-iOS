@@ -8,16 +8,19 @@
 import Foundation
 
 struct SignUpDataModel: Codable {
-    let user: User
-    let accesstoken: String
+    var user: User
+
+    enum CodingKeys: String, CodingKey {
+        case user = "user"
+    }
     
     struct User: Codable {
-        let userID: Int
-        let createdAt: String
+        var userID: Int
+        var createdAt: String
 
         enum CodingKeys: String, CodingKey {
             case userID = "userId"
-            case createdAt
+            case createdAt = "createdAt"
         }
     }
 }
