@@ -123,13 +123,15 @@ extension ReviewAPI {
     /// createReviewPostJudgeData
     func createReviewPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<ReviewPostRegisterData>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<ReviewPostRegisterData>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData?.message)
+            return .success(decodedData.data ?? "None-Data")
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:
@@ -140,13 +142,15 @@ extension ReviewAPI {
     /// getReviewPostListJudgeData
     func getReviewPostListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<[ReviewMainPostListData]>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<[ReviewMainPostListData]>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData?.message)
+            return .success(decodedData.data ?? "None-Data")
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:
@@ -157,13 +161,15 @@ extension ReviewAPI {
     /// getReviewPostDetailJudgeData
     func getReviewPostDetailJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<ReviewPostDetailData>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<ReviewPostDetailData>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData?.message)
+            return .success(decodedData.data ?? "None-Data")
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:
@@ -174,13 +180,13 @@ extension ReviewAPI {
     /// getReviewHomepageJudgeData
     func getReviewHomepageJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<ReviewHomePageData>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<ReviewHomePageData>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
+            return .success(decodedData.data ?? "None-Data")
         case 400...409:
-            return .requestErr(decodedData?.message)
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:
@@ -191,13 +197,15 @@ extension ReviewAPI {
     /// deleteReviewPostJudgeData
     func deleteReviewPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<ReviewDeleteResModel>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<ReviewDeleteResModel>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData?.message)
+            return .success(decodedData.data ?? "None-Data")
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:
@@ -208,13 +216,15 @@ extension ReviewAPI {
     /// editReviewPostJudgeData
     func editReviewPostJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        let decodedData = try? decoder.decode(GenericResponse<ReviewEditData>.self, from: data)
+        guard let decodedData = try? decoder.decode(GenericResponse<ReviewEditData>.self, from: data) else { return .pathErr }
         
         switch status {
         case 200...204:
-            return .success(decodedData?.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData?.message)
+            return .success(decodedData.data ?? "None-Data")
+        case 401:
+            return .requestErr(false)
+        case 400, 402...409:
+            return .requestErr(decodedData.message)
         case 500:
             return .serverErr
         default:

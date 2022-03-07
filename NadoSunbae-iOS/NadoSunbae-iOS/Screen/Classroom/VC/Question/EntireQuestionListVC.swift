@@ -211,9 +211,11 @@ extension EntireQuestionListVC {
     
     /// 전체 질문, 정보글 전체 목록 조회 및 정렬 API 요청 메서드
     func requestGetGroupOrInfoListData(majorID: Int, postTypeID: QuestionType, sort: ListSortType) {
+        self.activityIndicator.startAnimating()
         ClassroomAPI.shared.getGroupQuestionOrInfoListAPI(majorID: majorID, postTypeID: postTypeID.rawValue, sort: sort) { networkResult in
             switch networkResult {
             case .success(let res):
+                self.activityIndicator.stopAnimating()
                 if let data = res as? [ClassroomPostList] {
                     self.questionList = data
                     DispatchQueue.main.async {
@@ -224,19 +226,18 @@ extension EntireQuestionListVC {
                         }
                     }
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.setUpRequestData(sortType: .recent)
+                    }
                 }
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            case .pathErr:
-                print("pathErr")
-                self.makeAlert(title: "내부 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            case .serverErr:
-                print("serverErr")
-                self.makeAlert(title: "서버 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            case .networkFail:
-                print("networkFail")
+            default:
+                self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }

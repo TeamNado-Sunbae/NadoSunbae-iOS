@@ -116,7 +116,7 @@ extension SignInVC {
     }
     
     /// Userdefaults에 값 지정하는 메서드
-    private func setUpUserdefaultValues(data: SignInDataModel) {
+    private func setUpUserdefaultValuesForSignIn(data: SignInDataModel) {
         UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(data.refreshtoken, forKey: UserDefaults.Keys.RefreshToken)
         UserDefaults.standard.set(data.user.firstMajorID, forKey: UserDefaults.Keys.FirstMajorID)
@@ -130,7 +130,7 @@ extension SignInVC {
     }
     
     private func doForIsEmailVerified(data: SignInDataModel) {
-        self.setUpUserdefaultValues(data: data)
+        self.setUpUserdefaultValuesForSignIn(data: data)
         let nadoSunbaeTBC = NadoSunbaeTBC()
         nadoSunbaeTBC.modalPresentationStyle = .fullScreen
         self.present(nadoSunbaeTBC, animated: true, completion: nil)

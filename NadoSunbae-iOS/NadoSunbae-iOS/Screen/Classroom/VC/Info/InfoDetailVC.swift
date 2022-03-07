@@ -397,11 +397,15 @@ extension InfoDetailVC {
                         self.activityIndicator.stopAnimating()
                     }
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.optionalBindingData()
+                    }
                 }
             default:
                 self.activityIndicator.stopAnimating()
@@ -423,11 +427,15 @@ extension InfoDetailVC {
                         self.activityIndicator.stopAnimating()
                     }
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestCreateComment(postID: self.postID ?? 0, comment: self.commentTextView.text)
+                    }
                 }
             default:
                 self.activityIndicator.stopAnimating()
@@ -448,11 +456,15 @@ extension InfoDetailVC {
                     }
                     self.activityIndicator.stopAnimating()
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestPostLikeData(postID: self.postID ?? 0, postTypeID: .info)
+                    }
                 }
             default:
                 self.activityIndicator.stopAnimating()
@@ -469,12 +481,16 @@ extension InfoDetailVC {
             case .success(_):
                 self.navigationController?.popViewController(animated: true)
                 self.activityIndicator.stopAnimating()
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestDeletePostQuestion(postID: self.postID ?? 0)
+                    }
                 }
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
@@ -490,12 +506,17 @@ extension InfoDetailVC {
             case .success(_):
                 self.requestGetDetailInfoData(postID: self.postID ?? 0, addLoadBackView: false)
                 self.activityIndicator.stopAnimating()
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.activityIndicator.stopAnimating()
+                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    }
                 }
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
@@ -511,11 +532,17 @@ extension InfoDetailVC {
             case .success(_):
                 self.makeAlert(title: "신고되었습니다.")
                 self.activityIndicator.stopAnimating()
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    self.makeAlert(title: message)
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.activityIndicator.stopAnimating()
+                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    }
                 }
-                self.activityIndicator.stopAnimating()
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")

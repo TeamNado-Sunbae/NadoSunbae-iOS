@@ -260,10 +260,15 @@ extension ReviewDetailVC {
                     self.reviewPostTV.reloadData()
                     self.activityIndicator.stopAnimating()
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestGetReviewPostDetail(postID: self.postId ?? -1)
+                    }
                 }
             default:
                 self.activityIndicator.stopAnimating()
@@ -283,11 +288,15 @@ extension ReviewDetailVC {
                     print(res)
                     self.activityIndicator.stopAnimating()
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestPostReviewDetailLikeData(postID: self.postId ?? 0, postTypeID: .review)
+                    }
                 }
             default:
                 self.activityIndicator.stopAnimating()
@@ -308,10 +317,15 @@ extension ReviewDetailVC {
                     self.activityIndicator.stopAnimating()
                     self.navigationController?.popViewController(animated: true)
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestDeleteReviewPost(postID: self.postId ?? -1)
+                    }
                 }
             default:
                 self.activityIndicator.stopAnimating()
@@ -328,11 +342,17 @@ extension ReviewDetailVC {
             case .success(_):
                 self.makeAlert(title: "신고되었습니다.")
                 self.activityIndicator.stopAnimating()
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    self.makeAlert(title: message)
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.activityIndicator.stopAnimating()
+                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    }
                 }
-                self.activityIndicator.stopAnimating()
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
