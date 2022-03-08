@@ -96,6 +96,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     /// 푸시알림을 클릭했을 때 실행되는 메서드
     func userNotificationCenter(_ center: UNUserNotificationCenter,didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
+        NotificationCenter.default.post(name: Notification.Name.pushNotificationClicked, object: nil)
+        NotificationInfo.shared.isPushComes = true
         completionHandler()
     }
 }
