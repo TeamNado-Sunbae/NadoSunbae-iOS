@@ -48,11 +48,6 @@ class SettingAppInfoVC: BaseVC {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getLatestVersion()
-    }
-    
     // MARK: Custom Methods
     private func registerXIB() {
         SettingTVC.register(target: appInfoTV)
@@ -109,33 +104,5 @@ extension SettingAppInfoVC: UITableViewDelegate {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-// MARK: - Network
-extension SettingAppInfoVC {
-    private func getLatestVersion() {
-        MypageSettingAPI.shared.getLatestVersion { networkResult in
-            switch networkResult {
-            case .success(let res):
-                if let response = res as? GetLatestVersionResponseModel {
-                    self.latestVersion = response.iOS
-                    self.appInfoTV.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
-                }
-            case .requestErr(let res):
-                if let message = res as? String {
-                    print(message)
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.getLatestVersion()
-                    }
-                }
-            default:
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            }
-        }
     }
 }

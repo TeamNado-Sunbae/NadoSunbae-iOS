@@ -257,6 +257,7 @@
 		C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */; };
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
 		C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AA27D7A8B5006ECD9E /* UserToken.swift */; };
+		C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AC27D7CB72006ECD9E /* AppVersion.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
 		C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE62E27CB71FA0011B23F /* SettingVC.swift */; };
 		C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63127CB73F80011B23F /* SettingTVC.swift */; };
@@ -530,6 +531,7 @@
 		C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileVC.storyboard; sourceTree = "<group>"; };
 		C740A85A27C7C58500C4518A /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C75926AA27D7A8B5006ECD9E /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
+		C75926AC27D7CB72006ECD9E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
 		C7ACE62E27CB71FA0011B23F /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		C7ACE63127CB73F80011B23F /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -1532,6 +1534,7 @@
 				77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */,
 				33D9EA8E27D75335000AF8DB /* NotificationInfo.swift */,
 				C75926AA27D7A8B5006ECD9E /* UserToken.swift */,
+				C75926AC27D7CB72006ECD9E /* AppVersion.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -1943,6 +1946,7 @@
 				33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */,
 				775728A527D6572100148C9A /* OnboardingCVC.swift in Sources */,
 				33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */,
+				C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */,
 				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,

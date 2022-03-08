@@ -82,6 +82,30 @@ extension BaseVC {
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
     }
+    
+    /// 앱 최신 버전 조회 후 alert 띄우는 함수
+    func getLatestVersion() {
+        getAppLink { response in
+            if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
+                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                alert.confirmBtn.press {
+                    if let url = URL(string: "itms-apps://itunes.apple.com/app/1605763068"), UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+                alert.cancelBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                alert.showNadoAlert(vc: self, message:
+        """
+        유저들의 의견을 반영하여
+        사용성을 개선했어요.
+        지금 바로 업데이트해보세요!
+        """
+                                    , confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+            }
+        }
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
@@ -133,6 +157,34 @@ extension BaseVC {
                 guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
                 signInVC.modalPresentationStyle = .fullScreen
                 self.present(signInVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    /// 앱 최신 버전 조회
+    func getLatestVersion(completion: @escaping (GetLatestVersionResponseModel) -> (Void)) {
+        self.activityIndicator.startAnimating()
+        MypageSettingAPI.shared.getLatestVersion { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let response = res as? GetLatestVersionResponseModel {
+                    completion(response)
+                }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getLatestVersion { response in
+                            completion(response)
+                        }
+                    }
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
