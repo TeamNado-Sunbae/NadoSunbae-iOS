@@ -230,6 +230,31 @@ extension InfoDetailVC {
             qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : self.requestDeletePostComment(commentID: commentID, indexPath: indexPath)
         }
     }
+    
+    /// 마이페이지로 뷰를 전환하는 메서드
+    private func pushToMypageVC(userID: Int) {
+        guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+        guard let myPageVC = UIStoryboard.init(name: Identifiers.MypageSB, bundle: nil).instantiateViewController(withIdentifier: MypageMainVC.className) as? MypageMainVC else { return }
+
+        myPageUserVC.targetUserID = userID
+        myPageUserVC.judgeBlockStatusDelegate = self
+        myPageUserVC.hidesBottomBarWhenPushed = true
+        myPageVC.hidesBottomBarWhenPushed = true
+        
+        if userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+            goToRootOfTab(index: 3)
+        } else {
+            self.navigationController?.pushViewController(myPageUserVC, animated: true)
+        }
+    }
+    
+    /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
+    private func goToRootOfTab(index: Int) {
+        tabBarController?.selectedIndex = index
+        if let nav = tabBarController?.viewControllers?[index] as? UINavigationController {
+            nav.popToRootViewController(animated: true)
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -247,6 +272,7 @@ extension InfoDetailVC: UITableViewDataSource {
         
         /// 정보글 원글 Cell
         if indexPath.row == 0 {
+            infoQuestionCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
             infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
             
             infoQuestionCell.tapLikeBtnAction = { [unowned self] in
@@ -258,7 +284,9 @@ extension InfoDetailVC: UITableViewDataSource {
                 self.present(safariView, animated: true, completion: nil)
             }
             
-            infoQuestionCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+            infoQuestionCell.tapNicknameBtnAction = { [unowned self] in
+                pushToMypageVC(userID: infoDetailData?.writer.writerID ?? 0)
+            }
             return infoQuestionCell
         } else if indexPath.row == 1 {
             /// 정보글 댓글 수 header Cell
@@ -270,7 +298,7 @@ extension InfoDetailVC: UITableViewDataSource {
         else {
             /// 정보글 댓글 Cell
             infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 2])
-            infoCommentCell.tapMoreInfoBtn = { [unowned self] in
+            infoCommentCell.tapMoreInfoBtnAction = { [unowned self] in
                 if userID == infoDetailCommentData[indexPath.row - 2].writer.writerID {
                     makeAlertWithCancel(okTitle: "삭제", okAction: { _ in
                         makeNadoDeleteAlert(qnaType: .comment, commentID: infoDetailCommentData[indexPath.row - 2].commentID, indexPath: [IndexPath(row: indexPath.row - 2, section: 0)])
@@ -287,6 +315,14 @@ extension InfoDetailVC: UITableViewDataSource {
             infoCommentCell.interactURL = { url in
                 let safariView: SFSafariViewController = SFSafariViewController(url: url)
                 self.present(safariView, animated: true, completion: nil)
+            }
+            
+            infoCommentCell.tapNicknameBtnAction = { [unowned self] in
+                pushToMypageVC(userID: infoDetailCommentData[indexPath.row - 2].writer.writerID)
+            }
+            
+            infoCommentCell.tapProfileImgBtnAction = { [unowned self] in
+                pushToMypageVC(userID: infoDetailCommentData[indexPath.row - 2].writer.writerID)
             }
             return infoCommentCell
         }
@@ -332,6 +368,14 @@ extension InfoDetailVC: UITextViewDelegate {
     }
 }
 
+// MARK: - SendBlockedInfoDelegate
+extension InfoDetailVC: SendBlockedInfoDelegate {
+    func sendBlockedInfo(status: Bool, userID: Int) {
+        if infoDetailData?.writer.writerID == userID {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+}
 
 // MARK: - Keyboard
 extension InfoDetailVC {
