@@ -73,6 +73,7 @@ extension NadoSunbaeTBC {
     /// foreground로 알림을 클릭했을 때 실행되는 메서드
     @objc
     private func goToNotificationVC() {
+        
         /// 탭바에서 NotificationCenter Observer를 활용하여 푸시를 클릭했을 때 탭바의 selectedIndex를 2로, 싱글톤 객체의 값을 false로 변경
         NotificationInfo.shared.isPushComes = false
         self.selectedIndex = 2
