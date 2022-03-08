@@ -237,6 +237,10 @@
                             <constraint firstItem="Sil-ob-9Yz" firstAttribute="top" secondItem="PkO-Ju-Iqk" secondAttribute="top" constant="344" id="w1K-Tp-zQJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="subTitleLabel" destination="7SI-hQ-xtF" id="X67-DQ-27K"/>
+                        <outlet property="titleImgView" destination="Sil-ob-9Yz" id="tLl-6z-QxX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lh1-AL-8Yh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
