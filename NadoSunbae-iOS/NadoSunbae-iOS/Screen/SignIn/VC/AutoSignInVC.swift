@@ -33,6 +33,7 @@ extension AutoSignInVC {
                 self.activityIndicator.stopAnimating()
                 if let data = res as? SignInDataModel {
                     self.setUpUserdefaultValues(data: data)
+                    self.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
                     let nadoSunbaeTBC = NadoSunbaeTBC()
                     nadoSunbaeTBC.modalPresentationStyle = .fullScreen
                     self.present(nadoSunbaeTBC, animated: true, completion: {

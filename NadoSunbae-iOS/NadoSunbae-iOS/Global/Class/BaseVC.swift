@@ -123,6 +123,7 @@ extension BaseVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? SignInDataModel {
+                    self.setUserToken(accessToken: data.accesstoken, refreshToken: data.accesstoken)
                     self.setUpUserdefaultValues(data: data)
                     completion(true)
                 }
