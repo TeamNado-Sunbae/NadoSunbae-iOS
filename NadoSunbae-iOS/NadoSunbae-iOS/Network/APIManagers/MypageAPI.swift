@@ -97,6 +97,38 @@ extension MypageAPI {
             }
         }
     }
+    
+    /// [GET] 학과후기 좋아요 목록 조회
+    func getMypageMyLikeReviewListAPI(completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getMypageMyLikeList(postType: MypageLikePostType.review)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getMypageReviewLikeListJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    /// [GET] 질문글, 정보글 좋아요 목록 조회
+    func getMypageMyLikePostListAPI(postType: MypageLikePostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getMypageMyLikeList(postType: postType)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                completion(self.getMypagePostLikeListJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - judgeData
@@ -186,6 +218,40 @@ extension MypageAPI {
         case 401:
             return .requestErr(false)
         case 400, 402...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func getMypagePostLikeListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        
+        guard let decodedData = try? decoder.decode(GenericResponse<MypageLikePostData>.self, from: data) else { return .pathErr }
+
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
+            return .requestErr(decodedData.message)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
+    
+    private func getMypageReviewLikeListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        
+        guard let decodedData = try? decoder.decode(GenericResponse<MypageLikeReviewData>.self, from: data) else { return .pathErr }
+
+        switch status {
+        case 200...204:
+            return .success(decodedData.data ?? "None-Data")
+        case 400...409:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr

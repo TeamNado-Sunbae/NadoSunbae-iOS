@@ -87,6 +87,18 @@ extension ReviewMainPostTVC {
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
+    /// 마이페이지 후기 좋아요 리스트 데이터 세팅 함수
+    func setMypageReviewLikeData(postData: MypageLikeReviewDataModel) {
+        dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
+        titleLabel.text = postData.title
+        nickNameLabel.text = postData.writer.nickname
+        likeCountLabel.text = "\(postData.like.likeCount)"
+        [majorNameLabel, secondMajorNameLabel, firstMajorStartLabel, secondMajorStartLabel, majorSeparatorView].forEach { view in
+            view?.isHidden = true
+        }
+        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
+    
     private func registerCVC() {
         ReviewPostTagCVC.register(target: tagCV)
     }
