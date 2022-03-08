@@ -31,6 +31,7 @@ class ClassroomQuestionTVC: BaseTVC {
     weak var changeCellDelegate: TVCContentUpdate?
     var tapLikeBtnAction : (() -> ())?
     var tapMoreBtnAction : (() -> ())?
+    var tapNicknameBtnAction : (() -> ())?
     
     // MARK: LifeCycle
     override func awakeFromNib() {
@@ -56,7 +57,7 @@ class ClassroomQuestionTVC: BaseTVC {
     }
     
     @IBAction func tapNicknameBtn(_ sender: UIButton) {
-        print("tapNicknameBtn")
+        tapNicknameBtnAction?()
     }
 }
 

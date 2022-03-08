@@ -63,6 +63,7 @@ class DefaultQuestionChatVC: BaseVC {
     var userID: Int?
     var userType: Int?
     var postID: Int?
+    var isBlocked: Bool?
     private var qnaType: QnAType?
     private var questionChatData: [ClassroomMessageList] = []
     private var questionLikeData: Like?
@@ -344,6 +345,31 @@ extension DefaultQuestionChatVC {
             qnaType == .question ? self.requestDeletePostQuestion(postID: self.postID ?? 0) : self.requestDeletePostComment(commentID: commentID, indexPath: indexPath)
         }
     }
+    
+    /// 마이페이지로 뷰를 전환하는 메서드
+    private func pushToMypageVC(userID: Int) {
+        guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+        guard let myPageVC = UIStoryboard.init(name: Identifiers.MypageSB, bundle: nil).instantiateViewController(withIdentifier: MypageMainVC.className) as? MypageMainVC else { return }
+
+        myPageUserVC.targetUserID = userID
+        myPageUserVC.judgeBlockStatusDelegate = self
+        myPageUserVC.hidesBottomBarWhenPushed = true
+        myPageVC.hidesBottomBarWhenPushed = true
+        
+        if userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+            goToRootOfTab(index: 3)
+        } else {
+            self.navigationController?.pushViewController(myPageUserVC, animated: true)
+        }
+    }
+    
+    /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
+    private func goToRootOfTab(index: Int) {
+        tabBarController?.selectedIndex = index
+        if let nav = tabBarController?.viewControllers?[index] as? UINavigationController {
+            nav.popToRootViewController(animated: true)
+        }
+    }
 }
 
 // MARK: - UITextViewDelegate
@@ -511,6 +537,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 questionCell.tapLikeBtnAction = { [unowned self] in
                     requestPostClassroomLikeData(postID: postID ?? 0, postTypeID: self.questionType ?? .personal)
                 }
+                
+                questionCell.tapNicknameBtnAction = { [unowned self] in
+                    pushToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
+                }
                 return questionCell
             }
         } else {
@@ -605,6 +635,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     moreBtnTapIndex = [1,indexPath.row]
                 }
                 
+                commentCell.tapNicknameBtnAction = { [unowned self] in
+                    pushToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
+                }
+                
                 commentCell.bindData(questionChatData[indexPath.row])
                 return commentCell
             }
@@ -637,6 +671,15 @@ extension DefaultQuestionChatVC: TVCContentUpdate {
     /// TableView의 내용 or UI를 업데이트하는 메서드
     func updateTV() {
         defaultQuestionChatTV.reloadData()
+    }
+}
+
+// MARK: - SendBlockedInfoDelegate
+extension DefaultQuestionChatVC: SendBlockedInfoDelegate {
+    func sendBlockedInfo(status: Bool, userID: Int) {
+        if questionChatData[0].writer.writerID == userID {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 
