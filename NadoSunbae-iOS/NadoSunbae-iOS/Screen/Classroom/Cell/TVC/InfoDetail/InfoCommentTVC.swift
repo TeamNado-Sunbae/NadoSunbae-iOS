@@ -27,12 +27,7 @@ class InfoCommentTVC: BaseTVC {
         }
     }
     @IBOutlet var commentDateLabel: UILabel!
-    @IBOutlet var showWriterLabel: UILabel!
-    @IBOutlet var showWriterBackView: UIView! {
-        didSet {
-            showWriterBackView.layer.cornerRadius = 6
-        }
-    }
+    @IBOutlet var writerImgView: UIImageView!
     
     // MARK: Properties
     var tapMoreInfoBtn: (() -> ())?
@@ -60,9 +55,7 @@ extension InfoCommentTVC {
     func bindData(model: InfoDetailCommentList) {
         profileImgView.image = UIImage(named: "profileImage\(model.writer.profileImageID)")
         nicknameLabel.text = model.writer.nickname
-        [showWriterLabel,showWriterBackView].forEach {
-            $0.isHidden = model.writer.isPostWriter ?? false ? false : true
-        }
+        writerImgView.isHidden = model.writer.isPostWriter ?? false ? false : true
         majorInfoLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         commentTextView.text = model.content
         commentDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
