@@ -194,9 +194,9 @@ extension QuestionPersonListVC: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - SendUpdateStatusDelegate
-extension QuestionPersonListVC: SendUpdateStatusDelegate {
-    func sendStatus(data: Bool) {
-        self.isBlocked = data
+extension QuestionPersonListVC: SendBlockedInfoDelegate {
+    func sendBlockedInfo(status: Bool, userID: Int) {
+        self.isBlocked = status
     }
 }
 
