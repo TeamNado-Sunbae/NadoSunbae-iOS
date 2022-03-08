@@ -37,6 +37,21 @@ class OnboardingVC: UIViewController {
         registerCVC()
         initOnboardingData()
     }
+    
+    // MARK: IBAction
+    @IBAction func tapSignUpBtn(_ sender: UIButton) {
+        guard let signUpVC = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: "SignUpNVC") as? UINavigationController else { return }
+        
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func tapSignInBtn(_ sender: UIButton) {
+        guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+        
+        signInVC.modalPresentationStyle = .fullScreen
+        self.present(signInVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UI
