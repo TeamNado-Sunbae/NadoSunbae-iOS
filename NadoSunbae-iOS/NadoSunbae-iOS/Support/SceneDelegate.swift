@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // rootVC를 tabBar로 지정
             // window.rootViewController = NadoSunbaeTBC()
-            if UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) == 0 {
+            if !UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsOnboarding) {
                 window.rootViewController = UIStoryboard.init(name: "OnboardingSB", bundle: nil).instantiateViewController(withIdentifier: OnboardingVC.className) as? OnboardingVC
             } else {
                 window.rootViewController = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: AutoSignInVC.className) as? AutoSignInVC
