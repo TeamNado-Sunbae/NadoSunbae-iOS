@@ -76,6 +76,7 @@ extension ReviewDetailVC {
         ReviewDetailPostWithImgTVC.register(target: reviewPostTV)
         ReviewDetailPostTVC.register(target: reviewPostTV)
         ReviewDetailProfileTVC.register(target: reviewPostTV)
+        ReviewDetailGrayTVC.register(target: reviewPostTV)
     }
     
     private func setUpTV() {
@@ -189,7 +190,11 @@ extension ReviewDetailVC: UITableViewDelegate {
         } else if indexPath.section == 1 {
             return UITableView.automaticDimension
         } else if indexPath.section == 2{
-            return 172
+            if detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+                return 12
+            } else {
+                return 172
+            }
         } else {
             return 0
         }
@@ -217,7 +222,8 @@ extension ReviewDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let reviewDetailPostWithImgTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailPostWithImgTVC.className) as? ReviewDetailPostWithImgTVC,
               let reviewDetailPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailPostTVC.className) as? ReviewDetailPostTVC,
-              let reviewDetailProfileTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailProfileTVC.className) as? ReviewDetailProfileTVC else { return UITableViewCell() }
+              let reviewDetailProfileTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailProfileTVC.className) as? ReviewDetailProfileTVC,
+              let reviewDetailGrayTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailGrayTVC.className) as? ReviewDetailGrayTVC else { return UITableViewCell() }
         
         if indexPath.section == 0 {
             reviewDetailPostWithImgTVC.setData(postData: detailPost)
@@ -227,8 +233,12 @@ extension ReviewDetailVC: UITableViewDataSource {
             reviewDetailPostTVC.setData(postData: detailPost.post.contentList[indexPath.row + 1])
             return reviewDetailPostTVC
         } else if indexPath.section == 2 {
-            reviewDetailProfileTVC.setData(profileData: detailPost.writer)
-            return reviewDetailProfileTVC
+            if detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+                return reviewDetailGrayTVC
+            } else {
+                reviewDetailProfileTVC.setData(profileData: detailPost.writer)
+                return reviewDetailProfileTVC
+            }
         } else {
             return UITableViewCell()
         }
