@@ -28,6 +28,8 @@ struct SignInDataModel: Codable {
         var secondMajorName: String
         var isReviewed: Bool
         var isEmailVerified: Bool
+        var isUserReported: Bool
+        var isReviewInappropriate: Bool
 
         enum CodingKeys: String, CodingKey {
             case userID = "userId"
@@ -39,6 +41,8 @@ struct SignInDataModel: Codable {
             case secondMajorName = "secondMajorName"
             case isReviewed = "isReviewed"
             case isEmailVerified = "isEmailVerified"
+            case isUserReported = "isUserReported"
+            case isReviewInappropriate = "isReviewInappropriate"
         }
     }
 }

@@ -60,7 +60,8 @@ class MypageMainVC: BaseVC {
     }
     
     @IBAction func tapLikeListBtn(_ sender: Any) {
-        /// 4순위
+        guard let likeListVC = UIStoryboard.init(name: Identifiers.MypageLikeListSB, bundle: nil).instantiateViewController(withIdentifier: MypageLikeListVC.className) as? MypageLikeListVC else { return }
+        self.navigationController?.pushViewController(likeListVC, animated: true)
     }
     
     @IBAction func tapSortBtn(_ sender: Any) {
@@ -181,14 +182,19 @@ extension MypageMainVC {
                         self.activityIndicator.stopAnimating()
                     }
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getUserPersonalQuestionList()
+                    }
                 }
             default:
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }) 
     }

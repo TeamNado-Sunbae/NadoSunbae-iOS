@@ -16,6 +16,7 @@ enum SignService {
     case requestSignOut
     case requestWithDraw(PW: String)
     case resendSignUpMail(email: String, PW: String)
+    case updateToken(refreshToken: String)
 }
 
 extension SignService: TargetType {
@@ -39,12 +40,14 @@ extension SignService: TargetType {
             return "/auth/secession"
         case .resendSignUpMail:
             return "/auth/certification/email"
+        case .updateToken:
+            return "/auth/renewal/token"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .requestSignIn, .requestSignUp, .checkNickNameDuplicate, .checkEmailDuplicate, .requestSignOut, .resendSignUpMail, .requestWithDraw:
+        case .requestSignIn, .requestSignUp, .checkNickNameDuplicate, .checkEmailDuplicate, .requestSignOut, .resendSignUpMail, .requestWithDraw, .updateToken:
             return .post
         }
     }
@@ -68,7 +71,7 @@ extension SignService: TargetType {
             return .requestParameters(parameters: ["nickname": nickName], encoding: JSONEncoding.default)
         case .checkEmailDuplicate(let email):
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-        case .requestSignOut:
+        case .requestSignOut, .updateToken:
             return .requestPlain
         case .requestWithDraw(let PW):
             return .requestParameters(parameters: ["password": PW], encoding: JSONEncoding.default)
@@ -82,6 +85,8 @@ extension SignService: TargetType {
         case .requestSignOut, .requestWithDraw:
             let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
             return ["accessToken": accessToken]
+        case .updateToken(let refreshToken):
+            return ["refreshToken": refreshToken]
         default:
             return ["Content-type": "application/json"]
         }

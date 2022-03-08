@@ -140,5 +140,15 @@ extension BaseQuestionTVC {
         likeCountLabel.text = "\(data.like.likeCount)"
         likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
+    
+    func setMypageLikeData(data: MypageLikePostDataModel) {
+        questionTitleLabel.text = data.title
+        questionContentLabel.text = data.content
+        nicknameLabel.text = data.writer.nickname
+        questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
+        commentCountLabel.text = "\(data.commentCount)"
+        likeCountLabel.text = "\(data.like.likeCount)"
+        likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
 }
 

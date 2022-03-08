@@ -82,12 +82,16 @@ extension NotificationMainVC {
                     }
                     self.activityIndicator.stopAnimating()
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print("request err: ", message)
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getNotiList()
+                    }
                 }
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
@@ -103,11 +107,16 @@ extension NotificationMainVC {
                 if res is ReadNotificationDataModel {
                     self.getNotiList()
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print("request err: ", message)
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getNotiList()
+                    }
                 }
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
@@ -122,11 +131,16 @@ extension NotificationMainVC {
                 if res is DeleteNotificationDataModel {
                     self.getNotiList()
                 }
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print("request err: ", message)
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getNotiList()
+                    }
                 }
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
