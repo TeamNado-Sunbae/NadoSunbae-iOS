@@ -55,7 +55,7 @@ extension InfoCommentTVC {
     func bindData(model: InfoDetailCommentList) {
         profileImgView.image = UIImage(named: "profileImage\(model.writer.profileImageID)")
         nicknameLabel.text = model.writer.nickname
-        writerImgView.isHidden = model.writer.isPostWriter ?? false ? false : true
+        writerImgView.isHidden = !(model.writer.isPostWriter ?? false)
         majorInfoLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         commentTextView.text = model.content
         commentDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
