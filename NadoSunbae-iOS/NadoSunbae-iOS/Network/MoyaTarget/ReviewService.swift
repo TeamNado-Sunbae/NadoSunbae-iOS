@@ -103,9 +103,7 @@ extension ReviewService: TargetType {
     }
     
     var headers: [String: String]? {
-        let accessToken: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken) ?? ""
-        print(accessToken)
-        
+        let accessToken = UserToken.shared.accessToken ?? ""
         switch self {
             
         case .createReviewPost, .getReviewMainPostList, .getReviewPostDetail, .getReviewHomepageURL, .deleteReviewPost, .editReviewPost:

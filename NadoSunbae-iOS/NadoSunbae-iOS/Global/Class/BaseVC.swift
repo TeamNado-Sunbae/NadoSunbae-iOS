@@ -51,6 +51,12 @@ extension BaseVC {
         view.addGestureRecognizer(tap)
     }
     
+    /// 로그인/자동로그인 시 토큰을 싱글톤에 저장하는 메서드
+    func setUserToken(accessToken: String, refreshToken: String) {
+        UserToken.shared.accessToken = accessToken
+        UserToken.shared.refreshToken = refreshToken
+    }
+    
     /// 토큰 갱신, 자동로그인 시 UserDefaults에 값 저장하는 메서드
     func setUpUserdefaultValues(data: SignInDataModel) {
         UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
@@ -117,6 +123,7 @@ extension BaseVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? SignInDataModel {
+                    self.setUserToken(accessToken: data.accesstoken, refreshToken: data.accesstoken)
                     self.setUpUserdefaultValues(data: data)
                     completion(true)
                 }
