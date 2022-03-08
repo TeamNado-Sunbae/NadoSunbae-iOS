@@ -75,11 +75,20 @@
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DA8-A9-yjt">
+                                <rect key="frame" x="16" y="16" width="42.5" height="21"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="tapNicknameBtn:" destination="SVq-Rl-eLx" eventType="touchUpInside" id="FGi-T8-Ioj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="chatFill"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kYD-bX-I2J" secondAttribute="trailing" constant="8" id="3Bv-9l-2SU"/>
                             <constraint firstAttribute="bottom" secondItem="5pt-bF-h5S" secondAttribute="bottom" constant="12" id="8OR-AC-DMJ"/>
+                            <constraint firstItem="DA8-A9-yjt" firstAttribute="top" secondItem="OlX-jq-iUU" secondAttribute="top" id="9C8-7S-7re"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="DUs-YM-dxr"/>
                             <constraint firstItem="5pt-bF-h5S" firstAttribute="top" secondItem="LMH-SD-I1n" secondAttribute="bottom" constant="8" id="F5v-TD-YZN"/>
                             <constraint firstItem="kYD-bX-I2J" firstAttribute="centerY" secondItem="OlX-jq-iUU" secondAttribute="centerY" id="KU7-Fi-KNz"/>
@@ -91,6 +100,9 @@
                             <constraint firstAttribute="trailing" secondItem="LMH-SD-I1n" secondAttribute="trailing" constant="16" id="WcF-ac-ez0"/>
                             <constraint firstItem="LMH-SD-I1n" firstAttribute="leading" secondItem="OlX-jq-iUU" secondAttribute="leading" id="YCo-fW-BeS"/>
                             <constraint firstItem="5pt-bF-h5S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="38o-sG-EsX" secondAttribute="leading" constant="180" id="a8O-1p-bd6"/>
+                            <constraint firstItem="DA8-A9-yjt" firstAttribute="trailing" secondItem="OlX-jq-iUU" secondAttribute="trailing" id="huH-bc-js3"/>
+                            <constraint firstItem="DA8-A9-yjt" firstAttribute="bottom" secondItem="OlX-jq-iUU" secondAttribute="bottom" id="oik-Zv-kSN"/>
+                            <constraint firstItem="DA8-A9-yjt" firstAttribute="leading" secondItem="OlX-jq-iUU" secondAttribute="leading" id="pwh-4n-ZcZ"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="u5x-eI-IfJ"/>
                             <constraint firstItem="OlX-jq-iUU" firstAttribute="leading" secondItem="38o-sG-EsX" secondAttribute="leading" constant="16" id="xmc-BG-enZ"/>
                             <constraint firstItem="XsY-Xa-ot0" firstAttribute="top" secondItem="OlX-jq-iUU" secondAttribute="bottom" id="yax-7h-ZWo"/>

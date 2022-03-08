@@ -84,17 +84,40 @@
                             <constraint firstAttribute="width" constant="32" id="qGY-MV-yIL"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pid-x2-e1v">
+                        <rect key="frame" x="56" y="16" width="76" height="17"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                        <connections>
+                            <action selector="tapNicknameBtn:" destination="fh7-8u-a0h" eventType="touchUpInside" id="16O-ZD-IhO"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkz-r6-rzK">
+                        <rect key="frame" x="16" y="16" width="32" height="32"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <connections>
+                            <action selector="tapProfileImgBtn:" destination="fh7-8u-a0h" eventType="touchUpInside" id="2Lz-Re-Mxu"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" name="paleGray"/>
                 <constraints>
                     <constraint firstItem="3ks-MP-Tdt" firstAttribute="leading" secondItem="rKz-xJ-yQq" secondAttribute="leading" id="0CX-vD-b4O"/>
                     <constraint firstItem="WQD-Tl-WV6" firstAttribute="leading" secondItem="rKz-xJ-yQq" secondAttribute="leading" id="5hP-49-jaD"/>
+                    <constraint firstItem="pid-x2-e1v" firstAttribute="top" secondItem="rKz-xJ-yQq" secondAttribute="top" id="C7F-oy-eza"/>
+                    <constraint firstItem="pid-x2-e1v" firstAttribute="trailing" secondItem="rKz-xJ-yQq" secondAttribute="trailing" id="CSw-2l-DrM"/>
+                    <constraint firstItem="Vkz-r6-rzK" firstAttribute="top" secondItem="E7S-Ue-Mte" secondAttribute="top" id="DDc-eG-swn"/>
                     <constraint firstItem="E7S-Ue-Mte" firstAttribute="top" secondItem="htk-89-fzd" secondAttribute="top" constant="16" id="DYk-jO-q9z"/>
                     <constraint firstItem="3ks-MP-Tdt" firstAttribute="top" secondItem="WQD-Tl-WV6" secondAttribute="bottom" constant="8" id="Jxz-GM-X5W"/>
                     <constraint firstAttribute="bottom" secondItem="oTA-58-wpP" secondAttribute="bottom" constant="7" id="KDC-SV-Q4n"/>
                     <constraint firstItem="oTA-58-wpP" firstAttribute="leading" secondItem="rKz-xJ-yQq" secondAttribute="leading" id="Ob0-1g-0LD"/>
+                    <constraint firstItem="Vkz-r6-rzK" firstAttribute="bottom" secondItem="E7S-Ue-Mte" secondAttribute="bottom" id="OnZ-zE-21C"/>
                     <constraint firstItem="anB-1a-uTg" firstAttribute="leading" secondItem="rKz-xJ-yQq" secondAttribute="trailing" constant="4" id="P39-6j-vyH"/>
+                    <constraint firstItem="pid-x2-e1v" firstAttribute="centerX" secondItem="rKz-xJ-yQq" secondAttribute="centerX" id="P8n-Nv-J3H"/>
+                    <constraint firstItem="Vkz-r6-rzK" firstAttribute="leading" secondItem="E7S-Ue-Mte" secondAttribute="leading" id="QUe-0p-GcP"/>
+                    <constraint firstItem="Vkz-r6-rzK" firstAttribute="trailing" secondItem="E7S-Ue-Mte" secondAttribute="trailing" id="TvH-u3-PzS"/>
                     <constraint firstItem="6S1-Ac-BEa" firstAttribute="top" secondItem="E7S-Ue-Mte" secondAttribute="top" id="Wkm-Ok-ezy"/>
+                    <constraint firstItem="pid-x2-e1v" firstAttribute="bottom" secondItem="rKz-xJ-yQq" secondAttribute="bottom" id="Zb1-4k-QCL"/>
                     <constraint firstItem="anB-1a-uTg" firstAttribute="centerY" secondItem="rKz-xJ-yQq" secondAttribute="centerY" id="cMR-MC-23c"/>
                     <constraint firstItem="E7S-Ue-Mte" firstAttribute="leading" secondItem="htk-89-fzd" secondAttribute="leading" constant="16" id="dI2-Zj-75T"/>
                     <constraint firstItem="rKz-xJ-yQq" firstAttribute="leading" secondItem="E7S-Ue-Mte" secondAttribute="trailing" constant="8" id="dkN-bo-gDu"/>
