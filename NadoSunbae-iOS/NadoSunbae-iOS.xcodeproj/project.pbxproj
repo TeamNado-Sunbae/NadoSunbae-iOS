@@ -191,6 +191,15 @@
 		7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */; };
 		7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */; };
 		7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */; };
+		7757289E27D63E7300148C9A /* OnboardingSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7757289D27D63E7300148C9A /* OnboardingSB.storyboard */; };
+		775728A127D652A700148C9A /* FirstOnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */; };
+		775728A227D652A700148C9A /* FirstOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A027D652A700148C9A /* FirstOnboardingCVC.xib */; };
+		775728A527D6572100148C9A /* OnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728A327D6572100148C9A /* OnboardingCVC.swift */; };
+		775728A627D6572100148C9A /* OnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A427D6572100148C9A /* OnboardingCVC.xib */; };
+		775728A927D6593700148C9A /* ThirdOnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */; };
+		775728AA27D6593700148C9A /* ThirdOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */; };
+		775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728AB27D65E8900148C9A /* OnboardingDataModel.swift */; };
+		775728B127D6617300148C9A /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728B027D6617300148C9A /* OnboardingVC.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -450,6 +459,15 @@
 		7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostWithImgTVC.xib; sourceTree = "<group>"; };
 		7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailProfileTVC.swift; sourceTree = "<group>"; };
 		7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailProfileTVC.xib; sourceTree = "<group>"; };
+		7757289D27D63E7300148C9A /* OnboardingSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingSB.storyboard; sourceTree = "<group>"; };
+		7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingCVC.swift; sourceTree = "<group>"; };
+		775728A027D652A700148C9A /* FirstOnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstOnboardingCVC.xib; sourceTree = "<group>"; };
+		775728A327D6572100148C9A /* OnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCVC.swift; sourceTree = "<group>"; };
+		775728A427D6572100148C9A /* OnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingCVC.xib; sourceTree = "<group>"; };
+		775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingCVC.swift; sourceTree = "<group>"; };
+		775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdOnboardingCVC.xib; sourceTree = "<group>"; };
+		775728AB27D65E8900148C9A /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
+		775728B027D6617300148C9A /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -607,6 +625,7 @@
 		3313643F2785A48200E0C118 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				775728AD27D6613600148C9A /* Onboarding */,
 				5CAB3F23278AE37E00025DA5 /* SignUp */,
 				5C4ED92627894951001EA6BB /* SignIn */,
 				331364842785D64700E0C118 /* TabBar */,
@@ -1426,6 +1445,53 @@
 			path = CVC;
 			sourceTree = "<group>";
 		};
+		775728AD27D6613600148C9A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				775728B227D6618600148C9A /* Cell */,
+				775728AE27D6614500148C9A /* SB */,
+				775728AF27D6615000148C9A /* VC */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		775728AE27D6614500148C9A /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				7757289D27D63E7300148C9A /* OnboardingSB.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		775728AF27D6615000148C9A /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				775728B027D6617300148C9A /* OnboardingVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		775728B227D6618600148C9A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				775728B327D6619000148C9A /* CVC */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		775728B327D6619000148C9A /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				775728A027D652A700148C9A /* FirstOnboardingCVC.xib */,
+				7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */,
+				775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */,
+				775728A727D6593700148C9A /* ThirdOnboardingCVC.swift */,
+				775728A427D6572100148C9A /* OnboardingCVC.xib */,
+				775728A327D6572100148C9A /* OnboardingCVC.swift */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
 		77A7591C2797628F00A8E48B /* Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -1461,6 +1527,7 @@
 		77A7593127984A3800A8E48B /* AppModel */ = {
 			isa = PBXGroup;
 			children = (
+				775728AB27D65E8900148C9A /* OnboardingDataModel.swift */,
 				33A666A427BB958800779351 /* ReviewImgModel.swift */,
 				77A7593227984A7100A8E48B /* MajorInfoModel.swift */,
 			);
@@ -1690,8 +1757,10 @@
 				7754A31D27912F3A0093C230 /* ReviewWriteBgImgCVC.xib in Resources */,
 				777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */,
 				33CF635A279464EF00E92C04 /* QuestionSB.storyboard in Resources */,
+				7757289E27D63E7300148C9A /* OnboardingSB.storyboard in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
+				775728A227D652A700148C9A /* FirstOnboardingCVC.xib in Resources */,
 				7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */,
 				777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */,
 				77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */,
@@ -1704,10 +1773,12 @@
 				331364B82786198000E0C118 /* Colorsets.xcassets in Resources */,
 				77A7591B279712B700A8E48B /* ReviewPostTagCVC.xib in Resources */,
 				C71BF23527CCD4A20030DCB9 /* NotificationSettingBasicTVC.xib in Resources */,
+				775728AA27D6593700148C9A /* ThirdOnboardingCVC.xib in Resources */,
 				5CD4213A279080C100D09DEE /* MypageUserVC.storyboard in Resources */,
 				331364332784D3C000E0C118 /* Assets.xcassets in Resources */,
 				3313647F2785BBB100E0C118 /* Pretendard-SemiBold.otf in Resources */,
 				5CA7E412278BC39200D748E0 /* SelectMajorModalVC.storyboard in Resources */,
+				775728A627D6572100148C9A /* OnboardingCVC.xib in Resources */,
 				331C537C2795F4EF0052B309 /* QuestionPeopleHeaderView.xib in Resources */,
 				3313647E2785BBAF00E0C118 /* Pretendard-Regular.otf in Resources */,
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
@@ -1805,6 +1876,7 @@
 				33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
+				775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */,
 				3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */,
 				33834A1D27D67FAB001C4947 /* MypageLikeReviewDataModel.swift in Sources */,
 				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
@@ -1835,6 +1907,7 @@
 				77A7593C2799C81B00A8E48B /* ReviewPostDetailData.swift in Sources */,
 				C71BF24027CD0CEB0030DCB9 /* MailCompleteVC.swift in Sources */,
 				5C32801C2797292B00781EBE /* MypageAPI.swift in Sources */,
+				775728A927D6593700148C9A /* ThirdOnboardingCVC.swift in Sources */,
 				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
 				77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */,
 				5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */,
@@ -1854,6 +1927,7 @@
 				5CB6503027947A5E007694B1 /* NotificationMainVC+TV.swift in Sources */,
 				C71BF23C27CD0CC80030DCB9 /* ResetPWVC.swift in Sources */,
 				33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */,
+				775728A527D6572100148C9A /* OnboardingCVC.swift in Sources */,
 				33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */,
 				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
@@ -1929,6 +2003,7 @@
 				C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */,
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
+				775728A127D652A700148C9A /* FirstOnboardingCVC.swift in Sources */,
 				C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */,
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
 				5C49668F27BB5C0D00983689 /* MypageMyPostListVC.swift in Sources */,
@@ -1974,6 +2049,7 @@
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */,
+				775728B127D6617300148C9A /* OnboardingVC.swift in Sources */,
 				C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,

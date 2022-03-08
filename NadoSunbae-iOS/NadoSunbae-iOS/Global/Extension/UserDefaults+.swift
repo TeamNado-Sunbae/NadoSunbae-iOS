@@ -39,6 +39,9 @@ extension UserDefaults {
         /// Bool
         static var IsReviewed = "IsReviewed"
         
+        /// Bool
+        static var IsOnboarding = "IsOnboarding"
+        
         /// Int
         static var SelectedMajorID = "SelectedMajorID"
         

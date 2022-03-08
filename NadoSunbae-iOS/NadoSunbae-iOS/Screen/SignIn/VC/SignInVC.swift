@@ -117,7 +117,8 @@ extension SignInVC {
     }
     
     /// Userdefaults에 값 지정하는 메서드
-    private func setUpUserdefaultValuesForSignIn(data: SignInDataModel) {
+    private func setUpUserdefaultValues(data: SignInDataModel) {
+        UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsOnboarding)
         UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(data.refreshtoken, forKey: UserDefaults.Keys.RefreshToken)
         UserDefaults.standard.set(data.user.firstMajorID, forKey: UserDefaults.Keys.FirstMajorID)
