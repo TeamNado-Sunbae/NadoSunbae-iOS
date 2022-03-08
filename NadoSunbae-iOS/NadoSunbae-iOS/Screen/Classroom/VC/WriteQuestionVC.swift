@@ -152,6 +152,7 @@ extension WriteQuestionVC {
             case .group:
                 questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
             case .info:
+                questionTitleTextField.placeholder = "제목을 입력하세요."
                 questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
             default:
                 print("default")
@@ -270,12 +271,12 @@ extension WriteQuestionVC {
         if isEditState {
             confirmAlertMsg =
     """
-    글을 수정하시겠습니까?
+    글을 올리시겠습니까?
     """
             dismissAlertMsg =
     """
     페이지를 나가면
-    수정중인 글이 삭제돼요.
+    수정한 내용이 저장되지 않아요.
     """
         } else {
             confirmAlertMsg =
