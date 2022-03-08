@@ -65,7 +65,7 @@ extension PublicService: TargetType {
     var headers: [String: String]? {
         switch self {
         case .requestBlockUnBlockUser, .requestReport:
-            let accessToken = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken)!
+            let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:
             return ["Content-Type": "application/json"]

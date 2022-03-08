@@ -67,7 +67,7 @@ extension MypageSettingService: TargetType {
         case .requestResetPW:
             return ["Content-type": "application/json"]
         default:
-            let accessToken = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken)!
+            let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         }
     }

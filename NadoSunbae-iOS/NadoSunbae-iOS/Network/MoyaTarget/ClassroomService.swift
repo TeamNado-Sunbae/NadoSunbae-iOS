@@ -112,7 +112,7 @@ extension ClassroomService: TargetType {
     }
     
     var headers: [String: String]? {
-        let accessToken: String = UserDefaults.standard.string(forKey: UserDefaults.Keys.AccessToken) ?? ""
+        let accessToken = UserToken.shared.accessToken ?? ""
         return ["accesstoken": accessToken]
     }
 }

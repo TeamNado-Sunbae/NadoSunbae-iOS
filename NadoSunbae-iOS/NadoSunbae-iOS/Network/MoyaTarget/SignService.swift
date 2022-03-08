@@ -83,7 +83,7 @@ extension SignService: TargetType {
     var headers: [String : String]? {
         switch self {
         case .requestSignOut, .requestWithDraw:
-            let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
+            let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         case .updateToken(let refreshToken):
             return ["refreshToken": refreshToken]

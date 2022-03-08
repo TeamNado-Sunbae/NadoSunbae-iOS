@@ -55,7 +55,7 @@ extension NotificationService: TargetType {
     }
     
     var headers: [String : String]? {
-        let accessToken = UserDefaults.standard.value(forKey: UserDefaults.Keys.AccessToken) as! String
+        let accessToken = UserToken.shared.accessToken ?? ""
         return ["accessToken": accessToken]
     }
 }
