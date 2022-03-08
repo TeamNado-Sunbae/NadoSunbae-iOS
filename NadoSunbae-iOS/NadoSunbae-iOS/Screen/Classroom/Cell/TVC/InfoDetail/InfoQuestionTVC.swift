@@ -53,6 +53,10 @@ class InfoQuestionTVC: BaseTVC {
     @IBAction func tapInfoLikeBtn(_ sender: UIButton) {
         tapLikeBtnAction?()
     }
+    
+    @IBAction func tapNicknameBtn(_ sender: UIButton) {
+        print("tapNicknameBtn")
+    }
 }
 
 // MARK: - Custom Methods

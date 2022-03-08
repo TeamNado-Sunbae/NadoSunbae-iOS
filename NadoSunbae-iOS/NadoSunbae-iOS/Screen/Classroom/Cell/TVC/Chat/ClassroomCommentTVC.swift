@@ -42,6 +42,10 @@ class ClassroomCommentTVC: BaseTVC {
             changeCellDelegate.updateTV()
         }
     }
+    
+    @IBAction func tapNicknameBtn(_ sender: UIButton) {
+        print("tapNicknameBtn")
+    }
 }
 
 // MARK: - UI

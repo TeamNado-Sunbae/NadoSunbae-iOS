@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -100,6 +100,14 @@
                             <action selector="tapInfoLikeBtn:" destination="Ruq-qR-max" eventType="touchUpInside" id="YGw-sG-enM"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XJ-kF-Jkk">
+                        <rect key="frame" x="24" y="90" width="145.5" height="17"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                        <connections>
+                            <action selector="tapNicknameBtn:" destination="Ruq-qR-max" eventType="touchUpInside" id="rjT-hf-oxc"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -108,11 +116,14 @@
                     <constraint firstItem="bwe-DB-Ahe" firstAttribute="top" secondItem="bqR-DW-kR4" secondAttribute="bottom" constant="33" id="3zP-dJ-yJX"/>
                     <constraint firstItem="j6d-96-rol" firstAttribute="top" secondItem="Ldg-mB-RdQ" secondAttribute="bottom" constant="8" id="B8m-jY-qPg"/>
                     <constraint firstItem="H9E-DM-PWs" firstAttribute="leading" secondItem="j6d-96-rol" secondAttribute="trailing" constant="4" id="C12-jx-4bP"/>
+                    <constraint firstItem="8XJ-kF-Jkk" firstAttribute="leading" secondItem="j6d-96-rol" secondAttribute="leading" id="DJU-px-sPY"/>
                     <constraint firstItem="H9E-DM-PWs" firstAttribute="trailing" secondItem="Ldg-mB-RdQ" secondAttribute="trailing" id="Fsz-EG-0Ov"/>
                     <constraint firstItem="IpT-PK-08L" firstAttribute="bottom" secondItem="Uuv-04-IAF" secondAttribute="bottom" id="IkP-Mx-3VX"/>
                     <constraint firstItem="bwe-DB-Ahe" firstAttribute="leading" secondItem="Ldg-mB-RdQ" secondAttribute="leading" id="JZz-If-KXp"/>
+                    <constraint firstItem="8XJ-kF-Jkk" firstAttribute="top" secondItem="j6d-96-rol" secondAttribute="top" id="MnR-UD-9hB"/>
                     <constraint firstItem="Uuv-04-IAF" firstAttribute="leading" secondItem="nnp-hp-Mva" secondAttribute="leading" constant="-12" id="PCG-LH-g3y"/>
                     <constraint firstItem="Ldg-mB-RdQ" firstAttribute="leading" secondItem="X0y-co-BjG" secondAttribute="leading" constant="24" id="WzK-0E-fhj"/>
+                    <constraint firstItem="8XJ-kF-Jkk" firstAttribute="bottom" secondItem="j6d-96-rol" secondAttribute="bottom" id="dYW-pa-1p7"/>
                     <constraint firstAttribute="trailing" secondItem="Uuv-04-IAF" secondAttribute="trailing" constant="12" id="e52-gS-wDV"/>
                     <constraint firstItem="nnp-hp-Mva" firstAttribute="centerY" secondItem="bwe-DB-Ahe" secondAttribute="centerY" id="f0P-Kl-ePm"/>
                     <constraint firstItem="Uuv-04-IAF" firstAttribute="bottom" secondItem="nnp-hp-Mva" secondAttribute="bottom" constant="12" id="go1-Bk-dpi"/>
@@ -127,6 +138,7 @@
                     <constraint firstItem="H9E-DM-PWs" firstAttribute="centerY" secondItem="j6d-96-rol" secondAttribute="centerY" id="tSX-VL-kyy"/>
                     <constraint firstAttribute="bottom" secondItem="bwe-DB-Ahe" secondAttribute="bottom" constant="20" id="uT4-aa-lLb"/>
                     <constraint firstItem="Uuv-04-IAF" firstAttribute="top" secondItem="nnp-hp-Mva" secondAttribute="top" constant="-12" id="wuN-hF-8c1"/>
+                    <constraint firstItem="8XJ-kF-Jkk" firstAttribute="trailing" secondItem="j6d-96-rol" secondAttribute="trailing" id="xaO-YV-IUL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="viJ-78-gos"/>

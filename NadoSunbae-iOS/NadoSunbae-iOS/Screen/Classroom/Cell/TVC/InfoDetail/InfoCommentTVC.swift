@@ -46,6 +46,14 @@ class InfoCommentTVC: BaseTVC {
     @IBAction func tapMoreInfoBtn(_ sender: UIButton) {
         tapMoreInfoBtn?()
     }
+    
+    @IBAction func tapNicknameBtn(_ sender: UIButton) {
+        print("tapNicknameBtn")
+    }
+    
+    @IBAction func tapProfileImgBtn(_ sender: UIButton) {
+        print("tapProfileImgBtn")
+    }
 }
 
 // MARK: - Custom Methods
