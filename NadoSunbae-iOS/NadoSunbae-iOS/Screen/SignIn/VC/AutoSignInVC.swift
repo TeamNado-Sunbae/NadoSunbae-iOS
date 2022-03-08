@@ -21,22 +21,6 @@ class AutoSignInVC: BaseVC {
     }
 }
 
-// MARK: Custom Methods
-extension AutoSignInVC {
-    
-    /// Userdefaults에 값 지정하는 메서드
-    private func setUpUserdefaultValues(data: SignInDataModel) {
-        UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
-        UserDefaults.standard.set(data.refreshtoken, forKey: UserDefaults.Keys.RefreshToken)
-        UserDefaults.standard.set(data.user.firstMajorID, forKey: UserDefaults.Keys.FirstMajorID)
-        UserDefaults.standard.set(data.user.firstMajorName, forKey: UserDefaults.Keys.FirstMajorName)
-        UserDefaults.standard.set(data.user.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
-        UserDefaults.standard.set(data.user.secondMajorName, forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(data.user.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
-        UserDefaults.standard.set(data.user.userID, forKey: UserDefaults.Keys.UserID)
-    }
-}
-
 // MARK: Network
 extension AutoSignInVC {
     

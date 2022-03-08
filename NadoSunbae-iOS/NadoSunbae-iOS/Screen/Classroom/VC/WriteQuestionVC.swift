@@ -395,12 +395,16 @@ extension WriteQuestionVC {
             case .success(_):
                 self.activityIndicator.stopAnimating()
                 self.dismiss(animated: true, completion: nil)
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType.rawValue, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                    }
                 }
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
@@ -415,12 +419,18 @@ extension WriteQuestionVC {
             case .success(_):
                 self.activityIndicator.stopAnimating()
                 self.dismiss(animated: true, completion: nil)
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        if let postID = self.postID {
+                            self.editClassroomPost(postID: postID, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                        }
+                    }
                 }
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
