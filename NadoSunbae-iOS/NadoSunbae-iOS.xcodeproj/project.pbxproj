@@ -209,6 +209,8 @@
 		777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */; };
 		777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */; };
 		777ABF89278CB793002D3214 /* ReviewStickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */; };
+		777C18D627D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C18D427D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift */; };
+		777C18D727D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777C18D527D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib */; };
 		77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */; };
 		77A049F827BEBD2B00D09C69 /* ReviewEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A049F727BEBD2B00D09C69 /* ReviewEditData.swift */; };
 		77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */; };
@@ -478,6 +480,8 @@
 		777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainPostTVC.xib; sourceTree = "<group>"; };
 		777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainStickyHeader.xib; sourceTree = "<group>"; };
 		777ABF88278CB793002D3214 /* ReviewStickyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStickyHeaderView.swift; sourceTree = "<group>"; };
+		777C18D427D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailGrayTVC.swift; sourceTree = "<group>"; };
+		777C18D527D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailGrayTVC.xib; sourceTree = "<group>"; };
 		77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeleteResModel.swift; sourceTree = "<group>"; };
 		77A049F727BEBD2B00D09C69 /* ReviewEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEditData.swift; sourceTree = "<group>"; };
 		77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostTagCVC.swift; sourceTree = "<group>"; };
@@ -1065,6 +1069,8 @@
 				7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */,
 				7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */,
 				7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */,
+				777C18D427D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift */,
+				777C18D527D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib */,
 				77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */,
 				77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */,
 			);
@@ -1763,6 +1769,7 @@
 				7757289E27D63E7300148C9A /* OnboardingSB.storyboard in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
+				777C18D727D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib in Resources */,
 				775728A227D652A700148C9A /* FirstOnboardingCVC.xib in Resources */,
 				7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */,
 				777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */,
@@ -2018,6 +2025,7 @@
 				5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */,
 				33CF635427945C1200E92C04 /* SendSegmentStateDelegate.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
+				777C18D627D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
 				33BAFD03278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift in Sources */,
 				3386010427988D0500C47D36 /* ActionSheetCase.swift in Sources */,
