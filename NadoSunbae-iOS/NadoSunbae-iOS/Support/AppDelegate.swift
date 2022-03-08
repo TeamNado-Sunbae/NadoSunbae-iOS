@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         
         /// 스플래시 지속시간 고려한 지연시간
-        sleep(1)
+        //sleep(1)
         
         // MARK: Firebase 초기화
         FirebaseApp.configure()
