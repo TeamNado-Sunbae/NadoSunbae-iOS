@@ -26,6 +26,7 @@ class SignInVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNotificationPermission()
         configureUI()
         getAppLink { appLink in
             self.kakaoLink = appLink.kakaoTalkChannel
@@ -191,5 +192,28 @@ extension SignInVC {
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+extension SignInVC: UNUserNotificationCenterDelegate {
+    
+    /// 푸시 권한 요청하는 메서드
+    func setUpNotificationPermission() {
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        
+        /// 푸시 권한 요청
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { granted, error in
+                if granted {
+                    /// APN에 토큰 매핑하는 프로세스
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                }
+            }
+        )
     }
 }
