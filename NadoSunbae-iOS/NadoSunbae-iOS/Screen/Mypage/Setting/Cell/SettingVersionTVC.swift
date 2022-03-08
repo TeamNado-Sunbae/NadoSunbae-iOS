@@ -24,6 +24,6 @@ class SettingVersionTVC: BaseTVC {
     // MARK: Custom Methods
     func setData(title: String, version: String) {
         titleLabel.text = title
-        versionLabel.text = "현재 1.0.0 / 최신 \(version)"
+        versionLabel.text = "현재 \(AppVersion.shared.currentVersion) / 최신 \(AppVersion.shared.latestVersion)"
     }
 }
