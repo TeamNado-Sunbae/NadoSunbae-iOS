@@ -84,7 +84,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="114" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ruc-zw-Wox">
                                 <rect key="frame" x="25" y="0.0" width="21.5" height="12"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
-                                <color key="textColor" name="mainDefault"/>
+                                <color key="textColor" name="gray2"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
