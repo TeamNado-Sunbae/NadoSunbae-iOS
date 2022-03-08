@@ -33,7 +33,10 @@ extension AutoSignInVC {
                     self.setUpUserdefaultValues(data: data)
                     let nadoSunbaeTBC = NadoSunbaeTBC()
                     nadoSunbaeTBC.modalPresentationStyle = .fullScreen
-                    self.present(nadoSunbaeTBC, animated: true, completion: nil)
+                    self.present(nadoSunbaeTBC, animated: true, completion: {
+                        nadoSunbaeTBC.selectedIndex = NotificationInfo.shared.isPushComes ? 2 : 0
+                        NotificationInfo.shared.isPushComes = false
+                    })
                 }
             default:
                 print("Failed Auto SignIn")
