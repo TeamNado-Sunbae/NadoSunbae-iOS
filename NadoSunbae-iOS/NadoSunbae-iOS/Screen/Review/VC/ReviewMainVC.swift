@@ -249,22 +249,11 @@ extension ReviewMainVC: UITableViewDelegate {
     /// cell 선택 시 화면 전환
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            
             if !postList.isEmpty {
                 
                 /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
                 if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                    guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    
-                    /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
-                    restrictionAlert.confirmBtn.press {
-                        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-                        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-                        
-                        nextVC.modalPresentationStyle = .fullScreen
-                        self.present(nextVC, animated: true, completion: nil)
-                    }
-                    restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+                    showRestrictionAlert()
                 } else {
                     let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
                     guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
@@ -392,7 +381,7 @@ extension ReviewMainVC {
                 var list: [MajorInfoModel] = []
                 DispatchQueue.main.async {
                     if let data = res as? [MajorListData] {
-                        for i in 0...data.count - 3 {
+                        for i in 0...data.count - 1 {
                             list.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }
                         MajorInfo.shared.majorList = list

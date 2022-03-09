@@ -197,15 +197,21 @@ extension EntireQuestionListVC: UITableViewDelegate {
     
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-        guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
         
-        groupChatVC.questionType = .group
-        groupChatVC.naviStyle = .push
-        groupChatVC.postID = questionList[indexPath.row].postID
-        groupChatVC.hidesBottomBarWhenPushed = true
-        
-        self.navigationController?.pushViewController(groupChatVC, animated: true)
+        /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
+        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
+            showRestrictionAlert()
+        } else {
+            let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
+            guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+            
+            groupChatVC.questionType = .group
+            groupChatVC.naviStyle = .push
+            groupChatVC.postID = questionList[indexPath.row].postID
+            groupChatVC.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(groupChatVC, animated: true)
+        }
     }
 }
 

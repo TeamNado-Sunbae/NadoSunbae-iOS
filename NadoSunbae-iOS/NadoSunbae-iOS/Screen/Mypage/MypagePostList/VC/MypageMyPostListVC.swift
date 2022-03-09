@@ -123,19 +123,31 @@ extension MypageMyPostListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch postType {
         case .question:
-            guard let chatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
-            chatVC.questionType = .group
-            chatVC.naviStyle = .push
-            chatVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
-            
-            self.navigationController?.pushViewController(chatVC, animated: true)
+            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
+            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
+                showRestrictionAlert()
+            } else {
+                guard let chatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+                
+                chatVC.questionType = .group
+                chatVC.naviStyle = .push
+                chatVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
+                
+                self.navigationController?.pushViewController(chatVC, animated: true)
+            }
         case .information:
-            guard let infoVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
             
-            infoVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
-            
-            self.navigationController?.pushViewController(infoVC, animated: true)
+            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
+            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
+                showRestrictionAlert()
+            } else {
+                guard let infoVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+                
+                infoVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
+                
+                self.navigationController?.pushViewController(infoVC, animated: true)
+            }
         }
     }
 }
