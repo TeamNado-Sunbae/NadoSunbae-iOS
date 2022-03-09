@@ -74,18 +74,18 @@ extension NotificationMainVC {
         NotificationAPI.shared.getNotiList { networkResult in
             switch networkResult {
             case .success(let res):
+                self.activityIndicator.stopAnimating()
                 if let data = res as? NotificationDataModel {
                     self.notificationList = data.notificationList
                     DispatchQueue.main.async {
                         self.notificationTV.reloadData()
                         self.setEmptyState()
                     }
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
+                self.activityIndicator.stopAnimating()
                 if let message = res as? String {
                     print(message)
-                    self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in

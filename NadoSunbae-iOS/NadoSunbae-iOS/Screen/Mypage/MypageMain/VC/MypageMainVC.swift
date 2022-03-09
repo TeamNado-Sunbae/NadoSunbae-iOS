@@ -153,6 +153,7 @@ extension MypageMainVC {
                     print("user info: ", self.userInfo)
                     self.configureUI()
                 }
+            case .requestErr(let res):
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
