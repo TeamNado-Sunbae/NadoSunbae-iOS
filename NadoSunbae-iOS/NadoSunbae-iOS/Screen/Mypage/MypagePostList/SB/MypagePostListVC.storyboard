@@ -35,7 +35,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="paleGray"/>
                         <constraints>
                             <constraint firstItem="03L-TJ-I7n" firstAttribute="top" secondItem="Fjp-8B-deY" secondAttribute="bottom" id="8NY-Ch-Uhx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="03L-TJ-I7n" secondAttribute="trailing" id="SL1-qn-Mh8"/>

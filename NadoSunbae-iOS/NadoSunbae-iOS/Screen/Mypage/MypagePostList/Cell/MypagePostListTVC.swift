@@ -8,10 +8,6 @@
 import UIKit
 
 class MypagePostListTVC: BaseQuestionTVC {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 10))
-    }
     
     func setMypageMyPostData(data: MypageMyPostModel) {
         self.questionTitleLabel.text = data.title
