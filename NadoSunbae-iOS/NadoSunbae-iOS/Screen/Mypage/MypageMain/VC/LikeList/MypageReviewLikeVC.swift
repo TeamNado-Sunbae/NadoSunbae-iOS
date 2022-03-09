@@ -31,6 +31,8 @@ class MypageReviewLikeVC: BaseVC {
     
     private let likeReviewListTV = UITableView().then {
         $0.separatorStyle = .none
+        $0.layer.cornerRadius = 8
+        $0.backgroundColor = .paleGray
         $0.isScrollEnabled = false
         $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
@@ -120,6 +122,19 @@ extension MypageReviewLikeVC {
             }
         }
     }
+    
+    /// 데이터의 개수에 따라 좋아요 후기 목록 TV의 Constraint를 업데이트하는 메서드
+    private func updateLikeReviewTVConstraint() {
+        likeReviewListTV.snp.updateConstraints {
+            if likeReviewList.count == 0 {
+                $0.height.equalTo(515)
+                $0.leading.equalToSuperview().offset(24)
+                $0.trailing.equalToSuperview().offset(-24)
+            } else {
+                $0.height.equalTo((Int(156.adjustedH) + 8) * likeReviewList.count)
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -188,10 +203,7 @@ extension MypageReviewLikeVC {
                 if let data = res as? MypageLikeReviewData {
                     self.likeReviewList = data.likePostList
                     self.likeReviewListTV.reloadData()
-                    self.likeReviewListTV.layoutIfNeeded()
-                    self.likeReviewListTV.snp.updateConstraints {
-                        $0.height.equalTo(self.likeReviewListTV.contentSize.height)
-                    }
+                    self.updateLikeReviewTVConstraint()
                 }
                 self.activityIndicator.stopAnimating()
             case .requestErr(let res):
