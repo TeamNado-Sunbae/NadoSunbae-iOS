@@ -62,6 +62,7 @@ class QuestionMainVC: BaseVC {
     }
     
     private var questionList: [ClassroomPostList] = []
+    private let contentSizeObserverKeyPath = "contentSize"
     weak var sendSegmentStateDelegate: SendSegmentStateDelegate?
     let halfVC = HalfModalVC()
     
@@ -74,12 +75,16 @@ class QuestionMainVC: BaseVC {
         registerCell()
         setUpTapFindSunbaeBtn()
         addActivateIndicator()
-        setUpRequestData()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         setUpRequestData()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDataBySelectedMajor), name: Notification.Name.dismissHalfModal, object: nil)
+        self.entireQuestionTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.entireQuestionTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
 }
 
@@ -231,6 +236,19 @@ extension QuestionMainVC {
             }
         }
     }
+    
+    /// entireQuestionTV size값이 바뀌면 값을 비교하여 constraint를 업데이트하는 메서드
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                let newSize  = newValue as! CGSize
+                
+                self.entireQuestionTV.snp.updateConstraints {
+                    $0.height.equalTo(newSize.height)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -295,7 +313,7 @@ extension QuestionMainVC: UITableViewDelegate {
         case 0:
             return 44
         case 1:
-            return (questionList.count == 0 ? 189 : 120)
+            return (questionList.count == 0 ? 189 : 0)
         case 2:
             return (questionList.count > 5 ? 40 : 0)
         default:
@@ -354,7 +372,7 @@ extension QuestionMainVC {
             case .success(let res):
                 if let data = res as? [ClassroomPostList] {
                     self.questionList = data
-                    self.updateEntireQuestionTV()
+                    self.entireQuestionTV.reloadData()
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
