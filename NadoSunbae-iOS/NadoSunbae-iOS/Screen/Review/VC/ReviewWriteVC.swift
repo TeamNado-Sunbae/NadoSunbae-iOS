@@ -233,7 +233,10 @@ extension ReviewWriteVC {
                     } else if self.majorNameLabel.text == UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) {
                         self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.bgImgID, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
                     }
+                    /// UserDefaults 값 세팅
                     UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
+                    UserDefaults.standard.set(false, forKey: UserDefaults.Keys.isReviewInappropriate)
+                    
                 } else {
                     
                     /// 게시글 수정 서버통신

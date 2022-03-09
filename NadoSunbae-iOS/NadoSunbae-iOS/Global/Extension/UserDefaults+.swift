@@ -40,6 +40,12 @@ extension UserDefaults {
         static var IsReviewed = "IsReviewed"
         
         /// Bool
+        static var isUserReported = "isUserReported"
+        
+        /// Bool
+        static var isReviewInappropriate = "isReviewInappropriate"
+        
+        /// Bool
         static var IsOnboarding = "IsOnboarding"
         
         /// Int
