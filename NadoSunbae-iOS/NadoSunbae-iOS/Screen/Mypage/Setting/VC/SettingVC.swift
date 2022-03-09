@@ -46,6 +46,10 @@ class SettingVC: BaseVC {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.hideTabbar()
+    }
+    
     // MARK: @IBAction
     @IBAction func tapSignOutBtn(_ sender: Any) {
         guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
