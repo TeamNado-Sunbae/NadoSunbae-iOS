@@ -10,7 +10,6 @@ import UIKit
 class MypageMainVC: BaseVC {
     
     // MARK: @IBOutlet
-    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var navTitleLabel: UILabel! {
         didSet {
             navTitleLabel.font = .PretendardM(size: 20)
