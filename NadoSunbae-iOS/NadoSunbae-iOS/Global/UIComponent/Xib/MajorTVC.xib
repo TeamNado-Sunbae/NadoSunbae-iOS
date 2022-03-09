@@ -23,23 +23,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cu4-Mj-uWy">
-                        <rect key="frame" x="52" y="18.5" width="35" height="17"/>
+                        <rect key="frame" x="16" y="18.5" width="35" height="17"/>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96I-k6-VAU">
-                        <rect key="frame" x="16" y="15" width="24" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="24" id="XUK-1H-6xv"/>
-                            <constraint firstAttribute="height" constant="24" id="isy-Re-GDT"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="star"/>
-                        <connections>
-                            <action selector="tapStarBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6gN-ZY-8og"/>
-                        </connections>
-                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqz-aH-5tE">
                         <rect key="frame" x="16" y="53" width="283" height="1"/>
                         <color key="backgroundColor" name="gray1"/>
@@ -56,14 +44,11 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="cu4-Mj-uWy" firstAttribute="centerY" secondItem="96I-k6-VAU" secondAttribute="centerY" id="3p1-qN-pTU"/>
-                    <constraint firstItem="96I-k6-VAU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="6uq-IC-6Kz"/>
                     <constraint firstAttribute="bottom" secondItem="Aqz-aH-5tE" secondAttribute="bottom" id="8bV-5j-PHz"/>
                     <constraint firstAttribute="trailing" secondItem="Aqz-aH-5tE" secondAttribute="trailing" constant="16" id="Ary-DB-E1T"/>
                     <constraint firstItem="Eyq-F9-2j1" firstAttribute="centerY" secondItem="cu4-Mj-uWy" secondAttribute="centerY" id="BnH-Ob-T33"/>
-                    <constraint firstItem="cu4-Mj-uWy" firstAttribute="leading" secondItem="96I-k6-VAU" secondAttribute="trailing" constant="12" id="N0p-gk-Iol"/>
-                    <constraint firstAttribute="bottom" secondItem="96I-k6-VAU" secondAttribute="bottom" constant="15" id="Scz-c2-6lW"/>
-                    <constraint firstItem="96I-k6-VAU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ag2-Zo-4rb"/>
+                    <constraint firstItem="cu4-Mj-uWy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="OKF-Qk-k64"/>
+                    <constraint firstItem="cu4-Mj-uWy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QYS-1Z-7J5"/>
                     <constraint firstItem="Aqz-aH-5tE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="iNF-QI-ySA"/>
                     <constraint firstAttribute="trailing" secondItem="Eyq-F9-2j1" secondAttribute="trailing" constant="32" id="yIm-DY-bkE"/>
                 </constraints>
@@ -72,14 +57,12 @@
             <connections>
                 <outlet property="checkImgView" destination="Eyq-F9-2j1" id="dCq-Ad-OJn"/>
                 <outlet property="majorNameLabel" destination="cu4-Mj-uWy" id="OJq-d4-Qsi"/>
-                <outlet property="starBtn" destination="96I-k6-VAU" id="8f3-Tk-DZ6"/>
             </connections>
             <point key="canvasLocation" x="138.40579710144928" y="93.75"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="small_check" width="11" height="7.5"/>
-        <image name="star" width="21" height="20"/>
         <namedColor name="gray1">
             <color red="0.90980392156862744" green="0.90980392156862744" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
