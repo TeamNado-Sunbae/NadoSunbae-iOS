@@ -246,6 +246,8 @@ extension QuestionMainVC {
                 self.entireQuestionTV.snp.updateConstraints {
                     $0.height.equalTo(newSize.height)
                 }
+                
+                questionSV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: questionList.count == 3 ? 70.adjustedH : 0, right: 0)
             }
         }
     }
