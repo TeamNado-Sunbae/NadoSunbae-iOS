@@ -26,7 +26,6 @@ class InfoDetailVC: BaseVC {
             infoDetailTV.dataSource = self
             infoDetailTV.allowsSelection = false
             infoDetailTV.rowHeight  = UITableView.automaticDimension
-            infoDetailTV.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
             infoDetailTV.backgroundColor = .paleGray
         }
     }
@@ -38,7 +37,7 @@ class InfoDetailVC: BaseVC {
             commentTextView.layer.cornerRadius = 18
             commentTextView.layer.borderWidth = 1
             commentTextView.layer.borderColor = UIColor.gray1.cgColor
-            commentTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
+            commentTextView.textContainerInset = UIEdgeInsets(top: 9, left: 16, bottom: 8, right: 15)
             commentTextView.sizeToFit()
         }
     }
@@ -68,6 +67,7 @@ class InfoDetailVC: BaseVC {
         super.viewDidLoad()
         registerXib()
         setUpNaviStyle()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -353,10 +353,10 @@ extension InfoDetailVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
+            configueTextViewPlaceholder()
             isTextViewEmpty = true
         }
         setUpSendBtnEnabledState()
-        configueTextViewPlaceholder()
     }
 }
 
