@@ -342,8 +342,8 @@ extension SignUpUserInfoVC {
         SignAPI.shared.requestSignUp(userData: userData) { networkResult in
             switch networkResult {
             case .success(let res):
+                self.activityIndicator.stopAnimating()
                 if res is SignUpDataModel {
-                    self.activityIndicator.stopAnimating()
                     guard let mailCompleteVC = UIStoryboard.init(name: MailCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: MailCompleteVC.className) as? MailCompleteVC else { return }
                     mailCompleteVC.completeType = .signUp
                     mailCompleteVC.email = userData.email
@@ -351,12 +351,11 @@ extension SignUpUserInfoVC {
                     mailCompleteVC.modalPresentationStyle = .fullScreen
                     self.present(mailCompleteVC, animated: true, completion: nil)
                 }
-                self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
+                self.activityIndicator.stopAnimating()
                 if let message = msg as? String {
-                    self.makeAlert(title: message)
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                     print("requestSignUp requestErr", message)
-                    self.activityIndicator.stopAnimating()
                 }
             default:
                 self.activityIndicator.stopAnimating()
