@@ -132,7 +132,9 @@ extension PublicAPI {
             return .success(decodedData.data ?? "None-Data")
         case 401:
             return .requestErr(false)
-        case 400, 402...409:
+        case 409:
+            return .requestErr(409)
+        case 400, 402...408:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
