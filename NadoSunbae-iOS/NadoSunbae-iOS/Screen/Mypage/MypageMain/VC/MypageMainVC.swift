@@ -145,17 +145,20 @@ extension MypageMainVC {
 // MARK: - Network
 extension MypageMainVC {
     private func getMyInfo() {
+        self.activityIndicator.startAnimating()
         MypageAPI.shared.getUserInfo(userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID), completion: { networkResult in
             switch networkResult {
             case .success(let res):
+                self.activityIndicator.stopAnimating()
                 if let data = res as? MypageUserInfoModel {
                     self.userInfo = data
                     print("user info: ", self.userInfo)
                     self.configureUI()
                 }
+            case .requestErr(let res):
+                self.activityIndicator.stopAnimating()
                 if let message = res as? String {
                     print(message)
-                    self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
@@ -163,6 +166,7 @@ extension MypageMainVC {
                     }
                 }
             default:
+                self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
