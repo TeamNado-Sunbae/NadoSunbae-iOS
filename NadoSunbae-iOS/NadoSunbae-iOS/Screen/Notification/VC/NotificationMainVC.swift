@@ -74,15 +74,16 @@ extension NotificationMainVC {
         NotificationAPI.shared.getNotiList { networkResult in
             switch networkResult {
             case .success(let res):
+                self.activityIndicator.stopAnimating()
                 if let data = res as? NotificationDataModel {
                     self.notificationList = data.notificationList
                     DispatchQueue.main.async {
                         self.notificationTV.reloadData()
                         self.setEmptyState()
                     }
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
+                self.activityIndicator.stopAnimating()
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
