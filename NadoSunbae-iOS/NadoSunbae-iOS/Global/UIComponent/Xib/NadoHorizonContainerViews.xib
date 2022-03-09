@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -58,7 +59,7 @@
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q9b-RW-7ll"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="paleGray"/>
             <constraints>
                 <constraint firstItem="Q9b-RW-7ll" firstAttribute="bottom" secondItem="rv7-ya-V6l" secondAttribute="bottom" id="Lxo-Ci-nt8"/>
                 <constraint firstItem="rv7-ya-V6l" firstAttribute="centerX" secondItem="lM8-9i-0eP" secondAttribute="centerX" id="wKT-ou-l5d"/>
@@ -69,6 +70,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
