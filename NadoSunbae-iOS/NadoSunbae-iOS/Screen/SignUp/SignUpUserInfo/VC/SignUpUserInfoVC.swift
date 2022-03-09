@@ -50,11 +50,13 @@ class SignUpUserInfoVC: BaseVC {
     
     // MARK: IBAction
     @IBAction func tapCheckDuplicateBtn(_ sender: UIButton) {
+        view.endEditing(true)
         requestCheckNickName(nickName: self.nickNameTextField.text ?? "")
         self.nickNameInfoLabel.isHidden = false
     }
     
     @IBAction func tapCheckEmailBtn(_ sender: UIButton) {
+        view.endEditing(true)
         requestCheckEmail(email: self.emailTextField.text ?? "")
         self.emailInfoLabel.isHidden = false
     }
@@ -387,7 +389,7 @@ extension SignUpUserInfoVC {
     private func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+                self.view.frame.origin.y -= keyboardSize.height - 25
             }
         }
     }
