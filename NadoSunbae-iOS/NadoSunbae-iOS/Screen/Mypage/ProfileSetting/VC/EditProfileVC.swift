@@ -266,6 +266,10 @@ extension EditProfileVC {
             switch networkResult {
             case .success:
                 self.activityIndicator.stopAnimating()
+                UserDefaults.standard.set(data.firstMajorID, forKey: UserDefaults.Keys.FirstMajorID)
+                UserDefaults.standard.set(self.firstMajorTextField.text, forKey: UserDefaults.Keys.FirstMajorName)
+                UserDefaults.standard.set(data.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
+                UserDefaults.standard.set(self.secondMajorTextField.text, forKey: UserDefaults.Keys.SecondMajorName)
                 self.navigationController?.popViewController(animated: true)
             case .requestErr(let res):
                 if let message = res as? String {
