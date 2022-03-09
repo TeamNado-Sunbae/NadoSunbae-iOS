@@ -27,8 +27,6 @@ class MypageClassroomPostListVC: BaseVC {
         $0.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         $0.isScrollEnabled = false
         $0.layer.cornerRadius = 8
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.gray0.cgColor
         $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
