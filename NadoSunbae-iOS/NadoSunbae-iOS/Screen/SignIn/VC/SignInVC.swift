@@ -175,7 +175,7 @@ extension SignInVC {
             case .requestErr(let res):
                 self.activityIndicator.stopAnimating()
                 if let message = res as? String {
-                    self.infoLabel.text = message
+                    self.infoLabel.text = "아이디 또는 비밀번호가 잘못되었어요."
                     self.infoLabel.isHidden = false
                     print("requestSignIn request err", message)
                 } else if res is Bool {
