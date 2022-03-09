@@ -119,14 +119,23 @@ class EditProfileVC: BaseVC {
             .subscribe(onNext: { changedText in
                 let regex = "[가-힣ㄱ-ㅎㅏ-ㅣA-Za-z0-9]{2,8}"
                 if changedText.count == 0 {
+                    DispatchQueue.main.async {
+                        self.nickNameChangeBtn.setTitle("변경", for: .normal)
+                    }
                     self.changeLabelColor(isOK: true, label: self.nickNameRuleLabel)
                     self.nickNameChangeBtn.isEnabled = false
                 } else if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
+                    DispatchQueue.main.async {
+                        self.nickNameChangeBtn.setTitle("확인", for: .normal)
+                    }
                     self.changeLabelColor(isOK: true, label: self.nickNameRuleLabel)
                     self.nickNameChangeBtn.isEnabled = true
                     self.nickNameInfoLabel.text = ""
                     self.setNavViewNadoRightBtn(status: false)
                 } else {
+                    DispatchQueue.main.async {
+                        self.nickNameChangeBtn.setTitle("확인", for: .normal)
+                    }
                     self.changeLabelColor(isOK: false, label: self.nickNameRuleLabel)
                     self.nickNameChangeBtn.isEnabled = false
                     self.nickNameInfoLabel.text = ""
