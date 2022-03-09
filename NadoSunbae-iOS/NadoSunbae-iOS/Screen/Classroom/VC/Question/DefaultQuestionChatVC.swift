@@ -387,7 +387,6 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            // TODO: 서버통신 후 유저 정보에 따라 분기처리 필요
             configueTextViewPlaceholder(userType: userType ?? -1, questionType: questionType ?? .personal)
             sendBtn.isEnabled = false
             isTextViewEmpty = true
