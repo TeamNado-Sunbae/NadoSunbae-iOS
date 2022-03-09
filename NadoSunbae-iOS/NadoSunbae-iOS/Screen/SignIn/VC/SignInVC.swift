@@ -103,7 +103,7 @@ extension SignInVC {
                     self.signInBtn.isActivated = false
                     self.signInBtn.isEnabled = false
                 } else {
-                    if changedText.contains("@") && changedText.contains(".") {
+                    if changedText.contains("@") && changedText.contains(".") && !(self.PWTextField.text?.isEmpty ?? false) {
                         self.signInBtn.isActivated = true
                         self.signInBtn.isEnabled = true
                     } else {
@@ -119,8 +119,10 @@ extension SignInVC {
             .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
-                self.signInBtn.isActivated = !(changedText.isEmpty)
-                self.signInBtn.isEnabled = !(changedText.isEmpty)
+                if self.emailTextField.text?.contains("@") ?? false && self.emailTextField.text?.contains(".") ?? false {
+                    self.signInBtn.isActivated = !(changedText.isEmpty)
+                    self.signInBtn.isEnabled = !(changedText.isEmpty)
+                }
             })
             .disposed(by: disposeBag)
     }
