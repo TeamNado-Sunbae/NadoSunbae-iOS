@@ -26,6 +26,10 @@ class MypageMainVC: BaseVC {
     @IBOutlet weak var firstMajorLabel: UILabel!
     @IBOutlet weak var secondMajorLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var firstMajorFormLabel: UILabel!
+    @IBOutlet weak var secondMajorFormLabel: UILabel!
+    @IBOutlet weak var firstMajorFormLineView: UIView!
+    @IBOutlet weak var secondMajorFormLineView: UIView!
     
     // MARK: Properties
     var userInfo = MypageUserInfoModel()
@@ -42,6 +46,7 @@ class MypageMainVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setProfileUI(isVisable: false)
         configureUI()
         setUpTV()
         registerCell()
@@ -125,6 +130,15 @@ extension MypageMainVC {
             }
         }
     }
+    
+    /// 프로필 뷰의 기본 틀 UI 세팅
+    private func setProfileUI(isVisable: Bool) {
+        DispatchQueue.main.async {
+            [self.firstMajorFormLabel, self.secondMajorFormLabel, self.firstMajorFormLineView, self.secondMajorFormLineView].forEach {
+                $0?.isHidden = !(isVisable)
+            }
+        }
+    }
 }
 
 // MARK: - Custom Methods
@@ -150,6 +164,7 @@ extension MypageMainVC {
             case .success(let res):
                 self.activityIndicator.stopAnimating()
                 if let data = res as? MypageUserInfoModel {
+                    self.setProfileUI(isVisable: true)
                     self.userInfo = data
                     print("user info: ", self.userInfo)
                     self.configureUI()
