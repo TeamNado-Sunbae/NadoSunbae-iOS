@@ -247,14 +247,6 @@ extension InfoDetailVC {
             self.navigationController?.pushViewController(myPageUserVC, animated: true)
         }
     }
-    
-    /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
-    private func goToRootOfTab(index: Int) {
-        tabBarController?.selectedIndex = index
-        if let nav = tabBarController?.viewControllers?[index] as? UINavigationController {
-            nav.popToRootViewController(animated: true)
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource

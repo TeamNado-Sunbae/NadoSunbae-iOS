@@ -103,6 +103,14 @@ extension BaseVC {
             }
         }
     }
+    
+    /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
+    func goToRootOfTab(index: Int) {
+        tabBarController?.selectedIndex = index
+        if let nav = tabBarController?.viewControllers?[index] as? UINavigationController {
+            nav.popToRootViewController(animated: true)
+        }
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
