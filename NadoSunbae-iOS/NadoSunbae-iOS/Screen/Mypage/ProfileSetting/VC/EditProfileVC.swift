@@ -140,7 +140,7 @@ class EditProfileVC: BaseVC {
     
     /// 변경할 profileData 세팅
     private func setProfileData() {
-        profileData.nickName = nickNameTextField.placeholder ?? changedInfo.nickname
+        profileData.nickName = nickNameTextField.text ?? changedInfo.nickname
         profileData.firstMajorID = changedInfo.firstMajorID
         profileData.secondMajorID = changedInfo.secondMajorID
         profileData.firstMajorStart = changedInfo.firstMajorStart
@@ -232,8 +232,9 @@ extension EditProfileVC {
     private func requestCheckNickName(nickName: String) {
         if nickName == userInfo.nickname {
             self.nickNameInfoLabel.textColor = .mainDark
-            self.nickNameTextField.placeholder = nickName
-            self.nickNameTextField.text = ""
+            self.nickNameTextField.text = nickName
+            self.nickNameInfoLabel.textColor = .mainDark
+            self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
             self.judgeSaveBtnState()
         } else {
             self.activityIndicator.startAnimating()
@@ -244,8 +245,7 @@ extension EditProfileVC {
                     self.nickNameInfoLabel.textColor = .mainDark
                     self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
                     self.changedInfo.nickname = nickName
-                    self.nickNameTextField.placeholder = nickName
-                    self.nickNameTextField.text = ""
+                    self.nickNameTextField.text = nickName
                     self.judgeSaveBtnState()
                 case .requestErr(let success):
                     self.activityIndicator.stopAnimating()
