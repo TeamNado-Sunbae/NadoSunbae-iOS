@@ -85,7 +85,7 @@ extension BaseVC {
     
     /// 앱 최신 버전 조회 후 alert 띄우는 함수
     func getLatestVersion() {
-        getAppLink { response in
+        getLatestVersion { response in
             if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
                 guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                 alert.confirmBtn.press {
@@ -168,6 +168,7 @@ extension BaseVC {
             switch networkResult {
             case .success(let res):
                 if let response = res as? GetLatestVersionResponseModel {
+                    AppVersion.shared.latestVersion = response.iOS
                     completion(response)
                 }
             case .requestErr(let res):
