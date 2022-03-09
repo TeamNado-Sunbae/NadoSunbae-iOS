@@ -14,7 +14,7 @@ struct MypageMyAnswerListModel: Codable {
 
 // MARK: - MypageMyAnswerModel
 struct MypageMyAnswerModel: Codable {
-    let postID,postTypeID: Int
+    let postID, postTypeID: Int
     let title, content, createdAt: String
     let writer: Writer
     let like: Like
