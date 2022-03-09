@@ -100,7 +100,7 @@ extension SignUpUserInfoVC {
         [(nickNameTextField, nickNameClearBtn), (emailTextField, emailClearBtn), (PWTextField, PWClearBtn), (checkPWTextFIeld, checkPWClearBtn)].forEach { (textField, btn) in
             setTextFieldClearBtn(textField: textField, clearBtn: btn)
         }
-        emailTextField.text = "@korea.ac.kr"
+        emailTextField.placeholder = "@korea.ac.kr"
         changePWInfoLabelState()
         checkEmailIsValid()
         checkNickNameIsValid()
