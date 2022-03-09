@@ -16,7 +16,7 @@ enum NotificationService {
 
 extension NotificationService: TargetType {
     var userID: Int {
-        return UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int
+        return UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
     }
     
     var baseURL: URL {
