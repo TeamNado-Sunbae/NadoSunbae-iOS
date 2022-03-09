@@ -43,6 +43,10 @@ class MypageUserVC: BaseVC {
             responseRateLabel.isHidden = true
         }
     }
+    @IBOutlet weak var firstMajorFormLabel: UILabel!
+    @IBOutlet weak var secondMajorFormLabel: UILabel!
+    @IBOutlet weak var firstMajorFormLineView: UIView!
+    @IBOutlet weak var secondMajorFormLineView: UIView!
     
     // MARK: Properties
     var targetUserID = 1
@@ -54,6 +58,7 @@ class MypageUserVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setProfileUI(isVisable: false)
         configureUI()
         setUpTV()
         registerCell()
@@ -154,6 +159,15 @@ extension MypageUserVC {
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
         }
     }
+    
+    /// 프로필 뷰의 기본 틀 UI 세팅
+    private func setProfileUI(isVisable: Bool) {
+        DispatchQueue.main.async {
+            [self.firstMajorFormLabel, self.secondMajorFormLabel, self.firstMajorFormLineView, self.secondMajorFormLineView].forEach {
+                $0?.isHidden = !(isVisable)
+            }
+        }
+    }
 }
 
 // MARK: - Custom Methods
@@ -177,6 +191,7 @@ extension MypageUserVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserInfoModel {
+                    self.setProfileUI(isVisable: true)
                     self.userInfo = data
                     self.configureUI()
                 }
