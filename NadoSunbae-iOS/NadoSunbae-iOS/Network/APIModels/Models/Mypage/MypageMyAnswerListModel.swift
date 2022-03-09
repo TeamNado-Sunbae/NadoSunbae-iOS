@@ -7,36 +7,33 @@
 
 import Foundation
 
+// MARK: - MypageMyAnswerListModel
 struct MypageMyAnswerListModel: Codable {
-    var classroomPostListByMyCommentList: [MypageMyAnswerModel]
+    let classroomPostListByMyCommentList: [MypageMyAnswerModel]
 }
 
+// MARK: - MypageMyAnswerModel
 struct MypageMyAnswerModel: Codable {
-    var postID: Int
-    var title: String
-    var content: String
-    var createdAt: String
-    var writer: Writer
-    var like: Like
-    var commentCount: Int
+    let postID,postTypeID: Int
+    let title, content, createdAt: String
+    let writer: Writer
+    let like: Like
+    let commentCount: Int
 
     enum CodingKeys: String, CodingKey {
         case postID = "postId"
-        case title = "title"
-        case content = "content"
-        case createdAt = "createdAt"
-        case writer = "writer"
-        case like = "like"
-        case commentCount = "commentCount"
+        case postTypeID = "postTypeId"
+        case title, content, createdAt, writer, like, commentCount
     }
     
+    // MARK: - Writer
     struct Writer: Codable {
-        var writerID: Int
-        var nickname: String
+        let writerID: Int
+        let nickname: String
 
         enum CodingKeys: String, CodingKey {
             case writerID = "writerId"
-            case nickname = "nickname"
+            case nickname
         }
     }
 }
