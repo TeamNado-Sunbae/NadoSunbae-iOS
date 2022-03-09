@@ -210,19 +210,9 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
             break
         case .question:
             
-            /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
             if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                
-                /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
-                restrictionAlert.confirmBtn.press {
-                    let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-                    guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-                    
-                    nextVC.modalPresentationStyle = .fullScreen
-                    self.present(nextVC, animated: true, completion: nil)
-                }
-                restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+                showRestrictionAlert()
             } else {
                 guard let questionDetailVC = UIStoryboard.init(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
                 
@@ -236,19 +226,9 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
             }
         case .information:
             
-            /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
             if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                
-                /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
-                restrictionAlert.confirmBtn.press {
-                    let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-                    guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-                    
-                    nextVC.modalPresentationStyle = .fullScreen
-                    self.present(nextVC, animated: true, completion: nil)
-                }
-                restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+                showRestrictionAlert()
             } else {
                 guard let infoDetailVC = UIStoryboard.init(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
                 

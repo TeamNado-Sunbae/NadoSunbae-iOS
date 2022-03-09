@@ -262,19 +262,9 @@ extension QuestionMainVC: UITableViewDataSource {
             guard let questionHeaderCell = tableView.dequeueReusableCell(withIdentifier: QuestionHeaderTVC.className, for: indexPath) as? QuestionHeaderTVC else { return UITableViewCell() }
             questionHeaderCell.tapWriteBtnAction = {
                 
-                /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+                /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
                 if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                    guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                    
-                    /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
-                    restrictionAlert.confirmBtn.press {
-                        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-                        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-                        
-                        nextVC.modalPresentationStyle = .fullScreen
-                        self.present(nextVC, animated: true, completion: nil)
-                    }
-                    restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+                    self.showRestrictionAlert()
                 } else {
                     self.presentToWriteQuestionVC()
                 }
@@ -331,19 +321,9 @@ extension QuestionMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             
-            /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
             if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                
-                /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
-                restrictionAlert.confirmBtn.press {
-                    let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-                    guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-                    
-                    nextVC.modalPresentationStyle = .fullScreen
-                    self.present(nextVC, animated: true, completion: nil)
-                }
-                restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+                showRestrictionAlert()
             } else {
                 let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
                 guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
