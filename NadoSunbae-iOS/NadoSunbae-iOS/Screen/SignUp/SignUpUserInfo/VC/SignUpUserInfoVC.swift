@@ -247,7 +247,7 @@ extension SignUpUserInfoVC {
                 self.isCompleteList[1] = false
                 self.emailInfoLabel.text = ""
                 let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
+                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) && changedText.contains("@korea.ac.kr") {
                     self.changeNadoBtnState(isOn: true, btn: self.checkEmailBtn)
                 } else {
                     self.changeNadoBtnState(isOn: false, btn: self.checkEmailBtn)
