@@ -96,9 +96,7 @@ class EditProfileVC: BaseVC {
         guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
         
         /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
-        if sender.tag == 3 && secondMajorTextField.text == "미진입" {
-            // TODO: 처리 어떻게 하지...? 일단 modal 안 뜨게 막아둠
-        } else {
+        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
             slideVC.enterdBtnTag = sender.tag
             self.enterBtnTag = sender.tag
             
@@ -140,7 +138,7 @@ class EditProfileVC: BaseVC {
     
     /// 변경할 profileData 세팅
     private func setProfileData() {
-        profileData.nickName = nickNameTextField.placeholder ?? changedInfo.nickname
+        profileData.nickName = changedInfo.nickname
         profileData.firstMajorID = changedInfo.firstMajorID
         profileData.secondMajorID = changedInfo.secondMajorID
         profileData.firstMajorStart = changedInfo.firstMajorStart
@@ -230,10 +228,11 @@ extension EditProfileVC {
     }
     
     private func requestCheckNickName(nickName: String) {
+        view.endEditing(true)
         if nickName == userInfo.nickname {
             self.nickNameInfoLabel.textColor = .mainDark
-            self.nickNameTextField.placeholder = nickName
-            self.nickNameTextField.text = ""
+            self.nickNameTextField.text = nickName
+            self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
             self.judgeSaveBtnState()
         } else {
             self.activityIndicator.startAnimating()
@@ -244,8 +243,7 @@ extension EditProfileVC {
                     self.nickNameInfoLabel.textColor = .mainDark
                     self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
                     self.changedInfo.nickname = nickName
-                    self.nickNameTextField.placeholder = nickName
-                    self.nickNameTextField.text = ""
+                    self.nickNameTextField.text = nickName
                     self.judgeSaveBtnState()
                 case .requestErr(let success):
                     self.activityIndicator.stopAnimating()

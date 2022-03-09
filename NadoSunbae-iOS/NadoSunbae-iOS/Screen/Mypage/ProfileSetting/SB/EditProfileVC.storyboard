@@ -69,7 +69,7 @@
                                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                         <color key="tintColor" name="mainDefault"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="변경">
+                                                        <state key="normal" title="확인">
                                                             <color key="titleColor" name="mainDefault"/>
                                                         </state>
                                                         <connections>
@@ -274,7 +274,7 @@
                                                         <color key="tintColor" name="mainDefault"/>
                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="선택"/>
+                                                        <state key="normal" title="변경"/>
                                                         <connections>
                                                             <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Vsp-vY-cOr"/>
                                                         </connections>
