@@ -444,7 +444,7 @@ extension InfoDetailVC {
                     }
                 } else if res is Int {
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "존재하지 않는 포스트입니다.") { _ in
+                    self.makeAlert(title: "삭제된 게시글입니다.") { _ in
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
