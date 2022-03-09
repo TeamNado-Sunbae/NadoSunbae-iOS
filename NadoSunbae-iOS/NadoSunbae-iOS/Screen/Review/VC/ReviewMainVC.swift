@@ -392,7 +392,7 @@ extension ReviewMainVC {
                 var list: [MajorInfoModel] = []
                 DispatchQueue.main.async {
                     if let data = res as? [MajorListData] {
-                        for i in 0...data.count - 3 {
+                        for i in 0...data.count - 1 {
                             list.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }
                         MajorInfo.shared.majorList = list
