@@ -209,4 +209,31 @@ extension BaseVC {
             }
         }
     }
+    
+    /// 신고 API 요청 메서드
+    func requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String) {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.requestReport(reportedTargetID: reportedTargetID, reportedTargetTypeID: reportedTargetTypeID, reason: reason) { networkResult in
+            switch networkResult {
+            case .success(_):
+                self.makeAlert(title: "신고되었습니다.")
+                self.activityIndicator.stopAnimating()
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    }
+                } else if res is Int {
+                    self.makeAlert(title: "이미 신고한 글/댓글입니다.")
+                }
+                self.activityIndicator.stopAnimating()
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
 }
