@@ -13,6 +13,7 @@ struct MypageMyPostListModel: Codable {
 
 struct MypageMyPostModel: Codable {
     var postID: Int
+    var postTypeID: Int
     var title: String
     var content: String
     var majorName: String
@@ -22,6 +23,7 @@ struct MypageMyPostModel: Codable {
 
     enum CodingKeys: String, CodingKey {
         case postID = "postId"
+        case postTypeID = "postTypeId"
         case title = "title"
         case content = "content"
         case majorName = "majorName"
