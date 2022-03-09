@@ -164,7 +164,11 @@ extension MypageReviewLikeVC: UITableViewDelegate {
     
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if likeReviewList.count != 0 {
+        
+        /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
+            showRestrictionAlert()
+        } else if likeReviewList.count != 0 {
             guard let reviewDetailVC = UIStoryboard.init(name: Identifiers.ReviewDetailSB, bundle: nil).instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
             reviewDetailVC.postId = likeReviewList[indexPath.row].postID
             self.navigationController?.pushViewController(reviewDetailVC, animated: true)
