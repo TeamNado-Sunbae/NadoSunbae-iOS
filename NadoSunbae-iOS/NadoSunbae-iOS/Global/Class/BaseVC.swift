@@ -93,9 +93,6 @@ extension BaseVC {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }
-                alert.cancelBtn.press {
-                    self.dismiss(animated: true, completion: nil)
-                }
                 alert.showNadoAlert(vc: self, message:
         """
         유저들의 의견을 반영하여
