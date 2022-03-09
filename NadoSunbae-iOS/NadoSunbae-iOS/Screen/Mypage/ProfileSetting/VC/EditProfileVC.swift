@@ -230,10 +230,10 @@ extension EditProfileVC {
     }
     
     private func requestCheckNickName(nickName: String) {
+        view.endEditing(true)
         if nickName == userInfo.nickname {
             self.nickNameInfoLabel.textColor = .mainDark
             self.nickNameTextField.text = nickName
-            self.nickNameInfoLabel.textColor = .mainDark
             self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
             self.judgeSaveBtnState()
         } else {
