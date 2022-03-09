@@ -209,22 +209,54 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
         case .review:
             break
         case .question:
-            guard let questionDetailVC = UIStoryboard.init(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
             
-            if likePostList.count != 0 {
-                questionDetailVC.postID = likePostList[indexPath.row].postID
-                questionDetailVC.questionType = likePostList[indexPath.row].postTypeID == 3 ? .group : .personal
-                questionDetailVC.naviStyle = .push
-                questionDetailVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(questionDetailVC, animated: true)
+            /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
+                guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                
+                /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
+                restrictionAlert.confirmBtn.press {
+                    let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
+                    guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+                    
+                    nextVC.modalPresentationStyle = .fullScreen
+                    self.present(nextVC, animated: true, completion: nil)
+                }
+                restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+            } else {
+                guard let questionDetailVC = UIStoryboard.init(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+                
+                if likePostList.count != 0 {
+                    questionDetailVC.postID = likePostList[indexPath.row].postID
+                    questionDetailVC.questionType = likePostList[indexPath.row].postTypeID == 3 ? .group : .personal
+                    questionDetailVC.naviStyle = .push
+                    questionDetailVC.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(questionDetailVC, animated: true)
+                }
             }
         case .information:
-            guard let infoDetailVC = UIStoryboard.init(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
             
-            if likePostList.count != 0 {
-                infoDetailVC.postID = likePostList[indexPath.row].postID
-                infoDetailVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(infoDetailVC, animated: true)
+            /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
+                guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                
+                /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
+                restrictionAlert.confirmBtn.press {
+                    let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
+                    guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+                    
+                    nextVC.modalPresentationStyle = .fullScreen
+                    self.present(nextVC, animated: true, completion: nil)
+                }
+                restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+            } else {
+                guard let infoDetailVC = UIStoryboard.init(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+                
+                if likePostList.count != 0 {
+                    infoDetailVC.postID = likePostList[indexPath.row].postID
+                    infoDetailVC.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(infoDetailVC, animated: true)
+                }
             }
         }
     }
