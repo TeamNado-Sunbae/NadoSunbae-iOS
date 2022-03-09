@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 enum NadoAlertType {
     
@@ -32,6 +34,7 @@ class NadoAlertVC: BaseVC {
         $0.textAlignment = .center
         $0.layer.borderColor = UIColor.gray2.cgColor
     }
+    let disposeBag = DisposeBag()
     
     // MARK: LifeCycle
     override func awakeFromNib() {
@@ -56,6 +59,22 @@ class NadoAlertVC: BaseVC {
         self.modalTransitionStyle = .crossDissolve
     }
     
+    /// 텍스트필드 상태에 따라 확인 버튼 활성화하는 코드
+    private func setBtnStateForTextField() {
+        self.confirmBtn.isActivated = false
+        self.confirmBtn.isEnabled = false
+        
+        textField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                self.confirmBtn.isActivated = !(changedText.isEmpty)
+                self.confirmBtn.isEnabled = !(changedText.isEmpty)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func showNadoAlert(vc: UIViewController, message: String, confirmBtnTitle: String, cancelBtnTitle: String, type: NadoAlertType? = .withDoubleBtn) {
         messageLabel.text = message
         switch type {
@@ -71,6 +90,7 @@ class NadoAlertVC: BaseVC {
                 }
             }
         case .withTextField:
+            setBtnStateForTextField()
             DispatchQueue.main.async {
                 self.containerView.removeFromSuperview()
                 self.view.addSubview(self.containerView)
