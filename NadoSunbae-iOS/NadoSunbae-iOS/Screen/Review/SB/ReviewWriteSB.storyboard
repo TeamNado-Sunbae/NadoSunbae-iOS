@@ -449,20 +449,27 @@
                     </view>
                     <size key="freeformSize" width="375" height="1657"/>
                     <connections>
+                        <outlet property="badClassCountLabel" destination="yZQ-EM-d7Y" id="mre-1w-Pcs"/>
                         <outlet property="badClassTextView" destination="nm1-tf-Oha" id="vSu-1P-Vss"/>
                         <outlet property="bgImgCV" destination="SLo-Qf-agw" id="599-bB-Jhk"/>
                         <outlet property="choiceTagView" destination="0Uq-b9-a80" id="E00-4P-QsZ"/>
                         <outlet property="essentialTagView" destination="5bs-Y4-zdY" id="ZtW-0W-Ydc"/>
+                        <outlet property="futureCountLabel" destination="67o-P1-cpq" id="DQc-PS-A2G"/>
                         <outlet property="futureTextView" destination="bdh-60-r4e" id="16y-hT-IVK"/>
+                        <outlet property="learnInfoCountLabel" destination="GhT-54-xgz" id="k96-SA-fyv"/>
                         <outlet property="learnInfoTextView" destination="iD4-XI-pAf" id="0eS-iQ-E7H"/>
                         <outlet property="majorChangeBtn" destination="ugA-Kc-jFH" id="WX4-5h-hWh"/>
                         <outlet property="majorNameLabel" destination="3Cn-v9-Ivr" id="o3J-8Q-587"/>
                         <outlet property="majorNameView" destination="DKH-ET-dLt" id="zbI-Tb-aH2"/>
+                        <outlet property="oneLineReviewCountLabel" destination="4B7-We-8zh" id="vXk-TC-hCX"/>
                         <outlet property="oneLineReviewTextView" destination="BIh-8P-r1P" id="uxH-6e-TDl"/>
+                        <outlet property="prosAndConsCountLabel" destination="pOC-vg-1Xh" id="w4C-yP-fVg"/>
                         <outlet property="prosAndConsTextView" destination="zFo-4i-ZDU" id="9YW-7S-LQG"/>
+                        <outlet property="recommendClassCountLabel" destination="ghw-hW-07J" id="hPu-l7-CtE"/>
                         <outlet property="recommendClassTextView" destination="t47-df-jbz" id="u5r-5n-o60"/>
                         <outlet property="reviewWriteNaviBar" destination="EL1-CC-rXF" id="J1B-DI-G8d"/>
                         <outlet property="reviewWriteScrollView" destination="sdp-YP-VDn" id="2DG-VJ-LbD"/>
+                        <outlet property="tipCountLabel" destination="Gc4-3r-bxy" id="Fim-oQ-0xW"/>
                         <outlet property="tipTextView" destination="ics-mX-Sz3" id="GAR-AM-wtR"/>
                     </connections>
                 </viewController>
