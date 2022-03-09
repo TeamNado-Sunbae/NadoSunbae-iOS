@@ -61,6 +61,7 @@
 		331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5381279629620052B309 /* BaseQuestionTVC.swift */; };
 		331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5383279629D30052B309 /* EntireQuestionListTVC.swift */; };
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
+		3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */; };
 		3381083827D53F33005AF1F9 /* MypageReviewLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */; };
@@ -333,6 +334,7 @@
 		331C5381279629620052B309 /* BaseQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionTVC.swift; sourceTree = "<group>"; };
 		331C5383279629D30052B309 /* EntireQuestionListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListTVC.swift; sourceTree = "<group>"; };
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
+		3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBlockedInfoDelegate.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
 		3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageReviewLikeVC.swift; sourceTree = "<group>"; };
@@ -1573,6 +1575,7 @@
 				33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */,
 				338CDAFE278C939B00F8227A /* TVCContentUpdate.swift */,
 				5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */,
+				3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2013,6 +2016,7 @@
 				77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */,
 				338601062798B1F800C47D36 /* NaviType.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
+				3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */,
 				C7F3F6DD27D5192D00E12888 /* ResendSignUpMailResponseModel.swift in Sources */,
 				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
@@ -2224,7 +2228,7 @@
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = SignInSB;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
@@ -2255,7 +2259,7 @@
 				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = SignInSB;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;

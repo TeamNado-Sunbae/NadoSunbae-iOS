@@ -30,7 +30,9 @@ class InfoCommentTVC: BaseTVC {
     @IBOutlet var writerImgView: UIImageView!
     
     // MARK: Properties
-    var tapMoreInfoBtn: (() -> ())?
+    var tapMoreInfoBtnAction: (() -> ())?
+    var tapNicknameBtnAction: (() -> ())?
+    var tapProfileImgBtnAction: (() -> ())?
     var interactURL: ((_ data: URL) -> Void)?
     
     // MARK: Life Cycle
@@ -44,7 +46,15 @@ class InfoCommentTVC: BaseTVC {
     
     // MARK: IBAction
     @IBAction func tapMoreInfoBtn(_ sender: UIButton) {
-        tapMoreInfoBtn?()
+        tapMoreInfoBtnAction?()
+    }
+    
+    @IBAction func tapNicknameBtn(_ sender: UIButton) {
+        tapNicknameBtnAction?()
+    }
+    
+    @IBAction func tapProfileImgBtn(_ sender: UIButton) {
+        tapProfileImgBtnAction?()
     }
 }
 

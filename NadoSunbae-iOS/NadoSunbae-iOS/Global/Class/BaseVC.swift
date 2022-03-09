@@ -85,16 +85,13 @@ extension BaseVC {
     
     /// 앱 최신 버전 조회 후 alert 띄우는 함수
     func getLatestVersion() {
-        getAppLink { response in
+        getLatestVersion { response in
             if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
                 guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                 alert.confirmBtn.press {
                     if let url = URL(string: "itms-apps://itunes.apple.com/app/1605763068"), UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
-                }
-                alert.cancelBtn.press {
-                    self.dismiss(animated: true, completion: nil)
                 }
                 alert.showNadoAlert(vc: self, message:
         """
@@ -143,11 +140,11 @@ extension BaseVC {
     
     /// access token 갱신
     func updateAccessToken(completion: @escaping (Bool) -> (Void)) {
-        SignAPI.shared.updateToken(refreshToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.RefreshToken) ?? "") { networkResult in
+        SignAPI.shared.updateToken(refreshToken: UserToken.shared.refreshToken ?? "") { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? SignInDataModel {
-                    self.setUserToken(accessToken: data.accesstoken, refreshToken: data.accesstoken)
+                    self.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
                     self.setUpUserdefaultValues(data: data)
                     completion(true)
                 }
@@ -168,6 +165,7 @@ extension BaseVC {
             switch networkResult {
             case .success(let res):
                 if let response = res as? GetLatestVersionResponseModel {
+                    AppVersion.shared.latestVersion = response.iOS
                     completion(response)
                 }
             case .requestErr(let res):

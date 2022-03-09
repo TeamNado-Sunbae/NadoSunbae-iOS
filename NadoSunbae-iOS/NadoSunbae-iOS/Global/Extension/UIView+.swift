@@ -53,6 +53,20 @@ extension UIView {
         self.layer.shadowRadius = radius
     }
     
+    /// UIView fadeIn 효과 주는 메서드
+    func fadeIn(duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    /// UIView fadeOut 효과 주는 메서드
+    func fadeOut(duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
+    }
+    
     /// 다수의 뷰를 한번에 addSubview해주는 메서드
     func addSubviews(_ views: [UIView]) {
         views.forEach { self.addSubview($0) }

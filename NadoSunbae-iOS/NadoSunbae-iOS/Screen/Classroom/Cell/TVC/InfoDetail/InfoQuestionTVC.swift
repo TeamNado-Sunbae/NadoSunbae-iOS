@@ -38,6 +38,7 @@ class InfoQuestionTVC: BaseTVC {
     
     // MARK: Properties
     var tapLikeBtnAction : (() -> ())?
+    var tapNicknameBtnAction : (() -> ())?
     var interactURL: ((_ data: URL) -> Void)?
     
     // MARK: Life Cycle
@@ -52,6 +53,10 @@ class InfoQuestionTVC: BaseTVC {
     // MARK: IBAction
     @IBAction func tapInfoLikeBtn(_ sender: UIButton) {
         tapLikeBtnAction?()
+    }
+    
+    @IBAction func tapNicknameBtn(_ sender: UIButton) {
+        tapNicknameBtnAction?()
     }
 }
 

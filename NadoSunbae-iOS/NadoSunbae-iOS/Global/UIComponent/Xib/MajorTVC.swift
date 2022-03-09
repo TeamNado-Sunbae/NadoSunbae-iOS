@@ -11,15 +11,7 @@ class MajorTVC: BaseTVC {
     
     // MARK: IBOutlet
     @IBOutlet weak var checkImgView: UIImageView!
-    @IBOutlet weak var starBtn: UIButton!
     @IBOutlet weak var majorNameLabel: UILabel!
-    
-    // MARK: Properties
-    var isStarBtnSelected = false {
-        didSet {
-            setStarImg()
-        }
-    }
     
     // MARK: Life Cycle Part
     override func awakeFromNib() {
@@ -35,11 +27,6 @@ class MajorTVC: BaseTVC {
             majorNameLabel.setLabel(text: majorNameLabel.text ?? "", color: .mainText, size: 14, weight: .regular)
         }
     }
-    
-    // MARK: IBAction
-    @IBAction func tapStarBtn(_ sender: Any) {
-        isStarBtnSelected = !isStarBtnSelected
-    }
 }
 
 // MARK: - Private Methods
@@ -48,15 +35,6 @@ extension MajorTVC {
     /// Label에 학과 이름 setting하는 함수
     func setData(majorName: String) {
         majorNameLabel.text = majorName
-    }
-    
-    /// 즐겨찾기 버튼 이미지 설정
-    func setStarImg() {
-        if isStarBtnSelected {
-            starBtn.setImage(UIImage.init(named: "star_selected"), for: .normal)
-        } else {
-            starBtn.setImage(UIImage.init(named: "star"), for: .normal)
-        }
     }
 }
 
