@@ -33,8 +33,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELo-xG-zpK" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="14.000000000000007" y="102" width="111.66666666666669" height="52"/>
                                 <color key="tintColor" name="gray2"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <connections>
                                     <action selector="tapCancelBtn:" destination="gxf-cd-wcu" eventType="touchUpInside" id="dQw-P8-lDI"/>
                                 </connections>
@@ -42,8 +41,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCK-SR-a1R" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
                                 <rect key="frame" x="138" y="102" width="112" height="52"/>
                                 <color key="tintColor" name="mainDefault"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <connections>
                                     <action selector="tapConfirmBtn:" destination="gxf-cd-wcu" eventType="touchUpInside" id="nKu-N0-vHw"/>
                                 </connections>

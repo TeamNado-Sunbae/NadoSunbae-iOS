@@ -73,6 +73,7 @@ extension InfoQuestionTVC {
         infoLikeBackView.backgroundColor =  model.like.isLiked ? UIColor.nadoBlack : UIColor.gray0
         infoLikeImgView.image = model.like.isLiked ? UIImage(named: "heart_mint") : UIImage(named: "heart")
         infoLikeCountLabel.text = "\(model.like.likeCount)"
+        infoLikeCountLabel.textColor = model.like.isLiked ? .mainDefault : .gray2
     }
 }
 
