@@ -1741,7 +1741,7 @@
 			};
 			buildConfigurationList = 331364212784D3BD00E0C118 /* Build configuration list for PBXProject "NadoSunbae-iOS" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,

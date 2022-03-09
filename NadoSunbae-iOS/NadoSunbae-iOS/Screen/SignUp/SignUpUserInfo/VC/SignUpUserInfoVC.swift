@@ -50,11 +50,13 @@ class SignUpUserInfoVC: BaseVC {
     
     // MARK: IBAction
     @IBAction func tapCheckDuplicateBtn(_ sender: UIButton) {
+        view.endEditing(true)
         requestCheckNickName(nickName: self.nickNameTextField.text ?? "")
         self.nickNameInfoLabel.isHidden = false
     }
     
     @IBAction func tapCheckEmailBtn(_ sender: UIButton) {
+        view.endEditing(true)
         requestCheckEmail(email: self.emailTextField.text ?? "")
         self.emailInfoLabel.isHidden = false
     }
@@ -98,7 +100,7 @@ extension SignUpUserInfoVC {
         [(nickNameTextField, nickNameClearBtn), (emailTextField, emailClearBtn), (PWTextField, PWClearBtn), (checkPWTextFIeld, checkPWClearBtn)].forEach { (textField, btn) in
             setTextFieldClearBtn(textField: textField, clearBtn: btn)
         }
-        
+        emailTextField.text = "@korea.ac.kr"
         changePWInfoLabelState()
         checkEmailIsValid()
         checkNickNameIsValid()
@@ -247,7 +249,7 @@ extension SignUpUserInfoVC {
                 self.isCompleteList[1] = false
                 self.emailInfoLabel.text = ""
                 let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) {
+                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) && changedText.contains("@korea.ac.kr") {
                     self.changeNadoBtnState(isOn: true, btn: self.checkEmailBtn)
                 } else {
                     self.changeNadoBtnState(isOn: false, btn: self.checkEmailBtn)
@@ -340,8 +342,8 @@ extension SignUpUserInfoVC {
         SignAPI.shared.requestSignUp(userData: userData) { networkResult in
             switch networkResult {
             case .success(let res):
+                self.activityIndicator.stopAnimating()
                 if res is SignUpDataModel {
-                    self.activityIndicator.stopAnimating()
                     guard let mailCompleteVC = UIStoryboard.init(name: MailCompleteVC.className, bundle: nil).instantiateViewController(withIdentifier: MailCompleteVC.className) as? MailCompleteVC else { return }
                     mailCompleteVC.completeType = .signUp
                     mailCompleteVC.email = userData.email
@@ -349,12 +351,11 @@ extension SignUpUserInfoVC {
                     mailCompleteVC.modalPresentationStyle = .fullScreen
                     self.present(mailCompleteVC, animated: true, completion: nil)
                 }
-                self.activityIndicator.stopAnimating()
             case .requestErr(let msg):
+                self.activityIndicator.stopAnimating()
                 if let message = msg as? String {
-                    self.makeAlert(title: message)
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                     print("requestSignUp requestErr", message)
-                    self.activityIndicator.stopAnimating()
                 }
             default:
                 self.activityIndicator.stopAnimating()
@@ -387,7 +388,7 @@ extension SignUpUserInfoVC {
     private func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+                self.view.frame.origin.y -= keyboardSize.height - 25
             }
         }
     }
