@@ -73,7 +73,11 @@ class MypageUserVC: BaseVC {
     
     // MARK: @IBAction
     @IBAction func tapPersonalQuestionWriteBtn(_ sender: Any) {
-        if self.userInfo.isOnQuestion {
+        
+        /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
+        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
+            showRestrictionAlert()
+        } else if self.userInfo.isOnQuestion {
             let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
             guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
             
