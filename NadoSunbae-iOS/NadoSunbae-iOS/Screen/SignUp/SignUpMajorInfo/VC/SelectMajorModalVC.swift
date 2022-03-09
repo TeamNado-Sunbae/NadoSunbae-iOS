@@ -65,9 +65,10 @@ class SelectMajorModalVC: BaseVC {
     }
     
     private func setStartList() {
-        for i in stride(from: 22, to: 14, by: -1) {
-            self.startList.append("\(i)-1")
+        self.startList.append("22-1")
+        for i in stride(from: 21, to: 14, by: -1) {
             self.startList.append("\(i)-2")
+            self.startList.append("\(i)-1")
         }
         self.startList.append("15년 이전")
     }
