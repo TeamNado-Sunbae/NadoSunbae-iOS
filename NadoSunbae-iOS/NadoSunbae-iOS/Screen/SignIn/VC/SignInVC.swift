@@ -137,6 +137,8 @@ extension SignInVC {
         UserDefaults.standard.set(data.user.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
         UserDefaults.standard.set(data.user.secondMajorName, forKey: UserDefaults.Keys.SecondMajorName)
         UserDefaults.standard.set(data.user.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
+        UserDefaults.standard.set(data.user.isUserReported, forKey: UserDefaults.Keys.isUserReported)
+        UserDefaults.standard.set(data.user.isReviewInappropriate, forKey: UserDefaults.Keys.isReviewInappropriate)
         UserDefaults.standard.set(data.user.userID, forKey: UserDefaults.Keys.UserID)
         UserDefaults.standard.set(emailTextField.text, forKey: UserDefaults.Keys.Email)
         UserDefaults.standard.set(PWTextField.text, forKey: UserDefaults.Keys.PW)
