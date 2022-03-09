@@ -104,6 +104,14 @@ extension BaseVC {
         }
     }
     
+    /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
+    func goToRootOfTab(index: Int) {
+        tabBarController?.selectedIndex = index
+        if let nav = tabBarController?.viewControllers?[index] as? UINavigationController {
+            nav.popToRootViewController(animated: true)
+        }
+    }
+
     /// 권한에 따른 제한 알럿 띄워주는 함수
     func showRestrictionAlert() {
         guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }

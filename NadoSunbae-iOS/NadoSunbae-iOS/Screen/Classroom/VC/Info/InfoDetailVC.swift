@@ -247,14 +247,6 @@ extension InfoDetailVC {
             self.navigationController?.pushViewController(myPageUserVC, animated: true)
         }
     }
-    
-    /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
-    private func goToRootOfTab(index: Int) {
-        tabBarController?.selectedIndex = index
-        if let nav = tabBarController?.viewControllers?[index] as? UINavigationController {
-            nav.popToRootViewController(animated: true)
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -449,6 +441,11 @@ extension InfoDetailVC {
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.optionalBindingData()
+                    }
+                } else if res is Int {
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "존재하지 않는 포스트입니다.") { _ in
+                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             default:

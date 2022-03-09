@@ -214,10 +214,12 @@ extension ClassroomAPI {
         switch status {
         case 200...204:
             return .success(decodedData.data ?? "None-Data")
+        case 400:
+            return .requestErr(decodedData.message)
         case 401:
             return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
+        case 404:
+            return .requestErr(404)
         case 500:
             return .serverErr
         default:
@@ -234,10 +236,12 @@ extension ClassroomAPI {
         switch status {
         case 200...204:
             return .success(decodedData.data ?? "None-Data")
+        case 400:
+            return .requestErr(decodedData.message)
         case 401:
             return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
+        case 404:
+            return .requestErr(404)
         case 500:
             return .serverErr
         default:
