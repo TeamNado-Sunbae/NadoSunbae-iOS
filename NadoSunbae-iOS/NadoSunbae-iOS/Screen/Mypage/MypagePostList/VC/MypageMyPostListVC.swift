@@ -132,6 +132,12 @@ extension MypageMyPostListVC: UITableViewDelegate {
                 
                 chatVC.questionType = .group
                 chatVC.naviStyle = .push
+                
+                if isPostOrAnswer {
+                    chatVC.questionType = postList[indexPath.row].postTypeID == 3 ? .group : .personal
+                } else {
+                    chatVC.questionType = answerList[indexPath.row].postTypeID == 3 ? .group : .personal
+                }
                 chatVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
                 
                 self.navigationController?.pushViewController(chatVC, animated: true)
