@@ -21,7 +21,7 @@ class AutoSignInVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        requestAutoSignInAfterSplash()
+        presentNextViewAfterSplash()
     }
 }
 
@@ -37,9 +37,17 @@ extension AutoSignInVC {
 
 // MARK: Custom Methods
 extension AutoSignInVC {
-    private func requestAutoSignInAfterSplash() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-            self.requestAutoSignIn()
+    private func presentNextViewAfterSplash() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.2) {
+            guard let nextVC = UIStoryboard.init(name: "OnboardingSB", bundle: nil).instantiateViewController(withIdentifier: OnboardingVC.className) as? OnboardingVC else { return }
+            if !UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsOnboarding) {
+                nextVC.modalPresentationStyle = .fullScreen
+                nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.view.layer.speed = 1
+                self.present(nextVC, animated: true, completion: nil)
+            } else {
+                self.requestAutoSignIn()
+            }
         }
     }
 }
