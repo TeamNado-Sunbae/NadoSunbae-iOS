@@ -37,12 +37,11 @@ extension NotificationMainVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        /// 뷰 이동 및 읽음 처리, 현재 질문글만 뷰 이동 가능
         switch notificationList[indexPath.section].notificationTypeID.getNotiType() {
         case .writtenInfo:
             guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
             
-            infoDetailVC.postID = notificationList[indexPath.row].postID
+            infoDetailVC.postID = notificationList[indexPath.section].postID
             infoDetailVC.hidesBottomBarWhenPushed = true
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
@@ -62,7 +61,7 @@ extension NotificationMainVC: UITableViewDelegate {
         case .answerInfo:
             guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
             
-            infoDetailVC.postID = notificationList[indexPath.row].postID
+            infoDetailVC.postID = notificationList[indexPath.section].postID
             infoDetailVC.hidesBottomBarWhenPushed = true
             
             readNoti(notiID: notificationList[indexPath.section].notificationID)
