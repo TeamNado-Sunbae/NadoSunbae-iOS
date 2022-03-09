@@ -140,7 +140,7 @@ extension BaseVC {
     
     /// access token 갱신
     func updateAccessToken(completion: @escaping (Bool) -> (Void)) {
-        SignAPI.shared.updateToken(refreshToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.RefreshToken) ?? "") { networkResult in
+        SignAPI.shared.updateToken(refreshToken: UserToken.shared.refreshToken ?? "") { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? SignInDataModel {
