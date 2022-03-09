@@ -62,7 +62,7 @@ extension SignInVC {
     private func configureUI() {
         infoLabel.isHidden = true
         signInBtn.isEnabled = false
-        checkEmailIsValid()
+        checkEmailPWIsValid()
         setTextFieldClearBtn(textField: emailTextField, clearBtn: emailClearBtn)
         setTextFieldClearBtn(textField: PWTextField, clearBtn: PWClearBtn)
     }
@@ -86,32 +86,41 @@ extension SignInVC {
             .bind {
                 textField.text = ""
                 clearBtn.isHidden = true
+                self.signInBtn.isActivated = false
+                self.signInBtn.isEnabled = false
             }
             .disposed(by: disposeBag)
     }
     
-    /// 이메일 유효성 검사
-    private func checkEmailIsValid() {
+    /// 이메일, 비밀번호 상태에 따라 로그인 버튼 상태 판단 메서드
+    private func checkEmailPWIsValid() {
         emailTextField.rx.text
             .orEmpty
             .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { changedText in
                 if changedText.count == 0 {
-                    self.infoLabel.isHidden = true
                     self.signInBtn.isActivated = false
                     self.signInBtn.isEnabled = false
                 } else {
                     if changedText.contains("@") && changedText.contains(".") {
                         self.signInBtn.isActivated = true
                         self.signInBtn.isEnabled = true
-                        self.infoLabel.isHidden = true
                     } else {
-                        self.infoLabel.isHidden = false
                         self.signInBtn.isActivated = false
                         self.signInBtn.isEnabled = false
                     }
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        PWTextField.rx.text
+            .orEmpty
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { changedText in
+                self.signInBtn.isActivated = !(changedText.isEmpty)
+                self.signInBtn.isEnabled = !(changedText.isEmpty)
             })
             .disposed(by: disposeBag)
     }
