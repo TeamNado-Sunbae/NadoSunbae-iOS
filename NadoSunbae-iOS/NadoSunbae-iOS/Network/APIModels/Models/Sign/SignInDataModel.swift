@@ -30,6 +30,7 @@ struct SignInDataModel: Codable {
         var isEmailVerified: Bool
         var isUserReported: Bool
         var isReviewInappropriate: Bool
+        var permissionMsg: String
 
         enum CodingKeys: String, CodingKey {
             case userID = "userId"
@@ -43,6 +44,7 @@ struct SignInDataModel: Codable {
             case isEmailVerified = "isEmailVerified"
             case isUserReported = "isUserReported"
             case isReviewInappropriate = "isReviewInappropriate"
+            case permissionMsg = "message"
         }
     }
 }
