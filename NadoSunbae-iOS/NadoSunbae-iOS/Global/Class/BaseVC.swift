@@ -156,20 +156,65 @@ extension BaseVC {
             nav.popToRootViewController(animated: true)
         }
     }
-
-    /// 권한에 따른 제한 알럿 띄워주는 함수
-    func showRestrictionAlert() {
-        guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-        
-        /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
-        restrictionAlert.confirmBtn.press {
-            let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-            guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-            
-            nextVC.modalPresentationStyle = .fullScreen
-            self.present(nextVC, animated: true, completion: nil)
-        }
-        restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+    
+    /// 회원가입VC로 present 화면전환을 하는 메서드
+    func presentToSignUpVC() {
+        guard let signUpVC = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: "SignUpNVC") as? UINavigationController else { return }
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
+    }
+    
+    /// 로그인VC로 present 화면전환을 하는 메서드
+    func presentToSignInVC() {
+        guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+        signInVC.modalPresentationStyle = .fullScreen
+        self.present(signInVC, animated: true, completion: nil)
+    }
+    
+    /// 후기작성VC로 present 화면전환을 하는 메서드
+    func presentToReviewWriteVC(completion: @escaping (ReviewWriteVC) -> ()) {
+        guard let reviewWriteVC = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil).instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+        reviewWriteVC.modalPresentationStyle = .fullScreen
+        self.present(reviewWriteVC, animated: true, completion: nil)
+        completion(reviewWriteVC)
+    }
+    
+    /// 후기상세VC로 navigation push 화면전환을 하는 메서드
+    func pushToReviewDetailVC(completion: @escaping (ReviewDetailVC) -> ()) {
+        guard let reviewDetailVC = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil).instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+        completion(reviewDetailVC)
+        self.navigationController?.pushViewController(reviewDetailVC, animated: true)
+    }
+    
+    /// 질문작성VC로 present 화면전환을 하는 메서드
+    func presentToWriteQuestionVC(completion: @escaping (WriteQuestionVC) -> ()) {
+        guard let writeQuestionVC = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil).instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
+        completion(writeQuestionVC)
+        writeQuestionVC.modalPresentationStyle = .fullScreen
+        self.present(writeQuestionVC, animated: true, completion: nil)
+    }
+    
+    /// 선배마이페이지VC로 navigation push 화면전환을 하는 메서드
+    func pushToMypageUserVC(completion: @escaping (MypageUserVC) -> ()) {
+        guard let mypageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+        completion(mypageUserVC)
+        self.navigationController?.pushViewController(mypageUserVC, animated: true)
+    }
+    
+    /// 정보상세VC로 navigation push 화면전환을 하는 메서드
+    func pushToInfoDetailVC(completion: @escaping (InfoDetailVC) -> ()) {
+        guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+        infoDetailVC.hidesBottomBarWhenPushed = true
+        completion(infoDetailVC)
+        self.navigationController?.pushViewController(infoDetailVC, animated: true)
+    }
+    
+    /// 질문상세VC로 navigation push 화면전환을 하는 메서드
+    func pushToQuestionDetailVC(completion: @escaping (DefaultQuestionChatVC) -> ()) {
+        guard let questionDetailVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+        questionDetailVC.hidesBottomBarWhenPushed = true
+        completion(questionDetailVC)
+        self.navigationController?.pushViewController(questionDetailVC, animated: true)
     }
 }
 
