@@ -54,6 +54,14 @@ class ReviewWriteVC: BaseVC {
         }
     }
     
+    @IBOutlet weak var oneLineReviewCountLabel: UILabel!
+    @IBOutlet weak var prosAndConsCountLabel: UILabel!
+    @IBOutlet weak var learnInfoCountLabel: UILabel!
+    @IBOutlet weak var recommendClassCountLabel: UILabel!
+    @IBOutlet weak var badClassCountLabel: UILabel!
+    @IBOutlet weak var futureCountLabel: UILabel!
+    @IBOutlet weak var tipCountLabel: UILabel!
+    
     // MARK: Properties
     
     /// 완료 버튼 활성화 검사를 위한 변수
@@ -393,7 +401,29 @@ extension ReviewWriteVC: UITextViewDelegate {
         
         /// 텍스트뷰의 내용이 바뀔때 마다 조건 판단하기 위한 함수 호출
         setUpCompleteBtnStatus(textView: textView)
-
+        
+        /// 글자수 표시
+        if textView == oneLineReviewTextView {
+            if textView.text != "학과를 한줄로 표현한다면?" {
+                oneLineReviewCountLabel.text = "\(oneLineReviewTextView.text.count)/최대 40자"
+            }
+        }
+        if textView.text != "내용을 입력해주세요" {
+            if textView == prosAndConsTextView {
+                prosAndConsCountLabel.text = "\(prosAndConsTextView.text.count)/최소 100자"
+            } else if textView == learnInfoTextView {
+                learnInfoCountLabel.text = "\(learnInfoTextView.text.count)/최소 100자"
+            } else if textView == recommendClassTextView {
+                recommendClassCountLabel.text = "\(recommendClassTextView.text.count)/최소 100자"
+            } else if textView == badClassTextView {
+                badClassCountLabel.text = "\(badClassTextView.text.count)/최소 100자"
+            } else if textView == futureTextView {
+                futureCountLabel.text = "\(futureTextView.text.count)/최소 100자"
+            } else if textView == tipTextView {
+                tipCountLabel.text = "\(tipTextView.text.count)/최소 100자"
+            }
+        }
+        
         /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             DispatchQueue.main.async() {

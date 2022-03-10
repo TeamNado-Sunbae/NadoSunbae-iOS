@@ -345,7 +345,7 @@ extension ReviewMainVC: SendUpdateStatusDelegate {
         /// 작성자 필터 판단
         if selectedList[0] == true  && selectedList[1] == false {
             selectedWriterFilter = 2
-        } else if selectedList[1] == false && selectedList[1] == true {
+        } else if selectedList[0] == false && selectedList[1] == true {
             selectedWriterFilter = 3
         } else {
             selectedWriterFilter = 1
