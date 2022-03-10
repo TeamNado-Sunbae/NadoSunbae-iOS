@@ -26,7 +26,11 @@ class SignUpMajorInfoVC: BaseVC {
     @IBOutlet weak var firstMajorSelectBtn: UIButton!
     @IBOutlet weak var firstMajorStartSelectBtn: UIButton!
     @IBOutlet weak var secondMajorSelectBtn: UIButton!
-    @IBOutlet weak var secondMajorStartSelectBtn: UIButton!
+    @IBOutlet weak var secondMajorStartSelectBtn: UIButton! {
+        didSet {
+            secondMajorStartSelectBtn.setTitleColor(.gray2, for: .disabled)
+        }
+    }
     
     // MARK: Properties
     var univList = ["고려대학교"]
