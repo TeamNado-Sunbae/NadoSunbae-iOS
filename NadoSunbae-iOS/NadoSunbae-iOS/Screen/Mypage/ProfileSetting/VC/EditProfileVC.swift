@@ -321,6 +321,9 @@ extension EditProfileVC: SendUpdateModalDelegate {
             if let majorInfoData = data as? MajorInfoModel {
                 self.secondMajorTextField.text = majorInfoData.majorName
                 self.changedInfo.secondMajorID = majorInfoData.majorID
+                if changedInfo.secondMajorID == 1 {
+                    changedInfo.secondMajorStart = "미진입"
+                }
                 checkSecondMajorStatus()
             }
         case 3:
