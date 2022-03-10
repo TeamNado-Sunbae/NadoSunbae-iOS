@@ -204,7 +204,6 @@
 		775728AA27D6593700148C9A /* ThirdOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */; };
 		775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728AB27D65E8900148C9A /* OnboardingDataModel.swift */; };
 		775728B127D6617300148C9A /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728B027D6617300148C9A /* OnboardingVC.swift */; };
-		775BAFD727D9353700DB37EB /* UserAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775BAFD627D9353700DB37EB /* UserAuthInfo.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -1183,6 +1182,7 @@
 			isa = PBXGroup;
 			children = (
 				5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */,
+				775BAFD627D9353700DB37EB /* UserAuthInfo.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1921,7 +1921,6 @@
 				5C4B5A9C27BFF5200012A898 /* MypageMyAnswerListModel.swift in Sources */,
 				33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
-				775BAFD727D9353700DB37EB /* UserAuthInfo.swift in Sources */,
 				77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
 				C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */,

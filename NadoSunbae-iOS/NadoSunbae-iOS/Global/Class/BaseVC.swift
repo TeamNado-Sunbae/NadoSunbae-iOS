@@ -124,7 +124,11 @@ extension BaseVC {
             comfirmTitle = "문의하기"
             cancelTitle = "닫기"
             restrictionAlert.confirmBtn.press {
-                print("문의하기 링크 연결!!")
+                self.getAppLink { appLink in
+                    if let url = URL(string: appLink.kakaoTalkChannel) {
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                }
             }
         }
         
