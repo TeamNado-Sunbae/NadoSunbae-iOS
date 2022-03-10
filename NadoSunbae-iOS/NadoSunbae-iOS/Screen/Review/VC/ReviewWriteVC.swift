@@ -97,6 +97,9 @@ class ReviewWriteVC: BaseVC {
         [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
             textView in setUpCompleteBtnStatus(textView: textView)
         }
+        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
+            textView in setUpCharCount(textView: textView)
+        }
         setUpDefaultBgImg()
     }
     
@@ -217,6 +220,30 @@ extension ReviewWriteVC {
         
         /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
         reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
+    }
+    
+    /// Label에 TextView 글자수 표시하는 함수
+    private func setUpCharCount(textView: UITextView) {
+        if textView == oneLineReviewTextView {
+            if textView.text != "학과를 한줄로 표현한다면?" {
+                oneLineReviewCountLabel.text = "\(oneLineReviewTextView.text.count)/최대 40자"
+            }
+        }
+        if textView.text != "내용을 입력해주세요" {
+            if textView == prosAndConsTextView {
+                prosAndConsCountLabel.text = "\(prosAndConsTextView.text.count)/최소 100자"
+            } else if textView == learnInfoTextView {
+                learnInfoCountLabel.text = "\(learnInfoTextView.text.count)/최소 100자"
+            } else if textView == recommendClassTextView {
+                recommendClassCountLabel.text = "\(recommendClassTextView.text.count)/최소 100자"
+            } else if textView == badClassTextView {
+                badClassCountLabel.text = "\(badClassTextView.text.count)/최소 100자"
+            } else if textView == futureTextView {
+                futureCountLabel.text = "\(futureTextView.text.count)/최소 100자"
+            } else if textView == tipTextView {
+                tipCountLabel.text = "\(tipTextView.text.count)/최소 100자"
+            }
+        }
     }
     
     /// ReviewDetailVC에서 상태값 받아오기 위한 함수
@@ -406,26 +433,7 @@ extension ReviewWriteVC: UITextViewDelegate {
         setUpCompleteBtnStatus(textView: textView)
         
         /// 글자수 표시
-        if textView == oneLineReviewTextView {
-            if textView.text != "학과를 한줄로 표현한다면?" {
-                oneLineReviewCountLabel.text = "\(oneLineReviewTextView.text.count)/최대 40자"
-            }
-        }
-        if textView.text != "내용을 입력해주세요" {
-            if textView == prosAndConsTextView {
-                prosAndConsCountLabel.text = "\(prosAndConsTextView.text.count)/최소 100자"
-            } else if textView == learnInfoTextView {
-                learnInfoCountLabel.text = "\(learnInfoTextView.text.count)/최소 100자"
-            } else if textView == recommendClassTextView {
-                recommendClassCountLabel.text = "\(recommendClassTextView.text.count)/최소 100자"
-            } else if textView == badClassTextView {
-                badClassCountLabel.text = "\(badClassTextView.text.count)/최소 100자"
-            } else if textView == futureTextView {
-                futureCountLabel.text = "\(futureTextView.text.count)/최소 100자"
-            } else if textView == tipTextView {
-                tipCountLabel.text = "\(tipTextView.text.count)/최소 100자"
-            }
-        }
+        setUpCharCount(textView: textView)
         
         /// 텍스트뷰 내 indicator 백그라운드 컬러 설정
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
