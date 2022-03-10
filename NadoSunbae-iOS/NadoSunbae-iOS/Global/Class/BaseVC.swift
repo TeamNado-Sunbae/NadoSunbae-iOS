@@ -57,7 +57,7 @@ extension BaseVC {
         UserToken.shared.refreshToken = refreshToken
     }
     
-    /// 토큰 갱신, 자동로그인 시 UserDefaults에 값 저장하는 메서드
+    /// 토큰 갱신, 자동로그인 시 UserDefaults, Singleton에 값 저장하는 메서드
     func setUpUserdefaultValues(data: SignInDataModel) {
         UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(data.refreshtoken, forKey: UserDefaults.Keys.RefreshToken)
@@ -65,23 +65,21 @@ extension BaseVC {
         UserDefaults.standard.set(data.user.firstMajorName, forKey: UserDefaults.Keys.FirstMajorName)
         UserDefaults.standard.set(data.user.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
         UserDefaults.standard.set(data.user.secondMajorName, forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(data.user.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
-        UserDefaults.standard.set(data.user.isUserReported, forKey: UserDefaults.Keys.isUserReported)
-        UserDefaults.standard.set(data.user.isReviewInappropriate, forKey: UserDefaults.Keys.isReviewInappropriate)
         UserDefaults.standard.set(data.user.userID, forKey: UserDefaults.Keys.UserID)
+        UserPermissionInfo.shared.isReviewed = data.user.isReviewed
+        UserPermissionInfo.shared.isUserReported = data.user.isUserReported
+        UserPermissionInfo.shared.isReviewInappropriate = data.user.isReviewInappropriate
+        UserPermissionInfo.shared.permissionMsg = data.user.permissionMsg
     }
     
     /// 로그아웃 시 UserDefaults 지우는 함수
-    private func setRemoveUserdefaultValues() {
+    func setRemoveUserdefaultValues() {
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.isUserReported)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.isReviewInappropriate)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
