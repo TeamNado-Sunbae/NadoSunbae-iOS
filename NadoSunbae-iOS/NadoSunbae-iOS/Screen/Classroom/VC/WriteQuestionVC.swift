@@ -32,6 +32,7 @@ class WriteQuestionVC: BaseVC {
         $0.placeholder = "질문 제목을 입력하세요."
         $0.textColor = .mainDefault
         $0.font = .PretendardSB(size: 24.0)
+        $0.autocorrectionType = .no
     }
     
     private let textHighlightView = UIView().then {
