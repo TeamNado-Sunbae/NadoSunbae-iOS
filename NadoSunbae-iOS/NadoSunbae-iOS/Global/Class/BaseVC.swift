@@ -106,6 +106,49 @@ extension BaseVC {
         }
     }
     
+    /// 권한에 따른 제한 알럿 띄워주는 함수
+    func showRestrictionAlert(permissionStatus: PermissionType) {
+        var permissionMsg = "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요."
+        var comfirmTitle = "후기 작성"
+        var cancelTitle = "다음에 작성"
+        
+        guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        
+        switch permissionStatus {
+        case .review, .inappropriate:
+            restrictionAlert.confirmBtn.press {
+                self.presentToReviewWriteVC { _ in }
+            }
+        case .report:
+            permissionMsg = UserPermissionInfo.shared.permissionMsg
+            comfirmTitle = "문의하기"
+            cancelTitle = "닫기"
+            restrictionAlert.confirmBtn.press {
+                print("문의하기 링크 연결!!")
+            }
+        }
+        
+        restrictionAlert.showNadoAlert(vc: self, message: permissionMsg, confirmBtnTitle: comfirmTitle, cancelBtnTitle: cancelTitle)
+    }
+    
+    /// 신고, 부적절 후기 사용, 후기 미등록자, 일반유저 권한 최종 분기처리 메서드
+    func divideUserPermission(defaultAction: () -> Void) {
+        if UserPermissionInfo.shared.isUserReported {
+            self.showRestrictionAlert(permissionStatus: .report)
+        } else if UserPermissionInfo.shared.isReviewInappropriate {
+            self.showRestrictionAlert(permissionStatus: .inappropriate)
+        } else if !(UserPermissionInfo.shared.isReviewed) {
+            self.showRestrictionAlert(permissionStatus: .review)
+        } else {
+            // 아무런 제한이 없을 때 실행되는 action
+            defaultAction()
+        }
+    }
+}
+
+// MARK: - Custom Methods(화면전환)
+extension BaseVC {
+    
     /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
     func goToRootOfTab(index: Int) {
         tabBarController?.selectedIndex = index
