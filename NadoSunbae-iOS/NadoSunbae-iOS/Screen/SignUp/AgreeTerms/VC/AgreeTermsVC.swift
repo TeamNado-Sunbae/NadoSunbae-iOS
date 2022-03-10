@@ -48,7 +48,6 @@ class AgreeTermsVC: BaseVC {
     @IBAction func tapNextBtn(_ sender: UIButton) {
         guard let majorInfoVC = UIStoryboard.init(name: SignUpMajorInfoVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpMajorInfoVC.className) as? SignUpMajorInfoVC else { return }
         self.navigationController?.pushViewController(majorInfoVC, animated: true)
-        
     }
     
     @IBAction func tapDismissBtn(_ sender: UIButton) {

@@ -75,17 +75,13 @@ class MypageUserVC: BaseVC {
     @IBAction func tapPersonalQuestionWriteBtn(_ sender: Any) {
         
         /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
-        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-            showRestrictionAlert()
+        if !(UserPermissionInfo.shared.isReviewed) {
+            showRestrictionAlert(permissionStatus: .review)
         } else if self.userInfo.isOnQuestion {
-            let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
-            guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-            
-            writeQuestionVC.questionType = .personal
-            writeQuestionVC.answerID = self.userInfo.userID
-            writeQuestionVC.modalPresentationStyle = .fullScreen
-            
-            self.present(writeQuestionVC, animated: true, completion: nil)
+            presentToWriteQuestionVC { writeQuestionVC in
+                writeQuestionVC.questionType = .personal
+                writeQuestionVC.answerID = self.userInfo.userID
+            }
         }
     }
     

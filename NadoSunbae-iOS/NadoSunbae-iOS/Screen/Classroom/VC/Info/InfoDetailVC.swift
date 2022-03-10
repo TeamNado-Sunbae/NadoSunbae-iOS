@@ -200,17 +200,13 @@ extension InfoDetailVC {
     
     /// 정보글 원글을 수정하기 위해 WriteQuestionVC로 화면전환하는 메서드
     private func presentWriteQuestionVC() {
-        let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
-        guard let editPostVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-        
-        editPostVC.questionType = .info
-        editPostVC.isEditState = true
-        editPostVC.postID = self.postID
-        editPostVC.originTitle = self.infoDetailData?.post.title
-        editPostVC.originContent = self.infoDetailData?.post.content
-        editPostVC.modalPresentationStyle = .fullScreen
-        
-        self.present(editPostVC, animated: true, completion: nil)
+        presentToWriteQuestionVC { writeQuestionVC in
+            writeQuestionVC.questionType = .info
+            writeQuestionVC.isEditState = true
+            writeQuestionVC.postID = self.postID
+            writeQuestionVC.originTitle = self.infoDetailData?.post.title
+            writeQuestionVC.originContent = self.infoDetailData?.post.content
+        }
     }
     
     /// 나도선배 delete alert를 만드는 메서드
@@ -231,20 +227,16 @@ extension InfoDetailVC {
         }
     }
     
-    /// 마이페이지로 뷰를 전환하는 메서드
-    private func pushToMypageVC(userID: Int) {
-        guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
-        guard let myPageVC = UIStoryboard.init(name: Identifiers.MypageSB, bundle: nil).instantiateViewController(withIdentifier: MypageMainVC.className) as? MypageMainVC else { return }
-
-        myPageUserVC.targetUserID = userID
-        myPageUserVC.judgeBlockStatusDelegate = self
-        myPageUserVC.hidesBottomBarWhenPushed = true
-        myPageVC.hidesBottomBarWhenPushed = true
-        
+    /// 마이페이지로 뷰를 전환하는 메서드 (본인 마이페이지일 경우 탭 이동)
+    private func goToMypageVC(userID: Int) {
         if userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
             goToRootOfTab(index: 3)
         } else {
-            self.navigationController?.pushViewController(myPageUserVC, animated: true)
+            pushToMypageUserVC { mypageUserVC in
+                mypageUserVC.targetUserID = userID
+                mypageUserVC.judgeBlockStatusDelegate = self
+                mypageUserVC.hidesBottomBarWhenPushed = true
+            }
         }
     }
 }
@@ -277,7 +269,7 @@ extension InfoDetailVC: UITableViewDataSource {
             }
             
             infoQuestionCell.tapNicknameBtnAction = { [unowned self] in
-                pushToMypageVC(userID: infoDetailData?.writer.writerID ?? 0)
+                goToMypageVC(userID: infoDetailData?.writer.writerID ?? 0)
             }
             return infoQuestionCell
         } else if indexPath.row == 1 {
@@ -310,11 +302,11 @@ extension InfoDetailVC: UITableViewDataSource {
             }
             
             infoCommentCell.tapNicknameBtnAction = { [unowned self] in
-                pushToMypageVC(userID: infoDetailCommentData[indexPath.row - 2].writer.writerID)
+                goToMypageVC(userID: infoDetailCommentData[indexPath.row - 2].writer.writerID)
             }
             
             infoCommentCell.tapProfileImgBtnAction = { [unowned self] in
-                pushToMypageVC(userID: infoDetailCommentData[indexPath.row - 2].writer.writerID)
+                goToMypageVC(userID: infoDetailCommentData[indexPath.row - 2].writer.writerID)
             }
             return infoCommentCell
         }

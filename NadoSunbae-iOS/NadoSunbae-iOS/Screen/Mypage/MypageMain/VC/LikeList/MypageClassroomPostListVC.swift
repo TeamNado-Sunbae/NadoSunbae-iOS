@@ -209,31 +209,27 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
         case .question:
             
             /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                showRestrictionAlert()
+            if !(UserPermissionInfo.shared.isReviewed) {
+                showRestrictionAlert(permissionStatus: .review)
             } else {
-                guard let questionDetailVC = UIStoryboard.init(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-                
                 if likePostList.count != 0 {
-                    questionDetailVC.postID = likePostList[indexPath.row].postID
-                    questionDetailVC.questionType = likePostList[indexPath.row].postTypeID == 3 ? .group : .personal
-                    questionDetailVC.naviStyle = .push
-                    questionDetailVC.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(questionDetailVC, animated: true)
+                    pushToQuestionDetailVC { defaultQuestionChatVC in
+                        defaultQuestionChatVC.postID = self.likePostList[indexPath.row].postID
+                        defaultQuestionChatVC.questionType = self.likePostList[indexPath.row].postTypeID == 3 ? .group : .personal
+                        defaultQuestionChatVC.naviStyle = .push
+                    }
                 }
             }
         case .information:
             
             /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                showRestrictionAlert()
+            if !(UserPermissionInfo.shared.isReviewed) {
+                showRestrictionAlert(permissionStatus: .review)
             } else {
-                guard let infoDetailVC = UIStoryboard.init(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
-                
                 if likePostList.count != 0 {
-                    infoDetailVC.postID = likePostList[indexPath.row].postID
-                    infoDetailVC.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(infoDetailVC, animated: true)
+                    pushToInfoDetailVC { infoDetailVC in
+                        infoDetailVC.postID = self.likePostList[indexPath.row].postID
+                    }
                 }
             }
         }

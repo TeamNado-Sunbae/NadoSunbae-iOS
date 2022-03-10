@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingVC: UIViewController {
+class OnboardingVC: BaseVC {
 
     // MARK: IBOutlet
     @IBOutlet weak var onboardingCV: UICollectionView!
@@ -40,17 +40,11 @@ class OnboardingVC: UIViewController {
     
     // MARK: IBAction
     @IBAction func tapSignUpBtn(_ sender: UIButton) {
-        guard let signUpVC = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: "SignUpNVC") as? UINavigationController else { return }
-        
-        signUpVC.modalPresentationStyle = .fullScreen
-        self.present(signUpVC, animated: true, completion: nil)
+        presentToSignUpVC()
     }
     
     @IBAction func tapSignInBtn(_ sender: UIButton) {
-        guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
-        
-        signInVC.modalPresentationStyle = .fullScreen
-        self.present(signInVC, animated: true, completion: nil)
+        presentToSignInVC()
     }
 }
 

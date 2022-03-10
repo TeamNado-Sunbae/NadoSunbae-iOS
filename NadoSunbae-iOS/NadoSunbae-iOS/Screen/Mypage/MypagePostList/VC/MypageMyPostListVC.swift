@@ -125,34 +125,31 @@ extension MypageMyPostListVC: UITableViewDelegate {
         case .question:
             
             /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                showRestrictionAlert()
+            if !(UserPermissionInfo.shared.isReviewed) {
+                showRestrictionAlert(permissionStatus: .review)
             } else {
-                guard let chatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-                
-                chatVC.questionType = .group
-                chatVC.naviStyle = .push
-                
-                if isPostOrAnswer {
-                    chatVC.questionType = postList[indexPath.row].postTypeID == 3 ? .group : .personal
-                } else {
-                    chatVC.questionType = answerList[indexPath.row].postTypeID == 3 ? .group : .personal
+                pushToQuestionDetailVC { defaultQuestionChatVC in
+                    defaultQuestionChatVC.questionType = .group
+                    defaultQuestionChatVC.naviStyle = .push
+                    
+                    if self.isPostOrAnswer {
+                        defaultQuestionChatVC.questionType = self.postList[indexPath.row].postTypeID == 3 ? .group : .personal
+                    } else {
+                        defaultQuestionChatVC.questionType = self.answerList[indexPath.row].postTypeID == 3 ? .group : .personal
+                    }
+                    
+                    defaultQuestionChatVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
                 }
-                chatVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
-                
-                self.navigationController?.pushViewController(chatVC, animated: true)
             }
         case .information:
             
             /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                showRestrictionAlert()
+            if !(UserPermissionInfo.shared.isReviewed) {
+                showRestrictionAlert(permissionStatus: .review)
             } else {
-                guard let infoVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
-                
-                infoVC.postID = isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
-                
-                self.navigationController?.pushViewController(infoVC, animated: true)
+                pushToInfoDetailVC { infoDetailVC in
+                    infoDetailVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
+                }
             }
         }
     }

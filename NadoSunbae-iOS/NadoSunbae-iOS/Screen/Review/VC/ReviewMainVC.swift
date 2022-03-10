@@ -57,11 +57,7 @@ class ReviewMainVC: BaseVC {
     }
     
     @IBAction func tapFloatingBtn(_ sender: Any) {
-        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        present(nextVC, animated: true, completion: nil)
+        presentToReviewWriteVC { _ in }
     }
 }
 
@@ -252,13 +248,16 @@ extension ReviewMainVC: UITableViewDelegate {
             if !postList.isEmpty {
                 
                 /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
-                if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                    showRestrictionAlert()
+                if UserPermissionInfo.shared.isUserReported {
+                    showRestrictionAlert(permissionStatus: .report)
+                } else if UserPermissionInfo.shared.isReviewInappropriate {
+                    showRestrictionAlert(permissionStatus: .inappropriate)
+                } else if !(UserPermissionInfo.shared.isReviewed) {
+                    showRestrictionAlert(permissionStatus: .review)
                 } else {
-                    let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
-                    guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
-                    nextVC.postId = postList[indexPath.row].postID
-                    self.navigationController?.pushViewController(nextVC, animated: true)
+                    pushToReviewDetailVC { reviewDetailVC in
+                        reviewDetailVC.postId = self.postList[indexPath.row].postID
+                    }
                 }
             }
         }

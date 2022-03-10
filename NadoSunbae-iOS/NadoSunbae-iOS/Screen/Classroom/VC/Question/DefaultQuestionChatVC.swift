@@ -346,20 +346,16 @@ extension DefaultQuestionChatVC {
         }
     }
     
-    /// 마이페이지로 뷰를 전환하는 메서드
-    private func pushToMypageVC(userID: Int) {
-        guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
-        guard let myPageVC = UIStoryboard.init(name: Identifiers.MypageSB, bundle: nil).instantiateViewController(withIdentifier: MypageMainVC.className) as? MypageMainVC else { return }
-
-        myPageUserVC.targetUserID = userID
-        myPageUserVC.judgeBlockStatusDelegate = self
-        myPageUserVC.hidesBottomBarWhenPushed = true
-        myPageVC.hidesBottomBarWhenPushed = true
-        
+    /// 마이페이지로 뷰를 전환하는 메서드 (본인 마이페이지일 경우 탭 이동)
+    private func goToMypageVC(userID: Int) {
         if userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
             goToRootOfTab(index: 3)
         } else {
-            self.navigationController?.pushViewController(myPageUserVC, animated: true)
+            pushToMypageUserVC { mypageUserVC in
+                mypageUserVC.targetUserID = userID
+                mypageUserVC.judgeBlockStatusDelegate = self
+                mypageUserVC.hidesBottomBarWhenPushed = true
+            }
         }
     }
 }
@@ -491,17 +487,13 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                             if indexPath.row == 0 {
                                 /// 수정
                                 /// 질문 원글일 경우
-                                let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
-                                guard let editPostVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-                                
-                                editPostVC.questionType = questionType ?? .personal
-                                editPostVC.isEditState = true
-                                editPostVC.postID = postID
-                                editPostVC.originTitle = questionChatData[0].title
-                                editPostVC.originContent = questionChatData[0].content
-                                editPostVC.modalPresentationStyle = .fullScreen
-                                
-                                self.present(editPostVC, animated: true, completion: nil)
+                                presentToWriteQuestionVC { writeQuestionVC in
+                                    writeQuestionVC.questionType = questionType ?? .personal
+                                    writeQuestionVC.isEditState = true
+                                    writeQuestionVC.postID = postID
+                                    writeQuestionVC.originTitle = questionChatData[0].title
+                                    writeQuestionVC.originContent = questionChatData[0].content
+                                }
                             } else {
                                 /// 질문 답변일 경우
                                 self.dismissKeyboard()
@@ -530,7 +522,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 }
                 
                 questionCell.tapNicknameBtnAction = { [unowned self] in
-                    pushToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
+                    goToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
                 }
                 return questionCell
             }
@@ -627,7 +619,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 }
                 
                 commentCell.tapNicknameBtnAction = { [unowned self] in
-                    pushToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
+                    goToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
                 }
                 
                 commentCell.bindData(questionChatData[indexPath.row])

@@ -269,8 +269,8 @@ extension ReviewWriteVC {
                         self.requestCreateReviewPost(majorID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID), bgImgID: self.bgImgID, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
                     }
                     /// UserDefaults 값 세팅
-                    UserDefaults.standard.set(true, forKey: UserDefaults.Keys.IsReviewed)
-                    UserDefaults.standard.set(false, forKey: UserDefaults.Keys.isReviewInappropriate)
+                    UserPermissionInfo.shared.isReviewed = true
+                    UserPermissionInfo.shared.isReviewInappropriate = false
                     
                 } else {
                     
