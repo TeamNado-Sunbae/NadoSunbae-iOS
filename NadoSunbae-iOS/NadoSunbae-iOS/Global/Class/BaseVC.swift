@@ -57,7 +57,7 @@ extension BaseVC {
         UserToken.shared.refreshToken = refreshToken
     }
     
-    /// 토큰 갱신, 자동로그인 시 UserDefaults에 값 저장하는 메서드
+    /// 토큰 갱신, 자동로그인 시 UserDefaults, Singleton에 값 저장하는 메서드
     func setUpUserdefaultValues(data: SignInDataModel) {
         UserDefaults.standard.set(data.accesstoken, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(data.refreshtoken, forKey: UserDefaults.Keys.RefreshToken)
@@ -65,19 +65,21 @@ extension BaseVC {
         UserDefaults.standard.set(data.user.firstMajorName, forKey: UserDefaults.Keys.FirstMajorName)
         UserDefaults.standard.set(data.user.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
         UserDefaults.standard.set(data.user.secondMajorName, forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(data.user.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
         UserDefaults.standard.set(data.user.userID, forKey: UserDefaults.Keys.UserID)
+        UserPermissionInfo.shared.isReviewed = data.user.isReviewed
+        UserPermissionInfo.shared.isUserReported = data.user.isUserReported
+        UserPermissionInfo.shared.isReviewInappropriate = data.user.isReviewInappropriate
+        UserPermissionInfo.shared.permissionMsg = data.user.permissionMsg
     }
     
     /// 로그아웃 시 UserDefaults 지우는 함수
-    private func setRemoveUserdefaultValues() {
+    func setRemoveUserdefaultValues() {
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
@@ -104,6 +106,62 @@ extension BaseVC {
         }
     }
     
+    /// 권한에 따른 제한 알럿 띄워주는 함수
+    func showRestrictionAlert(permissionStatus: PermissionType) {
+        var permissionMsg = "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요."
+        var comfirmTitle = "후기 작성"
+        var cancelTitle = "다음에 작성"
+        
+        guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+        
+        switch permissionStatus {
+        case .review:
+            restrictionAlert.confirmBtn.press {
+                self.presentToReviewWriteVC { _ in }
+            }
+        case .inappropriate:
+            permissionMsg = "부적절한 후기 작성이 확인되어\n열람 권한이 제한되었습니다.\n권한을 얻고 싶다면\n다시 학과후기를 작성해주세요."
+            comfirmTitle = "문의하기"
+            cancelTitle = "닫기"
+            restrictionAlert.confirmBtn.press {
+                self.getAppLink { appLink in
+                    if let url = URL(string: appLink.kakaoTalkChannel) {
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                }
+            }
+        case .report:
+            permissionMsg = UserPermissionInfo.shared.permissionMsg
+            comfirmTitle = "문의하기"
+            cancelTitle = "닫기"
+            restrictionAlert.confirmBtn.press {
+                self.getAppLink { appLink in
+                    if let url = URL(string: appLink.kakaoTalkChannel) {
+                        UIApplication.shared.open(url, options: [:])
+                    }
+                }
+            }
+        }
+        
+        restrictionAlert.showNadoAlert(vc: self, message: permissionMsg, confirmBtnTitle: comfirmTitle, cancelBtnTitle: cancelTitle)
+    }
+    
+    /// 신고, 부적절 후기 사용, 후기 미등록자, 일반유저 권한 최종 분기처리 메서드
+    func divideUserPermission(defaultAction: () -> Void) {
+        if UserPermissionInfo.shared.isUserReported {
+            self.showRestrictionAlert(permissionStatus: .report)
+        } else if UserPermissionInfo.shared.isReviewInappropriate || !(UserPermissionInfo.shared.isReviewed) {
+            self.showRestrictionAlert(permissionStatus: .review)
+        } else {
+            // 아무런 제한이 없을 때 실행되는 action
+            defaultAction()
+        }
+    }
+}
+
+// MARK: - Custom Methods(화면전환)
+extension BaseVC {
+    
     /// 특정 탭의 루트 뷰컨으로 이동시키는 메서드
     func goToRootOfTab(index: Int) {
         tabBarController?.selectedIndex = index
@@ -111,20 +169,65 @@ extension BaseVC {
             nav.popToRootViewController(animated: true)
         }
     }
-
-    /// 권한에 따른 제한 알럿 띄워주는 함수
-    func showRestrictionAlert() {
-        guard let restrictionAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-        
-        /// 후기 작성 버튼 클릭시 후기 작성 페이지로 이동
-        restrictionAlert.confirmBtn.press {
-            let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-            guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-            
-            nextVC.modalPresentationStyle = .fullScreen
-            self.present(nextVC, animated: true, completion: nil)
-        }
-        restrictionAlert.showNadoAlert(vc: self, message: "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요.", confirmBtnTitle: "후기 작성", cancelBtnTitle: "다음에 작성")
+    
+    /// 회원가입VC로 present 화면전환을 하는 메서드
+    func presentToSignUpVC() {
+        guard let signUpVC = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: "SignUpNVC") as? UINavigationController else { return }
+        signUpVC.modalPresentationStyle = .fullScreen
+        self.present(signUpVC, animated: true, completion: nil)
+    }
+    
+    /// 로그인VC로 present 화면전환을 하는 메서드
+    func presentToSignInVC() {
+        guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
+        signInVC.modalPresentationStyle = .fullScreen
+        self.present(signInVC, animated: true, completion: nil)
+    }
+    
+    /// 후기작성VC로 present 화면전환을 하는 메서드
+    func presentToReviewWriteVC(completion: @escaping (ReviewWriteVC) -> ()) {
+        guard let reviewWriteVC = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil).instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+        reviewWriteVC.modalPresentationStyle = .fullScreen
+        self.present(reviewWriteVC, animated: true, completion: nil)
+        completion(reviewWriteVC)
+    }
+    
+    /// 후기상세VC로 navigation push 화면전환을 하는 메서드
+    func pushToReviewDetailVC(completion: @escaping (ReviewDetailVC) -> ()) {
+        guard let reviewDetailVC = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil).instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
+        completion(reviewDetailVC)
+        self.navigationController?.pushViewController(reviewDetailVC, animated: true)
+    }
+    
+    /// 질문작성VC로 present 화면전환을 하는 메서드
+    func presentToWriteQuestionVC(completion: @escaping (WriteQuestionVC) -> ()) {
+        guard let writeQuestionVC = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil).instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
+        completion(writeQuestionVC)
+        writeQuestionVC.modalPresentationStyle = .fullScreen
+        self.present(writeQuestionVC, animated: true, completion: nil)
+    }
+    
+    /// 선배마이페이지VC로 navigation push 화면전환을 하는 메서드
+    func pushToMypageUserVC(completion: @escaping (MypageUserVC) -> ()) {
+        guard let mypageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+        completion(mypageUserVC)
+        self.navigationController?.pushViewController(mypageUserVC, animated: true)
+    }
+    
+    /// 정보상세VC로 navigation push 화면전환을 하는 메서드
+    func pushToInfoDetailVC(completion: @escaping (InfoDetailVC) -> ()) {
+        guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+        infoDetailVC.hidesBottomBarWhenPushed = true
+        completion(infoDetailVC)
+        self.navigationController?.pushViewController(infoDetailVC, animated: true)
+    }
+    
+    /// 질문상세VC로 navigation push 화면전환을 하는 메서드
+    func pushToQuestionDetailVC(completion: @escaping (DefaultQuestionChatVC) -> ()) {
+        guard let questionDetailVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+        questionDetailVC.hidesBottomBarWhenPushed = true
+        completion(questionDetailVC)
+        self.navigationController?.pushViewController(questionDetailVC, animated: true)
     }
 }
 

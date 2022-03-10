@@ -33,14 +33,10 @@ extension MypageMainVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-        guard let personalChatVC = chatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-        
-        personalChatVC.questionType = .personal
-        personalChatVC.naviStyle = .push
-        personalChatVC.postID = self.questionList[indexPath.row].postID
-        personalChatVC.hidesBottomBarWhenPushed = true
-        
-        self.navigationController?.pushViewController(personalChatVC, animated: true)
+        pushToQuestionDetailVC { defaultQuestionChatVC in
+            defaultQuestionChatVC.questionType = .personal
+            defaultQuestionChatVC.naviStyle = .push
+            defaultQuestionChatVC.postID = self.questionList[indexPath.row].postID
+        }
     }
 }

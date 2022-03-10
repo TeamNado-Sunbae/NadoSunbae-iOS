@@ -162,17 +162,15 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
     
     /// sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let myPageUserVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
-        guard let myPageVC = UIStoryboard.init(name: Identifiers.MypageSB, bundle: nil).instantiateViewController(withIdentifier: MypageMainVC.className) as? MypageMainVC else { return }
-        
-        myPageUserVC.targetUserID = indexPath.section == 0 ? majorUserList.onQuestionUserList[indexPath.row].userID : majorUserList.offQuestionUserList[indexPath.row].userID
-        if myPageUserVC.targetUserID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-            self.navigationController?.popViewController(animated: true)
-            self.navigationController?.pushViewController(myPageVC, animated: true)
-            tabBarController?.selectedIndex = 3
+        let targetUserID = indexPath.section == 0 ? self.majorUserList.onQuestionUserList[indexPath.row].userID : self.majorUserList.offQuestionUserList[indexPath.row].userID
+     
+        if targetUserID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+           goToRootOfTab(index: 3)
         } else {
-            myPageUserVC.judgeBlockStatusDelegate = self
-            self.navigationController?.pushViewController(myPageUserVC, animated: true)
+            pushToMypageUserVC { mypageUserVC in
+                mypageUserVC.targetUserID = targetUserID
+                mypageUserVC.judgeBlockStatusDelegate = self
+            }
         }
     }
 }

@@ -96,14 +96,11 @@ extension MypageMyReviewVC: UITableViewDataSource {
 extension MypageMyReviewVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
-        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-            showRestrictionAlert()
-        } else {
-            let ReviewDetailSB = UIStoryboard.init(name: "ReviewDetailSB", bundle: nil)
-            guard let nextVC = ReviewDetailSB.instantiateViewController(withIdentifier: ReviewDetailVC.className) as? ReviewDetailVC else { return }
-            nextVC.postId = reviewList[indexPath.row].postID
-            self.navigationController?.pushViewController(nextVC, animated: true)
+        /// 유저의 권한 분기처리
+        self.divideUserPermission() {
+            pushToReviewDetailVC { reviewDetailVC in
+                reviewDetailVC.postId = self.reviewList[indexPath.row].postID
+            }
         }
     }
     

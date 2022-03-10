@@ -138,17 +138,11 @@ extension InfoMainVC {
     private func setUpTapFloatingBtn() {
         infoFloatingBtn.press {
             
-            /// 후기글 작성하지 않은 유저라면 작성 제한
-            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                self.showRestrictionAlert()
-            } else {
-                let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
-                guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-                
-                writeQuestionVC.questionType = .info
-                writeQuestionVC.modalPresentationStyle = .fullScreen
-                
-                self.present(writeQuestionVC, animated: true, completion: nil)
+            /// 유저의 권한 분기처리
+            self.divideUserPermission() {
+                self.presentToWriteQuestionVC { writeQuestionVC in
+                    writeQuestionVC.questionType = .info
+                }
             }
         }
     }
@@ -247,16 +241,12 @@ extension InfoMainVC: UITableViewDelegate {
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-            showRestrictionAlert()
-        } else {
-            guard let infoDetailVC = self.storyboard?.instantiateViewController(withIdentifier: InfoDetailVC.className) as? InfoDetailVC else { return }
-            
+        /// 유저의 권한 분기처리
+        self.divideUserPermission() {
             if infoList.count != 0 {
-                infoDetailVC.postID = infoList[indexPath.row].postID
-                infoDetailVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(infoDetailVC, animated: true)
+                pushToInfoDetailVC { infoDetailVC in
+                    infoDetailVC.postID = self.infoList[indexPath.row].postID
+                }
             }
         }
     }

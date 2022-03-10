@@ -73,15 +73,15 @@ class MypageUserVC: BaseVC {
     
     // MARK: @IBAction
     @IBAction func tapPersonalQuestionWriteBtn(_ sender: Any) {
-        if self.userInfo.isOnQuestion {
-            let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
-            guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-            
-            writeQuestionVC.questionType = .personal
-            writeQuestionVC.answerID = self.userInfo.userID
-            writeQuestionVC.modalPresentationStyle = .fullScreen
-            
-            self.present(writeQuestionVC, animated: true, completion: nil)
+        
+        /// 유저의 권한 분기처리
+        self.divideUserPermission() {
+            if self.userInfo.isOnQuestion {
+                presentToWriteQuestionVC { writeQuestionVC in
+                    writeQuestionVC.questionType = .personal
+                    writeQuestionVC.answerID = self.userInfo.userID
+                }
+            }
         }
     }
     

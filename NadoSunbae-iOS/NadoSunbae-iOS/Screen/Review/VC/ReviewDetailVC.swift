@@ -140,38 +140,33 @@ extension ReviewDetailVC {
         }
     }
     
-    /// UserDefaults의 isReviewed 값 설정
+    /// UserPermissionInfo Singleton의 isReviewed 값 설정
     private func setUpIsReviewedStatus(model: ReviewDeleteResModel) {
-        UserDefaults.standard.set(model.isReviewed, forKey: UserDefaults.Keys.IsReviewed)
+        UserPermissionInfo.shared.isReviewed = model.isReviewed
     }
     
     /// 후기 수정 위한 기존 데이터 전달 함수
     private func sendDetailPostData() {
         
         /// 후기 작성 뷰로 이동
-        let ReviewWriteSB = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil)
-        guard let nextVC = ReviewWriteSB.instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
-        
-        /// 기존 작성 내용 전달
-        nextVC.setReceivedData(status: false, postId: self.detailPost.post.postID, bgImgId: self.detailPost.backgroundImage.imageID)
-        nextVC.oneLineReviewTextView.textColor = .mainText
-        nextVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
-        
-        let contentTitleDict: [String : UITextView] = ["장단점" : nextVC.prosAndConsTextView, "뭘 배우나요?" : nextVC.learnInfoTextView, "추천 수업" : nextVC.recommendClassTextView, "비추 수업" :  nextVC.badClassTextView, "향후 진로" : nextVC.futureTextView, "꿀팁" : nextVC.tipTextView]
-        var newContentTitleDict = [String : UITextView]()
-        var newContentDict = [String : String]()
-        
-        for i in 0..<self.detailPost.post.contentList.count {
-            newContentTitleDict.updateValue(contentTitleDict[self.detailPost.post.contentList[i].title] ?? UITextView(), forKey: self.detailPost.post.contentList[i].title)
-            newContentDict.updateValue(self.detailPost.post.contentList[i].content, forKey: self.detailPost.post.contentList[i].title)
-        }
-        
-        newContentTitleDict.forEach {
-            $0.value.textColor = .mainText
-            $0.value.text = newContentDict[$0.key]
+        presentToReviewWriteVC { reviewWriteVC in
+            reviewWriteVC.setReceivedData(status: false, postId: self.detailPost.post.postID, bgImgId: self.detailPost.backgroundImage.imageID)
+            reviewWriteVC.oneLineReviewTextView.textColor = .mainText
+            reviewWriteVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
+            
+            let contentTitleDict: [String : UITextView] = ["장단점" : reviewWriteVC.prosAndConsTextView, "뭘 배우나요?" : reviewWriteVC.learnInfoTextView, "추천 수업" : reviewWriteVC.recommendClassTextView, "비추 수업" :  reviewWriteVC.badClassTextView, "향후 진로" : reviewWriteVC.futureTextView, "꿀팁" : reviewWriteVC.tipTextView]
+            var newContentTitleDict = [String : UITextView]()
+            var newContentDict = [String : String]()
+            
+            for i in 0..<self.detailPost.post.contentList.count {
+                newContentTitleDict.updateValue(contentTitleDict[self.detailPost.post.contentList[i].title] ?? UITextView(), forKey: self.detailPost.post.contentList[i].title)
+                newContentDict.updateValue(self.detailPost.post.contentList[i].content, forKey: self.detailPost.post.contentList[i].title)
+            }
+            
+            newContentTitleDict.forEach {
+                $0.value.textColor = .mainText
+                $0.value.text = newContentDict[$0.key]
+            }
         }
     }
 }
@@ -246,10 +241,13 @@ extension ReviewDetailVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            guard let nextVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
-            
-            nextVC.targetUserID = detailPost.writer.writerID
-            self.navigationController?.pushViewController(nextVC, animated: true)
+            pushToMypageUserVC { mypageUserVC in
+                mypageUserVC.targetUserID = self.detailPost.writer.writerID
+            }
+//            guard let nextVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
+//
+//            nextVC.targetUserID = detailPost.writer.writerID
+//            self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }
 }

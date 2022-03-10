@@ -102,15 +102,13 @@ extension EntireQuestionListVC {
     
     /// 질문작성 floatingBtn tap 메서드
     private func setUpTapFloatingBtn() {
+        
         questionFloatingBtn.press {
-            // TODO: 후기작성 분기처리 후 질문작성뷰랑 연결
-            let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
-            guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-            
-            writeQuestionVC.questionType = .group
-            writeQuestionVC.modalPresentationStyle = .fullScreen
-            
-            self.present(writeQuestionVC, animated: true, completion: nil)
+            self.divideUserPermission() {
+                self.presentToWriteQuestionVC { writeQuestionVC in
+                    writeQuestionVC.questionType = .group
+                }
+            }
         }
     }
     
@@ -198,19 +196,13 @@ extension EntireQuestionListVC: UITableViewDelegate {
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-            showRestrictionAlert()
-        } else {
-            let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-            guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-            
-            groupChatVC.questionType = .group
-            groupChatVC.naviStyle = .push
-            groupChatVC.postID = questionList[indexPath.row].postID
-            groupChatVC.hidesBottomBarWhenPushed = true
-            
-            self.navigationController?.pushViewController(groupChatVC, animated: true)
+        /// 유저의 권한 분기처리
+        self.divideUserPermission() {
+            pushToQuestionDetailVC { defaultQuestionChatVC in
+                defaultQuestionChatVC.questionType = .group
+                defaultQuestionChatVC.naviStyle = .push
+                defaultQuestionChatVC.postID = self.questionList[indexPath.row].postID
+            }
         }
     }
 }

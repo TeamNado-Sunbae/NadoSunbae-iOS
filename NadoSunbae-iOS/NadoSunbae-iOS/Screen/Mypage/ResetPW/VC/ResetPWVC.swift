@@ -110,19 +110,6 @@ class ResetPWVC: BaseVC {
         }
     }
     
-    /// 로그아웃 시 UserDefaults 지우는 함수
-    private func setRemoveUserdefaultValues() {
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
-    }
-    
     /// 로그인 상태 판단 함수
     private func isLogin() -> Bool {
         return UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) is Int ? true : false

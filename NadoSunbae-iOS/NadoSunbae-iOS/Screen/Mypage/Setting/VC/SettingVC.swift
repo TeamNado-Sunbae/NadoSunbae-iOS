@@ -94,20 +94,6 @@ class SettingVC: BaseVC {
     private func registerXIB() {
         SettingTVC.register(target: settingTV)
     }
-    
-    /// 로그아웃 시 UserDefaults 지우는 함수
-    private func setRemoveUserdefaultValues() {
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorName)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorID)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.SecondMajorName)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.IsReviewed)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.UserID)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.Email)
-        UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.PW)
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -170,9 +156,7 @@ extension SettingVC {
             switch networkResult {
             case .success:
                 self.setRemoveUserdefaultValues()
-                guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
-                signInVC.modalPresentationStyle = .fullScreen
-                self.present(signInVC, animated: true, completion: nil)
+                self.presentToSignInVC()
             case .requestErr(let res):
                 if let message = res as? String {
                     print(message)
@@ -202,9 +186,7 @@ extension SettingVC {
                 
                 alert.confirmBtn.press {
                     alert.dismiss(animated: true, completion: nil)
-                    guard let signInVC = UIStoryboard.init(name: "SignInSB", bundle: nil).instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
-                    signInVC.modalPresentationStyle = .fullScreen
-                    self.present(signInVC, animated: true, completion: nil)
+                    self.presentToSignInVC()
                 }
                 
                 alert.showNadoAlert(vc: self, message: "탈퇴가 완료되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)

@@ -34,19 +34,13 @@ extension MypageUserVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-        if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-            showRestrictionAlert()
-        } else {
-            let chatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-            guard let personalChatVC = chatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-            
-            personalChatVC.questionType = .personal
-            personalChatVC.naviStyle = .push
-            personalChatVC.postID = self.questionList[indexPath.row].postID
-            personalChatVC.hidesBottomBarWhenPushed = true
-            
-            self.navigationController?.pushViewController(personalChatVC, animated: true)
+        /// 유저의 권한 분기처리
+        self.divideUserPermission() {
+            pushToQuestionDetailVC { defaultQuestionChatVC in
+                defaultQuestionChatVC.questionType = .personal
+                defaultQuestionChatVC.naviStyle = .push
+                defaultQuestionChatVC.postID = self.questionList[indexPath.row].postID
+            }
         }
     }
 }
