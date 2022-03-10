@@ -271,10 +271,8 @@ extension QuestionMainVC: UITableViewDataSource {
             guard let questionHeaderCell = tableView.dequeueReusableCell(withIdentifier: QuestionHeaderTVC.className, for: indexPath) as? QuestionHeaderTVC else { return UITableViewCell() }
             questionHeaderCell.tapWriteBtnAction = {
                 
-                /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-                if !(UserPermissionInfo.shared.isReviewed) {
-                    self.showRestrictionAlert(permissionStatus: .review)
-                } else {
+                /// 유저의 권한 분기처리
+                self.divideUserPermission() {
                     self.presentToWriteQuestionVC { writeQuestionVC in
                         writeQuestionVC.questionType = .group
                     }
@@ -332,10 +330,8 @@ extension QuestionMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             
-            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserPermissionInfo.shared.isReviewed) {
-                showRestrictionAlert(permissionStatus: .review)
-            } else {
+            /// 유저의 권한 분기처리
+            self.divideUserPermission() {
                 if questionList.count != 0 {
                     pushToQuestionDetailVC { defaultQuestionChatVC in
                         defaultQuestionChatVC.questionType = .group
