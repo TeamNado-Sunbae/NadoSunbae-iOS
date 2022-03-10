@@ -156,7 +156,11 @@ class EditProfileVC: BaseVC {
     }
     
     private func judgeSaveBtnState() {
-        setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
+        if userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입" {
+            setNavViewNadoRightBtn(status: false)
+        } else {
+            setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
+        }
     }
 }
 
