@@ -102,9 +102,12 @@ extension EntireQuestionListVC {
     
     /// 질문작성 floatingBtn tap 메서드
     private func setUpTapFloatingBtn() {
+        
         questionFloatingBtn.press {
-            self.presentToWriteQuestionVC { writeQuestionVC in
-                writeQuestionVC.questionType = .group
+            self.divideUserPermission() {
+                self.presentToWriteQuestionVC { writeQuestionVC in
+                    writeQuestionVC.questionType = .group
+                }
             }
         }
     }
