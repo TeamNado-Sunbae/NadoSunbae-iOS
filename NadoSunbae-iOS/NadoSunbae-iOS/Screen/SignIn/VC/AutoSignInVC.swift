@@ -72,9 +72,7 @@ extension AutoSignInVC {
                 }
             default:
                 print("Failed Auto SignIn")
-                guard let signInVC = self.storyboard?.instantiateViewController(withIdentifier: SignInVC.className) as? SignInVC else { return }
-                signInVC.modalPresentationStyle = .fullScreen
-                self.present(signInVC, animated: true, completion: nil)
+                self.presentToSignInVC()
             }
         }
     }

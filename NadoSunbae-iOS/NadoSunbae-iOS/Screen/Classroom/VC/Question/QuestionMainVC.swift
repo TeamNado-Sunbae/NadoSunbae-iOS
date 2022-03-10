@@ -189,17 +189,6 @@ extension QuestionMainVC {
         }
     }
     
-    /// 질문작성VC로 present하는 메서드
-    private func presentToWriteQuestionVC() {
-        let writeQuestionSB: UIStoryboard = UIStoryboard(name: Identifiers.WriteQusetionSB, bundle: nil)
-        guard let writeQuestionVC = writeQuestionSB.instantiateViewController(identifier: WriteQuestionVC.className) as? WriteQuestionVC else { return }
-        
-        writeQuestionVC.questionType = .group
-        writeQuestionVC.modalPresentationStyle = .fullScreen
-        
-        self.present(writeQuestionVC, animated: true, completion: nil)
-    }
-    
     /// 질문가능선배Btn tap Action 설정 메서드
     private func setUpTapFindSunbaeBtn() {
         findSunbaeEntireBtn.press(vibrate: true) {
@@ -283,10 +272,12 @@ extension QuestionMainVC: UITableViewDataSource {
             questionHeaderCell.tapWriteBtnAction = {
                 
                 /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-                if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                    self.showRestrictionAlert()
+                if !(UserPermissionInfo.shared.isReviewed) {
+                    self.showRestrictionAlert(permissionStatus: .review)
                 } else {
-                    self.presentToWriteQuestionVC()
+                    self.presentToWriteQuestionVC { writeQuestionVC in
+                        writeQuestionVC.questionType = .group
+                    }
                 }
             }
             return questionHeaderCell
@@ -342,18 +333,15 @@ extension QuestionMainVC: UITableViewDelegate {
         if indexPath.section == 1 {
             
             /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserDefaults.standard.bool(forKey: UserDefaults.Keys.IsReviewed)) {
-                showRestrictionAlert()
+            if !(UserPermissionInfo.shared.isReviewed) {
+                showRestrictionAlert(permissionStatus: .review)
             } else {
-                let groupChatSB: UIStoryboard = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil)
-                guard let groupChatVC = groupChatSB.instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-                
                 if questionList.count != 0 {
-                    groupChatVC.questionType = .group
-                    groupChatVC.naviStyle = .push
-                    groupChatVC.postID = questionList[indexPath.row].postID
-                    groupChatVC.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(groupChatVC, animated: true)
+                    pushToQuestionDetailVC { defaultQuestionChatVC in
+                        defaultQuestionChatVC.questionType = .group
+                        defaultQuestionChatVC.naviStyle = .push
+                        defaultQuestionChatVC.postID = self.questionList[indexPath.row].postID
+                    }
                 }
             }
         } else if indexPath.section == 2 {

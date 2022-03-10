@@ -38,56 +38,27 @@ extension NotificationMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch notificationList[indexPath.section].notificationTypeID.getNotiType() {
-        case .writtenInfo:
-            guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
+        case .writtenInfo, .answerInfo:
+            pushToInfoDetailVC { infoDetailVC in
+                infoDetailVC.postID = self.notificationList[indexPath.section].postID
+                self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
+            }
             
-            infoDetailVC.postID = notificationList[indexPath.section].postID
-            infoDetailVC.hidesBottomBarWhenPushed = true
-            
-            readNoti(notiID: notificationList[indexPath.section].notificationID)
-            self.navigationController?.pushViewController(infoDetailVC, animated: true)
-            
-        case .writtenQuestion:
-            guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-            
-            groupChatVC.questionType = notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
-            groupChatVC.naviStyle = .push
-            groupChatVC.postID = notificationList[indexPath.section].postID
-            groupChatVC.hidesBottomBarWhenPushed = true
-
-            readNoti(notiID: notificationList[indexPath.section].notificationID)
-            self.navigationController?.pushViewController(groupChatVC, animated: true)
-            
-        case .answerInfo:
-            guard let infoDetailVC = UIStoryboard(name: Identifiers.InfoSB, bundle: nil).instantiateViewController(identifier: InfoDetailVC.className) as? InfoDetailVC else { return }
-            
-            infoDetailVC.postID = notificationList[indexPath.section].postID
-            infoDetailVC.hidesBottomBarWhenPushed = true
-            
-            readNoti(notiID: notificationList[indexPath.section].notificationID)
-            self.navigationController?.pushViewController(infoDetailVC, animated: true)
-            
-        case .answerQuestion:
-            guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-            
-            groupChatVC.questionType = notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
-            groupChatVC.naviStyle = .push
-            groupChatVC.postID = notificationList[indexPath.section].postID
-            groupChatVC.hidesBottomBarWhenPushed = true
-            
-            readNoti(notiID: notificationList[indexPath.section].notificationID)
-            self.navigationController?.pushViewController(groupChatVC, animated: true)
+        case .writtenQuestion, .answerQuestion:
+            pushToQuestionDetailVC { defaultQuestionChatVC in
+                defaultQuestionChatVC.questionType = self.notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
+                defaultQuestionChatVC.naviStyle = .push
+                defaultQuestionChatVC.postID = self.notificationList[indexPath.section].postID
+                self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
+            }
             
         case .mypageQuestion:
-            guard let groupChatVC = UIStoryboard(name: Identifiers.QuestionChatSB, bundle: nil).instantiateViewController(identifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-            
-            groupChatVC.questionType = .personal
-            groupChatVC.naviStyle = .push
-            groupChatVC.postID = notificationList[indexPath.section].postID
-            groupChatVC.hidesBottomBarWhenPushed = true
-            
-            readNoti(notiID: notificationList[indexPath.section].notificationID)
-            self.navigationController?.pushViewController(groupChatVC, animated: true)
+            pushToQuestionDetailVC { defaultQuestionChatVC in
+                defaultQuestionChatVC.questionType = .personal
+                defaultQuestionChatVC.naviStyle = .push
+                defaultQuestionChatVC.postID = self.notificationList[indexPath.section].postID
+                self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
+            }
             
         default:
             break

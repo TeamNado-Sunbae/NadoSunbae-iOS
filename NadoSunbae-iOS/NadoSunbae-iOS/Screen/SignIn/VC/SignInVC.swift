@@ -39,9 +39,7 @@ class SignInVC: BaseVC {
     }
     
     @IBAction func tapSignUpBtn(_ sender: UIButton) {
-        guard let vc = UIStoryboard.init(name: AgreeTermsVC.className, bundle: nil).instantiateViewController(withIdentifier: "SignUpNVC") as? UINavigationController else { return }
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        presentToSignUpVC()
     }
     
     @IBAction func tapFindPWBtn(_ sender: UIButton) {
