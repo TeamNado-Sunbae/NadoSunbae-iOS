@@ -70,9 +70,7 @@ class SignUpMajorInfoVC: BaseVC {
         guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
         
         /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
-        if sender.tag == 3 && secondMajorTextField.isEmpty {
-            // TODO: 처리 어떻게 하지...? 일단 modal 안 뜨게 막아둠
-        } else {
+        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
             slideVC.enterdBtnTag = sender.tag
             self.enterBtnTag = sender.tag
             
@@ -126,24 +124,23 @@ extension SignUpMajorInfoVC {
             targetTextField.text = title
             self.checkSelectBtnStatus(btn: self.univSelectBtn, textField: self.univTextField)
             self.signUpData.universityID = 1
+            self.checkNextBtnIsEnabled()
         })
         return alertAction
     }
     
     /// textField에 값이 들어올 때마다 NextBtn 활성화할지를 체크하는 함수
     private func checkNextBtnIsEnabled() {
-        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) {
-            if secondMajorTextField.isEmpty {
-                secondMajorStartSelectBtn.isEnabled = true
-                nextBtn.isActivated = false
-                nextBtn.isEnabled = false
+        secondMajorStartSelectBtn.isEnabled = !(secondMajorTextField.text == "미진입")
+        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) && !(secondMajorTextField.isEmpty) {
+            if secondMajorTextField.text == "미진입" {
+                nextBtn.isActivated = true
+                nextBtn.isEnabled = true
             } else {
-                secondMajorStartSelectBtn.isEnabled = !(secondMajorTextField.text == "미진입")
-                nextBtn.isActivated = !(secondMajorStartTextField.isEmpty) || secondMajorTextField.text == "미진입"
-                nextBtn.isEnabled = !(secondMajorStartTextField.isEmpty) || secondMajorTextField.text == "미진입"
+                nextBtn.isActivated = !(secondMajorStartTextField.isEmpty)
+                nextBtn.isActivated = !(secondMajorStartTextField.isEmpty)
             }
         } else {
-            secondMajorStartSelectBtn.isEnabled = true
             nextBtn.isActivated = false
             nextBtn.isEnabled = false
         }
