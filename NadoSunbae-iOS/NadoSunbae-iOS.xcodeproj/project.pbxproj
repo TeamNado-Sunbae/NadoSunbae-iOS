@@ -65,6 +65,8 @@
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */; };
 		336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */; };
+		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
+		336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4227DA77700010A9E3 /* FirebaseMessaging */; };
 		3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */; };
 		3381083827D53F33005AF1F9 /* MypageReviewLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */; };
 		3381083A27D53F4A005AF1F9 /* MypageClassroomPostListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083927D53F4A005AF1F9 /* MypageClassroomPostListVC.swift */; };
@@ -564,6 +566,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */,
+				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
 				029EEBC37F1D2F9513AEB081 /* Pods_NadoSunbae_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1728,6 +1732,10 @@
 			dependencies = (
 			);
 			name = "NadoSunbae-iOS";
+			packageProductDependencies = (
+				336EEE4027DA77700010A9E3 /* FirebaseAnalytics */,
+				336EEE4227DA77700010A9E3 /* FirebaseMessaging */,
+			);
 			productName = "NadoSunbae-iOS";
 			productReference = 331364262784D3BD00E0C118 /* NadoSunbae-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -1757,6 +1765,9 @@
 				Base,
 			);
 			mainGroup = 3313641D2784D3BD00E0C118;
+			packageReferences = (
+				336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 331364272784D3BD00E0C118 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2309,6 +2320,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		336EEE4027DA77700010A9E3 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		336EEE4227DA77700010A9E3 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3313641E2784D3BD00E0C118 /* Project object */;
 }
