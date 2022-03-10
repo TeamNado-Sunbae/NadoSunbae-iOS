@@ -156,7 +156,11 @@ class EditProfileVC: BaseVC {
     }
     
     private func judgeSaveBtnState() {
-        setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
+        if userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입" {
+            setNavViewNadoRightBtn(status: false)
+        } else {
+            setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
+        }
     }
 }
 
@@ -321,6 +325,9 @@ extension EditProfileVC: SendUpdateModalDelegate {
             if let majorInfoData = data as? MajorInfoModel {
                 self.secondMajorTextField.text = majorInfoData.majorName
                 self.changedInfo.secondMajorID = majorInfoData.majorID
+                if changedInfo.secondMajorID == 1 {
+                    changedInfo.secondMajorStart = "미진입"
+                }
                 checkSecondMajorStatus()
             }
         case 3:

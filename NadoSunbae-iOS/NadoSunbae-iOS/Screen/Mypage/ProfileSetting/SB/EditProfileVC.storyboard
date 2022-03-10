@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="104" width="375" height="853"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Erw-kK-1XW" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="833"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="832"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5gb-Ep-3Xu">
                                                 <rect key="frame" x="151.66666666666666" y="22" width="72" height="72"/>
@@ -45,27 +45,27 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCw-NE-m6i">
-                                                <rect key="frame" x="0.0" y="134" width="375" height="90"/>
+                                                <rect key="frame" x="0.0" y="134" width="375" height="89"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임: 영문, 한글, 숫자를 합하여 2-8자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryd-VX-cuU">
-                                                        <rect key="frame" x="20" y="8" width="189" height="15"/>
+                                                        <rect key="frame" x="20" y="8" width="189" height="14"/>
                                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                         <color key="textColor" name="gray3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Se9-Pm-suD" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="31" width="343" height="43"/>
+                                                        <rect key="frame" x="16" y="30" width="343" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne5-k1-x9f">
-                                                        <rect key="frame" x="20" y="82" width="335" height="0.0"/>
+                                                        <rect key="frame" x="20" y="81" width="335" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                         <color key="textColor" name="mainDark"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btV-gX-V3e">
-                                                        <rect key="frame" x="306" y="39" width="48" height="27"/>
+                                                        <rect key="frame" x="306" y="38" width="48" height="27"/>
                                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                         <color key="tintColor" name="mainDefault"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -93,14 +93,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxu-89-rbn" userLabel="Seperator View">
-                                                <rect key="frame" x="0.0" y="224" width="375" height="19.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="223" width="375" height="19.666666666666657"/>
                                                 <color key="backgroundColor" name="paleGray"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06h-gZ-1Ql">
-                                                <rect key="frame" x="0.0" y="243.66666666666669" width="375" height="96"/>
+                                                <rect key="frame" x="0.0" y="242.66666666666669" width="375" height="96"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후배들의 1:1 질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYz-w2-Jy6">
-                                                        <rect key="frame" x="20" y="31" width="110" height="20"/>
+                                                        <rect key="frame" x="20.000000000000007" y="31" width="109.66666666666669" height="20"/>
                                                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="16"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -134,11 +134,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPC-LY-t9L" userLabel="Seperator View">
-                                                <rect key="frame" x="0.0" y="339.66666666666669" width="375" height="19.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="338.66666666666669" width="375" height="19.333333333333314"/>
                                                 <color key="backgroundColor" name="paleGray"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjb-FV-VUF">
-                                                <rect key="frame" x="0.0" y="405" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="404" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nST-UQ-tGE">
                                                         <rect key="frame" x="20" y="8" width="32" height="14"/>
@@ -177,7 +177,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-iU-uvI">
-                                                <rect key="frame" x="0.0" y="505" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="504" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssl-du-0Vr">
                                                         <rect key="frame" x="20" y="8" width="76" height="14"/>
@@ -216,7 +216,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je0-ZA-3ow">
-                                                <rect key="frame" x="0.0" y="605" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="604" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wa-we-lov">
                                                         <rect key="frame" x="20" y="8" width="38" height="14"/>
@@ -255,7 +255,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grc-Fv-Dm1">
-                                                <rect key="frame" x="0.0" y="705" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="704" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7d-W7-WQR">
                                                         <rect key="frame" x="20" y="8" width="83" height="14"/>
@@ -294,7 +294,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전공정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N29-Za-8kN">
-                                                <rect key="frame" x="20" y="383" width="335" height="17"/>
+                                                <rect key="frame" x="20" y="382" width="335" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="qX8-sA-yUh"/>
                                                 </constraints>
