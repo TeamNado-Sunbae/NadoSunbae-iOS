@@ -241,10 +241,8 @@ extension InfoMainVC: UITableViewDelegate {
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-        if !(UserPermissionInfo.shared.isReviewed) {
-            showRestrictionAlert(permissionStatus: .review)
-        } else {
+        /// 유저의 권한 분기처리
+        self.divideUserPermission() {
             if infoList.count != 0 {
                 pushToInfoDetailVC { infoDetailVC in
                     infoDetailVC.postID = self.infoList[indexPath.row].postID

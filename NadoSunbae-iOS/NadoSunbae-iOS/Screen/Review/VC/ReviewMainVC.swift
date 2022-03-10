@@ -247,14 +247,8 @@ extension ReviewMainVC: UITableViewDelegate {
         if indexPath.section == 2 {
             if !postList.isEmpty {
                 
-                /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
-                if UserPermissionInfo.shared.isUserReported {
-                    showRestrictionAlert(permissionStatus: .report)
-                } else if UserPermissionInfo.shared.isReviewInappropriate {
-                    showRestrictionAlert(permissionStatus: .inappropriate)
-                } else if !(UserPermissionInfo.shared.isReviewed) {
-                    showRestrictionAlert(permissionStatus: .review)
-                } else {
+                /// 유저의 권한 분기처리
+                self.divideUserPermission() {
                     pushToReviewDetailVC { reviewDetailVC in
                         reviewDetailVC.postId = self.postList[indexPath.row].postID
                     }

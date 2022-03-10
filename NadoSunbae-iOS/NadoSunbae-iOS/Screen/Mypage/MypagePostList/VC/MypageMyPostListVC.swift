@@ -124,10 +124,8 @@ extension MypageMyPostListVC: UITableViewDelegate {
         switch postType {
         case .question:
             
-            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserPermissionInfo.shared.isReviewed) {
-                showRestrictionAlert(permissionStatus: .review)
-            } else {
+            /// 유저의 권한 분기처리
+            self.divideUserPermission() {
                 pushToQuestionDetailVC { defaultQuestionChatVC in
                     defaultQuestionChatVC.questionType = .group
                     defaultQuestionChatVC.naviStyle = .push
@@ -143,10 +141,8 @@ extension MypageMyPostListVC: UITableViewDelegate {
             }
         case .information:
             
-            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserPermissionInfo.shared.isReviewed) {
-                showRestrictionAlert(permissionStatus: .review)
-            } else {
+            /// 유저의 권한 분기처리
+            self.divideUserPermission() {
                 pushToInfoDetailVC { infoDetailVC in
                     infoDetailVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
                 }

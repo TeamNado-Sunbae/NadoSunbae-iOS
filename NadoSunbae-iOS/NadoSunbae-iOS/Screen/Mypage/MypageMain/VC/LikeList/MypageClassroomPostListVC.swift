@@ -208,10 +208,8 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
             break
         case .question:
             
-            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserPermissionInfo.shared.isReviewed) {
-                showRestrictionAlert(permissionStatus: .review)
-            } else {
+            /// 유저의 권한 분기처리
+            self.divideUserPermission() {
                 if likePostList.count != 0 {
                     pushToQuestionDetailVC { defaultQuestionChatVC in
                         defaultQuestionChatVC.postID = self.likePostList[indexPath.row].postID
@@ -222,10 +220,8 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
             }
         case .information:
             
-            /// 후기글 작성하지 않은 유저라면 게시글 열람 제한
-            if !(UserPermissionInfo.shared.isReviewed) {
-                showRestrictionAlert(permissionStatus: .review)
-            } else {
+            /// 유저의 권한 분기처리
+            self.divideUserPermission() {
                 if likePostList.count != 0 {
                     pushToInfoDetailVC { infoDetailVC in
                         infoDetailVC.postID = self.likePostList[indexPath.row].postID

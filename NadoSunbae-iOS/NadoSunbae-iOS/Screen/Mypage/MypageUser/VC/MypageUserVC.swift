@@ -74,13 +74,13 @@ class MypageUserVC: BaseVC {
     // MARK: @IBAction
     @IBAction func tapPersonalQuestionWriteBtn(_ sender: Any) {
         
-        /// 후기글 작성하지 않은 유저라면 후기글 열람 제한
-        if !(UserPermissionInfo.shared.isReviewed) {
-            showRestrictionAlert(permissionStatus: .review)
-        } else if self.userInfo.isOnQuestion {
-            presentToWriteQuestionVC { writeQuestionVC in
-                writeQuestionVC.questionType = .personal
-                writeQuestionVC.answerID = self.userInfo.userID
+        /// 유저의 권한 분기처리
+        self.divideUserPermission() {
+            if self.userInfo.isOnQuestion {
+                presentToWriteQuestionVC { writeQuestionVC in
+                    writeQuestionVC.questionType = .personal
+                    writeQuestionVC.answerID = self.userInfo.userID
+                }
             }
         }
     }
