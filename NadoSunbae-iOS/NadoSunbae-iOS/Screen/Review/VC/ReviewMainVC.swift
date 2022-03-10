@@ -42,6 +42,7 @@ class ReviewMainVC: BaseVC {
         addShadowToNaviBar()
         requestGetMajorList(univID: 1, filterType: "all")
         setUpMajorLabel()
+        showInappropriateReviewerAlert()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +58,13 @@ class ReviewMainVC: BaseVC {
     }
     
     @IBAction func tapFloatingBtn(_ sender: Any) {
-        presentToReviewWriteVC { _ in }
+        
+        /// 신고당한 유저일 경우에만 후기 작성 접근 불가 처리
+        if UserPermissionInfo.shared.isUserReported {
+            showRestrictionAlert(permissionStatus: .report)
+        } else {
+            presentToReviewWriteVC { _ in }
+        }
     }
 }
 
@@ -144,6 +151,15 @@ extension ReviewMainVC {
         let webLink = NSURL(string: link)
         let safariVC: SFSafariViewController = SFSafariViewController(url: webLink! as URL)
         self.present(safariVC, animated: true, completion: nil)
+    }
+
+    /// 부적절 후기 사용자인 경우 최초 진입시 1회만 알럿을 띄워주는 함수
+    private func showInappropriateReviewerAlert() {
+        var isShowed = false
+        if !isShowed && UserPermissionInfo.shared.isReviewInappropriate {
+            showRestrictionAlert(permissionStatus: .inappropriate)
+            isShowed = true
+        }
     }
 }
 
