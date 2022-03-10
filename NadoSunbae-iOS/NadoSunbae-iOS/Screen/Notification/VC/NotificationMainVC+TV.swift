@@ -39,17 +39,21 @@ extension NotificationMainVC: UITableViewDelegate {
         
         switch notificationList[indexPath.section].notificationTypeID.getNotiType() {
         case .writtenInfo, .answerInfo:
-            pushToInfoDetailVC { infoDetailVC in
-                infoDetailVC.postID = self.notificationList[indexPath.section].postID
-                self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
+            divideUserPermission() {
+                pushToInfoDetailVC { infoDetailVC in
+                    infoDetailVC.postID = self.notificationList[indexPath.section].postID
+                    self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
+                }
             }
-            
+
         case .writtenQuestion, .answerQuestion:
-            pushToQuestionDetailVC { defaultQuestionChatVC in
-                defaultQuestionChatVC.questionType = self.notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
-                defaultQuestionChatVC.naviStyle = .push
-                defaultQuestionChatVC.postID = self.notificationList[indexPath.section].postID
-                self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
+            divideUserPermission() {
+                pushToQuestionDetailVC { defaultQuestionChatVC in
+                    defaultQuestionChatVC.questionType = self.notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
+                    defaultQuestionChatVC.naviStyle = .push
+                    defaultQuestionChatVC.postID = self.notificationList[indexPath.section].postID
+                    self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
+                }
             }
             
         case .mypageQuestion:
