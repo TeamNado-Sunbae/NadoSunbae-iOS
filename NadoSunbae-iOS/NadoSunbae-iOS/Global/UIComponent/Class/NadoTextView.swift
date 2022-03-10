@@ -20,6 +20,7 @@ class NadoTextView: UITextView {
         self.layer.borderColor = UIColor.gray0.cgColor
         self.font = .PretendardR(size: 14.0)
         self.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        self.autocorrectionType = .no
         
         if isUsePlaceholder {
             self.text = placeholderText
