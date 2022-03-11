@@ -78,6 +78,7 @@ extension ClassroomCommentTVC {
     func bindData(_ model: ClassroomMessageList) {
         nicknameLabel.text = model.writer.nickname
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
+        majorLabel.sizeToFit()
         commentContentTextView.text = model.content
         configureQuestionContentTextView()
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
