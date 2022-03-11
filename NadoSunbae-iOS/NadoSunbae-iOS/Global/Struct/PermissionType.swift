@@ -11,4 +11,5 @@ enum PermissionType {
     case review
     case report
     case inappropriate
+    case firstInappropriate
 }
