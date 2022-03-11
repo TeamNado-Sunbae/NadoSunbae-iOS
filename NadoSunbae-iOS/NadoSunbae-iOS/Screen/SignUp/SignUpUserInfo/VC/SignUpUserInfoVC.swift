@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Firebase
 
 class SignUpUserInfoVC: BaseVC {
     
@@ -68,6 +69,7 @@ class SignUpUserInfoVC: BaseVC {
     @IBAction func tapCompleteBtn(_ sender: UIButton) {
         setSignUpData()
         requestSignUp(userData: signUpData)
+        FirebaseAnalytics.Analytics.logEvent(AnalyticsEventSignUp, parameters: nil)
     }
     
     @IBAction func tapDismissBtn(_ sender: UIButton) {

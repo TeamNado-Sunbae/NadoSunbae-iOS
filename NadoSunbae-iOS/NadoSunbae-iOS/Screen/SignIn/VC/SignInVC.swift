@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import FirebaseAnalytics
 
 class SignInVC: BaseVC {
     
@@ -164,6 +165,10 @@ extension SignInVC {
                 if let data = res as? SignInDataModel {
                     self.doForIsEmailVerified(data: data)
                     self.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
+                    Analytics.setUserID("\(data.user.userID)")
+                    Analytics.setUserProperty("제1전공", forName: data.user.firstMajorName)
+                    Analytics.setUserProperty("제2전공", forName: data.user.secondMajorName)
+                    FirebaseAnalytics.Analytics.logEvent(AnalyticsEventLogin, parameters: nil)
                 }
             case .requestErr(let res):
                 self.activityIndicator.stopAnimating()

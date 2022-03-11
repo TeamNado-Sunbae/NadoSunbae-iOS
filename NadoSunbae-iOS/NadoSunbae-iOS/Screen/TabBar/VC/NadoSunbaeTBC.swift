@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class NadoSunbaeTBC: UITabBarController {
     

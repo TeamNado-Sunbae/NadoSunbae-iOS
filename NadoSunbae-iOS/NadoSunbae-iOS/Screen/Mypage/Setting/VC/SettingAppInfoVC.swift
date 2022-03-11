@@ -46,6 +46,7 @@ class SettingAppInfoVC: BaseVC {
         getAppLink { appLink in
             self.appLink = appLink
         }
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: SettingAppInfoVC.className)
     }
     
     // MARK: Custom Methods

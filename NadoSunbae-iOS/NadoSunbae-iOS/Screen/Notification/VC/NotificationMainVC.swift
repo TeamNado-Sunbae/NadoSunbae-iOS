@@ -51,6 +51,7 @@ class NotificationMainVC: BaseVC {
         super.viewWillAppear(animated)
         showTabbar()
         getNotiList()
+        makeScreenAnalyticsEvent(screenName: "Notification Tab", screenClass: NotificationMainVC.className)
     }
 }
 

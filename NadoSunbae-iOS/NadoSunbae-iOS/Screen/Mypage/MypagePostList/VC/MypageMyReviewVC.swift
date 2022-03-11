@@ -45,6 +45,7 @@ class MypageMyReviewVC: BaseVC {
         super.viewWillAppear(animated)
         getMypageMyReview()
         hideTabbar()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypageMyReviewVC.className)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

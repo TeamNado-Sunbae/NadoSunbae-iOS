@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class ReviewWriteVC: BaseVC {
     
@@ -101,6 +102,8 @@ class ReviewWriteVC: BaseVC {
             textView in setUpCharCount(textView: textView)
         }
         setUpDefaultBgImg()
+        makeDefaultAnalyticsEvent(eventName: "후기작성뷰_진입")
+        makeScreenAnalyticsEvent(screenName: "Review Tab", screenClass: ReviewWriteVC.className)
     }
     
     @IBAction func tapMajorChangeBtn(_ sender: Any) {
@@ -271,11 +274,12 @@ extension ReviewWriteVC {
                     /// UserDefaults 값 세팅
                     UserPermissionInfo.shared.isReviewed = true
                     UserPermissionInfo.shared.isReviewInappropriate = false
-                    
+                    self.makeDefaultAnalyticsEvent(eventName: "후기등록완료_버튼클릭")
                 } else {
                     
                     /// 게시글 수정 서버통신
                     self.requestEditReviewPost(postID: self.postID, bgImgID: self.bgImgID, oneLineReview: self.oneLineReviewTextView.text, prosCons: self.prosAndConsTextView.text, curriculum: self.learnInfoTextView.text, career: self.futureTextView.text, recommendLecture: self.recommendClassTextView.text, nonRecommendLecture: self.badClassTextView.text, tip: self.tipTextView.text)
+                    self.makeScreenAnalyticsEvent(screenName: "Review Tab", screenClass: "ReviewWriteVC+Edit")
                 }
             }
             
@@ -474,9 +478,9 @@ extension ReviewWriteVC {
             switch networkResult {
                 
             case .success(let res):
-                if let data = res as? ReviewPostRegisterData {
+                if let _ = res as? ReviewPostRegisterData {
                     self.dismiss(animated: true)
-                    print(data)
+                    self.makePostAnalyticsEvent(postType: !UserPermissionInfo.shared.isReviewed ? "review_new" : "review_additional", postedMajor: self.majorNameLabel.text ?? "")
                 }
             case .requestErr(let res):
                 if let message = res as? String {
