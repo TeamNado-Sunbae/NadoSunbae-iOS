@@ -91,7 +91,7 @@ class DefaultQuestionChatVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        addKeyboardObserver()
+        addObserver()
         optionalBindingData()
         hideTabbar()
         makeScreenAnalyticsEvent(screenName: "ClassRoom_Question Tab", screenClass: DefaultQuestionChatVC.className)
@@ -99,7 +99,7 @@ class DefaultQuestionChatVC: BaseVC {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        removeKeyboardObserver()
+        removeObserver()
     }
     
     // MARK: IBAction
@@ -359,6 +359,30 @@ extension DefaultQuestionChatVC {
                 mypageUserVC.hidesBottomBarWhenPushed = true
             }
         }
+    }
+    
+    /// 알림탭 메인으로 뷰를 전환하는 메서드
+    @objc
+    private func goToNotificationVC() {
+        goToRootOfTab(index: 2)
+    }
+}
+
+// MARK: - Observer
+extension DefaultQuestionChatVC {
+    
+    /// Observer add 메서드
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(goToNotificationVC), name: Notification.Name.pushNotificationClicked, object: nil)
+    }
+    
+    /// Observer remove 메서드
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.pushNotificationClicked, object: nil)
     }
 }
 
@@ -671,12 +695,6 @@ extension DefaultQuestionChatVC: SendBlockedInfoDelegate {
 // MARK: - Keyboard
 extension DefaultQuestionChatVC {
     
-    /// Keyboard Observer add 메서드
-    private func addKeyboardObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
     @objc
     private func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -704,12 +722,6 @@ extension DefaultQuestionChatVC {
             self.defaultQuestionChatTV.contentOffset = CGPoint(x: 0, y: self.defaultQuestionChatTV.contentOffset.y + keyboardShowUpY)
             self.view.layoutIfNeeded()
         }
-    }
-    
-    /// Keyboard Observer remove 메서드
-    private func removeKeyboardObserver() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 
