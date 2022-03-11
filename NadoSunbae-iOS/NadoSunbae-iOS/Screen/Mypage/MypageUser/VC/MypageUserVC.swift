@@ -69,6 +69,7 @@ class MypageUserVC: BaseVC {
         hideTabbar()
         getUserInfo()
         getUserPersonalQuestionList(sort: sortType)
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypageUserVC.className)
     }
     
     // MARK: @IBAction

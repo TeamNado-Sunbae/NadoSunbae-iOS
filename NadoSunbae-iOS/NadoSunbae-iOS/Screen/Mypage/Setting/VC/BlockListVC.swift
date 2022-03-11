@@ -43,6 +43,7 @@ class BlockListVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getBlockList()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: BlockListVC.className)
     }
 }
 

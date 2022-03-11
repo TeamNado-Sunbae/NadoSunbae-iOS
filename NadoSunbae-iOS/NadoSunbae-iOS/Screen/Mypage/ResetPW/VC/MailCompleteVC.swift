@@ -62,6 +62,7 @@ class MailCompleteVC: BaseVC {
         super.viewWillAppear(animated)
         hideTabbar()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MailCompleteVC.className)
     }
     
     // MARK: Custom Methods

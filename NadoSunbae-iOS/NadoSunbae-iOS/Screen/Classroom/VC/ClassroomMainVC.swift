@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 import Then
+import FirebaseAnalytics
 
-class ClassroomMainVC: UIViewController {
+class ClassroomMainVC: BaseVC {
     
     // MARK: Properties
-    private let screenWidth = UIScreen.main.bounds.size.width
     private let majorLabel = UILabel().then {
         $0.text = UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
         $0.font = .PretendardM(size: 20)
@@ -44,6 +44,7 @@ class ClassroomMainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setUpMajorLabel()
         tabBarController?.tabBar.isHidden = false
+        makeScreenAnalyticsEvent(screenName: "ClassRoom Tab", screenClass: ClassroomMainVC.className)
     }
 }
 
@@ -146,8 +147,10 @@ extension ClassroomMainVC: SendSegmentStateDelegate {
     /// segment가 클릭되면 index에 따라 ContainerView의 ContentOffset.x 좌표를 바꿔주는 메서드
     func sendSegmentClicked(index: Int) {
         if index == 0 {
+            makeScreenAnalyticsEvent(screenName: "ClassRoom_Question Tab", screenClass: QuestionMainVC.className)
             classroomContainerView.externalSV.contentOffset.x = 0
         } else {
+            makeScreenAnalyticsEvent(screenName: "ClassRoom_Info Tab", screenClass: InfoMainVC.className)
             classroomContainerView.externalSV.contentOffset.x += screenWidth
         }
     }

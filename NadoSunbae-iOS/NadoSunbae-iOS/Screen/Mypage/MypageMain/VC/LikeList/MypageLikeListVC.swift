@@ -98,14 +98,17 @@ extension MypageLikeListVC: SendSegmentStateDelegate {
         let contentOffsetX = likeContainerView.externalSV.contentOffset.x
         
         if index == 0 {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageReviewLikeVC")
             likeContainerView.externalSV.contentOffset.x = 0
         } else if index == 1 {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageQuestionLikeVC")
             if contentOffsetX > screenWidth {
                 likeContainerView.externalSV.contentOffset.x -= screenWidth
             } else {
                 likeContainerView.externalSV.contentOffset.x += screenWidth
             }
         } else {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageInfoLikeVC")
             if contentOffsetX == screenWidth {
                 likeContainerView.externalSV.contentOffset.x += screenWidth
             } else {

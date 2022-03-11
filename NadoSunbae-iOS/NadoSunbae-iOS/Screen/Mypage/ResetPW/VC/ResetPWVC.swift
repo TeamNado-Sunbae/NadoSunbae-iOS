@@ -56,6 +56,7 @@ class ResetPWVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideTabbar()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: ResetPWVC.className)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

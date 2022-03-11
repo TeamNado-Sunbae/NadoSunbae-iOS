@@ -74,6 +74,7 @@ class InfoDetailVC: BaseVC {
         self.tabBarController?.tabBar.isHidden = true
         addKeyboardObserver()
         optionalBindingData()
+        makeScreenAnalyticsEvent(screenName: "ClassRoom_Info Tab", screenClass: InfoDetailVC.className)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
