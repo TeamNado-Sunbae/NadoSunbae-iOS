@@ -244,10 +244,6 @@ extension ReviewDetailVC: UITableViewDataSource {
             pushToMypageUserVC { mypageUserVC in
                 mypageUserVC.targetUserID = self.detailPost.writer.writerID
             }
-//            guard let nextVC = UIStoryboard.init(name: MypageUserVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageUserVC.className) as? MypageUserVC else { return }
-//
-//            nextVC.targetUserID = detailPost.writer.writerID
-//            self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }
 }
