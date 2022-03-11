@@ -85,6 +85,7 @@ class EditProfileVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getMyInfo()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: EditProfileVC.className)
     }
     
     // MARK: @IBAction

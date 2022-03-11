@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import FirebaseAnalytics
 
 class ReviewMainVC: BaseVC {
     
@@ -50,6 +51,8 @@ class ReviewMainVC: BaseVC {
         setUpMajorLabel()
         self.tabBarController?.tabBar.isHidden = false
         setUpRequestData()
+        makeDefaultAnalyticsEvent(eventName: "후기메인뷰_진입")
+        makeScreenAnalyticsEvent(screenName: "Review Tab", screenClass: ReviewMainVC.className)
     }
     
     // MARK: IBAction

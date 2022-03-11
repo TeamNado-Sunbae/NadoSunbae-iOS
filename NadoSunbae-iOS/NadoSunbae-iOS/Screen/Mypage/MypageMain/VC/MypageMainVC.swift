@@ -42,6 +42,7 @@ class MypageMainVC: BaseVC {
         showTabbar()
         getMyInfo()
         getUserPersonalQuestionList()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypageMainVC.className)
     }
     
     override func viewDidLoad() {

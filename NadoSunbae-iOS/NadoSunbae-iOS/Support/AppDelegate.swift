@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAnalytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.standard.set(token, forKey: UserDefaults.Keys.FCMTokenForDevice)
             }
         }
+        
+        FirebaseAnalytics.Analytics.logEvent("user_active", parameters: [
+            "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
+            "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
+            "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? ""
+        ])
         return true
     }
     

@@ -10,6 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import FirebaseAnalytics
 
 class WriteQuestionVC: BaseVC {
     
@@ -73,6 +74,7 @@ class WriteQuestionVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         addKeyboardObserver()
         hideTabbar()
+        makeScreenAnalyticsEvent(screenName: "ClassRoom Tab", screenClass: "WriteQuestionVC+Edit")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -136,6 +138,7 @@ extension WriteQuestionVC {
         questionWriteNaviBar.setUpNaviStyle(state: .dismissWithNadoBtn)
         
         if isEditState {
+            self.makeScreenAnalyticsEvent(screenName: "Classroom Tab", screenClass: "ReviewWriteVC+Edit")
             questionWriteTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "")
             
             if let title = originTitle {
@@ -396,6 +399,27 @@ extension WriteQuestionVC {
             switch networkResult {
             case .success(_):
                 self.activityIndicator.stopAnimating()
+                var postType: String = ""
+                switch self.questionType {
+                    
+                case .info:
+                    postType = "classroom_information"
+                case .group:
+                    postType = "classroom_question_all"
+                case .personal:
+                    postType = "classroom_question_personal"
+                    FirebaseAnalytics.Analytics.logEvent("user_question", parameters: [
+                        "question_type": "question_start",
+                        "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
+                        "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
+                        "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
+                        "reviewedMajor":  (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
+                    ])
+                default:
+                    postType = ""
+                }
+                
+                self.makePostAnalyticsEvent(postType: postType, postedMajor: (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "")
                 self.dismiss(animated: true, completion: nil)
             case .requestErr(let res):
                 if let message = res as? String {
