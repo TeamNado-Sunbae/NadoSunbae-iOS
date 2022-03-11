@@ -37,8 +37,8 @@
                                 <color key="textColor" name="gray4"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 때를 놓치면 큰일나요 !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upB-yU-3X8">
-                                <rect key="frame" x="16" y="37" width="119" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 때를 놓치면 큰일나요 !" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upB-yU-3X8">
+                                <rect key="frame" x="16" y="37" width="248" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <color key="textColor" name="mainDark"/>
                                 <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                 <buttonConfiguration key="configuration" style="plain" image="btnMoreVertMint"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="벌써.. 6시 .. 36분이네 .. 굿나잇이 아니라 굿모닝인가..ㅎㅎ 잘 자고 내일 보자.. 하하 .. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GFj-lp-vBs">
-                                <rect key="frame" x="16" y="75" width="240" height="58"/>
+                                <rect key="frame" x="16" y="75.5" width="240" height="57.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="1IW-0m-43u"/>
@@ -93,6 +93,7 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="5VA-cI-FoF"/>
                             <constraint firstAttribute="trailing" secondItem="gHl-xg-62d" secondAttribute="trailing" constant="8" id="BqG-qZ-CZx"/>
                             <constraint firstItem="oia-gq-Jhn" firstAttribute="height" secondItem="DmU-Wz-mYu" secondAttribute="height" id="Cis-tK-YAv"/>
+                            <constraint firstItem="upB-yU-3X8" firstAttribute="trailing" secondItem="gHl-xg-62d" secondAttribute="trailing" id="GgS-4C-Fln"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" constant="100" id="QaV-R4-OVP"/>
                             <constraint firstItem="gHl-xg-62d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gvn-5I-kJU" secondAttribute="trailing" constant="25" id="Vz6-Kn-DE8"/>
                             <constraint firstItem="oia-gq-Jhn" firstAttribute="centerY" secondItem="DmU-Wz-mYu" secondAttribute="centerY" id="XvV-4g-y5a"/>
