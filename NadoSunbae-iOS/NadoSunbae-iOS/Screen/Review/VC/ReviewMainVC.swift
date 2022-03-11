@@ -160,7 +160,7 @@ extension ReviewMainVC {
     private func showInappropriateReviewerAlert() {
         var isShowed = false
         if !isShowed && UserPermissionInfo.shared.isReviewInappropriate {
-            showRestrictionAlert(permissionStatus: .inappropriate)
+            showRestrictionAlert(permissionStatus: .firstInappropriate)
             isShowed = true
         }
     }
