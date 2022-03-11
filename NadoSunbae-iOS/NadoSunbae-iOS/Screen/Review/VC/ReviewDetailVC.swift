@@ -47,6 +47,8 @@ class ReviewDetailVC: BaseVC {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         requestGetReviewPostDetail(postID: postId ?? -1)
+        makeDefaultAnalyticsEvent(eventName: "후기상세뷰_진입")
+        makeScreenAnalyticsEvent(screenName: "Review Tab", screenClass: ReviewDetailVC.className)
     }
     
     @IBAction func tapLikeBtn(_ sender: Any) {

@@ -48,6 +48,7 @@ class SettingVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         self.hideTabbar()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: SettingVC.className)
     }
     
     // MARK: @IBAction

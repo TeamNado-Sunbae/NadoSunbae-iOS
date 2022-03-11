@@ -41,6 +41,7 @@ class NotificationSettingVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkNotificationStatus()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: NotificationSettingVC.className)
     }
     
     // MARK: Custom Methods

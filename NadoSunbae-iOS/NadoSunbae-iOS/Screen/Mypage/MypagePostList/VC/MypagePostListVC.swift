@@ -33,6 +33,7 @@ class MypagePostListVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureContainerView()
+        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypagePostListVC.className)
     }
 }
 
@@ -75,8 +76,10 @@ extension MypagePostListVC {
 extension MypagePostListVC: SendSegmentStateDelegate {
     func sendSegmentClicked(index: Int) {
         if index == 0 {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypageMyPostListVC.className)
             postListContainerView.externalSV.contentOffset.x = 0
         } else {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostAnswerListVC")
             postListContainerView.externalSV.contentOffset.x += screenWidth
         }
     }

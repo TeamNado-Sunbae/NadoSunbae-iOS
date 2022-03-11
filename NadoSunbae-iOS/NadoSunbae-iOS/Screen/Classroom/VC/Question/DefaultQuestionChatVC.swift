@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class DefaultQuestionChatVC: BaseVC {
     
@@ -93,6 +94,7 @@ class DefaultQuestionChatVC: BaseVC {
         addKeyboardObserver()
         optionalBindingData()
         hideTabbar()
+        makeScreenAnalyticsEvent(screenName: "ClassRoom_Question Tab", screenClass: DefaultQuestionChatVC.className)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -781,6 +783,12 @@ extension DefaultQuestionChatVC {
                         self.isTextViewEmpty = true
                         self.activityIndicator.stopAnimating()
                     }
+                    FirebaseAnalytics.Analytics.logEvent("user_question", parameters: [
+                        "question_type": "question_reply",
+                        "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
+                        "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
+                        "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? ""
+                    ])
                 }
             case .requestErr(let res):
                 if let message = res as? String {
