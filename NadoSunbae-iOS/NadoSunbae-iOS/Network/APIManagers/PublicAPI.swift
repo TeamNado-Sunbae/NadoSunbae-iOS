@@ -10,7 +10,7 @@ import Moya
 
 class PublicAPI {
     static let shared = PublicAPI()
-    var publicProvider = MoyaProvider<PublicService>(plugins: [NetworkLoggerPlugin()])
+    var publicProvider = MoyaProvider<PublicService>()
     
     private init() {}
     

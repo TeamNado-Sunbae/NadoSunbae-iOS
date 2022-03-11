@@ -167,7 +167,6 @@ extension MypageMainVC {
                 if let data = res as? MypageUserInfoModel {
                     self.setProfileUI(isVisable: true)
                     self.userInfo = data
-                    print("user info: ", self.userInfo)
                     self.configureUI()
                 }
             case .requestErr(let res):

@@ -10,7 +10,7 @@ import Moya
 
 class MypageSettingAPI {
     static let shared = MypageSettingAPI()
-    var provider = MoyaProvider<MypageSettingService>(plugins: [NetworkLoggerPlugin()])
+    var provider = MoyaProvider<MypageSettingService>()
     
     private init() {}
     

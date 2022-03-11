@@ -10,7 +10,7 @@ import Moya
 
 class ReviewAPI {
     static let shared = ReviewAPI()
-    var userProvider = MoyaProvider<ReviewService>(plugins: [NetworkLoggerPlugin()])
+    var userProvider = MoyaProvider<ReviewService>()
     
     private init() {}
     
