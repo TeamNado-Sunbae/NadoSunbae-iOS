@@ -390,6 +390,16 @@ extension SignUpUserInfoVC {
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height - 25
             }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == PWTextField {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= 100
+                }
+            })
+        }
+        return true
+    }
         }
     }
     
