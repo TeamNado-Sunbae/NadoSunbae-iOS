@@ -75,6 +75,8 @@ extension BaseVC {
     
     /// 로그아웃 시 UserDefaults 지우는 함수
     func setRemoveUserdefaultValues() {
+        MajorInfo.shared.selectedMajorID = nil
+        MajorInfo.shared.selectedMajorName = nil
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.AccessToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.RefreshToken)
         UserDefaults.standard.set(nil, forKey: UserDefaults.Keys.FirstMajorID)

@@ -382,17 +382,27 @@ extension SignUpUserInfoVC {
     
     /// Keyboard Observer add 메서드
     private func addKeyboardObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc
-    private func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height - 25
-            }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == PWTextField {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= 100
+                }
+            })
         }
+        return true
+    }
+    
+    /// 키보드 return 눌렀을 때 Action
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == PWTextField {
+            checkPWTextFIeld.becomeFirstResponder()
+        }
+        textField.resignFirstResponder()
+        return true
     }
     
     @objc
@@ -406,7 +416,6 @@ extension SignUpUserInfoVC {
     
     /// Keyboard Observer remove 메서드
     private func removeKeyboardObserver() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
