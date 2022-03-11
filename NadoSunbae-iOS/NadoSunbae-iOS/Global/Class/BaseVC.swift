@@ -122,6 +122,11 @@ extension BaseVC {
             }
         case .inappropriate:
             permissionMsg = "부적절한 후기 작성이 확인되어\n열람 권한이 제한되었습니다.\n권한을 얻고 싶다면\n다시 학과후기를 작성해주세요."
+            restrictionAlert.confirmBtn.press {
+                self.presentToReviewWriteVC { _ in }
+            }
+        case .report:
+            permissionMsg = UserPermissionInfo.shared.permissionMsg
             comfirmTitle = "문의하기"
             cancelTitle = "닫기"
             restrictionAlert.confirmBtn.press {
@@ -131,8 +136,8 @@ extension BaseVC {
                     }
                 }
             }
-        case .report:
-            permissionMsg = UserPermissionInfo.shared.permissionMsg
+        case .firstInappropriate:
+            permissionMsg = "부적절한 후기 작성이 확인되어\n열람 권한이 제한되었습니다.\n권한을 얻고 싶다면\n다시 학과후기를 작성해주세요."
             comfirmTitle = "문의하기"
             cancelTitle = "닫기"
             restrictionAlert.confirmBtn.press {
@@ -151,7 +156,9 @@ extension BaseVC {
     func divideUserPermission(defaultAction: () -> Void) {
         if UserPermissionInfo.shared.isUserReported {
             self.showRestrictionAlert(permissionStatus: .report)
-        } else if UserPermissionInfo.shared.isReviewInappropriate || !(UserPermissionInfo.shared.isReviewed) {
+        } else if UserPermissionInfo.shared.isReviewInappropriate {
+            self.showRestrictionAlert(permissionStatus: .inappropriate)
+        } else if !(UserPermissionInfo.shared.isReviewed) {
             self.showRestrictionAlert(permissionStatus: .review)
         } else {
             // 아무런 제한이 없을 때 실행되는 action
