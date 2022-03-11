@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -38,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메일이 도착하지 않았다면 스팸 메일함을 확인해보세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtc-xX-Ijg">
-                                <rect key="frame" x="24" y="264" width="256.66666666666669" height="14.666666666666686"/>
+                                <rect key="frame" x="24" y="264" width="262.66666666666669" height="14.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <color key="textColor" name="gray4"/>
                                 <nil key="highlightedColor"/>
@@ -67,17 +66,18 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="paleGray"/>
                         <constraints>
                             <constraint firstItem="XhX-yP-S4Q" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.661333" id="184-Yb-TKu"/>
                             <constraint firstItem="Zsm-0a-KLt" firstAttribute="leading" secondItem="Lcu-Ra-u5J" secondAttribute="leading" id="1gs-jG-aiF"/>
                             <constraint firstItem="XhX-yP-S4Q" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Ali-YV-fya"/>
                             <constraint firstItem="Zsm-0a-KLt" firstAttribute="top" secondItem="Lcu-Ra-u5J" secondAttribute="bottom" constant="8" id="BVP-6A-abo"/>
                             <constraint firstItem="pKJ-NL-rWk" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.147343" id="Ero-1s-ffz"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pKJ-NL-rWk" secondAttribute="trailing" constant="24" id="N6h-T8-6f8"/>
+                            <constraint firstItem="pKJ-NL-rWk" firstAttribute="leading" secondItem="dtc-xX-Ijg" secondAttribute="trailing" constant="9" id="J6z-0n-Xxt"/>
                             <constraint firstItem="Lcu-Ra-u5J" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="128" id="P8n-3M-hQo"/>
                             <constraint firstItem="Lcu-Ra-u5J" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="UJJ-XV-dYT"/>
                             <constraint firstItem="TZe-qr-9Oe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="ZsD-uv-crA"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pKJ-NL-rWk" secondAttribute="trailing" constant="24" id="aUj-1s-dII"/>
                             <constraint firstItem="pKJ-NL-rWk" firstAttribute="centerY" secondItem="dtc-xX-Ijg" secondAttribute="centerY" id="ag5-kN-3GC"/>
                             <constraint firstItem="XhX-yP-S4Q" firstAttribute="top" secondItem="dtc-xX-Ijg" secondAttribute="bottom" constant="36" id="ehE-DK-Jqk"/>
                             <constraint firstAttribute="bottom" secondItem="TZe-qr-9Oe" secondAttribute="bottom" constant="34" id="gkw-DX-6Qu"/>
@@ -109,8 +109,8 @@
         <namedColor name="mainText">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="paleGray">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
