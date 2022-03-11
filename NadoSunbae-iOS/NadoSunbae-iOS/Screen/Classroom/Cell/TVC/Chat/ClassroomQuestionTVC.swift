@@ -96,6 +96,7 @@ extension ClassroomQuestionTVC {
         titleLabel.text = model.title
         nicknameLabel.text = model.writer.nickname
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
+        majorLabel.sizeToFit()
         questionContentTextView.text = model.content
         configureQuestionContentTextView()
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
