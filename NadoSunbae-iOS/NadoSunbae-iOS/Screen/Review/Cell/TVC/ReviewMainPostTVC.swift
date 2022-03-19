@@ -56,12 +56,17 @@ extension ReviewMainPostTVC {
     func setData(postData: ReviewMainPostListData) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
-        nickNameLabel.text = postData.writer.nickname
         likeCountLabel.text = "\(postData.like.likeCount)"
-        majorNameLabel.text = postData.writer.firstMajorName
-        secondMajorNameLabel.text = postData.writer.secondMajorName
-        firstMajorStartLabel.text = postData.writer.firstMajorStart
-        secondMajorStartLabel.text = postData.writer.secondMajorStart == "미진입" ? "" : postData.writer.secondMajorStart
+        let majorText = convertToUserInfoString(postData.writer.nickname, postData.writer.firstMajorName, postData.writer.firstMajorStart, postData.writer.secondMajorName, postData.writer.secondMajorStart)
+        let attributedString = NSMutableAttributedString(string: majorText)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.gray4, range: (majorText as NSString).range(of: postData.writer.nickname))
+        attributedString.addAttribute(.font, value: UIFont.PretendardSB(size: 14), range: (majorText as NSString).range(of: postData.writer.nickname))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 6
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        majorLabel.attributedText = attributedString
+        majorLabel.lineBreakStrategy = .hangulWordPriority
+        majorLabel.sizeToFit()
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
@@ -69,11 +74,10 @@ extension ReviewMainPostTVC {
     func setUserReviewData(postData: MypageMyReviewPostModel) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
-        nickNameLabel.text = postData.majorName
+        majorLabel.text = postData.majorName
+        majorLabel.font = .PretendardSB(size: 14)
+        majorLabel.textColor = .gray4
         likeCountLabel.text = "\(postData.like.likeCount)"
-        [majorNameLabel, secondMajorNameLabel, firstMajorStartLabel, secondMajorStartLabel, majorSeparatorView].forEach { view in
-            view?.isHidden = true
-        }
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
@@ -81,11 +85,10 @@ extension ReviewMainPostTVC {
     func setMypageReviewLikeData(postData: MypageLikeReviewDataModel) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.title
-        nickNameLabel.text = postData.writer.nickname
+        majorLabel.text = postData.writer.nickname
+        majorLabel.font = .PretendardSB(size: 14)
+        majorLabel.textColor = .gray4
         likeCountLabel.text = "\(postData.like.likeCount)"
-        [majorNameLabel, secondMajorNameLabel, firstMajorStartLabel, secondMajorStartLabel, majorSeparatorView].forEach { view in
-            view?.isHidden = true
-        }
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
