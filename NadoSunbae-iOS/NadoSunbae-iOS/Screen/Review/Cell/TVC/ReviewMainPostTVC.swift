@@ -12,14 +12,10 @@ class ReviewMainPostTVC: BaseTVC {
     // MARK: IBOutlet
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var majorNameLabel: UILabel!
-    @IBOutlet weak var firstMajorStartLabel: UILabel!
-    @IBOutlet weak var secondMajorNameLabel: UILabel!
-    @IBOutlet weak var secondMajorStartLabel: UILabel!
+    @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var likeImgView: UIImageView!
-    @IBOutlet weak var majorSeparatorView: UIView!
+    @IBOutlet weak var reviewContentView: UIView!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
@@ -46,16 +42,10 @@ class ReviewMainPostTVC: BaseTVC {
 // MARK: - UI
 extension ReviewMainPostTVC {
     private func configureUI() {
-        contentView.layer.cornerRadius = 8
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.gray0.cgColor
-        contentView.backgroundColor = .white
-    }
-    
-    /// TVC 사이 간격 설정
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16))
+        reviewContentView.layer.cornerRadius = 8
+        reviewContentView.layer.borderWidth = 1
+        reviewContentView.layer.borderColor = UIColor.gray0.cgColor
+        reviewContentView.backgroundColor = .white
     }
 }
 
