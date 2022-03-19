@@ -88,6 +88,9 @@ class SignUpMajorInfoVC: BaseVC {
     
     @IBAction func tapNextBtn(_ sender: UIButton) {
         guard let vc = UIStoryboard.init(name: SignUpUserInfoVC.className, bundle: nil).instantiateViewController(withIdentifier: SignUpUserInfoVC.className) as? SignUpUserInfoVC else { return }
+        if signUpData.secondMajorStart == "선택하기" {
+            signUpData.secondMajorStart = "미진입"
+        }
         vc.signUpData = signUpData
         self.navigationController?.pushViewController(vc, animated: true)
     }
