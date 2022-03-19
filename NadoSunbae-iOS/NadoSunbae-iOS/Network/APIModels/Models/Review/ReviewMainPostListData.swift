@@ -68,7 +68,7 @@ func convertToUserInfoString(_ nickname: String, _ firstMajorName: String, _ fir
                 if (firstMajorName.count + firstMajorStart.count + secondMajorName.count + secondMajorStart.count) > 37 {
                     return nickname + "\n" + firstMajorName + " " + firstMajorStart + "  |\n" + secondMajorName + " " + secondMajorStart
                 } else {
-                    /// 본전공명 + 본전공진입시기 + 제2전공 + 제2전공진입시기 글자수 35자 넘지 않을 때
+                    /// 본전공명 + 본전공진입시기 + 제2전공 + 제2전공진입시기 글자수 37자 넘지 않을 때
                     return nickname + "\n" + firstMajorName + " " + firstMajorStart + "  |  " + secondMajorName + " " + secondMajorStart
                 }
             }
