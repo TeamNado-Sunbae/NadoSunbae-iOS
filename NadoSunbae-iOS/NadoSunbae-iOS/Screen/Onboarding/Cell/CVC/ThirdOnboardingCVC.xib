@@ -26,16 +26,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="thirdPage" translatesAutoresizingMaskIntoConstraints="NO" id="Jf0-XJ-ash">
-                        <rect key="frame" x="24" y="202" width="327" height="412"/>
+                        <rect key="frame" x="24" y="224.5" width="327" height="389.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:1 질문, 전체에게 질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhN-Bv-m8B">
-                        <rect key="frame" x="81" y="73.5" width="213" height="29"/>
+                        <rect key="frame" x="81" y="96" width="213" height="29"/>
                         <fontDescription key="fontDescription" name="Pretendard-SemiBold" family="Pretendard" pointSize="23.399999618530273"/>
                         <color key="textColor" name="mainDefault"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nf-rn-NWu">
-                        <rect key="frame" x="76.5" y="122.5" width="222" height="50.5"/>
+                        <rect key="frame" x="76.5" y="145" width="222" height="50.5"/>
                         <string key="text">궁금한게 있는 학과 선배에겐 1:1 질문을, 
 학과 구성원 모두의 의견을 듣고 싶을 땐 
 전체에게 질문을 해보세요.</string>
@@ -53,6 +53,7 @@
                 <constraint firstItem="Jf0-XJ-ash" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="CBn-CG-obq"/>
                 <constraint firstItem="4nf-rn-NWu" firstAttribute="top" secondItem="BhN-Bv-m8B" secondAttribute="bottom" constant="20" id="NEb-1i-V9R"/>
                 <constraint firstItem="4nf-rn-NWu" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="UxW-1c-QSF"/>
+                <constraint firstItem="BhN-Bv-m8B" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="96" id="jJp-S2-J7s"/>
             </constraints>
             <connections>
                 <outlet property="subTitleLabel" destination="4nf-rn-NWu" id="MvF-av-TqH"/>
