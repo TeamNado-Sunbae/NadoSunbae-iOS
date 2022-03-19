@@ -35,6 +35,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uc1-WU-ckx">
                         <rect key="frame" x="104" y="54" width="11" height="18"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="11" id="RSo-x8-GMU"/>
                             <constraint firstAttribute="height" constant="18" id="SvR-Zd-1Gj"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
@@ -42,7 +43,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAK-Mg-VsZ">
-                        <rect key="frame" x="138" y="72" width="30" height="18"/>
+                        <rect key="frame" x="138" y="72" width="141" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="PiC-AK-kL6"/>
                         </constraints>
@@ -51,7 +52,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YZ-rL-h0i">
-                        <rect key="frame" x="128" y="54" width="30" height="18"/>
+                        <rect key="frame" x="128" y="54" width="151" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="cMg-ys-i78"/>
                         </constraints>
@@ -63,6 +64,7 @@
                         <rect key="frame" x="104" y="72" width="21" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="IaW-5l-63B"/>
+                            <constraint firstAttribute="width" constant="21" id="K7L-oY-Uji"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                         <color key="textColor" name="gray2"/>
@@ -126,6 +128,8 @@
                     <constraint firstAttribute="trailing" secondItem="Kcv-fa-Pkc" secondAttribute="trailing" constant="12" id="gSK-eW-dQF"/>
                     <constraint firstItem="uc1-WU-ckx" firstAttribute="leading" secondItem="JmS-H6-jqs" secondAttribute="trailing" constant="16" id="oas-yQ-ZbI"/>
                     <constraint firstItem="yeh-Aq-35M" firstAttribute="leading" secondItem="JmS-H6-jqs" secondAttribute="trailing" constant="16" id="oyB-6z-aMk"/>
+                    <constraint firstItem="Kcv-fa-Pkc" firstAttribute="leading" secondItem="7YZ-rL-h0i" secondAttribute="trailing" constant="4" id="ulr-nt-bCf"/>
+                    <constraint firstItem="Kcv-fa-Pkc" firstAttribute="leading" secondItem="zAK-Mg-VsZ" secondAttribute="trailing" constant="4" id="v8h-aF-bh9"/>
                     <constraint firstItem="uc1-WU-ckx" firstAttribute="top" secondItem="SaD-lJ-uUK" secondAttribute="bottom" constant="8" id="wQ9-0u-FVI"/>
                     <constraint firstItem="qew-8l-bjs" firstAttribute="centerY" secondItem="uc1-WU-ckx" secondAttribute="centerY" id="x1W-Fs-I2d"/>
                     <constraint firstItem="Kcv-fa-Pkc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="y80-U7-QHM"/>
