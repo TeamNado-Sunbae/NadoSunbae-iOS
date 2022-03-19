@@ -200,25 +200,11 @@ extension ReviewWriteVC {
             essentialTextViewStatus = false
         }
         
-        
         /// 선택 항목 분기 처리
-        [learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
-            if textView == $0 {
-                for _ in 0...4 {
-                    if ($0?.text.count)! >= 100 {
-                        choiceTextViewStatus = true
-                    } else if $0?.text.isEmpty == true {
-                        //  선택 textView가 최소1개 이상채워졌는지 분기처리
-                        if learnInfoTextView.text.count >= 100 || recommendClassTextView.text.count >= 100 || badClassTextView.text.count >= 100 || futureTextView.text.count >= 100 || tipTextView.text.count >= 100 {
-                            choiceTextViewStatus = true
-                        } else {
-                            choiceTextViewStatus = false
-                        }
-                    } else if $0?.textColor != .gray2 {
-                        choiceTextViewStatus = false
-                    }
-                }
-            }
+        if learnInfoTextView.text.count >= 50 || recommendClassTextView.text.count >= 50 || badClassTextView.text.count >= 50 || futureTextView.text.count >= 50 || tipTextView.text.count >= 50 {
+            self.choiceTextViewStatus = true
+        } else {
+            self.choiceTextViewStatus = false
         }
         
         /// 완료 버튼 활성화 조건 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
