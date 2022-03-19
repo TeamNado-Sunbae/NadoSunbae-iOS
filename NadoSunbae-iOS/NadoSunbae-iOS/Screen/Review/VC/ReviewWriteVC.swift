@@ -236,15 +236,15 @@ extension ReviewWriteVC {
             if textView == prosAndConsTextView {
                 prosAndConsCountLabel.text = "\(prosAndConsTextView.text.count)/최소 100자"
             } else if textView == learnInfoTextView {
-                learnInfoCountLabel.text = "\(learnInfoTextView.text.count)/최소 100자"
+                learnInfoCountLabel.text = "\(learnInfoTextView.text.count)자"
             } else if textView == recommendClassTextView {
-                recommendClassCountLabel.text = "\(recommendClassTextView.text.count)/최소 100자"
+                recommendClassCountLabel.text = "\(recommendClassTextView.text.count)자"
             } else if textView == badClassTextView {
-                badClassCountLabel.text = "\(badClassTextView.text.count)/최소 100자"
+                badClassCountLabel.text = "\(badClassTextView.text.count)자"
             } else if textView == futureTextView {
-                futureCountLabel.text = "\(futureTextView.text.count)/최소 100자"
+                futureCountLabel.text = "\(futureTextView.text.count)자"
             } else if textView == tipTextView {
-                tipCountLabel.text = "\(tipTextView.text.count)/최소 100자"
+                tipCountLabel.text = "\(tipTextView.text.count)자"
             }
         }
     }
