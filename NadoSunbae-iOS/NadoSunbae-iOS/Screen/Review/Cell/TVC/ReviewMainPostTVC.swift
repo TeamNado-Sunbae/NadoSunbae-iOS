@@ -53,10 +53,15 @@ extension ReviewMainPostTVC {
 extension ReviewMainPostTVC {
     
     /// 리스트 데이터 세팅 함수
-    func setData(postData: ReviewMainPostListData) {
+    func setPostData(postData: ReviewMainPostListData) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
         likeCountLabel.text = "\(postData.like.likeCount)"
+        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
+    
+    /// 유저 정보 데이터 세팅 함수
+    func setUserData(postData: ReviewMainPostListData) {
         let majorText = convertToUserInfoString(postData.writer.nickname, postData.writer.firstMajorName, postData.writer.firstMajorStart, postData.writer.secondMajorName, postData.writer.secondMajorStart)
         let attributedString = NSMutableAttributedString(string: majorText)
         attributedString.addAttribute(.foregroundColor, value: UIColor.gray4, range: (majorText as NSString).range(of: postData.writer.nickname))
@@ -67,7 +72,6 @@ extension ReviewMainPostTVC {
         majorLabel.attributedText = attributedString
         majorLabel.lineBreakStrategy = .hangulWordPriority
         majorLabel.sizeToFit()
-        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
     /// 마이페이지 후기 리스트 데이터 세팅 함수

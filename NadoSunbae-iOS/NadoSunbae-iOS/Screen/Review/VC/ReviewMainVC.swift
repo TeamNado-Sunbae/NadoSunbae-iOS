@@ -327,7 +327,8 @@ extension ReviewMainVC: UITableViewDataSource {
             } else {
                 tagList = postList[indexPath.row].tagList
                 reviewMainPostTVC.tagImgList = postList[indexPath.row].tagList
-                reviewMainPostTVC.setData(postData: postList[indexPath.row])
+                reviewMainPostTVC.setPostData(postData: postList[indexPath.row])
+                reviewMainPostTVC.setUserData(postData: postList[indexPath.row])
                 return reviewMainPostTVC
             }
         } else {
