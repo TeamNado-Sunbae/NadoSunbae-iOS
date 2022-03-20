@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+let screenSize: CGRect = UIScreen.main.bounds
+let screenWidth = screenSize.width
 
 // MARK: - ReviewMainPostListData
 struct ReviewMainPostListData: Codable {

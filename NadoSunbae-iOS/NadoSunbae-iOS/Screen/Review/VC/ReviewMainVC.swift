@@ -19,7 +19,11 @@ class ReviewMainVC: BaseVC {
             majorLabel.font = .PretendardM(size: 20)
         }
     }
-    @IBOutlet weak var reviewTV: UITableView!
+    @IBOutlet weak var reviewTV: UITableView! {
+        didSet {
+            reviewTV.rowHeight = UITableView.automaticDimension
+        }
+    }
     
     // MARK: Properties
     var imgList: [ReviewImgData] = []
@@ -104,7 +108,7 @@ extension ReviewMainVC {
         reviewTV.delegate = self
         
         /// TableView 하단 space 설정
-        reviewTV.contentInset.bottom = 16
+        reviewTV.contentInset.bottom = 24
         
         /// section header 들어가지 않는 section에 padding 값 없도록
         if #available(iOS 15.0, *) {
@@ -214,7 +218,7 @@ extension ReviewMainVC: UITableViewDelegate {
             if postList.isEmpty {
                 return 250.adjustedH
             } else {
-                return 156
+                return UITableView.automaticDimension
             }
         } else {
             return 0
@@ -323,7 +327,8 @@ extension ReviewMainVC: UITableViewDataSource {
             } else {
                 tagList = postList[indexPath.row].tagList
                 reviewMainPostTVC.tagImgList = postList[indexPath.row].tagList
-                reviewMainPostTVC.setData(postData: postList[indexPath.row])
+                reviewMainPostTVC.setPostData(postData: postList[indexPath.row])
+                reviewMainPostTVC.setUserData(postData: postList[indexPath.row])
                 return reviewMainPostTVC
             }
         } else {

@@ -12,14 +12,10 @@ class ReviewMainPostTVC: BaseTVC {
     // MARK: IBOutlet
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var majorNameLabel: UILabel!
-    @IBOutlet weak var firstMajorStartLabel: UILabel!
-    @IBOutlet weak var secondMajorNameLabel: UILabel!
-    @IBOutlet weak var secondMajorStartLabel: UILabel!
+    @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var likeImgView: UIImageView!
-    @IBOutlet weak var majorSeparatorView: UIView!
+    @IBOutlet weak var reviewContentView: UIView!
     @IBOutlet weak var tagCV: UICollectionView!
     
     // MARK: Properties
@@ -46,16 +42,10 @@ class ReviewMainPostTVC: BaseTVC {
 // MARK: - UI
 extension ReviewMainPostTVC {
     private func configureUI() {
-        contentView.layer.cornerRadius = 8
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.gray0.cgColor
-        contentView.backgroundColor = .white
-    }
-    
-    /// TVC 사이 간격 설정
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16))
+        reviewContentView.layer.cornerRadius = 8
+        reviewContentView.layer.borderWidth = 1
+        reviewContentView.layer.borderColor = UIColor.gray0.cgColor
+        reviewContentView.backgroundColor = .white
     }
 }
 
@@ -63,27 +53,35 @@ extension ReviewMainPostTVC {
 extension ReviewMainPostTVC {
     
     /// 리스트 데이터 세팅 함수
-    func setData(postData: ReviewMainPostListData) {
+    func setPostData(postData: ReviewMainPostListData) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
-        nickNameLabel.text = postData.writer.nickname
         likeCountLabel.text = "\(postData.like.likeCount)"
-        majorNameLabel.text = postData.writer.firstMajorName
-        secondMajorNameLabel.text = postData.writer.secondMajorName
-        firstMajorStartLabel.text = postData.writer.firstMajorStart
-        secondMajorStartLabel.text = postData.writer.secondMajorStart == "미진입" ? "" : postData.writer.secondMajorStart
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
+    
+    /// 유저 정보 데이터 세팅 함수
+    func setUserData(postData: ReviewMainPostListData) {
+        let majorText = convertToUserInfoString(postData.writer.nickname, postData.writer.firstMajorName, postData.writer.firstMajorStart, postData.writer.secondMajorName, postData.writer.secondMajorStart)
+        let attributedString = NSMutableAttributedString(string: majorText)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.gray4, range: (majorText as NSString).range(of: postData.writer.nickname))
+        attributedString.addAttribute(.font, value: UIFont.PretendardSB(size: 14), range: (majorText as NSString).range(of: postData.writer.nickname))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 6
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        majorLabel.attributedText = attributedString
+        majorLabel.lineBreakStrategy = .hangulWordPriority
+        majorLabel.sizeToFit()
     }
     
     /// 마이페이지 후기 리스트 데이터 세팅 함수
     func setUserReviewData(postData: MypageMyReviewPostModel) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
-        nickNameLabel.text = postData.majorName
+        majorLabel.text = postData.majorName
+        majorLabel.font = .PretendardSB(size: 14)
+        majorLabel.textColor = .gray4
         likeCountLabel.text = "\(postData.like.likeCount)"
-        [majorNameLabel, secondMajorNameLabel, firstMajorStartLabel, secondMajorStartLabel, majorSeparatorView].forEach { view in
-            view?.isHidden = true
-        }
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
@@ -91,11 +89,10 @@ extension ReviewMainPostTVC {
     func setMypageReviewLikeData(postData: MypageLikeReviewDataModel) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.title
-        nickNameLabel.text = postData.writer.nickname
+        majorLabel.text = postData.writer.nickname
+        majorLabel.font = .PretendardSB(size: 14)
+        majorLabel.textColor = .gray4
         likeCountLabel.text = "\(postData.like.likeCount)"
-        [majorNameLabel, secondMajorNameLabel, firstMajorStartLabel, secondMajorStartLabel, majorSeparatorView].forEach { view in
-            view?.isHidden = true
-        }
         likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
