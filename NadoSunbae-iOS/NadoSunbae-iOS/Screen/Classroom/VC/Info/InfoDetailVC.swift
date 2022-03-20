@@ -27,6 +27,7 @@ class InfoDetailVC: BaseVC {
             infoDetailTV.allowsSelection = false
             infoDetailTV.rowHeight  = UITableView.automaticDimension
             infoDetailTV.backgroundColor = .paleGray
+            infoDetailTV.showsVerticalScrollIndicator = true
         }
     }
     
