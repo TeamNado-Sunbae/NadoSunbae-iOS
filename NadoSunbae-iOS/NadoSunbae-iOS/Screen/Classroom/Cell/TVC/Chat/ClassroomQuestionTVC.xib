@@ -45,7 +45,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 때를 놓치면 큰일나요 !" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT9-0t-ckE">
-                                <rect key="frame" x="16" y="74" width="248" height="14.5"/>
+                                <rect key="frame" x="16" y="74" width="240" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <color key="textColor" name="gray2"/>
                                 <nil key="highlightedColor"/>
@@ -136,13 +136,13 @@
                             <constraint firstAttribute="trailing" secondItem="aK2-Jo-OMJ" secondAttribute="trailing" constant="8" id="euz-fE-Rlf"/>
                             <constraint firstItem="hkZ-Xq-Tbg" firstAttribute="top" secondItem="CFZ-tM-j9m" secondAttribute="bottom" id="fno-3o-TVT"/>
                             <constraint firstItem="OT9-0t-ckE" firstAttribute="top" secondItem="udq-eX-F8j" secondAttribute="bottom" id="n14-nM-1FJ"/>
+                            <constraint firstAttribute="trailing" secondItem="OT9-0t-ckE" secondAttribute="trailing" constant="16" id="qXK-bY-yRr"/>
                             <constraint firstItem="udq-eX-F8j" firstAttribute="leading" secondItem="4Jn-Qv-vH7" secondAttribute="leading" id="rtw-NK-CcF"/>
                             <constraint firstItem="1d4-Si-0qT" firstAttribute="leading" secondItem="udq-eX-F8j" secondAttribute="leading" id="sXQ-eS-qN6"/>
                             <constraint firstItem="aK2-Jo-OMJ" firstAttribute="top" secondItem="YaZ-yA-JAB" secondAttribute="top" constant="20" id="tCW-Jl-rdj"/>
-                            <constraint firstItem="udq-eX-F8j" firstAttribute="top" secondItem="4Jn-Qv-vH7" secondAttribute="bottom" constant="8" id="tuW-gD-xQ2"/>
                             <constraint firstItem="CFZ-tM-j9m" firstAttribute="leading" secondItem="4Jn-Qv-vH7" secondAttribute="leading" id="ubm-BK-uee"/>
                             <constraint firstAttribute="trailing" secondItem="1Ac-01-sRD" secondAttribute="trailing" constant="16" id="xXG-Fg-B5E"/>
-                            <constraint firstItem="OT9-0t-ckE" firstAttribute="trailing" secondItem="aK2-Jo-OMJ" secondAttribute="trailing" id="zkD-Cy-Tx2"/>
+                            <constraint firstItem="1d4-Si-0qT" firstAttribute="top" secondItem="4Jn-Qv-vH7" secondAttribute="bottom" constant="8" id="yik-pa-gJG"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -162,7 +162,9 @@
                 <outlet property="likeCountLabel" destination="XwU-wy-Tk1" id="UnP-Yo-4dO"/>
                 <outlet property="majorLabel" destination="OT9-0t-ckE" id="oDy-Ih-rX3"/>
                 <outlet property="moreBtn" destination="aK2-Jo-OMJ" id="63P-4q-lz0"/>
+                <outlet property="moreBtnTopConstraint" destination="tCW-Jl-rdj" id="lID-Wa-13K"/>
                 <outlet property="nicknameLabel" destination="udq-eX-F8j" id="TlL-ky-WBX"/>
+                <outlet property="nicknameLabelTopConstraint" destination="yik-pa-gJG" id="Iwk-uF-peY"/>
                 <outlet property="questionContentTextView" destination="CFZ-tM-j9m" id="2pc-09-apb"/>
                 <outlet property="titleLabel" destination="4Jn-Qv-vH7" id="J2H-fQ-gLK"/>
                 <outlet property="titleLabelTopConstraint" destination="A2q-Ul-nWi" id="WHC-au-fRm"/>

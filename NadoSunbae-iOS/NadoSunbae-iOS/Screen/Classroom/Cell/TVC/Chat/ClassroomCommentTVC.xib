@@ -38,7 +38,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 때를 놓치면 큰일나요 !" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XsY-Xa-ot0">
-                                <rect key="frame" x="16" y="37" width="248" height="14.5"/>
+                                <rect key="frame" x="16" y="37" width="240" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                 <color key="textColor" name="mainDark"/>
                                 <nil key="highlightedColor"/>
@@ -100,7 +100,7 @@
                             <constraint firstAttribute="trailing" secondItem="LMH-SD-I1n" secondAttribute="trailing" constant="16" id="WcF-ac-ez0"/>
                             <constraint firstItem="LMH-SD-I1n" firstAttribute="leading" secondItem="OlX-jq-iUU" secondAttribute="leading" id="YCo-fW-BeS"/>
                             <constraint firstItem="5pt-bF-h5S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="38o-sG-EsX" secondAttribute="leading" constant="180" id="a8O-1p-bd6"/>
-                            <constraint firstItem="XsY-Xa-ot0" firstAttribute="trailing" secondItem="kYD-bX-I2J" secondAttribute="trailing" id="gRL-A7-erH"/>
+                            <constraint firstAttribute="trailing" secondItem="XsY-Xa-ot0" secondAttribute="trailing" constant="16" id="bxx-t6-Z7W"/>
                             <constraint firstItem="DA8-A9-yjt" firstAttribute="trailing" secondItem="OlX-jq-iUU" secondAttribute="trailing" id="huH-bc-js3"/>
                             <constraint firstItem="DA8-A9-yjt" firstAttribute="bottom" secondItem="OlX-jq-iUU" secondAttribute="bottom" id="oik-Zv-kSN"/>
                             <constraint firstItem="DA8-A9-yjt" firstAttribute="leading" secondItem="OlX-jq-iUU" secondAttribute="leading" id="pwh-4n-ZcZ"/>
