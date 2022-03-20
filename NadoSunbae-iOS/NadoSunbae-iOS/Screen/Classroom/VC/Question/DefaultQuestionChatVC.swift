@@ -459,6 +459,8 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 } else {
                     questionCell.likeBtn.isHidden = true
                     questionCell.likeCountLabel.isHidden = true
+                    questionCell.titleLabelTopConstraint.constant = 12
+                    questionCell.moreBtnTopConstraint.constant = 16
                 }
                 
                 /// 1:1 질문자 셀 중 데이터가 삭제된 셀
@@ -470,7 +472,6 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                         $0?.isHidden = true
                     }
                 } else {
-                    questionCell.titleLabelTopConstraint.constant = 16
                     questionCell.contentTextViewTopConstriaint.constant = 24
                     [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
                         $0?.isHidden = false
