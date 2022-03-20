@@ -47,7 +47,7 @@ class EntireQuestionListVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         setUpRequestData(sortType: lastSortType)
-        self.tabBarController?.tabBar.isHidden = false
+        showTabbar()
         makeScreenAnalyticsEvent(screenName: "ClassRoom_Question Tab", screenClass: EntireQuestionListVC.className)
     }
 }
