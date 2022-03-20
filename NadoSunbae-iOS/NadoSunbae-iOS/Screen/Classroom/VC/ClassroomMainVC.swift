@@ -43,7 +43,7 @@ class ClassroomMainVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         setUpMajorLabel()
-        tabBarController?.tabBar.isHidden = false
+        showTabbar()
         makeScreenAnalyticsEvent(screenName: "ClassRoom Tab", screenClass: ClassroomMainVC.className)
     }
 }
