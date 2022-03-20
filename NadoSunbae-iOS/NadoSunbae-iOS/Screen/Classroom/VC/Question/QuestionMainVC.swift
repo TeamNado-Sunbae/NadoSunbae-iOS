@@ -14,6 +14,7 @@ class QuestionMainVC: BaseVC {
     // MARK: Properties
     private let questionSV = UIScrollView().then {
         $0.isScrollEnabled = true
+        $0.showsVerticalScrollIndicator = false
     }
     private let contentView = UIView()
     private let personalQuestionLabel = UILabel().then {
