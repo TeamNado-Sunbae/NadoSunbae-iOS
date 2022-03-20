@@ -47,8 +47,17 @@ extension ReviewDetailProfileTVC {
     func setData(profileData: PostWriter) {
         profileImgView.image = UIImage(named: "profileImage\(profileData.profileImageID)")
         nickNameLabel.text = profileData.nickname
-        majorLabel.text = profileData.firstMajorName
-        secondMajorLabel.text = profileData.secondMajorName
+        if profileData.firstMajorName == "정보없음" {
+            majorLabel.text = profileData.firstMajorName
+        } else {
+            majorLabel.text = profileData.firstMajorName + " (\(profileData.firstMajorStart))"
+        }
+        
+        if profileData.secondMajorName == "미진입" {
+            secondMajorLabel.text = profileData.secondMajorName
+        } else {
+            secondMajorLabel.text = profileData.secondMajorName + " (\(profileData.secondMajorStart))"
+        }
         messageLabel.text = "선배에게 1:1 질문을 남겨보세요!"
     }
 }
