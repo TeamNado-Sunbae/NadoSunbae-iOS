@@ -122,7 +122,7 @@
             <connections>
                 <outlet property="backView" destination="emm-MX-lrM" id="v0p-0C-JSH"/>
                 <outlet property="cancelBtn" destination="X8P-eq-Krl" id="cY5-rO-e7B"/>
-                <outlet property="commentContentTextView" destination="uga-CD-ixQ" id="Qj2-Bu-W3U"/>
+                <outlet property="commentContentTextView" destination="uga-CD-ixQ" id="Qdc-gT-pak"/>
                 <outlet property="confirmBtn" destination="GYp-lU-cWu" id="3Jg-vz-FJ6"/>
                 <outlet property="majorLabel" destination="zVl-hg-oTy" id="PDp-KE-3tU"/>
                 <outlet property="nicknameLabel" destination="rUM-0R-I2m" id="1M7-ig-zAS"/>

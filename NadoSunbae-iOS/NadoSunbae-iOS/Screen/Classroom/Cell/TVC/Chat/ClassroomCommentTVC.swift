@@ -13,7 +13,11 @@ class ClassroomCommentTVC: BaseTVC {
     @IBOutlet var backView: UIView!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
-    @IBOutlet var commentContentTextView: UITextView!
+    @IBOutlet var commentContentTextView: UITextView! {
+        didSet {
+            commentContentTextView.textContainer.lineFragmentPadding = 0
+        }
+    }
     @IBOutlet weak var uploadDateLabel: UILabel!
     @IBOutlet var moreBtn: UIButton!
     @IBOutlet var titleLabelTopConstraint: NSLayoutConstraint!
