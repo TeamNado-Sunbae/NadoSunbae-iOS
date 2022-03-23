@@ -15,7 +15,11 @@ class ClassroomQuestionTVC: BaseTVC {
     @IBOutlet var moreBtn: UIButton!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
-    @IBOutlet var questionContentTextView: UITextView!
+    @IBOutlet var questionContentTextView: UITextView! {
+        didSet {
+            questionContentTextView.textContainer.lineFragmentPadding = 0
+        }
+    }
     @IBOutlet weak var likeBtn: UIButton! {
         didSet {
             likeBtn.press(vibrate: true, for: .touchUpInside){}
