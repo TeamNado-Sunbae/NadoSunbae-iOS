@@ -27,7 +27,7 @@ extension ReviewPostTagCVC {
         if tagData.tagName == "추천 수업" {
             tagImgWidth.constant = 59
             tagImgView.image = UIImage(named: "icReviewTag") ?? nil
-        } else if tagData.tagName == "비추 수업" {
+        } else if tagData.tagName == "힘든 수업" {
             tagImgWidth.constant = 59
             tagImgView.image = UIImage(named: "icBadClassTag") ?? nil
         } else if tagData.tagName == "뭘 배우나요?" {
