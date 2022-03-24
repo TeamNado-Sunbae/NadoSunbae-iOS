@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class AgreeTermsVC: BaseVC {
     
@@ -105,8 +104,6 @@ extension AgreeTermsVC {
     }
     
     private func presentSafariVC(link: String) {
-        let webLink = NSURL(string: link)
-        let safariVC = SFSafariViewController(url: webLink! as URL)
-        self.present(safariVC, animated: true, completion: nil)
+        presentToSafariVC(url: NSURL(string: link)! as URL)
     }
 }

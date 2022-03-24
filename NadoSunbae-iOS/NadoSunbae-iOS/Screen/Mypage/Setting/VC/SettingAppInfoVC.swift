@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class SettingAppInfoVC: BaseVC {
     
@@ -56,9 +55,7 @@ class SettingAppInfoVC: BaseVC {
     }
     
     private func presentSafariVC(link: String) {
-        let webLink = NSURL(string: link)
-        let safariVC = SFSafariViewController(url: webLink! as URL)
-        self.present(safariVC, animated: true, completion: nil)
+        presentToSafariVC(url: NSURL(string: link)! as URL)
     }
 }
 
@@ -73,6 +70,7 @@ extension SettingAppInfoVC: UITableViewDataSource {
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingVersionTVC.className, for: indexPath) as? SettingVersionTVC else { return UITableViewCell() }
             cell.setData(title: menuList[indexPath.row], version: latestVersion)
+            cell.selectionStyle = .none
             
             return cell
         default:
