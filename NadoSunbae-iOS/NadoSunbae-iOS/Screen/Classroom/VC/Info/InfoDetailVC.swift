@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 import Then
-import SafariServices
 
 class InfoDetailVC: BaseVC {
     
@@ -266,8 +265,7 @@ extension InfoDetailVC: UITableViewDataSource {
             }
             
             infoQuestionCell.interactURL = { url in
-                let safariView: SFSafariViewController = SFSafariViewController(url: url)
-                self.present(safariView, animated: true, completion: nil)
+                self.presentToSafariVC(url: url)
             }
             
             infoQuestionCell.tapNicknameBtnAction = { [unowned self] in
@@ -299,8 +297,7 @@ extension InfoDetailVC: UITableViewDataSource {
             }
             
             infoCommentCell.interactURL = { url in
-                let safariView: SFSafariViewController = SFSafariViewController(url: url)
-                self.present(safariView, animated: true, completion: nil)
+                self.presentToSafariVC(url: url)
             }
             
             infoCommentCell.tapNicknameBtnAction = { [unowned self] in
