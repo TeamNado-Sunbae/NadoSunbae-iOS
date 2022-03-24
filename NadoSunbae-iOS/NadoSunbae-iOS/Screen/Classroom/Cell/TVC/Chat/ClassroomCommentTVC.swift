@@ -13,11 +13,7 @@ class ClassroomCommentTVC: BaseTVC {
     @IBOutlet var backView: UIView!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorLabel: UILabel!
-    @IBOutlet var commentContentTextView: UITextView! {
-        didSet {
-            commentContentTextView.textContainer.lineFragmentPadding = 0
-        }
-    }
+    @IBOutlet var commentContentTextView: UITextView!
     @IBOutlet weak var uploadDateLabel: UILabel!
     @IBOutlet var moreBtn: UIButton!
     @IBOutlet var titleLabelTopConstraint: NSLayoutConstraint!
@@ -28,6 +24,7 @@ class ClassroomCommentTVC: BaseTVC {
     weak var changeCellDelegate: TVCContentUpdate?
     var tapMoreBtnAction : (() -> ())?
     var tapNicknameBtnAction : (() -> ())?
+    var interactURL: ((_ data: URL) -> Void)?
     
     // MARK: LifeCycle
     override func awakeFromNib() {
@@ -65,6 +62,8 @@ extension ClassroomCommentTVC {
         commentContentTextView.setLineSpacing(lineSpacing: 5)
         commentContentTextView.font = .PretendardR(size: 14.0)
         commentContentTextView.textColor = .mainText
+        commentContentTextView.textContainer.lineFragmentPadding = 0
+        commentContentTextView.dataDetectorTypes = .link
     }
     
     /// backView style 구성하는 메서드
@@ -97,5 +96,11 @@ extension ClassroomCommentTVC: UITextViewDelegate {
         if let delegate = dynamicUpdateDelegate {
             delegate.updateTextViewHeight(cell: self, textView: textView)
         }
+    }
+    
+    /// shouldInteractWith URL - 텍스트뷰 내 link와 interact하는 메서드
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        interactURL?(URL)
+        return false
     }
 }
