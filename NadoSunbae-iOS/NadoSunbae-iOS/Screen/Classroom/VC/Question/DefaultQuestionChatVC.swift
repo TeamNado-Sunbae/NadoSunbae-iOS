@@ -551,6 +551,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 questionCell.tapNicknameBtnAction = { [unowned self] in
                     goToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
                 }
+                
+                questionCell.interactURL = { url in
+                    self.presentToSafariVC(url: url)
+                }
                 return questionCell
             }
         } else {
@@ -647,6 +651,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                 
                 commentCell.tapNicknameBtnAction = { [unowned self] in
                     goToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
+                }
+                
+                commentCell.interactURL = { url in
+                    self.presentToSafariVC(url: url)
                 }
                 
                 commentCell.bindData(questionChatData[indexPath.row])
