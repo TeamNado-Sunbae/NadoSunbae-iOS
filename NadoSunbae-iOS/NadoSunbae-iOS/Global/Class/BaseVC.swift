@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAnalytics
+import SafariServices
 
 class BaseVC: UIViewController {
     
@@ -271,6 +272,12 @@ extension BaseVC {
         questionDetailVC.hidesBottomBarWhenPushed = true
         completion(questionDetailVC)
         self.navigationController?.pushViewController(questionDetailVC, animated: true)
+    }
+    
+    /// SafariViewController를 불러와 present 화면전환을 하는 메서드 (인앱)
+    func presentToSafariVC(url: URL) {
+        let safariView: SFSafariViewController = SFSafariViewController(url: url)
+        self.present(safariView, animated: true, completion: nil)
     }
 }
 
