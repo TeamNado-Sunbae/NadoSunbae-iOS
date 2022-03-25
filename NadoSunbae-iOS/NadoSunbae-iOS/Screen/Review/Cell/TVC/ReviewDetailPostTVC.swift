@@ -43,7 +43,7 @@ extension ReviewDetailPostTVC {
             iconImgView.image = UIImage(named: "pencil")
         } else if postData.title == "추천 수업" {
             iconImgView.image = UIImage(named: "diamond")
-        } else if postData.title == "비추 수업" {
+        } else if postData.title == "힘든 수업" {
             iconImgView.image = UIImage(named: "bomb")
         } else if postData.title == "향후 진로" {
             iconImgView.image = UIImage(named: "compass")

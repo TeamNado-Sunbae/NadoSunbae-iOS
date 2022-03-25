@@ -85,7 +85,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="비추 수업">
+                    <state key="normal" title="힘든 수업">
                         <color key="titleColor" name="gray3"/>
                     </state>
                     <connections>
