@@ -13,7 +13,7 @@ class AppVersion {
     static let shared = AppVersion()
     
     var latestVersion = ""
-    var currentVersion = "1.0.0"
+    var currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     
     private init() { }
 }
