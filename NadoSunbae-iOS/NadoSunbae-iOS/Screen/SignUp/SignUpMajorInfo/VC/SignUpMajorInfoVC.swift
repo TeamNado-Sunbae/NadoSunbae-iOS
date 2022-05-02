@@ -135,7 +135,7 @@ extension SignUpMajorInfoVC {
     /// textField에 값이 들어올 때마다 NextBtn 활성화할지를 체크하는 함수
     private func checkNextBtnIsEnabled() {
         secondMajorStartSelectBtn.isEnabled = !(secondMajorTextField.text == "미진입")
-        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) && !(secondMajorTextField.isEmpty) {
+        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) && !(secondMajorTextField.isEmpty) && checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField) {
             if secondMajorTextField.text == "미진입" {
                 nextBtn.isActivated = true
                 nextBtn.isEnabled = true
