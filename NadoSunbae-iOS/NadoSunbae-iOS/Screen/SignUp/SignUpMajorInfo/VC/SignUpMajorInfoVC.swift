@@ -149,6 +149,11 @@ extension SignUpMajorInfoVC {
         }
     }
     
+    /// 제1, 제2전공 중복 선택 검사, 중복되지 않으면 true
+    private func checkMajorDuplicate(firstTextField: UITextField, secondTextField: UITextField) -> Bool {
+        return !(firstTextField.text == secondTextField.text)
+    }
+    
     /// textField에 값이 있으면 '선택' 버튼을 '변경' 버튼으로 바꾸는 함수
     private func checkSelectBtnStatus(btn: UIButton, textField: UITextField) {
         btn.setTitle(textField.isEmpty ? "선택" : "변경", for: .normal)
