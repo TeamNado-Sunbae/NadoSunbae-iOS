@@ -135,7 +135,7 @@ extension SignUpMajorInfoVC {
     /// textField에 값이 들어올 때마다 NextBtn 활성화할지를 체크하는 함수
     private func checkNextBtnIsEnabled() {
         secondMajorStartSelectBtn.isEnabled = !(secondMajorTextField.text == "미진입")
-        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) && !(secondMajorTextField.isEmpty) {
+        if !(univTextField.isEmpty) && !(firstMajorTextField.isEmpty) && !(firstMajorStartTextField.isEmpty) && !(secondMajorTextField.isEmpty) && checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField) {
             if secondMajorTextField.text == "미진입" {
                 nextBtn.isActivated = true
                 nextBtn.isEnabled = true
@@ -147,6 +147,11 @@ extension SignUpMajorInfoVC {
             nextBtn.isActivated = false
             nextBtn.isEnabled = false
         }
+    }
+    
+    /// 제1, 제2전공 중복 선택 검사, 중복되지 않으면 true
+    private func checkMajorDuplicate(firstTextField: UITextField, secondTextField: UITextField) -> Bool {
+        return !(firstTextField.text == secondTextField.text)
     }
     
     /// textField에 값이 있으면 '선택' 버튼을 '변경' 버튼으로 바꾸는 함수

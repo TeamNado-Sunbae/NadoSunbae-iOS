@@ -157,11 +157,16 @@ class EditProfileVC: BaseVC {
     }
     
     private func judgeSaveBtnState() {
-        if userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입" {
+        if (userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입") || !(checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField)) {
             setNavViewNadoRightBtn(status: false)
         } else {
             setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
         }
+    }
+    
+    /// 제1, 제2전공 중복 선택 검사, 중복되지 않으면 true
+    private func checkMajorDuplicate(firstTextField: UITextField, secondTextField: UITextField) -> Bool {
+        return !(firstTextField.text == secondTextField.text)
     }
 }
 
