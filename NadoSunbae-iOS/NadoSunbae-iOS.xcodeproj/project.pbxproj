@@ -104,6 +104,7 @@
 		33C1B8A327974A4F004BABEC /* ClassroomQuestionDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A227974A4F004BABEC /* ClassroomQuestionDetailData.swift */; };
 		33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A427974B72004BABEC /* ClassroomService.swift */; };
 		33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A62797505D004BABEC /* ClassroomAPI.swift */; };
+		33C50100281A4E24004AAEEE /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C500FF281A4E24004AAEEE /* Navigator.swift */; };
 		33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634D27945C0300E92C04 /* NadoSegmentView.swift */; };
 		33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */; };
 		33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */; };
@@ -122,6 +123,7 @@
 		33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */; };
 		33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83B279153A400214CA8 /* BaseCVC.swift */; };
 		33E1E19627C7F51A0057C066 /* QnAType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E1E19527C7F51A0057C066 /* QnAType.swift */; };
+		33E2CFC5287B112D007CD19A /* SignUpNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E2CFC4287B112D007CD19A /* SignUpNC.swift */; };
 		33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */; };
 		33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */; };
 		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
@@ -378,6 +380,7 @@
 		33C1B8A227974A4F004BABEC /* ClassroomQuestionDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionDetailData.swift; sourceTree = "<group>"; };
 		33C1B8A427974B72004BABEC /* ClassroomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomService.swift; sourceTree = "<group>"; };
 		33C1B8A62797505D004BABEC /* ClassroomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomAPI.swift; sourceTree = "<group>"; };
+		33C500FF281A4E24004AAEEE /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		33CF634D27945C0300E92C04 /* NadoSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoSegmentView.swift; sourceTree = "<group>"; };
 		33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoHorizonContainerViews.swift; sourceTree = "<group>"; };
 		33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NadoHorizonContainerViews.xib; sourceTree = "<group>"; };
@@ -396,6 +399,7 @@
 		33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteQuestionVC.swift; sourceTree = "<group>"; };
 		33DAB83B279153A400214CA8 /* BaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVC.swift; sourceTree = "<group>"; };
 		33E1E19527C7F51A0057C066 /* QnAType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAType.swift; sourceTree = "<group>"; };
+		33E2CFC4287B112D007CD19A /* SignUpNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNC.swift; sourceTree = "<group>"; };
 		33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostCommentModel.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
 		33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostQuestionModel.swift; sourceTree = "<group>"; };
@@ -694,6 +698,7 @@
 				33E1E19527C7F51A0057C066 /* QnAType.swift */,
 				33834A1427D5F66E001C4947 /* MypageLikePostType.swift */,
 				336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */,
+				33C500FF281A4E24004AAEEE /* Navigator.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1379,6 +1384,7 @@
 			isa = PBXGroup;
 			children = (
 				5CAB3F29278AE3C200025DA5 /* AgreeTermsVC.swift */,
+				33E2CFC4287B112D007CD19A /* SignUpNC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1916,6 +1922,7 @@
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
 				775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */,
+				33E2CFC5287B112D007CD19A /* SignUpNC.swift in Sources */,
 				3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */,
 				33834A1D27D67FAB001C4947 /* MypageLikeReviewDataModel.swift in Sources */,
 				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
@@ -2041,6 +2048,7 @@
 				C7F3F6DD27D5192D00E12888 /* ResendSignUpMailResponseModel.swift in Sources */,
 				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
+				33C50100281A4E24004AAEEE /* Navigator.swift in Sources */,
 				33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */,
 				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
 				C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */,
