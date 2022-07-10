@@ -64,6 +64,16 @@ extension String {
             return dateFormatter.string(from: self.toDate())
         }
     }
+
+    /// String을 ViewController 인스턴스로 변환하는 메서드
+    public func getViewController() -> UIViewController? {
+        if let vcName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
+            if let viewControllerType = Bundle.main.classNamed("\(vcName).\(self)") as? UIViewController.Type {
+                return viewControllerType.init()
+            }
+        }
+        return nil
+    }
 }
 
 /// 전공정보 String으로 반환하는 함수
