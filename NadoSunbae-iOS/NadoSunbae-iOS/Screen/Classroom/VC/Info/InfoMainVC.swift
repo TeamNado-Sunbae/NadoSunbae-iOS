@@ -139,8 +139,8 @@ extension InfoMainVC {
         infoFloatingBtn.press {
             
             /// 유저의 권한 분기처리
-            self.divideUserPermission() {
-                self.presentToWriteQuestionVC { writeQuestionVC in
+            self.divideUserPermission() { [weak self] in
+                self?.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
                     writeQuestionVC.questionType = .info
                 }
             }
@@ -244,7 +244,8 @@ extension InfoMainVC: UITableViewDelegate {
         /// 유저의 권한 분기처리
         self.divideUserPermission() {
             if infoList.count != 0 {
-                pushToInfoDetailVC { infoDetailVC in
+                self.navigator?.instantiateVC(destinationViewControllerType: InfoDetailVC.self, useStoryboard: true, storyboardName: Identifiers.InfoSB, naviType: .push) { infoDetailVC in
+                    infoDetailVC.hidesBottomBarWhenPushed = true
                     infoDetailVC.postID = self.infoList[indexPath.row].postID
                 }
             }

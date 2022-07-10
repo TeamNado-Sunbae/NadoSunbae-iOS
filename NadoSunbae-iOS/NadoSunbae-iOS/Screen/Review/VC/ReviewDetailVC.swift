@@ -151,24 +151,26 @@ extension ReviewDetailVC {
     private func sendDetailPostData() {
         
         /// 후기 작성 뷰로 이동
-        presentToReviewWriteVC { reviewWriteVC in
-            reviewWriteVC.setReceivedData(status: false, postId: self.detailPost.post.postID, bgImgId: self.detailPost.backgroundImage.imageID)
-            reviewWriteVC.oneLineReviewTextView.textColor = .mainText
-            reviewWriteVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
-            
-            let contentTitleDict: [String : UITextView] = ["장단점" : reviewWriteVC.prosAndConsTextView, "뭘 배우나요?" : reviewWriteVC.learnInfoTextView, "추천 수업" : reviewWriteVC.recommendClassTextView, "비추 수업" :  reviewWriteVC.badClassTextView, "향후 진로" : reviewWriteVC.futureTextView, "꿀팁" : reviewWriteVC.tipTextView]
-            var newContentTitleDict = [String : UITextView]()
-            var newContentDict = [String : String]()
-            
-            for i in 0..<self.detailPost.post.contentList.count {
-                newContentTitleDict.updateValue(contentTitleDict[self.detailPost.post.contentList[i].title] ?? UITextView(), forKey: self.detailPost.post.contentList[i].title)
-                newContentDict.updateValue(self.detailPost.post.contentList[i].content, forKey: self.detailPost.post.contentList[i].title)
-            }
-            
-            newContentTitleDict.forEach {
-                $0.value.textColor = .mainText
-                $0.value.text = newContentDict[$0.key]
-            }
+        guard let reviewWriteVC = UIStoryboard.init(name: "ReviewWriteSB", bundle: nil).instantiateViewController(withIdentifier: ReviewWriteVC.className) as? ReviewWriteVC else { return }
+        reviewWriteVC.modalPresentationStyle = .fullScreen
+        self.present(reviewWriteVC, animated: true, completion: nil)
+        
+        reviewWriteVC.setReceivedData(status: false, postId: self.detailPost.post.postID, bgImgId: self.detailPost.backgroundImage.imageID)
+        reviewWriteVC.oneLineReviewTextView.textColor = .mainText
+        reviewWriteVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
+        
+        let contentTitleDict: [String : UITextView] = ["장단점" : reviewWriteVC.prosAndConsTextView, "뭘 배우나요?" : reviewWriteVC.learnInfoTextView, "추천 수업" : reviewWriteVC.recommendClassTextView, "비추 수업" :  reviewWriteVC.badClassTextView, "향후 진로" : reviewWriteVC.futureTextView, "꿀팁" : reviewWriteVC.tipTextView]
+        var newContentTitleDict = [String : UITextView]()
+        var newContentDict = [String : String]()
+        
+        for i in 0..<self.detailPost.post.contentList.count {
+            newContentTitleDict.updateValue(contentTitleDict[self.detailPost.post.contentList[i].title] ?? UITextView(), forKey: self.detailPost.post.contentList[i].title)
+            newContentDict.updateValue(self.detailPost.post.contentList[i].content, forKey: self.detailPost.post.contentList[i].title)
+        }
+        
+        newContentTitleDict.forEach {
+            $0.value.textColor = .mainText
+            $0.value.text = newContentDict[$0.key]
         }
     }
 }
@@ -243,7 +245,7 @@ extension ReviewDetailVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            pushToMypageUserVC { mypageUserVC in
+            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                 mypageUserVC.targetUserID = self.detailPost.writer.writerID
             }
         }

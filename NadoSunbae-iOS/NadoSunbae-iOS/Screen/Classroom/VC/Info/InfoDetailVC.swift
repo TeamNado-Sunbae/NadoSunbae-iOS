@@ -201,12 +201,12 @@ extension InfoDetailVC {
     
     /// 정보글 원글을 수정하기 위해 WriteQuestionVC로 화면전환하는 메서드
     private func presentWriteQuestionVC() {
-        presentToWriteQuestionVC { writeQuestionVC in
+        self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
             writeQuestionVC.questionType = .info
             writeQuestionVC.isEditState = true
-            writeQuestionVC.postID = self.postID
-            writeQuestionVC.originTitle = self.infoDetailData?.post.title
-            writeQuestionVC.originContent = self.infoDetailData?.post.content
+            writeQuestionVC.postID = self?.postID
+            writeQuestionVC.originTitle = self?.infoDetailData?.post.title
+            writeQuestionVC.originContent = self?.infoDetailData?.post.content
         }
     }
     
@@ -233,10 +233,9 @@ extension InfoDetailVC {
         if userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
             goToRootOfTab(index: 3)
         } else {
-            pushToMypageUserVC { mypageUserVC in
+            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                 mypageUserVC.targetUserID = userID
                 mypageUserVC.judgeBlockStatusDelegate = self
-                mypageUserVC.hidesBottomBarWhenPushed = true
             }
         }
     }

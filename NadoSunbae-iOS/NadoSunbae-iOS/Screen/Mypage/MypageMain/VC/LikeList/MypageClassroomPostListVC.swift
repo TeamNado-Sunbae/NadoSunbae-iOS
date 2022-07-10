@@ -211,10 +211,11 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
             /// 유저의 권한 분기처리
             self.divideUserPermission() {
                 if likePostList.count != 0 {
-                    pushToQuestionDetailVC { defaultQuestionChatVC in
-                        defaultQuestionChatVC.postID = self.likePostList[indexPath.row].postID
-                        defaultQuestionChatVC.questionType = self.likePostList[indexPath.row].postTypeID == 3 ? .group : .personal
-                        defaultQuestionChatVC.naviStyle = .push
+                    self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                        questionDetailVC.hidesBottomBarWhenPushed = true
+                        questionDetailVC.postID = self.likePostList[indexPath.row].postID
+                        questionDetailVC.questionType = self.likePostList[indexPath.row].postTypeID == 3 ? .group : .personal
+                        questionDetailVC.naviStyle = .push
                     }
                 }
             }
@@ -223,7 +224,8 @@ extension MypageClassroomPostListVC: UITableViewDelegate {
             /// 유저의 권한 분기처리
             self.divideUserPermission() {
                 if likePostList.count != 0 {
-                    pushToInfoDetailVC { infoDetailVC in
+                    self.navigator?.instantiateVC(destinationViewControllerType: InfoDetailVC.self, useStoryboard: true, storyboardName: Identifiers.InfoSB, naviType: .push) { infoDetailVC in
+                        infoDetailVC.hidesBottomBarWhenPushed = true
                         infoDetailVC.postID = self.likePostList[indexPath.row].postID
                     }
                 }

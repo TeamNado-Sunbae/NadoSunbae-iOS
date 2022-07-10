@@ -77,7 +77,7 @@ extension AutoSignInVC {
                 }
             default:
                 print("Failed Auto SignIn")
-                self.presentToSignInVC()
+                self.navigator?.instantiateVC(destinationViewControllerType: SignInVC.self, useStoryboard: true, storyboardName: "SignInSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
             }
         }
     }

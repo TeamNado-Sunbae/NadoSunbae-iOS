@@ -66,7 +66,6 @@ class MypageUserVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hideTabbar()
         getUserInfo()
         getUserPersonalQuestionList(sort: sortType)
         makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypageUserVC.className)
@@ -76,9 +75,10 @@ class MypageUserVC: BaseVC {
     @IBAction func tapPersonalQuestionWriteBtn(_ sender: Any) {
         
         /// 유저의 권한 분기처리
-        self.divideUserPermission() {
-            if self.userInfo.isOnQuestion {
-                presentToWriteQuestionVC { writeQuestionVC in
+        self.divideUserPermission() { [weak self] in
+            guard let self = self else { return }
+            if self.userInfo.isOnQuestion == true {
+                self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
                     writeQuestionVC.questionType = .personal
                     writeQuestionVC.answerID = self.userInfo.userID
                 }

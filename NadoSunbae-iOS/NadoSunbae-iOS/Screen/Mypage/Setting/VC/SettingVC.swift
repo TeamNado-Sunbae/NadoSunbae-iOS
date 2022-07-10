@@ -157,7 +157,7 @@ extension SettingVC {
             switch networkResult {
             case .success:
                 self.setRemoveUserdefaultValues()
-                self.presentToSignInVC()
+                self.navigator?.instantiateVC(destinationViewControllerType: SignInVC.self, useStoryboard: true, storyboardName: "SignInSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
             case .requestErr(let res):
                 if let message = res as? String {
                     print(message)
@@ -187,7 +187,7 @@ extension SettingVC {
                 
                 alert.confirmBtn.press {
                     alert.dismiss(animated: true, completion: nil)
-                    self.presentToSignInVC()
+                    self.navigator?.instantiateVC(destinationViewControllerType: SignInVC.self, useStoryboard: true, storyboardName: "SignInSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
                 }
                 
                 alert.showNadoAlert(vc: self, message: "탈퇴가 완료되었습니다.", confirmBtnTitle: "확인", cancelBtnTitle: "", type: .withSingleBtn)

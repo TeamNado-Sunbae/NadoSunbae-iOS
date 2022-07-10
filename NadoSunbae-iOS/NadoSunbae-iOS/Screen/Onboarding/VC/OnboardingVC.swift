@@ -40,11 +40,11 @@ class OnboardingVC: BaseVC {
     
     // MARK: IBAction
     @IBAction func tapSignUpBtn(_ sender: UIButton) {
-        presentToSignUpVC()
+        self.navigator?.instantiateVC(destinationViewControllerType: SignUpNC.self, useStoryboard: true, storyboardName: AgreeTermsVC.className, naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
     }
     
     @IBAction func tapSignInBtn(_ sender: UIButton) {
-        presentToSignInVC()
+        self.navigator?.instantiateVC(destinationViewControllerType: SignInVC.self, useStoryboard: true, storyboardName: "SignInSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
     }
 }
 

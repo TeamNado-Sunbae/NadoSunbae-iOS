@@ -40,13 +40,11 @@ class SignInVC: BaseVC {
     }
     
     @IBAction func tapSignUpBtn(_ sender: UIButton) {
-        presentToSignUpVC()
+        self.navigator?.instantiateVC(destinationViewControllerType: SignUpNC.self, useStoryboard: true, storyboardName: AgreeTermsVC.className, naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
     }
     
     @IBAction func tapFindPWBtn(_ sender: UIButton) {
-        guard let resetPWVC = UIStoryboard.init(name: ResetPWVC.className, bundle: nil).instantiateViewController(withIdentifier: ResetPWVC.className) as? ResetPWVC else { return }
-        resetPWVC.modalPresentationStyle = .fullScreen
-        self.present(resetPWVC, animated: true, completion: nil)
+        self.navigator?.instantiateVC(destinationViewControllerType: ResetPWVC.self, useStoryboard: true, storyboardName: ResetPWVC.className, naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
     }
     
     @IBAction func tapContactBtn(_ sender: UIButton) {
