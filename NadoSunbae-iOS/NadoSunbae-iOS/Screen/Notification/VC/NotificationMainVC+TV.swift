@@ -40,7 +40,8 @@ extension NotificationMainVC: UITableViewDelegate {
         switch notificationList[indexPath.section].notificationTypeID.getNotiType() {
         case .writtenInfo, .answerInfo:
             divideUserPermission() {
-                pushToInfoDetailVC { infoDetailVC in
+                self.navigator?.instantiateVC(destinationViewControllerType: InfoDetailVC.self, useStoryboard: true, storyboardName: Identifiers.InfoSB, naviType: .push) { infoDetailVC in
+                    infoDetailVC.hidesBottomBarWhenPushed = true
                     infoDetailVC.postID = self.notificationList[indexPath.section].postID
                     self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
                 }
@@ -48,19 +49,21 @@ extension NotificationMainVC: UITableViewDelegate {
 
         case .writtenQuestion, .answerQuestion:
             divideUserPermission() {
-                pushToQuestionDetailVC { defaultQuestionChatVC in
-                    defaultQuestionChatVC.questionType = self.notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
-                    defaultQuestionChatVC.naviStyle = .push
-                    defaultQuestionChatVC.postID = self.notificationList[indexPath.section].postID
+                self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                    questionDetailVC.hidesBottomBarWhenPushed = true
+                    questionDetailVC.questionType = self.notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
+                    questionDetailVC.naviStyle = .push
+                    questionDetailVC.postID = self.notificationList[indexPath.section].postID
                     self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
                 }
             }
             
         case .mypageQuestion:
-            pushToQuestionDetailVC { defaultQuestionChatVC in
-                defaultQuestionChatVC.questionType = .personal
-                defaultQuestionChatVC.naviStyle = .push
-                defaultQuestionChatVC.postID = self.notificationList[indexPath.section].postID
+            self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                questionDetailVC.hidesBottomBarWhenPushed = true
+                questionDetailVC.questionType = .personal
+                questionDetailVC.naviStyle = .push
+                questionDetailVC.postID = self.notificationList[indexPath.section].postID
                 self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
             }
             

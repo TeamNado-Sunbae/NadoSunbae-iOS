@@ -353,10 +353,9 @@ extension DefaultQuestionChatVC {
         if userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
             goToRootOfTab(index: 3)
         } else {
-            pushToMypageUserVC { mypageUserVC in
+            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                 mypageUserVC.targetUserID = userID
                 mypageUserVC.judgeBlockStatusDelegate = self
-                mypageUserVC.hidesBottomBarWhenPushed = true
             }
         }
     }
@@ -510,32 +509,32 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     
                     if actionSheetString.count > 1 {
                         /// 작성자 본인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
+                        self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { [weak self] _ in
                             if indexPath.row == 0 {
                                 /// 수정
                                 /// 질문 원글일 경우
-                                presentToWriteQuestionVC { writeQuestionVC in
-                                    writeQuestionVC.questionType = questionType ?? .personal
+                                self?.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
+                                    writeQuestionVC.questionType = self?.questionType ?? .personal
                                     writeQuestionVC.isEditState = true
-                                    writeQuestionVC.postID = postID
-                                    writeQuestionVC.originTitle = questionChatData[0].title
-                                    writeQuestionVC.originContent = questionChatData[0].content
+                                    writeQuestionVC.postID = self?.postID
+                                    writeQuestionVC.originTitle = self?.questionChatData[0].title
+                                    writeQuestionVC.originContent = self?.questionChatData[0].content
                                 }
                             } else {
                                 /// 질문 답변일 경우
-                                self.dismissKeyboard()
-                                editIndex = [0,indexPath.row]
+                                self?.dismissKeyboard()
+                                self?.editIndex = [0, indexPath.row]
                             }
-                            defaultQuestionChatTV.reloadData()
-                        }, secondOkAction: { _ in
+                            self?.defaultQuestionChatTV.reloadData()
+                        }, secondOkAction: { [weak self] _ in
                             /// 삭제
-                            self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: questionChatData[indexPath.row].messageID, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
+                            self?.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: self?.questionChatData[indexPath.row].messageID ?? 0, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
                         })
                     } else {
                         /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { _ in
-                            self.reportActionSheet { reason in
-                                requestReport(reportedTargetID: questionChatData[indexPath.row].messageID, reportedTargetTypeID: indexPath.row == 0 ? 2 : 3, reason: reason)
+                        self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { [weak self] _ in
+                            self?.reportActionSheet { [weak self] reason in
+                                self?.requestReport(reportedTargetID: self?.questionChatData[indexPath.row].messageID ?? 0, reportedTargetTypeID: indexPath.row == 0 ? 2 : 3, reason: reason)
                             }
                         })
                     }
@@ -628,20 +627,20 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     
                     if actionSheetString.count > 1 {
                         /// 작성자 본인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { _ in
-                            if actionSheetString[0] == "수정" {
-                                self.dismissKeyboard()
-                                editIndex = [1,indexPath.row]
+                        self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { [weak self] _ in
+                            if self?.actionSheetString[0] == "수정" {
+                                self?.dismissKeyboard()
+                                self?.editIndex = [1,indexPath.row]
                             }
-                            defaultQuestionChatTV.reloadData()
-                        }, secondOkAction: { _ in
-                            self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: questionChatData[indexPath.row].messageID, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
+                            self?.defaultQuestionChatTV.reloadData()
+                        }, secondOkAction: { [weak self] _ in
+                            self?.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: self?.questionChatData[indexPath.row].messageID ?? 0, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
                         })
                     } else {
                         /// 타인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { _ in
-                            self.reportActionSheet { reason in
-                                requestReport(reportedTargetID: questionChatData[indexPath.row].messageID, reportedTargetTypeID: 3, reason: reason)
+                        self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { [weak self] _ in
+                            self?.reportActionSheet { [weak self] reason in
+                                self?.requestReport(reportedTargetID: self?.questionChatData[indexPath.row].messageID ?? 0, reportedTargetTypeID: 3, reason: reason)
                             }
                         })
                     }

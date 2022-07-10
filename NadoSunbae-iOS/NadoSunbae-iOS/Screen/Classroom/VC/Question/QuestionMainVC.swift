@@ -273,8 +273,8 @@ extension QuestionMainVC: UITableViewDataSource {
             questionHeaderCell.tapWriteBtnAction = {
                 
                 /// 유저의 권한 분기처리
-                self.divideUserPermission() {
-                    self.presentToWriteQuestionVC { writeQuestionVC in
+                self.divideUserPermission() { [weak self] in
+                    self?.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
                         writeQuestionVC.questionType = .group
                     }
                 }
@@ -334,10 +334,11 @@ extension QuestionMainVC: UITableViewDelegate {
             /// 유저의 권한 분기처리
             self.divideUserPermission() {
                 if questionList.count != 0 {
-                    pushToQuestionDetailVC { defaultQuestionChatVC in
-                        defaultQuestionChatVC.questionType = .group
-                        defaultQuestionChatVC.naviStyle = .push
-                        defaultQuestionChatVC.postID = self.questionList[indexPath.row].postID
+                    self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                        questionDetailVC.hidesBottomBarWhenPushed = true
+                        questionDetailVC.questionType = .group
+                        questionDetailVC.naviStyle = .push
+                        questionDetailVC.postID = self.questionList[indexPath.row].postID
                     }
                 }
             }

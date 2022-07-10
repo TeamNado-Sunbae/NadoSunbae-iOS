@@ -126,24 +126,25 @@ extension MypageMyPostListVC: UITableViewDelegate {
             
             /// 유저의 권한 분기처리
             self.divideUserPermission() {
-                pushToQuestionDetailVC { defaultQuestionChatVC in
-                    defaultQuestionChatVC.questionType = .group
-                    defaultQuestionChatVC.naviStyle = .push
+                self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                    questionDetailVC.questionType = .group
+                    questionDetailVC.naviStyle = .push
                     
                     if self.isPostOrAnswer {
-                        defaultQuestionChatVC.questionType = self.postList[indexPath.row].postTypeID == 3 ? .group : .personal
+                        questionDetailVC.questionType = self.postList[indexPath.row].postTypeID == 3 ? .group : .personal
                     } else {
-                        defaultQuestionChatVC.questionType = self.answerList[indexPath.row].postTypeID == 3 ? .group : .personal
+                        questionDetailVC.questionType = self.answerList[indexPath.row].postTypeID == 3 ? .group : .personal
                     }
                     
-                    defaultQuestionChatVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
+                    questionDetailVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
                 }
             }
         case .information:
             
             /// 유저의 권한 분기처리
             self.divideUserPermission() {
-                pushToInfoDetailVC { infoDetailVC in
+                self.navigator?.instantiateVC(destinationViewControllerType: InfoDetailVC.self, useStoryboard: true, storyboardName: Identifiers.InfoSB, naviType: .push) { infoDetailVC in
+                    infoDetailVC.hidesBottomBarWhenPushed = true
                     infoDetailVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
                 }
             }

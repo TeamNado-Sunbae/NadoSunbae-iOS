@@ -36,10 +36,11 @@ extension MypageUserVC: UITableViewDelegate {
         
         /// 유저의 권한 분기처리
         self.divideUserPermission() {
-            pushToQuestionDetailVC { defaultQuestionChatVC in
-                defaultQuestionChatVC.questionType = .personal
-                defaultQuestionChatVC.naviStyle = .push
-                defaultQuestionChatVC.postID = self.questionList[indexPath.row].postID
+            self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                questionDetailVC.hidesBottomBarWhenPushed = true
+                questionDetailVC.questionType = .personal
+                questionDetailVC.naviStyle = .push
+                questionDetailVC.postID = self.questionList[indexPath.row].postID
             }
         }
     }

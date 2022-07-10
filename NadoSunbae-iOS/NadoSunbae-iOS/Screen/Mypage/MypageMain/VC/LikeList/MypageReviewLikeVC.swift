@@ -183,7 +183,7 @@ extension MypageReviewLikeVC: UITableViewDelegate {
         /// 유저의 권한 분기처리
         self.divideUserPermission() {
             if likeReviewList.count != 0 {
-                pushToReviewDetailVC { reviewDetailVC in
+                self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
                     reviewDetailVC.postId = self.likeReviewList[indexPath.row].postID
                 }
             }
