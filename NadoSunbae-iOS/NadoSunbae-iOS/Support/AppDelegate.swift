@@ -39,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
             "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? ""
         ])
+        
+        #if DEBUG
+        Analytics.setAnalyticsCollectionEnabled(false)
+        #endif
+        
         return true
     }
     
