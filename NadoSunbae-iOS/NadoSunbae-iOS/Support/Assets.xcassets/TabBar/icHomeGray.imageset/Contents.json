@@ -1,23 +1,23 @@
 {
   "images" : [
     {
+      "filename" : "icHomeGray.png",
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "icReviewGray.png"
+      "scale" : "1x"
     },
     {
-      "filename" : "icReviewGray@2x.png",
+      "filename" : "icHomeGray@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "icHomeGray@3x.png",
       "idiom" : "universal",
-      "filename" : "icReviewGray@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
