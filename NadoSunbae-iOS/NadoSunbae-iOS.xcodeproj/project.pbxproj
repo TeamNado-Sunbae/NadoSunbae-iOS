@@ -105,6 +105,7 @@
 		33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A427974B72004BABEC /* ClassroomService.swift */; };
 		33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1B8A62797505D004BABEC /* ClassroomAPI.swift */; };
 		33C50100281A4E24004AAEEE /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C500FF281A4E24004AAEEE /* Navigator.swift */; };
+		33C79DCB287F350100B6C32C /* NadoSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */; };
 		33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634D27945C0300E92C04 /* NadoSegmentView.swift */; };
 		33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */; };
 		33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */; };
@@ -382,6 +383,7 @@
 		33C1B8A427974B72004BABEC /* ClassroomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomService.swift; sourceTree = "<group>"; };
 		33C1B8A62797505D004BABEC /* ClassroomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomAPI.swift; sourceTree = "<group>"; };
 		33C500FF281A4E24004AAEEE /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSegmentedControl.swift; sourceTree = "<group>"; };
 		33CF634D27945C0300E92C04 /* NadoSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoSegmentView.swift; sourceTree = "<group>"; };
 		33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoHorizonContainerViews.swift; sourceTree = "<group>"; };
 		33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NadoHorizonContainerViews.xib; sourceTree = "<group>"; };
@@ -1164,6 +1166,7 @@
 				5CA73378278A8F4900806B17 /* NadoAlertVC.swift */,
 				330DA4322790BCCC00FE127F /* NadoTextView.swift */,
 				778E0F46287A061900BEEEA5 /* NadoMaskedImgView.swift */,
+				33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -2006,6 +2009,7 @@
 				3381083A27D53F4A005AF1F9 /* MypageClassroomPostListVC.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */,
+				33C79DCB287F350100B6C32C /* NadoSegmentedControl.swift in Sources */,
 				77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
