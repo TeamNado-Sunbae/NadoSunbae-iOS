@@ -16,9 +16,9 @@ import Then
  폰트는 Pretendard-SemiBold: 14pt가 기본이고 이외에는 메서드를 통해 커스텀하여 사용
  
  - Note:
- - setButton: 버튼 기본 셋팅 변경
- - setTitle: 버튼 타이틀만 변경
- - changeColors: 버튼 배경색, 글씨색 변경
+ - setBackgroundColor: SegmentControl Background 색 변경
+ - setUpNadoSegmentFrame: NadoSegmentedControl의 Frame을 통해 HighlightView Frame을 설정
+ - setSegmentItems: Segment가 될 Item들 설정 [String]
  */
 
 final class NadoSegmentedControl: UISegmentedControl {
@@ -45,7 +45,7 @@ final class NadoSegmentedControl: UISegmentedControl {
     // MARK: layoutSubViews
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        print("layoutSubviews")
         let finalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex) + 4.0
         UIView.animate(
             withDuration: 0.2,
