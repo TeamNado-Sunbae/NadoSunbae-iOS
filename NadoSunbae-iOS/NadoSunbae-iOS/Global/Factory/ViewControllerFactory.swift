@@ -10,9 +10,16 @@ import UIKit
 class ViewControllerFactory: NSObject {
     
     static func viewController(for typeOfVC: TypeOfViewController) -> UIViewController {
-        let metaData = typeOfVC.storyboardRepresentation()
-        let sb = UIStoryboard(name: metaData.storyboardName, bundle: metaData.bundle)
-        let vc = sb.instantiateViewController(withIdentifier: metaData.storyboardId)
+        let metaData = typeOfVC.vcRepresentation()
+        var vc = UIViewController()
+        
+        if metaData.storyboardName == "" {
+            vc = metaData.vcClassName.getViewController() ?? UIViewController()
+        } else {
+            let sb = UIStoryboard(name: metaData.storyboardName, bundle: metaData.bundle)
+            vc = sb.instantiateViewController(withIdentifier: metaData.vcClassName)
+        }
+        
         return vc
     }
 }
