@@ -17,7 +17,7 @@
 		3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313644C2785A83A00E0C118 /* APIConstants.swift */; };
 		3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313644E2785A84B00E0C118 /* NetworkResult.swift */; };
 		331364512785A85E00E0C118 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364502785A85E00E0C118 /* GenericResponse.swift */; };
-		331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364532785A8FE00E0C118 /* StoryboardRepresentation.swift */; };
+		331364542785A8FE00E0C118 /* VCRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364532785A8FE00E0C118 /* VCRepresentation.swift */; };
 		331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364552785A90F00E0C118 /* TypeOfViewController.swift */; };
 		331364582785A96700E0C118 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364572785A96700E0C118 /* UIViewController+.swift */; };
 		3313645A2785A98B00E0C118 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364592785A98B00E0C118 /* UIView+.swift */; };
@@ -119,6 +119,10 @@
 		33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */; };
 		33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636727955D9500E92C04 /* ClassroomNC.swift */; };
 		33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF636B279567AF00E92C04 /* QuestionType.swift */; };
+		33D44564287C27F700D94495 /* HomeNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D44563287C27F700D94495 /* HomeNC.swift */; };
+		33D44566287C280600D94495 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D44565287C280600D94495 /* HomeVC.swift */; };
+		33D44569287C289700D94495 /* CommunityNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D44568287C289700D94495 /* CommunityNC.swift */; };
+		33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D4456A287C28AE00D94495 /* CommunityMainVC.swift */; };
 		33D9EA8F27D75335000AF8DB /* NotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D9EA8E27D75335000AF8DB /* NotificationInfo.swift */; };
 		33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */; };
 		33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB83B279153A400214CA8 /* BaseCVC.swift */; };
@@ -287,7 +291,7 @@
 /* Begin PBXFileReference section */
 		330DA4322790BCCC00FE127F /* NadoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextView.swift; sourceTree = "<group>"; };
 		330DA4342790C3E300FE127F /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
-		331364262784D3BD00E0C118 /* NadoSunbae-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NadoSunbae-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		331364262784D3BD00E0C118 /* NadoSunbae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NadoSunbae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		331364292784D3BD00E0C118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3313642B2784D3BD00E0C118 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		331364322784D3C000E0C118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -296,7 +300,7 @@
 		3313644C2785A83A00E0C118 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		3313644E2785A84B00E0C118 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		331364502785A85E00E0C118 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
-		331364532785A8FE00E0C118 /* StoryboardRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardRepresentation.swift; sourceTree = "<group>"; };
+		331364532785A8FE00E0C118 /* VCRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRepresentation.swift; sourceTree = "<group>"; };
 		331364552785A90F00E0C118 /* TypeOfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfViewController.swift; sourceTree = "<group>"; };
 		331364572785A96700E0C118 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		331364592785A98B00E0C118 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -396,6 +400,10 @@
 		33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionEmptyTVC.swift; sourceTree = "<group>"; };
 		33CF636727955D9500E92C04 /* ClassroomNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomNC.swift; sourceTree = "<group>"; };
 		33CF636B279567AF00E92C04 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
+		33D44563287C27F700D94495 /* HomeNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNC.swift; sourceTree = "<group>"; };
+		33D44565287C280600D94495 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		33D44568287C289700D94495 /* CommunityNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityNC.swift; sourceTree = "<group>"; };
+		33D4456A287C28AE00D94495 /* CommunityMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMainVC.swift; sourceTree = "<group>"; };
 		33D9EA8E27D75335000AF8DB /* NotificationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInfo.swift; sourceTree = "<group>"; };
 		33DAB83927914EAD00214CA8 /* WriteQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteQuestionVC.swift; sourceTree = "<group>"; };
 		33DAB83B279153A400214CA8 /* BaseCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVC.swift; sourceTree = "<group>"; };
@@ -604,7 +612,7 @@
 		331364272784D3BD00E0C118 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				331364262784D3BD00E0C118 /* NadoSunbae-iOS.app */,
+				331364262784D3BD00E0C118 /* NadoSunbae.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -656,8 +664,10 @@
 				5CAB3F23278AE37E00025DA5 /* SignUp */,
 				5C4ED92627894951001EA6BB /* SignIn */,
 				331364842785D64700E0C118 /* TabBar */,
+				33D44560287C27D700D94495 /* Home */,
 				3313648A2785D72300E0C118 /* Review */,
 				331364962785D82E00E0C118 /* Classroom */,
+				33D4455F287C27CB00D94495 /* Community */,
 				331364972785D83E00E0C118 /* Notification */,
 				331364982785D84600E0C118 /* Mypage */,
 			);
@@ -791,7 +801,7 @@
 		331364522785A8E900E0C118 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
-				331364532785A8FE00E0C118 /* StoryboardRepresentation.swift */,
+				331364532785A8FE00E0C118 /* VCRepresentation.swift */,
 				331364552785A90F00E0C118 /* TypeOfViewController.swift */,
 				331364AD2785DC1900E0C118 /* ViewControllerFactory.swift */,
 			);
@@ -1137,6 +1147,40 @@
 				338CDB00278C9F8600F8227A /* ClassroomCommentEditTVC.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		33D4455F287C27CB00D94495 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				33D44567287C288100D94495 /* VC */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		33D44560287C27D700D94495 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				33D44562287C27E500D94495 /* VC */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		33D44562287C27E500D94495 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				33D44563287C27F700D94495 /* HomeNC.swift */,
+				33D44565287C280600D94495 /* HomeVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		33D44567287C288100D94495 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				33D44568287C289700D94495 /* CommunityNC.swift */,
+				33D4456A287C28AE00D94495 /* CommunityMainVC.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		33F02A802786F2020078F9B7 /* Xib */ = {
@@ -1726,9 +1770,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		331364252784D3BD00E0C118 /* NadoSunbae-iOS */ = {
+		331364252784D3BD00E0C118 /* NadoSunbae */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3313643A2784D3C000E0C118 /* Build configuration list for PBXNativeTarget "NadoSunbae-iOS" */;
+			buildConfigurationList = 3313643A2784D3C000E0C118 /* Build configuration list for PBXNativeTarget "NadoSunbae" */;
 			buildPhases = (
 				BA7A4732C14962FD8D7459E7 /* [CP] Check Pods Manifest.lock */,
 				331364222784D3BD00E0C118 /* Sources */,
@@ -1740,13 +1784,13 @@
 			);
 			dependencies = (
 			);
-			name = "NadoSunbae-iOS";
+			name = NadoSunbae;
 			packageProductDependencies = (
 				336EEE4027DA77700010A9E3 /* FirebaseAnalytics */,
 				336EEE4227DA77700010A9E3 /* FirebaseMessaging */,
 			);
 			productName = "NadoSunbae-iOS";
-			productReference = 331364262784D3BD00E0C118 /* NadoSunbae-iOS.app */;
+			productReference = 331364262784D3BD00E0C118 /* NadoSunbae.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1764,7 +1808,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331364212784D3BD00E0C118 /* Build configuration list for PBXProject "NadoSunbae-iOS" */;
+			buildConfigurationList = 331364212784D3BD00E0C118 /* Build configuration list for PBXProject "NadoSunbae" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = ko;
 			hasScannedForEncodings = 0;
@@ -1781,7 +1825,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				331364252784D3BD00E0C118 /* NadoSunbae-iOS */,
+				331364252784D3BD00E0C118 /* NadoSunbae */,
 			);
 		};
 /* End PBXProject section */
@@ -2024,6 +2068,7 @@
 				33B9B0DB27B8EB4400066C1F /* InfoQuestionTVC.swift in Sources */,
 				33A666A127BB844C00779351 /* InfoDetailDataModel.swift in Sources */,
 				5CC0BFD82798768F00B96905 /* Int+.swift in Sources */,
+				33D44569287C289700D94495 /* CommunityNC.swift in Sources */,
 				5CC0BFD227985D4C00B96905 /* NotificationService.swift in Sources */,
 				5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */,
 				331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */,
@@ -2084,9 +2129,11 @@
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */,
-				331364542785A8FE00E0C118 /* StoryboardRepresentation.swift in Sources */,
+				33D44566287C280600D94495 /* HomeVC.swift in Sources */,
+				331364542785A8FE00E0C118 /* VCRepresentation.swift in Sources */,
 				C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */,
 				33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */,
+				33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
@@ -2099,6 +2146,7 @@
 				331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */,
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				5C328021279741C200781EBE /* QuestionOrInfoListModel.swift in Sources */,
+				33D44564287C27F700D94495 /* HomeNC.swift in Sources */,
 				33A15F732799DDDE006FE040 /* AddCommentData.swift in Sources */,
 				77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */,
 				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
@@ -2272,7 +2320,7 @@
 				);
 				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NadoSunbae;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2303,7 +2351,7 @@
 				);
 				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NadoSunbae;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2313,7 +2361,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331364212784D3BD00E0C118 /* Build configuration list for PBXProject "NadoSunbae-iOS" */ = {
+		331364212784D3BD00E0C118 /* Build configuration list for PBXProject "NadoSunbae" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331364382784D3C000E0C118 /* Debug */,
@@ -2322,7 +2370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3313643A2784D3C000E0C118 /* Build configuration list for PBXNativeTarget "NadoSunbae-iOS" */ = {
+		3313643A2784D3C000E0C118 /* Build configuration list for PBXNativeTarget "NadoSunbae" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3313643B2784D3C000E0C118 /* Debug */,
