@@ -26,7 +26,7 @@ final class NadoSegmentedControl: UISegmentedControl {
     // MARK: Properties
     private lazy var highlightView = UIView().then {
         $0.backgroundColor = .white
-        $0.layer.cornerRadius = 6
+        $0.makeRounded(cornerRadius: 6)
     }
     
     // MARK: init
@@ -45,7 +45,7 @@ final class NadoSegmentedControl: UISegmentedControl {
     // MARK: layoutSubViews
     override func layoutSubviews() {
         super.layoutSubviews()
-        print("layoutSubviews")
+        
         let finalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex) + 4.0
         UIView.animate(
             withDuration: 0.2,
