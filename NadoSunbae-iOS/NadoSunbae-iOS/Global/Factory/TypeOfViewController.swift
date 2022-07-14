@@ -9,27 +9,33 @@ import Foundation
 
 enum TypeOfViewController {
     case tabBar
+    case home
     case review
     case classroom
+    case community
     case notification
     case mypage
 }
 
 extension TypeOfViewController {
     
-    func storyboardRepresentation() -> StoryboardRepresentation {
+    func vcRepresentation() -> VCRepresentation {
         switch self {
             
         case .tabBar:
-            return StoryboardRepresentation(bundle: nil, storyboardName: "", storyboardId: NadoSunbaeTBC.className)
+            return VCRepresentation(bundle: nil, storyboardName: "", vcClassName: NadoSunbaeTBC.className)
+        case .home:
+            return VCRepresentation(bundle: nil, storyboardName: "", vcClassName: HomeNC.className)
         case .review:
-            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.ReviewSB, storyboardId: ReviewNC.className)
+            return VCRepresentation(bundle: nil, storyboardName: Identifiers.ReviewSB, vcClassName: ReviewNC.className)
         case .classroom:
-            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.ClassroomSB, storyboardId: ClassroomNC.className)
+            return VCRepresentation(bundle: nil, storyboardName: Identifiers.ClassroomSB, vcClassName: ClassroomNC.className)
+        case .community:
+            return VCRepresentation(bundle: nil, storyboardName: "", vcClassName: CommunityNC.className)
         case .notification:
-            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.NotificationSB, storyboardId: NotificationNVC.className)
+            return VCRepresentation(bundle: nil, storyboardName: Identifiers.NotificationSB, vcClassName: NotificationNVC.className)
         case .mypage:
-            return StoryboardRepresentation(bundle: nil, storyboardName: Identifiers.MypageSB, storyboardId: MypageNVC.className)
+            return VCRepresentation(bundle: nil, storyboardName: Identifiers.MypageSB, vcClassName: MypageNVC.className)
         }
     }
 }
