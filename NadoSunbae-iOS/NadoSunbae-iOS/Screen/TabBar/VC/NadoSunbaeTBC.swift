@@ -48,13 +48,14 @@ extension NadoSunbaeTBC {
     /// 탭바 구성하는 메서드
     func configureTabBar() {
         
-        let reviewTab = makeTabVC(vcType: .review, tabBarTitle: "후기", tabBarImg: "icReviewGray", tabBarSelectedImg: "icReview")
-        let classroomTab = makeTabVC(vcType: .classroom, tabBarTitle: "과방", tabBarImg: "icRoomGray", tabBarSelectedImg: "icRoom")
+        let homeTab = makeTabVC(vcType: .home, tabBarTitle: "홈", tabBarImg: "icHomeGray", tabBarSelectedImg: "icHome")
+        let classroomTab = makeTabVC(vcType: .classroom, tabBarTitle: "과방", tabBarImg: "icClassroomGray", tabBarSelectedImg: "icClassroom")
+        let communityTab = makeTabVC(vcType: .community, tabBarTitle: "커뮤니티", tabBarImg: "icCommunityGray", tabBarSelectedImg: "icCommunity")
         let alarmTab = makeTabVC(vcType: .notification, tabBarTitle: "알림", tabBarImg: "icNoticeGray", tabBarSelectedImg: "icNotice")
-        let mypageTab = makeTabVC(vcType: .mypage, tabBarTitle: "마이페이지", tabBarImg: "icMypageGray", tabBarSelectedImg: "icMypage")
+        let mypageTab = makeTabVC(vcType: .mypage, tabBarTitle: "마이", tabBarImg: "icMypageGray", tabBarSelectedImg: "icMypage")
         
         // 탭 구성
-        let tabs = [reviewTab, classroomTab, alarmTab, mypageTab]
+        let tabs = [homeTab, classroomTab, communityTab, alarmTab, mypageTab]
         
         // VC에 루트로 설정
         self.setViewControllers(tabs, animated: false)
