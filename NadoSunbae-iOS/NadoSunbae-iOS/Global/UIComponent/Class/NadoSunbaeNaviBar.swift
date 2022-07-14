@@ -14,6 +14,7 @@ enum NaviState {
     case backDefaultWithNadoBtn
     case backDefaultWithCustomRightBtn
     case backWithCenterTitle
+    case backWithTwoLineTitle
     case dismissWithCustomRightBtn
     case dismissWithNadoBtn
 }
@@ -24,6 +25,7 @@ enum NaviState {
  - backDefault: 뒤로가기 버튼 + 바로 옆 텍스트 (디폴트)
  - backDefaultWithNadoBtn: 뒤로가기 버튼과 + 바로 옆 텍스트 + 우측 나도선배 버튼
  - backWithCenterTitle: 뒤로가기 버튼 + 중앙 텍스트 + 우측 버튼
+ - backWithTwoLineTitle: 뒤로가기 버튼 + 중앙 2줄 텍스트 + 우측 버튼
  - dismissWithCustomRightBtn: 취소 버튼과 중앙 텍스트 + 우측 버튼
  - dismissWithNadoBtn: 취소 버튼과 중앙 텍스트 + 우측 나도선배 버튼
  
@@ -40,6 +42,10 @@ class NadoSunbaeNaviBar: UIView {
     
     private (set) lazy var titleLabel = UILabel().then {
         $0.setLabel(text: "제목", color: .black, size: 20, weight: .medium)
+    }
+    
+    private (set) lazy var subTitleLabel = UILabel().then {
+        $0.setLabel(text: "제목", color: .gray3, size: 12, weight: .regular)
     }
     
     private (set) lazy var backBtn = UIButton().then {
@@ -174,6 +180,39 @@ extension NadoSunbaeNaviBar {
         titleLabel.setLabel(text: "제목", color: .black, size: 16, weight: .medium)
     }
     
+    /// 뒤로가기 버튼 + 중앙 2줄 텍스트 + 우측 커스텀 버튼 UI를 구성하는 메서드
+    private func configureBackWithTwoLineTitleUI() {
+        self.addSubviews([backView, backBtn, titleLabel, subTitleLabel, rightCustomBtn])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        backBtn.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.leading.equalToSuperview()
+            $0.height.width.equalTo(48)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(backBtn)
+        }
+        
+        subTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.centerX.equalToSuperview()
+        }
+        
+        rightCustomBtn.snp.makeConstraints {
+            $0.trailing.equalTo(self.snp.trailing).offset(-8)
+            $0.height.equalTo(44)
+            $0.centerY.equalTo(backBtn)
+        }
+        
+        titleLabel.setLabel(text: "제목", color: .black, size: 16, weight: .medium)
+        subTitleLabel.setLabel(text: "제목", color: .gray3, size: 12, weight: .regular)
+    }
+    
     /// 취소 버튼 + 중앙 텍스트 + 우측 커스텀 버튼 UI를 구성하는 메서드
     private func configureDismissWithCustomRightBtnUI() {
         self.addSubviews([backView, dismissBtn, titleLabel, rightCustomBtn])
@@ -252,6 +291,8 @@ extension NadoSunbaeNaviBar {
             configureBackWithNadoBtnUI()
         case .backWithCenterTitle:
             configureBackWithCenterUI()
+        case .backWithTwoLineTitle:
+            configureBackWithTwoLineTitleUI()
         case .backDefaultWithCustomRightBtn:
             configureBackWithCustomRightBtn()
         case .dismissWithCustomRightBtn:
