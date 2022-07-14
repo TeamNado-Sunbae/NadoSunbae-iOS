@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "331364252784D3BD00E0C118"
                BuildableName = "NadoSunbae-iOS.app"
-               BlueprintName = "NadoSunbae-iOS"
-               ReferencedContainer = "container:NadoSunbae-iOS.xcodeproj">
+               BlueprintName = "NadoSunbae"
+               ReferencedContainer = "container:NadoSunbae.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,16 +46,10 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "331364252784D3BD00E0C118"
             BuildableName = "NadoSunbae-iOS.app"
-            BlueprintName = "NadoSunbae-iOS"
-            ReferencedContainer = "container:NadoSunbae-iOS.xcodeproj">
+            BlueprintName = "NadoSunbae"
+            ReferencedContainer = "container:NadoSunbae.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-FIRAnalyticsDebugEnabled"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -69,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "331364252784D3BD00E0C118"
             BuildableName = "NadoSunbae-iOS.app"
-            BlueprintName = "NadoSunbae-iOS"
-            ReferencedContainer = "container:NadoSunbae-iOS.xcodeproj">
+            BlueprintName = "NadoSunbae"
+            ReferencedContainer = "container:NadoSunbae.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
