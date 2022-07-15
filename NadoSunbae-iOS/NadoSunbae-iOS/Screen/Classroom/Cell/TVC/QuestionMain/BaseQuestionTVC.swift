@@ -57,11 +57,6 @@ class BaseQuestionTVC: BaseTVC {
         $0.sizeToFit()
     }
     
-    // MARK: Life Cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     // MARK: init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
