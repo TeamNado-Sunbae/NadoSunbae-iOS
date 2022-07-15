@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "331364252784D3BD00E0C118"
-               BuildableName = "NadoSunbae-iOS.app"
+               BuildableName = "NadoSunbae.app"
                BlueprintName = "NadoSunbae"
                ReferencedContainer = "container:NadoSunbae.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "331364252784D3BD00E0C118"
-            BuildableName = "NadoSunbae-iOS.app"
+            BuildableName = "NadoSunbae.app"
             BlueprintName = "NadoSunbae"
             ReferencedContainer = "container:NadoSunbae.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "331364252784D3BD00E0C118"
-            BuildableName = "NadoSunbae-iOS.app"
+            BuildableName = "NadoSunbae.app"
             BlueprintName = "NadoSunbae"
             ReferencedContainer = "container:NadoSunbae.xcodeproj">
          </BuildableReference>
