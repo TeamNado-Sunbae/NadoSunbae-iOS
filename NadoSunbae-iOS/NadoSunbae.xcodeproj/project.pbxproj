@@ -88,6 +88,7 @@
 		33A666A127BB844C00779351 /* InfoDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A027BB844C00779351 /* InfoDetailDataModel.swift */; };
 		33A666A327BB8F3100779351 /* PostLikeResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A227BB8F3100779351 /* PostLikeResModel.swift */; };
 		33A666A527BB958800779351 /* ReviewImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A427BB958800779351 /* ReviewImgModel.swift */; };
+		33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867942889CEE5009BA6DE /* ReactorKit */; };
 		33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D227B8EAC200066C1F /* InfoDetailVC.swift */; };
 		33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */; };
 		33B9B0D827B8EB2A00066C1F /* InfoCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */; };
@@ -588,6 +589,7 @@
 			files = (
 				336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */,
 				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
+				33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */,
 				029EEBC37F1D2F9513AEB081 /* Pods_NadoSunbae_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1033,6 +1035,13 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		33A867962889D06B009BA6DE /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
 		33B69FF2278F155400A8E3D3 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1182,6 +1191,7 @@
 		33D4455F287C27CB00D94495 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				33A867962889D06B009BA6DE /* Reactor */,
 				33C79DCC2881B26E00B6C32C /* Cell */,
 				33D44567287C288100D94495 /* VC */,
 			);
@@ -1821,6 +1831,7 @@
 			packageProductDependencies = (
 				336EEE4027DA77700010A9E3 /* FirebaseAnalytics */,
 				336EEE4227DA77700010A9E3 /* FirebaseMessaging */,
+				33A867942889CEE5009BA6DE /* ReactorKit */,
 			);
 			productName = "NadoSunbae-iOS";
 			productReference = 331364262784D3BD00E0C118 /* NadoSunbae.app */;
@@ -1853,6 +1864,7 @@
 			mainGroup = 3313641D2784D3BD00E0C118;
 			packageReferences = (
 				336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */,
 			);
 			productRefGroup = 331364272784D3BD00E0C118 /* Products */;
 			projectDirPath = "";
@@ -2426,6 +2438,14 @@
 				kind = branch;
 			};
 		};
+		33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactorKit/ReactorKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2438,6 +2458,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		33A867942889CEE5009BA6DE /* ReactorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */;
+			productName = ReactorKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
