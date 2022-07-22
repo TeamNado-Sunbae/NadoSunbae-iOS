@@ -8,8 +8,10 @@
 import UIKit
 import SnapKit
 import Then
+import ReactorKit
+import RxSwift
 
-class CommunityMainVC: BaseVC {
+class CommunityMainVC: BaseVC, View {
     
     // MARK: Components
     private var tabLabel = UILabel().then {
@@ -25,22 +27,49 @@ class CommunityMainVC: BaseVC {
     }
     
     private var communityData: [CommunityPostList] = []
-
+    var disposeBag = DisposeBag()
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        makeDelegate()
         registerCell()
+        reactor?.action.onNext(.reloadCommunityTV)
+    }
+    
+    func bind(reactor: CommunityMainReactor) {
+        bindAction(reactor)
+        bindState(reactor)
+    }
+}
+
+// MARK: - Bind
+extension CommunityMainVC {
+    private func bindAction(_ reactor: CommunityMainReactor) {
         
-        communityData.append(contentsOf: [
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-        ])
+    }
+    
+    private func bindState(_ reactor: CommunityMainReactor) {
+        reactor.state
+            .map { $0.communityList }
+            .bind(to: self.communityTV.rx.items) { tableView, index, item in
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
+                
+                guard let communityCell = cell as? CommunityTVC else { return UITableViewCell() }
+                communityCell.setCommunityData(data: item)
+                return communityCell
+            }
+            .disposed(by: self.disposeBag)
         
-        communityTV.reloadData()
+        reactor.state.map { $0.loading }
+            .distinctUntilChanged()
+            .map { $0 }
+            .subscribe(onNext: { [weak self] loading in
+                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -66,51 +95,9 @@ extension CommunityMainVC {
 
 // MARK: - Custom Methods
 extension CommunityMainVC {
-    private func makeDelegate() {
-        communityTV.delegate = self
-        communityTV.dataSource = self
-    }
     
     /// 셀 등록 메서드
     private func registerCell() {
         communityTV.register(CommunityTVC.self, forCellReuseIdentifier: CommunityTVC.className)
-    }
-    
-    // TODO: - Network통신 이후 변경
-    private func setData() {
-        communityData.append(contentsOf: [
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-        ])
-        
-        communityTV.reloadData()
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension CommunityMainVC: UITableViewDataSource {
-    
-    /// numberOfRowsInSection
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return communityData.count
-    }
-    
-    /// cellForRowAt
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className) as? CommunityTVC else {
-            return UITableViewCell() }
-        cell.setCommunityData(data: communityData[indexPath.row])
-        return cell
-    }
-}
-
-// MARK: - UITableViewDelegate
-extension CommunityMainVC: UITableViewDelegate {
-    
-    /// heightForRowAt
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 157.adjustedH
     }
 }
