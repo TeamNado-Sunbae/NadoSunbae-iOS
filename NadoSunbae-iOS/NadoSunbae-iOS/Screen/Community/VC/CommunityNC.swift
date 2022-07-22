@@ -8,9 +8,11 @@
 import UIKit
 
 class CommunityNC: BaseNC {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setViewControllers([CommunityMainVC()], animated: true)
+        let communityVC = CommunityMainVC()
+        communityVC.reactor = CommunityMainReactor()
+        self.setViewControllers([communityVC], animated: true)
     }
 }
