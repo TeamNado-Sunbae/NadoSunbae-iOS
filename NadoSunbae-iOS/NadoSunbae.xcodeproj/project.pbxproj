@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		029EEBC37F1D2F9513AEB081 /* Pods_NadoSunbae_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */; };
 		330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4322790BCCC00FE127F /* NadoTextView.swift */; };
 		330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4342790C3E300FE127F /* UIScrollView+.swift */; };
 		3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364292784D3BD00E0C118 /* AppDelegate.swift */; };
@@ -89,6 +88,10 @@
 		33A666A327BB8F3100779351 /* PostLikeResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A227BB8F3100779351 /* PostLikeResModel.swift */; };
 		33A666A527BB958800779351 /* ReviewImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A427BB958800779351 /* ReviewImgModel.swift */; };
 		33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867942889CEE5009BA6DE /* ReactorKit */; };
+		33A86798288B0227009BA6DE /* CommunityMainReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A86797288B0227009BA6DE /* CommunityMainReactor.swift */; };
+		33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BA288B0E9E009BA6DE /* RxCocoa */; };
+		33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BC288B0E9E009BA6DE /* RxRelay */; };
+		33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BE288B0E9E009BA6DE /* RxSwift */; };
 		33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D227B8EAC200066C1F /* InfoDetailVC.swift */; };
 		33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */; };
 		33B9B0D827B8EB2A00066C1F /* InfoCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */; };
@@ -193,6 +196,7 @@
 		5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */; };
 		5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */; };
 		5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */; };
+		6C73513BE2830EABFB54DC2A /* Pods_NadoSunbae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */; };
 		7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */; };
 		7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31527901FE50093C230 /* ReviewWriteVC.swift */; };
 		7754A318279028250093C230 /* ReviewNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A317279028250093C230 /* ReviewNC.swift */; };
@@ -374,6 +378,7 @@
 		33A666A027BB844C00779351 /* InfoDetailDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailDataModel.swift; sourceTree = "<group>"; };
 		33A666A227BB8F3100779351 /* PostLikeResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikeResModel.swift; sourceTree = "<group>"; };
 		33A666A427BB958800779351 /* ReviewImgModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImgModel.swift; sourceTree = "<group>"; };
+		33A86797288B0227009BA6DE /* CommunityMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMainReactor.swift; sourceTree = "<group>"; };
 		33B9B0D227B8EAC200066C1F /* InfoDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailVC.swift; sourceTree = "<group>"; };
 		33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCommentTVC.swift; sourceTree = "<group>"; };
 		33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCommentTVC.xib; sourceTree = "<group>"; };
@@ -421,6 +426,7 @@
 		33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostQuestionModel.swift; sourceTree = "<group>"; };
 		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
 		33FBC3182796F6C900741730 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
+		5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.debug.xcconfig"; sourceTree = "<group>"; };
 		5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyReviewModel.swift; sourceTree = "<group>"; };
 		5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserInfoModel.swift; sourceTree = "<group>"; };
 		5C3280172797217E00781EBE /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
@@ -543,6 +549,7 @@
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
 		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
+		8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.release.xcconfig"; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockListVC.storyboard; sourceTree = "<group>"; };
 		C71BF22427CCB2070030DCB9 /* BlockListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListVC.swift; sourceTree = "<group>"; };
@@ -579,7 +586,7 @@
 		C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendSignUpMailResponseModel.swift; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -587,10 +594,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */,
 				336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */,
 				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
+				33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */,
 				33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */,
-				029EEBC37F1D2F9513AEB081 /* Pods_NadoSunbae_iOS.framework in Frameworks */,
+				6C73513BE2830EABFB54DC2A /* Pods_NadoSunbae.framework in Frameworks */,
+				33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +612,8 @@
 			children = (
 				CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */,
 				A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */,
+				5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */,
+				8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1038,6 +1050,7 @@
 		33A867962889D06B009BA6DE /* Reactor */ = {
 			isa = PBXGroup;
 			children = (
+				33A86797288B0227009BA6DE /* CommunityMainReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -1257,7 +1270,7 @@
 		51D035CDCDD09DB0F0D88285 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FB09018B14FDA66E03F11D78 /* Pods_NadoSunbae_iOS.framework */,
+				E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1832,6 +1845,9 @@
 				336EEE4027DA77700010A9E3 /* FirebaseAnalytics */,
 				336EEE4227DA77700010A9E3 /* FirebaseMessaging */,
 				33A867942889CEE5009BA6DE /* ReactorKit */,
+				33A867BA288B0E9E009BA6DE /* RxCocoa */,
+				33A867BC288B0E9E009BA6DE /* RxRelay */,
+				33A867BE288B0E9E009BA6DE /* RxSwift */,
 			);
 			productName = "NadoSunbae-iOS";
 			productReference = 331364262784D3BD00E0C118 /* NadoSunbae.app */;
@@ -1865,6 +1881,7 @@
 			packageReferences = (
 				336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 331364272784D3BD00E0C118 /* Products */;
 			projectDirPath = "";
@@ -1959,15 +1976,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BA7A4732C14962FD8D7459E7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1985,7 +2002,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NadoSunbae-iOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NadoSunbae-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2003,6 +2020,7 @@
 				C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
 				5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */,
+				33A86798288B0227009BA6DE /* CommunityMainReactor.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,
 				331364A22785D8DD00E0C118 /* ClassroomMainVC.swift in Sources */,
@@ -2346,7 +2364,7 @@
 		};
 		3313643B2784D3C000E0C118 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */;
+			baseConfigurationReference = 5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2377,7 +2395,7 @@
 		};
 		3313643C2784D3C000E0C118 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */;
+			baseConfigurationReference = 8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2446,6 +2464,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2463,6 +2489,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */;
 			productName = ReactorKit;
+		};
+		33A867BA288B0E9E009BA6DE /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		33A867BC288B0E9E009BA6DE /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		33A867BE288B0E9E009BA6DE /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
