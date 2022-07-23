@@ -11,8 +11,11 @@ class CommunityNC: BaseNC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBar.isHidden = true
+        
         let communityVC = CommunityMainVC()
         communityVC.reactor = CommunityMainReactor()
+        
         self.setViewControllers([communityVC], animated: true)
     }
 }
