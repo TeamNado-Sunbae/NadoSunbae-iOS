@@ -24,7 +24,7 @@ final class CommunityMainVC: BaseVC, View {
     }
     
     private let contentView = UIView()
-    private let topTouchBar = UIView().then {
+    private let topStickyBar = UIView().then {
         $0.backgroundColor = .paleGray
     }
     
@@ -164,8 +164,6 @@ extension CommunityMainVC {
         reactor?.action.onNext(.reloadCommunityTV(type: .entire))
         communityTV.rx.setDelegate(self)
             .disposed(by: disposeBag)
-        communitySV.rx.setDelegate(self)
-            .disposed(by: disposeBag)
     }
 }
 
@@ -173,18 +171,24 @@ extension CommunityMainVC {
 extension CommunityMainVC {
     private func configureUI() {
         view.backgroundColor = .paleGray
-        view.addSubviews([naviView, communitySV, writeFloatingBtn])
+        view.addSubviews([naviView, topStickyBar, communitySV, writeFloatingBtn])
+        topStickyBar.addSubviews([communitySegmentedControl, filterBtn])
         communitySV.addSubview(contentView)
-        contentView.addSubviews([topTouchBar, communityTV])
-        topTouchBar.addSubviews([communitySegmentedControl, filterBtn])
+        contentView.addSubview(communityTV)
         
         naviView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(104)
         }
         
-        communitySV.snp.makeConstraints {
+        topStickyBar.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+        
+        communitySV.snp.makeConstraints {
+            $0.top.equalTo(topStickyBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -198,12 +202,6 @@ extension CommunityMainVC {
             $0.width.equalToSuperview()
             $0.height.equalToSuperview().priority(.low)
             $0.centerX.top.bottom.equalToSuperview()
-        }
-        
-        topTouchBar.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(56)
         }
         
         communitySegmentedControl.snp.makeConstraints {
@@ -221,10 +219,9 @@ extension CommunityMainVC {
         }
         
         communityTV.snp.makeConstraints {
-            $0.top.equalTo(topTouchBar.snp.bottom).offset(8)
+            $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalTo(contentView.snp.bottom).offset(-16)
+            $0.trailing.bottom.equalToSuperview().offset(-16)
         }
     }
 }
@@ -249,14 +246,5 @@ extension CommunityMainVC: UITableViewDelegate {
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-extension CommunityMainVC: UIScrollViewDelegate {
-    
-    /// scrollViewDidScroll
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
     }
 }
