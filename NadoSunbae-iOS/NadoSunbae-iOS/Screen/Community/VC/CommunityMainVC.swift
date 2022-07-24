@@ -42,9 +42,9 @@ final class CommunityMainVC: BaseVC, View {
     }
     
     private let writeFloatingBtn = UIButton().then {
-        // TODO: 버튼 이미지 변경하기
         $0.setImage(UIImage(named: "btnWriteFloating"), for: .normal)
         $0.contentMode = .scaleAspectFill
+        $0.addShadow(offset: CGSize(width: 1, height: 1), color: UIColor(red: 68/255, green: 69/255, blue: 75/255, alpha: 0.2), opacity: 1, radius: 0)
     }
     
     var disposeBag = DisposeBag()
@@ -193,8 +193,7 @@ extension CommunityMainVC {
         }
         
         writeFloatingBtn.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-24)
-            $0.bottom.equalToSuperview().offset(-91)
+            $0.trailing.bottom.equalTo(view.safeAreaLayoutGuide).offset(-24)
             $0.width.height.equalTo(64)
         }
         
