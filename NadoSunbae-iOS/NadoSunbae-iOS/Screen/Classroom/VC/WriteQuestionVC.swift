@@ -16,18 +16,15 @@ class WriteQuestionVC: BaseVC {
     
     // MARK: Properties
     private let questionSV = UIScrollView()
-    private let contentView = UIView()
     private let disposeBag = DisposeBag()
     private var questionTextViewLineCount: Int = 1
     private var isTextViewEmpty: Bool = true
     private var majorID: Int = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
-    @IBOutlet weak var questionWriteNaviBar: NadoSunbaeNaviBar! {
-        didSet {
-            questionWriteNaviBar.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 0.3, radius: 16)
-        }
+    let questionWriteNaviBar = NadoSunbaeNaviBar().then {
+        $0.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 0.3, radius: 16)
     }
     
-    private let questionTitleTextField = UITextField().then {
+    let questionTitleTextField = UITextField().then {
         $0.borderStyle = .none
         $0.backgroundColor = .white
         $0.placeholder = "질문 제목을 입력하세요."
@@ -36,18 +33,19 @@ class WriteQuestionVC: BaseVC {
         $0.autocorrectionType = .no
     }
     
-    private let textHighlightView = UIView().then {
+    let textHighlightView = UIView().then {
         $0.backgroundColor = .gray0
     }
     
-    private let contentHeaderLabel = UILabel().then {
+    let contentHeaderLabel = UILabel().then {
         $0.text = "내용"
         $0.textColor = .black
         $0.font = .PretendardM(size: 16.0)
     }
     
-    private let questionWriteTextView = NadoTextView()
-    var questionType: QuestionType = .group
+    let questionWriteTextView = NadoTextView()
+    let contentView = UIView()
+    var questionType: QuestionType?
     var isEditState: Bool = false
     var confirmAlertMsg: String = ""
     var dismissAlertMsg: String = ""
@@ -87,9 +85,14 @@ extension WriteQuestionVC {
     
     /// UI 구성하는 메서드
     private func configureUI() {
-        view.addSubviews([questionSV])
+        view.addSubviews([questionWriteNaviBar, questionSV])
         questionSV.addSubview(contentView)
         contentView.addSubviews([questionTitleTextField, textHighlightView, contentHeaderLabel, questionWriteTextView])
+        
+        questionWriteNaviBar.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(104)
+        }
         
         questionSV.snp.makeConstraints {
             $0.top.equalTo(questionWriteNaviBar.snp.bottom)
@@ -158,6 +161,9 @@ extension WriteQuestionVC {
             case .info:
                 questionTitleTextField.placeholder = "제목을 입력하세요."
                 questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
+            case .community:
+                questionTitleTextField.placeholder = "제목을 입력하세요."
+                questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "내용을 입력하세요.")
             default:
                 print("default")
             }
@@ -170,6 +176,8 @@ extension WriteQuestionVC {
             questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
         case .info:
             questionWriteNaviBar.configureTitleLabel(title: "정보글 작성")
+        case .community:
+            questionWriteNaviBar.configureTitleLabel(title: "새 게시글 작성")
         default:
             print("default")
         }
@@ -225,8 +233,8 @@ extension WriteQuestionVC {
             .disposed(by: disposeBag)
         
         Observable.combineLatest(a, b) {$0 && $1}
-        .bind(to: questionWriteNaviBar.rightActivateBtn.rx.isActivated)
-        .disposed(by: disposeBag)
+            .bind(to: questionWriteNaviBar.rightActivateBtn.rx.isActivated)
+            .disposed(by: disposeBag)
         
         /// 수정상태일 때 (title, content가 있는 상황이므로) 첫 진입상태를 isActivate로 하기 위한 분기처리
         if isEditState {
@@ -255,7 +263,7 @@ extension WriteQuestionVC {
                         
                     }
                 } else {
-                    self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType.rawValue, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                    self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType?.rawValue ?? 3, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
                 }
             }
         }
@@ -361,6 +369,8 @@ extension WriteQuestionVC: UITextViewDelegate {
                 textView.text = "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!"
             case .info:
                 textView.text = "구성원에게 유용한 학과 정보를 공유해주세요."
+            case .community:
+                textView.text = "내용을 입력하세요."
             default:
                 print("Review")
             }
@@ -428,7 +438,7 @@ extension WriteQuestionVC {
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType.rawValue, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                        self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType?.rawValue ?? 3, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
                     }
                 }
             default:
