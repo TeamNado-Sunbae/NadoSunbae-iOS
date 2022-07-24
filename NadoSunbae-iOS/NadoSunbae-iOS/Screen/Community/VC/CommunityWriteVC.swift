@@ -153,10 +153,6 @@ extension CommunityWriteVC {
                 guard let categoryCell = cell as? CommunityWriteCategoryCVC else { return UICollectionViewCell() }
                 categoryCell.setData(categoryText: item)
                 
-                if indexPath.row == 0 {
-                    categoryCell.isSelected = true
-                }
-                
                 return categoryCell
             }
             .disposed(by: disposeBag)
@@ -184,6 +180,7 @@ extension CommunityWriteVC {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension CommunityWriteVC: UICollectionViewDelegateFlowLayout {
     
     /// sizeForItemAt

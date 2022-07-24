@@ -55,7 +55,6 @@ extension CommunityWriteCategoryCVC {
 
 // MARK: - Custom Methods
 extension CommunityWriteCategoryCVC {
-    
     func setData(categoryText: String) {
         categoryLabel.text = categoryText
     }
