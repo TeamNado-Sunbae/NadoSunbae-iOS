@@ -300,13 +300,13 @@ extension InfoDetailVC: UITableViewDataSource {
             infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 2])
             infoCommentCell.tapMoreInfoBtnAction = { [unowned self] in
                 if userID == infoDetailCommentData[indexPath.row - 2].writer.writerID {
-                    makeAlertWithCancel(okTitle: "삭제", okAction: { _ in
-                        makeNadoDeleteAlert(qnaType: .comment, commentID: infoDetailCommentData[indexPath.row - 2].commentID, indexPath: [IndexPath(row: indexPath.row - 2, section: 0)])
+                    makeAlertWithCancel(okTitle: "삭제", okAction: { [weak self] _ in
+                        self?.makeNadoDeleteAlert(qnaType: .comment, commentID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, indexPath: [IndexPath(row: indexPath.row - 2, section: 0)])
                     })
                 } else {
-                    makeAlertWithCancel(okTitle: "신고", okAction: { _ in
-                        self.reportActionSheet(completion: { reason in
-                            self.requestReport(reportedTargetID: infoDetailCommentData[indexPath.row - 2].commentID, reportedTargetTypeID: 3, reason: reason)
+                    makeAlertWithCancel(okTitle: "신고", okAction: { [weak self] _ in
+                        self?.reportActionSheet(completion: { [weak self] reason in
+                            self?.requestReport(reportedTargetID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, reportedTargetTypeID: 3, reason: reason)
                         })
                     })
                 }
@@ -431,6 +431,9 @@ extension InfoDetailVC {
                     self.infoDetailCommentData = data.commentList
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.isWriter = (self.userID == self.infoDetailData?.writer.writerID) ? true : false
+                    
+                    // TODO: 서버 명세서 나오면 상황에 맞춰 변경하기
+                    self.setUpNaviSubTitle(major: "국어국문학과")
                     
                     DispatchQueue.main.async {
                         self.infoDetailTV.reloadData()
