@@ -10,6 +10,15 @@ import UIKit
 class InfoQuestionTVC: BaseTVC {
     
     // MARK: IBOutlet
+    @IBOutlet weak var infoTypeBtn: NadoSunbaeBtn! {
+        didSet {
+            infoTypeBtn.backgroundColor = .gray0
+            infoTypeBtn.setTitleColor(.mainDefault, for: .normal)
+            infoTypeBtn.isUserInteractionEnabled = false
+            infoTypeBtn.makeRounded(cornerRadius: 8.adjusted)
+        }
+    }
+    
     @IBOutlet var infoTitleLabel: UILabel!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var majorInfoLabel: UILabel!
@@ -74,6 +83,11 @@ extension InfoQuestionTVC {
         infoLikeImgView.image = model.like.isLiked ? UIImage(named: "heart_mint") : UIImage(named: "heart")
         infoLikeCountLabel.text = "\(model.like.likeCount)"
         infoLikeCountLabel.textColor = model.like.isLiked ? .mainDefault : .gray2
+    }
+    
+    /// 정보글 타입에 따라 버튼의 title text를 설정하는 메서드
+    func setInfoTypeTitle(_ type: String) {
+        infoTypeBtn.setTitleWithStyle(title: type, size: 12.0, weight: .semiBold)
     }
 }
 

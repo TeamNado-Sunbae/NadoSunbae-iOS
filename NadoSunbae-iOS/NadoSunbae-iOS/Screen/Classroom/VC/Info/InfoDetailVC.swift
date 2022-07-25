@@ -273,6 +273,9 @@ extension InfoDetailVC: UITableViewDataSource {
             infoQuestionCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
             infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
             
+            // TODO: 서버 명세서 나오면 상황에 맞춰 변경하기
+            infoQuestionCell.setInfoTypeTitle("정보")
+            
             infoQuestionCell.tapLikeBtnAction = { [unowned self] in
                 requestPostLikeData(postID: postID ?? 0, postTypeID: .info)
             }
