@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,7 +17,7 @@
         <!--Info MainVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="InfoMainVC" id="Y6W-OH-hqX" customClass="InfoMainVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoMainVC" id="Y6W-OH-hqX" customClass="InfoMainVC" customModule="NadoSunbae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
         <!--Info DetailVC-->
         <scene sceneID="yjk-zE-fgV">
             <objects>
-                <viewController storyboardIdentifier="InfoDetailVC" id="5fc-ZN-nYv" customClass="InfoDetailVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoDetailVC" id="5fc-ZN-nYv" customClass="InfoDetailVC" customModule="NadoSunbae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RI6-M2-M4p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,7 +64,7 @@
                                 <rect key="frame" x="0.0" y="104" width="414" height="709"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zP-Zw-k4z" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zP-Zw-k4z" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -95,7 +95,6 @@
                         <outlet property="commentTextView" destination="m1A-mY-Z0L" id="tOV-Gw-LpG"/>
                         <outlet property="commentTextViewBottom" destination="Cl8-Xm-esi" id="6YN-2D-ro2"/>
                         <outlet property="commentTextViewHeight" destination="5FC-uL-5NI" id="AYR-Jr-96I"/>
-                        <outlet property="infoDetailNaviBar" destination="0zP-Zw-k4z" id="g1h-04-g0u"/>
                         <outlet property="infoDetailTV" destination="nRL-BL-JiF" id="gSX-dz-4Bu"/>
                         <outlet property="sendBtn" destination="NSx-pQ-fz7" id="oIN-tS-7Yl"/>
                         <outlet property="sendBtnBottom" destination="dSC-pL-cEC" id="nss-Ev-w9a"/>

@@ -12,10 +12,9 @@ import Then
 class InfoDetailVC: BaseVC {
     
     // MARK: IBOutlet
-    @IBOutlet var infoDetailNaviBar: NadoSunbaeNaviBar! {
-        didSet {
-            infoDetailNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
-        }
+    private var infoDetailNaviBar = NadoSunbaeNaviBar().then {
+        $0.setUpNaviStyle(state: .backWithTwoLineTitle)
+        $0.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 0.3, radius: 16)
     }
     
     @IBOutlet var infoDetailTV: UITableView! {
@@ -67,6 +66,7 @@ class InfoDetailVC: BaseVC {
         super.viewDidLoad()
         registerXib()
         setUpNaviStyle()
+        configureUI()
         hideKeyboardWhenTappedAround()
     }
     
@@ -105,6 +105,15 @@ extension InfoDetailVC {
         }
     }
     
+    private func configureUI() {
+        self.view.addSubview(infoDetailNaviBar)
+        
+        infoDetailNaviBar.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(104)
+        }
+    }
+    
     /// whiteBackView remove 메서드
     private func removeWhiteBackView() {
         whiteBackView.removeFromSuperview()
@@ -122,7 +131,7 @@ extension InfoDetailVC {
     
     /// 네비 set 메서드
     private func setUpNaviStyle() {
-        infoDetailNaviBar.titleLabel.text = "정보글"
+        infoDetailNaviBar.titleLabel.text = "게시글"
         infoDetailNaviBar.rightCustomBtn.setImgByName(name: "btnMoreVertChatGray", selectedName: "btnMoreVertChatGray")
         infoDetailNaviBar.backBtn.press {
             self.navigationController?.popViewController(animated: true)
@@ -142,6 +151,11 @@ extension InfoDetailVC {
                 })
             }
         }
+    }
+    
+    /// NaviBar의 Subtitle text를 설정하는 메서드
+    func setUpNaviSubTitle(major: String) {
+        infoDetailNaviBar.subTitleLabel.text = major
     }
     
     /// 전달받은 데이터를 바인딩하는 메서드
