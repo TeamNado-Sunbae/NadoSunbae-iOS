@@ -276,16 +276,16 @@ extension InfoDetailVC: UITableViewDataSource {
             // TODO: 서버 명세서 나오면 상황에 맞춰 변경하기
             infoQuestionCell.setInfoTypeTitle("정보")
             
-            infoQuestionCell.tapLikeBtnAction = { [unowned self] in
-                requestPostLikeData(postID: postID ?? 0, postTypeID: .info)
+            infoQuestionCell.tapLikeBtnAction = { [weak self] in
+                self?.requestPostLikeData(postID: self?.postID ?? 0, postTypeID: .info)
             }
             
             infoQuestionCell.interactURL = { url in
                 self.presentToSafariVC(url: url)
             }
             
-            infoQuestionCell.tapNicknameBtnAction = { [unowned self] in
-                goToMypageVC(userID: infoDetailData?.writer.writerID ?? 0)
+            infoQuestionCell.tapNicknameBtnAction = { [weak self] in
+                self?.goToMypageVC(userID: self?.infoDetailData?.writer.writerID ?? 0)
             }
             return infoQuestionCell
         } else if indexPath.row == 1 {
