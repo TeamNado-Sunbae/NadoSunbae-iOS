@@ -14,14 +14,14 @@ final class CommunityMainReactor: Reactor {
     
     // MARK: represent user actions
     enum Action {
-        case touchUpSearchBtn
-        case touchUpFilterBtn
+        case searchBtnDidTap
+        case filterBtnDidTap
         case reloadCommunityTV(type: CommunityType)
-        case touchUpEntireControl
-        case touchUpFreeControl
-        case touchUpQuestionControl
-        case touchUpInfoControl
-        case touchUpWriteFloatingBtn
+        case entireSegmentDidTap
+        case freedomSegmentDidTap
+        case questionSegmentDidTap
+        case infoSegmentDidTap
+        case witeFloatingBtnDidTap
         case filterFilled
     }
     
@@ -42,15 +42,16 @@ final class CommunityMainReactor: Reactor {
 }
 
 // MARK: - Reactor
+
 extension CommunityMainReactor {
     
     /// mutate (Action -> Mutation)
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
             
-        case .touchUpSearchBtn:
+        case .searchBtnDidTap:
             return Observable.concat(Observable.just(.setLoading(loading: true)))
-        case .touchUpFilterBtn:
+        case .filterBtnDidTap:
             return Observable.concat(Observable.just(.setLoading(loading: true)))
         case .reloadCommunityTV(let type):
             return Observable.concat([
@@ -58,31 +59,31 @@ extension CommunityMainReactor {
                 self.requestCommunityListRx(type: type),
                 Observable.just(.setLoading(loading: false))
             ])
-        case .touchUpEntireControl:
+        case .entireSegmentDidTap:
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 self.requestCommunityListRx(type: .entire),
                 Observable.just(.setLoading(loading: false))
             ])
-        case .touchUpFreeControl:
+        case .freedomSegmentDidTap:
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 self.requestCommunityListRx(type: .freedom),
                 Observable.just(.setLoading(loading: false))
             ])
-        case .touchUpQuestionControl:
+        case .questionSegmentDidTap:
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 self.requestCommunityListRx(type: .question),
                 Observable.just(.setLoading(loading: false))
             ])
-        case .touchUpInfoControl:
+        case .infoSegmentDidTap:
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 self.requestCommunityListRx(type: .information),
                 Observable.just(.setLoading(loading: false))
             ])
-        case .touchUpWriteFloatingBtn:
+        case .witeFloatingBtnDidTap:
             return Observable.concat(Observable.just(.setLoading(loading: true)))
         case .filterFilled:
             return Observable.concat(Observable.just(.setFilterBtnState(selected: true)))
@@ -109,6 +110,7 @@ extension CommunityMainReactor {
 }
 
 // MARK: - Custom Methods
+
 extension CommunityMainReactor {
     private func requestCommunityListRx(type: CommunityType) -> Observable<Mutation> {
         return Observable.create { observer in

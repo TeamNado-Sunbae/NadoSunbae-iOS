@@ -1,6 +1,6 @@
 //
 //  CommunityMainVC.swift
-//  NadoSunbae-iOS
+//  NadoSunbae
 //
 //  Created by hwangJi on 2022/07/11.
 //
@@ -54,7 +54,8 @@ final class CommunityMainVC: BaseVC, View {
         super.viewDidLoad()
         configureUI()
         registerCell()
-        bindView()
+        setUpDelegate()
+        setUpInitAction()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,13 +80,13 @@ extension CommunityMainVC {
                 
                 switch selectIndex {
                 case 1:
-                    return CommunityMainReactor.Action.touchUpFreeControl
+                    return CommunityMainReactor.Action.freedomSegmentDidTap
                 case 2:
-                    return CommunityMainReactor.Action.touchUpQuestionControl
+                    return CommunityMainReactor.Action.questionSegmentDidTap
                 case 3:
-                    return CommunityMainReactor.Action.touchUpInfoControl
+                    return CommunityMainReactor.Action.infoSegmentDidTap
                 default:
-                    return CommunityMainReactor.Action.touchUpEntireControl
+                    return CommunityMainReactor.Action.entireSegmentDidTap
                 }
             }
             .bind(to: reactor.action)
@@ -93,14 +94,14 @@ extension CommunityMainVC {
         
         naviView.rightCustomBtn.rx.tap
             .map { print("검색 버튼 클릭")
-                return CommunityMainReactor.Action.touchUpSearchBtn }
+                return CommunityMainReactor.Action.searchBtnDidTap }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         writeFloatingBtn.rx.tap
             .map {
                 print("플로팅 버튼 클릭")
-                return CommunityMainReactor.Action.touchUpWriteFloatingBtn }
+                return CommunityMainReactor.Action.witeFloatingBtnDidTap }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -159,11 +160,8 @@ extension CommunityMainVC {
             .disposed(by: disposeBag)
     }
     
-    // TODO: 📌 함수 네이밍 변경하기!!!!
-    private func bindView() {
+    private func setUpInitAction() {
         reactor?.action.onNext(.reloadCommunityTV(type: .entire))
-        communityTV.rx.setDelegate(self)
-            .disposed(by: disposeBag)
     }
 }
 
@@ -231,6 +229,12 @@ extension CommunityMainVC {
     /// 셀 등록 메서드
     private func registerCell() {
         communityTV.register(CommunityTVC.self, forCellReuseIdentifier: CommunityTVC.className)
+    }
+    
+    /// 대리자 위임 메서드
+    private func setUpDelegate() {
+        communityTV.rx.setDelegate(self)
+            .disposed(by: disposeBag)
     }
 }
 
