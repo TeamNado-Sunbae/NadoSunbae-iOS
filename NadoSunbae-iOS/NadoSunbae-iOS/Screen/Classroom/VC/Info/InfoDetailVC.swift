@@ -12,10 +12,9 @@ import Then
 class InfoDetailVC: BaseVC {
     
     // MARK: IBOutlet
-    @IBOutlet var infoDetailNaviBar: NadoSunbaeNaviBar! {
-        didSet {
-            infoDetailNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
-        }
+    private var infoDetailNaviBar = NadoSunbaeNaviBar().then {
+        $0.setUpNaviStyle(state: .backWithTwoLineTitle)
+        $0.addShadow(location: .nadoBotttom, color: .shadowDefault, opacity: 0.3, radius: 16)
     }
     
     @IBOutlet var infoDetailTV: UITableView! {
@@ -67,6 +66,7 @@ class InfoDetailVC: BaseVC {
         super.viewDidLoad()
         registerXib()
         setUpNaviStyle()
+        configureUI()
         hideKeyboardWhenTappedAround()
     }
     
@@ -105,6 +105,15 @@ extension InfoDetailVC {
         }
     }
     
+    private func configureUI() {
+        self.view.addSubview(infoDetailNaviBar)
+        
+        infoDetailNaviBar.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(104)
+        }
+    }
+    
     /// whiteBackView remove 메서드
     private func removeWhiteBackView() {
         whiteBackView.removeFromSuperview()
@@ -122,7 +131,7 @@ extension InfoDetailVC {
     
     /// 네비 set 메서드
     private func setUpNaviStyle() {
-        infoDetailNaviBar.titleLabel.text = "정보글"
+        infoDetailNaviBar.titleLabel.text = "게시글"
         infoDetailNaviBar.rightCustomBtn.setImgByName(name: "btnMoreVertChatGray", selectedName: "btnMoreVertChatGray")
         infoDetailNaviBar.backBtn.press {
             self.navigationController?.popViewController(animated: true)
@@ -142,6 +151,11 @@ extension InfoDetailVC {
                 })
             }
         }
+    }
+    
+    /// NaviBar의 Subtitle text를 설정하는 메서드
+    func setUpNaviSubTitle(major: String) {
+        infoDetailNaviBar.subTitleLabel.text = major
     }
     
     /// 전달받은 데이터를 바인딩하는 메서드
@@ -259,16 +273,19 @@ extension InfoDetailVC: UITableViewDataSource {
             infoQuestionCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
             infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
             
-            infoQuestionCell.tapLikeBtnAction = { [unowned self] in
-                requestPostLikeData(postID: postID ?? 0, postTypeID: .info)
+            // TODO: 서버 명세서 나오면 상황에 맞춰 변경하기
+            infoQuestionCell.setInfoTypeTitle("정보")
+            
+            infoQuestionCell.tapLikeBtnAction = { [weak self] in
+                self?.requestPostLikeData(postID: self?.postID ?? 0, postTypeID: .info)
             }
             
             infoQuestionCell.interactURL = { url in
                 self.presentToSafariVC(url: url)
             }
             
-            infoQuestionCell.tapNicknameBtnAction = { [unowned self] in
-                goToMypageVC(userID: infoDetailData?.writer.writerID ?? 0)
+            infoQuestionCell.tapNicknameBtnAction = { [weak self] in
+                self?.goToMypageVC(userID: self?.infoDetailData?.writer.writerID ?? 0)
             }
             return infoQuestionCell
         } else if indexPath.row == 1 {
@@ -283,13 +300,13 @@ extension InfoDetailVC: UITableViewDataSource {
             infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 2])
             infoCommentCell.tapMoreInfoBtnAction = { [unowned self] in
                 if userID == infoDetailCommentData[indexPath.row - 2].writer.writerID {
-                    makeAlertWithCancel(okTitle: "삭제", okAction: { _ in
-                        makeNadoDeleteAlert(qnaType: .comment, commentID: infoDetailCommentData[indexPath.row - 2].commentID, indexPath: [IndexPath(row: indexPath.row - 2, section: 0)])
+                    makeAlertWithCancel(okTitle: "삭제", okAction: { [weak self] _ in
+                        self?.makeNadoDeleteAlert(qnaType: .comment, commentID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, indexPath: [IndexPath(row: indexPath.row - 2, section: 0)])
                     })
                 } else {
-                    makeAlertWithCancel(okTitle: "신고", okAction: { _ in
-                        self.reportActionSheet(completion: { reason in
-                            self.requestReport(reportedTargetID: infoDetailCommentData[indexPath.row - 2].commentID, reportedTargetTypeID: 3, reason: reason)
+                    makeAlertWithCancel(okTitle: "신고", okAction: { [weak self] _ in
+                        self?.reportActionSheet(completion: { [weak self] reason in
+                            self?.requestReport(reportedTargetID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, reportedTargetTypeID: 3, reason: reason)
                         })
                     })
                 }
@@ -414,6 +431,9 @@ extension InfoDetailVC {
                     self.infoDetailCommentData = data.commentList
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.isWriter = (self.userID == self.infoDetailData?.writer.writerID) ? true : false
+                    
+                    // TODO: 서버 명세서 나오면 상황에 맞춰 변경하기
+                    self.setUpNaviSubTitle(major: "국어국문학과")
                     
                     DispatchQueue.main.async {
                         self.infoDetailTV.reloadData()
