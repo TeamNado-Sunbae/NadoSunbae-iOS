@@ -17,6 +17,7 @@ enum NaviState {
     case backWithTwoLineTitle
     case dismissWithCustomRightBtn
     case dismissWithNadoBtn
+    case rootWithCustomRightBtn
 }
 
 /**
@@ -28,6 +29,7 @@ enum NaviState {
  - backWithTwoLineTitle: 뒤로가기 버튼 + 중앙 2줄 텍스트 + 우측 버튼
  - dismissWithCustomRightBtn: 취소 버튼과 중앙 텍스트 + 우측 버튼
  - dismissWithNadoBtn: 취소 버튼과 중앙 텍스트 + 우측 나도선배 버튼
+ - rootWithCustomRightBtn: 루트 NC(탭의 메인) + 우측 버튼
  
  - configureTitleLabel: titleLabel 텍스트 변경
  - configureRightCustomBtn: 우측 커스텀 버튼 이미지 변경
@@ -266,6 +268,28 @@ extension NadoSunbaeNaviBar {
         titleLabel.setLabel(text: "제목", color: .black, size: 16, weight: .medium)
     }
     
+    /// 루트 NC(탭의 메인) + 우측 버튼 UI를 구성하는 메서드
+    private func configureRootUI() {
+        self.addSubviews([backView, titleLabel, rightCustomBtn])
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(self.snp.bottom).offset(-24)
+        }
+        
+        rightCustomBtn.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-25)
+            $0.width.height.equalTo(18)
+            $0.centerY.equalTo(titleLabel)
+        }
+        
+        titleLabel.setLabel(text: "제목", color: .black, size: 20, weight: .medium)
+    }
+    
     // MARK: Public Methods
     /// 커스텀 네비 바 타이틀 설정하는 메서드
     func configureTitleLabel(title: String) {
@@ -299,6 +323,8 @@ extension NadoSunbaeNaviBar {
             configureDismissWithCustomRightBtnUI()
         case .dismissWithNadoBtn:
             configureDismissWithNadoBtnUI()
+        case .rootWithCustomRightBtn:
+            configureRootUI()
         }
     }
     

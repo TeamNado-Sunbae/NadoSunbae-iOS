@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0744E6467AFD1AD339D89A50 /* Pods_NadoSunbae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7258F74ADBAE1781C728530 /* Pods_NadoSunbae.framework */; };
 		330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4322790BCCC00FE127F /* NadoTextView.swift */; };
 		330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4342790C3E300FE127F /* UIScrollView+.swift */; };
 		3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364292784D3BD00E0C118 /* AppDelegate.swift */; };
@@ -88,6 +87,11 @@
 		33A666A127BB844C00779351 /* InfoDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A027BB844C00779351 /* InfoDetailDataModel.swift */; };
 		33A666A327BB8F3100779351 /* PostLikeResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A227BB8F3100779351 /* PostLikeResModel.swift */; };
 		33A666A527BB958800779351 /* ReviewImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A666A427BB958800779351 /* ReviewImgModel.swift */; };
+		33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867942889CEE5009BA6DE /* ReactorKit */; };
+		33A86798288B0227009BA6DE /* CommunityMainReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A86797288B0227009BA6DE /* CommunityMainReactor.swift */; };
+		33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BA288B0E9E009BA6DE /* RxCocoa */; };
+		33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BC288B0E9E009BA6DE /* RxRelay */; };
+		33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BE288B0E9E009BA6DE /* RxSwift */; };
 		33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D227B8EAC200066C1F /* InfoDetailVC.swift */; };
 		33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */; };
 		33B9B0D827B8EB2A00066C1F /* InfoCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */; };
@@ -108,6 +112,7 @@
 		33C79DCB287F350100B6C32C /* NadoSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */; };
 		33C79DCF2881B28900B6C32C /* CommunityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C79DCE2881B28900B6C32C /* CommunityTVC.swift */; };
 		33C79DD22881B50D00B6C32C /* CommunityPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C79DD12881B50D00B6C32C /* CommunityPostList.swift */; };
+		33C9A405288C68FD00436D16 /* CommunityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9A404288C68FD00436D16 /* CommunityType.swift */; };
 		33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634D27945C0300E92C04 /* NadoSegmentView.swift */; };
 		33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */; };
 		33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */; };
@@ -133,6 +138,9 @@
 		33E2CFC5287B112D007CD19A /* SignUpNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E2CFC4287B112D007CD19A /* SignUpNC.swift */; };
 		33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */; };
 		33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */; };
+		33FA593E288D6B6700BC7C32 /* CommunityWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */; };
+		33FA5940288D72F800BC7C32 /* CommunityWriteReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */; };
+		33FA5943288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */; };
 		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
 		33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBC3182796F6C900741730 /* ReviewAPI.swift */; };
 		5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */; };
@@ -192,6 +200,7 @@
 		5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */; };
 		5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */; };
 		5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */; };
+		6C73513BE2830EABFB54DC2A /* Pods_NadoSunbae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */; };
 		7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */; };
 		7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31527901FE50093C230 /* ReviewWriteVC.swift */; };
 		7754A318279028250093C230 /* ReviewNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A317279028250093C230 /* ReviewNC.swift */; };
@@ -374,6 +383,7 @@
 		33A666A027BB844C00779351 /* InfoDetailDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailDataModel.swift; sourceTree = "<group>"; };
 		33A666A227BB8F3100779351 /* PostLikeResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikeResModel.swift; sourceTree = "<group>"; };
 		33A666A427BB958800779351 /* ReviewImgModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImgModel.swift; sourceTree = "<group>"; };
+		33A86797288B0227009BA6DE /* CommunityMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMainReactor.swift; sourceTree = "<group>"; };
 		33B9B0D227B8EAC200066C1F /* InfoDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailVC.swift; sourceTree = "<group>"; };
 		33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCommentTVC.swift; sourceTree = "<group>"; };
 		33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCommentTVC.xib; sourceTree = "<group>"; };
@@ -393,6 +403,7 @@
 		33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSegmentedControl.swift; sourceTree = "<group>"; };
 		33C79DCE2881B28900B6C32C /* CommunityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTVC.swift; sourceTree = "<group>"; };
 		33C79DD12881B50D00B6C32C /* CommunityPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPostList.swift; sourceTree = "<group>"; };
+		33C9A404288C68FD00436D16 /* CommunityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityType.swift; sourceTree = "<group>"; };
 		33CF634D27945C0300E92C04 /* NadoSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoSegmentView.swift; sourceTree = "<group>"; };
 		33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoHorizonContainerViews.swift; sourceTree = "<group>"; };
 		33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NadoHorizonContainerViews.xib; sourceTree = "<group>"; };
@@ -419,8 +430,12 @@
 		33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostCommentModel.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
 		33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostQuestionModel.swift; sourceTree = "<group>"; };
+		33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVC.swift; sourceTree = "<group>"; };
+		33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteReactor.swift; sourceTree = "<group>"; };
+		33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteCategoryCVC.swift; sourceTree = "<group>"; };
 		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
 		33FBC3182796F6C900741730 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
+		5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.debug.xcconfig"; sourceTree = "<group>"; };
 		5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyReviewModel.swift; sourceTree = "<group>"; };
 		5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserInfoModel.swift; sourceTree = "<group>"; };
 		5C3280172797217E00781EBE /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
@@ -543,6 +558,7 @@
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
 		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
+		8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.release.xcconfig"; sourceTree = "<group>"; };
 		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A7258F74ADBAE1781C728530 /* Pods_NadoSunbae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91FF420DE61BAB97C1BC999 /* Pods-NadoSunbae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.debug.xcconfig"; sourceTree = "<group>"; };
@@ -581,6 +597,7 @@
 		C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendSignUpMailResponseModel.swift; sourceTree = "<group>"; };
 		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -588,9 +605,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */,
 				336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */,
 				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
-				0744E6467AFD1AD339D89A50 /* Pods_NadoSunbae.framework in Frameworks */,
+				33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */,
+				33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */,
+				6C73513BE2830EABFB54DC2A /* Pods_NadoSunbae.framework in Frameworks */,
+				33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,8 +623,8 @@
 			children = (
 				CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */,
 				A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */,
-				B91FF420DE61BAB97C1BC999 /* Pods-NadoSunbae.debug.xcconfig */,
-				1E96CA0704550BA43161271A /* Pods-NadoSunbae.release.xcconfig */,
+				5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */,
+				8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -721,6 +742,7 @@
 				33834A1427D5F66E001C4947 /* MypageLikePostType.swift */,
 				336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */,
 				33C500FF281A4E24004AAEEE /* Navigator.swift */,
+				33C9A404288C68FD00436D16 /* CommunityType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1037,6 +1059,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		33A867962889D06B009BA6DE /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				33A86797288B0227009BA6DE /* CommunityMainReactor.swift */,
+				33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
 		33B69FF2278F155400A8E3D3 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1091,6 +1122,7 @@
 		33C79DCC2881B26E00B6C32C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				33FA5941288DCA5100BC7C32 /* CVC */,
 				33C79DCD2881B27200B6C32C /* TVC */,
 			);
 			path = Cell;
@@ -1186,6 +1218,7 @@
 		33D4455F287C27CB00D94495 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				33A867962889D06B009BA6DE /* Reactor */,
 				33C79DCC2881B26E00B6C32C /* Cell */,
 				33D44567287C288100D94495 /* VC */,
 			);
@@ -1214,6 +1247,7 @@
 			children = (
 				33D44568287C289700D94495 /* CommunityNC.swift */,
 				33D4456A287C28AE00D94495 /* CommunityMainVC.swift */,
+				33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1248,10 +1282,18 @@
 			path = Class;
 			sourceTree = "<group>";
 		};
+		33FA5941288DCA5100BC7C32 /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
 		51D035CDCDD09DB0F0D88285 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A7258F74ADBAE1781C728530 /* Pods_NadoSunbae.framework */,
+				E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1825,6 +1867,10 @@
 			packageProductDependencies = (
 				336EEE4027DA77700010A9E3 /* FirebaseAnalytics */,
 				336EEE4227DA77700010A9E3 /* FirebaseMessaging */,
+				33A867942889CEE5009BA6DE /* ReactorKit */,
+				33A867BA288B0E9E009BA6DE /* RxCocoa */,
+				33A867BC288B0E9E009BA6DE /* RxRelay */,
+				33A867BE288B0E9E009BA6DE /* RxSwift */,
 			);
 			productName = "NadoSunbae-iOS";
 			productReference = 331364262784D3BD00E0C118 /* NadoSunbae.app */;
@@ -1857,6 +1903,8 @@
 			mainGroup = 3313641D2784D3BD00E0C118;
 			packageReferences = (
 				336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 331364272784D3BD00E0C118 /* Products */;
 			projectDirPath = "";
@@ -1995,6 +2043,7 @@
 				C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
 				5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */,
+				33A86798288B0227009BA6DE /* CommunityMainReactor.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,
 				331364A22785D8DD00E0C118 /* ClassroomMainVC.swift in Sources */,
@@ -2060,6 +2109,8 @@
 				33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */,
 				775728A527D6572100148C9A /* OnboardingCVC.swift in Sources */,
 				33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */,
+				33FA5943288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift in Sources */,
+				33FA5940288D72F800BC7C32 /* CommunityWriteReactor.swift in Sources */,
 				C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */,
 				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
@@ -2112,6 +2163,7 @@
 				5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */,
 				331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */,
 				33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */,
+				33FA593E288D6B6700BC7C32 /* CommunityWriteVC.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
 				5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */,
 				33C79DCF2881B28900B6C32C /* CommunityTVC.swift in Sources */,
@@ -2121,6 +2173,7 @@
 				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
 				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
 				5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */,
+				33C9A405288C68FD00436D16 /* CommunityType.swift in Sources */,
 				C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */,
 				77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
@@ -2338,7 +2391,7 @@
 		};
 		3313643B2784D3C000E0C118 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B91FF420DE61BAB97C1BC999 /* Pods-NadoSunbae.debug.xcconfig */;
+			baseConfigurationReference = 5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2369,7 +2422,7 @@
 		};
 		3313643C2784D3C000E0C118 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E96CA0704550BA43161271A /* Pods-NadoSunbae.release.xcconfig */;
+			baseConfigurationReference = 8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2430,6 +2483,22 @@
 				kind = branch;
 			};
 		};
+		33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactorKit/ReactorKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2442,6 +2511,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		33A867942889CEE5009BA6DE /* ReactorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */;
+			productName = ReactorKit;
+		};
+		33A867BA288B0E9E009BA6DE /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		33A867BC288B0E9E009BA6DE /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		33A867BE288B0E9E009BA6DE /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

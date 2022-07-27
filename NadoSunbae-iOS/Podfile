@@ -9,6 +9,4 @@ target 'NadoSunbae' do
   pod 'Moya'
   pod 'SnapKit'
   pod 'Then'
-  pod 'RxSwift'
-  pod 'RxCocoa'
 end

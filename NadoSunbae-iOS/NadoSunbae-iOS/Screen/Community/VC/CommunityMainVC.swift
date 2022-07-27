@@ -1,6 +1,6 @@
 //
 //  CommunityMainVC.swift
-//  NadoSunbae-iOS
+//  NadoSunbae
 //
 //  Created by hwangJi on 2022/07/11.
 //
@@ -8,12 +8,29 @@
 import UIKit
 import SnapKit
 import Then
+import ReactorKit
 
-class CommunityMainVC: BaseVC {
+final class CommunityMainVC: BaseVC, View {
     
     // MARK: Components
-    private var tabLabel = UILabel().then {
-        $0.text = "커뮤니티"
+    private let naviView = NadoSunbaeNaviBar().then {
+        $0.setUpNaviStyle(state: .rootWithCustomRightBtn)
+        $0.configureTitleLabel(title: "커뮤니티")
+        $0.configureRightCustomBtn(imgName: "icSearch", selectedImgName: "icSearch")
+    }
+    
+    private let communitySV = UIScrollView().then {
+        $0.isScrollEnabled = true
+    }
+    
+    private let contentView = UIView()
+    private let topStickyBar = UIView().then {
+        $0.backgroundColor = .paleGray
+    }
+    
+    private let communitySegmentedControl = NadoSegmentedControl(items: CommunityType.allCases.map { $0.name })
+    private let filterBtn = UIButton().then {
+        $0.setImgByName(name: "btnCommunityFilter", selectedName: "btnCommunityFilterFilled")
     }
     
     private let communityTV = UITableView().then {
@@ -21,96 +38,216 @@ class CommunityMainVC: BaseVC {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray0.cgColor
         $0.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        $0.removeSeparatorsOfEmptyCellsAndLastCell()
+        $0.isScrollEnabled = false
     }
     
-    private var communityData: [CommunityPostList] = []
-
+    private let writeFloatingBtn = UIButton().then {
+        $0.setImage(UIImage(named: "btnWriteFloating"), for: .normal)
+        $0.contentMode = .scaleAspectFill
+        $0.addShadow(offset: CGSize(width: 1, height: 1), color: UIColor(red: 68/255, green: 69/255, blue: 75/255, alpha: 0.2), opacity: 1, radius: 0)
+    }
+    
+    var disposeBag = DisposeBag()
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        makeDelegate()
         registerCell()
+        setUpDelegate()
+        setUpInitAction()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        communitySegmentedControl.setUpNadoSegmentFrame()
+    }
+    
+    func bind(reactor: CommunityMainReactor) {
+        bindAction(reactor)
+        bindState(reactor)
+    }
+}
+
+// MARK: - Bind Action & State
+extension CommunityMainVC {
+    
+    // MARK: Action
+    private func bindAction(_ reactor: CommunityMainReactor) {
+        communitySegmentedControl.rx.controlEvent(.valueChanged)
+            .map { [weak self] in
+                let selectIndex = self?.communitySegmentedControl.selectedSegmentIndex
+                
+                switch selectIndex {
+                case 1:
+                    return CommunityMainReactor.Action.freedomSegmentDidTap
+                case 2:
+                    return CommunityMainReactor.Action.questionSegmentDidTap
+                case 3:
+                    return CommunityMainReactor.Action.infoSegmentDidTap
+                default:
+                    return CommunityMainReactor.Action.entireSegmentDidTap
+                }
+            }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
         
-        communityData.append(contentsOf: [
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-        ])
+        naviView.rightCustomBtn.rx.tap
+            .map { print("검색 버튼 클릭")
+                return CommunityMainReactor.Action.searchBtnDidTap }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
-        communityTV.reloadData()
+        writeFloatingBtn.rx.tap
+            .map {
+                print("플로팅 버튼 클릭")
+                return CommunityMainReactor.Action.witeFloatingBtnDidTap }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        filterBtn.rx.tap
+            .map {
+                print("학과 버튼 클릭")
+                return CommunityMainReactor.Action.filterFilled }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: State
+    private func bindState(_ reactor: CommunityMainReactor) {
+        reactor.state
+            .map { $0.communityList }
+            .bind(to: communityTV.rx.items) { tableView, index, item in
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
+                
+                guard let communityCell = cell as? CommunityTVC else { return UITableViewCell() }
+                communityCell.setCommunityData(data: item)
+                
+                return communityCell
+            }
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .subscribe(onNext: { [weak self] _ in
+                self?.communityTV.layoutIfNeeded()
+                
+                if let contentHeight = self?.communityTV.contentSize.height {
+                    self?.communityTV.snp.updateConstraints {
+                        $0.height.equalTo(contentHeight)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .distinctUntilChanged()
+            .map { $0 }
+            .subscribe(onNext: { [weak self] loading in
+                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.filterBtnSelected }
+            .distinctUntilChanged()
+            .map { $0 }
+            .subscribe(onNext: { [weak self] filled in
+                self?.filterBtn.isSelected = filled
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func setUpInitAction() {
+        reactor?.action.onNext(.reloadCommunityTV(type: .entire))
     }
 }
 
 // MARK: - UI
 extension CommunityMainVC {
     private func configureUI() {
-        view.backgroundColor = .white
-        view.addSubviews([tabLabel, communityTV])
+        view.backgroundColor = .paleGray
+        view.addSubviews([naviView, topStickyBar, communitySV, writeFloatingBtn])
+        topStickyBar.addSubviews([communitySegmentedControl, filterBtn])
+        communitySV.addSubview(contentView)
+        contentView.addSubview(communityTV)
         
-        tabLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100)
-            $0.centerX.equalToSuperview()
+        naviView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(104)
+        }
+        
+        topStickyBar.snp.makeConstraints {
+            $0.top.equalTo(naviView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+        
+        communitySV.snp.makeConstraints {
+            $0.top.equalTo(topStickyBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        writeFloatingBtn.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(view.safeAreaLayoutGuide).offset(-24)
+            $0.width.height.equalTo(64)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.height.equalToSuperview().priority(.low)
+            $0.centerX.top.bottom.equalToSuperview()
+        }
+        
+        communitySegmentedControl.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(10)
+            $0.bottom.equalToSuperview().inset(10)
+            $0.width.equalTo(244)
+        }
+        
+        filterBtn.snp.makeConstraints {
+            $0.centerY.equalTo(communitySegmentedControl)
+            $0.trailing.equalToSuperview().offset(-24)
+            $0.height.equalTo(24)
+            $0.width.equalTo(48)
         }
         
         communityTV.snp.makeConstraints {
-            $0.top.equalTo(tabLabel.snp.bottom).offset(16)
+            $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalToSuperview().offset(-16)
+            $0.trailing.bottom.equalToSuperview().offset(-16)
         }
     }
 }
 
 // MARK: - Custom Methods
 extension CommunityMainVC {
-    private func makeDelegate() {
-        communityTV.delegate = self
-        communityTV.dataSource = self
-    }
     
     /// 셀 등록 메서드
     private func registerCell() {
         communityTV.register(CommunityTVC.self, forCellReuseIdentifier: CommunityTVC.className)
     }
     
-    // TODO: - Network통신 이후 변경
-    private func setData() {
-        communityData.append(contentsOf: [
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-            CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-        ])
-        
-        communityTV.reloadData()
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension CommunityMainVC: UITableViewDataSource {
-    
-    /// numberOfRowsInSection
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return communityData.count
-    }
-    
-    /// cellForRowAt
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className) as? CommunityTVC else {
-            return UITableViewCell() }
-        cell.setCommunityData(data: communityData[indexPath.row])
-        return cell
+    /// 대리자 위임 메서드
+    private func setUpDelegate() {
+        communityTV.rx.setDelegate(self)
+            .disposed(by: disposeBag)
     }
 }
 
 // MARK: - UITableViewDelegate
 extension CommunityMainVC: UITableViewDelegate {
     
+    /// estimatedHeightForRowAt
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 157
+    }
+    
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 157.adjustedH
+        return UITableView.automaticDimension
     }
 }

@@ -12,4 +12,5 @@ enum QuestionType: Int {
     case info = 2
     case group = 3
     case personal = 4
+    case community = 5
 }
