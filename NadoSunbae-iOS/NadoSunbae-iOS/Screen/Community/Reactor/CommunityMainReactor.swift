@@ -42,7 +42,6 @@ final class CommunityMainReactor: Reactor {
 }
 
 // MARK: - Reactor
-
 extension CommunityMainReactor {
     
     /// mutate (Action -> Mutation)
@@ -110,7 +109,6 @@ extension CommunityMainReactor {
 }
 
 // MARK: - Custom Methods
-
 extension CommunityMainReactor {
     private func requestCommunityListRx(type: CommunityType) -> Observable<Mutation> {
         return Observable.create { observer in
