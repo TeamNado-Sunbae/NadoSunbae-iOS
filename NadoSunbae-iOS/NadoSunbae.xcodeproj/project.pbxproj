@@ -277,6 +277,7 @@
 		C71BF23E27CD0CDF0030DCB9 /* MailCompleteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF23D27CD0CDF0030DCB9 /* MailCompleteVC.storyboard */; };
 		C71BF24027CD0CEB0030DCB9 /* MailCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF23F27CD0CEB0030DCB9 /* MailCompleteVC.swift */; };
 		C71BF24227CDC2B30030DCB9 /* SignOutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF24127CDC2B30030DCB9 /* SignOutResponseModel.swift */; };
+		C733C538289C2ED5003DFFB2 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = C733C537289C2ED5003DFFB2 /* Moya */; };
 		C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C740A85827C7C55D00C4518A /* EditProfileVC.storyboard */; };
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
 		C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AA27D7A8B5006ECD9E /* UserToken.swift */; };
@@ -601,6 +602,7 @@
 				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
 				33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */,
 				33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */,
+				C733C538289C2ED5003DFFB2 /* Moya in Frameworks */,
 				33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1846,6 +1848,7 @@
 				33A867BA288B0E9E009BA6DE /* RxCocoa */,
 				33A867BC288B0E9E009BA6DE /* RxRelay */,
 				33A867BE288B0E9E009BA6DE /* RxSwift */,
+				C733C537289C2ED5003DFFB2 /* Moya */,
 			);
 			productName = "NadoSunbae-iOS";
 			productReference = 331364262784D3BD00E0C118 /* NadoSunbae.app */;
@@ -1880,6 +1883,7 @@
 				336EEE3F27DA77700010A9E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				33A867932889CEE5009BA6DE /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */,
+				C733C536289C2ED5003DFFB2 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 331364272784D3BD00E0C118 /* Products */;
 			projectDirPath = "";
@@ -2430,6 +2434,14 @@
 				kind = branch;
 			};
 		};
+		C733C536289C2ED5003DFFB2 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2462,6 +2474,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		C733C537289C2ED5003DFFB2 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C733C536289C2ED5003DFFB2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
