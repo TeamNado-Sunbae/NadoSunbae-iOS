@@ -200,7 +200,6 @@
 		5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0EC2B279317FA00AF63E4 /* MypageUserVC+TV.swift */; };
 		5CF1F37B278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37A278C4E3D007B8DE9 /* SelectMajorModalVC+TV.swift */; };
 		5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1F37C278C4E4E007B8DE9 /* SelectMajorModalTVC.swift */; };
-		6C73513BE2830EABFB54DC2A /* Pods_NadoSunbae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */; };
 		7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */; };
 		7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31527901FE50093C230 /* ReviewWriteVC.swift */; };
 		7754A318279028250093C230 /* ReviewNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A317279028250093C230 /* ReviewNC.swift */; };
@@ -301,7 +300,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E96CA0704550BA43161271A /* Pods-NadoSunbae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.release.xcconfig"; sourceTree = "<group>"; };
 		330DA4322790BCCC00FE127F /* NadoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextView.swift; sourceTree = "<group>"; };
 		330DA4342790C3E300FE127F /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 		331364262784D3BD00E0C118 /* NadoSunbae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NadoSunbae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -435,7 +433,6 @@
 		33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteCategoryCVC.swift; sourceTree = "<group>"; };
 		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
 		33FBC3182796F6C900741730 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
-		5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.debug.xcconfig"; sourceTree = "<group>"; };
 		5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyReviewModel.swift; sourceTree = "<group>"; };
 		5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserInfoModel.swift; sourceTree = "<group>"; };
 		5C3280172797217E00781EBE /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
@@ -558,10 +555,6 @@
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
 		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
-		8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.release.xcconfig"; sourceTree = "<group>"; };
-		A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.release.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		A7258F74ADBAE1781C728530 /* Pods_NadoSunbae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B91FF420DE61BAB97C1BC999 /* Pods-NadoSunbae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae.debug.xcconfig"; sourceTree = "<group>"; };
 		C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockListVC.storyboard; sourceTree = "<group>"; };
 		C71BF22427CCB2070030DCB9 /* BlockListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListVC.swift; sourceTree = "<group>"; };
 		C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockListResponseModel.swift; sourceTree = "<group>"; };
@@ -596,8 +589,6 @@
 		C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendSignUpMailResponseModel.swift; sourceTree = "<group>"; };
-		CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NadoSunbae-iOS.debug.xcconfig"; path = "Target Support Files/Pods-NadoSunbae-iOS/Pods-NadoSunbae-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NadoSunbae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -610,7 +601,6 @@
 				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
 				33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */,
 				33A867952889CEE5009BA6DE /* ReactorKit in Frameworks */,
-				6C73513BE2830EABFB54DC2A /* Pods_NadoSunbae.framework in Frameworks */,
 				33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,10 +611,6 @@
 		306F49A055DE8364038C4FEE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CDEC227AA3B5687CFBF977B8 /* Pods-NadoSunbae-iOS.debug.xcconfig */,
-				A5D97E760E2CD0C8A8594D99 /* Pods-NadoSunbae-iOS.release.xcconfig */,
-				5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */,
-				8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -635,7 +621,6 @@
 				331364282784D3BD00E0C118 /* NadoSunbae-iOS */,
 				331364272784D3BD00E0C118 /* Products */,
 				306F49A055DE8364038C4FEE /* Pods */,
-				51D035CDCDD09DB0F0D88285 /* Frameworks */,
 				5C32801D2797333B00781EBE /* Recovered References */,
 			);
 			sourceTree = "<group>";
@@ -1290,14 +1275,6 @@
 			path = CVC;
 			sourceTree = "<group>";
 		};
-		51D035CDCDD09DB0F0D88285 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E97A41E4BC88AC1D156E29C6 /* Pods_NadoSunbae.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		5C3280162797207200781EBE /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1853,11 +1830,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3313643A2784D3C000E0C118 /* Build configuration list for PBXNativeTarget "NadoSunbae" */;
 			buildPhases = (
-				BA7A4732C14962FD8D7459E7 /* [CP] Check Pods Manifest.lock */,
 				331364222784D3BD00E0C118 /* Sources */,
 				331364232784D3BD00E0C118 /* Frameworks */,
 				331364242784D3BD00E0C118 /* Resources */,
-				5DAF37DDFD387F977358B30D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1991,48 +1966,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5DAF37DDFD387F977358B30D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NadoSunbae/Pods-NadoSunbae-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BA7A4732C14962FD8D7459E7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NadoSunbae-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		331364222784D3BD00E0C118 /* Sources */ = {
@@ -2391,7 +2324,6 @@
 		};
 		3313643B2784D3C000E0C118 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B45EDB7E164653F323C8477 /* Pods-NadoSunbae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2422,7 +2354,6 @@
 		};
 		3313643C2784D3C000E0C118 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BD8F9D6D67AAF96FCC0D1C8 /* Pods-NadoSunbae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
