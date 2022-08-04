@@ -163,6 +163,15 @@
       }
     },
     {
+      "identity" : "then",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/devxoul/Then",
+      "state" : {
+        "branch" : "master",
+        "revision" : "d41ef523faef0f911369f79c0b96815d9dbb6d7a"
+      }
+    },
+    {
       "identity" : "weakmaptable",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactorKit/WeakMapTable.git",
