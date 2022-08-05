@@ -39,6 +39,46 @@ class HomeVC: BaseVC {
         backgroundTV.register(HomeTitleHeaderCell.self, forCellReuseIdentifier: HomeTitleHeaderCell.className)
         backgroundTV.register(HomeFooterCell.self, forCellReuseIdentifier: HomeFooterCell.className)
     }
+}
+
+// MARK: - UITableViewDataSource
+extension HomeVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    // MARK: Cell
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tableSection = HomeBackgroundTVSectionType(rawValue: section) {
+            switch tableSection {
+            case .banner:
+                return 1
+            case .review:
+                return 2
+            case .questionPerson:
+                return 4
+            case .community:
+                return 2
+            }
+        } else { return 0 }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let tableSection = HomeBackgroundTVSectionType(rawValue: indexPath.section) {
+            switch tableSection {
+            case .banner:
+                return UITableViewCell()
+            case .review:
+                return UITableViewCell()
+            case .questionPerson:
+                return UITableViewCell()
+            case .community:
+                return UITableViewCell()
+            }
+        } else { return UITableViewCell() }
+    }
+}
+
     }
 }
 
