@@ -297,6 +297,7 @@
 		C7C4144B27C9392F00296C30 /* MypageSettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144A27C9392F00296C30 /* MypageSettingService.swift */; };
 		C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */; };
 		C7C4145027C93C4700296C30 /* EditProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */; };
+		C7E46C06289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */; };
 		C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */; };
 		C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */; };
 		C7F3F6DD27D5192D00E12888 /* ResendSignUpMailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */; };
@@ -589,6 +590,7 @@
 		C7C4144A27C9392F00296C30 /* MypageSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingService.swift; sourceTree = "<group>"; };
 		C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestModel.swift; sourceTree = "<group>"; };
 		C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileResponseModel.swift; sourceTree = "<group>"; };
+		C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerHeaderCell.swift; sourceTree = "<group>"; };
 		C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendSignUpMailResponseModel.swift; sourceTree = "<group>"; };
@@ -1219,6 +1221,7 @@
 		33D44560287C27D700D94495 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C7E46C04289D0FCC00FBB8C4 /* Header */,
 				33D44562287C27E500D94495 /* VC */,
 			);
 			path = Home;
@@ -1829,6 +1832,15 @@
 			path = MypageSetting;
 			sourceTree = "<group>";
 		};
+		C7E46C04289D0FCC00FBB8C4 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */,
+				C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2042,6 +2054,7 @@
 				5C9A93F927A64FB20097310B /* SignUpDataModel.swift in Sources */,
 				5C87EC22279A2D2C0039D935 /* CreateClassroomPostModel.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
+				C7E46C06289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				5CC0BFDB27987F6400B96905 /* NotificationNVC.swift in Sources */,
 				33A666A327BB8F3100779351 /* PostLikeResModel.swift in Sources */,
