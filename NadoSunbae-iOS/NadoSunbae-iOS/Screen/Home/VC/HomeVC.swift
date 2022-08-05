@@ -79,6 +79,46 @@ extension HomeVC: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension HomeVC: UITableViewDelegate {
+    
+    // MARK: Header
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let tableSection = HomeBackgroundTVSectionType(rawValue: section) {
+            switch tableSection {
+            case .banner:
+                guard let headerView = tableView.dequeueReusableCell(withIdentifier: HomeBannerHeaderCell.className) as? HomeBannerHeaderCell else { return HomeBannerHeaderCell() }
+                return headerView
+            case .review:
+                guard let headerView = tableView.dequeueReusableCell(withIdentifier: HomeTitleHeaderCell.className) as? HomeTitleHeaderCell else { return HomeTitleHeaderCell() }
+                headerView.setTitleLabel(titleText: "후기")
+                return headerView
+            case .questionPerson:
+                guard let headerView = tableView.dequeueReusableCell(withIdentifier: HomeTitleHeaderCell.className) as? HomeTitleHeaderCell else { return HomeTitleHeaderCell() }
+                headerView.setTitleLabel(titleText: "1:1질문")
+                return headerView
+            case .community:
+                guard let headerView = tableView.dequeueReusableCell(withIdentifier: HomeTitleHeaderCell.className) as? HomeTitleHeaderCell else { return HomeTitleHeaderCell() }
+                headerView.setTitleLabel(titleText: "커뮤니티")
+                return headerView
+            }
+        } else { return UIView() }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if let tableSection = HomeBackgroundTVSectionType(rawValue: section) {
+            switch tableSection {
+            case .banner:
+                let headerHeight = 60.0
+                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: headerHeight))
+                tableView.contentInset = UIEdgeInsets(top: -headerHeight, left: 0, bottom: 0, right: 0)
+                return headerHeight
+            case .review, .questionPerson, .community:
+                return 70
+            }
+        } else { return 0 }
+    }
+    
     }
 }
 
