@@ -45,11 +45,12 @@ class HomeVC: BaseVC {
 // MARK: - UI
 extension HomeVC {
     private func configureUI() {
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
-        view.addSubviews([tabLabel])
+        view.addSubviews([backgroundTV])
         
-        tabLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+        backgroundTV.snp.makeConstraints {
+            $0.horizontalEdges.verticalEdges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
