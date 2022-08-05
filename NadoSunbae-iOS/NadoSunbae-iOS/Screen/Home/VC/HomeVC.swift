@@ -16,7 +16,12 @@ class HomeVC: BaseVC {
         $0.separatorStyle = .none
         $0.backgroundColor = .white
     }
-
+    
+    // MARK: - Properties
+    enum HomeBackgroundTVSectionType: Int {
+        case banner = 0, review, questionPerson, community
+    }
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
