@@ -285,6 +285,7 @@
 		C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AA27D7A8B5006ECD9E /* UserToken.swift */; };
 		C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AC27D7CB72006ECD9E /* AppVersion.swift */; };
 		C790A26D289D551400A67135 /* HomeTitleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */; };
+		C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26F289D57C900A67135 /* HomeFooterCell.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
 		C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE62E27CB71FA0011B23F /* SettingVC.swift */; };
 		C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63127CB73F80011B23F /* SettingTVC.swift */; };
@@ -579,6 +580,7 @@
 		C75926AA27D7A8B5006ECD9E /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		C75926AC27D7CB72006ECD9E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderCell.swift; sourceTree = "<group>"; };
+		C790A26F289D57C900A67135 /* HomeFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFooterCell.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
 		C7ACE62E27CB71FA0011B23F /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		C7ACE63127CB73F80011B23F /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -1223,6 +1225,7 @@
 		33D44560287C27D700D94495 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C790A26E289D57BA00A67135 /* Footer */,
 				C7E46C04289D0FCC00FBB8C4 /* Header */,
 				33D44562287C27E500D94495 /* VC */,
 			);
@@ -1777,6 +1780,14 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		C790A26E289D57BA00A67135 /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				C790A26F289D57C900A67135 /* HomeFooterCell.swift */,
+			);
+			path = Footer;
+			sourceTree = "<group>";
+		};
 		C7ACE62927CA9EC70011B23F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2153,6 +2164,7 @@
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
 				33C50100281A4E24004AAEEE /* Navigator.swift in Sources */,
 				33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */,
+				C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */,
 				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
 				C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */,
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
