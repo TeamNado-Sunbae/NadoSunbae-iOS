@@ -620,19 +620,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		306F49A055DE8364038C4FEE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		3313641D2784D3BD00E0C118 = {
 			isa = PBXGroup;
 			children = (
 				331364282784D3BD00E0C118 /* NadoSunbae-iOS */,
 				331364272784D3BD00E0C118 /* Products */,
-				306F49A055DE8364038C4FEE /* Pods */,
 				5C32801D2797333B00781EBE /* Recovered References */,
 			);
 			sourceTree = "<group>";
