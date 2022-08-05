@@ -10,16 +10,30 @@ import SnapKit
 import Then
 
 class HomeVC: BaseVC {
-    
+
     // MARK: Components
-    private var tabLabel = UILabel().then {
-        $0.text = "홈"
+    private var backgroundTV = UITableView().then {
+        $0.separatorStyle = .none
+        $0.backgroundColor = .white
     }
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setBackgroundTV()
+    }
+    
+    private func setBackgroundTV() {
+        backgroundTV.dataSource = self
+        backgroundTV.delegate = self
+        
+        backgroundTV.sectionHeaderTopPadding = 0
+        
+        backgroundTV.register(HomeBannerHeaderCell.self, forCellReuseIdentifier: HomeBannerHeaderCell.className)
+        backgroundTV.register(HomeTitleHeaderCell.self, forCellReuseIdentifier: HomeTitleHeaderCell.className)
+        backgroundTV.register(HomeFooterCell.self, forCellReuseIdentifier: HomeFooterCell.className)
+    }
     }
 }
 
