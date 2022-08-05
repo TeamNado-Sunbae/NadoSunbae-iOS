@@ -119,6 +119,28 @@ extension HomeVC: UITableViewDelegate {
         } else { return 0 }
     }
     
+    // MARK: Footer
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if let tableSection = HomeBackgroundTVSectionType(rawValue: section) {
+            switch tableSection {
+            case .review, .questionPerson:
+                guard let footerView = tableView.dequeueReusableCell(withIdentifier: HomeFooterCell.className) as? HomeFooterCell else { return HomeFooterCell() }
+                return footerView
+            default:
+                return nil
+            }
+        } else { return nil }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if let tableSection = HomeBackgroundTVSectionType(rawValue: section) {
+            switch tableSection {
+            case .review, .questionPerson:
+                return 12
+            default:
+                return 0
+            }
+        } else { return 0 }
     }
 }
 
