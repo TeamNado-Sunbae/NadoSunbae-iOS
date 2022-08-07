@@ -78,6 +78,28 @@ extension HomeBannerTVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
 }
 
+// MARK: - UICollectionViewDelegate
+extension HomeBannerTVC: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageFloat = (scrollView.contentOffset.x / scrollView.frame.size.width)
+        let pageInt = Int(round(pageFloat))
+        
+        segmentedControl.setImage(UIImage(named: "unselectedSegmentImage"), forSegmentAt: segmentedControl.selectedSegmentIndex)
+        
+        switch pageInt {
+        case 0:
+            segmentedControl.selectedSegmentIndex = bannerImaURLsData.count - 3
+            bannerCV.scrollToItem(at: [0, bannerImaURLsData.count - 2], at: .left, animated: false)
+        case bannerImaURLsData.count - 1:
+            segmentedControl.selectedSegmentIndex = 0
+            bannerCV.scrollToItem(at: [0, 1], at: .left, animated: false)
+        default:
+            segmentedControl.selectedSegmentIndex = pageInt - 1
+        }
+        
+        segmentedControl.setImage(UIImage(named: "selectedSegmentImage"), forSegmentAt: segmentedControl.selectedSegmentIndex)
+    }
 }
 
 // MARK: - UI
