@@ -79,6 +79,21 @@ extension HomeVC: UITableViewDataSource {
             }
         } else { return UITableViewCell() }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let tableSection = HomeBackgroundTVSectionType(rawValue: indexPath.section) {
+            switch tableSection {
+            case .banner:
+                return 104
+            case .review:
+                return 48
+            case .questionPerson:
+                return 48
+            case .community:
+                return 48
+            }
+        } else { return 0 }
+    }
 }
 
 // MARK: - UITableViewDelegate
