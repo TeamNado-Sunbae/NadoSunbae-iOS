@@ -284,6 +284,8 @@
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
 		C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AA27D7A8B5006ECD9E /* UserToken.swift */; };
 		C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AC27D7CB72006ECD9E /* AppVersion.swift */; };
+		C790A26D289D551400A67135 /* HomeTitleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */; };
+		C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26F289D57C900A67135 /* HomeFooterCell.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
 		C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE62E27CB71FA0011B23F /* SettingVC.swift */; };
 		C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63127CB73F80011B23F /* SettingTVC.swift */; };
@@ -297,6 +299,7 @@
 		C7C4144B27C9392F00296C30 /* MypageSettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144A27C9392F00296C30 /* MypageSettingService.swift */; };
 		C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */; };
 		C7C4145027C93C4700296C30 /* EditProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */; };
+		C7E46C06289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */; };
 		C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */; };
 		C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */; };
 		C7F3F6DD27D5192D00E12888 /* ResendSignUpMailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */; };
@@ -576,6 +579,8 @@
 		C740A85A27C7C58500C4518A /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C75926AA27D7A8B5006ECD9E /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		C75926AC27D7CB72006ECD9E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderCell.swift; sourceTree = "<group>"; };
+		C790A26F289D57C900A67135 /* HomeFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFooterCell.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
 		C7ACE62E27CB71FA0011B23F /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		C7ACE63127CB73F80011B23F /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -589,6 +594,7 @@
 		C7C4144A27C9392F00296C30 /* MypageSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingService.swift; sourceTree = "<group>"; };
 		C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestModel.swift; sourceTree = "<group>"; };
 		C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileResponseModel.swift; sourceTree = "<group>"; };
+		C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerHeaderCell.swift; sourceTree = "<group>"; };
 		C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendSignUpMailResponseModel.swift; sourceTree = "<group>"; };
@@ -614,19 +620,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		306F49A055DE8364038C4FEE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		3313641D2784D3BD00E0C118 = {
 			isa = PBXGroup;
 			children = (
 				331364282784D3BD00E0C118 /* NadoSunbae-iOS */,
 				331364272784D3BD00E0C118 /* Products */,
-				306F49A055DE8364038C4FEE /* Pods */,
 				5C32801D2797333B00781EBE /* Recovered References */,
 			);
 			sourceTree = "<group>";
@@ -1219,6 +1217,8 @@
 		33D44560287C27D700D94495 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C790A26E289D57BA00A67135 /* Footer */,
+				C7E46C04289D0FCC00FBB8C4 /* Header */,
 				33D44562287C27E500D94495 /* VC */,
 			);
 			path = Home;
@@ -1772,6 +1772,14 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		C790A26E289D57BA00A67135 /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				C790A26F289D57C900A67135 /* HomeFooterCell.swift */,
+			);
+			path = Footer;
+			sourceTree = "<group>";
+		};
 		C7ACE62927CA9EC70011B23F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1827,6 +1835,15 @@
 				C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */,
 			);
 			path = MypageSetting;
+			sourceTree = "<group>";
+		};
+		C7E46C04289D0FCC00FBB8C4 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */,
+				C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2007,6 +2024,7 @@
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
 				5CA7E410278BC18D00D748E0 /* SelectMajorModalVC.swift in Sources */,
 				7754A32627954B770093C230 /* ReviewDetailPostTVC.swift in Sources */,
+				C790A26D289D551400A67135 /* HomeTitleHeaderCell.swift in Sources */,
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */,
@@ -2042,6 +2060,7 @@
 				5C9A93F927A64FB20097310B /* SignUpDataModel.swift in Sources */,
 				5C87EC22279A2D2C0039D935 /* CreateClassroomPostModel.swift in Sources */,
 				331364682785AE6500E0C118 /* UIColor+.swift in Sources */,
+				C7E46C06289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift in Sources */,
 				331364582785A96700E0C118 /* UIViewController+.swift in Sources */,
 				5CC0BFDB27987F6400B96905 /* NotificationNVC.swift in Sources */,
 				33A666A327BB8F3100779351 /* PostLikeResModel.swift in Sources */,
@@ -2137,6 +2156,7 @@
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
 				33C50100281A4E24004AAEEE /* Navigator.swift in Sources */,
 				33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */,
+				C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */,
 				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
 				C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */,
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
