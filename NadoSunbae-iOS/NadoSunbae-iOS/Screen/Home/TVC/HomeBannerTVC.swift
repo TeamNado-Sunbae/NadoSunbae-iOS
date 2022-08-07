@@ -43,17 +43,56 @@ class HomeBannerTVC: BaseTVC {
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         configureUI()
+        setBannerCV()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func setBannerCV() {
+        bannerCV.dataSource = self
+        bannerCV.delegate = self
+        
+        bannerCV.collectionViewLayout = CVFlowLayout
+        bannerCV.register(HomeBannerCVC.self, forCellWithReuseIdentifier: HomeBannerCVC.className)
+        
+        DispatchQueue.main.async {
+            self.bannerCV.scrollToItem(at: [0, 1], at: .left, animated: false)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension HomeBannerTVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return bannerImaURLsData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeBannerCVC.className, for: indexPath) as? HomeBannerCVC else { return UICollectionViewCell() }
+        cell.setData(imageURL: bannerImaURLsData[indexPath.row])
+        return cell
+    }
+}
+
 }
 
 // MARK: - UI
-extension HomeTitleHeaderCell {
+extension HomeBannerTVC {
     private func configureUI() {
+        contentView.addSubviews([bannerCV, segmentedControl])
         
+        bannerCV.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        segmentedControl.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(8)
+            $0.height.equalTo(8)
+        }
     }
 }
