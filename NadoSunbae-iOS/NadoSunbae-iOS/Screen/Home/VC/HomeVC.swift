@@ -38,6 +38,7 @@ class HomeVC: BaseVC {
         backgroundTV.register(HomeBannerHeaderCell.self, forCellReuseIdentifier: HomeBannerHeaderCell.className)
         backgroundTV.register(HomeTitleHeaderCell.self, forCellReuseIdentifier: HomeTitleHeaderCell.className)
         backgroundTV.register(HomeFooterCell.self, forCellReuseIdentifier: HomeFooterCell.className)
+        backgroundTV.register(HomeBannerTVC.self, forCellReuseIdentifier: HomeBannerTVC.className)
     }
 }
 
@@ -67,7 +68,8 @@ extension HomeVC: UITableViewDataSource {
         if let tableSection = HomeBackgroundTVSectionType(rawValue: indexPath.section) {
             switch tableSection {
             case .banner:
-                return UITableViewCell()
+                guard let bannerCell = tableView.dequeueReusableCell(withIdentifier: HomeBannerTVC.className) as? HomeBannerTVC else { return HomeBannerTVC() }
+                return bannerCell
             case .review:
                 return UITableViewCell()
             case .questionPerson:
