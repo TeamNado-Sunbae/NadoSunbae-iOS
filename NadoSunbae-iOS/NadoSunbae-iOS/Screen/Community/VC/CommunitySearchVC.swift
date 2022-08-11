@@ -10,6 +10,11 @@ import Then
 import SnapKit
 import ReactorKit
 
+enum searchCase {
+    case enterKeyword
+    case doneSearch
+}
+
 final class CommunitySearchVC: BaseVC, View {
     
     // MARK: Components
@@ -27,9 +32,12 @@ final class CommunitySearchVC: BaseVC, View {
     private let representStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 16
+        $0.distribution = .fillProportionally
     }
     
-    private let representStateImageView = UIImageView()
+    private let representStateImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
     
     private let representStateLabel = UILabel().then {
         $0.font = UIFont.PretendardM(size: 18.0)
@@ -66,6 +74,10 @@ extension CommunitySearchVC {
     
     // MARK: Action
     private func bindAction(_ reactor: CommunitySearchReactor) {
+        searchNaviBar.backBtn.rx.tap
+            .map { CommunitySearchReactor.Action.tapBackBtn }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     // MARK: State
@@ -75,12 +87,23 @@ extension CommunitySearchVC {
             .bind(to: searchTV.rx.items) { tableView, index, item in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
-                
                 guard let communityCell = cell as? CommunityTVC else { return UITableViewCell() }
                 communityCell.setCommunityData(data: item)
                 
                 return communityCell
             }
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.searchList }
+            .subscribe(onNext: { [weak self] data in
+                if data.isEmpty {
+                    self?.searchTV.isHidden = true
+                    self?.setUpEmptyViewBySearchList(searchCase: .doneSearch)
+                } else {
+                    self?.searchTV.isHidden = false
+                }
+            })
             .disposed(by: self.disposeBag)
         
         reactor.state
@@ -107,13 +130,15 @@ extension CommunitySearchVC {
     }
 }
 
-// MARK: - Custom Methods
+// MARK: - UI
 extension CommunitySearchVC {
     private func configureUI() {
         view.backgroundColor = .white
-        view.addSubviews([searchNaviBar, searchSV, representStackView])
+        view.addSubviews([searchNaviBar, representStackView, searchSV])
+        
         searchSV.addSubview(contentView)
         contentView.addSubview(searchTV)
+        
         representStackView.addArrangedSubview(representStateImageView)
         representStackView.addArrangedSubview(representStateLabel)
         
@@ -160,6 +185,18 @@ extension CommunitySearchVC {
         searchNaviBar.searchBar.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
+    
+    /// searchCase에 따라 EmptyView stack의 내용을 채우는 메서드
+    private func setUpEmptyViewBySearchList(searchCase: searchCase) {
+        switch searchCase {
+        case .enterKeyword:
+            representStateImageView.image = UIImage(named: "searchFind")
+            representStateLabel.text = "커뮤니티의 글을 검색해보세요."
+        case .doneSearch:
+            representStateImageView.image = UIImage(named: "searchEmpty")
+            representStateLabel.text = "검색 결과가 없습니다."
+        }
+    }
 }
 
 // MARK: - UISearchBarDelegate
@@ -167,8 +204,8 @@ extension CommunitySearchVC: UISearchBarDelegate {
     
     /// searchBarSearchButtonClicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
         reactor?.action.onNext(.tapCompleteSearchBtn(searchKeyword: searchBar.searchTextField.text ?? ""))
+        view.endEditing(true)
     }
     
     /// searchBarShouldEndEditing
@@ -179,6 +216,12 @@ extension CommunitySearchVC: UISearchBarDelegate {
                 cancelBtn.isEnabled = true
             }
         }
+        return true
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchTV.isHidden = true
+        setUpEmptyViewBySearchList(searchCase: .enterKeyword)
         return true
     }
 }
