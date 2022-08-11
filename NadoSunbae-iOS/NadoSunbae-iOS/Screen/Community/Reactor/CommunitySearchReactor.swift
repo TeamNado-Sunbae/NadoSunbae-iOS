@@ -19,7 +19,6 @@ final class CommunitySearchReactor: Reactor {
     }
     
     // MARK: represent state changes
-    // Action과 State를 연결, Reactor Layer에만 존재
     enum Mutation {
         case setLoading(loading: Bool)
         case requestSearchList(searchList: [CommunityPostList])
@@ -50,7 +49,6 @@ extension CommunitySearchReactor {
     }
     
     /// reduce (Mutation -> State)
-    /// 최종 State를 View로 방출
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         
@@ -81,6 +79,6 @@ extension CommunitySearchReactor {
             observer.onNext(Mutation.requestSearchList(searchList: dummyEntireList))
             observer.onCompleted()
             return Disposables.create()
-        }.delay(.seconds(2), scheduler: MainScheduler.instance)
+        }
     }
 }
