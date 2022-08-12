@@ -16,15 +16,10 @@ class HomeBannerTVC: BaseTVC {
         $0.showsHorizontalScrollIndicator = false
         $0.isPagingEnabled = true
     }
-    private lazy var segmentedControl = UISegmentedControl().then {
-        $0.removeAllSegments()
-        for i in 0..<bannerImaURLsData.count - 2 {
-            $0.insertSegment(with: UIImage(named: "unselectedSegmentImage"), at: i, animated: false)
-        }
-        $0.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        $0.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
-        $0.selectedSegmentIndex = 0
-        $0.setImage(UIImage(named: "selectedSegmentImage"), forSegmentAt: $0.selectedSegmentIndex)
+    private lazy var pageControl = UIPageControl().then {
+        $0.pageIndicatorTintColor = .init(white: 1, alpha: 0.5)
+        $0.currentPageIndicatorTintColor = .white
+        $0.numberOfPages = bannerImaURLsData.count - 2
         $0.isUserInteractionEnabled = false
     }
     
@@ -85,33 +80,29 @@ extension HomeBannerTVC: UICollectionViewDelegate {
         let pageFloat = (scrollView.contentOffset.x / scrollView.frame.size.width)
         let pageInt = Int(round(pageFloat))
         
-        segmentedControl.setImage(UIImage(named: "unselectedSegmentImage"), forSegmentAt: segmentedControl.selectedSegmentIndex)
-        
         switch pageInt {
         case 0:
-            segmentedControl.selectedSegmentIndex = bannerImaURLsData.count - 3
+            pageControl.currentPage = bannerImaURLsData.count - 3
             bannerCV.scrollToItem(at: [0, bannerImaURLsData.count - 2], at: .left, animated: false)
         case bannerImaURLsData.count - 1:
-            segmentedControl.selectedSegmentIndex = 0
+            pageControl.currentPage = 0
             bannerCV.scrollToItem(at: [0, 1], at: .left, animated: false)
         default:
-            segmentedControl.selectedSegmentIndex = pageInt - 1
+            pageControl.currentPage = pageInt - 1
         }
-        
-        segmentedControl.setImage(UIImage(named: "selectedSegmentImage"), forSegmentAt: segmentedControl.selectedSegmentIndex)
     }
 }
 
 // MARK: - UI
 extension HomeBannerTVC {
     private func configureUI() {
-        contentView.addSubviews([bannerCV, segmentedControl])
+        contentView.addSubviews([bannerCV, pageControl])
         
         bannerCV.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        segmentedControl.snp.makeConstraints {
+        pageControl.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(8)
             $0.height.equalTo(8)
