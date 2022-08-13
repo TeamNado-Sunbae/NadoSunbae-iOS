@@ -18,6 +18,7 @@ enum NaviState {
     case dismissWithCustomRightBtn
     case dismissWithNadoBtn
     case rootWithCustomRightBtn
+    case backWithSearchBar
 }
 
 /**
@@ -30,6 +31,7 @@ enum NaviState {
  - dismissWithCustomRightBtn: 취소 버튼과 중앙 텍스트 + 우측 버튼
  - dismissWithNadoBtn: 취소 버튼과 중앙 텍스트 + 우측 나도선배 버튼
  - rootWithCustomRightBtn: 루트 NC(탭의 메인) + 우측 버튼
+ - backWithSearchBar: 뒤로가기 버튼 + 검색 바
  
  - configureTitleLabel: titleLabel 텍스트 변경
  - configureRightCustomBtn: 우측 커스텀 버튼 이미지 변경
@@ -70,6 +72,19 @@ class NadoSunbaeNaviBar: UIView {
         $0.isActivated = false
         $0.activatedFontColor = .mainLight
         $0.setTitle("완료", for: .normal)
+    }
+    
+    private (set) lazy var searchBar = UISearchBar().then {
+        $0.showsCancelButton = false
+        $0.isTranslucent = false
+        $0.searchBarStyle = .prominent
+        $0.searchTextField.backgroundColor = .gray0
+        $0.searchTextField.textColor = .mainText
+        $0.setImage(UIImage(), for: UISearchBar.Icon.search, state: .normal)
+        $0.setImage(UIImage(named: "btnX")?.imageWithColor(color: .gray2), for: .clear, state: .normal)
+        $0.searchTextField.font = UIFont.PretendardR(size: 14.0)
+        $0.placeholder = "글 제목, 내용"
+        $0.backgroundImage = UIImage()
     }
     
     // MARK: init
@@ -290,6 +305,28 @@ extension NadoSunbaeNaviBar {
         titleLabel.setLabel(text: "제목", color: .black, size: 20, weight: .medium)
     }
     
+    /// 뒤로가기 버튼 + searchBar UI를 구성하는 메서드
+    private func configureBackWithSearchbarUI() {
+        self.addSubviews([backView, backBtn, searchBar])
+        
+        backView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        backBtn.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.leading.equalToSuperview()
+            $0.height.width.equalTo(48)
+        }
+        
+        searchBar.snp.makeConstraints {
+            $0.leading.equalTo(backBtn.snp.trailing)
+            $0.trailing.equalToSuperview().offset(-7)
+            $0.centerY.equalTo(backBtn)
+            $0.height.equalTo(40)
+        }
+    }
+    
     // MARK: Public Methods
     /// 커스텀 네비 바 타이틀 설정하는 메서드
     func configureTitleLabel(title: String) {
@@ -325,6 +362,8 @@ extension NadoSunbaeNaviBar {
             configureDismissWithNadoBtnUI()
         case .rootWithCustomRightBtn:
             configureRootUI()
+        case .backWithSearchBar:
+            configureBackWithSearchbarUI()
         }
     }
     
