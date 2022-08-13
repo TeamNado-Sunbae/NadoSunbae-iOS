@@ -289,6 +289,7 @@
 		C783BF9C28A7A202000FE3D8 /* HomeRecentReviewQuestionCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C783BF9B28A7A202000FE3D8 /* HomeRecentReviewQuestionCVC.swift */; };
 		C783BF9F28A7A449000FE3D8 /* HomeRecentReviewResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C783BF9E28A7A449000FE3D8 /* HomeRecentReviewResponseModel.swift */; };
 		C783BFA128A7D7E3000FE3D8 /* SendHomeRecentDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C783BFA028A7D7E3000FE3D8 /* SendHomeRecentDataDelegate.swift */; };
+		C783BFA328A7E068000FE3D8 /* HomeRankingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C783BFA228A7E068000FE3D8 /* HomeRankingTVC.swift */; };
 		C790A26D289D551400A67135 /* HomeTitleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */; };
 		C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26F289D57C900A67135 /* HomeFooterCell.swift */; };
 		C790A273289D6B5D00A67135 /* HomeBannerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */; };
@@ -593,6 +594,7 @@
 		C783BF9B28A7A202000FE3D8 /* HomeRecentReviewQuestionCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecentReviewQuestionCVC.swift; sourceTree = "<group>"; };
 		C783BF9E28A7A449000FE3D8 /* HomeRecentReviewResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecentReviewResponseModel.swift; sourceTree = "<group>"; };
 		C783BFA028A7D7E3000FE3D8 /* SendHomeRecentDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendHomeRecentDataDelegate.swift; sourceTree = "<group>"; };
+		C783BFA228A7E068000FE3D8 /* HomeRankingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRankingTVC.swift; sourceTree = "<group>"; };
 		C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderCell.swift; sourceTree = "<group>"; };
 		C790A26F289D57C900A67135 /* HomeFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFooterCell.swift; sourceTree = "<group>"; };
 		C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerTVC.swift; sourceTree = "<group>"; };
@@ -1816,6 +1818,7 @@
 		C790A271289D6B3D00A67135 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
+				C783BFA228A7E068000FE3D8 /* HomeRankingTVC.swift */,
 				C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */,
 				C783BF9928A79C88000FE3D8 /* HomeRecentReviewQuestionTVC.swift */,
 			);
@@ -2087,6 +2090,7 @@
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
 				C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */,
+				C783BFA328A7E068000FE3D8 /* HomeRankingTVC.swift in Sources */,
 				5C91647E279A9F0B008DD44B /* MajorUserListDataModel.swift in Sources */,
 				331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */,
 				5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */,
