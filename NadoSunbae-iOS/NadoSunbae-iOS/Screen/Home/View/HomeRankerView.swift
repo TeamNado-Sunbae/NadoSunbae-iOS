@@ -16,34 +16,86 @@ enum RankerType {
 final class HomeRankerView: UIView {
     
     // MARK: Components
-    private let userNameLabel = UILabel()
-    private let responseRateLabel = UILabel()
-    private let profileImgView = UIImageView()
+    private lazy var userNameLabel = UILabel().then {
+        switch rankerType {
+        case .first, .secondThird:
+            $0.font = .PretendardSB(size: 10.adjusted)
+        case .fourthFifth:
+            $0.font = .PretendardSB(size: 8.adjusted)
+        }
+        $0.textColor = .mainLight
+        $0.textAlignment = .center
+        $0.lineBreakMode = .byTruncatingTail
+        $0.numberOfLines = 1
+        $0.setCharacterSpacing(-0.1)
+        $0.text = "선배1"
+    }
+    private lazy var responseRateLabel = UILabel().then {
+        switch rankerType {
+        case .first, .secondThird:
+            $0.font = .PretendardM(size: 10.adjusted)
+        case .fourthFifth:
+            $0.font = .PretendardM(size: 8.adjusted)
+        }
+        $0.textColor = .mainDefault
+        $0.textAlignment = .center
+        $0.lineBreakMode = .byTruncatingTail
+        $0.numberOfLines = 1
+        $0.text = "응답률 99%"
+    }
+    private let profileImgView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
     
     // MARK: Properties
     var rankerType: RankerType = .first
     
     // MARK: Initialization
-    override init(frame: CGRect) {
+    init(type: RankerType) {
         super.init(frame: .zero)
+        rankerType = type
         configureUI()
     }
     
     required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)!
     }
 }
 
 // MARK: - UI
 extension HomeRankerView {
     private func configureUI() {
+        profileImgView.image = UIImage(named: "profileImage1")
+        
+        addSubviews([userNameLabel, responseRateLabel, profileImgView])
+        
+        userNameLabel.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+        }
+        
+        responseRateLabel.snp.makeConstraints {
+            $0.top.equalTo(userNameLabel.snp.bottom).offset(2)
+            $0.left.right.equalToSuperview()
+        }
+        
         switch rankerType {
         case .first:
-            
+            profileImgView.snp.makeConstraints {
+                $0.left.right.bottom.equalToSuperview()
+                $0.height.equalTo(profileImgView.snp.width)
+            }
         case .secondThird:
-            
+            profileImgView.snp.makeConstraints {
+                $0.left.right.equalToSuperview().inset(2)
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(profileImgView.snp.width)
+            }
         case .fourthFifth:
-            
+            profileImgView.snp.makeConstraints {
+                $0.left.right.equalToSuperview().inset(7)
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(profileImgView.snp.width)
+            }
         }
     }
 }
