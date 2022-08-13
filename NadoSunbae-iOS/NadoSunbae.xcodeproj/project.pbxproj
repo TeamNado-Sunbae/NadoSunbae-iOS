@@ -1239,12 +1239,11 @@
 		33D44560287C27D700D94495 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C783BFA428A7E0E4000FE3D8 /* CVC */,
 				C790A271289D6B3D00A67135 /* TVC */,
 				C790A26E289D57BA00A67135 /* Footer */,
 				C7E46C04289D0FCC00FBB8C4 /* Header */,
 				33D44562287C27E500D94495 /* VC */,
-				C790A275289D6D7D00A67135 /* HomeBannerCVC.swift */,
-				C783BF9B28A7A202000FE3D8 /* HomeRecentReviewQuestionCVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1805,6 +1804,15 @@
 				C783BF9E28A7A449000FE3D8 /* HomeRecentReviewResponseModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		C783BFA428A7E0E4000FE3D8 /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				C790A275289D6D7D00A67135 /* HomeBannerCVC.swift */,
+				C783BF9B28A7A202000FE3D8 /* HomeRecentReviewQuestionCVC.swift */,
+			);
+			path = CVC;
 			sourceTree = "<group>";
 		};
 		C790A26E289D57BA00A67135 /* Footer */ = {
