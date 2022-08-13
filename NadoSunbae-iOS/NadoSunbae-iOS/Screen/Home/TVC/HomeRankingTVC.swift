@@ -19,15 +19,34 @@ final class HomeRankingTVC: BaseTVC {
     private let fourthRankerView = HomeRankerView(type: .fourthFifth)
     private let fifthRankerView = HomeRankerView(type: .fourthFifth)
     
+    // MARK: Properties
+    private lazy var rankerViewList = [firstRankerView, secondRankerView, thirdRankerView, fourthRankerView, fifthRankerView]
+    private var rankerDummyData = [
+        HomeRankingResponseModelElement(userID: 101, profileImageID: 1, isOnQuestion: true, nickname: "정정빈빈", isFirstMajor: true, responseRate: 88),
+        HomeRankingResponseModelElement(userID: 102, profileImageID: 2, isOnQuestion: true, nickname: "안뇽하세여", isFirstMajor: true, responseRate: 85),
+        HomeRankingResponseModelElement(userID: 103, profileImageID: 3, isOnQuestion: true, nickname: "나는삼등", isFirstMajor: true, responseRate: 83),
+        HomeRankingResponseModelElement(userID: 104, profileImageID: 4, isOnQuestion: true, nickname: "나는사등", isFirstMajor: true, responseRate: 22),
+        HomeRankingResponseModelElement(userID: 105, profileImageID: 5, isOnQuestion: true, nickname: "나는...꼴찌", isFirstMajor: true, responseRate: 11)]
+    
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         configureUI()
+        setData()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Methods
+    private func setData() {
+        for i in 0..<5 {
+            rankerViewList[i].userNameLabel.text = rankerDummyData[i].nickname
+            rankerViewList[i].responseRateLabel.text = "응답률 \(rankerDummyData[i].responseRate)%"
+            rankerViewList[i].profileImgView.image = UIImage(named: "profileImage\(rankerDummyData[i].profileImageID)")
+        }
     }
 }
 
