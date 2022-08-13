@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeBannerHeaderCell: BaseTVC {
+final class HomeBannerHeaderCell: BaseTVC {
     
     // MARK: Components
     private let logoImgView = UIImageView().then {

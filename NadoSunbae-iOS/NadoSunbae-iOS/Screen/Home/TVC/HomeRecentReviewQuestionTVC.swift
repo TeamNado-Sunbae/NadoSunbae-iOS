@@ -12,7 +12,7 @@ enum HomeRecentTVCType {
     case personalQuestion
 }
 
-class HomeRecentReviewQuestionTVC: BaseTVC {
+final class HomeRecentReviewQuestionTVC: BaseTVC {
     
     // MARK: Components
     private let recentCV = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {

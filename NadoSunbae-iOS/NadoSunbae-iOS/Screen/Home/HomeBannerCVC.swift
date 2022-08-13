@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class HomeBannerCVC: BaseCVC {
+final class HomeBannerCVC: BaseCVC {
     
     // MARK: Components
     private let imgView = UIImageView()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeTitleHeaderCell: BaseTVC {
+final class HomeTitleHeaderCell: BaseTVC {
     
     // MARK: Components
     private let titleLabel = UILabel().then {

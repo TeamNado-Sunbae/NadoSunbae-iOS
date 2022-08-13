@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class HomeVC: BaseVC {
+final class HomeVC: BaseVC {
 
     // MARK: Components
     private var backgroundTV = UITableView(frame: .zero, style: .grouped).then {

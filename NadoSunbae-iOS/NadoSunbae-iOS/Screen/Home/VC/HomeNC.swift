@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeNC: BaseNC {
+final class HomeNC: BaseNC {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeRecentReviewQuestionCVC: BaseCVC {
+final class HomeRecentReviewQuestionCVC: BaseCVC {
     
     // MARK: Components
     private let majorLabel = UILabel().then {

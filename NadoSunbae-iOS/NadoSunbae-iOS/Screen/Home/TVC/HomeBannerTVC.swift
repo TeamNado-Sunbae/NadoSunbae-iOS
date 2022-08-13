@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class HomeBannerTVC: BaseTVC {
+final class HomeBannerTVC: BaseTVC {
     
     // MARK: Components
     private let bannerCV = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
