@@ -45,6 +45,7 @@ final class HomeVC: BaseVC {
     }
 }
 
+// MARK: - SendHomeRecentDataDelegate
 extension HomeVC: SendHomeRecentDataDelegate {
     func sendRecentPostId(id: Int, type: HomeRecentTVCType) {
         self.divideUserPermission() {
@@ -57,7 +58,7 @@ extension HomeVC: SendHomeRecentDataDelegate {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
                     questionDetailVC.questionType = .personal
-                    questionDetailVC.naviStyle = .present
+                    questionDetailVC.naviStyle = .push
                     questionDetailVC.postID = id
                 }
             }
