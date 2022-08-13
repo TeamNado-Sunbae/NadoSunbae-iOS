@@ -111,7 +111,7 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 게시글")
                     subTitleCell.moreBtn.press {
-                        debugPrint("최근 게시글 more 버튼 클릭")
+                        self.goToRootOfTab(index: 2)
                     }
                     return subTitleCell
                 case 1:
