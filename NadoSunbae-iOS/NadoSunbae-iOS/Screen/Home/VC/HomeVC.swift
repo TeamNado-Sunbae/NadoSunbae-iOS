@@ -45,6 +45,26 @@ class HomeVC: BaseVC {
     }
 }
 
+extension HomeVC: SendHomeRecentDataDelegate {
+    func sendRecentPostId(id: Int, type: HomeRecentTVCType) {
+        self.divideUserPermission() {
+            switch type {
+            case .review:
+                self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
+                    reviewDetailVC.postId = id
+                }
+            case .personalQuestion:
+                self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                    questionDetailVC.hidesBottomBarWhenPushed = true
+                    questionDetailVC.questionType = .personal
+                    questionDetailVC.naviStyle = .present
+                    questionDetailVC.postID = id
+                }
+            }
+        }
+    }
+}
+
 // MARK: - UITableViewDataSource
 extension HomeVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,6 +106,7 @@ extension HomeVC: UITableViewDataSource {
                 case 1:
                     guard let reviewsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
                     reviewsCell.recentType = .review
+                    reviewsCell.sendHomeRecentDataDelegate = self
                     return reviewsCell
                 default: return UITableViewCell()
                 }
@@ -112,6 +133,7 @@ extension HomeVC: UITableViewDataSource {
                 case 3:
                     guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
                     personalQuestionsCell.recentType = .personalQuestion
+                    personalQuestionsCell.sendHomeRecentDataDelegate = self
                     return personalQuestionsCell
                 default: return UITableViewCell()
                 }

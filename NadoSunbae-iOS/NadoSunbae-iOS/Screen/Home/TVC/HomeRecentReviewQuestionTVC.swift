@@ -34,6 +34,7 @@ class HomeRecentReviewQuestionTVC: BaseTVC {
         HomeRecentReviewResponseModelElement(id: 111, oneLineReview: "원라인리뷰..~", majorName: "어쩌구공학과", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구"), ReviewTagList(tagName: "뭘 배우나요?")], like: Like(isLiked: true, likeCount: 13)),
         HomeRecentReviewResponseModelElement(id: 111, oneLineReview: "원라인리뷰..~", majorName: "어쩌구공학과", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구"), ReviewTagList(tagName: "뭘 배우나요?")], like: Like(isLiked: true, likeCount: 13))]
     var recentType: HomeRecentTVCType?
+    var sendHomeRecentDataDelegate: SendHomeRecentDataDelegate?
     
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -78,7 +79,13 @@ extension HomeRecentReviewQuestionTVC: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension HomeRecentReviewQuestionTVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        debugPrint("\(indexPath.row) 번째 셀 클릭")
+        switch recentType {
+        case .review:
+            sendHomeRecentDataDelegate?.sendRecentPostId(id: recentReviewsDummyData[indexPath.row].id, type: .review)
+        case .personalQuestion:
+            sendHomeRecentDataDelegate?.sendRecentPostId(id: recentReviewsDummyData[indexPath.row].id, type: .personalQuestion)
+        default: break
+        }
     }
 }
 
