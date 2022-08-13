@@ -12,7 +12,7 @@ import Then
 class HomeVC: BaseVC {
 
     // MARK: Components
-    private var backgroundTV = UITableView().then {
+    private var backgroundTV = UITableView(frame: .zero, style: .grouped).then {
         $0.separatorStyle = .none
         $0.backgroundColor = .white
         $0.allowsSelection = false
@@ -195,10 +195,7 @@ extension HomeVC: UITableViewDelegate {
         if let tableSection = HomeBackgroundTVSectionType(rawValue: section) {
             switch tableSection {
             case .banner:
-                let headerHeight = 60.0
-                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: headerHeight))
-                tableView.contentInset = UIEdgeInsets(top: -headerHeight, left: 0, bottom: 0, right: 0)
-                return headerHeight
+                return 60
             case .review, .questionPerson, .community:
                 return 70
             }
