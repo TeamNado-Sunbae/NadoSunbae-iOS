@@ -85,6 +85,7 @@ extension HomeVC: UITableViewDataSource {
                     return subTitleCell
                 case 1:
                     guard let reviewsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    reviewsCell.recentType = .review
                     return reviewsCell
                 default: return UITableViewCell()
                 }
@@ -110,6 +111,7 @@ extension HomeVC: UITableViewDataSource {
                     return subTitleCell
                 case 3:
                     guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    personalQuestionsCell.recentType = .personalQuestion
                     return personalQuestionsCell
                 default: return UITableViewCell()
                 }
