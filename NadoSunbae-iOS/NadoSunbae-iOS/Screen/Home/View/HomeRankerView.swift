@@ -16,7 +16,7 @@ enum RankerType {
 final class HomeRankerView: UIView {
     
     // MARK: Components
-    private lazy var userNameLabel = UILabel().then {
+    private (set) lazy var userNameLabel = UILabel().then {
         switch rankerType {
         case .first, .secondThird:
             $0.font = .PretendardSB(size: 10.adjusted)
@@ -28,9 +28,8 @@ final class HomeRankerView: UIView {
         $0.lineBreakMode = .byTruncatingTail
         $0.numberOfLines = 1
         $0.setCharacterSpacing(-0.1)
-        $0.text = "선배1"
     }
-    private lazy var responseRateLabel = UILabel().then {
+    private (set) lazy var responseRateLabel = UILabel().then {
         switch rankerType {
         case .first, .secondThird:
             $0.font = .PretendardM(size: 10.adjusted)
@@ -41,11 +40,8 @@ final class HomeRankerView: UIView {
         $0.textAlignment = .center
         $0.lineBreakMode = .byTruncatingTail
         $0.numberOfLines = 1
-        $0.text = "응답률 99%"
     }
-    private let profileImgView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
-    }
+    private (set) lazy var profileImgView = UIImageView()
     
     // MARK: Properties
     var rankerType: RankerType = .first
@@ -65,8 +61,6 @@ final class HomeRankerView: UIView {
 // MARK: - UI
 extension HomeRankerView {
     private func configureUI() {
-        profileImgView.image = UIImage(named: "profileImage1")
-        
         addSubviews([userNameLabel, responseRateLabel, profileImgView])
         
         userNameLabel.snp.makeConstraints {
