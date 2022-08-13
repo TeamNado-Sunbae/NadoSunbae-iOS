@@ -41,6 +41,7 @@ class HomeVC: BaseVC {
         backgroundTV.register(HomeFooterCell.self, forCellReuseIdentifier: HomeFooterCell.className)
         backgroundTV.register(HomeBannerTVC.self, forCellReuseIdentifier: HomeBannerTVC.className)
         backgroundTV.register(HomeSubTitleHeaderCell.self, forCellReuseIdentifier: HomeSubTitleHeaderCell.className)
+        backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className)
     }
 }
 
@@ -83,7 +84,8 @@ extension HomeVC: UITableViewDataSource {
                     }
                     return subTitleCell
                 case 1:
-                    return UITableViewCell()
+                    guard let reviewsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    return reviewsCell
                 default: return UITableViewCell()
                 }
             case .questionPerson:
@@ -106,6 +108,9 @@ extension HomeVC: UITableViewDataSource {
                         debugPrint("최근 1:1 질문 more 버튼 클릭")
                     }
                     return subTitleCell
+                case 3:
+                    guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    return personalQuestionsCell
                 default: return UITableViewCell()
                 }
             case .community:
