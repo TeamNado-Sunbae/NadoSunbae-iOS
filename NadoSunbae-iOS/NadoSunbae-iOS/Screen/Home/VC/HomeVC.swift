@@ -40,6 +40,7 @@ class HomeVC: BaseVC {
         backgroundTV.register(HomeTitleHeaderCell.self, forCellReuseIdentifier: HomeTitleHeaderCell.className)
         backgroundTV.register(HomeFooterCell.self, forCellReuseIdentifier: HomeFooterCell.className)
         backgroundTV.register(HomeBannerTVC.self, forCellReuseIdentifier: HomeBannerTVC.className)
+        backgroundTV.register(HomeSubTitleHeaderCell.self, forCellReuseIdentifier: HomeSubTitleHeaderCell.className)
     }
 }
 
@@ -72,11 +73,51 @@ extension HomeVC: UITableViewDataSource {
                 guard let bannerCell = tableView.dequeueReusableCell(withIdentifier: HomeBannerTVC.className) as? HomeBannerTVC else { return HomeBannerTVC() }
                 return bannerCell
             case .review:
-                return UITableViewCell()
+                switch indexPath.row {
+                case 0:
+                    guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
+                    subTitleCell.setTitleLabel(title: "최근 후기")
+                    subTitleCell.moreBtn.press {
+                        debugPrint("최근 후기 more 버튼 클릭")
+                    }
+                    return subTitleCell
+                case 1:
+                    return UITableViewCell()
+                default: return UITableViewCell()
+                }
             case .questionPerson:
-                return UITableViewCell()
+                switch indexPath.row {
+                case 0:
+                    guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
+                    subTitleCell.setTitleLabel(title: "선배랭킹")
+                    subTitleCell.moreBtn.press {
+                        debugPrint("선배랭킹 more 버튼 클릭")
+                    }
+                    return subTitleCell
+                case 1:
+                    return UITableViewCell()
+                case 2:
+                    guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
+                    subTitleCell.setTitleLabel(title: "최근 1:1 질문")
+                    subTitleCell.moreBtn.press {
+                        debugPrint("최근 1:1 질문 more 버튼 클릭")
+                    }
+                    return subTitleCell
+                default: return UITableViewCell()
+                }
             case .community:
-                return UITableViewCell()
+                switch indexPath.row {
+                case 0:
+                    guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
+                    subTitleCell.setTitleLabel(title: "최근 게시글")
+                    subTitleCell.moreBtn.press {
+                        debugPrint("최근 게시글 more 버튼 클릭")
+                    }
+                    return subTitleCell
+                case 1:
+                    return UITableViewCell()
+                default: return UITableViewCell()
+                }
             }
         } else { return UITableViewCell() }
     }
