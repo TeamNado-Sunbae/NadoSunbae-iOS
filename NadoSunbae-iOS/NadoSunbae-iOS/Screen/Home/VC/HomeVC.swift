@@ -77,6 +77,7 @@ extension HomeVC: UITableViewDataSource {
                 case 0:
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 후기")
+                    subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press {
                         debugPrint("최근 후기 more 버튼 클릭")
                     }
@@ -90,6 +91,7 @@ extension HomeVC: UITableViewDataSource {
                 case 0:
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "선배랭킹")
+                    subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press {
                         debugPrint("선배랭킹 more 버튼 클릭")
                     }
@@ -99,6 +101,7 @@ extension HomeVC: UITableViewDataSource {
                 case 2:
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 1:1 질문")
+                    subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press {
                         debugPrint("최근 1:1 질문 more 버튼 클릭")
                     }
@@ -110,6 +113,7 @@ extension HomeVC: UITableViewDataSource {
                 case 0:
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 게시글")
+                    subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press {
                         self.goToRootOfTab(index: 2)
                     }
