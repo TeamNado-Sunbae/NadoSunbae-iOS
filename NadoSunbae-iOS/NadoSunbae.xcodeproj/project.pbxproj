@@ -284,6 +284,7 @@
 		C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740A85A27C7C58500C4518A /* EditProfileVC.swift */; };
 		C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AA27D7A8B5006ECD9E /* UserToken.swift */; };
 		C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AC27D7CB72006ECD9E /* AppVersion.swift */; };
+		C783BF9828A784FA000FE3D8 /* HomeSubTitleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C783BF9728A784FA000FE3D8 /* HomeSubTitleHeaderCell.swift */; };
 		C790A26D289D551400A67135 /* HomeTitleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */; };
 		C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26F289D57C900A67135 /* HomeFooterCell.swift */; };
 		C790A273289D6B5D00A67135 /* HomeBannerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */; };
@@ -583,6 +584,7 @@
 		C740A85A27C7C58500C4518A /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C75926AA27D7A8B5006ECD9E /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		C75926AC27D7CB72006ECD9E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		C783BF9728A784FA000FE3D8 /* HomeSubTitleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubTitleHeaderCell.swift; sourceTree = "<group>"; };
 		C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderCell.swift; sourceTree = "<group>"; };
 		C790A26F289D57C900A67135 /* HomeFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFooterCell.swift; sourceTree = "<group>"; };
 		C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerTVC.swift; sourceTree = "<group>"; };
@@ -1862,6 +1864,7 @@
 			children = (
 				C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */,
 				C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */,
+				C783BF9728A784FA000FE3D8 /* HomeSubTitleHeaderCell.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -2183,6 +2186,7 @@
 				C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */,
 				33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */,
 				C7ACE63627CBD3280011B23F /* SettingAppInfoVC.swift in Sources */,
+				C783BF9828A784FA000FE3D8 /* HomeSubTitleHeaderCell.swift in Sources */,
 				5C32801A2797284800781EBE /* MypageUserInfoModel.swift in Sources */,
 				331364C3278623C800E0C118 /* NetworkLoggerPlugin.swift in Sources */,
 				775728A127D652A700148C9A /* FirstOnboardingCVC.swift in Sources */,
