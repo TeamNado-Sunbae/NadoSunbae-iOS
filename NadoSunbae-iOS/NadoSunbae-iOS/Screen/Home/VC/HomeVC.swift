@@ -140,12 +140,16 @@ extension HomeVC: UITableViewDataSource {
                 switch indexPath.row {
                 case 0:
                     return 40
+                case 1:
+                    return 197
                 default: return 99
                 }
             case .questionPerson:
                 switch indexPath.row {
                 case 0, 2:
                     return 40
+                case 3:
+                    return 197
                 default: return 99
                 }
             case .community:
