@@ -42,6 +42,7 @@ final class HomeVC: BaseVC {
         backgroundTV.register(HomeBannerTVC.self, forCellReuseIdentifier: HomeBannerTVC.className)
         backgroundTV.register(HomeSubTitleHeaderCell.self, forCellReuseIdentifier: HomeSubTitleHeaderCell.className)
         backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className)
+        backgroundTV.register(HomeRankingTVC.self, forCellReuseIdentifier: HomeRankingTVC.className)
     }
 }
 
@@ -122,7 +123,8 @@ extension HomeVC: UITableViewDataSource {
                     }
                     return subTitleCell
                 case 1:
-                    return UITableViewCell()
+                    guard let rankingCell = tableView.dequeueReusableCell(withIdentifier: HomeRankingTVC.className) as? HomeRankingTVC else { return HomeRankingTVC() }
+                    return rankingCell
                 case 2:
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 1:1 질문")
@@ -173,6 +175,8 @@ extension HomeVC: UITableViewDataSource {
                 switch indexPath.row {
                 case 0, 2:
                     return 40
+                case 1:
+                    return 260
                 case 3:
                     return 197
                 default: return 99
