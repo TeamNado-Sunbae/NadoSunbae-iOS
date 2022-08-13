@@ -10,6 +10,9 @@ import UIKit
 final class HomeRankingTVC: BaseTVC {
     
     // MARK: Components
+    private let backgroundImgView = UIImageView().then {
+        $0.image = UIImage(named: "homeRankingBG")
+    }
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -26,5 +29,11 @@ final class HomeRankingTVC: BaseTVC {
 // MARK: - UI
 extension HomeRankingTVC {
     private func configureUI() {
+        contentView.addSubviews([backgroundImgView])
+        
+        backgroundImgView.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(20)
+        }
     }
 }
