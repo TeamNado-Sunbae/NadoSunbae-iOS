@@ -289,6 +289,10 @@
 		C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75926AC27D7CB72006ECD9E /* AppVersion.swift */; };
 		C790A26D289D551400A67135 /* HomeTitleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */; };
 		C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A26F289D57C900A67135 /* HomeFooterCell.swift */; };
+		C790A273289D6B5D00A67135 /* HomeBannerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */; };
+		C790A276289D6D7D00A67135 /* HomeBannerCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A275289D6D7D00A67135 /* HomeBannerCVC.swift */; };
+		C790A278289E29D900A67135 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A277289E29D900A67135 /* UIImageView+.swift */; };
+		C790A27A289E7DC500A67135 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A279289E7DC500A67135 /* ImageCacheManager.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
 		C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE62E27CB71FA0011B23F /* SettingVC.swift */; };
 		C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63127CB73F80011B23F /* SettingTVC.swift */; };
@@ -587,6 +591,10 @@
 		C75926AC27D7CB72006ECD9E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		C790A26C289D551400A67135 /* HomeTitleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderCell.swift; sourceTree = "<group>"; };
 		C790A26F289D57C900A67135 /* HomeFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFooterCell.swift; sourceTree = "<group>"; };
+		C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerTVC.swift; sourceTree = "<group>"; };
+		C790A275289D6D7D00A67135 /* HomeBannerCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerCVC.swift; sourceTree = "<group>"; };
+		C790A277289E29D900A67135 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		C790A279289E7DC500A67135 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
 		C7ACE62E27CB71FA0011B23F /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		C7ACE63127CB73F80011B23F /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -679,6 +687,7 @@
 				331364482785A58A00E0C118 /* APIManagers */,
 				331364492785A59700E0C118 /* MoyaTarget */,
 				331364C2278623C800E0C118 /* NetworkLoggerPlugin.swift */,
+				C790A279289E7DC500A67135 /* ImageCacheManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -764,6 +773,7 @@
 				5CC0BFD72798768F00B96905 /* Int+.swift */,
 				33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */,
 				33286B7C28A4FF76006E6FF0 /* UIImage+.swift */,
+				C790A277289E29D900A67135 /* UIImageView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1225,9 +1235,11 @@
 		33D44560287C27D700D94495 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C790A271289D6B3D00A67135 /* TVC */,
 				C790A26E289D57BA00A67135 /* Footer */,
 				C7E46C04289D0FCC00FBB8C4 /* Header */,
 				33D44562287C27E500D94495 /* VC */,
+				C790A275289D6D7D00A67135 /* HomeBannerCVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1789,6 +1801,14 @@
 			path = Footer;
 			sourceTree = "<group>";
 		};
+		C790A271289D6B3D00A67135 /* TVC */ = {
+			isa = PBXGroup;
+			children = (
+				C790A272289D6B5D00A67135 /* HomeBannerTVC.swift */,
+			);
+			path = TVC;
+			sourceTree = "<group>";
+		};
 		C7ACE62927CA9EC70011B23F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2028,6 +2048,7 @@
 				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
 				775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */,
 				33E2CFC5287B112D007CD19A /* SignUpNC.swift in Sources */,
+				C790A278289E29D900A67135 /* UIImageView+.swift in Sources */,
 				3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */,
 				33834A1D27D67FAB001C4947 /* MypageLikeReviewDataModel.swift in Sources */,
 				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
@@ -2046,6 +2067,7 @@
 				33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
 				77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */,
+				C790A27A289E7DC500A67135 /* ImageCacheManager.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
 				C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
@@ -2119,6 +2141,7 @@
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
 				33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
+				C790A273289D6B5D00A67135 /* HomeBannerTVC.swift in Sources */,
 				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
 				5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */,
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
@@ -2146,6 +2169,7 @@
 				33834A1527D5F66E001C4947 /* MypageLikePostType.swift in Sources */,
 				C7C4145027C93C4700296C30 /* EditProfileResponseModel.swift in Sources */,
 				33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */,
+				C790A276289D6D7D00A67135 /* HomeBannerCVC.swift in Sources */,
 				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
 				5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */,
 				33C9A405288C68FD00436D16 /* CommunityType.swift in Sources */,
