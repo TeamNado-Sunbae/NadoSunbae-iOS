@@ -128,11 +128,23 @@ extension HomeVC: UITableViewDataSource {
             case .banner:
                 return 104
             case .review:
-                return 48
+                switch indexPath.row {
+                case 0:
+                    return 40
+                default: return 99
+                }
             case .questionPerson:
-                return 48
+                switch indexPath.row {
+                case 0, 2:
+                    return 40
+                default: return 99
+                }
             case .community:
-                return 48
+                switch indexPath.row {
+                case 0:
+                    return 40
+                default: return 99
+                }
             }
         } else { return 0 }
     }
