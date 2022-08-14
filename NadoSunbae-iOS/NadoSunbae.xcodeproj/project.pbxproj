@@ -252,6 +252,7 @@
 		77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */; };
 		77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */; };
 		77A75944279B111300A8E48B /* ReviewHomePageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75943279B111300A8E48B /* ReviewHomePageData.swift */; };
+		77AA830928A8A85700985B80 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA830828A8A85700985B80 /* RxDataSources */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -602,6 +603,7 @@
 				33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */,
 				C733C53E289C301D003DFFB2 /* Then in Frameworks */,
 				C733C53B289C2FBB003DFFB2 /* SnapKit in Frameworks */,
+				77AA830928A8A85700985B80 /* RxDataSources in Frameworks */,
 				336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */,
 				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
 				33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */,
@@ -1855,6 +1857,7 @@
 				C733C537289C2ED5003DFFB2 /* Moya */,
 				C733C53A289C2FBB003DFFB2 /* SnapKit */,
 				C733C53D289C301D003DFFB2 /* Then */,
+				77AA830828A8A85700985B80 /* RxDataSources */,
 			);
 			productName = "NadoSunbae-iOS";
 			productReference = 331364262784D3BD00E0C118 /* NadoSunbae.app */;
@@ -1892,6 +1895,7 @@
 				C733C536289C2ED5003DFFB2 /* XCRemoteSwiftPackageReference "Moya" */,
 				C733C539289C2FBB003DFFB2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C733C53C289C301D003DFFB2 /* XCRemoteSwiftPackageReference "Then" */,
+				77AA830728A8A85600985B80 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 331364272784D3BD00E0C118 /* Products */;
 			projectDirPath = "";
@@ -2442,6 +2446,14 @@
 				kind = branch;
 			};
 		};
+		77AA830728A8A85600985B80 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		C733C536289C2ED5003DFFB2 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -2498,6 +2510,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		77AA830828A8A85700985B80 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77AA830728A8A85600985B80 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		C733C537289C2ED5003DFFB2 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
