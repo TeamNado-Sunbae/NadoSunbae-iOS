@@ -171,7 +171,7 @@ extension HomeVC: UITableViewDataSource {
                     return 40
                 case 1:
                     return 197
-                default: return 99
+                default: return 0
                 }
             case .questionPerson:
                 switch indexPath.row {
@@ -181,13 +181,15 @@ extension HomeVC: UITableViewDataSource {
                     return 260.adjusted
                 case 3:
                     return 197
-                default: return 99
+                default: return 0
                 }
             case .community:
                 switch indexPath.row {
                 case 0:
                     return 40
-                default: return 99
+                case 1:
+                    return 148 * 3 + 44
+                default: return 0
                 }
             }
         } else { return 0 }
