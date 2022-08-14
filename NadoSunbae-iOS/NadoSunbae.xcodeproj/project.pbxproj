@@ -1149,12 +1149,8 @@
 		33C7ABED278F2066000A325A /* TVC */ = {
 			isa = PBXGroup;
 			children = (
-				777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */,
-				777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */,
 				777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */,
 				777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */,
-				777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */,
-				777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */,
 				7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */,
 				7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */,
 				7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */,
@@ -1691,6 +1687,17 @@
 				C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		77AA830F28A919EB00985B80 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */,
+				777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */,
+				777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */,
+				777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {
