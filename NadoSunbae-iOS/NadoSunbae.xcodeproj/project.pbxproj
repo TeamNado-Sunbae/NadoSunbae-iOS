@@ -251,8 +251,11 @@
 		77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */; };
 		77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */; };
 		77A75944279B111300A8E48B /* ReviewHomePageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75943279B111300A8E48B /* ReviewHomePageData.swift */; };
+		77AA830428A7EA3E00985B80 /* ClassroomMainReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */; };
 		77AA830628A7F18600985B80 /* ReviewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830528A7F18600985B80 /* ReviewPostModel.swift */; };
 		77AA830928A8A85700985B80 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA830828A8A85700985B80 /* RxDataSources */; };
+		77AA830B28A8AB1F00985B80 /* ClassroomMainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */; };
+		77AA831128A91BFA00985B80 /* ReviewPostCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -547,7 +550,10 @@
 		77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEmptyTVC.swift; sourceTree = "<group>"; };
 		77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewEmptyTVC.xib; sourceTree = "<group>"; };
 		77A75943279B111300A8E48B /* ReviewHomePageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewHomePageData.swift; sourceTree = "<group>"; };
+		77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainReactor.swift; sourceTree = "<group>"; };
 		77AA830528A7F18600985B80 /* ReviewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostModel.swift; sourceTree = "<group>"; };
+		77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainSection.swift; sourceTree = "<group>"; };
+		77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostCellReactor.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -885,6 +891,7 @@
 		331364962785D82E00E0C118 /* Classroom */ = {
 			isa = PBXGroup;
 			children = (
+				77AA830228A7EA2600985B80 /* Reactor */,
 				3313649C2785D8AD00E0C118 /* SB */,
 				3313649B2785D8A800E0C118 /* VC */,
 				3391E48A278B48EF0079EA31 /* Cell */,
@@ -1063,6 +1070,7 @@
 		33B69FF2278F155400A8E3D3 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
+				77AA830F28A919EB00985B80 /* Review */,
 				33B9B0D427B8EAF500066C1F /* InfoDetail */,
 				33CF63642794A05900E92C04 /* Chat */,
 				33CF63632794A04C00E92C04 /* QuestionMain */,
@@ -1689,6 +1697,16 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		77AA830228A7EA2600985B80 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */,
+				77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */,
+				77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
 		77AA830F28A919EB00985B80 /* Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -2068,6 +2086,7 @@
 				33FA5940288D72F800BC7C32 /* CommunityWriteReactor.swift in Sources */,
 				C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */,
 				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
+				77AA830B28A8AB1F00985B80 /* ClassroomMainSection.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */,
@@ -2182,6 +2201,7 @@
 				331364542785A8FE00E0C118 /* VCRepresentation.swift in Sources */,
 				C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */,
 				33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */,
+				77AA831128A91BFA00985B80 /* ReviewPostCellReactor.swift in Sources */,
 				33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
@@ -2204,6 +2224,7 @@
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */,
+				77AA830428A7EA3E00985B80 /* ClassroomMainReactor.swift in Sources */,
 				775728B127D6617300148C9A /* OnboardingVC.swift in Sources */,
 				C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
