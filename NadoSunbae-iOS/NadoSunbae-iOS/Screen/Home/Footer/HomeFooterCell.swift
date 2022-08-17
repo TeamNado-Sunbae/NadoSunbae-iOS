@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeFooterCell: UITableViewCell {
+final class HomeFooterCell: UITableViewCell {
     
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

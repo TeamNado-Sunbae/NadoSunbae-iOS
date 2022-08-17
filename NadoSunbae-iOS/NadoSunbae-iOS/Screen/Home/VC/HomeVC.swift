@@ -9,10 +9,10 @@ import UIKit
 import SnapKit
 import Then
 
-class HomeVC: BaseVC {
+final class HomeVC: BaseVC {
 
     // MARK: Components
-    private var backgroundTV = UITableView().then {
+    private var backgroundTV = UITableView(frame: .zero, style: .grouped).then {
         $0.separatorStyle = .none
         $0.backgroundColor = .white
         $0.allowsSelection = false
@@ -41,6 +41,28 @@ class HomeVC: BaseVC {
         backgroundTV.register(HomeFooterCell.self, forCellReuseIdentifier: HomeFooterCell.className)
         backgroundTV.register(HomeBannerTVC.self, forCellReuseIdentifier: HomeBannerTVC.className)
         backgroundTV.register(HomeSubTitleHeaderCell.self, forCellReuseIdentifier: HomeSubTitleHeaderCell.className)
+        backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className)
+    }
+}
+
+// MARK: - SendHomeRecentDataDelegate
+extension HomeVC: SendHomeRecentDataDelegate {
+    func sendRecentPostId(id: Int, type: HomeRecentTVCType) {
+        self.divideUserPermission() {
+            switch type {
+            case .review:
+                self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
+                    reviewDetailVC.postId = id
+                }
+            case .personalQuestion:
+                self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                    questionDetailVC.hidesBottomBarWhenPushed = true
+                    questionDetailVC.questionType = .personal
+                    questionDetailVC.naviStyle = .push
+                    questionDetailVC.postID = id
+                }
+            }
+        }
     }
 }
 
@@ -83,7 +105,10 @@ extension HomeVC: UITableViewDataSource {
                     }
                     return subTitleCell
                 case 1:
-                    return UITableViewCell()
+                    guard let reviewsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    reviewsCell.recentType = .review
+                    reviewsCell.sendHomeRecentDataDelegate = self
+                    return reviewsCell
                 default: return UITableViewCell()
                 }
             case .questionPerson:
@@ -106,6 +131,11 @@ extension HomeVC: UITableViewDataSource {
                         debugPrint("최근 1:1 질문 more 버튼 클릭")
                     }
                     return subTitleCell
+                case 3:
+                    guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    personalQuestionsCell.recentType = .personalQuestion
+                    personalQuestionsCell.sendHomeRecentDataDelegate = self
+                    return personalQuestionsCell
                 default: return UITableViewCell()
                 }
             case .community:
@@ -135,12 +165,16 @@ extension HomeVC: UITableViewDataSource {
                 switch indexPath.row {
                 case 0:
                     return 40
+                case 1:
+                    return 197
                 default: return 99
                 }
             case .questionPerson:
                 switch indexPath.row {
                 case 0, 2:
                     return 40
+                case 3:
+                    return 197
                 default: return 99
                 }
             case .community:
@@ -184,10 +218,7 @@ extension HomeVC: UITableViewDelegate {
         if let tableSection = HomeBackgroundTVSectionType(rawValue: section) {
             switch tableSection {
             case .banner:
-                let headerHeight = 60.0
-                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: headerHeight))
-                tableView.contentInset = UIEdgeInsets(top: -headerHeight, left: 0, bottom: 0, right: 0)
-                return headerHeight
+                return 60
             case .review, .questionPerson, .community:
                 return 70
             }
