@@ -12,8 +12,11 @@ class ClassroomNC: BaseNC {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBar.isHidden = true
         
-        guard let classroomMainVC = self.storyboard?.instantiateViewController(withIdentifier: ClassroomMainVC.className) as? ClassroomMainVC else { return }
-        self.setViewControllers([classroomMainVC], animated: true)
+        let classroomVC = ClassroomMainVC()
+        classroomVC.reactor = ClassroomMainReactor()
+        
+        self.setViewControllers([classroomVC], animated: true)
     }
 }

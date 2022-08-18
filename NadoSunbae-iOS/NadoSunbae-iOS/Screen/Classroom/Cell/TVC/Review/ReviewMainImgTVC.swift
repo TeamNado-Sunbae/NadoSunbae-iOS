@@ -31,12 +31,3 @@ class ReviewMainImgTVC: BaseTVC {
         super.setSelected(selected, animated: animated)
     }
 }
-
-// MARK: - Custom Methods
-extension ReviewMainImgTVC {
-    
-    /// 이미지 세팅 함수
-    func setData(ImgData: ReviewImgData) {
-        reviewMainImgView.image = ImgData.makeImg()
-    }
-}

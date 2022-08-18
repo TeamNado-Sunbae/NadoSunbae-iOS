@@ -299,7 +299,6 @@ extension ReviewMainVC: UITableViewDataSource {
               let reviewEmptyTVC = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className) as? ReviewEmptyTVC else { return UITableViewCell() }
 
         if indexPath.section == 0 {
-            reviewMainImgTVC.setData(ImgData: imgList[indexPath.row])
             return reviewMainImgTVC
         } else if indexPath.section == 1 {
             reviewMainLinkTVC.tapHomePageBtnAction = {
@@ -317,7 +316,6 @@ extension ReviewMainVC: UITableViewDataSource {
             } else {
                 tagList = postList[indexPath.row].tagList
                 reviewMainPostTVC.tagImgList = postList[indexPath.row].tagList
-                reviewMainPostTVC.setPostData(postData: postList[indexPath.row])
                 reviewMainPostTVC.setUserData(postData: postList[indexPath.row])
                 return reviewMainPostTVC
             }

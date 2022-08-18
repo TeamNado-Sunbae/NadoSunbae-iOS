@@ -29,7 +29,7 @@ extension TypeOfViewController {
         case .review:
             return VCRepresentation(bundle: nil, storyboardName: Identifiers.ReviewSB, vcClassName: ReviewNC.className)
         case .classroom:
-            return VCRepresentation(bundle: nil, storyboardName: Identifiers.ClassroomSB, vcClassName: ClassroomNC.className)
+            return VCRepresentation(bundle: nil, storyboardName: "", vcClassName: ClassroomNC.className)
         case .community:
             return VCRepresentation(bundle: nil, storyboardName: "", vcClassName: CommunityNC.className)
         case .notification:

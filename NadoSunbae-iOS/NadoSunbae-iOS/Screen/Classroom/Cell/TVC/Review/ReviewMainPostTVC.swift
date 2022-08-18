@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import ReactorKit
 
-class ReviewMainPostTVC: BaseTVC {
+class ReviewMainPostTVC: BaseTVC, StoryboardView {
+    
+    // MARK: Reactor
+    typealias Reactor = ReviewPostCellReactor
 
     // MARK: IBOutlet
     @IBOutlet weak var dateLabel: UILabel!
@@ -20,6 +24,7 @@ class ReviewMainPostTVC: BaseTVC {
     
     // MARK: Properties
     var tagImgList: [ReviewTagList] = []
+    var disposeBag = DisposeBag()
     
     // MARK: Life Cycle Part
     override func awakeFromNib() {
@@ -39,6 +44,19 @@ class ReviewMainPostTVC: BaseTVC {
     }
 }
 
+// MARK: - Bind
+extension ReviewMainPostTVC {
+    func bind(reactor: ReviewPostCellReactor) {
+        dateLabel.text = reactor.currentState.createdAt
+        titleLabel.text = reactor.currentState.title
+        likeCountLabel.text = "\(reactor.currentState.like.likeCount)"
+        majorLabel.font = .PretendardSB(size: 14)
+        majorLabel.textColor = .gray4
+        majorLabel.text = reactor.currentState.writer.nickname
+        likeImgView.image = reactor.currentState.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
+}
+
 // MARK: - UI
 extension ReviewMainPostTVC {
     private func configureUI() {
@@ -51,14 +69,6 @@ extension ReviewMainPostTVC {
 
 // MARK: - Custom Methods
 extension ReviewMainPostTVC {
-    
-    /// 리스트 데이터 세팅 함수
-    func setPostData(postData: ReviewMainPostListData) {
-        dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
-        titleLabel.text = postData.oneLineReview
-        likeCountLabel.text = "\(postData.like.likeCount)"
-        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
-    }
     
     /// 유저 정보 데이터 세팅 함수
     func setUserData(postData: ReviewMainPostListData) {
