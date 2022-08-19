@@ -10,7 +10,7 @@ import UIKit
 final class HomeCommunityTVC: BaseTVC {
     
     // MARK: Components
-    let recentPostTV = UITableView().then {
+    private let recentPostTV = UITableView().then {
         $0.layer.cornerRadius = 16
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray0.cgColor
@@ -21,7 +21,7 @@ final class HomeCommunityTVC: BaseTVC {
     }
     
     // MARK: Properties
-    let communityDummyData = [
+    private let communityDummyData = [
         CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
         CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: false, likeCount: 1), commentCount: 1),
         CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
