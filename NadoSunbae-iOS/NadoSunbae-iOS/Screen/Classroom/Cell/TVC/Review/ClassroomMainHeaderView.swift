@@ -11,7 +11,9 @@ import Then
 
 class ClassroomMainHeaderView: UITableViewHeaderFooterView {
 
-    private let classroomSegmentedControl = NadoSegmentedControl(items: ["후기", "1:1질문"])
+    private let classroomSegmentedControl = NadoSegmentedControl(items: ["후기", "1:1질문"]).then {
+        $0.frame = CGRect(x: 16, y: 10, width: 160, height: 37)
+    }
     
     private let filterBtn = UIButton().then {
         $0.setImage(UIImage(named: "btnFilter"), for: .normal)
