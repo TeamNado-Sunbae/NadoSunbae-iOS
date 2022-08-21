@@ -43,6 +43,7 @@ final class HomeVC: BaseVC {
         backgroundTV.register(HomeSubTitleHeaderCell.self, forCellReuseIdentifier: HomeSubTitleHeaderCell.className)
         backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className)
         backgroundTV.register(HomeRankingTVC.self, forCellReuseIdentifier: HomeRankingTVC.className)
+        backgroundTV.register(HomeCommunityTVC.self, forCellReuseIdentifier: HomeCommunityTVC.className)
     }
 }
 
@@ -151,7 +152,8 @@ extension HomeVC: UITableViewDataSource {
                     }
                     return subTitleCell
                 case 1:
-                    return UITableViewCell()
+                    guard let communityCell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityTVC.className) as? HomeCommunityTVC else { return HomeCommunityTVC() }
+                    return communityCell
                 default: return UITableViewCell()
                 }
             }
@@ -169,7 +171,7 @@ extension HomeVC: UITableViewDataSource {
                     return 40
                 case 1:
                     return 197
-                default: return 99
+                default: return 0
                 }
             case .questionPerson:
                 switch indexPath.row {
@@ -179,13 +181,15 @@ extension HomeVC: UITableViewDataSource {
                     return 260.adjusted
                 case 3:
                     return 197
-                default: return 99
+                default: return 0
                 }
             case .community:
                 switch indexPath.row {
                 case 0:
                     return 40
-                default: return 99
+                case 1:
+                    return 148 * 3 + 44
+                default: return 0
                 }
             }
         } else { return 0 }
