@@ -271,6 +271,7 @@
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
 		77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */; };
 		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
+		C709CB1B28B3C6E700F04335 /* NadoStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */; };
 		C71BF22327CCB1EE0030DCB9 /* BlockListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */; };
 		C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22427CCB2070030DCB9 /* BlockListVC.swift */; };
 		C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */; };
@@ -590,6 +591,7 @@
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
 		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
+		C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoStatusBarView.swift; sourceTree = "<group>"; };
 		C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockListVC.storyboard; sourceTree = "<group>"; };
 		C71BF22427CCB2070030DCB9 /* BlockListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListVC.swift; sourceTree = "<group>"; };
 		C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockListResponseModel.swift; sourceTree = "<group>"; };
@@ -1320,6 +1322,7 @@
 				330DA4322790BCCC00FE127F /* NadoTextView.swift */,
 				778E0F46287A061900BEEEA5 /* NadoMaskedImgView.swift */,
 				33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */,
+				C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -2315,6 +2318,7 @@
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
 				C71BF24227CDC2B30030DCB9 /* SignOutResponseModel.swift in Sources */,
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
+				C709CB1B28B3C6E700F04335 /* NadoStatusBarView.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */,
 				33D44566287C280600D94495 /* HomeVC.swift in Sources */,
