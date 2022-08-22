@@ -8,6 +8,12 @@
 import UIKit
 import FirebaseAnalytics
 
+enum UserType {
+    case questioner
+    case replier
+    case other
+}
+
 class DefaultQuestionChatVC: BaseVC {
     
     // MARK: IBOutlet
@@ -47,7 +53,7 @@ class DefaultQuestionChatVC: BaseVC {
             sendAreaTextView.layer.borderWidth = 1
             sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
             sendAreaTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
-            configueTextViewPlaceholder(userType: userType ?? -1, questionType: questionType ?? .personal)
+            configueTextViewPlaceholder(userType: userType ?? .other, questionType: questionType ?? .personal)
             sendAreaTextView.sizeToFit()
         }
     }
@@ -62,7 +68,7 @@ class DefaultQuestionChatVC: BaseVC {
     var questionerID: Int?
     var answererID: Int?
     var userID: Int?
-    var userType: Int?
+    var userType: UserType?
     var postID: Int?
     var isBlocked: Bool?
     private var qnaType: QnAType?
@@ -105,7 +111,7 @@ class DefaultQuestionChatVC: BaseVC {
     // MARK: IBAction
     @IBAction func tapSendBtn(_ sender: UIButton) {
         if !isTextViewEmpty {
-            if userType == 0 {
+            if userType == .questioner {
                 leftSendAnimation(text: ".............")
             } else {
                 rightSendAnimation(text: ".............")
@@ -175,12 +181,12 @@ extension DefaultQuestionChatVC {
     }
     
     /// userType별로 TextView의 placeholder 지정하는 메서드
-    private func configueTextViewPlaceholder(userType: Int, questionType: QuestionType) {
+    private func configueTextViewPlaceholder(userType: UserType, questionType: QuestionType) {
         
         switch questionType {
         case .personal:
-            sendAreaTextView.isEditable = (userType == 0 || userType == 1) ? true : false
-            sendAreaTextView.text = (userType == 0 || userType == 1) ? "답글쓰기" : "다른 선배 개인 페이지에서는 답글 불가!"
+            sendAreaTextView.isEditable = (userType == .questioner || userType == .replier) ? true : false
+            sendAreaTextView.text = (userType == .questioner || userType == .replier) ? "답글쓰기" : "다른 선배 개인 페이지에서는 답글 불가!"
         case .group:
             sendAreaTextView.isEditable = true
             sendAreaTextView.text = "답글쓰기"
@@ -261,8 +267,8 @@ extension DefaultQuestionChatVC {
     }
     
     /// 유저 유형을 식별하는 메서드
-    private func identifyUserType(questionerID: Int, answererID: Int) -> Int {
-        return (userID != questionerID && userID != answererID) ? 2 : (userID == questionerID) ? 0 : 1
+    private func identifyUserType(questionerID: Int, answererID: Int) -> UserType {
+        return (userID != questionerID && userID != answererID) ? .other : (userID == questionerID) ? .questioner : .replier
     }
     
     /// 전송 버튼의 상태를 setUp하는 메서드
@@ -271,7 +277,7 @@ extension DefaultQuestionChatVC {
             sendBtn.isEnabled = false
         } else {
             if questionType == .personal {
-                if userType == 2 {
+                if userType == .other {
                     sendBtn.isEnabled = false
                 } else {
                     sendBtn.isEnabled = true
@@ -408,7 +414,7 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            configueTextViewPlaceholder(userType: userType ?? -1, questionType: questionType ?? .personal)
+            configueTextViewPlaceholder(userType: userType ?? .other, questionType: questionType ?? .personal)
             sendBtn.isEnabled = false
             isTextViewEmpty = true
         }
@@ -483,10 +489,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     
                     if questionType == .personal {
                         /// 1:1
-                        if userType == 0 {
+                        if userType == .questioner {
                             /// 작성자 본인
                             actionSheetString = returnActionSheetType(type: .editAndDelete)
-                        } else if userType == 1{
+                        } else if userType == .replier {
                             /// 답변자 == 선배
                             actionSheetString = returnActionSheetType(type: .reportAndDelete)
                         } else {
@@ -495,10 +501,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                         }
                     } else {
                         /// 그룹
-                        if userType == 0 {
+                        if userType == .questioner {
                             /// 작성자 본인
                             actionSheetString = returnActionSheetType(type: .editAndDelete)
-                        } else if userType == 1 {
+                        } else if userType == .replier {
                             /// 답변자
                             actionSheetString = returnActionSheetType(type: .onlyReport)
                         } else {
@@ -600,10 +606,10 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                     
                     if questionType == .personal {
                         /// 개인
-                        if userType == 0 {
+                        if userType == .questioner {
                             /// 1:1 -> 작성자 본인
                             actionSheetString = returnActionSheetType(type: .onlyReport)
-                        } else if userType == 1 {
+                        } else if userType == .replier {
                             /// 1:1 -> 답변자
                             actionSheetString = returnActionSheetType(type: .editAndDelete)
                         } else {
@@ -612,7 +618,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
                         }
                     } else {
                         /// 그룹
-                        if userType == 0 {
+                        if userType == .questioner {
                             /// 그룹 -> 작성자 본인
                             actionSheetString = returnActionSheetType(type: .onlyReport)
                         } else {
@@ -766,7 +772,7 @@ extension DefaultQuestionChatVC {
                         self.isCommentSend = false
                     }
                     
-                    self.configueTextViewPlaceholder(userType: self.userType ?? -1, questionType: self.questionType ?? .personal)
+                    self.configueTextViewPlaceholder(userType: self.userType ?? .other, questionType: self.questionType ?? .personal)
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
