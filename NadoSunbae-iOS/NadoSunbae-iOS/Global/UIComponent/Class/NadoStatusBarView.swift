@@ -9,6 +9,17 @@ import UIKit
 import SnapKit
 import Then
 
+enum NadoStatusBarType {
+    case label
+    case labelQuestionMarkButton
+}
+
+/**
+ Navi Bar 밑에 붙어 있는 민트색 Status Bar
+ - Note:
+ - label: 텍스트만
+ - labelQuestionMarkButton: 텍스트 + 우측 물음표 버튼
+ */
 final class NadoStatusBarView: UIView {
     
     // MARK: Components
@@ -49,4 +60,14 @@ extension NadoStatusBarView {
             $0.height.equalTo(32)
         }
         
+        if type == .labelQuestionMarkButton {
+            addSubviews([rightQuestionMarkButton])
+            
+            rightQuestionMarkButton.snp.makeConstraints {
+                $0.right.equalToSuperview().inset(20)
+                $0.centerY.equalToSuperview()
+                $0.width.height.equalTo(17)
+            }
+        }
+    }
 }
