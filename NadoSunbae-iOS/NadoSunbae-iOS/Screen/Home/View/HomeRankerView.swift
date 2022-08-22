@@ -41,7 +41,9 @@ final class HomeRankerView: UIView {
         $0.lineBreakMode = .byTruncatingTail
         $0.numberOfLines = 1
     }
-    private (set) lazy var profileImgView = UIImageView()
+    private (set) lazy var profileImgView = NadoMaskedImgView().then {
+        $0.maskImg = UIImage(named: "property172")
+    }
     
     // MARK: Properties
     var rankerType: RankerType = .first

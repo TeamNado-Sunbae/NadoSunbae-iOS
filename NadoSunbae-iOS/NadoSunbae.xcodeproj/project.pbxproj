@@ -59,6 +59,8 @@
 		331C538027961C9D0052B309 /* EntireQuestionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */; };
 		331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5381279629620052B309 /* BaseQuestionTVC.swift */; };
 		331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5383279629D30052B309 /* EntireQuestionListTVC.swift */; };
+		33286B7B28A4F813006E6FF0 /* CommunitySearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33286B7A28A4F813006E6FF0 /* CommunitySearchVC.swift */; };
+		33286B7D28A4FF76006E6FF0 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33286B7C28A4FF76006E6FF0 /* UIImage+.swift */; };
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
 		3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
@@ -81,6 +83,7 @@
 		338CDB03278C9F8600F8227A /* ClassroomCommentEditTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */; };
 		338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338CDB04278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift */; };
 		338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338CDB05278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib */; };
+		338DED1728A28B68002E544A /* CommunitySearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338DED1628A28B68002E544A /* CommunitySearchReactor.swift */; };
 		3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */; };
 		3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */; };
 		33A15F732799DDDE006FE040 /* AddCommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A15F722799DDDE006FE040 /* AddCommentData.swift */; };
@@ -141,7 +144,6 @@
 		33FA593E288D6B6700BC7C32 /* CommunityWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */; };
 		33FA5940288D72F800BC7C32 /* CommunityWriteReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */; };
 		33FA5943288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */; };
-		33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FA751327931AA800E43523 /* ClassroomSB.storyboard */; };
 		33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBC3182796F6C900741730 /* ReviewAPI.swift */; };
 		5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */; };
 		5C3280152796F2B700781EBE /* MypageSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 331364A92785D96100E0C118 /* MypageSB.storyboard */; };
@@ -252,6 +254,12 @@
 		77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */; };
 		77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */; };
 		77A75944279B111300A8E48B /* ReviewHomePageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75943279B111300A8E48B /* ReviewHomePageData.swift */; };
+		77AA830428A7EA3E00985B80 /* ClassroomMainReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */; };
+		77AA830628A7F18600985B80 /* ReviewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830528A7F18600985B80 /* ReviewPostModel.swift */; };
+		77AA830928A8A85700985B80 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA830828A8A85700985B80 /* RxDataSources */; };
+		77AA830B28A8AB1F00985B80 /* ClassroomMainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */; };
+		77AA831128A91BFA00985B80 /* ReviewPostCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */; };
+		77AA831A28A95B3D00985B80 /* ClassroomMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA831928A95B3C00985B80 /* ClassroomMainHeaderView.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
 		77AEEB452789AF380016880B /* MajorTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB412789AF380016880B /* MajorTVC.swift */; };
@@ -375,6 +383,8 @@
 		331C537F27961C9D0052B309 /* EntireQuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListVC.swift; sourceTree = "<group>"; };
 		331C5381279629620052B309 /* BaseQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionTVC.swift; sourceTree = "<group>"; };
 		331C5383279629D30052B309 /* EntireQuestionListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionListTVC.swift; sourceTree = "<group>"; };
+		33286B7A28A4F813006E6FF0 /* CommunitySearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySearchVC.swift; sourceTree = "<group>"; };
+		33286B7C28A4FF76006E6FF0 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBlockedInfoDelegate.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
@@ -395,6 +405,7 @@
 		338CDB01278C9F8600F8227A /* ClassroomCommentEditTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomCommentEditTVC.xib; sourceTree = "<group>"; };
 		338CDB04278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionEditTVC.swift; sourceTree = "<group>"; };
 		338CDB05278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomQuestionEditTVC.xib; sourceTree = "<group>"; };
+		338DED1628A28B68002E544A /* CommunitySearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySearchReactor.swift; sourceTree = "<group>"; };
 		3391E495278B7AC50079EA31 /* ClassroomQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionTVC.swift; sourceTree = "<group>"; };
 		3391E496278B7AC50079EA31 /* ClassroomQuestionTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomQuestionTVC.xib; sourceTree = "<group>"; };
 		33A15F722799DDDE006FE040 /* AddCommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentData.swift; sourceTree = "<group>"; };
@@ -451,7 +462,6 @@
 		33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVC.swift; sourceTree = "<group>"; };
 		33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteReactor.swift; sourceTree = "<group>"; };
 		33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteCategoryCVC.swift; sourceTree = "<group>"; };
-		33FA751327931AA800E43523 /* ClassroomSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClassroomSB.storyboard; sourceTree = "<group>"; };
 		33FBC3182796F6C900741730 /* ReviewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPI.swift; sourceTree = "<group>"; };
 		5C0606AC27C3F662000941DA /* MypageMyReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageMyReviewModel.swift; sourceTree = "<group>"; };
 		5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUserInfoModel.swift; sourceTree = "<group>"; };
@@ -564,6 +574,11 @@
 		77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEmptyTVC.swift; sourceTree = "<group>"; };
 		77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewEmptyTVC.xib; sourceTree = "<group>"; };
 		77A75943279B111300A8E48B /* ReviewHomePageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewHomePageData.swift; sourceTree = "<group>"; };
+		77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainReactor.swift; sourceTree = "<group>"; };
+		77AA830528A7F18600985B80 /* ReviewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostModel.swift; sourceTree = "<group>"; };
+		77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainSection.swift; sourceTree = "<group>"; };
+		77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostCellReactor.swift; sourceTree = "<group>"; };
+		77AA831928A95B3C00985B80 /* ClassroomMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainHeaderView.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -636,6 +651,7 @@
 				33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */,
 				C733C53E289C301D003DFFB2 /* Then in Frameworks */,
 				C733C53B289C2FBB003DFFB2 /* SnapKit in Frameworks */,
+				77AA830928A8A85700985B80 /* RxDataSources in Frameworks */,
 				336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */,
 				336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */,
 				33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */,
@@ -786,6 +802,7 @@
 				330DA4342790C3E300FE127F /* UIScrollView+.swift */,
 				5CC0BFD72798768F00B96905 /* Int+.swift */,
 				33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */,
+				33286B7C28A4FF76006E6FF0 /* UIImage+.swift */,
 				C790A277289E29D900A67135 /* UIImageView+.swift */,
 			);
 			path = Extension;
@@ -911,6 +928,7 @@
 		331364962785D82E00E0C118 /* Classroom */ = {
 			isa = PBXGroup;
 			children = (
+				77AA830228A7EA2600985B80 /* Reactor */,
 				3313649C2785D8AD00E0C118 /* SB */,
 				3313649B2785D8A800E0C118 /* VC */,
 				3391E48A278B48EF0079EA31 /* Cell */,
@@ -977,7 +995,6 @@
 			children = (
 				3313649F2785D8CB00E0C118 /* QuestionChatSB.storyboard */,
 				334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */,
-				33FA751327931AA800E43523 /* ClassroomSB.storyboard */,
 				33CF6359279464EF00E92C04 /* QuestionSB.storyboard */,
 				33CF635B279464FD00E92C04 /* InfoSB.storyboard */,
 			);
@@ -1083,6 +1100,7 @@
 			children = (
 				33A86797288B0227009BA6DE /* CommunityMainReactor.swift */,
 				33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */,
+				338DED1628A28B68002E544A /* CommunitySearchReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -1090,6 +1108,7 @@
 		33B69FF2278F155400A8E3D3 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
+				77AA830F28A919EB00985B80 /* Review */,
 				33B9B0D427B8EAF500066C1F /* InfoDetail */,
 				33CF63642794A05900E92C04 /* Chat */,
 				33CF63632794A04C00E92C04 /* QuestionMain */,
@@ -1125,6 +1144,7 @@
 				33A6669E27BB83C500779351 /* WritePost */,
 				33A6669D27BB83B800779351 /* InfoDetail */,
 				33C1B8A127974A24004BABEC /* Question */,
+				77AA830528A7F18600985B80 /* ReviewPostModel.swift */,
 			);
 			path = Classroom;
 			sourceTree = "<group>";
@@ -1175,12 +1195,8 @@
 		33C7ABED278F2066000A325A /* TVC */ = {
 			isa = PBXGroup;
 			children = (
-				777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */,
-				777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */,
 				777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */,
 				777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */,
-				777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */,
-				777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */,
 				7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */,
 				7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */,
 				7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */,
@@ -1273,6 +1289,7 @@
 				33D44568287C289700D94495 /* CommunityNC.swift */,
 				33D4456A287C28AE00D94495 /* CommunityMainVC.swift */,
 				33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */,
+				33286B7A28A4F813006E6FF0 /* CommunitySearchVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1725,6 +1742,28 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		77AA830228A7EA2600985B80 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */,
+				77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */,
+				77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		77AA830F28A919EB00985B80 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */,
+				777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */,
+				777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */,
+				777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */,
+				77AA831928A95B3C00985B80 /* ClassroomMainHeaderView.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		77AEEB1D2788B4670016880B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -1946,6 +1985,7 @@
 				C733C537289C2ED5003DFFB2 /* Moya */,
 				C733C53A289C2FBB003DFFB2 /* SnapKit */,
 				C733C53D289C301D003DFFB2 /* Then */,
+				77AA830828A8A85700985B80 /* RxDataSources */,
 			);
 			productName = "NadoSunbae-iOS";
 			productReference = 331364262784D3BD00E0C118 /* NadoSunbae.app */;
@@ -1983,6 +2023,7 @@
 				C733C536289C2ED5003DFFB2 /* XCRemoteSwiftPackageReference "Moya" */,
 				C733C539289C2FBB003DFFB2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C733C53C289C301D003DFFB2 /* XCRemoteSwiftPackageReference "Then" */,
+				77AA830728A8A85600985B80 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 331364272784D3BD00E0C118 /* Products */;
 			projectDirPath = "";
@@ -2060,7 +2101,6 @@
 				77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */,
 				5C4B5A9E27BFFDD40012A898 /* MypageMyReviewVC.storyboard in Resources */,
 				77AEEB462789AF380016880B /* MajorTVC.xib in Resources */,
-				33FA751427931AA800E43523 /* ClassroomSB.storyboard in Resources */,
 				5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */,
 				C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */,
 				5CA7337B278A91BE00806B17 /* NadoAlertVC.xib in Resources */,
@@ -2078,6 +2118,7 @@
 				5C3280182797217E00781EBE /* MypageService.swift in Sources */,
 				C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
+				33286B7B28A4F813006E6FF0 /* CommunitySearchVC.swift in Sources */,
 				5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */,
 				33A86798288B0227009BA6DE /* CommunityMainReactor.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
@@ -2103,6 +2144,7 @@
 				5C485F242789661F00FCA5DF /* NadoTextField.swift in Sources */,
 				3313646C2785AEE000E0C118 /* String+.swift in Sources */,
 				331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */,
+				77AA831A28A95B3D00985B80 /* ClassroomMainHeaderView.swift in Sources */,
 				33C1B8A327974A4F004BABEC /* ClassroomQuestionDetailData.swift in Sources */,
 				33D9EA8F27D75335000AF8DB /* NotificationInfo.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
@@ -2158,10 +2200,12 @@
 				33FA5940288D72F800BC7C32 /* CommunityWriteReactor.swift in Sources */,
 				C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */,
 				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
+				77AA830B28A8AB1F00985B80 /* ClassroomMainSection.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */,
 				33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */,
+				338DED1728A28B68002E544A /* CommunitySearchReactor.swift in Sources */,
 				3381083827D53F33005AF1F9 /* MypageReviewLikeVC.swift in Sources */,
 				C71BF23427CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
@@ -2235,6 +2279,7 @@
 				338601062798B1F800C47D36 /* NaviType.swift in Sources */,
 				3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */,
 				3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */,
+				77AA830628A7F18600985B80 /* ReviewPostModel.swift in Sources */,
 				C7F3F6DD27D5192D00E12888 /* ResendSignUpMailResponseModel.swift in Sources */,
 				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
@@ -2277,6 +2322,7 @@
 				C783BFA728A7E8BB000FE3D8 /* HomeRankerView.swift in Sources */,
 				C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */,
 				33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */,
+				77AA831128A91BFA00985B80 /* ReviewPostCellReactor.swift in Sources */,
 				33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
@@ -2290,6 +2336,7 @@
 				331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */,
 				7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */,
 				5C328021279741C200781EBE /* QuestionOrInfoListModel.swift in Sources */,
+				33286B7D28A4FF76006E6FF0 /* UIImage+.swift in Sources */,
 				33D44564287C27F700D94495 /* HomeNC.swift in Sources */,
 				33A15F732799DDDE006FE040 /* AddCommentData.swift in Sources */,
 				77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */,
@@ -2300,6 +2347,7 @@
 				77A7593327984A7100A8E48B /* MajorInfoModel.swift in Sources */,
 				33CF635E2794877800E92C04 /* QuestionTVC.swift in Sources */,
 				C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */,
+				77AA830428A7EA3E00985B80 /* ClassroomMainReactor.swift in Sources */,
 				775728B127D6617300148C9A /* OnboardingVC.swift in Sources */,
 				C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
@@ -2550,6 +2598,14 @@
 				kind = branch;
 			};
 		};
+		77AA830728A8A85600985B80 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		C733C536289C2ED5003DFFB2 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -2606,6 +2662,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 33A867B9288B0E9E009BA6DE /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		77AA830828A8A85700985B80 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77AA830728A8A85600985B80 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		C733C537289C2ED5003DFFB2 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
