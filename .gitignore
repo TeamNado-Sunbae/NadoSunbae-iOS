@@ -18,6 +18,8 @@ Pods/
 # Icon must end with two \r
 Icon
 
+# Base URL
+APIConstants.swift
 
 # Thumbnails
 ._*
