@@ -267,6 +267,7 @@
 		77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4B2789AF900016880B /* TVRegisterable.swift */; };
 		77AEEB4E2789AF900016880B /* CVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4C2789AF900016880B /* CVRegisterable.swift */; };
 		77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */; };
+		77BAD53528B0EF15006C2733 /* ClassroomMainHeaderCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BAD53428B0EF15006C2733 /* ClassroomMainHeaderCellReactor.swift */; };
 		77ED045027AD75E700D077CA /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED044E27AD75E700D077CA /* FilterVC.swift */; };
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
 		77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */; };
@@ -581,6 +582,7 @@
 		77AEEB4B2789AF900016880B /* TVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4C2789AF900016880B /* CVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		77BAD53428B0EF15006C2733 /* ClassroomMainHeaderCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainHeaderCellReactor.swift; sourceTree = "<group>"; };
 		77ED044E27AD75E700D077CA /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
@@ -1737,6 +1739,7 @@
 				77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */,
 				77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */,
 				77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */,
+				77BAD53428B0EF15006C2733 /* ClassroomMainHeaderCellReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -2086,6 +2089,7 @@
 			files = (
 				5C3280182797217E00781EBE /* MypageService.swift in Sources */,
 				C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */,
+				77BAD53528B0EF15006C2733 /* ClassroomMainHeaderCellReactor.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
 				33286B7B28A4F813006E6FF0 /* CommunitySearchVC.swift in Sources */,
 				5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */,
