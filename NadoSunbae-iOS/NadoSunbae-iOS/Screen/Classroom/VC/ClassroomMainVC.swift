@@ -195,7 +195,7 @@ extension ClassroomMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ClassroomMainHeaderView.className) as? ClassroomMainHeaderView else { return UIView() }
-            headerView.reactor = ClassroomMainHeaderCellReactor()
+            headerView.reactor = ClassroomMainReactor()
             
             return headerView
         }

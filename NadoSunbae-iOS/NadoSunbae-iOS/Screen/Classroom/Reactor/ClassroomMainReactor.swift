@@ -19,18 +19,23 @@ final class ClassroomMainReactor: Reactor {
     
     // MARK: Action
     enum Action {
-
+        case tapFilterBtn
+        case tapArrangeBtn
     }
     
     // MARK: Mutation
     enum Mutation {
         case setLoading(loading: Bool)
+        case setFilterBtnSelection(Bool)
+        case setArrangeBtnSelection(Bool)
     }
     
     // MARK: State
     struct State {
         var sections: [ClassroomMainSection]
-        var loading: Bool = false
+        var loading = false
+        var isFilterBtnSelected = false
+        var isArrangeBtnSelected = false
     }
     
     // MARK: init
@@ -43,7 +48,14 @@ final class ClassroomMainReactor: Reactor {
 extension ClassroomMainReactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
-
+        switch action {
+        case .tapFilterBtn:
+            let btnState = currentState.isFilterBtnSelected ? false : true
+            return Observable.concat(Observable.just(.setFilterBtnSelection(btnState)))
+        case .tapArrangeBtn:
+            let btnState = currentState.isArrangeBtnSelected ? false : true
+            return Observable.concat(Observable.just(.setArrangeBtnSelection(btnState)))
+        }
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
@@ -52,6 +64,10 @@ extension ClassroomMainReactor {
         switch mutation {
         case .setLoading(let loading):
             newState.loading = loading
+        case .setFilterBtnSelection(let isSelected):
+            newState.isFilterBtnSelected = isSelected
+        case .setArrangeBtnSelection(let isSelected):
+            newState.isArrangeBtnSelected = isSelected
         }
         return newState
     }

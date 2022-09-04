@@ -43,7 +43,7 @@ class ClassroomMainHeaderView: UITableViewHeaderFooterView, View {
         classroomSegmentedControl.setUpNadoSegmentFrame()
     }
     
-    func bind(reactor: ClassroomMainHeaderCellReactor) {
+    func bind(reactor: ClassroomMainReactor) {
         bindAction(reactor)
         bindState(reactor)
     }
@@ -51,7 +51,7 @@ class ClassroomMainHeaderView: UITableViewHeaderFooterView, View {
 
 // MARK: - Bind Action & State
 extension ClassroomMainHeaderView {
-    private func bindAction(_ reactor: ClassroomMainHeaderCellReactor) {
+    private func bindAction(_ reactor: ClassroomMainReactor) {
         filterBtn.rx.tap
             .map { Reactor.Action.tapFilterBtn }
             .bind(to: reactor.action)
@@ -63,7 +63,7 @@ extension ClassroomMainHeaderView {
             .disposed(by: disposeBag)
     }
     
-    private func bindState(_ reactor: ClassroomMainHeaderCellReactor) {
+    private func bindState(_ reactor: ClassroomMainReactor) {
         reactor.state.map { $0.isFilterBtnSelected }
             .distinctUntilChanged()
             .bind(to: filterBtn.rx.isSelected)
