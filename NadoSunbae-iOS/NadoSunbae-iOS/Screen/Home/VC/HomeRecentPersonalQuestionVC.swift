@@ -16,6 +16,18 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
         $0.rightCustomBtn.isHidden = true
     }
     private let statusBarView = NadoStatusBarView(contentText: "특정 학과 선배에게 1:1 질문을 하고 싶다면 과방탭을 이용하세요.", type: .label)
+    private let questionSV = UIScrollView().then {
+        $0.isScrollEnabled = true
+        $0.showsVerticalScrollIndicator = false
+    }
+    private let contentView = UIView()
+    private let questionTV = UITableView().then {
+        $0.layer.cornerRadius = 16
+        $0.isScrollEnabled = false
+        $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        $0.separatorColor = .gray0
+        $0.removeSeparatorsOfEmptyCellsAndLastCell()
+    }
     
     // MARK: Properties
     
@@ -31,7 +43,9 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
 extension HomeRecentPersonalQuestionVC {
     private func configureUI() {
         view.backgroundColor = .paleGray
-        view.addSubviews([naviView, statusBarView])
+        view.addSubviews([naviView, statusBarView, questionSV])
+        questionSV.addSubviews([contentView])
+        contentView.addSubviews([questionTV])
         
         naviView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -41,6 +55,22 @@ extension HomeRecentPersonalQuestionVC {
         statusBarView.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
+        }
+        
+        questionSV.snp.makeConstraints {
+            $0.top.equalTo(statusBarView.snp.bottom)
+            $0.left.right.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.height.equalToSuperview().priority(.low)
+            $0.centerX.top.bottom.equalToSuperview()
+        }
+        
+        questionTV.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(16)
+            $0.height.equalTo(13)
         }
     }
 }
