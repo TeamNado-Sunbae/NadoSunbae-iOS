@@ -94,6 +94,17 @@ extension HomeRecentPersonalQuestionVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    /// didSelectRowAt
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.divideUserPermission() {
+            self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                questionDetailVC.hidesBottomBarWhenPushed = true
+                questionDetailVC.questionType = .personal
+                questionDetailVC.naviStyle = .push
+                questionDetailVC.postID = self.questionList[indexPath.row].postID
+            }
+        }
     }
 }
 
