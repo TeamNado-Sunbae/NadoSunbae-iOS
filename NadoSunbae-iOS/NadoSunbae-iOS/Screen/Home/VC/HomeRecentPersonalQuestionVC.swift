@@ -43,12 +43,29 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
         
         configureUI()
         setQuestionTV()
+        updateQuestionTVHeight()
+    }
+    
     private func setQuestionTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
         
         questionTV.register(EntireQuestionListTVC.self, forCellReuseIdentifier: EntireQuestionListTVC.className)
     }
+    
+    private func updateQuestionTVHeight() {
+        questionTV.reloadData()
+        DispatchQueue.main.async {
+            self.questionTV.layoutIfNeeded()
+            self.questionTV.rowHeight = UITableView.automaticDimension
+            self.questionTV.snp.updateConstraints {
+                debugPrint("update")
+                $0.height.equalTo(self.questionTV.contentSize.height)
+            }
+            debugPrint("contentSize", self.questionTV.contentSize.height)
+        }
+    }
+}
 
 // MARK: - UITableViewDataSource
 extension HomeRecentPersonalQuestionVC: UITableViewDataSource {
