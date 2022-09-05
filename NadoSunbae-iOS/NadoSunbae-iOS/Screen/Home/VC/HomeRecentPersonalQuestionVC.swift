@@ -36,6 +36,41 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
         super.viewDidLoad()
         
         configureUI()
+        setQuestionTV()
+    private func setQuestionTV() {
+        questionTV.delegate = self
+        questionTV.dataSource = self
+        
+        questionTV.register(EntireQuestionListTVC.self, forCellReuseIdentifier: EntireQuestionListTVC.className)
+    }
+
+// MARK: - UITableViewDataSource
+extension HomeRecentPersonalQuestionVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        debugPrint("questionListCount", questionList.count)
+        return questionList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+        cell.setData(data: questionList[indexPath.row])
+        cell.layoutSubviews()
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension HomeRecentPersonalQuestionVC: UITableViewDelegate {
+    
+    /// estimatedHeightForRowAt
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
+    
+    /// heightForRowAt
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     }
 }
 
