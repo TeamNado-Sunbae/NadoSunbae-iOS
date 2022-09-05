@@ -87,7 +87,7 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qll-4v-JzH">
                                                 <rect key="frame" x="24" y="48" width="326" height="159.66666666666666"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Whs-Ow-1T6">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Whs-Ow-1T6" customClass="NadoMaskedImgView" customModule="NadoSunbae" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="16" width="71.666666666666671" height="71.666666666666671"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
