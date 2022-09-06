@@ -31,16 +31,12 @@ class ClassroomMainHeaderView: UITableViewHeaderFooterView, View {
     // MARK: init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        classroomSegmentedControl.setUpNadoSegmentFrame()
         configureUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    // MARK: setNeedsLayout
-    override func setNeedsLayout() {
-        classroomSegmentedControl.setUpNadoSegmentFrame()
     }
     
     func bind(reactor: ClassroomMainReactor) {
