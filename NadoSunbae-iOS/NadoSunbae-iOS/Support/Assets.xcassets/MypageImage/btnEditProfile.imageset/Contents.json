@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "btnEditProfile.png",
+      "filename" : "btn_edit_profile.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "btnEditProfile@2x.png",
+      "filename" : "btn_edit_profile@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "btnEditProfile@3x.png",
+      "filename" : "btn_edit_profile@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
