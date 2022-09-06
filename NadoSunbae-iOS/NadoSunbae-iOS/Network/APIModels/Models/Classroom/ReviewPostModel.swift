@@ -14,6 +14,7 @@ struct ReviewPostModel: Codable {
     var createdAt: String
     var writer: Writer
     var like: Like
+    var tagList: [ReviewTagList]
     
     struct Writer: Codable {
         var writerId: Int

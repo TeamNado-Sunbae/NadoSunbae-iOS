@@ -257,7 +257,6 @@
 		77AA830628A7F18600985B80 /* ReviewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830528A7F18600985B80 /* ReviewPostModel.swift */; };
 		77AA830928A8A85700985B80 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA830828A8A85700985B80 /* RxDataSources */; };
 		77AA830B28A8AB1F00985B80 /* ClassroomMainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */; };
-		77AA831128A91BFA00985B80 /* ReviewPostCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */; };
 		77AA831A28A95B3D00985B80 /* ClassroomMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AA831928A95B3C00985B80 /* ClassroomMainHeaderView.swift */; };
 		77AEEB432789AF380016880B /* HalfModalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77AEEB3F2789AF380016880B /* HalfModalVC.xib */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
@@ -577,7 +576,6 @@
 		77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainReactor.swift; sourceTree = "<group>"; };
 		77AA830528A7F18600985B80 /* ReviewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostModel.swift; sourceTree = "<group>"; };
 		77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainSection.swift; sourceTree = "<group>"; };
-		77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostCellReactor.swift; sourceTree = "<group>"; };
 		77AA831928A95B3C00985B80 /* ClassroomMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomMainHeaderView.swift; sourceTree = "<group>"; };
 		77AEEB3F2789AF380016880B /* HalfModalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HalfModalVC.xib; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
@@ -1750,7 +1748,6 @@
 			children = (
 				77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */,
 				77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */,
-				77AA831028A91BFA00985B80 /* ReviewPostCellReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -2326,7 +2323,6 @@
 				C783BFA728A7E8BB000FE3D8 /* HomeRankerView.swift in Sources */,
 				C75926AB27D7A8B5006ECD9E /* UserToken.swift in Sources */,
 				33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */,
-				77AA831128A91BFA00985B80 /* ReviewPostCellReactor.swift in Sources */,
 				33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,

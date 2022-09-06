@@ -41,9 +41,12 @@ final class ClassroomMainVC: BaseVC, View {
         case .imageCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className, for: indexPath)
             return cell
-        case .reviewPostCell(let reactor):
+        case .reviewPostCell(let model):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className, for: indexPath) as? ReviewMainPostTVC else { return UITableViewCell() }
-            cell.reactor = reactor
+            cell.setData(data: model)
+            return cell
+        case .questionCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className, for: indexPath)
             return cell
         }
     })
@@ -66,20 +69,25 @@ final class ClassroomMainVC: BaseVC, View {
     
     func bind(reactor: ClassroomMainReactor) {
         reviewTV.rx.setDelegate(self).disposed(by: disposeBag)
-        bindAction(reactor)
         bindState(reactor)
     }
 }
 
 // MARK: - Bind Action & State
 extension ClassroomMainVC {
-    private func bindAction(_ reactor: ClassroomMainReactor) {
-        
-    }
-    
     private func bindState(_ reactor: ClassroomMainReactor) {
-        reactor.state.map{$0.sections}.asObservable()
+        reactor.state.map{ $0.sections }.asObservable()
             .bind(to: self.reviewTV.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .distinctUntilChanged()
+            .map { $0 }
+            .subscribe(onNext: { [weak self] loading in
+                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            })
             .disposed(by: disposeBag)
     }
 }
@@ -136,6 +144,7 @@ extension ClassroomMainVC {
         ReviewMainImgTVC.register(target: reviewTV)
         ReviewMainPostTVC.register(target: reviewTV)
         reviewTV.register(ClassroomMainHeaderView.self, forHeaderFooterViewReuseIdentifier: ClassroomMainHeaderView.className)
+        ReviewEmptyTVC.register(target: reviewTV)
     }
     
     /// tableView setting 함수
@@ -195,6 +204,12 @@ extension ClassroomMainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ClassroomMainHeaderView.className) as? ClassroomMainHeaderView else { return UIView() }
+            headerView.reactor = ClassroomMainReactor()
+            
+            headerView.rx.tapSegmentedControl
+                .map { Reactor.Action.tapQuestionSegment }
+                .bind(to: reactor!.action)
+            
             return headerView
         }
         return nil
