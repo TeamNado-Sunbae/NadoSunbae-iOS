@@ -91,14 +91,13 @@ extension ClassroomMainReactor {
     
     static func configureSections(type: Int) -> [ClassroomMainSection] {
         let imageCell = ClassroomMainSectionItem.imageCell
-        let reviewPostCell1 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "안녕하세요안녕하세요안녕하세요", createdAt: "22/08/14", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "은주"), like: ReviewPostModel.Like(isLiked: true, likeCount: 2))))
-        let reviewPostCell2 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "더미데이터 입니당", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "지은"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3))))
-        let reviewPostCell3 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "아요드라 사랑해", createdAt: "22/08/16", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "정빈"), like: ReviewPostModel.Like(isLiked: true, likeCount: 3))))
-        let reviewPostCell4 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "MVVM개어렵다...", createdAt: "22/08/17", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3))))
+        let reviewPostCell1 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 1, title: "안녕하세요안녕하세요안녕하세요", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "지은"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업")]))
+        let reviewPostCell2 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 2, title: "더미데이터 입니당", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "은주"), like: ReviewPostModel.Like(isLiked: true, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업"), ReviewTagList(tagName: "힘든 수업")]))
+        let reviewPostCell3 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 3, title: "MVVM개어렵다...", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "정빈"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업")]))
         let questionCell = ClassroomMainSectionItem.questionCell
         
         let imageSection = ClassroomMainSection.imageSection([imageCell])
-        let reviewPostSection = ClassroomMainSection.reviewPostSection([reviewPostCell1, reviewPostCell2, reviewPostCell3, reviewPostCell4])
+        let reviewPostSection = ClassroomMainSection.reviewPostSection([reviewPostCell1, reviewPostCell2, reviewPostCell3])
         let questionSection = ClassroomMainSection.questionPostSection([questionCell])
         
         if type == 0 {

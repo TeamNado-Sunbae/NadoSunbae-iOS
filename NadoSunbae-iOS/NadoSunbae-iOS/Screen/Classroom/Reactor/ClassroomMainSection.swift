@@ -15,7 +15,7 @@ enum ClassroomMainSection {
 
 enum ClassroomMainSectionItem {
     case imageCell
-    case reviewPostCell(ReviewPostCellReactor)
+    case reviewPostCell(ReviewPostModel)
     case questionCell
 }
 

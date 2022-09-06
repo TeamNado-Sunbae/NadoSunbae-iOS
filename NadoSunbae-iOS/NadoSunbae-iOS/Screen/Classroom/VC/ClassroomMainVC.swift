@@ -41,9 +41,9 @@ final class ClassroomMainVC: BaseVC, View {
         case .imageCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainImgTVC.className, for: indexPath)
             return cell
-        case .reviewPostCell(let reactor):
+        case .reviewPostCell(let model):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className, for: indexPath) as? ReviewMainPostTVC else { return UITableViewCell() }
-            cell.reactor = reactor
+            cell.setData(data: model)
             return cell
         case .questionCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className, for: indexPath)
