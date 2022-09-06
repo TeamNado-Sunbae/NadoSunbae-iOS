@@ -69,19 +69,14 @@ final class ClassroomMainVC: BaseVC, View {
     
     func bind(reactor: ClassroomMainReactor) {
         reviewTV.rx.setDelegate(self).disposed(by: disposeBag)
-        bindAction(reactor)
         bindState(reactor)
     }
 }
 
 // MARK: - Bind Action & State
 extension ClassroomMainVC {
-    private func bindAction(_ reactor: ClassroomMainReactor) {
-        
-    }
-    
     private func bindState(_ reactor: ClassroomMainReactor) {
-        reactor.state.map{$0.sections}.asObservable()
+        reactor.state.map{ $0.sections }.asObservable()
             .bind(to: self.reviewTV.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         

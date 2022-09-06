@@ -118,6 +118,8 @@ extension ClassroomMainHeaderView {
         }
     }
 }
+
+// MARK: - Reactive
 extension Reactive where Base: ClassroomMainHeaderView {
     var tapSegmentedControl: ControlEvent<Void> {
         ControlEvent(events: base.classroomSegmentedControl.rx.controlEvent(.valueChanged))
