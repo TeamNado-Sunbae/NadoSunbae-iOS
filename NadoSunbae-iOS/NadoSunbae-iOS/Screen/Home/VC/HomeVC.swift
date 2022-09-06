@@ -131,7 +131,7 @@ extension HomeVC: UITableViewDataSource {
                     subTitleCell.setTitleLabel(title: "최근 1:1 질문")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press {
-                        debugPrint("최근 1:1 질문 more 버튼 클릭")
+                        self.navigationController?.pushViewController(HomeRecentPersonalQuestionVC(), animated: true)
                     }
                     return subTitleCell
                 case 3:

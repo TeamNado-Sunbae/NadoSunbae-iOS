@@ -13,7 +13,6 @@
 		3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313642B2784D3BD00E0C118 /* SceneDelegate.swift */; };
 		331364332784D3C000E0C118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 331364322784D3C000E0C118 /* Assets.xcassets */; };
 		331364362784D3C000E0C118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 331364342784D3C000E0C118 /* LaunchScreen.storyboard */; };
-		3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313644C2785A83A00E0C118 /* APIConstants.swift */; };
 		3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313644E2785A84B00E0C118 /* NetworkResult.swift */; };
 		331364512785A85E00E0C118 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364502785A85E00E0C118 /* GenericResponse.swift */; };
 		331364542785A8FE00E0C118 /* VCRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364532785A8FE00E0C118 /* VCRepresentation.swift */; };
@@ -271,6 +270,7 @@
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
 		77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */; };
 		77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */; };
+		C709CB1B28B3C6E700F04335 /* NadoStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */; };
 		C71BF22327CCB1EE0030DCB9 /* BlockListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */; };
 		C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22427CCB2070030DCB9 /* BlockListVC.swift */; };
 		C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */; };
@@ -320,10 +320,12 @@
 		C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */; };
 		C7C4145027C93C4700296C30 /* EditProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */; };
 		C7CC017A28A8E7F2001D2C18 /* HomeCommunityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC017928A8E7F2001D2C18 /* HomeCommunityTVC.swift */; };
+		C7CC017C28A953AC001D2C18 /* HomeRecentPersonalQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC017B28A953AC001D2C18 /* HomeRecentPersonalQuestionVC.swift */; };
 		C7E46C06289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */; };
 		C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */; };
 		C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */; };
 		C7F3F6DD27D5192D00E12888 /* ResendSignUpMailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */; };
+		C7F93DA228C58A1200F2B129 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F93DA128C58A1200F2B129 /* APIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -335,7 +337,6 @@
 		331364322784D3C000E0C118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		331364352784D3C000E0C118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		331364372784D3C000E0C118 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3313644C2785A83A00E0C118 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		3313644E2785A84B00E0C118 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		331364502785A85E00E0C118 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		331364532785A8FE00E0C118 /* VCRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRepresentation.swift; sourceTree = "<group>"; };
@@ -589,6 +590,7 @@
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
 		77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendUpdateStatusDelegate.swift; sourceTree = "<group>"; };
 		77ED045427B19DBD00D077CA /* ReviewFilterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterInfo.swift; sourceTree = "<group>"; };
+		C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoStatusBarView.swift; sourceTree = "<group>"; };
 		C71BF22227CCB1EE0030DCB9 /* BlockListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockListVC.storyboard; sourceTree = "<group>"; };
 		C71BF22427CCB2070030DCB9 /* BlockListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListVC.swift; sourceTree = "<group>"; };
 		C71BF22627CCB68B0030DCB9 /* GetBlockListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockListResponseModel.swift; sourceTree = "<group>"; };
@@ -635,10 +637,12 @@
 		C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestModel.swift; sourceTree = "<group>"; };
 		C7C4144F27C93C4700296C30 /* EditProfileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileResponseModel.swift; sourceTree = "<group>"; };
 		C7CC017928A8E7F2001D2C18 /* HomeCommunityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCommunityTVC.swift; sourceTree = "<group>"; };
+		C7CC017B28A953AC001D2C18 /* HomeRecentPersonalQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecentPersonalQuestionVC.swift; sourceTree = "<group>"; };
 		C7E46C05289D0FFE00FBB8C4 /* HomeBannerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerHeaderCell.swift; sourceTree = "<group>"; };
 		C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResponseModel.swift; sourceTree = "<group>"; };
 		C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendSignUpMailResponseModel.swift; sourceTree = "<group>"; };
+		C7F93DA128C58A1200F2B129 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -849,8 +853,8 @@
 		3313644A2785A7EF00E0C118 /* APIEssentials */ = {
 			isa = PBXGroup;
 			children = (
-				3313644C2785A83A00E0C118 /* APIConstants.swift */,
 				3313644E2785A84B00E0C118 /* NetworkResult.swift */,
+				C7F93DA128C58A1200F2B129 /* APIConstants.swift */,
 			);
 			path = APIEssentials;
 			sourceTree = "<group>";
@@ -1276,6 +1280,7 @@
 			children = (
 				33D44563287C27F700D94495 /* HomeNC.swift */,
 				33D44565287C280600D94495 /* HomeVC.swift */,
+				C7CC017B28A953AC001D2C18 /* HomeRecentPersonalQuestionVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1317,6 +1322,7 @@
 				330DA4322790BCCC00FE127F /* NadoTextView.swift */,
 				778E0F46287A061900BEEEA5 /* NadoMaskedImgView.swift */,
 				33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */,
+				C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -2121,7 +2127,6 @@
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,
 				331364A22785D8DD00E0C118 /* ClassroomMainVC.swift in Sources */,
-				3313644D2785A83A00E0C118 /* APIConstants.swift in Sources */,
 				3313646E2785AF9A00E0C118 /* UILabel+.swift in Sources */,
 				3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */,
 				77A759202797645E00A8E48B /* WriterData.swift in Sources */,
@@ -2158,6 +2163,7 @@
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
 				C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */,
+				C7CC017C28A953AC001D2C18 /* HomeRecentPersonalQuestionVC.swift in Sources */,
 				C783BFA328A7E068000FE3D8 /* HomeRankingTVC.swift in Sources */,
 				5C91647E279A9F0B008DD44B /* MajorUserListDataModel.swift in Sources */,
 				331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */,
@@ -2297,6 +2303,7 @@
 				5C9A93F727A64B550097310B /* SignUpBodyModel.swift in Sources */,
 				5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */,
 				33CF635427945C1200E92C04 /* SendSegmentStateDelegate.swift in Sources */,
+				C7F93DA228C58A1200F2B129 /* APIConstants.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				777C18D627D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
@@ -2311,6 +2318,7 @@
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
 				C71BF24227CDC2B30030DCB9 /* SignOutResponseModel.swift in Sources */,
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
+				C709CB1B28B3C6E700F04335 /* NadoStatusBarView.swift in Sources */,
 				7754A31F279418130093C230 /* CodeBaseCVC.swift in Sources */,
 				33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */,
 				33D44566287C280600D94495 /* HomeVC.swift in Sources */,
