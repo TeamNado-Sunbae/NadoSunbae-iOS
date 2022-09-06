@@ -10,33 +10,39 @@ import RxDataSources
 enum ClassroomMainSection {
     case imageSection([ClassroomMainSectionItem])
     case reviewPostSection([ClassroomMainSectionItem])
+    case questionPostSection([ClassroomMainSectionItem])
 }
 
 enum ClassroomMainSectionItem {
     case imageCell
     case reviewPostCell(ReviewPostCellReactor)
+    case questionCell
 }
 
 // MARK: - ClassroomMainSection
 extension ClassroomMainSection: SectionModelType {
-    
+
     typealias Item = ClassroomMainSectionItem
-    
+
     var items: [Item] {
         switch self {
         case .imageSection(let items):
             return items
         case .reviewPostSection(let items):
             return items
+        case .questionPostSection(let items):
+            return items
         }
     }
-    
+
     init(original: ClassroomMainSection, items: [ClassroomMainSectionItem]) {
         switch original {
         case .imageSection:
             self = .imageSection(items)
         case .reviewPostSection:
             self = .reviewPostSection(items)
+        case .questionPostSection:
+            self = .questionPostSection(items)
         }
     }
 }

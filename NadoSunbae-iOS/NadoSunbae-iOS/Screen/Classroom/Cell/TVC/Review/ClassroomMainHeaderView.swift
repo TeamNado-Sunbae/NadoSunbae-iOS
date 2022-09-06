@@ -14,11 +14,11 @@ import ReactorKit
 
 class ClassroomMainHeaderView: UITableViewHeaderFooterView, View {
 
-    private let classroomSegmentedControl = NadoSegmentedControl(items: ["후기", "1:1질문"]).then {
+    lazy var classroomSegmentedControl = NadoSegmentedControl(items: ["후기", "1:1질문"]).then {
         $0.frame = CGRect(x: 16, y: 10, width: 160, height: 37)
     }
     
-    private let filterBtn = UIButton().then {
+    lazy var filterBtn = UIButton().then {
         $0.setImgByName(name: "btnFilter", selectedName: "filterSelected")
     }
     
@@ -52,6 +52,20 @@ class ClassroomMainHeaderView: UITableViewHeaderFooterView, View {
 // MARK: - Bind Action & State
 extension ClassroomMainHeaderView {
     private func bindAction(_ reactor: ClassroomMainReactor) {
+        classroomSegmentedControl.rx.controlEvent(.valueChanged)
+            .map { [weak self] in
+                let selectIndex = self?.classroomSegmentedControl.selectedSegmentIndex
+                
+                switch selectIndex {
+                case 1:
+                    return ClassroomMainReactor.Action.tapQuestionSegment
+                default:
+                    return ClassroomMainReactor.Action.tapReviewSegment
+                }
+            }
+            .bind(to: reactor.action)
+            .disposed(by: self.disposeBag)
+        
         filterBtn.rx.tap
             .map { Reactor.Action.tapFilterBtn }
             .bind(to: reactor.action)
@@ -69,7 +83,7 @@ extension ClassroomMainHeaderView {
             .bind(to: filterBtn.rx.isSelected)
             .disposed(by: disposeBag)
         
-        reactor.state.map{ $0.isArrangeBtnSelected }
+        reactor.state.map { $0.isArrangeBtnSelected }
             .distinctUntilChanged()
             .bind(to: arrangeBtn.rx.isSelected)
             .disposed(by: disposeBag)
@@ -102,5 +116,10 @@ extension ClassroomMainHeaderView {
             $0.width.equalTo(48)
             $0.height.equalTo(24)
         }
+    }
+}
+extension Reactive where Base: ClassroomMainHeaderView {
+    var tapSegmentedControl: ControlEvent<Void> {
+        ControlEvent(events: base.classroomSegmentedControl.rx.controlEvent(.valueChanged))
     }
 }

@@ -21,6 +21,8 @@ final class ClassroomMainReactor: Reactor {
     enum Action {
         case tapFilterBtn
         case tapArrangeBtn
+        case tapReviewSegment
+        case tapQuestionSegment
     }
     
     // MARK: Mutation
@@ -28,6 +30,7 @@ final class ClassroomMainReactor: Reactor {
         case setLoading(loading: Bool)
         case setFilterBtnSelection(Bool)
         case setArrangeBtnSelection(Bool)
+        case setClassroomMainTV(type: Int)
     }
     
     // MARK: State
@@ -40,7 +43,7 @@ final class ClassroomMainReactor: Reactor {
     
     // MARK: init
     init() {
-        self.initialState = State(sections: ClassroomMainReactor.configureSections())
+        self.initialState = State(sections: ClassroomMainReactor.configureSections(type: 0))
     }
 }
 
@@ -55,6 +58,18 @@ extension ClassroomMainReactor {
         case .tapArrangeBtn:
             let btnState = currentState.isArrangeBtnSelected ? false : true
             return Observable.concat(Observable.just(.setArrangeBtnSelection(btnState)))
+        case .tapReviewSegment:
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                Observable.just(.setClassroomMainTV(type: 0)).delay(.seconds(1), scheduler: MainScheduler.instance),
+                Observable.just(.setLoading(loading: false))
+            ])
+        case .tapQuestionSegment:
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                Observable.just(.setClassroomMainTV(type: 1)).delay(.seconds(1), scheduler: MainScheduler.instance),
+                Observable.just(.setLoading(loading: false))
+            ])
         }
     }
 
@@ -68,19 +83,28 @@ extension ClassroomMainReactor {
             newState.isFilterBtnSelected = isSelected
         case .setArrangeBtnSelection(let isSelected):
             newState.isArrangeBtnSelected = isSelected
+        case .setClassroomMainTV(let type):
+            newState = State(sections: ClassroomMainReactor.configureSections(type: type))
         }
         return newState
     }
     
-    static func configureSections() -> [ClassroomMainSection] {
+    static func configureSections(type: Int) -> [ClassroomMainSection] {
         let imageCell = ClassroomMainSectionItem.imageCell
         let reviewPostCell1 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "안녕하세요안녕하세요안녕하세요", createdAt: "22/08/14", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "은주"), like: ReviewPostModel.Like(isLiked: true, likeCount: 2))))
         let reviewPostCell2 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "더미데이터 입니당", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "지은"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3))))
         let reviewPostCell3 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "아요드라 사랑해", createdAt: "22/08/16", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "정빈"), like: ReviewPostModel.Like(isLiked: true, likeCount: 3))))
         let reviewPostCell4 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "MVVM개어렵다...", createdAt: "22/08/17", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3))))
+        let questionCell = ClassroomMainSectionItem.questionCell
+        
         let imageSection = ClassroomMainSection.imageSection([imageCell])
         let reviewPostSection = ClassroomMainSection.reviewPostSection([reviewPostCell1, reviewPostCell2, reviewPostCell3, reviewPostCell4])
+        let questionSection = ClassroomMainSection.questionPostSection([questionCell])
         
-        return [imageSection, reviewPostSection]
+        if type == 0 {
+            return [imageSection, reviewPostSection]
+        } else {
+            return [imageSection, questionSection]
+        }
     }
 }

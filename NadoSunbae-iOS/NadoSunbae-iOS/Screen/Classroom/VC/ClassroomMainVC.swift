@@ -45,6 +45,9 @@ final class ClassroomMainVC: BaseVC, View {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className, for: indexPath) as? ReviewMainPostTVC else { return UITableViewCell() }
             cell.reactor = reactor
             return cell
+        case .questionCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className, for: indexPath)
+            return cell
         }
     })
     
@@ -80,6 +83,16 @@ extension ClassroomMainVC {
     private func bindState(_ reactor: ClassroomMainReactor) {
         reactor.state.map{$0.sections}.asObservable()
             .bind(to: self.reviewTV.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .distinctUntilChanged()
+            .map { $0 }
+            .subscribe(onNext: { [weak self] loading in
+                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            })
             .disposed(by: disposeBag)
     }
 }
@@ -136,6 +149,7 @@ extension ClassroomMainVC {
         ReviewMainImgTVC.register(target: reviewTV)
         ReviewMainPostTVC.register(target: reviewTV)
         reviewTV.register(ClassroomMainHeaderView.self, forHeaderFooterViewReuseIdentifier: ClassroomMainHeaderView.className)
+        ReviewEmptyTVC.register(target: reviewTV)
     }
     
     /// tableView setting 함수
@@ -196,6 +210,10 @@ extension ClassroomMainVC: UITableViewDelegate {
         if section == 1 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ClassroomMainHeaderView.className) as? ClassroomMainHeaderView else { return UIView() }
             headerView.reactor = ClassroomMainReactor()
+            
+            headerView.rx.tapSegmentedControl
+                .map { Reactor.Action.tapQuestionSegment }
+                .bind(to: reactor!.action)
             
             return headerView
         }
