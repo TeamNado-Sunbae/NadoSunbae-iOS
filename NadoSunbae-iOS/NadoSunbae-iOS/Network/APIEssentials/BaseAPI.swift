@@ -14,7 +14,7 @@ class BaseAPI {
         guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data)
                 
         else { return .pathErr }
-        print(decodedData)
+
         switch statusCode {
         case 200...202:
             return .success(decodedData.data ?? "None-Data")
