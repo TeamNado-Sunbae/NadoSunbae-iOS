@@ -104,6 +104,8 @@
 		33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */; };
 		33BAFD03278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */; };
 		33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */; };
+		33BD384128C9ABB6005528DD /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD384028C9ABB6005528DD /* APIConstants.swift */; };
+		33BD384328C9AC73005528DD /* PostListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD384228C9AC73005528DD /* PostListResModel.swift */; };
 		33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */; };
 		33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D48278982E0000FB6C8 /* BaseNC.swift */; };
 		33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */; };
@@ -265,7 +267,6 @@
 		77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4B2789AF900016880B /* TVRegisterable.swift */; };
 		77AEEB4E2789AF900016880B /* CVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4C2789AF900016880B /* CVRegisterable.swift */; };
 		77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */; };
-		77BAD54228C8775D006C2733 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BAD54128C8775D006C2733 /* APIConstants.swift */; };
 		77BAD54628C87952006C2733 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BAD54528C87952006C2733 /* BaseAPI.swift */; };
 		77ED045027AD75E700D077CA /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED044E27AD75E700D077CA /* FilterVC.swift */; };
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
@@ -423,6 +424,8 @@
 		33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomCommentTVC.xib; sourceTree = "<group>"; };
 		33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCHeightDynamicUpdate.swift; sourceTree = "<group>"; };
 		33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestionChatVC.swift; sourceTree = "<group>"; };
+		33BD384028C9ABB6005528DD /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		33BD384228C9AC73005528DD /* PostListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListResModel.swift; sourceTree = "<group>"; };
 		33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeNaviBar.swift; sourceTree = "<group>"; };
 		33BE2D48278982E0000FB6C8 /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		33C1B8A227974A4F004BABEC /* ClassroomQuestionDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionDetailData.swift; sourceTree = "<group>"; };
@@ -585,7 +588,6 @@
 		77AEEB4B2789AF900016880B /* TVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4C2789AF900016880B /* CVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
-		77BAD54128C8775D006C2733 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		77BAD54528C87952006C2733 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		77ED044E27AD75E700D077CA /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
@@ -853,8 +855,8 @@
 		3313644A2785A7EF00E0C118 /* APIEssentials */ = {
 			isa = PBXGroup;
 			children = (
+				33BD384028C9ABB6005528DD /* APIConstants.swift */,
 				3313644E2785A84B00E0C118 /* NetworkResult.swift */,
-				77BAD54128C8775D006C2733 /* APIConstants.swift */,
 				77BAD54528C87952006C2733 /* BaseAPI.swift */,
 			);
 			path = APIEssentials;
@@ -1742,6 +1744,7 @@
 				33A666A227BB8F3100779351 /* PostLikeResModel.swift */,
 				C71BF22A27CCC9880030DCB9 /* RequestBlockUnblockUserModel.swift */,
 				C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */,
+				33BD384228C9AC73005528DD /* PostListResModel.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2215,6 +2218,7 @@
 				5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
+				33BD384328C9AC73005528DD /* PostListResModel.swift in Sources */,
 				C71BF23127CCD2CB0030DCB9 /* NotificationSettingVC.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
 				33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */,
@@ -2329,7 +2333,6 @@
 				33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
-				77BAD54228C8775D006C2733 /* APIConstants.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
 				5C49669327BD469200983689 /* AutoSignInVC.swift in Sources */,
 				C7ACE63827CBD8450011B23F /* SettingVersionTVC.swift in Sources */,
@@ -2358,6 +2361,7 @@
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
 				77A759282797FEB400A8E48B /* PublicService.swift in Sources */,
+				33BD384128C9ABB6005528DD /* APIConstants.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				7754A318279028250093C230 /* ReviewNC.swift in Sources */,
 				C783BF9A28A79C88000FE3D8 /* HomeRecentReviewQuestionTVC.swift in Sources */,
