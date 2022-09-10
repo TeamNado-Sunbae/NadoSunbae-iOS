@@ -9,14 +9,12 @@ import UIKit
 
 class MypagePostListVC: BaseVC {
     
-    // MARK: @IBOutlet
-    @IBOutlet weak var navView: NadoSunbaeNaviBar! {
-        didSet {
-            navView.configureTitleLabel(title: isPostOrAnswer ? "내가 쓴 글" : "내가 쓴 답글")
-            navView.setUpNaviStyle(state: .backDefault)
-            navView.backBtn.press {
-                self.navigationController?.popViewController(animated: true)
-            }
+    // MARK: Components
+    private lazy var naviView = NadoSunbaeNaviBar().then {
+        $0.configureTitleLabel(title: "내가 쓴 글")
+        $0.setUpNaviStyle(state: .backDefault)
+        $0.backBtn.press {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
