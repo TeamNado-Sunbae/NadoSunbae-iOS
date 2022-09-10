@@ -28,7 +28,7 @@ class MypagePostListVC: BaseVC {
     }
     
     // MARK: Properties
-    var isPostOrAnswer = true
+    var isPersonalQuestionOrCommunity = true
 
     // MARK: LifeCycle
     override func viewDidLoad() {

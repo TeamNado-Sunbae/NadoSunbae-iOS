@@ -86,13 +86,13 @@ class MypageMainVC: BaseVC {
     
     @IBAction func tapPostListBtn(_ sender: Any) {
         guard let postListVC = UIStoryboard.init(name: MypagePostListVC.className, bundle: nil).instantiateViewController(withIdentifier: MypagePostListVC.className) as? MypagePostListVC else { return }
-        postListVC.isPostOrAnswer = true
+        postListVC.isPersonalQuestionOrCommunity = true
         self.navigationController?.pushViewController(postListVC, animated: true)
     }
     
     @IBAction func tapAnswerListBtn(_ sender: Any) {
         guard let answerListVC = UIStoryboard.init(name: MypagePostListVC.className, bundle: nil).instantiateViewController(withIdentifier: MypagePostListVC.className) as? MypagePostListVC else { return }
-        answerListVC.isPostOrAnswer = false
+        answerListVC.isPersonalQuestionOrCommunity = false
         self.navigationController?.pushViewController(answerListVC, animated: true)
     }
     
