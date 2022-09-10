@@ -17,11 +17,14 @@ class MypagePostListVC: BaseVC {
             self.navigationController?.popViewController(animated: true)
         }
     }
-    
-    @IBOutlet weak var postListContainerView: NadoHorizonContainerViews! {
-        didSet {
-            postListContainerView.setMultiplier(containerCount: 2)
-        }
+    private let postListSegmentControl = NadoSegmentedControl(items: ["1:1 질문", "커뮤니티"])
+    private let postListTV = UITableView().then {
+        $0.layer.cornerRadius = 16
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray0.cgColor
+        $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        $0.contentInset = .zero
+        $0.separatorColor = .gray0
     }
     
     // MARK: Properties
