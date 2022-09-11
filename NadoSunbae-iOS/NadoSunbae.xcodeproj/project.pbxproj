@@ -224,6 +224,7 @@
 		775728AA27D6593700148C9A /* ThirdOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A827D6593700148C9A /* ThirdOnboardingCVC.xib */; };
 		775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728AB27D65E8900148C9A /* OnboardingDataModel.swift */; };
 		775728B127D6617300148C9A /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775728B027D6617300148C9A /* OnboardingVC.swift */; };
+		775BC98228CDD38E00419560 /* CodeBaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775BC98128CDD38E00419560 /* CodeBaseTVC.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
 		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
@@ -543,6 +544,7 @@
 		775728AB27D65E8900148C9A /* OnboardingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
 		775728B027D6617300148C9A /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		775BAFD627D9353700DB37EB /* UserAuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthInfo.swift; sourceTree = "<group>"; };
+		775BC98128CDD38E00419560 /* CodeBaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBaseTVC.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
 		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
@@ -758,6 +760,7 @@
 				3385636F278DC74D003C60A6 /* BaseTVC.swift */,
 				33DAB83B279153A400214CA8 /* BaseCVC.swift */,
 				7754A31E279418120093C230 /* CodeBaseCVC.swift */,
+				775BC98128CDD38E00419560 /* CodeBaseTVC.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -2353,6 +2356,7 @@
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				7754A318279028250093C230 /* ReviewNC.swift in Sources */,
 				C783BF9A28A79C88000FE3D8 /* HomeRecentReviewQuestionTVC.swift in Sources */,
+				775BC98228CDD38E00419560 /* CodeBaseTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
