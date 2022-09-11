@@ -14,14 +14,16 @@ enum Environment: String {
 
 func env() -> Environment {
     
-    /// TestFlight, Xcode
+    /// TestFlight, Xcode(Device)
     if Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt" {
         return .development
     } else {
         
-        /// Simulator
+        /// Xcode(Simulator)
         #if targetEnvironment(simulator)
         return .development
+        
+        /// AppStore
         #else
         return .appStoreProduction
         #endif
