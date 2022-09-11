@@ -19,23 +19,31 @@ final class ClassroomMainReactor: Reactor {
     
     // MARK: Action
     enum Action {
-
+        case tapFilterBtn
+        case tapArrangeBtn
+        case tapReviewSegment
+        case tapQuestionSegment
     }
     
     // MARK: Mutation
     enum Mutation {
         case setLoading(loading: Bool)
+        case setFilterBtnSelection(Bool)
+        case setArrangeBtnSelection(Bool)
+        case setClassroomMainTV(type: Int)
     }
     
     // MARK: State
     struct State {
         var sections: [ClassroomMainSection]
-        var loading: Bool = false
+        var loading = false
+        var isFilterBtnSelected = false
+        var isArrangeBtnSelected = false
     }
     
     // MARK: init
     init() {
-        self.initialState = State(sections: ClassroomMainReactor.configureSections())
+        self.initialState = State(sections: ClassroomMainReactor.configureSections(type: 0))
     }
 }
 
@@ -43,7 +51,26 @@ final class ClassroomMainReactor: Reactor {
 extension ClassroomMainReactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
-
+        switch action {
+        case .tapFilterBtn:
+            let btnState = currentState.isFilterBtnSelected ? false : true
+            return Observable.concat(Observable.just(.setFilterBtnSelection(btnState)))
+        case .tapArrangeBtn:
+            let btnState = currentState.isArrangeBtnSelected ? false : true
+            return Observable.concat(Observable.just(.setArrangeBtnSelection(btnState)))
+        case .tapReviewSegment:
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                Observable.just(.setClassroomMainTV(type: 0)).delay(.seconds(1), scheduler: MainScheduler.instance),
+                Observable.just(.setLoading(loading: false))
+            ])
+        case .tapQuestionSegment:
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                Observable.just(.setClassroomMainTV(type: 1)).delay(.seconds(1), scheduler: MainScheduler.instance),
+                Observable.just(.setLoading(loading: false))
+            ])
+        }
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
@@ -52,19 +79,31 @@ extension ClassroomMainReactor {
         switch mutation {
         case .setLoading(let loading):
             newState.loading = loading
+        case .setFilterBtnSelection(let isSelected):
+            newState.isFilterBtnSelected = isSelected
+        case .setArrangeBtnSelection(let isSelected):
+            newState.isArrangeBtnSelected = isSelected
+        case .setClassroomMainTV(let type):
+            newState = State(sections: ClassroomMainReactor.configureSections(type: type))
         }
         return newState
     }
     
-    static func configureSections() -> [ClassroomMainSection] {
+    static func configureSections(type: Int) -> [ClassroomMainSection] {
         let imageCell = ClassroomMainSectionItem.imageCell
-        let reviewPostCell1 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "안녕하세요안녕하세요안녕하세요", createdAt: "22/08/14", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "은주"), like: ReviewPostModel.Like(isLiked: true, likeCount: 2))))
-        let reviewPostCell2 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "더미데이터 입니당", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "지은"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3))))
-        let reviewPostCell3 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "아요드라 사랑해", createdAt: "22/08/16", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "정빈"), like: ReviewPostModel.Like(isLiked: true, likeCount: 3))))
-        let reviewPostCell4 = ClassroomMainSectionItem.reviewPostCell(ReviewPostCellReactor(state: ReviewPostModel(postId: 1, title: "MVVM개어렵다...", createdAt: "22/08/17", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3))))
-        let imageSection = ClassroomMainSection.imageSection([imageCell])
-        let reviewPostSection = ClassroomMainSection.reviewPostSection([reviewPostCell1, reviewPostCell2, reviewPostCell3, reviewPostCell4])
+        let reviewPostCell1 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 1, title: "안녕하세요안녕하세요안녕하세요", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "지은"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업")]))
+        let reviewPostCell2 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 2, title: "더미데이터 입니당", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "은주"), like: ReviewPostModel.Like(isLiked: true, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업"), ReviewTagList(tagName: "힘든 수업")]))
+        let reviewPostCell3 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 3, title: "MVVM개어렵다...", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "정빈"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업")]))
+        let questionCell = ClassroomMainSectionItem.questionCell
         
-        return [imageSection, reviewPostSection]
+        let imageSection = ClassroomMainSection.imageSection([imageCell])
+        let reviewPostSection = ClassroomMainSection.reviewPostSection([reviewPostCell1, reviewPostCell2, reviewPostCell3])
+        let questionSection = ClassroomMainSection.questionPostSection([questionCell])
+        
+        if type == 0 {
+            return [imageSection, reviewPostSection]
+        } else {
+            return [imageSection, questionSection]
+        }
     }
 }

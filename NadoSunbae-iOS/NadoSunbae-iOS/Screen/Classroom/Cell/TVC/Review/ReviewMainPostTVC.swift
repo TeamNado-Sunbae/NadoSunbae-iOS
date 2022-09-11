@@ -8,10 +8,7 @@
 import UIKit
 import ReactorKit
 
-class ReviewMainPostTVC: BaseTVC, StoryboardView {
-    
-    // MARK: Reactor
-    typealias Reactor = ReviewPostCellReactor
+class ReviewMainPostTVC: BaseTVC {
 
     // MARK: IBOutlet
     @IBOutlet weak var dateLabel: UILabel!
@@ -44,19 +41,6 @@ class ReviewMainPostTVC: BaseTVC, StoryboardView {
     }
 }
 
-// MARK: - Bind
-extension ReviewMainPostTVC {
-    func bind(reactor: ReviewPostCellReactor) {
-        dateLabel.text = reactor.currentState.createdAt
-        titleLabel.text = reactor.currentState.title
-        likeCountLabel.text = "\(reactor.currentState.like.likeCount)"
-        majorLabel.font = .PretendardSB(size: 14)
-        majorLabel.textColor = .gray4
-        majorLabel.text = reactor.currentState.writer.nickname
-        likeImgView.image = reactor.currentState.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
-    }
-}
-
 // MARK: - UI
 extension ReviewMainPostTVC {
     private func configureUI() {
@@ -69,6 +53,16 @@ extension ReviewMainPostTVC {
 
 // MARK: - Custom Methods
 extension ReviewMainPostTVC {
+    
+    func setData(data: ReviewPostModel) {
+        dateLabel.text = data.createdAt
+        titleLabel.text = data.title
+        likeCountLabel.text = "\(data.like.likeCount)"
+        majorLabel.font = .PretendardSB(size: 14)
+        majorLabel.textColor = .gray4
+        majorLabel.text = data.writer.nickname
+        likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
     
     /// 유저 정보 데이터 세팅 함수
     func setUserData(postData: ReviewMainPostListData) {
