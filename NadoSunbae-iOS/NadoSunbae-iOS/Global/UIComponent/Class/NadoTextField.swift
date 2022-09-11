@@ -70,6 +70,7 @@ extension NadoTextField {
     /// '검색' style 설정 메서드
     func setSearchStyle() {
         setDefaultStyle()
+        setBoderColor(color: .gray1)
         self.addSubview(searchImageView)
         searchImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
@@ -88,5 +89,10 @@ extension NadoTextField {
     /// text 설정 메서드
     func setText(text: String) {
         self.text = text
+    }
+    
+    /// boderColor 설정 메서드
+    func setBoderColor(color: UIColor) {
+        self.layer.borderColor = color.cgColor
     }
 }

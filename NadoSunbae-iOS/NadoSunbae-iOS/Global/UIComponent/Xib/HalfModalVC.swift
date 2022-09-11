@@ -6,35 +6,136 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 import Moya
+
+enum ModalType {
+    case basic
+    case search
+}
 
 class HalfModalVC: UIViewController {
     
-    // MARK: IBOutlet
-    @IBOutlet weak var majorTV: UITableView!
-    @IBOutlet weak var majorChooseBtn: NadoSunbaeBtn!
+    // MARK: Components
+    private let titleLabel = UILabel().then {
+        $0.font = .PretendardM(size: 16)
+        $0.textColor = .black
+        $0.text = "학과선택"
+    }
     
+    private let cancelBtn = UIButton().then {
+        $0.setImage(UIImage(named: "btnX"), for: .normal)
+    }
+    
+    private let lineView = UIView().then {
+        $0.backgroundColor = .mainDefault
+    }
+    
+    private let majorTV = UITableView()
+    
+    private let completeBtn = NadoSunbaeBtn().then {
+        $0.isActivated = false
+        $0.setTitle("선택 완료", for: .normal)
+    }
+    
+    private let searchTextField = NadoTextField().then {
+        $0.setSearchStyle()
+    }
+
     // MARK: Properties
     private var majorList: [MajorInfoModel] = []
     var selectMajorDelegate: SendUpdateModalDelegate?
     var selectFilterDelegate: SendUpdateStatusDelegate?
+    var vcType: ModalType = .basic
+    var cellType: MajorCellType = .basic
     
-    // MARK: Life Cycle Part
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI(type: vcType)
         majorList = MajorInfo.shared.majorList ?? []
         setUpTV()
         majorTV.reloadData()
-        configureBtnUI()
-        tapMajorChooseBtnAction()
+        tapCancelBtnAction()
+        tapCompleteBtnAction()
     }
-    
-    // MARK: IBAction
-    @IBAction func tapDismissBtn(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+}
+
+// MARK: - UI
+extension HalfModalVC {
+    private func configureUI(type: ModalType) {
+        view.backgroundColor = .white
+        view.addSubviews([titleLabel, cancelBtn, lineView, majorTV, completeBtn, searchTextField])
+        
+        switch type {
+        case .basic:
+            titleLabel.snp.makeConstraints {
+                $0.top.leading.equalToSuperview().inset(24)
+            }
+            
+            cancelBtn.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(12)
+                $0.trailing.equalToSuperview().inset(16)
+            }
+            
+            lineView.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(15)
+                $0.leading.trailing.equalToSuperview().inset(16)
+                $0.height.equalTo(1)
+            }
+            
+            majorTV.snp.makeConstraints {
+                $0.top.equalTo(lineView.snp.bottom).offset(20)
+                $0.leading.trailing.equalToSuperview().inset(32)
+            }
+            
+            completeBtn.snp.makeConstraints {
+                $0.top.equalTo(majorTV.snp.bottom).offset(27)
+                $0.leading.trailing.equalToSuperview().inset(32)
+                $0.bottom.equalToSuperview().inset(34)
+                $0.height.equalTo(60)
+            }
+            
+        case .search:
+            titleLabel.snp.makeConstraints {
+                $0.top.leading.equalToSuperview().inset(24)
+            }
+            
+            cancelBtn.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(12)
+                $0.trailing.equalToSuperview().inset(16)
+            }
+            
+            lineView.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(15)
+                $0.leading.trailing.equalToSuperview().inset(16)
+                $0.height.equalTo(1)
+            }
+            
+            searchTextField.snp.makeConstraints {
+                $0.top.equalTo(lineView.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview().inset(28)
+                $0.height.equalTo(48)
+            }
+            
+            majorTV.snp.makeConstraints {
+                $0.top.equalTo(searchTextField.snp.bottom).offset(12)
+                $0.leading.trailing.equalToSuperview().inset(32)
+            }
+            
+            completeBtn.snp.makeConstraints {
+                $0.top.equalTo(majorTV.snp.bottom).offset(27)
+                $0.leading.trailing.equalToSuperview().inset(32)
+                $0.bottom.equalToSuperview().inset(34)
+                $0.height.equalTo(60)
+            }
+        }
     }
-    
-    // MARK: Private Methods
+}
+
+// MARK: - Custom Methods
+extension HalfModalVC {
     
     /// TableView setting 함수
     private func setUpTV() {
@@ -42,17 +143,20 @@ class HalfModalVC: UIViewController {
         
         majorTV.dataSource = self
         majorTV.delegate = self
+        majorTV.separatorStyle = .none
     }
     
-    /// 선택완료 버튼 UI  setting 함수
-    private func configureBtnUI() {
-        majorChooseBtn.isActivated = false
-        majorChooseBtn.setTitle("선택 완료", for: .normal)
+    private func tapCancelBtnAction() {
+        cancelBtn.press { [weak self] in
+            self?.dismiss(animated: true)
+        }
     }
     
     /// 선택완료 버튼 클릭 시 데이터 전달
-    private func tapMajorChooseBtnAction() {
-        majorChooseBtn.press {
+    private func tapCompleteBtnAction() {
+        completeBtn.press { [weak self] in
+            guard let self = self else { return }
+            
             let selectedMajorName = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
             let selectedMajorID = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
 
@@ -77,7 +181,7 @@ class HalfModalVC: UIViewController {
 // MARK: - UITableViewDelegate
 extension HalfModalVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54
+        return 54.adjustedH
     }
 }
 
@@ -90,12 +194,14 @@ extension HalfModalVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className) as? MajorTVC else { return UITableViewCell() }
         
+        cell.cellType = self.cellType
         cell.setData(majorName: majorList[indexPath.row].majorName)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        majorChooseBtn.isActivated = true
-        majorChooseBtn.titleLabel?.textColor = UIColor.mainDefault
+        completeBtn.isActivated = true
+        completeBtn.titleLabel?.textColor = UIColor.mainDefault
     }
 }
+

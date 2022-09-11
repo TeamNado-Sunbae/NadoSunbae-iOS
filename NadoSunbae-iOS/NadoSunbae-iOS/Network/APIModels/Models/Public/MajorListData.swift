@@ -11,10 +11,9 @@ import Foundation
 struct MajorListData: Codable {
     let majorID: Int
     let majorName: String
-    let isFirstMajor, isSecondMajor: Bool
 
     enum CodingKeys: String, CodingKey {
         case majorID = "majorId"
-        case majorName, isFirstMajor, isSecondMajor
+        case majorName
     }
 }
