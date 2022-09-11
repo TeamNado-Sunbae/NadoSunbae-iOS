@@ -26,7 +26,8 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.getUserInfoJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, MypageUserInfoModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -42,7 +43,8 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.getUserPersonalQuestionListJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, QuestionOrInfoListModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -58,7 +60,8 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.getMypageMyPostListJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, MypageMyPostListModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -74,7 +77,8 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.getMypageMyAnswerListJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, MypageMyAnswerListModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -107,7 +111,8 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.getMypageReviewLikeListJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeReviewData.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -123,126 +128,12 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.getMypagePostLikeListJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, MypageLikePostData.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
             }
-        }
-    }
-}
-
-// MARK: - judgeData
-extension MypageAPI {
-    private func getUserInfoJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<MypageUserInfoModel>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func getUserPersonalQuestionListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<QuestionOrInfoListModel>.self, from: data) else { return .pathErr }
-
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func getMypageMyPostListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<MypageMyPostListModel>.self, from: data) else { return .pathErr }
-
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func getMypageMyAnswerListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<MypageMyAnswerListModel>.self, from: data) else { return .pathErr }
-
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func getMypagePostLikeListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<MypageLikePostData>.self, from: data) else { return .pathErr }
-
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func getMypageReviewLikeListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<MypageLikeReviewData>.self, from: data) else { return .pathErr }
-
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
         }
     }
 }
