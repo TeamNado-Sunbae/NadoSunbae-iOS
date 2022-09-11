@@ -55,7 +55,7 @@ class MypagePostListVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypagePostListVC.className)
+        makeScreenAnalyticsForMyPostList()
         configureUI()
         setPostListTV()
         setSegmentedControl()
@@ -97,6 +97,14 @@ class MypagePostListVC: BaseVC {
     @objc private func didChangeValue(segment: UISegmentedControl) {
         isPersonalQuestionOrCommunity = postListSegmentControl.selectedSegmentIndex == 0
         updateQuestionTVHeight()
+    }
+    
+    private func makeScreenAnalyticsForMyPostList() {
+        if isPostOrAnswer {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MyPostListVC")
+        } else {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MyAnswerListVC")
+        }
     }
 }
 
@@ -154,9 +162,17 @@ extension MypagePostListVC: UITableViewDelegate {
 extension MypagePostListVC: SendSegmentStateDelegate {
     func sendSegmentClicked(index: Int) {
         if index == 0 {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostPersonalQuestion")
+            if isPostOrAnswer {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostList-PersonalQuestionVC")
+            } else {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyAnswerList-PersonalQuestionVC")
+            }
         } else {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostCommunity")
+            if isPostOrAnswer {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostList-CommunityVC")
+            } else {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyAnswerList-CommunityVC")
+            }
         }
     }
 }
