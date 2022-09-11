@@ -56,7 +56,14 @@ class MypagePostListVC: BaseVC {
         configureContainerView()
         
         makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypagePostListVC.className)
+        setSegmentedControl()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        postListSegmentControl.setUpNadoSegmentFrame()
+    }
+    
     private func setPostListTV() {
         postListTV.dataSource = self
         postListTV.delegate = self
@@ -75,7 +82,21 @@ class MypagePostListVC: BaseVC {
                 $0.height.equalTo(self.postListTV.contentSize.height)
             }
         }
+    }
+    
+    private func setSegmentedControl() {
+        postListSegmentControl.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
         
+        postListSegmentControl.selectedSegmentIndex = 0
+        didChangeValue(segment: postListSegmentControl)
+    }
+    
+    @objc private func didChangeValue(segment: UISegmentedControl) {
+        isPersonalQuestionOrCommunity = postListSegmentControl.selectedSegmentIndex == 0
+        updateQuestionTVHeight()
+    }
+}
+
         }
     }
 }
