@@ -89,6 +89,36 @@ class MypageLikeListVC: BaseVC {
         likeListTV.register(EntireQuestionListTVC.self, forCellReuseIdentifier: EntireQuestionListTVC.className)
     }
     
+    private func updateLikeListTVUI() {
+        DispatchQueue.main.async {
+            switch self.likeListType {
+            case .review:
+                self.likeListTV.layer.cornerRadius = 0
+                self.likeListTV.layer.borderWidth = 0
+                self.likeListTV.separatorStyle = .none
+                self.likeListTV.contentInset = .zero
+                self.likeListTV.snp.updateConstraints {
+                    $0.top.equalToSuperview().offset(-16)
+                    $0.left.right.equalToSuperview()
+                    $0.height.equalTo(self.likeListTV.contentSize.height)
+                }
+                
+            case .personalQuestion, .community:
+                self.likeListTV.layer.cornerRadius = 16
+                self.likeListTV.layer.borderWidth = 1
+                self.likeListTV.separatorStyle = .singleLine
+                self.likeListTV.layer.borderColor = UIColor.gray0.cgColor
+                self.likeListTV.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+                self.likeListTV.snp.updateConstraints {
+                    $0.top.equalToSuperview()
+                    $0.left.right.equalToSuperview().inset(16)
+                    $0.height.equalTo(self.likeListTV.contentSize.height)
+                }
+            }
+            self.likeListTV.setNeedsLayout()
+        }
+    }
+    
 }
 
 // MARK: - SendSegmentStateDelegate
