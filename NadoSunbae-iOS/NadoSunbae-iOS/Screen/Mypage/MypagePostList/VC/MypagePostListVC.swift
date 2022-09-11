@@ -53,9 +53,10 @@ class MypagePostListVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureContainerView()
         
         makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypagePostListVC.className)
+        configureUI()
+        setPostListTV()
         setSegmentedControl()
     }
     
