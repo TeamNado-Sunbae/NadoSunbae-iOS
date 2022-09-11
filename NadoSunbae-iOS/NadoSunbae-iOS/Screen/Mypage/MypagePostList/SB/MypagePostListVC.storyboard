@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,39 +17,13 @@
         <!--Mypage Post ListVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="MypagePostListVC" id="Y6W-OH-hqX" customClass="MypagePostListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MypagePostListVC" id="Y6W-OH-hqX" customClass="MypagePostListVC" customModule="NadoSunbae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fjp-8B-deY" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="104" id="fro-Dc-jXB"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03L-TJ-I7n" customClass="NadoHorizonContainerViews" customModule="NadoSunbae_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="paleGray"/>
-                        <constraints>
-                            <constraint firstItem="03L-TJ-I7n" firstAttribute="top" secondItem="Fjp-8B-deY" secondAttribute="bottom" id="8NY-Ch-Uhx"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="03L-TJ-I7n" secondAttribute="trailing" id="SL1-qn-Mh8"/>
-                            <constraint firstItem="Fjp-8B-deY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Vwm-rU-ROx"/>
-                            <constraint firstItem="Fjp-8B-deY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="drf-Fi-mpA"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Fjp-8B-deY" secondAttribute="trailing" id="gQj-qU-Zxo"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="03L-TJ-I7n" secondAttribute="bottom" id="ivB-cv-NIk"/>
-                            <constraint firstItem="03L-TJ-I7n" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rE2-AA-Lbl"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="navView" destination="Fjp-8B-deY" id="2Qm-Ce-5uh"/>
-                        <outlet property="postListContainerView" destination="03L-TJ-I7n" id="vCn-yZ-tVH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,7 +32,7 @@
         <!--Mypage My Post ListVC-->
         <scene sceneID="WWq-IU-uLw">
             <objects>
-                <viewController storyboardIdentifier="MypageMyPostListVC" id="7bi-Ku-82G" customClass="MypageMyPostListVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MypageMyPostListVC" id="7bi-Ku-82G" customClass="MypageMyPostListVC" customModule="NadoSunbae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qbj-vk-rZp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,7 +43,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGy-1w-xdl" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="894"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN0-Ey-Jfe" customClass="NadoSegmentView" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bN0-Ey-Jfe" customClass="NadoSegmentView" customModule="NadoSunbae" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="16" width="414" height="38"/>
                                                 <color key="backgroundColor" name="bgGray"/>
                                                 <constraints>
