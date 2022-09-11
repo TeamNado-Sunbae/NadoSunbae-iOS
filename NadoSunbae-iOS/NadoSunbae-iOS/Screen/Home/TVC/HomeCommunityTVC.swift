@@ -67,6 +67,7 @@ extension HomeCommunityTVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension HomeCommunityTVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: Community Detail로 연결
         debugPrint("didselectRowAt")
     }
 }

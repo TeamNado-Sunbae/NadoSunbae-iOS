@@ -124,7 +124,19 @@ extension MypagePostListVC: UITableViewDelegate {
     
     /// didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        debugPrint("didselectRowAt")
+        if isPersonalQuestionOrCommunity {
+            self.divideUserPermission() {
+                self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                    questionDetailVC.hidesBottomBarWhenPushed = true
+                    questionDetailVC.questionType = .personal
+                    questionDetailVC.naviStyle = .push
+                    questionDetailVC.postID = self.personalQuestionDummyData[indexPath.row].postID
+                }
+            }
+        } else {
+            // TODO: Community Detail로 연결
+            debugPrint("didSelectRowAt")
+        }
     }
     
     /// estimatedHeightForRowAt
