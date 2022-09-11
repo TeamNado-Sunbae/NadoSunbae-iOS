@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-class MypageAPI {
+class MypageAPI: BaseAPI {
     static let shared = MypageAPI()
     private var provider = MoyaProvider<MypageService>()
     
-    private init() {}
+    private override init() {}
 }
 
 // MARK: - API
