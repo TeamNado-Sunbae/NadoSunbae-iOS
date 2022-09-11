@@ -237,7 +237,7 @@ extension MypageLikeListVC {
         }
         
         contentView.snp.makeConstraints {
-            $0.width.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
             $0.height.equalToSuperview().priority(.low)
             $0.centerX.top.bottom.equalToSuperview()
         }
