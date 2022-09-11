@@ -34,14 +34,17 @@ class MypageLikeListVC: BaseVC {
         $0.isScrollEnabled = false
     }
     
-    private let reviewDummyData: [ReviewPostModel] = [
-        ReviewPostModel(postId: 111, title: "MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3)),
-        ReviewPostModel(postId: 111, title: "MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3)),
-        ReviewPostModel(postId: 111, title: "MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3)),
-        ReviewPostModel(postId: 111, title: "MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3)),
-        ReviewPostModel(postId: 112, title: "MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3)),
-        ReviewPostModel(postId: 133, title: "MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "리액터은주"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3))
-    ]
+    // MARK: Properties
+    private var likeListType: MypageLikeListType = .review
+    private let reviewDummyData: [MypageLikeReviewDataModel] = [
+        MypageLikeReviewDataModel(postID: 111, title: "2MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
+        MypageLikeReviewDataModel(postID: 111, title: "3MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
+        MypageLikeReviewDataModel(postID: 111, title: "4MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
+        MypageLikeReviewDataModel(postID: 111, title: "5MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
+        MypageLikeReviewDataModel(postID: 111, title: "6MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
+        MypageLikeReviewDataModel(postID: 111, title: "7MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
+        MypageLikeReviewDataModel(postID: 111, title: "8MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3))
+        ]
     private let personalQuestionDummyData: [ClassroomPostList] = [
         ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
         ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
