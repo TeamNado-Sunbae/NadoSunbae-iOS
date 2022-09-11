@@ -11,7 +11,7 @@ class MypagePostListVC: BaseVC {
     
     // MARK: Components
     private lazy var naviView = NadoSunbaeNaviBar().then {
-        $0.configureTitleLabel(title: "내가 쓴 글")
+        $0.configureTitleLabel(title: isPostOrAnswer ? "내가 쓴 글" : "내가 쓴 답글")
         $0.setUpNaviStyle(state: .backDefault)
         $0.backBtn.press {
             self.navigationController?.popViewController(animated: true)
@@ -33,6 +33,7 @@ class MypagePostListVC: BaseVC {
     }
     
     // MARK: Properties
+    var isPostOrAnswer = true
     var isPersonalQuestionOrCommunity = true
     private let personalQuestionDummyData: [ClassroomPostList] = [
         ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
