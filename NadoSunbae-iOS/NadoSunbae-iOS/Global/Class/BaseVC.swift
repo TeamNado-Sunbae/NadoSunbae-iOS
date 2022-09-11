@@ -173,35 +173,41 @@ extension BaseVC {
     
     /// Firebase Analytics 사용자 지정 이벤트를 발생시키는 메서드 (기본 정보만 넘기는 이벤트)
     func makeDefaultAnalyticsEvent(eventName: String) {
-        FirebaseAnalytics.Analytics.logEvent(eventName, parameters: [
-            "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
-            "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
-            "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
-            "SelectedMajor": (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
-        ])
+        if env() == .appStoreProduction {
+            FirebaseAnalytics.Analytics.logEvent(eventName, parameters: [
+                "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
+                "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
+                "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
+                "SelectedMajor": (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
+            ])
+        }
     }
     
     /// Firebase Analytics 유저 포스팅 이벤트를 발생시키는 메서드 (기본 정보만 넘기는 이벤트)
     func makePostAnalyticsEvent(postType: String, postedMajor: String) {
-        FirebaseAnalytics.Analytics.logEvent("user_post", parameters: [
-            "post_type": postType,
-            "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
-            "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
-            "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
-            "reviewedMajor": postedMajor
-        ])
+        if env() == .appStoreProduction {
+            FirebaseAnalytics.Analytics.logEvent("user_post", parameters: [
+                "post_type": postType,
+                "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
+                "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
+                "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
+                "reviewedMajor": postedMajor
+            ])
+        }
     }
     
     /// Firebase Analytics 화면 조회 이벤트를 발생시키는 메서드
     func makeScreenAnalyticsEvent(screenName: String, screenClass: String) {
-        FirebaseAnalytics.Analytics.logEvent("screen_view", parameters: [
-            AnalyticsParameterScreenName: screenName,
-            AnalyticsParameterScreenClass: screenClass,
-            "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
-            "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
-            "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
-            "SelectedMajor": (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
-        ])
+        if env() == .appStoreProduction {
+            FirebaseAnalytics.Analytics.logEvent("screen_view", parameters: [
+                AnalyticsParameterScreenName: screenName,
+                AnalyticsParameterScreenClass: screenClass,
+                "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
+                "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
+                "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
+                "SelectedMajor": (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
+            ])
+        }
     }
 }
 
