@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 import Then
 
+enum MypageLikeListType: Int {
+    case review = 0, personalQuestion, community
+}
+
 class MypageLikeListVC: BaseVC {
     
     // MARK: Components
