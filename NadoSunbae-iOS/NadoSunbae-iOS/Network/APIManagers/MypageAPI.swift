@@ -82,7 +82,7 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 학과 후기 조회
+    /// [GET] 내가 쓴 후기 조회
     func getMypageMyReviewList(userID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.getMypageMyReviewList(userID: userID)) { result in
             switch result {
@@ -90,7 +90,8 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.getMypageMyReviewListJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, MypageMyReviewModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -194,25 +195,6 @@ extension MypageAPI {
         let decoder = JSONDecoder()
         
         guard let decodedData = try? decoder.decode(GenericResponse<MypageMyAnswerListModel>.self, from: data) else { return .pathErr }
-
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func getMypageMyReviewListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<MypageMyReviewModel>.self, from: data) else { return .pathErr }
 
         switch status {
         case 200...204:
