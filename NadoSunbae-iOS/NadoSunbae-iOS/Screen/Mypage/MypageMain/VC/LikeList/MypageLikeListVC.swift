@@ -135,6 +135,34 @@ class MypageLikeListVC: BaseVC {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension MypageLikeListVC: UITableViewDelegate {
+    
+    /// didSelectRowAt
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch likeListType {
+        case .review:
+            self.divideUserPermission {
+                self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
+                    reviewDetailVC.postId = self.reviewDummyData[indexPath.row].postID
+                }
+            }
+        case .personalQuestion:
+            self.divideUserPermission() {
+                self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
+                    questionDetailVC.hidesBottomBarWhenPushed = true
+                    questionDetailVC.questionType = .personal
+                    questionDetailVC.naviStyle = .push
+                    questionDetailVC.postID = self.personalQuestionDummyData[indexPath.row].postID
+                }
+            }
+        case .community:
+                // TODO: Community Detail로 연결
+                debugPrint("didSelectRowAt")
+        }
+    }
+}
+
 // MARK: - UITableViewDataSource
 extension MypageLikeListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
