@@ -314,6 +314,7 @@
 		C7ACE63A27CBDF550011B23F /* SettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE63927CBDF550011B23F /* SettingTVC.xib */; };
 		C7ACE63D27CBEAB70011B23F /* GetLatestVersionResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63C27CBEAB70011B23F /* GetLatestVersionResponseModel.swift */; };
 		C7ACE63E27CBED1E0011B23F /* SettingVersionTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE63B27CBDF9B0011B23F /* SettingVersionTVC.xib */; };
+		C7B5ECDD28CDB5FB0036EC29 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B5ECDC28CDB5FB0036EC29 /* Environment.swift */; };
 		C7C4144927C9392000296C30 /* MypageSettingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144827C9392000296C30 /* MypageSettingAPI.swift */; };
 		C7C4144B27C9392F00296C30 /* MypageSettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144A27C9392F00296C30 /* MypageSettingService.swift */; };
 		C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */; };
@@ -629,6 +630,7 @@
 		C7ACE63927CBDF550011B23F /* SettingTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTVC.xib; sourceTree = "<group>"; };
 		C7ACE63B27CBDF9B0011B23F /* SettingVersionTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVersionTVC.xib; sourceTree = "<group>"; };
 		C7ACE63C27CBEAB70011B23F /* GetLatestVersionResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestVersionResponseModel.swift; sourceTree = "<group>"; };
+		C7B5ECDC28CDB5FB0036EC29 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		C7C4144827C9392000296C30 /* MypageSettingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingAPI.swift; sourceTree = "<group>"; };
 		C7C4144A27C9392F00296C30 /* MypageSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingService.swift; sourceTree = "<group>"; };
 		C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestModel.swift; sourceTree = "<group>"; };
@@ -1699,6 +1701,7 @@
 			children = (
 				77A7593127984A3800A8E48B /* AppModel */,
 				77A7593027984A2E00A8E48B /* Singleton */,
+				C7B5ECDC28CDB5FB0036EC29 /* Environment.swift */,
 			);
 			path = PublicData;
 			sourceTree = "<group>";
@@ -2239,6 +2242,7 @@
 				5CC0BFDF2798A3B900B96905 /* SignAPI.swift in Sources */,
 				33C79DD22881B50D00B6C32C /* CommunityPostList.swift in Sources */,
 				331364602785AA6B00E0C118 /* UITableView+.swift in Sources */,
+				C7B5ECDD28CDB5FB0036EC29 /* Environment.swift in Sources */,
 				3313645E2785AA2B00E0C118 /* UIButton+.swift in Sources */,
 				777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */,
 				33B9B0DB27B8EB4400066C1F /* InfoQuestionTVC.swift in Sources */,
@@ -2480,6 +2484,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -2508,6 +2513,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.1;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
 				PRODUCT_NAME = NadoSunbae;
 				SWIFT_EMIT_LOC_STRINGS = YES;
