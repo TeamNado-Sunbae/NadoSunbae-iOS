@@ -127,6 +127,14 @@ class MypageLikeListVC: BaseVC {
         didChangeValue(segment: likeListSegmentControl)
     }
     
+    @objc private func didChangeValue(segment: UISegmentedControl) {
+        likeListType = MypageLikeListType(rawValue: likeListSegmentControl.selectedSegmentIndex) ?? .review
+        
+        likeListTV.reloadData()
+        updateLikeListTVUI()
+    }
+}
+
 }
 
 // MARK: - SendSegmentStateDelegate
