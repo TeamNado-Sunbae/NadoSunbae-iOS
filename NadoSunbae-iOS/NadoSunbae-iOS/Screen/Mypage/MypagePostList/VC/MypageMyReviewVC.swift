@@ -12,7 +12,7 @@ class MypageMyReviewVC: BaseVC {
     // MARK: @IBOutlet
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
-            navView.configureTitleLabel(title: "학과후기")
+            navView.configureTitleLabel(title: "내가 쓴 후기")
             navView.setUpNaviStyle(state: .backDefault)
             navView.backBtn.press {
                 self.navigationController?.popViewController(animated: true)
