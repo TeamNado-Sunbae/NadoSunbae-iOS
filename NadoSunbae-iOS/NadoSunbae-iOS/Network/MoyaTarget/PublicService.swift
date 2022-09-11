@@ -24,7 +24,7 @@ extension PublicService: TargetType {
     var path: String {
         switch self {
         case .getMajorList(let univID, _):
-            return "/major/list/\(univID)"
+            return "/major/university/\(univID)"
         case .requestBlockUnBlockUser:
             return "/block"
         case .requestReport:

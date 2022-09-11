@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-class PublicAPI {
+class PublicAPI: BaseAPI {
     static let shared = PublicAPI()
     var publicProvider = MoyaProvider<PublicService>()
     
-    private init() {}
+    private override init() {}
     
     /// [GET] 학과 리스트 조회  API
     func getMajorListAPI(univID: Int, filterType: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
@@ -22,8 +22,8 @@ class PublicAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                
-                completion(self.majorListJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, [MajorListData].self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err)
@@ -85,23 +85,6 @@ class PublicAPI {
 
 // MARK: - JudgeData
 extension PublicAPI {
-    
-    /// majorListJudgeData
-    private func majorListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<[MajorListData]>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
     
     /// requestBlockUnBlockUser
     private func requestBlockUnBlockUserJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
