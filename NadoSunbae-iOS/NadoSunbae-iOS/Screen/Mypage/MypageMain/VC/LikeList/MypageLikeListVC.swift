@@ -73,6 +73,7 @@ class MypageLikeListVC: BaseVC {
         
         configureUI()
         setlikeListTV()
+        setSegmentedControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +118,13 @@ class MypageLikeListVC: BaseVC {
             }
             self.likeListTV.setNeedsLayout()
         }
+    }
+    
+    private func setSegmentedControl() {
+        likeListSegmentControl.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
+        
+        likeListSegmentControl.selectedSegmentIndex = 0
+        didChangeValue(segment: likeListSegmentControl)
     }
     
 }
