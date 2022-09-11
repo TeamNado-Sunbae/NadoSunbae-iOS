@@ -141,11 +141,13 @@ extension MypagePostListVC: UITableViewDelegate {
 extension MypagePostListVC: SendSegmentStateDelegate {
     func sendSegmentClicked(index: Int) {
         if index == 0 {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypageMyPostListVC.className)
-            postListContainerView.externalSV.contentOffset.x = 0
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostPersonalQuestion")
         } else {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostAnswerListVC")
-            postListContainerView.externalSV.contentOffset.x += screenWidth
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostCommunity")
+        }
+    }
+}
+
 // MARK: - UI
 extension MypagePostListVC {
     private func configureUI() {
