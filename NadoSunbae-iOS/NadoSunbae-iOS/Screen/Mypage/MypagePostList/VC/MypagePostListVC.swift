@@ -68,6 +68,7 @@ class MypagePostListVC: BaseVC {
         postListTV.dataSource = self
         postListTV.delegate = self
         
+        postListTV.register(CommunityTVC.self, forCellReuseIdentifier: CommunityTVC.className)
         postListTV.register(EntireQuestionListTVC.self, forCellReuseIdentifier: EntireQuestionListTVC.className)
         
         postListTV.removeSeparatorsOfEmptyCellsAndLastCell()
@@ -97,12 +98,33 @@ class MypagePostListVC: BaseVC {
     }
 }
 
+// MARK: - UITableViewDataSource
+extension MypagePostListVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return isPersonalQuestionOrCommunity ? personalQuestionDummyData.count : communityDummyData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if isPersonalQuestionOrCommunity {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+            cell.setData(data: personalQuestionDummyData[indexPath.row])
+            cell.layoutSubviews()
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
+            cell.setCommunityData(data: communityDummyData[indexPath.row])
+            return cell
         }
     }
 }
 
 // MARK: - UITableViewDelegate
 extension MypagePostListVC: UITableViewDelegate {
+    
+    /// didSelectRowAt
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        debugPrint("didselectRowAt")
+    }
     
     /// estimatedHeightForRowAt
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
