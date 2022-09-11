@@ -135,6 +135,39 @@ class MypageLikeListVC: BaseVC {
     }
 }
 
+// MARK: - UITableViewDataSource
+extension MypageLikeListVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch likeListType {
+        case .review:
+            return reviewDummyData.count
+        case .personalQuestion:
+            return personalQuestionDummyData.count
+        case .community:
+            return communityDummyData.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch likeListType {
+        case .review:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className, for: indexPath) as? ReviewMainPostTVC else { return ReviewMainPostTVC() }
+            cell.setMypageReviewLikeData(postData: reviewDummyData[indexPath.row])
+            cell.contentView.backgroundColor = .bgGray
+            cell.reviewContentView.layer.borderWidth = 1
+            cell.reviewContentView.layer.borderColor = UIColor.gray0.cgColor
+            return cell
+        case .personalQuestion:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+            cell.setData(data: personalQuestionDummyData[indexPath.row])
+            cell.layoutSubviews()
+            return cell
+        case .community:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
+            cell.setCommunityData(data: communityDummyData[indexPath.row])
+            return cell
+        }
+    }
 }
 
 // MARK: - SendSegmentStateDelegate
