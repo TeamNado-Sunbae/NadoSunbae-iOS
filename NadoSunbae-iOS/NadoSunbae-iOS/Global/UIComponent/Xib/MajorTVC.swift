@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-enum MajorCellStyle {
+enum MajorCellType {
     case basic
     case star
 }
@@ -35,7 +35,7 @@ class MajorTVC: CodeBaseTVC {
     }
     
     // MARK: Properties
-    var cellType: MajorCellStyle = .basic
+    var cellType: MajorCellType = .basic
     
     // MARK: Life Cycle
     override func setViews() {
@@ -59,7 +59,7 @@ class MajorTVC: CodeBaseTVC {
 
 // MARK: - UI
 extension MajorTVC {
-    func configureUI(type: MajorCellStyle) {
+    func configureUI(type: MajorCellType) {
         contentView.addSubviews([majorNameLabel, checkImgView, lineView, starBtn])
         
         switch type {
