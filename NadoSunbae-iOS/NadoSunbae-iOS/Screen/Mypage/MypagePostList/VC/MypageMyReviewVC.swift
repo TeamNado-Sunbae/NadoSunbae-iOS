@@ -100,7 +100,7 @@ extension MypageMyReviewVC: UITableViewDelegate {
         /// 유저의 권한 분기처리
         self.divideUserPermission() {
             self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
-                reviewDetailVC.postId = self.reviewList[indexPath.row].postID
+                reviewDetailVC.postId = self.reviewList[indexPath.row].id
             }
         }
     }
@@ -119,7 +119,7 @@ extension MypageMyReviewVC {
             case .success(let res):
                 if let reviewData = res as? MypageMyReviewModel {
                     self.setTitleLabel(userName: reviewData.writer.nickname)
-                    self.reviewList = reviewData.reviewPostList
+                    self.reviewList = reviewData.reviewList
                     self.setEmptyView()
                     self.reviewTV.reloadData()
                     DispatchQueue.main.async {

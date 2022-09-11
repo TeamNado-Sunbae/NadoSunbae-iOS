@@ -9,11 +9,11 @@ import Foundation
 
 struct MypageMyReviewModel: Codable {
     var writer: Writer
-    var reviewPostList: [MypageMyReviewPostModel]
+    var reviewList: [MypageMyReviewPostModel]
 
     enum CodingKeys: String, CodingKey {
         case writer = "writer"
-        case reviewPostList = "reviewPostList"
+        case reviewList = "reviewList"
     }
     
     struct Writer: Codable {
@@ -27,9 +27,9 @@ struct MypageMyReviewModel: Codable {
     }
 }
 
-// MARK: - ReviewPostList
+// MARK: - MypageMyReviewPostModel
 struct MypageMyReviewPostModel: Codable {
-    var postID: Int
+    var id: Int
     var majorName: String
     var oneLineReview: String
     var createdAt: String
@@ -37,7 +37,7 @@ struct MypageMyReviewPostModel: Codable {
     var like: Like
 
     enum CodingKeys: String, CodingKey {
-        case postID = "postId"
+        case id = "id"
         case majorName = "majorName"
         case oneLineReview = "oneLineReview"
         case createdAt = "createdAt"
