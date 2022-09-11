@@ -11,7 +11,7 @@ class MypagePostListVC: BaseVC {
     
     // MARK: Components
     private lazy var naviView = NadoSunbaeNaviBar().then {
-        $0.configureTitleLabel(title: "내가 쓴 글")
+        $0.configureTitleLabel(title: isPostOrAnswer ? "내가 쓴 글" : "내가 쓴 답글")
         $0.setUpNaviStyle(state: .backDefault)
         $0.backBtn.press {
             self.navigationController?.popViewController(animated: true)
@@ -33,6 +33,7 @@ class MypagePostListVC: BaseVC {
     }
     
     // MARK: Properties
+    var isPostOrAnswer = true
     var isPersonalQuestionOrCommunity = true
     private let personalQuestionDummyData: [ClassroomPostList] = [
         ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
@@ -54,7 +55,7 @@ class MypagePostListVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypagePostListVC.className)
+        makeScreenAnalyticsForMyPostList()
         configureUI()
         setPostListTV()
         setSegmentedControl()
@@ -96,6 +97,14 @@ class MypagePostListVC: BaseVC {
     @objc private func didChangeValue(segment: UISegmentedControl) {
         isPersonalQuestionOrCommunity = postListSegmentControl.selectedSegmentIndex == 0
         updateQuestionTVHeight()
+    }
+    
+    private func makeScreenAnalyticsForMyPostList() {
+        if isPostOrAnswer {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MyPostListVC")
+        } else {
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MyAnswerListVC")
+        }
     }
 }
 
@@ -153,9 +162,17 @@ extension MypagePostListVC: UITableViewDelegate {
 extension MypagePostListVC: SendSegmentStateDelegate {
     func sendSegmentClicked(index: Int) {
         if index == 0 {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostPersonalQuestion")
+            if isPostOrAnswer {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostList-PersonalQuestionVC")
+            } else {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyAnswerList-PersonalQuestionVC")
+            }
         } else {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostCommunity")
+            if isPostOrAnswer {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostList-CommunityVC")
+            } else {
+                makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyAnswerList-CommunityVC")
+            }
         }
     }
 }
