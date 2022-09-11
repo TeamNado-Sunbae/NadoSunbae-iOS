@@ -202,11 +202,11 @@ extension MypageLikeListVC: UITableViewDataSource {
 extension MypageLikeListVC: SendSegmentStateDelegate {
     func sendSegmentClicked(index: Int) {
         if index == 0 {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageReviewLikeVC")
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyLikeList-Review")
         } else if index == 1 {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageQuestionLikeVC")
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyLikeList-PersonalQuestion")
         } else {
-            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageInfoLikeVC")
+            makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyLikeList-Community")
         }
     }
 }
