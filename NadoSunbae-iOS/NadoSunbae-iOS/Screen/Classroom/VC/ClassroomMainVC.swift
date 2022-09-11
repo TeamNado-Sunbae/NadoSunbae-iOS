@@ -59,6 +59,7 @@ final class ClassroomMainVC: BaseVC, View {
         setUpTV()
         registerTVC()
         tapMajorSelectBtn()
+        requestGetMajorList(univID: 1, filterType: "all")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -221,6 +222,36 @@ extension ClassroomMainVC: UITableViewDelegate {
             return 56
         } else {
             return 0
+        }
+    }
+}
+
+// MARK: - Network
+
+/// 학과 정보 리스트 조회
+extension ClassroomMainVC {
+    private func requestGetMajorList(univID: Int, filterType: String) {
+        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                var list: [MajorInfoModel] = []
+                DispatchQueue.main.async {
+                    if let data = res as? [MajorListData] {
+                        for i in 0...data.count - 1 {
+                            list.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
+                        }
+                        MajorInfo.shared.majorList = list
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
         }
     }
 }
