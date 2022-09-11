@@ -165,6 +165,8 @@ extension ClassroomMainVC {
     /// HalfModalView를 present하는 메서드
     private func presentHalfModalView() {
         let slideVC = HalfModalVC()
+        slideVC.vcType = .search
+        slideVC.cellType = .star
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         slideVC.selectMajorDelegate = self
