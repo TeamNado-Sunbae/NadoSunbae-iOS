@@ -28,10 +28,12 @@ class MypageLikeListVC: BaseVC {
         $0.layer.cornerRadius = 16
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray0.cgColor
-        $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         $0.contentInset = .zero
         $0.separatorColor = .gray0
         $0.isScrollEnabled = false
+        $0.estimatedRowHeight = 160
+        $0.rowHeight = UITableView.automaticDimension
+        $0.setBottomEmptyView()
     }
     
     // MARK: Properties
