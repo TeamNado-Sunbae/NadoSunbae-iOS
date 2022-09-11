@@ -72,6 +72,7 @@ class MypageLikeListVC: BaseVC {
         super.viewDidLoad()
         
         configureUI()
+        setlikeListTV()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +80,15 @@ class MypageLikeListVC: BaseVC {
         hideTabbar()
         likeListSegmentControl.setUpNadoSegmentFrame()
     }
+    
+    private func setlikeListTV() {
+        likeListTV.dataSource = self
+        likeListTV.delegate = self
+        likeListTV.register(UINib(nibName: ReviewMainPostTVC.className, bundle: nil), forCellReuseIdentifier: ReviewMainPostTVC.className)
+        likeListTV.register(CommunityTVC.self, forCellReuseIdentifier: CommunityTVC.className)
+        likeListTV.register(EntireQuestionListTVC.self, forCellReuseIdentifier: EntireQuestionListTVC.className)
+    }
+    
 }
 
 // MARK: - SendSegmentStateDelegate
