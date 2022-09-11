@@ -79,6 +79,10 @@ class MypageLikeListVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideTabbar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         likeListSegmentControl.setUpNadoSegmentFrame()
     }
     
