@@ -100,7 +100,7 @@ extension MypageMyReviewVC: UITableViewDelegate {
         /// 유저의 권한 분기처리
         self.divideUserPermission() {
             self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
-                reviewDetailVC.postId = self.reviewList[indexPath.row].id
+                reviewDetailVC.postId = self.reviewList[indexPath.row].ID
             }
         }
     }
