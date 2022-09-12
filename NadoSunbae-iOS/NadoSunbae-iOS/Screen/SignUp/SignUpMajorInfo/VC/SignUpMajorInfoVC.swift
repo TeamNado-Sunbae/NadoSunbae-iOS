@@ -166,6 +166,9 @@ extension SignUpMajorInfoVC {
     private func checkUnivSelected() {
         univTextField.rx.observe(String.self, "text")
             .subscribe(onNext: { univText in
+                [self.firstMajorTextField, self.firstMajorStartTextField, self.secondMajorTextField, self.secondMajorStartTextField].forEach { textField in
+                        textField?.text = ""
+                }
                 [self.firstMajorSelectBtn, self.firstMajorStartSelectBtn, self.secondMajorSelectBtn, self.secondMajorStartSelectBtn].forEach { button in
                         button?.isEnabled = univText == "" ? false : true
                 }
