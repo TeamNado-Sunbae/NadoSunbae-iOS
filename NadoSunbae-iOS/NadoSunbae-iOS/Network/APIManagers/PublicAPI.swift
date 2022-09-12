@@ -94,7 +94,7 @@ class PublicAPI: BaseAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, [PostLikeResModel].self)
+                let networkResult = self.judgeStatus(by: statusCode, data, [PostListResModel].self)
                 
                 completion(networkResult)
                 

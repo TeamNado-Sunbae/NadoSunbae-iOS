@@ -12,12 +12,22 @@ struct PostListResModel: Codable {
     let postID: Int
     let type, title, content, createdAt: String
     let majorName: String
-    let writer: Writer
+    let writer: CommunityWriter
     let commentCount: Int
     let like: Like
 
     enum CodingKeys: String, CodingKey {
         case postID = "postId"
         case type, title, content, createdAt, majorName, writer, commentCount, like
+    }
+}
+
+struct CommunityWriter: Codable {
+    let writerID: Int
+    let nickname: String
+    
+    enum CodingKeys: String, CodingKey {
+        case writerID = "id"
+        case nickname
     }
 }
