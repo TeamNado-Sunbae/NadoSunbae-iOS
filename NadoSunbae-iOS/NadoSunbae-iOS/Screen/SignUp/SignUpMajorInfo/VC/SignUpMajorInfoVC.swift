@@ -33,7 +33,7 @@ class SignUpMajorInfoVC: BaseVC {
     }
     
     // MARK: Properties
-    var univList = ["고려대학교"]
+    var univList = ["고려대학교", "서울여자대학교", "중앙대학교"]
     var signUpData = SignUpBodyModel()
     
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
