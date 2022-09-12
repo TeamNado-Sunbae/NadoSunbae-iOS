@@ -47,6 +47,7 @@ class SignUpMajorInfoVC: BaseVC {
         super.viewDidLoad()
         configureUI()
         checkUnivSelected()
+        checkSelectBtnStatus()
     }
     
     // MARK: IBAction
@@ -160,8 +161,18 @@ extension SignUpMajorInfoVC {
     }
     
     /// textField에 값이 있으면 '선택' 버튼을 '변경' 버튼으로 바꾸는 함수
-    private func checkSelectBtnStatus(btn: UIButton, textField: UITextField) {
-        btn.setTitle(textField.isEmpty ? "선택" : "변경", for: .normal)
+    private func checkSelectBtnStatus() {
+        [(univSelectBtn, univTextField),(firstMajorSelectBtn, firstMajorTextField),
+         (firstMajorStartSelectBtn, firstMajorStartTextField),
+         (secondMajorSelectBtn, secondMajorTextField),
+         (secondMajorStartSelectBtn, secondMajorStartTextField)].forEach { (btn, textField) in
+            textField?.rx.observe(String.self, "text")
+                .subscribe(onNext: { changedText in
+                    debugPrint(changedText?.isEmpty ?? false)
+                    btn?.setTitle(changedText?.isEmpty ?? false ? "선택" : "변경", for: .normal)
+                }).disposed(by: disposeBag)
+        }
+    }
     
     /// 학교 선택 여부에 따라 제1/제2전공 textField, button 상태를 업데이트하는 함수
     private func checkUnivSelected() {
@@ -214,11 +225,5 @@ extension SignUpMajorInfoVC: SendUpdateModalDelegate {
             #endif
         }
         checkNextBtnIsEnabled()
-        [(firstMajorSelectBtn, firstMajorTextField),
-         (firstMajorStartSelectBtn, firstMajorStartTextField),
-         (secondMajorSelectBtn, secondMajorTextField),
-         (secondMajorStartSelectBtn, secondMajorStartTextField)].forEach { (btn, textField) in
-            checkSelectBtnStatus(btn: btn, textField: textField)
-        }
     }
 }
