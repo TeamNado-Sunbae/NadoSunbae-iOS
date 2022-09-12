@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - PostDetailResModel
+///  커뮤니티 전체, 자유, 질문, 정보, 1:1 질문 상세조회 Response Data Model
 struct PostDetailResModel: Codable {
     let post: DetailPost
     let writer: PostDetailWriter
@@ -29,7 +30,7 @@ struct CommentList: Codable {
     }
 }
 
-// MARK: - Writer
+// MARK: - PostDetailWriter
 struct PostDetailWriter: Codable {
     let writerID: Int
     let isPostWriter: Bool?
@@ -45,7 +46,7 @@ struct PostDetailWriter: Codable {
     }
 }
 
-// MARK: - Post
+// MARK: - DetailPost
 struct DetailPost: Codable {
     let postDetailID: Int
     let title, content, createdAt, majorName: String
