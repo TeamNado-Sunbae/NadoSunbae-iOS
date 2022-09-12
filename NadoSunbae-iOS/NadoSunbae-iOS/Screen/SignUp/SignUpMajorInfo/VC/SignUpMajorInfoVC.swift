@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SignUpMajorInfoVC: BaseVC {
     
@@ -35,6 +37,7 @@ class SignUpMajorInfoVC: BaseVC {
     // MARK: Properties
     var univList = ["고려대학교", "서울여자대학교", "중앙대학교"]
     var signUpData = SignUpBodyModel()
+    let disposeBag = DisposeBag()
     
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
     var enterBtnTag = 0
@@ -43,6 +46,7 @@ class SignUpMajorInfoVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        checkUnivSelected()
     }
     
     // MARK: IBAction
@@ -157,6 +161,15 @@ extension SignUpMajorInfoVC {
     /// textField에 값이 있으면 '선택' 버튼을 '변경' 버튼으로 바꾸는 함수
     private func checkSelectBtnStatus(btn: UIButton, textField: UITextField) {
         btn.setTitle(textField.isEmpty ? "선택" : "변경", for: .normal)
+    
+    /// 학교 선택 여부에 따라 제1/제2전공 textField, button 상태를 업데이트하는 함수
+    private func checkUnivSelected() {
+        univTextField.rx.observe(String.self, "text")
+            .subscribe(onNext: { univText in
+                [self.firstMajorSelectBtn, self.firstMajorStartSelectBtn, self.secondMajorSelectBtn, self.secondMajorStartSelectBtn].forEach { button in
+                        button?.isEnabled = univText == "" ? false : true
+                }
+            }).disposed(by: disposeBag)
     }
 }
 
