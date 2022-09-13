@@ -95,8 +95,6 @@ extension SignUpModalVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch enteredBtnTag {
         case 0, 2:
-            print("majorList: ", majorList)
-            print("majorListCount: ", majorList.count)
             return majorList.count
         case 1, 3:
             return startList.count

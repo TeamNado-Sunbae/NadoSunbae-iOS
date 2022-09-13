@@ -176,7 +176,6 @@ extension SignUpMajorInfoVC {
          (secondMajorStartSelectBtn, secondMajorStartTextField)].forEach { (btn, textField) in
             textField?.rx.observe(String.self, "text")
                 .subscribe(onNext: { changedText in
-                    debugPrint(changedText?.isEmpty ?? false)
                     btn?.setTitle(changedText?.isEmpty ?? false ? "선택" : "변경", for: .normal)
                 }).disposed(by: disposeBag)
         }
