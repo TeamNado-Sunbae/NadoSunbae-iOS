@@ -72,11 +72,18 @@ class SignUpMajorInfoVC: BaseVC {
     }
     
     @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
-        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
         
-        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
+        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우 선택버튼 비활성화
         if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
-            slideVC.enterdBtnTag = sender.tag
+            let slideVC = SignUpModalVC()
+            slideVC.vcType = .search
+            slideVC.cellType = .basic
+            if let selectedUnivID = self.univList.firstIndex(of: univTextField.text ?? "") {
+                self.signUpData.universityID = selectedUnivID + 1
+                slideVC.univID = self.signUpData.universityID
+            }
+            
+            slideVC.enteredBtnTag = sender.tag
             self.enterBtnTag = sender.tag
             
             slideVC.modalPresentationStyle = .custom
