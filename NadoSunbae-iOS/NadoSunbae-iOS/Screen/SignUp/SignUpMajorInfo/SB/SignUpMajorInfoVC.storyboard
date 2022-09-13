@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +22,7 @@
         <!--Sign Up Major InfoVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="SignUpMajorInfoVC" id="Y6W-OH-hqX" customClass="SignUpMajorInfoVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpMajorInfoVC" id="Y6W-OH-hqX" customClass="SignUpMajorInfoVC" customModule="NadoSunbae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,7 +125,7 @@
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt3-Tp-vrg" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt3-Tp-vrg" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -143,7 +143,6 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="30A-bw-wTV"/>
                                     <constraint firstItem="Qjd-Kj-IsY" firstAttribute="trailing" secondItem="Qt3-Tp-vrg" secondAttribute="trailing" constant="-5" id="AKv-fp-hhL"/>
                                     <constraint firstItem="JTe-Yz-Nwf" firstAttribute="leading" secondItem="zJG-so-n2V" secondAttribute="leading" constant="20" id="O89-Qc-NWI"/>
                                     <constraint firstItem="Qjd-Kj-IsY" firstAttribute="bottom" secondItem="Qt3-Tp-vrg" secondAttribute="bottom" constant="-8" id="QGq-KN-Ovw"/>
@@ -164,7 +163,7 @@
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-dr-F0D" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-dr-F0D" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -184,7 +183,6 @@
                                 <constraints>
                                     <constraint firstItem="g4o-dr-F0D" firstAttribute="leading" secondItem="asY-ib-9W9" secondAttribute="leading" constant="16" id="AyZ-I6-t1i"/>
                                     <constraint firstItem="6dH-9u-AKi" firstAttribute="top" secondItem="g4o-dr-F0D" secondAttribute="top" constant="8" id="CdL-up-B3d"/>
-                                    <constraint firstAttribute="height" constant="100" id="IrF-dY-R7S"/>
                                     <constraint firstItem="6dH-9u-AKi" firstAttribute="trailing" secondItem="g4o-dr-F0D" secondAttribute="trailing" constant="-5" id="O94-wo-aQb"/>
                                     <constraint firstItem="5Sx-1d-fWp" firstAttribute="top" secondItem="asY-ib-9W9" secondAttribute="top" constant="8" id="POP-ww-W7j"/>
                                     <constraint firstAttribute="trailing" secondItem="g4o-dr-F0D" secondAttribute="trailing" constant="16" id="WaL-qH-VtH"/>
@@ -203,7 +201,7 @@
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znz-fg-xiH" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znz-fg-xiH" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -223,7 +221,6 @@
                                 <constraints>
                                     <constraint firstItem="kT8-2E-AKy" firstAttribute="bottom" secondItem="Znz-fg-xiH" secondAttribute="bottom" constant="-8" id="Ak8-yY-M5p"/>
                                     <constraint firstItem="kT8-2E-AKy" firstAttribute="trailing" secondItem="Znz-fg-xiH" secondAttribute="trailing" constant="-5" id="SyN-ym-MUs"/>
-                                    <constraint firstAttribute="height" constant="100" id="Vhc-jt-0Qq"/>
                                     <constraint firstItem="Znz-fg-xiH" firstAttribute="top" secondItem="2re-U0-gDH" secondAttribute="bottom" constant="8" id="jZ8-4U-fc1"/>
                                     <constraint firstAttribute="trailing" secondItem="Znz-fg-xiH" secondAttribute="trailing" constant="16" id="ma5-aS-iBE"/>
                                     <constraint firstItem="2re-U0-gDH" firstAttribute="leading" secondItem="FHR-65-5Xf" secondAttribute="leading" constant="20" id="pyP-yB-Le7"/>
@@ -242,7 +239,7 @@
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UTw-8I-lb1" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UTw-8I-lb1" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -265,14 +262,13 @@
                                     <constraint firstAttribute="trailing" secondItem="UTw-8I-lb1" secondAttribute="trailing" constant="16" id="A7m-s8-X4S"/>
                                     <constraint firstItem="UTw-8I-lb1" firstAttribute="top" secondItem="8pp-0b-UQ5" secondAttribute="bottom" constant="8" id="KRD-H3-Oxj"/>
                                     <constraint firstItem="8pp-0b-UQ5" firstAttribute="top" secondItem="38y-7S-Zfm" secondAttribute="top" constant="8" id="SI6-l6-WwO"/>
-                                    <constraint firstAttribute="height" constant="100" id="SVf-MN-aU5"/>
                                     <constraint firstItem="FI6-4v-Pkv" firstAttribute="leading" secondItem="8pp-0b-UQ5" secondAttribute="leading" id="Yej-oi-erd"/>
                                     <constraint firstItem="FI6-4v-Pkv" firstAttribute="bottom" secondItem="UTw-8I-lb1" secondAttribute="bottom" constant="-8" id="efb-UG-2iA"/>
                                     <constraint firstItem="FI6-4v-Pkv" firstAttribute="trailing" secondItem="UTw-8I-lb1" secondAttribute="trailing" constant="-5" id="gzI-1M-n77"/>
                                     <constraint firstItem="UTw-8I-lb1" firstAttribute="leading" secondItem="38y-7S-Zfm" secondAttribute="leading" constant="16" id="opP-e0-yba"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbI-tf-4af" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbI-tf-4af" customClass="NadoSunbaeBtn" customModule="NadoSunbae" customModuleProvider="target">
                                 <rect key="frame" x="112" y="718" width="247" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="LYE-Iv-EFj"/>
@@ -283,7 +279,7 @@
                                     <action selector="tapNextBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Jhe-az-YCv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMq-Lq-dgg" customClass="NadoSunbaeBtn" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMq-Lq-dgg" customClass="NadoSunbaeBtn" customModule="NadoSunbae" customModuleProvider="target">
                                 <rect key="frame" x="16" y="718" width="84" height="60"/>
                                 <color key="tintColor" name="nadoBlack"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -303,7 +299,7 @@
                                         <color key="textColor" name="gray3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dud-Cr-rQd" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dud-Cr-rQd" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                         <rect key="frame" x="16" y="30" width="343" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -322,7 +318,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="cqG-xI-1oY" firstAttribute="top" secondItem="vPv-xs-sTg" secondAttribute="top" constant="8" id="4Wo-9P-nGe"/>
-                                    <constraint firstAttribute="height" constant="100" id="9pz-xS-ZK6"/>
                                     <constraint firstItem="yDr-xR-JTz" firstAttribute="trailing" secondItem="dud-Cr-rQd" secondAttribute="trailing" constant="-5" id="FYo-pR-lap"/>
                                     <constraint firstAttribute="trailing" secondItem="dud-Cr-rQd" secondAttribute="trailing" constant="16" id="KG4-Rl-nYC"/>
                                     <constraint firstItem="yDr-xR-JTz" firstAttribute="bottom" secondItem="dud-Cr-rQd" secondAttribute="bottom" constant="-8" id="Mox-aB-MUm"/>
@@ -353,16 +348,21 @@
                             <constraint firstItem="asY-ib-9W9" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Q3A-1i-Zyw"/>
                             <constraint firstItem="FHR-65-5Xf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ro4-dd-Sci"/>
                             <constraint firstItem="38y-7S-Zfm" firstAttribute="top" secondItem="vPv-xs-sTg" secondAttribute="bottom" id="RxR-gQ-2dP"/>
+                            <constraint firstItem="vPv-xs-sTg" firstAttribute="height" secondItem="vDu-zF-Fre" secondAttribute="height" multiplier="0.13624" id="Ry2-95-Ja0"/>
                             <constraint firstItem="CMq-Lq-dgg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="S4y-hf-1Xn"/>
                             <constraint firstItem="FHR-65-5Xf" firstAttribute="top" secondItem="asY-ib-9W9" secondAttribute="bottom" id="U9h-aM-lt6"/>
                             <constraint firstItem="CMq-Lq-dgg" firstAttribute="height" secondItem="CbI-tf-4af" secondAttribute="height" id="VrN-SN-7BT"/>
                             <constraint firstItem="NrX-5a-nru" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Wgp-IK-wfN"/>
+                            <constraint firstItem="38y-7S-Zfm" firstAttribute="height" secondItem="vDu-zF-Fre" secondAttribute="height" multiplier="0.13624" id="X6V-wK-9cp"/>
                             <constraint firstAttribute="bottom" secondItem="CMq-Lq-dgg" secondAttribute="bottom" constant="34" id="XVQ-Wv-4dM"/>
+                            <constraint firstItem="FHR-65-5Xf" firstAttribute="height" secondItem="vDu-zF-Fre" secondAttribute="height" multiplier="0.13624" id="YvN-e1-KK0"/>
                             <constraint firstItem="zJG-so-n2V" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="aAI-8q-sWj"/>
                             <constraint firstItem="NrX-5a-nru" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="aSC-l2-lKQ"/>
                             <constraint firstAttribute="bottom" secondItem="CbI-tf-4af" secondAttribute="bottom" constant="34" id="bWR-T3-eej"/>
+                            <constraint firstItem="asY-ib-9W9" firstAttribute="height" secondItem="vDu-zF-Fre" secondAttribute="height" multiplier="0.13624" id="fcB-bb-LEc"/>
                             <constraint firstItem="zJG-so-n2V" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="iNe-bE-pSi"/>
                             <constraint firstItem="zJG-so-n2V" firstAttribute="top" secondItem="NrX-5a-nru" secondAttribute="bottom" constant="13" id="igU-mZ-dbD"/>
+                            <constraint firstItem="zJG-so-n2V" firstAttribute="height" secondItem="vDu-zF-Fre" secondAttribute="height" multiplier="0.13624" id="ki0-TM-9b3"/>
                             <constraint firstItem="dud-Cr-rQd" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0591" id="q5H-WL-7vm"/>
                             <constraint firstItem="FHR-65-5Xf" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="wzN-Xl-KEW"/>
                             <constraint firstItem="38y-7S-Zfm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="x1C-3W-rBn"/>
