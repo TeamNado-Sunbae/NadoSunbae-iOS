@@ -14,6 +14,7 @@ enum PublicService {
     case requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String)
     case getAppLink
     case getPostList(univID: Int, majorID: Int, filter: PostFilterType, sort: String, search: String)
+    case getPostDetail(postID: Int)
 }
 
 extension PublicService: TargetType {
@@ -34,12 +35,14 @@ extension PublicService: TargetType {
             return "/app/link"
         case .getPostList(let univID, _, _, _, _):
             return "/post/university/\(univID)"
+        case .getPostDetail(let postID):
+            return "/post/\(postID)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getMajorList, .getAppLink, .getPostList:
+        case .getMajorList, .getAppLink, .getPostList, .getPostDetail:
             return .get
         case .requestBlockUnBlockUser, .requestReport:
             return .post
@@ -70,12 +73,14 @@ extension PublicService: TargetType {
                 "search": search
             ]
             return .requestParameters(parameters: query, encoding:  URLEncoding.queryString)
+        case .getPostDetail:
+            return .requestPlain
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser, .requestReport, .getPostList:
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .getPostDetail:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:

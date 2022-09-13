@@ -103,4 +103,22 @@ class PublicAPI: BaseAPI {
             }
         }
     }
+    
+    /// [GET] 게시글 상세 조회 - 커뮤니티(전체, 자유, 질문, 정보), 1:1 질문 글 상세보기
+    func getPostDetail(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.getPostDetail(postID: postID)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, PostDetailResModel.self)
+                
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
