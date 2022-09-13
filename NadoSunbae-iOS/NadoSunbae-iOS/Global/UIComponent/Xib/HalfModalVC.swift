@@ -34,7 +34,7 @@ class HalfModalVC: BaseVC {
     
     let majorTV = UITableView()
     
-    private let completeBtn = NadoSunbaeBtn().then {
+    let completeBtn = NadoSunbaeBtn().then {
         $0.isActivated = false
         $0.setTitle("선택 완료", for: .normal)
     }

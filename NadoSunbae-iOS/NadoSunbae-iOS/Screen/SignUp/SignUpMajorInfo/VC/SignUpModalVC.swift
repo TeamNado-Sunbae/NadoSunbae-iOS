@@ -19,7 +19,9 @@ class SignUpModalVC: HalfModalVC {
         super.viewDidLoad()
         
         setTitleLabel()
+        setCompleteBtnAction()
     }
+    
     /// enterBtnTag에 맞춰서 타이틀, 데이터 변경하는 함수
     private func setTitleLabel() {
         titleLabel.text = { () -> String in
@@ -61,6 +63,31 @@ class SignUpModalVC: HalfModalVC {
         }
         self.startList.append("15년 이전")
         self.majorTV.reloadData()
+    }
+    
+    /// 기존 completeBtn의 action을 제거하고, SignUp에 맞게 새로 action을 추가하는 메서드
+    private func setCompleteBtnAction() {
+        completeBtn.removeTarget(nil, action: nil, for: .allEvents)
+        completeBtn.press {
+            self.dismiss(animated: true, completion: {
+                NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+            })
+            
+            switch self.enteredBtnTag {
+            case 0, 2:
+                let sendData = { () -> MajorInfoModel in
+                    return self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0]
+                }()
+                self.selectMajorDelegate?.sendUpdate(data: sendData)
+            case 1, 3:
+                let sendData = { () -> String in
+                    return self.startList[self.majorTV.indexPathForSelectedRow?.row ?? 0]
+                }()
+                self.selectMajorDelegate?.sendUpdate(data: sendData)
+            default:
+                break
+            }
+        }
     }
 }
 
