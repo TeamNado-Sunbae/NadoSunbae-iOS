@@ -135,8 +135,12 @@ extension SignUpMajorInfoVC {
     private func alertAction(title: String, targetTextField: UITextField) -> UIAlertAction {
         let alertAction = UIAlertAction(title: title, style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            if let selectedUnivID = self.univList.firstIndex(of: self.univTextField.text ?? "") {
-                self.signUpData.universityID = selectedUnivID + 1
+            if title != targetTextField.text {
+                targetTextField.text = title
+                if let selectedUnivID = self.univList.firstIndex(of: self.univTextField.text ?? "") {
+                    self.signUpData.universityID = selectedUnivID + 1
+                    self.checkNextBtnIsEnabled()
+                }
             }
         })
         return alertAction
