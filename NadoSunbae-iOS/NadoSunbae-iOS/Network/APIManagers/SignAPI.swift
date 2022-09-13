@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-class SignAPI {
+class SignAPI: BaseAPI {
     static let shared = SignAPI()
     private var provider = MoyaProvider<SignService>()
     
-    private init() {}
+    override private init() {}
 }
 
 // MARK: - API
@@ -139,6 +139,23 @@ extension SignAPI {
                 let data = response.data
                 
                 completion(self.updateTokenJudgeData(status: statusCode, data: data))
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    /// [GET] 학교 이메일 도메인 조회
+    func getUnivEmailDomain(univID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getUnivEmailDomain(univID: univID)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, UnivEmailDomainDataModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)

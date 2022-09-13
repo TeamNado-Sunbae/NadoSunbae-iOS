@@ -313,6 +313,7 @@
 		C7ACE63E27CBED1E0011B23F /* SettingVersionTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE63B27CBDF9B0011B23F /* SettingVersionTVC.xib */; };
 		C7B5ECDD28CDB5FB0036EC29 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B5ECDC28CDB5FB0036EC29 /* Environment.swift */; };
 		C7B5ECDF28D0209D0036EC29 /* SignUpModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B5ECDE28D0209D0036EC29 /* SignUpModalVC.swift */; };
+		C7B5ECE128D0986D0036EC29 /* UnivEmailDomainDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B5ECE028D0986D0036EC29 /* UnivEmailDomainDataModel.swift */; };
 		C7C4144927C9392000296C30 /* MypageSettingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144827C9392000296C30 /* MypageSettingAPI.swift */; };
 		C7C4144B27C9392F00296C30 /* MypageSettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144A27C9392F00296C30 /* MypageSettingService.swift */; };
 		C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */; };
@@ -627,6 +628,7 @@
 		C7ACE63C27CBEAB70011B23F /* GetLatestVersionResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestVersionResponseModel.swift; sourceTree = "<group>"; };
 		C7B5ECDC28CDB5FB0036EC29 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		C7B5ECDE28D0209D0036EC29 /* SignUpModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModalVC.swift; sourceTree = "<group>"; };
+		C7B5ECE028D0986D0036EC29 /* UnivEmailDomainDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnivEmailDomainDataModel.swift; sourceTree = "<group>"; };
 		C7C4144827C9392000296C30 /* MypageSettingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingAPI.swift; sourceTree = "<group>"; };
 		C7C4144A27C9392F00296C30 /* MypageSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingService.swift; sourceTree = "<group>"; };
 		C7C4144D27C939ED00296C30 /* EditProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRequestModel.swift; sourceTree = "<group>"; };
@@ -1466,6 +1468,7 @@
 				C71BF24127CDC2B30030DCB9 /* SignOutResponseModel.swift */,
 				C7F3F6DA27D3E38000E12888 /* WithDrawResponseModel.swift */,
 				C7F3F6DC27D5192D00E12888 /* ResendSignUpMailResponseModel.swift */,
+				C7B5ECE028D0986D0036EC29 /* UnivEmailDomainDataModel.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -2264,6 +2267,7 @@
 				C7F3F6DD27D5192D00E12888 /* ResendSignUpMailResponseModel.swift in Sources */,
 				3391E497278B7AC50079EA31 /* ClassroomQuestionTVC.swift in Sources */,
 				331364702785B18100E0C118 /* UserDefaults+.swift in Sources */,
+				C7B5ECE128D0986D0036EC29 /* UnivEmailDomainDataModel.swift in Sources */,
 				33C50100281A4E24004AAEEE /* Navigator.swift in Sources */,
 				33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */,
 				C790A270289D57C900A67135 /* HomeFooterCell.swift in Sources */,
