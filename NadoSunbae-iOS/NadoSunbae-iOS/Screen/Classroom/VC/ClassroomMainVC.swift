@@ -210,8 +210,9 @@ extension ClassroomMainVC: UITableViewDelegate {
             headerView.reactor = ClassroomMainReactor()
             
             headerView.rx.tapSegmentedControl
-                .map { Reactor.Action.tapQuestionSegment }
+                .map { Reactor.Action.tapSegment(type: headerView.classroomSegmentedControl.selectedSegmentIndex) }
                 .bind(to: reactor!.action)
+                .disposed(by: disposeBag)
             
             return headerView
         }

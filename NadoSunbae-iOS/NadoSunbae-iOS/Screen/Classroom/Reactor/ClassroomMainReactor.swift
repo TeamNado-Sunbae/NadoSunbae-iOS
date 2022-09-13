@@ -21,8 +21,7 @@ final class ClassroomMainReactor: Reactor {
     enum Action {
         case tapFilterBtn
         case tapArrangeBtn
-        case tapReviewSegment
-        case tapQuestionSegment
+        case tapSegment(type: Int)
     }
     
     // MARK: Mutation
@@ -58,16 +57,10 @@ extension ClassroomMainReactor {
         case .tapArrangeBtn:
             let btnState = currentState.isArrangeBtnSelected ? false : true
             return Observable.concat(Observable.just(.setArrangeBtnSelection(btnState)))
-        case .tapReviewSegment:
+        case .tapSegment(let type):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                Observable.just(.setClassroomMainTV(type: 0)).delay(.seconds(1), scheduler: MainScheduler.instance),
-                Observable.just(.setLoading(loading: false))
-            ])
-        case .tapQuestionSegment:
-            return Observable.concat([
-                Observable.just(.setLoading(loading: true)),
-                Observable.just(.setClassroomMainTV(type: 1)).delay(.seconds(1), scheduler: MainScheduler.instance),
+                Observable.just(.setClassroomMainTV(type: type)),
                 Observable.just(.setLoading(loading: false))
             ])
         }
