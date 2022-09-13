@@ -15,10 +15,10 @@ enum ModalType {
     case search
 }
 
-class HalfModalVC: UIViewController {
+class HalfModalVC: BaseVC {
     
     // MARK: Components
-    private let titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.font = .PretendardM(size: 16)
         $0.textColor = .black
         $0.text = "학과선택"
@@ -32,19 +32,19 @@ class HalfModalVC: UIViewController {
         $0.backgroundColor = .mainDefault
     }
     
-    private let majorTV = UITableView()
+    let majorTV = UITableView()
     
     private let completeBtn = NadoSunbaeBtn().then {
         $0.isActivated = false
         $0.setTitle("선택 완료", for: .normal)
     }
     
-    private let searchTextField = NadoTextField().then {
+    let searchTextField = NadoTextField().then {
         $0.setSearchStyle()
     }
 
     // MARK: Properties
-    private var majorList: [MajorInfoModel] = []
+    var majorList: [MajorInfoModel] = []
     var selectMajorDelegate: SendUpdateModalDelegate?
     var selectFilterDelegate: SendUpdateStatusDelegate?
     var vcType: ModalType = .basic
@@ -64,7 +64,7 @@ class HalfModalVC: UIViewController {
 
 // MARK: - UI
 extension HalfModalVC {
-    private func configureUI(type: ModalType) {
+    func configureUI(type: ModalType) {
         view.backgroundColor = .white
         view.addSubviews([titleLabel, cancelBtn, lineView, majorTV, completeBtn, searchTextField])
         
