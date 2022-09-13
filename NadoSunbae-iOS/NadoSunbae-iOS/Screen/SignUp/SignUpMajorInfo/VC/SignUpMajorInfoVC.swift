@@ -235,37 +235,3 @@ extension SignUpMajorInfoVC: SendUpdateModalDelegate {
         checkNextBtnIsEnabled()
     }
 }
-
-// MARK: - Network
-
-/// 학과 정보 리스트 조회
-//extension SignUpMajorInfoVC {
-//    private func requestGetMajorList(univID: Int, filterType: String) {
-//        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
-//            switch networkResult {
-//
-//            case .success(let res):
-//                debugPrint("res", res)
-//                var list: [MajorInfoModel] = []
-//                DispatchQueue.main.async {
-//                    if let data = res as? [MajorListData] {
-//                        for i in 0...data.count - 1 {
-//                            list.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
-//                        }
-//                        MajorInfo.shared.majorList = list
-//                    }
-//                }
-//            case .requestErr(let msg):
-//                if let message = msg as? String {
-//                    print(message)
-//                }
-//            case .pathErr:
-//                print("pathErr")
-//            case .serverErr:
-//                print("serverErr")
-//            case .networkFail:
-//                print("networkFail")
-//            }
-//        }
-//    }
-//}
