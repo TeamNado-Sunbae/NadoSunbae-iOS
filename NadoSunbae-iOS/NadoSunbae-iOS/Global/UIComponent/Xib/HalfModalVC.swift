@@ -41,6 +41,7 @@ class HalfModalVC: UIViewController {
     
     private let searchTextField = NadoTextField().then {
         $0.setSearchStyle()
+        $0.returnKeyType = .done
     }
 
     // MARK: Properties
@@ -56,7 +57,7 @@ class HalfModalVC: UIViewController {
         configureUI(type: vcType)
         majorList = MajorInfo.shared.majorList ?? []
         setUpTV()
-        majorTV.reloadData()
+        setUpDelegate()
         tapCancelBtnAction()
         tapCompleteBtnAction()
     }
@@ -146,6 +147,10 @@ extension HalfModalVC {
         majorTV.separatorStyle = .none
     }
     
+    private func setUpDelegate() {
+        searchTextField.delegate = self
+    }
+    
     private func tapCancelBtnAction() {
         cancelBtn.press { [weak self] in
             self?.dismiss(animated: true)
@@ -175,6 +180,14 @@ extension HalfModalVC {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
             })
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension HalfModalVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
     }
 }
 
