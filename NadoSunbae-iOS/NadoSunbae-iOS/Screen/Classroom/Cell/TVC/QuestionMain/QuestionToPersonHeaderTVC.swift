@@ -48,10 +48,16 @@ extension QuestionToPersonHeaderTVC {
         backgroundColor = .paleGray
     }
     
+    /// 더보기 버튼을 숨기는 메서드
     func hideSeeMoreBtn() {
         seeMoreBtn.isHidden = true
     }
+}
+
+// MARK: - Custom Methods
+extension QuestionToPersonHeaderTVC {
     
+    /// header label의 text를 설정하는 메서드
     func setHeaderLabelText(headerText: String) {
         headerLabel.text = headerText
     }
