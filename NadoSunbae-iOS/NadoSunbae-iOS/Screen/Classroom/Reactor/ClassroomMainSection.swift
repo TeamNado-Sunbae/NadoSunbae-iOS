@@ -16,7 +16,11 @@ enum ClassroomMainSection {
 enum ClassroomMainSectionItem {
     case imageCell
     case reviewPostCell(ReviewPostModel)
+    case findPersonHeaderCell
+    case findPersonCell
+    case recentQuestionHeaderCell
     case questionCell
+    case emptyCell
 }
 
 // MARK: - ClassroomMainSection

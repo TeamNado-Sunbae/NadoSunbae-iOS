@@ -48,6 +48,22 @@ final class ClassroomMainVC: BaseVC, View {
         case .questionCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className, for: indexPath)
             return cell
+        case .findPersonHeaderCell:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionToPersonHeaderTVC.className, for: indexPath) as? QuestionToPersonHeaderTVC else { return UITableViewCell() }
+            cell.setHeaderLabelText(headerText: "우리 과 선배 찾기")
+            return cell
+        case .findPersonCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AvailableQuestionPersonTVC.className, for: indexPath)
+            return cell
+        case .recentQuestionHeaderCell:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionToPersonHeaderTVC.className, for: indexPath) as? QuestionToPersonHeaderTVC else { return UITableViewCell() }
+            cell.hideSeeMoreBtn()
+            cell.setHeaderLabelText(headerText: "최근 1:1 질문")
+            return cell
+        case .emptyCell:
+            let cell = UITableViewCell()
+            cell.backgroundColor = .paleGray
+            return cell
         }
     })
     
@@ -146,6 +162,8 @@ extension ClassroomMainVC {
         ReviewMainPostTVC.register(target: reviewTV)
         reviewTV.register(ClassroomMainHeaderView.self, forHeaderFooterViewReuseIdentifier: ClassroomMainHeaderView.className)
         ReviewEmptyTVC.register(target: reviewTV)
+        QuestionToPersonHeaderTVC.register(target: reviewTV)
+        AvailableQuestionPersonTVC.register(target: reviewTV)
     }
     
     /// tableView setting 함수
@@ -226,6 +244,16 @@ extension ClassroomMainVC: UITableViewDelegate {
         } else {
             return 0
         }
+    }
+    
+    /// heightForRowAt
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            if indexPath.row == 2 {
+                return 16
+            }
+        }
+        return UITableView.automaticDimension
     }
 }
 
