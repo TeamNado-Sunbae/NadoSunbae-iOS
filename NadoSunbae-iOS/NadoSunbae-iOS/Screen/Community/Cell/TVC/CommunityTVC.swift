@@ -44,8 +44,8 @@ extension CommunityTVC {
 
 // MARK: - Custom Methods
 extension CommunityTVC {
-    func setCommunityData(data: CommunityPostList) {
-        categoryLabel.text = data.category
+    func setCommunityData(data: PostListResModel) {
+        categoryLabel.text = data.type
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.writer.nickname

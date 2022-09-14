@@ -21,13 +21,13 @@ final class CommunitySearchReactor: Reactor {
     // MARK: represent state changes
     enum Mutation {
         case setLoading(loading: Bool)
-        case requestSearchList(searchList: [CommunityPostList])
+        case requestSearchList(searchList: [PostListResModel])
     }
     
     // MARK: represent the current view state
     struct State {
         var loading: Bool = false
-        var searchList: [CommunityPostList] = []
+        var searchList: [PostListResModel] = []
     }
 }
 
@@ -69,11 +69,7 @@ extension CommunitySearchReactor {
     private func requestSearchListRx(searchKeyword: String) -> Observable<Mutation> {
         return Observable.create { observer in
             let dummyEntireList = [
-                CommunityPostList(category: "전체", postID: 1, title: searchKeyword, content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: searchKeyword, content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: searchKeyword, content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: searchKeyword, content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: searchKeyword, content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
+                PostListResModel(postID: 0, type: "전체", title: "ㅇㅇ", content: "ㅇㅇ", createdAt: "", majorName: "", writer: CommunityWriter(writerID: 0, nickname: ""), commentCount: 0, like: Like(isLiked: false, likeCount: 0))
             ].shuffled()
             
             observer.onNext(Mutation.requestSearchList(searchList: dummyEntireList))
