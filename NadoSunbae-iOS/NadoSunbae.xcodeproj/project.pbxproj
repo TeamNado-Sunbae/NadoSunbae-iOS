@@ -68,8 +68,6 @@
 		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
 		336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4227DA77700010A9E3 /* FirebaseMessaging */; };
 		3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */; };
-		3381083827D53F33005AF1F9 /* MypageReviewLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */; };
-		3381083A27D53F4A005AF1F9 /* MypageClassroomPostListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083927D53F4A005AF1F9 /* MypageClassroomPostListVC.swift */; };
 		33834A1527D5F66E001C4947 /* MypageLikePostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33834A1427D5F66E001C4947 /* MypageLikePostType.swift */; };
 		33834A1727D60530001C4947 /* MypageLikeListSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33834A1627D60530001C4947 /* MypageLikeListSB.storyboard */; };
 		33834A1927D63245001C4947 /* MypageLikePostDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33834A1827D63245001C4947 /* MypageLikePostDataModel.swift */; };
@@ -392,8 +390,6 @@
 		336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionInfo.swift; sourceTree = "<group>"; };
 		336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
-		3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageReviewLikeVC.swift; sourceTree = "<group>"; };
-		3381083927D53F4A005AF1F9 /* MypageClassroomPostListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageClassroomPostListVC.swift; sourceTree = "<group>"; };
 		33834A1427D5F66E001C4947 /* MypageLikePostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikePostType.swift; sourceTree = "<group>"; };
 		33834A1627D60530001C4947 /* MypageLikeListSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageLikeListSB.storyboard; sourceTree = "<group>"; };
 		33834A1827D63245001C4947 /* MypageLikePostDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikePostDataModel.swift; sourceTree = "<group>"; };
@@ -1049,8 +1045,6 @@
 			children = (
 				33834A1627D60530001C4947 /* MypageLikeListSB.storyboard */,
 				3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */,
-				3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */,
-				3381083927D53F4A005AF1F9 /* MypageClassroomPostListVC.swift */,
 			);
 			path = LikeList;
 			sourceTree = "<group>";
@@ -2211,7 +2205,6 @@
 				C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */,
 				33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */,
 				338DED1728A28B68002E544A /* CommunitySearchReactor.swift in Sources */,
-				3381083827D53F33005AF1F9 /* MypageReviewLikeVC.swift in Sources */,
 				C71BF23427CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */,
@@ -2231,7 +2224,6 @@
 				330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */,
 				33E1E19627C7F51A0057C066 /* QnAType.swift in Sources */,
 				C71BF22B27CCC9880030DCB9 /* RequestBlockUnblockUserModel.swift in Sources */,
-				3381083A27D53F4A005AF1F9 /* MypageClassroomPostListVC.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */,
 				33C79DCB287F350100B6C32C /* NadoSegmentedControl.swift in Sources */,

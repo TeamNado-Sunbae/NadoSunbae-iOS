@@ -180,6 +180,8 @@ extension MypagePostListVC: SendSegmentStateDelegate {
 // MARK: - UI
 extension MypagePostListVC {
     private func configureUI() {
+        view.backgroundColor = .bgGray
+        
         view.addSubviews([naviView, postListSegmentControl, postListSV])
         postListSV.addSubview(contentView)
         contentView.addSubview(postListTV)
