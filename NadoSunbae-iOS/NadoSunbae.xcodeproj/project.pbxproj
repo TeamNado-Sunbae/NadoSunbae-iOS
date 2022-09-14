@@ -63,6 +63,10 @@
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
 		3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
+		335D91AB28D05758000C05EF /* QuestionToPersonHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */; };
+		335D91AD28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AC28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift */; };
+		335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */; };
+		336216B128D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */; };
 		336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */; };
 		336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */; };
 		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
@@ -92,7 +96,6 @@
 		33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BA288B0E9E009BA6DE /* RxCocoa */; };
 		33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BC288B0E9E009BA6DE /* RxRelay */; };
 		33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BE288B0E9E009BA6DE /* RxSwift */; };
-		33B2010228B8CA1500F9AE3B /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B2010128B8CA1500F9AE3B /* APIConstants.swift */; };
 		33B9B0D327B8EAC200066C1F /* InfoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D227B8EAC200066C1F /* InfoDetailVC.swift */; };
 		33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */; };
 		33B9B0D827B8EB2A00066C1F /* InfoCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */; };
@@ -388,6 +391,10 @@
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBlockedInfoDelegate.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
+		335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionToPersonHeaderTVC.swift; sourceTree = "<group>"; };
+		335D91AC28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonTVC.swift; sourceTree = "<group>"; };
+		335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreQuestionPersonCVC.swift; sourceTree = "<group>"; };
+		336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonCVC.swift; sourceTree = "<group>"; };
 		336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionInfo.swift; sourceTree = "<group>"; };
 		336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
@@ -1036,6 +1043,8 @@
 			isa = PBXGroup;
 			children = (
 				331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */,
+				335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */,
+				336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */,
 				331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */,
 				331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */,
 			);
@@ -1227,12 +1236,14 @@
 		33CF63632794A04C00E92C04 /* QuestionMain */ = {
 			isa = PBXGroup;
 			children = (
+				331C5381279629620052B309 /* BaseQuestionTVC.swift */,
 				33CF635D2794877800E92C04 /* QuestionTVC.swift */,
+				331C5383279629D30052B309 /* EntireQuestionListTVC.swift */,
 				33CF635F2794A03300E92C04 /* QuestionHeaderTVC.swift */,
 				33CF63612794A04700E92C04 /* QuestionFooterTVC.swift */,
 				33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */,
-				331C5381279629620052B309 /* BaseQuestionTVC.swift */,
-				331C5383279629D30052B309 /* EntireQuestionListTVC.swift */,
+				335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */,
+				335D91AC28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift */,
 			);
 			path = QuestionMain;
 			sourceTree = "<group>";
@@ -1352,6 +1363,7 @@
 			children = (
 				5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */,
 				775BAFD627D9353700DB37EB /* UserAuthInfo.swift */,
+				33B2010128B8CA1500F9AE3B /* APIConstants.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -2133,7 +2145,6 @@
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
 				775728AC27D65E8900148C9A /* OnboardingDataModel.swift in Sources */,
-				33B2010228B8CA1500F9AE3B /* APIConstants.swift in Sources */,
 				33E2CFC5287B112D007CD19A /* SignUpNC.swift in Sources */,
 				C790A278289E29D900A67135 /* UIImageView+.swift in Sources */,
 				3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */,
@@ -2169,6 +2180,7 @@
 				331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */,
 				5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
+				335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */,
 				77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */,
 				5CF1F37D278C4E4E007B8DE9 /* SelectMajorModalTVC.swift in Sources */,
 				77A7593C2799C81B00A8E48B /* ReviewPostDetailData.swift in Sources */,
@@ -2207,6 +2219,7 @@
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */,
 				33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */,
+				335D91AB28D05758000C05EF /* QuestionToPersonHeaderTVC.swift in Sources */,
 				338DED1728A28B68002E544A /* CommunitySearchReactor.swift in Sources */,
 				C71BF23427CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
@@ -2302,6 +2315,7 @@
 				5C9A93F727A64B550097310B /* SignUpBodyModel.swift in Sources */,
 				5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */,
 				33CF635427945C1200E92C04 /* SendSegmentStateDelegate.swift in Sources */,
+				335D91AD28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				777C18D627D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
@@ -2313,6 +2327,7 @@
 				77AEEB4E2789AF900016880B /* CVRegisterable.swift in Sources */,
 				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
+				336216B128D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift in Sources */,
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
 				C71BF24227CDC2B30030DCB9 /* SignOutResponseModel.swift in Sources */,
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
