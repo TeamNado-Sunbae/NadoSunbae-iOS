@@ -12,11 +12,11 @@ import Then
 class QuestionPersonCVC: CodeBaseCVC {
     
     // MARK: Properties
-    private let personProfileImageView = UIImageView().then {
-        $0.image = UIImage(named: "imgProfile")
+    private (set) lazy var personProfileImageView = NadoMaskedImgView().then {
+        $0.maskImg = UIImage(named: "property172")
     }
     
-    private let nicknameLabel = UILabel().then {
+    private (set) lazy var nicknameLabel = UILabel().then {
         $0.textColor = .nadoBlack
         $0.font = .PretendardSB(size: 14.0)
         $0.sizeToFit()
@@ -51,7 +51,8 @@ class QuestionPersonCVC: CodeBaseCVC {
 extension QuestionPersonCVC {
     
     /// UI구성 메서드
-    private func configureUI() {
+    @objc
+    func configureUI() {
         self.addSubviews([personProfileImageView, nicknameLabel, majorNameStackView])
         majorNameStackView.addArrangedSubview(majorLabel)
         majorNameStackView.addArrangedSubview(majorStartLabel)
