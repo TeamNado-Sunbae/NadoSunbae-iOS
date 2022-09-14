@@ -28,7 +28,10 @@ final class CommunityMainVC: BaseVC, View {
         $0.backgroundColor = .paleGray
     }
     
-    private let communitySegmentedControl = NadoSegmentedControl(items: CommunityType.allCases.map { $0.name })
+    private let communitySegmentedControl = NadoSegmentedControl(items: [PostFilterType.community.name,
+                                                                         PostFilterType.general.name,
+                                                                         PostFilterType.questionToEveryone.name,
+                                                                         PostFilterType.information.name])
     private let filterBtn = UIButton().then {
         $0.setImgByName(name: "btnCommunityFilter", selectedName: "btnCommunityFilterFilled")
     }
@@ -80,20 +83,21 @@ extension CommunityMainVC {
                 
                 switch selectIndex {
                 case 1:
-                    return CommunityMainReactor.Action.freedomSegmentDidTap
+                    return CommunityMainReactor.Action.reloadCommunityTV(type: .general)
                 case 2:
-                    return CommunityMainReactor.Action.questionSegmentDidTap
+                    return CommunityMainReactor.Action.reloadCommunityTV(type: .questionToEveryone)
                 case 3:
-                    return CommunityMainReactor.Action.infoSegmentDidTap
+                    return CommunityMainReactor.Action.reloadCommunityTV(type: .information)
                 default:
-                    return CommunityMainReactor.Action.entireSegmentDidTap
+                    return CommunityMainReactor.Action.reloadCommunityTV(type: .community)
                 }
             }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         naviView.rightCustomBtn.rx.tap
-            .map { print("검색 버튼 클릭")
+            .map {
+                print("검색 버튼 클릭")
                 return CommunityMainReactor.Action.searchBtnDidTap }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -118,6 +122,7 @@ extension CommunityMainVC {
         reactor.state
             .map { $0.communityList }
             .bind(to: communityTV.rx.items) { tableView, index, item in
+                
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
                 
@@ -146,7 +151,12 @@ extension CommunityMainVC {
             .map { $0 }
             .subscribe(onNext: { [weak self] loading in
                 self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
-                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+                if loading {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                    self?.communitySV.contentOffset.y = 0
+                }
             })
             .disposed(by: disposeBag)
         
@@ -161,7 +171,7 @@ extension CommunityMainVC {
     }
     
     private func setUpInitAction() {
-        reactor?.action.onNext(.reloadCommunityTV(type: .entire))
+        reactor?.action.onNext(.reloadCommunityTV(majorID: 0, type: .community, sort: "recent", search: ""))
     }
 }
 
