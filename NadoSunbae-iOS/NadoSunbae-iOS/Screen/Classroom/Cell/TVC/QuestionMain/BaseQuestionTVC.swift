@@ -126,7 +126,18 @@ extension BaseQuestionTVC {
 
 // MARK: - Custom Methods
 extension BaseQuestionTVC {
+    // TODO: 날잡고 Issue 파서 PostListResModel로 바꿀 예정 (얽혀있는 VC들이 많아서 다음에 작업단위 나눠서 처리할게요-!)
     func setData(data: ClassroomPostList) {
+        questionTitleLabel.text = data.title
+        questionContentLabel.text = data.content
+        nicknameLabel.text = data.writer.nickname
+        questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
+        commentCountLabel.text = "\(data.commentCount)"
+        likeCountLabel.text = "\(data.like.likeCount)"
+        likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
+    
+    func setPostData(data: PostListResModel) {
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.writer.nickname
