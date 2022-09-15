@@ -94,7 +94,7 @@ extension ClassroomMainReactor {
         let findPersonHeaderCell = ClassroomMainSectionItem.findPersonHeaderCell
         let findPersonCell = ClassroomMainSectionItem.findPersonCell
         let recentQuestionHeaderCell = ClassroomMainSectionItem.recentQuestionHeaderCell
-        let questionCell = ClassroomMainSectionItem.questionCell
+        let questionCell = ClassroomMainSectionItem.questionCell(RecentQuestionTVCReactor())
         let emptyCell = ClassroomMainSectionItem.emptyCell
         
         

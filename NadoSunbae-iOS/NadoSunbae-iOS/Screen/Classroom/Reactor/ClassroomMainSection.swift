@@ -19,7 +19,7 @@ enum ClassroomMainSectionItem {
     case findPersonHeaderCell
     case findPersonCell
     case recentQuestionHeaderCell
-    case questionCell
+    case questionCell(RecentQuestionTVCReactor)
     case emptyCell
 }
 

@@ -45,8 +45,9 @@ final class ClassroomMainVC: BaseVC, View {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className, for: indexPath) as? ReviewMainPostTVC else { return UITableViewCell() }
             cell.setData(data: model)
             return cell
-        case .questionCell:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className, for: indexPath)
+        case .questionCell(let reactor):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentQuestionTVC.className, for: indexPath) as? RecentQuestionTVC else { return UITableViewCell() }
+            cell.reactor = reactor
             return cell
         case .findPersonHeaderCell:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionToPersonHeaderTVC.className, for: indexPath) as? QuestionToPersonHeaderTVC else { return UITableViewCell() }
