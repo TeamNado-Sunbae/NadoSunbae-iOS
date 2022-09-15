@@ -34,6 +34,8 @@ final class ClassroomMainVC: BaseVC, View {
         $0.rowHeight = UITableView.automaticDimension
     }
     
+    private var recentQuestionCellHeight: CGFloat?
+    
     var disposeBag = DisposeBag()
     let dataSource: RxTableViewSectionedReloadDataSource<ClassroomMainSection> = RxTableViewSectionedReloadDataSource(configureCell: { _, tableView, indexPath, items -> UITableViewCell in
         
@@ -77,12 +79,17 @@ final class ClassroomMainVC: BaseVC, View {
         registerTVC()
         tapMajorSelectBtn()
         requestGetMajorList(univID: 1, filterType: "all")
+        NotificationCenter.default.addObserver(self, selector: #selector(getRecentQuestionHeight(notification:)), name: Notification.Name.sendChangedHeight, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setUpMajorLabel()
         showTabbar()
         makeScreenAnalyticsEvent(screenName: "ClassRoom Tab", screenClass: ClassroomMainVC.className)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.sendChangedHeight, object: nil)
     }
     
     func bind(reactor: ClassroomMainReactor) {
@@ -165,6 +172,7 @@ extension ClassroomMainVC {
         ReviewEmptyTVC.register(target: reviewTV)
         QuestionToPersonHeaderTVC.register(target: reviewTV)
         AvailableQuestionPersonTVC.register(target: reviewTV)
+        RecentQuestionTVC.register(target: reviewTV)
     }
     
     /// tableView setting 함수
@@ -202,6 +210,12 @@ extension ClassroomMainVC {
     /// 전공 Label text를 set하는 메서드
     private func setUpMajorLabel() {
         majorLabel.text = (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
+    }
+    
+    @objc
+    private func getRecentQuestionHeight(notification: Notification) {
+        recentQuestionCellHeight = notification.object as? CGFloat
+        reviewTV.reloadRows(at: [IndexPath(row: 4, section: 1)], with: .automatic)
     }
 }
 
@@ -250,8 +264,13 @@ extension ClassroomMainVC: UITableViewDelegate {
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1 {
-            if indexPath.row == 2 {
+            switch indexPath.row {
+            case 2:
                 return 16
+            case 4:
+                return recentQuestionCellHeight ?? 0
+            default:
+                return UITableView.automaticDimension
             }
         }
         return UITableView.automaticDimension
