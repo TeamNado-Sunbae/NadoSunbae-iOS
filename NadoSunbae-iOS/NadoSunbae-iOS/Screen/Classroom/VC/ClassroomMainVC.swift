@@ -34,6 +34,8 @@ final class ClassroomMainVC: BaseVC, View {
         $0.rowHeight = UITableView.automaticDimension
     }
     
+    private var recentQuestionCellHeight: CGFloat?
+    
     var disposeBag = DisposeBag()
     let dataSource: RxTableViewSectionedReloadDataSource<ClassroomMainSection> = RxTableViewSectionedReloadDataSource(configureCell: { _, tableView, indexPath, items -> UITableViewCell in
         
@@ -45,8 +47,25 @@ final class ClassroomMainVC: BaseVC, View {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className, for: indexPath) as? ReviewMainPostTVC else { return UITableViewCell() }
             cell.setData(data: model)
             return cell
-        case .questionCell:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReviewEmptyTVC.className, for: indexPath)
+        case .questionCell(let reactor):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentQuestionTVC.className, for: indexPath) as? RecentQuestionTVC else { return UITableViewCell() }
+            cell.reactor = reactor
+            return cell
+        case .findPersonHeaderCell:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionToPersonHeaderTVC.className, for: indexPath) as? QuestionToPersonHeaderTVC else { return UITableViewCell() }
+            cell.setHeaderLabelText(headerText: "우리 과 선배 찾기")
+            return cell
+        case .findPersonCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AvailableQuestionPersonTVC.className, for: indexPath)
+            return cell
+        case .recentQuestionHeaderCell:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionToPersonHeaderTVC.className, for: indexPath) as? QuestionToPersonHeaderTVC else { return UITableViewCell() }
+            cell.hideSeeMoreBtn()
+            cell.setHeaderLabelText(headerText: "최근 1:1 질문")
+            return cell
+        case .emptyCell:
+            let cell = UITableViewCell()
+            cell.backgroundColor = .paleGray
             return cell
         }
     })
@@ -60,12 +79,17 @@ final class ClassroomMainVC: BaseVC, View {
         registerTVC()
         tapMajorSelectBtn()
         requestGetMajorList(univID: 1, filterType: "all")
+        NotificationCenter.default.addObserver(self, selector: #selector(getRecentQuestionHeight(notification:)), name: Notification.Name.sendChangedHeight, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setUpMajorLabel()
         showTabbar()
         makeScreenAnalyticsEvent(screenName: "ClassRoom Tab", screenClass: ClassroomMainVC.className)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.sendChangedHeight, object: nil)
     }
     
     func bind(reactor: ClassroomMainReactor) {
@@ -146,6 +170,9 @@ extension ClassroomMainVC {
         ReviewMainPostTVC.register(target: reviewTV)
         reviewTV.register(ClassroomMainHeaderView.self, forHeaderFooterViewReuseIdentifier: ClassroomMainHeaderView.className)
         ReviewEmptyTVC.register(target: reviewTV)
+        QuestionToPersonHeaderTVC.register(target: reviewTV)
+        AvailableQuestionPersonTVC.register(target: reviewTV)
+        RecentQuestionTVC.register(target: reviewTV)
     }
     
     /// tableView setting 함수
@@ -184,6 +211,12 @@ extension ClassroomMainVC {
     private func setUpMajorLabel() {
         majorLabel.text = (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName)
     }
+    
+    @objc
+    private func getRecentQuestionHeight(notification: Notification) {
+        recentQuestionCellHeight = notification.object as? CGFloat
+        reviewTV.reloadRows(at: [IndexPath(row: 4, section: 1)], with: .automatic)
+    }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
@@ -210,8 +243,9 @@ extension ClassroomMainVC: UITableViewDelegate {
             headerView.reactor = ClassroomMainReactor()
             
             headerView.rx.tapSegmentedControl
-                .map { Reactor.Action.tapQuestionSegment }
+                .map { Reactor.Action.tapSegment(type: headerView.classroomSegmentedControl.selectedSegmentIndex) }
                 .bind(to: reactor!.action)
+                .disposed(by: disposeBag)
             
             return headerView
         }
@@ -225,6 +259,21 @@ extension ClassroomMainVC: UITableViewDelegate {
         } else {
             return 0
         }
+    }
+    
+    /// heightForRowAt
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 2:
+                return 16
+            case 4:
+                return recentQuestionCellHeight ?? 0
+            default:
+                return UITableView.automaticDimension
+            }
+        }
+        return UITableView.automaticDimension
     }
 }
 

@@ -21,8 +21,7 @@ final class ClassroomMainReactor: Reactor {
     enum Action {
         case tapFilterBtn
         case tapArrangeBtn
-        case tapReviewSegment
-        case tapQuestionSegment
+        case tapSegment(type: Int)
     }
     
     // MARK: Mutation
@@ -58,16 +57,10 @@ extension ClassroomMainReactor {
         case .tapArrangeBtn:
             let btnState = currentState.isArrangeBtnSelected ? false : true
             return Observable.concat(Observable.just(.setArrangeBtnSelection(btnState)))
-        case .tapReviewSegment:
+        case .tapSegment(let type):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                Observable.just(.setClassroomMainTV(type: 0)).delay(.seconds(1), scheduler: MainScheduler.instance),
-                Observable.just(.setLoading(loading: false))
-            ])
-        case .tapQuestionSegment:
-            return Observable.concat([
-                Observable.just(.setLoading(loading: true)),
-                Observable.just(.setClassroomMainTV(type: 1)).delay(.seconds(1), scheduler: MainScheduler.instance),
+                Observable.just(.setClassroomMainTV(type: type)),
                 Observable.just(.setLoading(loading: false))
             ])
         }
@@ -91,15 +84,27 @@ extension ClassroomMainReactor {
     
     static func configureSections(type: Int) -> [ClassroomMainSection] {
         let imageCell = ClassroomMainSectionItem.imageCell
+        
+        // Review Cell
         let reviewPostCell1 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 1, title: "안녕하세요안녕하세요안녕하세요", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "지은"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업")]))
         let reviewPostCell2 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 2, title: "더미데이터 입니당", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "은주"), like: ReviewPostModel.Like(isLiked: true, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업"), ReviewTagList(tagName: "힘든 수업")]))
         let reviewPostCell3 = ClassroomMainSectionItem.reviewPostCell(ReviewPostModel(postId: 3, title: "MVVM개어렵다...", createdAt: "22/08/15", writer: ReviewPostModel.Writer(writerId: 1, profileImageId: 1, nickname: "정빈"), like: ReviewPostModel.Like(isLiked: false, likeCount: 3), tagList: [ReviewTagList(tagName: "추천 수업")]))
-        let questionCell = ClassroomMainSectionItem.questionCell
         
+        // Question Cell
+        let findPersonHeaderCell = ClassroomMainSectionItem.findPersonHeaderCell
+        let findPersonCell = ClassroomMainSectionItem.findPersonCell
+        let recentQuestionHeaderCell = ClassroomMainSectionItem.recentQuestionHeaderCell
+        let questionCell = ClassroomMainSectionItem.questionCell(RecentQuestionTVCReactor())
+        let emptyCell = ClassroomMainSectionItem.emptyCell
+        
+        
+        // Configure Sections
         let imageSection = ClassroomMainSection.imageSection([imageCell])
         let reviewPostSection = ClassroomMainSection.reviewPostSection([reviewPostCell1, reviewPostCell2, reviewPostCell3])
-        let questionSection = ClassroomMainSection.questionPostSection([questionCell])
+        let questionSection = ClassroomMainSection.questionPostSection([findPersonHeaderCell, findPersonCell, emptyCell, recentQuestionHeaderCell, questionCell])
         
+        /// type: 0 -> Review Section
+        /// type: 1 -> Question Section
         if type == 0 {
             return [imageSection, reviewPostSection]
         } else {

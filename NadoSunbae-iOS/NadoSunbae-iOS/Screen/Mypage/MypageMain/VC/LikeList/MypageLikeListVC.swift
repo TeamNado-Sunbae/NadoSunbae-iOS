@@ -196,7 +196,8 @@ extension MypageLikeListVC: UITableViewDataSource {
             return cell
         case .community:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-            cell.setCommunityData(data: communityDummyData[indexPath.row])
+            // TODO: PostListResModel로 수정
+//            cell.setCommunityData(data: communityDummyData[indexPath.row])
             return cell
         }
     }
