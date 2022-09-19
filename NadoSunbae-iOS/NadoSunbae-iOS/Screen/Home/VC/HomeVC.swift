@@ -119,8 +119,9 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "선배랭킹")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        debugPrint("선배랭킹 more 버튼 클릭")
+                    subTitleCell.moreBtn.press { [weak self] in
+                        let rankingVC = RankingVC()
+                        self?.navigationController?.pushViewController(rankingVC, animated: true)
                     }
                     return subTitleCell
                 case 1:
