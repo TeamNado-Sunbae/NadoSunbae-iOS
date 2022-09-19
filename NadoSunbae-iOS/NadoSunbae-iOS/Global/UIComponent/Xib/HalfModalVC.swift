@@ -15,6 +15,10 @@ enum ModalType {
     case search
 }
 
+enum Section: CaseIterable {
+  case recent
+}
+
 class HalfModalVC: UIViewController {
     
     // MARK: Components
@@ -41,10 +45,14 @@ class HalfModalVC: UIViewController {
     
     private let searchTextField = NadoTextField().then {
         $0.setSearchStyle()
+        $0.returnKeyType = .done
     }
 
     // MARK: Properties
     private var majorList: [MajorInfoModel] = []
+    private var filteredList: [MajorInfoModel] = []
+    var dataSource: UITableViewDiffableDataSource<Section, MajorInfoModel>!
+    var snapshot: NSDiffableDataSourceSnapshot<Section, MajorInfoModel>!
     var selectMajorDelegate: SendUpdateModalDelegate?
     var selectFilterDelegate: SendUpdateStatusDelegate?
     var vcType: ModalType = .basic
@@ -54,9 +62,11 @@ class HalfModalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI(type: vcType)
+        searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         majorList = MajorInfo.shared.majorList ?? []
+        setUpDelegate()
         setUpTV()
-        majorTV.reloadData()
+        applySnapshot(filter: "")
         tapCancelBtnAction()
         tapCompleteBtnAction()
     }
@@ -136,14 +146,37 @@ extension HalfModalVC {
 
 // MARK: - Custom Methods
 extension HalfModalVC {
+    private func setUpDelegate() {
+        majorTV.delegate = self
+        searchTextField.delegate = self
+    }
     
-    /// TableView setting 함수
     private func setUpTV() {
+        majorTV.separatorStyle = .none
         MajorTVC.register(target: majorTV)
         
-        majorTV.dataSource = self
-        majorTV.delegate = self
-        majorTV.separatorStyle = .none
+        self.dataSource = UITableViewDiffableDataSource<Section, MajorInfoModel>(tableView: self.majorTV) { (tableView, indexPath, majorName) -> UITableViewCell? in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className, for: indexPath) as? MajorTVC else { preconditionFailure() }
+            
+            cell.cellType = self.cellType
+            cell.setData(majorName: majorName)
+            return cell
+        }
+    }
+    
+    private func applySnapshot(filter: String?) {
+        let filtered = self.majorList.filter { $0.majorName.contains(filter ?? "")}
+        
+        snapshot = NSDiffableDataSourceSnapshot<Section, MajorInfoModel>()
+        snapshot.appendSections([.recent])
+        if searchTextField.isEmpty {
+            filteredList = majorList
+            snapshot.appendItems(majorList, toSection: .recent)
+        } else {
+            filteredList = filtered
+            snapshot.appendItems(filtered)
+        }
+        self.dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     private func tapCancelBtnAction() {
@@ -157,8 +190,8 @@ extension HalfModalVC {
         completeBtn.press { [weak self] in
             guard let self = self else { return }
             
-            let selectedMajorName = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
-            let selectedMajorID = self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
+            let selectedMajorName = self.filteredList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
+            let selectedMajorID = self.filteredList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
 
             if let selectMajorDelegate = self.selectMajorDelegate {
                 MajorInfo.shared.selectedMajorName = selectedMajorName
@@ -178,25 +211,23 @@ extension HalfModalVC {
     }
 }
 
-// MARK: - UITableViewDelegate
-extension HalfModalVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54.adjustedH
+// MARK: - UITextFieldDelegate
+extension HalfModalVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
+    }
+            
+    @objc
+    func textFieldDidChange(_ sender: Any?) {
+        applySnapshot(filter: searchTextField.text)
     }
 }
 
 // MARK: - UITableViewDelegate
-extension HalfModalVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return majorList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className) as? MajorTVC else { return UITableViewCell() }
-        
-        cell.cellType = self.cellType
-        cell.setData(majorName: majorList[indexPath.row].majorName)
-        return cell
+extension HalfModalVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 54.adjustedH
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -204,4 +235,3 @@ extension HalfModalVC: UITableViewDataSource {
         completeBtn.titleLabel?.textColor = UIColor.mainDefault
     }
 }
-
