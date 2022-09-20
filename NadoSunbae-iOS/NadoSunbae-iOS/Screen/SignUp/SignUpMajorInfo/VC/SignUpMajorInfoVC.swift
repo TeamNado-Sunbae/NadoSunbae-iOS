@@ -101,7 +101,6 @@ class SignUpMajorInfoVC: BaseVC {
             if let selectedUnivID = self.univList.firstIndex(of: univTextField.text ?? "") {
                 let slideVC = SignUpModalVC()
                 slideVC.univID = selectedUnivID + 1
-                slideVC.setTitleLabel(title: enterType.rawValue)
                 slideVC.enterType = enterType
                 
                 switch enterType {
