@@ -7,31 +7,77 @@
 
 import UIKit
 
-class SignUpModalVC: HalfModalVC {
+class SignUpModalVC: BaseVC {
+    
+    // MARK: Components
+    private let titleLabel = UILabel().then {
+        $0.font = .PretendardM(size: 16)
+        $0.textColor = .black
+        $0.text = "학과선택"
+    }
+    
+    private let cancelBtn = UIButton().then {
+        $0.setImage(UIImage(named: "btnX"), for: .normal)
+    }
+    
+    private let lineView = UIView().then {
+        $0.backgroundColor = .mainDefault
+    }
+    
+    private let majorTV = UITableView().then {
+        $0.separatorStyle = .none
+    }
+    
+    private let completeBtn = NadoSunbaeBtn().then {
+        $0.isActivated = false
+        $0.setTitle("선택 완료", for: .normal)
+    }
+    
+    private let searchTextField = NadoTextField().then {
+        $0.setSearchStyle()
+        $0.returnKeyType = .done
+    }
     
     // MARK: Properties
     var enterType: SignUpMajorInfoEnterType = .firstMajor
     var univID = 0
-    var startList: [String] = []
+    private var startList: [String] = []
+    private var majorList: [MajorInfoModel] = []
+    private var filteredList: [MajorInfoModel] = []
+    private var dataSourceForMajor: UITableViewDiffableDataSource<Section, MajorInfoModel>?
+    private var snapshotForMajor: NSDiffableDataSourceSnapshot<Section, MajorInfoModel>?
+    private var dataSourceForStart: UITableViewDiffableDataSource<Section, String>?
+    private var snapshotForStart: NSDiffableDataSourceSnapshot<Section, String>?
+    var selectMajorDelegate: SendUpdateModalDelegate?
+    var vcType: ModalType = .basic
+    var cellType: MajorCellType = .basic
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI(type: vcType)
+        setCompleteBtnAction()
+        setUpSearchTextField()
+        setMajorTableViewDataSource()
         setData(enterType: enterType)
         setCompleteBtnAction()
+        setUpMajorTV()
+        tapCancelBtnAction()
+
     }
     
     private func setData(enterType: SignUpMajorInfoEnterType) {
         switch enterType {
         case .firstMajor:
             requestGetMajorList(univID: univID, filterType: "firstMajor")
-        case .firstMajorStart:
+            applySnapshotForMajor(filter: "")
+        case .firstMajorStart, .secondMajorStart:
             setStartList()
+            applySnapshotForStart()
         case .secondMajor:
             requestGetMajorList(univID: univID, filterType: "secondMajor")
-        case .secondMajorStart:
-            setStartList()
+            applySnapshotForMajor(filter: "")
         }
     }
     
@@ -41,12 +87,29 @@ class SignUpModalVC: HalfModalVC {
             self.startList.append("\(i)-1")
         }
         self.startList.append("15년 이전")
-        self.majorTV.reloadData()
+        applySnapshotForStart()
     }
     
-    /// 기존 completeBtn의 action을 제거하고, SignUp에 맞게 새로 action을 추가하는 메서드
+    private func setMajorTableViewDataSource() {
+        switch enterType {
+        case .firstMajor, .secondMajor:
+            self.dataSourceForMajor = UITableViewDiffableDataSource<Section, MajorInfoModel>(tableView: self.majorTV) { (tableView, indexPath, data) -> UITableViewCell? in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className, for: indexPath) as? MajorTVC else { preconditionFailure() }
+                cell.cellType = self.cellType
+                cell.setData(majorName: data)
+                return cell
+            }
+        case .firstMajorStart, .secondMajorStart:
+            self.dataSourceForStart = UITableViewDiffableDataSource<Section, String>(tableView: self.majorTV) { (tableView, indexPath, data) -> UITableViewCell? in
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className, for: indexPath) as? MajorTVC else { preconditionFailure() }
+                cell.cellType = self.cellType
+                cell.setMajorNameLabel(data: data)
+                return cell
+            }
+        }
+    }
+    
     private func setCompleteBtnAction() {
-        completeBtn.removeTarget(nil, action: nil, for: .allEvents)
         completeBtn.press {
             self.dismiss(animated: true, completion: {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
@@ -66,29 +129,43 @@ class SignUpModalVC: HalfModalVC {
             }
         }
     }
-}
-
-extension SignUpModalVC {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch enterType {
-        case .firstMajor, .secondMajor:
-            return majorList.count
-        case .firstMajorStart, .secondMajorStart:
-            return startList.count
-        }
+    
+    private func setUpMajorTV() {
+        majorTV.delegate = self
+        MajorTVC.register(target: majorTV)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className, for: indexPath) as? MajorTVC else { return UITableViewCell() }
+    private func setUpSearchTextField() {
+        searchTextField.delegate = self
+        searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    private func applySnapshotForMajor(filter: String?) {
+        let filtered = self.majorList.filter { $0.majorName.contains(filter ?? "")}
         
-        switch enterType {
-        case .firstMajor, .secondMajor:
-            cell.setData(majorName: majorList[indexPath.row].majorName)
-        case .firstMajorStart, .secondMajorStart:
-            cell.setData(majorName: startList[indexPath.row])
+        snapshotForMajor = NSDiffableDataSourceSnapshot<Section, MajorInfoModel>()
+        snapshotForMajor?.appendSections([.recent])
+        if searchTextField.isEmpty {
+            filteredList = majorList
+            snapshotForMajor?.appendItems(majorList, toSection: .recent)
+        } else {
+            filteredList = filtered
+            snapshotForMajor?.appendItems(filtered)
         }
-        
-        return cell
+        self.dataSourceForMajor?.apply(snapshotForMajor ?? NSDiffableDataSourceSnapshot<Section, MajorInfoModel>(), animatingDifferences: true)
+    }
+    
+    private func applySnapshotForStart() {
+        snapshotForStart = NSDiffableDataSourceSnapshot<Section, String>()
+        snapshotForStart?.appendSections([.recent])
+        snapshotForStart?.appendItems(startList, toSection: .recent)
+        self.dataSourceForStart?.apply(snapshotForStart ?? NSDiffableDataSourceSnapshot<Section, String>(), animatingDifferences: true)
+    }
+    
+    private func tapCancelBtnAction() {
+        cancelBtn.press { [weak self] in
+            self?.dismiss(animated: true)
+        }
     }
 }
 
@@ -107,7 +184,7 @@ extension SignUpModalVC {
                             self.majorList.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }
                         self.activityIndicator.stopAnimating()
-                        self.majorTV.reloadData()
+                        self.applySnapshotForMajor(filter: "")
                     }
                 }
             case .requestErr(let msg):
@@ -119,6 +196,110 @@ extension SignUpModalVC {
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension SignUpModalVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
+    }
+            
+    @objc
+    func textFieldDidChange(_ sender: Any?) {
+        applySnapshotForMajor(filter: searchTextField.text)
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension SignUpModalVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 54.adjustedH
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        completeBtn.isActivated = true
+        completeBtn.titleLabel?.textColor = UIColor.mainDefault
+    }
+}
+
+
+// MARK: - UI
+extension SignUpModalVC {
+    private func setTitleLabel(title: String) {
+        titleLabel.text = title
+    }
+    
+    private func configureUI(type: ModalType) {
+        view.backgroundColor = .white
+        setTitleLabel(title: enterType.rawValue)
+        
+        view.addSubviews([titleLabel, cancelBtn, lineView, majorTV, completeBtn, searchTextField])
+        
+        switch type {
+        case .basic:
+            titleLabel.snp.makeConstraints {
+                $0.top.leading.equalToSuperview().inset(24)
+            }
+            
+            cancelBtn.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(12)
+                $0.trailing.equalToSuperview().inset(16)
+            }
+            
+            lineView.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(15)
+                $0.leading.trailing.equalToSuperview().inset(16)
+                $0.height.equalTo(1)
+            }
+            
+            majorTV.snp.makeConstraints {
+                $0.top.equalTo(lineView.snp.bottom).offset(20)
+                $0.leading.trailing.equalToSuperview().inset(32)
+            }
+            
+            completeBtn.snp.makeConstraints {
+                $0.top.equalTo(majorTV.snp.bottom).offset(27)
+                $0.leading.trailing.equalToSuperview().inset(32)
+                $0.bottom.equalToSuperview().inset(34)
+                $0.height.equalTo(60)
+            }
+            
+        case .search:
+            titleLabel.snp.makeConstraints {
+                $0.top.leading.equalToSuperview().inset(24)
+            }
+            
+            cancelBtn.snp.makeConstraints {
+                $0.top.equalToSuperview().inset(12)
+                $0.trailing.equalToSuperview().inset(16)
+            }
+            
+            lineView.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(15)
+                $0.leading.trailing.equalToSuperview().inset(16)
+                $0.height.equalTo(1)
+            }
+            
+            searchTextField.snp.makeConstraints {
+                $0.top.equalTo(lineView.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview().inset(28)
+                $0.height.equalTo(48)
+            }
+            
+            majorTV.snp.makeConstraints {
+                $0.top.equalTo(searchTextField.snp.bottom).offset(12)
+                $0.leading.trailing.equalToSuperview().inset(32)
+            }
+            
+            completeBtn.snp.makeConstraints {
+                $0.top.equalTo(majorTV.snp.bottom).offset(27)
+                $0.leading.trailing.equalToSuperview().inset(32)
+                $0.bottom.equalToSuperview().inset(34)
+                $0.height.equalTo(60)
             }
         }
     }
