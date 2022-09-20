@@ -19,7 +19,6 @@ final class HomeBannerTVC: BaseTVC {
     private lazy var pageControl = UIPageControl().then {
         $0.pageIndicatorTintColor = .init(white: 1, alpha: 0.5)
         $0.currentPageIndicatorTintColor = .white
-        $0.numberOfPages = bannerImaURLsData.count - 2
         $0.isUserInteractionEnabled = false
     }
     
@@ -33,7 +32,8 @@ final class HomeBannerTVC: BaseTVC {
     }
     
     /// 첫 인덱스 -> 마지막 이미지, 마지막 인덱스 -> 첫 이미지 추가하기!
-    private var bannerImaURLsData = ["https://user-images.githubusercontent.com/43312096/183249441-5ad2cffb-db34-421a-a23c-915415c0593a.png", "https://user-images.githubusercontent.com/43312096/183249428-0c5b531b-6290-40c3-80ec-2517c9c990f8.png", "https://user-images.githubusercontent.com/43312096/183249432-034f6b8b-5518-49ce-bd69-4e6f4764b071.png", "https://user-images.githubusercontent.com/43312096/183249433-17ae6687-1632-423b-929b-6c57ac51edf3.png", "https://user-images.githubusercontent.com/43312096/183249439-97333cf5-a88d-4d72-8dca-9641e4587260.png", "https://user-images.githubusercontent.com/43312096/183249441-5ad2cffb-db34-421a-a23c-915415c0593a.png", "https://user-images.githubusercontent.com/43312096/183249428-0c5b531b-6290-40c3-80ec-2517c9c990f8.png"]
+    private var bannerImaURLsData = ["", "", "", "", ""]
+    private var bannerRedirectURLsData: [String] = []
     
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,6 +41,7 @@ final class HomeBannerTVC: BaseTVC {
         
         configureUI()
         setBannerCV()
+        getBannerList()
     }
     
     required init?(coder: NSCoder) {
@@ -57,6 +58,10 @@ final class HomeBannerTVC: BaseTVC {
         DispatchQueue.main.async {
             self.bannerCV.scrollToItem(at: [0, 1], at: .left, animated: false)
         }
+    }
+    
+    private func setPageControl() {
+        pageControl.numberOfPages = bannerImaURLsData.count - 2
     }
 }
 
@@ -106,6 +111,30 @@ extension HomeBannerTVC {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(8)
             $0.height.equalTo(8)
+        }
+    }
+}
+
+// MARK: - Network
+extension HomeBannerTVC {
+    private func getBannerList() {
+        HomeAPI.shared.getBannerList { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? GetBannerListResponseData {
+                    self.bannerImaURLsData = []
+                    data.forEach {
+                        self.bannerImaURLsData.append($0.imageURL)
+                        self.bannerRedirectURLsData.append($0.redirectURL)
+                    }
+                    self.bannerImaURLsData.insert(self.bannerImaURLsData[data.count - 1], at: 0)
+                    self.bannerImaURLsData.append(self.bannerImaURLsData[1])
+                    self.setPageControl()
+                    self.bannerCV.reloadData()
+                }
+            default:
+                debugPrint(#function, "network error")
+            }
         }
     }
 }
