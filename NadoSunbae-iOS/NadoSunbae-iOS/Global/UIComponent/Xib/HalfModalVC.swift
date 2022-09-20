@@ -18,7 +18,7 @@ enum ModalType {
 class HalfModalVC: BaseVC {
     
     // MARK: Components
-    let titleLabel = UILabel().then {
+    private let titleLabel = UILabel().then {
         $0.font = .PretendardM(size: 16)
         $0.textColor = .black
         $0.text = "학과선택"
@@ -39,7 +39,7 @@ class HalfModalVC: BaseVC {
         $0.setTitle("선택 완료", for: .normal)
     }
     
-    let searchTextField = NadoTextField().then {
+    private let searchTextField = NadoTextField().then {
         $0.setSearchStyle()
     }
 
@@ -64,7 +64,11 @@ class HalfModalVC: BaseVC {
 
 // MARK: - UI
 extension HalfModalVC {
-    func configureUI(type: ModalType) {
+    func setTitleLabel(title: String) {
+        titleLabel.text = title
+    }
+    
+    private func configureUI(type: ModalType) {
         view.backgroundColor = .white
         view.addSubviews([titleLabel, cancelBtn, lineView, majorTV, completeBtn, searchTextField])
         
