@@ -63,13 +63,17 @@
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
 		3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
+		335D91AB28D05758000C05EF /* QuestionToPersonHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */; };
+		335D91AD28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AC28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift */; };
+		335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */; };
+		336216B128D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */; };
+		336216B328D2014C00FEA3E9 /* RecentQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B228D2014C00FEA3E9 /* RecentQuestionTVC.swift */; };
+		336216B528D2064900FEA3E9 /* RecentQuestionTVCReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B428D2064900FEA3E9 /* RecentQuestionTVCReactor.swift */; };
 		336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */; };
 		336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */; };
 		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
 		336EEE4327DA77700010A9E3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4227DA77700010A9E3 /* FirebaseMessaging */; };
 		3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */; };
-		3381083827D53F33005AF1F9 /* MypageReviewLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */; };
-		3381083A27D53F4A005AF1F9 /* MypageClassroomPostListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3381083927D53F4A005AF1F9 /* MypageClassroomPostListVC.swift */; };
 		33834A1527D5F66E001C4947 /* MypageLikePostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33834A1427D5F66E001C4947 /* MypageLikePostType.swift */; };
 		33834A1727D60530001C4947 /* MypageLikeListSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33834A1627D60530001C4947 /* MypageLikeListSB.storyboard */; };
 		33834A1927D63245001C4947 /* MypageLikePostDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33834A1827D63245001C4947 /* MypageLikePostDataModel.swift */; };
@@ -104,6 +108,9 @@
 		33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */; };
 		33BAFD03278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */; };
 		33BAFD05278C061C00BFF6BE /* DefaultQuestionChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */; };
+		33BD384128C9ABB6005528DD /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD384028C9ABB6005528DD /* APIConstants.swift */; };
+		33BD384328C9AC73005528DD /* PostListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD384228C9AC73005528DD /* PostListResModel.swift */; };
+		33BD384528C9AF15005528DD /* PostFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD384428C9AF15005528DD /* PostFilterType.swift */; };
 		33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */; };
 		33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BE2D48278982E0000FB6C8 /* BaseNC.swift */; };
 		33BE2D6A2789D605000FB6C8 /* NadoSunbaeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */; };
@@ -114,7 +121,6 @@
 		33C79DCB287F350100B6C32C /* NadoSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */; };
 		33C79DCF2881B28900B6C32C /* CommunityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C79DCE2881B28900B6C32C /* CommunityTVC.swift */; };
 		33C79DD22881B50D00B6C32C /* CommunityPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C79DD12881B50D00B6C32C /* CommunityPostList.swift */; };
-		33C9A405288C68FD00436D16 /* CommunityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9A404288C68FD00436D16 /* CommunityType.swift */; };
 		33CF634F27945C0400E92C04 /* NadoSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634D27945C0300E92C04 /* NadoSegmentView.swift */; };
 		33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */; };
 		33CF635227945C0900E92C04 /* NadoHorizonContainerViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */; };
@@ -260,7 +266,6 @@
 		77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4B2789AF900016880B /* TVRegisterable.swift */; };
 		77AEEB4E2789AF900016880B /* CVRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4C2789AF900016880B /* CVRegisterable.swift */; };
 		77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */; };
-		77BAD54228C8775D006C2733 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BAD54128C8775D006C2733 /* APIConstants.swift */; };
 		77BAD54628C87952006C2733 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BAD54528C87952006C2733 /* BaseAPI.swift */; };
 		77ED045027AD75E700D077CA /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED044E27AD75E700D077CA /* FilterVC.swift */; };
 		77ED045127AD75E700D077CA /* FilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77ED044F27AD75E700D077CA /* FilterVC.xib */; };
@@ -386,11 +391,15 @@
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBlockedInfoDelegate.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
+		335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionToPersonHeaderTVC.swift; sourceTree = "<group>"; };
+		335D91AC28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonTVC.swift; sourceTree = "<group>"; };
+		335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreQuestionPersonCVC.swift; sourceTree = "<group>"; };
+		336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonCVC.swift; sourceTree = "<group>"; };
+		336216B228D2014C00FEA3E9 /* RecentQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuestionTVC.swift; sourceTree = "<group>"; };
+		336216B428D2064900FEA3E9 /* RecentQuestionTVCReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuestionTVCReactor.swift; sourceTree = "<group>"; };
 		336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionInfo.swift; sourceTree = "<group>"; };
 		336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
-		3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageReviewLikeVC.swift; sourceTree = "<group>"; };
-		3381083927D53F4A005AF1F9 /* MypageClassroomPostListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageClassroomPostListVC.swift; sourceTree = "<group>"; };
 		33834A1427D5F66E001C4947 /* MypageLikePostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikePostType.swift; sourceTree = "<group>"; };
 		33834A1627D60530001C4947 /* MypageLikeListSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MypageLikeListSB.storyboard; sourceTree = "<group>"; };
 		33834A1827D63245001C4947 /* MypageLikePostDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikePostDataModel.swift; sourceTree = "<group>"; };
@@ -411,6 +420,7 @@
 		33A666A227BB8F3100779351 /* PostLikeResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikeResModel.swift; sourceTree = "<group>"; };
 		33A666A427BB958800779351 /* ReviewImgModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImgModel.swift; sourceTree = "<group>"; };
 		33A86797288B0227009BA6DE /* CommunityMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMainReactor.swift; sourceTree = "<group>"; };
+		33B2010128B8CA1500F9AE3B /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		33B9B0D227B8EAC200066C1F /* InfoDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailVC.swift; sourceTree = "<group>"; };
 		33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCommentTVC.swift; sourceTree = "<group>"; };
 		33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCommentTVC.xib; sourceTree = "<group>"; };
@@ -421,6 +431,9 @@
 		33BAFCFF278C004700BFF6BE /* ClassroomCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassroomCommentTVC.xib; sourceTree = "<group>"; };
 		33BAFD02278C029F00BFF6BE /* TVCHeightDynamicUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCHeightDynamicUpdate.swift; sourceTree = "<group>"; };
 		33BAFD04278C061C00BFF6BE /* DefaultQuestionChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestionChatVC.swift; sourceTree = "<group>"; };
+		33BD384028C9ABB6005528DD /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		33BD384228C9AC73005528DD /* PostListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListResModel.swift; sourceTree = "<group>"; };
+		33BD384428C9AF15005528DD /* PostFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFilterType.swift; sourceTree = "<group>"; };
 		33BE2D4627897DD1000FB6C8 /* NadoSunbaeNaviBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeNaviBar.swift; sourceTree = "<group>"; };
 		33BE2D48278982E0000FB6C8 /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		33C1B8A227974A4F004BABEC /* ClassroomQuestionDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomQuestionDetailData.swift; sourceTree = "<group>"; };
@@ -430,7 +443,6 @@
 		33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSegmentedControl.swift; sourceTree = "<group>"; };
 		33C79DCE2881B28900B6C32C /* CommunityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTVC.swift; sourceTree = "<group>"; };
 		33C79DD12881B50D00B6C32C /* CommunityPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPostList.swift; sourceTree = "<group>"; };
-		33C9A404288C68FD00436D16 /* CommunityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityType.swift; sourceTree = "<group>"; };
 		33CF634D27945C0300E92C04 /* NadoSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoSegmentView.swift; sourceTree = "<group>"; };
 		33CF634E27945C0400E92C04 /* NadoHorizonContainerViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NadoHorizonContainerViews.swift; sourceTree = "<group>"; };
 		33CF635127945C0900E92C04 /* NadoHorizonContainerViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NadoHorizonContainerViews.xib; sourceTree = "<group>"; };
@@ -578,7 +590,6 @@
 		77AEEB4B2789AF900016880B /* TVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4C2789AF900016880B /* CVRegisterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVRegisterable.swift; sourceTree = "<group>"; };
 		77AEEB4F2789AFAF0016880B /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
-		77BAD54128C8775D006C2733 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		77BAD54528C87952006C2733 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		77ED044E27AD75E700D077CA /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		77ED044F27AD75E700D077CA /* FilterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterVC.xib; sourceTree = "<group>"; };
@@ -775,7 +786,7 @@
 				33834A1427D5F66E001C4947 /* MypageLikePostType.swift */,
 				336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */,
 				33C500FF281A4E24004AAEEE /* Navigator.swift */,
-				33C9A404288C68FD00436D16 /* CommunityType.swift */,
+				33BD384428C9AF15005528DD /* PostFilterType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -850,8 +861,8 @@
 		3313644A2785A7EF00E0C118 /* APIEssentials */ = {
 			isa = PBXGroup;
 			children = (
+				33BD384028C9ABB6005528DD /* APIConstants.swift */,
 				3313644E2785A84B00E0C118 /* NetworkResult.swift */,
-				77BAD54128C8775D006C2733 /* APIConstants.swift */,
 				77BAD54528C87952006C2733 /* BaseAPI.swift */,
 			);
 			path = APIEssentials;
@@ -1032,6 +1043,8 @@
 			isa = PBXGroup;
 			children = (
 				331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */,
+				335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */,
+				336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */,
 				331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */,
 				331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */,
 			);
@@ -1043,8 +1056,6 @@
 			children = (
 				33834A1627D60530001C4947 /* MypageLikeListSB.storyboard */,
 				3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */,
-				3381083727D53F33005AF1F9 /* MypageReviewLikeVC.swift */,
-				3381083927D53F4A005AF1F9 /* MypageClassroomPostListVC.swift */,
 			);
 			path = LikeList;
 			sourceTree = "<group>";
@@ -1225,12 +1236,15 @@
 		33CF63632794A04C00E92C04 /* QuestionMain */ = {
 			isa = PBXGroup;
 			children = (
+				331C5381279629620052B309 /* BaseQuestionTVC.swift */,
 				33CF635D2794877800E92C04 /* QuestionTVC.swift */,
+				331C5383279629D30052B309 /* EntireQuestionListTVC.swift */,
 				33CF635F2794A03300E92C04 /* QuestionHeaderTVC.swift */,
 				33CF63612794A04700E92C04 /* QuestionFooterTVC.swift */,
 				33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */,
-				331C5381279629620052B309 /* BaseQuestionTVC.swift */,
-				331C5383279629D30052B309 /* EntireQuestionListTVC.swift */,
+				335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */,
+				335D91AC28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift */,
+				336216B228D2014C00FEA3E9 /* RecentQuestionTVC.swift */,
 			);
 			path = QuestionMain;
 			sourceTree = "<group>";
@@ -1350,6 +1364,7 @@
 			children = (
 				5C3280132796E5A800781EBE /* MypageUserInfoModel.swift */,
 				775BAFD627D9353700DB37EB /* UserAuthInfo.swift */,
+				33B2010128B8CA1500F9AE3B /* APIConstants.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1728,6 +1743,7 @@
 				33A666A227BB8F3100779351 /* PostLikeResModel.swift */,
 				C71BF22A27CCC9880030DCB9 /* RequestBlockUnblockUserModel.swift */,
 				C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */,
+				33BD384228C9AC73005528DD /* PostListResModel.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -1737,6 +1753,7 @@
 			children = (
 				77AA830328A7EA3E00985B80 /* ClassroomMainReactor.swift */,
 				77AA830A28A8AB1F00985B80 /* ClassroomMainSection.swift */,
+				336216B428D2064900FEA3E9 /* RecentQuestionTVCReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -2114,6 +2131,7 @@
 				3313646E2785AF9A00E0C118 /* UILabel+.swift in Sources */,
 				3313644F2785A84B00E0C118 /* NetworkResult.swift in Sources */,
 				77A759202797645E00A8E48B /* WriterData.swift in Sources */,
+				33BD384528C9AF15005528DD /* PostFilterType.swift in Sources */,
 				33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */,
 				331364562785A90F00E0C118 /* TypeOfViewController.swift in Sources */,
 				77A7591E279762BF00A8E48B /* ReviewPostRegisterData.swift in Sources */,
@@ -2152,12 +2170,14 @@
 				331C5384279629D30052B309 /* EntireQuestionListTVC.swift in Sources */,
 				5C8D8BFC278B1E8F0045E600 /* SignUpMajorInfoVC.swift in Sources */,
 				331364B42786174B00E0C118 /* CALayer+.swift in Sources */,
+				335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */,
 				77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */,
 				77A7593C2799C81B00A8E48B /* ReviewPostDetailData.swift in Sources */,
 				C71BF24027CD0CEB0030DCB9 /* MailCompleteVC.swift in Sources */,
 				5C32801C2797292B00781EBE /* MypageAPI.swift in Sources */,
 				775728A927D6593700148C9A /* ThirdOnboardingCVC.swift in Sources */,
 				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
+				336216B328D2014C00FEA3E9 /* RecentQuestionTVC.swift in Sources */,
 				77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */,
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
 				C7C4144927C9392000296C30 /* MypageSettingAPI.swift in Sources */,
@@ -2188,13 +2208,14 @@
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
 				C7F3F6D927D3858600E12888 /* AppLinkResponseModel.swift in Sources */,
 				33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */,
+				335D91AB28D05758000C05EF /* QuestionToPersonHeaderTVC.swift in Sources */,
 				338DED1728A28B68002E544A /* CommunitySearchReactor.swift in Sources */,
-				3381083827D53F33005AF1F9 /* MypageReviewLikeVC.swift in Sources */,
 				C71BF23427CCD4A20030DCB9 /* NotificationSettingBasicTVC.swift in Sources */,
 				33CF636627954D2400E92C04 /* QuestionEmptyTVC.swift in Sources */,
 				5C70A4FD27BA4C540096B20A /* MypagePostListVC.swift in Sources */,
 				5C54CEC8278D9CC80054136D /* SignUpUserInfoVC.swift in Sources */,
 				33FBC3192796F6C900741730 /* ReviewAPI.swift in Sources */,
+				33BD384328C9AC73005528DD /* PostListResModel.swift in Sources */,
 				C71BF23127CCD2CB0030DCB9 /* NotificationSettingVC.swift in Sources */,
 				77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */,
 				33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */,
@@ -2209,6 +2230,7 @@
 				33E1E19627C7F51A0057C066 /* QnAType.swift in Sources */,
 				C71BF22B27CCC9880030DCB9 /* RequestBlockUnblockUserModel.swift in Sources */,
 				3381083A27D53F4A005AF1F9 /* MypageClassroomPostListVC.swift in Sources */,
+				336216B528D2064900FEA3E9 /* RecentQuestionTVCReactor.swift in Sources */,
 				3313646A2785AED600E0C118 /* UIFont+.swift in Sources */,
 				33C1B8A527974B72004BABEC /* ClassroomService.swift in Sources */,
 				33C79DCB287F350100B6C32C /* NadoSegmentedControl.swift in Sources */,
@@ -2249,7 +2271,6 @@
 				C790A276289D6D7D00A67135 /* HomeBannerCVC.swift in Sources */,
 				338CDAFF278C939B00F8227A /* TVCContentUpdate.swift in Sources */,
 				5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */,
-				33C9A405288C68FD00436D16 /* CommunityType.swift in Sources */,
 				C7C4144E27C939EE00296C30 /* EditProfileRequestModel.swift in Sources */,
 				77A759262797FDEA00A8E48B /* MajorListData.swift in Sources */,
 				33DAB83C279153A400214CA8 /* BaseCVC.swift in Sources */,
@@ -2286,6 +2307,7 @@
 				5C9A93F727A64B550097310B /* SignUpBodyModel.swift in Sources */,
 				5C873A4B279978650050EE43 /* SignInDataModel.swift in Sources */,
 				33CF635427945C1200E92C04 /* SendSegmentStateDelegate.swift in Sources */,
+				335D91AD28D05A4E000C05EF /* AvailableQuestionPersonTVC.swift in Sources */,
 				331364892785D71100E0C118 /* NadoSunbaeTBC.swift in Sources */,
 				777C18D627D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift in Sources */,
 				331364942785D78F00E0C118 /* Identifiers.swift in Sources */,
@@ -2297,6 +2319,7 @@
 				77AEEB4E2789AF900016880B /* CVRegisterable.swift in Sources */,
 				5CC7E3EF278C7313000A8BD3 /* SendUpdateModalDelegate.swift in Sources */,
 				77AEEB502789AFAF0016880B /* HalfModalPresentationController.swift in Sources */,
+				336216B128D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift in Sources */,
 				338CDB06278C9F9B00F8227A /* ClassroomQuestionEditTVC.swift in Sources */,
 				C71BF24227CDC2B30030DCB9 /* SignOutResponseModel.swift in Sources */,
 				5CC0BFDD2798836400B96905 /* DeleteNotificationDataModel.swift in Sources */,
@@ -2312,7 +2335,6 @@
 				33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
 				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
-				77BAD54228C8775D006C2733 /* APIConstants.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
 				5C49669327BD469200983689 /* AutoSignInVC.swift in Sources */,
 				C7ACE63827CBD8450011B23F /* SettingVersionTVC.swift in Sources */,
@@ -2341,6 +2363,7 @@
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
 				77A759282797FEB400A8E48B /* PublicService.swift in Sources */,
+				33BD384128C9ABB6005528DD /* APIConstants.swift in Sources */,
 				331364902785D77100E0C118 /* ReviewMainVC.swift in Sources */,
 				7754A318279028250093C230 /* ReviewNC.swift in Sources */,
 				C783BF9A28A79C88000FE3D8 /* HomeRecentReviewQuestionTVC.swift in Sources */,

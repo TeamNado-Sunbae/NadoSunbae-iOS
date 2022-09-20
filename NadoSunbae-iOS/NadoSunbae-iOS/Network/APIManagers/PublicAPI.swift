@@ -10,7 +10,7 @@ import Moya
 
 class PublicAPI: BaseAPI {
     static let shared = PublicAPI()
-    var publicProvider = MoyaProvider<PublicService>()
+    var publicProvider = MoyaProvider<PublicService>(plugins: [NetworkLoggerPlugin()])
     
     private override init() {}
     
@@ -23,6 +23,7 @@ class PublicAPI: BaseAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 let networkResult = self.judgeStatus(by: statusCode, data, [MajorListData].self)
+
                 completion(networkResult)
                 
             case .failure(let err):
@@ -39,8 +40,9 @@ class PublicAPI: BaseAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, RequestBlockUnblockUserModel.self)
                 
-                completion(self.requestBlockUnBlockUserJudgeData(status: statusCode, data: data))
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err)
@@ -56,8 +58,9 @@ class PublicAPI: BaseAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
                 
-                completion(self.requestReportJudgeData(status: statusCode, data: data))
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err)
@@ -73,8 +76,27 @@ class PublicAPI: BaseAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, AppLinkResponseModel.self)
                 
-                completion(self.getAppLinkJudgeData(status: statusCode, data: data))
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    /// [GET] 전체 게시글 리스트 조회 - 커뮤니티, 1:1 질문 전체 글 리스트
+    func getPostList(univID: Int, majorID: Int, filter: PostFilterType, sort: String, search: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.getPostList(univID: univID, majorID: majorID, filter: filter, sort: sort, search: search)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, [PostListResModel].self)
+                
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err)
@@ -82,64 +104,3 @@ class PublicAPI: BaseAPI {
         }
     }
 }
-
-// MARK: - JudgeData
-extension PublicAPI {
-    
-    /// requestBlockUnBlockUser
-    private func requestBlockUnBlockUserJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<RequestBlockUnblockUserModel>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    /// requestReport
-    private func requestReportJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 409:
-            return .requestErr(409)
-        case 400, 402...408:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    /// getAppLink
-    private func getAppLinkJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<AppLinkResponseModel>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
- }

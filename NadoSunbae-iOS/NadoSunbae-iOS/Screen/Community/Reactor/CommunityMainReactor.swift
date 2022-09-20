@@ -16,11 +16,7 @@ final class CommunityMainReactor: Reactor {
     enum Action {
         case searchBtnDidTap
         case filterBtnDidTap
-        case reloadCommunityTV(type: CommunityType)
-        case entireSegmentDidTap
-        case freedomSegmentDidTap
-        case questionSegmentDidTap
-        case infoSegmentDidTap
+        case reloadCommunityTV(majorID: Int? = 0, type: PostFilterType, sort: String? = "recent", search: String? = "")
         case witeFloatingBtnDidTap
         case filterFilled
     }
@@ -29,20 +25,19 @@ final class CommunityMainReactor: Reactor {
     // Action과 State를 연결, Reactor Layer에만 존재
     enum Mutation {
         case setLoading(loading: Bool)
-        case requestCommunityList(communityLIst: [CommunityPostList])
+        case requestCommunityList(communityList: [PostListResModel])
         case setFilterBtnState(selected: Bool)
     }
     
     // MARK: represent the current view state
     struct State {
         var loading: Bool = false
-        var communityList: [CommunityPostList] = []
+        var communityList: [PostListResModel] = []
         var filterBtnSelected: Bool = false
     }
 }
 
 // MARK: - Reactor
-
 extension CommunityMainReactor {
     
     /// mutate (Action -> Mutation)
@@ -53,35 +48,10 @@ extension CommunityMainReactor {
             return Observable.concat(Observable.just(.setLoading(loading: true)))
         case .filterBtnDidTap:
             return Observable.concat(Observable.just(.setLoading(loading: true)))
-        case .reloadCommunityTV(let type):
+        case .reloadCommunityTV(let majorID, let type, let sort, let search):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                self.requestCommunityListRx(type: type),
-                Observable.just(.setLoading(loading: false))
-            ])
-        case .entireSegmentDidTap:
-            return Observable.concat([
-                Observable.just(.setLoading(loading: true)),
-                self.requestCommunityListRx(type: .entire),
-                Observable.just(.setLoading(loading: false))
-            ])
-        case .freedomSegmentDidTap:
-            return Observable.concat([
-                Observable.just(.setLoading(loading: true)),
-                self.requestCommunityListRx(type: .freedom),
-                Observable.just(.setLoading(loading: false))
-            ])
-        case .questionSegmentDidTap:
-            return Observable.concat([
-                Observable.just(.setLoading(loading: true)),
-                self.requestCommunityListRx(type: .question),
-                Observable.just(.setLoading(loading: false))
-            ])
-        case .infoSegmentDidTap:
-            return Observable.concat([
-                Observable.just(.setLoading(loading: true)),
-                self.requestCommunityListRx(type: .information),
-                Observable.just(.setLoading(loading: false))
+                self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
             ])
         case .witeFloatingBtnDidTap:
             return Observable.concat(Observable.just(.setLoading(loading: true)))
@@ -99,8 +69,8 @@ extension CommunityMainReactor {
             
         case .setLoading(let loading):
             newState.loading = loading
-        case .requestCommunityList(let communityLIst):
-            newState.communityList = communityLIst
+        case .requestCommunityList(let communityList):
+            newState.communityList = communityList
         case .setFilterBtnState(let selected):
             newState.filterBtnSelected = selected
         }
@@ -110,52 +80,37 @@ extension CommunityMainReactor {
 }
 
 // MARK: - Custom Methods
-
 extension CommunityMainReactor {
-    private func requestCommunityListRx(type: CommunityType) -> Observable<Mutation> {
+    private func requestCommunityList(majorID: Int?, type: PostFilterType, sort: String?, search: String?)  -> Observable<Mutation> {
         return Observable.create { observer in
-            let dummyEntireList = [
-                CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-            ].shuffled()
-            
-            let dummyFreedomList = [
-                CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "자유", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-            ].shuffled()
-            
-            let dummyQuestionList = [
-                CommunityPostList(category: "질문", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "질문", postID: 1, title: "커뮤니티 질문질문", content: "커뮤니티 제목커뮤니티", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "질문", postID: 1, title: "커뮤니티 질문질문", content: "커뮤니티 제목커뮤니티", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "질문", postID: 1, title: "커뮤니티 질문질문", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-            ].shuffled()
-            
-            let dummyInfoList = [
-                CommunityPostList(category: "정보", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "정보", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "정보", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "정보", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "정보", postID: 1, title: "커뮤니티 제목", content: "커제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-                CommunityPostList(category: "정보", postID: 1, title: "커뮤니티 제목", content: "커제목", createdAt: "", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-            ].shuffled()
-            
-            switch type {
-            case .entire:
-                observer.onNext(Mutation.requestCommunityList(communityLIst: dummyEntireList))
-            case .freedom:
-                observer.onNext(Mutation.requestCommunityList(communityLIst: dummyFreedomList))
-            case .question:
-                observer.onNext(Mutation.requestCommunityList(communityLIst: dummyQuestionList))
-            case .information:
-                observer.onNext(Mutation.requestCommunityList(communityLIst: dummyInfoList))
+            PublicAPI.shared.getPostList(univID: 1, majorID: majorID ?? 0, filter: type, sort: sort ?? "recent", search: search ?? "") { networkResult in
+                switch networkResult {
+                case .success(let res):
+                    if let data = res as? [PostListResModel] {
+                        observer.onNext(Mutation.requestCommunityList(communityList: data))
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    }
+                case .requestErr(let res):
+                    // ✅ TODO: Alert Display Protocol화 하기
+                    if let message = res as? String {
+//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    } else if res is Bool {
+                        // ✅ TODO: updateAccessToken Protocol화 하기
+//                        self.updateAccessToken { _ in
+//                            self.setUpRequestData(sortType: .recent)
+//                        }
+                    }
+                default:
+                    // ✅ TODO: Alert Display Protocol화하기
+//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setLoading(loading: false))
+                    observer.onCompleted()
+                }
             }
-            
-            observer.onCompleted()
             return Disposables.create()
-        }.delay(.seconds(2), scheduler: MainScheduler.instance)
+        }
     }
 }

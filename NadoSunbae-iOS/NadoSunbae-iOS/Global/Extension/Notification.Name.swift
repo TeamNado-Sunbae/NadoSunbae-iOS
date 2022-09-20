@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let dismissHalfModal = Notification.Name("dismissHalfModal")
     static let pushNotificationClicked = Notification.Name("pushNotificationClicked")
+    static let sendChangedHeight = Notification.Name("sendChangedHeight")
 }

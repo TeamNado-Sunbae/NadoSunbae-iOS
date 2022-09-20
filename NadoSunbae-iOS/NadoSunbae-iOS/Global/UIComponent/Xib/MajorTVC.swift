@@ -117,8 +117,8 @@ extension MajorTVC {
     }
     
     /// Label에 학과 이름 setting하는 함수
-    func setData(majorName: String) {
-        majorNameLabel.text = majorName
+    func setData(majorName: MajorInfoModel) {
+        majorNameLabel.text = majorName.majorName
     }
 }
 

@@ -54,9 +54,9 @@ extension ClassroomMainHeaderView {
                 
                 switch selectIndex {
                 case 1:
-                    return ClassroomMainReactor.Action.tapQuestionSegment
+                    return ClassroomMainReactor.Action.tapSegment(type: 1)
                 default:
-                    return ClassroomMainReactor.Action.tapReviewSegment
+                    return ClassroomMainReactor.Action.tapSegment(type: 0)
                 }
             }
             .bind(to: reactor.action)
