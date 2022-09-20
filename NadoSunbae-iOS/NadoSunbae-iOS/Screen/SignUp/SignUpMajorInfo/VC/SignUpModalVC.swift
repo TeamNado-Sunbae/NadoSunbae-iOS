@@ -10,7 +10,7 @@ import UIKit
 class SignUpModalVC: HalfModalVC {
     
     // MARK: Properties
-    var enteredBtnTag = 0
+    var enterType: SignUpMajorInfoEnterType = .firstMajor
     var univID = 0
     var startList: [String] = []
     
@@ -18,42 +18,21 @@ class SignUpModalVC: HalfModalVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTitleLabel()
+        setData(enterType: enterType)
         setCompleteBtnAction()
     }
     
-    /// enterBtnTag에 맞춰서 타이틀, 데이터 변경하는 함수
-    private func setTitleLabel() {
-        titleLabel.text = { () -> String in
-            switch enteredBtnTag {
-            case 0:
-                self.activityIndicator.startAnimating()
-                requestGetMajorList(univID: univID, filterType: "firstMajor")
-                return "본전공"
-            case 1:
-                self.view.subviews.forEach {
-                    $0.removeFromSuperview()
-                }
-                self.configureUI(type: .basic)
-                self.searchTextField.removeFromSuperview()
-                setStartList()
-                return "본전공 진입시기"
-            case 2:
-                self.activityIndicator.startAnimating()
-                requestGetMajorList(univID: univID, filterType: "secondMajor")
-                return "제2전공"
-            case 3:
-                self.view.subviews.forEach {
-                    $0.removeFromSuperview()
-                }
-                self.configureUI(type: .basic)
-                self.searchTextField.removeFromSuperview()
-                setStartList()
-                return "제2전공 진입시기"
-            default:
-                return ""
-            }
-        }()
+    private func setData(enterType: SignUpMajorInfoEnterType) {
+        switch enterType {
+        case .firstMajor:
+            requestGetMajorList(univID: univID, filterType: "firstMajor")
+        case .firstMajorStart:
+            setStartList()
+        case .secondMajor:
+            requestGetMajorList(univID: univID, filterType: "secondMajor")
+        case .secondMajorStart:
+            setStartList()
+        }
     }
     
     private func setStartList() {
@@ -73,19 +52,17 @@ class SignUpModalVC: HalfModalVC {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
             })
             
-            switch self.enteredBtnTag {
-            case 0, 2:
+            switch self.enterType {
+            case .firstMajor, .secondMajor:
                 let sendData = { () -> MajorInfoModel in
                     return self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0]
                 }()
-                self.selectMajorDelegate?.sendUpdate(data: sendData)
-            case 1, 3:
+                self.selectMajorDelegate?.sendUpdate(data: (sendData, self.enterType))
+            case .firstMajorStart, .secondMajorStart:
                 let sendData = { () -> String in
                     return self.startList[self.majorTV.indexPathForSelectedRow?.row ?? 0]
                 }()
-                self.selectMajorDelegate?.sendUpdate(data: sendData)
-            default:
-                break
+                self.selectMajorDelegate?.sendUpdate(data: (sendData, self.enterType))
             }
         }
     }
@@ -93,26 +70,22 @@ class SignUpModalVC: HalfModalVC {
 
 extension SignUpModalVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch enteredBtnTag {
-        case 0, 2:
+        switch enterType {
+        case .firstMajor, .secondMajor:
             return majorList.count
-        case 1, 3:
+        case .firstMajorStart, .secondMajorStart:
             return startList.count
-        default:
-            return 0
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className, for: indexPath) as? MajorTVC else { return UITableViewCell() }
         
-        switch enteredBtnTag {
-        case 0, 2:
+        switch enterType {
+        case .firstMajor, .secondMajor:
             cell.setData(majorName: majorList[indexPath.row].majorName)
-        case 1, 3:
+        case .firstMajorStart, .secondMajorStart:
             cell.setData(majorName: startList[indexPath.row])
-        default:
-            break
         }
         
         return cell
@@ -124,6 +97,7 @@ extension SignUpModalVC {
     
     /// 학과 정보 리스트 조회
     func requestGetMajorList(univID: Int, filterType: String) {
+        self.activityIndicator.startAnimating()
         PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
             switch networkResult {
             case .success(let res):

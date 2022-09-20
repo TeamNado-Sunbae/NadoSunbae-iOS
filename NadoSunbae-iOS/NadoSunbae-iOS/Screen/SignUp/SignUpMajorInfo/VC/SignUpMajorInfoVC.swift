@@ -97,22 +97,26 @@ class SignUpMajorInfoVC: BaseVC {
     private func showMajorSelectModal(enterType: SignUpMajorInfoEnterType) {
         
         /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우 선택버튼 비활성화
-        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
-            let slideVC = SignUpModalVC()
-            slideVC.vcType = .search
-            slideVC.cellType = .basic
+        if !(enterType == .secondMajorStart && secondMajorTextField.text == "미진입") {
             if let selectedUnivID = self.univList.firstIndex(of: univTextField.text ?? "") {
+                let slideVC = SignUpModalVC()
                 slideVC.univID = selectedUnivID + 1
+                slideVC.setTitleLabel(title: enterType.rawValue)
+                slideVC.enterType = enterType
+                
+                switch enterType {
+                case .firstMajor, .secondMajor:
+                    slideVC.vcType = .search
+                case .firstMajorStart, .secondMajorStart:
+                    slideVC.vcType = .basic
+                }
+                slideVC.cellType = .basic
+                slideVC.modalPresentationStyle = .custom
+                slideVC.transitioningDelegate = self
+                slideVC.selectMajorDelegate = self
+                
+                self.present(slideVC, animated: true, completion: nil)
             }
-            
-            slideVC.enteredBtnTag = sender.tag
-            self.enterBtnTag = sender.tag
-            
-            slideVC.modalPresentationStyle = .custom
-            slideVC.transitioningDelegate = self
-            slideVC.selectMajorDelegate = self
-            
-            self.present(slideVC, animated: true, completion: nil)
         }
     }
     
@@ -228,31 +232,35 @@ extension SignUpMajorInfoVC: UIViewControllerTransitioningDelegate {
 // MARK: - SendUpdateModalDelegate
 extension SignUpMajorInfoVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
-        switch enterBtnTag {
-        case 0:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.firstMajorTextField.text = majorInfoData.majorName
-                self.signUpData.firstMajorID = majorInfoData.majorID
-            }
-        case 1:
-            self.firstMajorStartTextField.text = data as? String
-            self.signUpData.firstMajorStart = data as? String ?? ""
-        case 2:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.secondMajorTextField.text = majorInfoData.majorName
-                self.signUpData.secondMajorID = majorInfoData.majorID
-                if majorInfoData.majorName == "미진입" {
-                    self.signUpData.secondMajorStart = "미진입"
-                    self.secondMajorStartTextField.text = ""
+        
+        if let majorInfoTuple = data as? (Any, SignUpMajorInfoEnterType) {
+            switch majorInfoTuple.1 {
+            case .firstMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.firstMajorTextField.text = majorInfoData.majorName
+                    self.signUpData.firstMajorID = majorInfoData.majorID
+                }
+            case .firstMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.firstMajorStartTextField.text = majorInfoData
+                    self.signUpData.firstMajorStart = majorInfoData
+                }
+            case .secondMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.secondMajorTextField.text = majorInfoData.majorName
+                    self.signUpData.secondMajorID = majorInfoData.majorID
+                    if majorInfoData.majorName == "미진입" {
+                        self.signUpData.secondMajorStart = "미진입"
+                        self.secondMajorStartTextField.text = ""
+                    }
+                }
+                
+            case .secondMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.secondMajorStartTextField.text = majorInfoData
+                    self.signUpData.secondMajorStart = majorInfoData
                 }
             }
-        case 3:
-            self.secondMajorStartTextField.text = data as? String
-            self.signUpData.secondMajorStart = data as? String ?? ""
-        default:
-            #if DEBUG
-            print("SignUpMajorInfoVC SendUpdateDelegate error")
-            #endif
         }
         checkNextBtnIsEnabled()
     }
