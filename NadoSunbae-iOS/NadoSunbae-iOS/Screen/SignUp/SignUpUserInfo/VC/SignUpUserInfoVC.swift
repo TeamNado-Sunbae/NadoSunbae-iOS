@@ -37,11 +37,14 @@ class SignUpUserInfoVC: BaseVC {
     let disposeBag = DisposeBag()
     var isCompleteList = [false, false, false]
     var signUpData = SignUpBodyModel()
+    var univEmailDomain = UnivEmailDomainDataModel(email: "")
     
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureUI()
+        getUnivEmailDomain(univID: signUpData.universityID)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,7 +105,7 @@ extension SignUpUserInfoVC {
         [(nickNameTextField, nickNameClearBtn), (emailTextField, emailClearBtn), (PWTextField, PWClearBtn), (checkPWTextFIeld, checkPWClearBtn)].forEach { (textField, btn) in
             setTextFieldClearBtn(textField: textField, clearBtn: btn)
         }
-        emailTextField.placeholder = "@korea.ac.kr"
+        emailTextField.placeholder = "입력 전"
         changePWInfoLabelState()
         checkEmailIsValid()
         checkNickNameIsValid()
@@ -251,7 +254,7 @@ extension SignUpUserInfoVC {
                 self.isCompleteList[1] = false
                 self.emailInfoLabel.text = ""
                 let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) && changedText.contains("@korea.ac.kr") {
+                if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: changedText) && changedText.contains(self.univEmailDomain.email) {
                     self.changeNadoBtnState(isOn: true, btn: self.checkEmailBtn)
                 } else {
                     self.changeNadoBtnState(isOn: false, btn: self.checkEmailBtn)
@@ -281,6 +284,23 @@ extension SignUpUserInfoVC {
 
 // MARK: - Network
 extension SignUpUserInfoVC {
+    
+    /// 학교 이메일 도메인 요청하는 메소드
+    private func getUnivEmailDomain(univID: Int) {
+        self.activityIndicator.startAnimating()
+        SignAPI.shared.getUnivEmailDomain(univID: univID) { networkResult in
+            self.activityIndicator.stopAnimating()
+            switch networkResult {
+            case .success(let res):
+                if let domain = res as? UnivEmailDomainDataModel {
+                    self.univEmailDomain = domain
+                    self.emailTextField.placeholder = self.univEmailDomain.email
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
     
     /// 닉네임 중복 확인 메소드
     private func requestCheckNickName(nickName: String) {

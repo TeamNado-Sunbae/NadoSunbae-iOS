@@ -94,19 +94,20 @@ class EditProfileVC: BaseVC {
     }
     
     @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
-        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
-        
-        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
-        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
-            slideVC.enterdBtnTag = sender.tag
-            self.enterBtnTag = sender.tag
-            
-            slideVC.modalPresentationStyle = .custom
-            slideVC.transitioningDelegate = self
-            slideVC.selectMajorDelegate = self
-            
-            self.present(slideVC, animated: true, completion: nil)
-        }
+        // TODO: SignUpModalVC로 변경
+//        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
+//
+//        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
+//        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
+//            slideVC.enterdBtnTag = sender.tag
+//            self.enterBtnTag = sender.tag
+//
+//            slideVC.modalPresentationStyle = .custom
+//            slideVC.transitioningDelegate = self
+//            slideVC.selectMajorDelegate = self
+//
+//            self.present(slideVC, animated: true, completion: nil)
+//        }
     }
     
     // MARK: Custom Methods
