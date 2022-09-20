@@ -34,6 +34,7 @@ final class HomeBannerTVC: BaseTVC {
     /// 첫 인덱스 -> 마지막 이미지, 마지막 인덱스 -> 첫 이미지 추가하기!
     private var bannerImaURLsData = ["", "", "", "", ""]
     private var bannerRedirectURLsData: [String] = []
+    var sendUpdateDelegate: SendUpdateModalDelegate?
     
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -80,6 +81,18 @@ extension HomeBannerTVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
 
 // MARK: - UICollectionViewDelegate
 extension HomeBannerTVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 1, 4:
+            sendUpdateDelegate?.sendUpdate(data: bannerRedirectURLsData[0])
+        case 2:
+            sendUpdateDelegate?.sendUpdate(data: bannerRedirectURLsData[1])
+        case 0, 3:
+            sendUpdateDelegate?.sendUpdate(data: bannerRedirectURLsData[2])
+        default:
+            break
+        }
+    }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageFloat = (scrollView.contentOffset.x / scrollView.frame.size.width)

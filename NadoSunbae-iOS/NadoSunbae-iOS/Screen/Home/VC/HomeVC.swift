@@ -68,6 +68,14 @@ extension HomeVC: SendHomeRecentDataDelegate {
     }
 }
 
+extension HomeVC: SendUpdateModalDelegate {
+    func sendUpdate(data: Any) {
+        if let url = data as? String {
+            self.presentToSafariVC(url: NSURL(string: url)! as URL)
+        }
+    }
+}
+
 // MARK: - UITableViewDataSource
 extension HomeVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,6 +103,7 @@ extension HomeVC: UITableViewDataSource {
             switch tableSection {
             case .banner:
                 guard let bannerCell = tableView.dequeueReusableCell(withIdentifier: HomeBannerTVC.className) as? HomeBannerTVC else { return HomeBannerTVC() }
+                bannerCell.sendUpdateDelegate = self
                 return bannerCell
             case .review:
                 switch indexPath.row {
