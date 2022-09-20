@@ -9,6 +9,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum SignUpMajorInfoEnterType: String {
+    case firstMajor = "본전공"
+    case firstMajorStart = "본전공 진입시기"
+    case secondMajor = "제2전공"
+    case secondMajorStart = "제2전공 진입시기"
+}
+
 class SignUpMajorInfoVC: BaseVC {
     
     // MARK: @IBOutlet
