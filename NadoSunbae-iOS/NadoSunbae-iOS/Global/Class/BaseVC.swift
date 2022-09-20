@@ -70,6 +70,7 @@ extension BaseVC {
         UserDefaults.standard.set(data.user.secondMajorID, forKey: UserDefaults.Keys.SecondMajorID)
         UserDefaults.standard.set(data.user.secondMajorName, forKey: UserDefaults.Keys.SecondMajorName)
         UserDefaults.standard.set(data.user.userID, forKey: UserDefaults.Keys.UserID)
+        UserDefaults.standard.set(data.user.universityID, forKey: UserDefaults.Keys.univID)
         UserPermissionInfo.shared.isReviewed = data.user.isReviewed
         UserPermissionInfo.shared.isUserReported = data.user.isUserReported
         UserPermissionInfo.shared.isReviewInappropriate = data.user.isReviewInappropriate
