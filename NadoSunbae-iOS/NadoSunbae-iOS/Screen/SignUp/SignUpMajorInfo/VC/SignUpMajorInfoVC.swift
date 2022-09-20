@@ -71,7 +71,23 @@ class SignUpMajorInfoVC: BaseVC {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
+    @IBAction func tapFirstMajorSelectBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .firstMajor)
+    }
+    
+    @IBAction func tapFirstMajorStartBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .firstMajorStart)
+    }
+    
+    @IBAction func tapSecondMajorSelectBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .secondMajor)
+    }
+    
+    @IBAction func tapSecondMajorStartBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .secondMajorStart)
+    }
+    
+    private func showMajorSelectModal(enterType: SignUpMajorInfoEnterType) {
         
         /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우 선택버튼 비활성화
         if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
