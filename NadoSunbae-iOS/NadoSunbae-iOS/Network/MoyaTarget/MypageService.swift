@@ -38,7 +38,7 @@ extension MypageService: TargetType {
                 return "/user/mypage/comment/list/\(2)"
             }
         case .getMypageMyReviewList(let userID):
-            return "/user/mypage/\(userID)/review-post/list"
+            return "/user/\(userID)/review"
         case .getMypageMyLikeList:
             return "/user/mypage/like/list/"
         }
