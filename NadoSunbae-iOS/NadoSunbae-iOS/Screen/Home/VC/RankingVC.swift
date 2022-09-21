@@ -41,10 +41,15 @@ final class RankingVC: BaseVC {
         $0.setTextColorWithLineSpacing(targetStringList: ["1순위", "2순위", "3순위"], color: .mainDark, lineSpacing: 4)
     }
     
+    private var rankingList: [RankingListModel] = []
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        registerTVC()
+        setUpDelegate()
+        initDummyData()
     }
 }
 
@@ -55,6 +60,8 @@ extension RankingVC {
         view.addSubviews([naviView, infoView, rankingTV, infoContentView])
         infoContentView.addSubviews([closeBtn, ruleLabel])
         rankingTV.backgroundColor = .paleGray
+        rankingTV.separatorStyle = .none
+        rankingTV.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 27, right: 0)
         
         naviView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -88,5 +95,55 @@ extension RankingVC {
             $0.top.leading.bottom.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().inset(40)
         }
+    }
+}
+
+// MARK: - Custom Methods
+extension RankingVC {
+    
+    /// 셀 등록 메서드
+    private func registerTVC() {
+        RankingTVC.register(target: rankingTV)
+    }
+    
+    /// 대리자 위임 메서드
+    private func setUpDelegate() {
+        rankingTV.delegate = self
+        rankingTV.dataSource = self
+    }
+    
+    private func initDummyData() {
+        rankingList.append(contentsOf: [
+            RankingListModel(id: 1, profileImageID: 1, nickname: "안녕하세요", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "디지털미디어학과", secondMajorStart: "19-1", rate: 100),
+            RankingListModel(id: 2, profileImageID: 2, nickname: "선배닉네임최대는", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "디지털미디어학과", secondMajorStart: "20-1", rate: 80),
+            RankingListModel(id: 3, profileImageID: 3, nickname: "하이", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 70),
+            RankingListModel(id: 4, profileImageID: 4, nickname: "나는지은", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과 (세종)", secondMajorStart: "22-1", rate: 90),
+            RankingListModel(id: 5, profileImageID: 5, nickname: "나도선배", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 80),
+            RankingListModel(id: 6, profileImageID: 2, nickname: "정숙이는개발천재", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 10),
+            RankingListModel(id: 7, profileImageID: 3, nickname: "선배닉네임최대는", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "경제학과", secondMajorStart: "22-1", rate: 20),
+        ])
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension RankingVC: UITableViewDelegate {
+    
+    /// cell 높이 설정
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 104.adjustedH
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension RankingVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rankingList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RankingTVC.className) as? RankingTVC else { return UITableViewCell() }
+
+        cell.setData(data: rankingList[indexPath.row], indexPath: indexPath.row)
+        return cell
     }
 }
