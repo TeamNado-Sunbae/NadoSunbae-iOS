@@ -32,8 +32,9 @@ class RankingVC: BaseVC {
 // MARK: - UI
 extension RankingVC {
     private func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .paleGray
         view.addSubviews([naviView, infoView, rankingTV])
+        rankingTV.backgroundColor = .paleGray
         
         naviView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -47,8 +48,8 @@ extension RankingVC {
         }
         
         rankingTV.snp.makeConstraints {
-            $0.top.equalTo(naviView.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(infoView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
