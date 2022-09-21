@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class RankingVC: BaseVC {
+final class RankingVC: BaseVC {
     
     // MARK: Properties
     private let naviView = NadoSunbaeNaviBar().then {
