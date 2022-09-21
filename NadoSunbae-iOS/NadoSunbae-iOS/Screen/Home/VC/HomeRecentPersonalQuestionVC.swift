@@ -23,19 +23,14 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
     private let contentView = UIView()
     private let questionTV = UITableView().then {
         $0.layer.cornerRadius = 16
+        $0.layer.borderColor = UIColor.gray0.cgColor
         $0.isScrollEnabled = false
         $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         $0.separatorColor = .gray0
-        $0.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
     // MARK: Properties
-    private var questionList: [ClassroomPostList] = [
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2)]
+    private var questionList: [PostListResModel] = []
     
     // MARK: View Life Cycle
     override func viewDidLoad() {
@@ -43,7 +38,7 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
         
         configureUI()
         setQuestionTV()
-        updateQuestionTVHeight()
+        getRecentPersonalQuestionList()
     }
     
     private func setQuestionTV() {
@@ -54,16 +49,10 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
     }
     
     private func updateQuestionTVHeight() {
-        questionTV.reloadData()
-        DispatchQueue.main.async {
-            self.questionTV.layoutIfNeeded()
-            self.questionTV.rowHeight = UITableView.automaticDimension
-            self.questionTV.snp.updateConstraints {
-                debugPrint("update")
-                $0.height.equalTo(self.questionTV.contentSize.height)
-            }
-            debugPrint("contentSize", self.questionTV.contentSize.height)
+        self.questionTV.snp.updateConstraints {
+            $0.height.equalTo(self.questionTV.contentSize.height)
         }
+        self.questionTV.layoutIfNeeded()
     }
 }
 
@@ -76,7 +65,7 @@ extension HomeRecentPersonalQuestionVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
-        cell.setData(data: questionList[indexPath.row])
+        cell.setPostData(data: questionList[indexPath.row])
         cell.layoutSubviews()
         return cell
     }
@@ -103,6 +92,27 @@ extension HomeRecentPersonalQuestionVC: UITableViewDelegate {
                 questionDetailVC.questionType = .personal
                 questionDetailVC.naviStyle = .push
                 questionDetailVC.postID = self.questionList[indexPath.row].postID
+            }
+        }
+    }
+}
+
+// MARK: - Network
+extension HomeRecentPersonalQuestionVC {
+    private func getRecentPersonalQuestionList() {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .questionToPerson, sort: "recent", search: "") { networkResult in
+            self.activityIndicator.stopAnimating()
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [PostListResModel] {
+                    self.questionList = data
+                    self.questionTV.reloadData()
+                    self.updateQuestionTVHeight()
+                    self.updateQuestionTVHeight()
+                }
+            default:
+                debugPrint(#function, "network error")
             }
         }
     }

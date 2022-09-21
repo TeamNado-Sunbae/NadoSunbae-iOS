@@ -77,7 +77,7 @@ extension MypageMyPostListVC {
         postListTV.delegate = self
         postListTV.dataSource = self
         postListTV.makeRounded(cornerRadius: 8.adjusted)
-        postListTV.separatorColor = .separatorGray
+        postListTV.separatorColor = .gray0
         postListTV.isScrollEnabled = false
     }
     
