@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct HomeRecentReviewResponseModelElement: Codable {
-    let id: Int
-    let oneLineReview: String
-    let majorName: String
-    let createdAt: String
-    let tagList: [ReviewTagList]
-    let like: Like
-    
+struct HomeRecentReviewResponseDataElement: Codable {
+    var id: Int
+    var oneLineReview: String
+    var majorName: String
+    var createdAt: String
+    var tagList: [ReviewTagList]
+    var like: Like
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case oneLineReview = "oneLineReview"
@@ -25,4 +25,4 @@ struct HomeRecentReviewResponseModelElement: Codable {
     }
 }
 
-typealias HomeRecentReviewResponseModel = [HomeRecentReviewResponseModelElement]
+typealias HomeRecentReviewResponseData = [HomeRecentReviewResponseDataElement]

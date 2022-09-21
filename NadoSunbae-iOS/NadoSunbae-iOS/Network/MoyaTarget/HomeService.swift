@@ -10,6 +10,7 @@ import Moya
 
 enum HomeService {
     case getBannerList
+    case getAllReviewList
 }
 
 extension HomeService: TargetType {
@@ -21,12 +22,14 @@ extension HomeService: TargetType {
         switch self {
         case .getBannerList:
             return "/app/banner"
+        case .getAllReviewList:
+            return "/review/university/\(UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID))"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getBannerList:
+        case .getBannerList, .getAllReviewList:
             return .get
         }
     }
@@ -35,11 +38,16 @@ extension HomeService: TargetType {
         switch self {
         case .getBannerList:
             return .requestParameters(parameters: ["type" : "iOS"], encoding: URLEncoding.queryString)
+        case .getAllReviewList:
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
         switch self {
+        case .getAllReviewList:
+            let accessToken = UserToken.shared.accessToken ?? ""
+            return ["accessToken": accessToken]
         default:
             return ["Content-type": "application/json"]
         }
