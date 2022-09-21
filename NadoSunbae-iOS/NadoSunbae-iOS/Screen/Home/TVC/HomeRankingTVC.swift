@@ -21,19 +21,14 @@ final class HomeRankingTVC: BaseTVC {
     
     // MARK: Properties
     private lazy var rankerViewList = [firstRankerView, secondRankerView, thirdRankerView, fourthRankerView, fifthRankerView]
-    private var rankerDummyData = [
-        HomeRankingResponseModelElement(userID: 101, profileImageID: 1, isOnQuestion: true, nickname: "정정빈빈", isFirstMajor: true, responseRate: 88),
-        HomeRankingResponseModelElement(userID: 102, profileImageID: 2, isOnQuestion: true, nickname: "안뇽하세여", isFirstMajor: true, responseRate: 85),
-        HomeRankingResponseModelElement(userID: 103, profileImageID: 3, isOnQuestion: true, nickname: "나는삼등", isFirstMajor: true, responseRate: 83),
-        HomeRankingResponseModelElement(userID: 104, profileImageID: 4, isOnQuestion: true, nickname: "나는사등", isFirstMajor: true, responseRate: 22),
-        HomeRankingResponseModelElement(userID: 105, profileImageID: 5, isOnQuestion: true, nickname: "나는...꼴찌", isFirstMajor: true, responseRate: 11)]
+    private var rankerDummyData: [HomeRankingResponseModel.UserList] = []
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         configureUI()
-        setData()
+        getUserRankingList()
     }
     
     required init?(coder: NSCoder) {
@@ -44,7 +39,7 @@ final class HomeRankingTVC: BaseTVC {
     private func setData() {
         for i in 0..<5 {
             rankerViewList[i].userNameLabel.text = rankerDummyData[i].nickname
-            rankerViewList[i].responseRateLabel.text = "응답률 \(rankerDummyData[i].responseRate)%"
+            rankerViewList[i].responseRateLabel.text = "응답률 \(rankerDummyData[i].rate ?? 0)%"
             rankerViewList[i].profileImgView.image = UIImage(named: "profileImage\(rankerDummyData[i].profileImageID)")
         }
     }
@@ -93,6 +88,25 @@ extension HomeRankingTVC {
             $0.centerX.equalTo(backgroundImgView.snp.centerX).offset(151.adjusted)
             $0.width.equalTo(screenWidth * 0.146666)
             $0.height.equalTo(240.adjusted * 0.3)
+        }
+    }
+}
+
+// MARK: - Network
+extension HomeRankingTVC {
+    private func getUserRankingList() {
+        HomeAPI.shared.getUserRankingList { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? HomeRankingResponseModel {
+                    for i in 0..<5 {
+                        self.rankerDummyData.append(data.userList[i])
+                    }
+                    self.setData()
+                }
+            default:
+                debugPrint(#function, "network error")
+            }
         }
     }
 }
