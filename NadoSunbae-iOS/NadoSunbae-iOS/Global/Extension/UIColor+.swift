@@ -106,4 +106,8 @@ extension UIColor {
     @nonobjc class var segmentLightBgColor: UIColor {
         return UIColor(red: 245.0 / 255.0, green: 244.0 / 255.0, blue: 252.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var dropShadowColor: UIColor {
+        return UIColor(red: 70.0 / 255.0, green: 71.0 / 255.0, blue: 78.0 / 255.0, alpha: 0.1)
+    }
 }
