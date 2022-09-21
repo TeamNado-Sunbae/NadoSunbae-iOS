@@ -47,6 +47,7 @@ final class HomeVC: BaseVC {
         backgroundTV.register(HomeBannerTVC.self, forCellReuseIdentifier: HomeBannerTVC.className)
         backgroundTV.register(HomeSubTitleHeaderCell.self, forCellReuseIdentifier: HomeSubTitleHeaderCell.className)
         backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className)
+        backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className + "forPesonalQuestion")
         backgroundTV.register(HomeRankingTVC.self, forCellReuseIdentifier: HomeRankingTVC.className)
         backgroundTV.register(HomeCommunityTVC.self, forCellReuseIdentifier: HomeCommunityTVC.className)
     }
@@ -149,9 +150,10 @@ extension HomeVC: UITableViewDataSource {
                     }
                     return subTitleCell
                 case 3:
-                    guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className + "forPesonalQuestion") as? HomeRecentReviewQuestionTVC else { return UITableViewCell() }
                     personalQuestionsCell.recentType = .personalQuestion
                     personalQuestionsCell.sendHomeRecentDataDelegate = self
+                    personalQuestionsCell.prepareForReuse()
                     return personalQuestionsCell
                 default: return UITableViewCell()
                 }

@@ -27,6 +27,7 @@ final class HomeRecentReviewQuestionTVC: BaseTVC {
         $0.itemSize = CGSize.init(width: (screenWidth - 32) * 2 / 3, height: 153)
     }
     var recentReviewList: HomeRecentReviewResponseData = []
+    var recentPersonalQuestionList: [PostListResModel] = []
     var recentType: HomeRecentTVCType?
     var sendHomeRecentDataDelegate: SendHomeRecentDataDelegate?
     
@@ -35,6 +36,11 @@ final class HomeRecentReviewQuestionTVC: BaseTVC {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
         setRecentCV()
+        setData(type: recentType ?? .review)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
         setData(type: recentType ?? .review)
     }
     
@@ -55,7 +61,8 @@ final class HomeRecentReviewQuestionTVC: BaseTVC {
         case .review:
             getAllReviewList()
         case .personalQuestion:
-            break
+            debugPrint("setData question")
+            getRecentPersonalQuestionList()
         }
     }
 }
@@ -63,7 +70,14 @@ final class HomeRecentReviewQuestionTVC: BaseTVC {
 // MARK: - UICollectionViewDataSource
 extension HomeRecentReviewQuestionTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recentReviewList.count
+        switch recentType {
+        case .review:
+            return recentReviewList.count
+        case .personalQuestion:
+            return recentPersonalQuestionList.count
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,7 +86,7 @@ extension HomeRecentReviewQuestionTVC: UICollectionViewDataSource {
         case .review:
             cell.setRecentReviewData(data: recentReviewList[indexPath.row])
         case .personalQuestion:
-            cell.setRecentPersonalQuestionData(data: recentReviewList[indexPath.row])
+            cell.setRecentPersonalQuestionData(data: recentPersonalQuestionList[indexPath.row])
         default: break
         }
         return cell
@@ -115,6 +129,22 @@ extension HomeRecentReviewQuestionTVC {
                 if let data = res as? HomeRecentReviewResponseData {
                     for i in 0..<5 {
                         self.recentReviewList.append(data[i])
+                    }
+                    self.recentCV.reloadData()
+                }
+            default:
+                debugPrint(#function, "network error")
+            }
+        }
+    }
+    
+    private func getRecentPersonalQuestionList() {
+        PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .questionToPerson, sort: "recent", search: "") { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [PostListResModel] {
+                    for i in 0..<5 {
+                        self.recentPersonalQuestionList.append(data[i])
                     }
                     self.recentCV.reloadData()
                 }
