@@ -121,6 +121,7 @@ extension HomeVC: UITableViewDataSource {
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press { [weak self] in
                         let rankingVC = RankingVC()
+                        rankingVC.reactor = RankingReactor()
                         self?.navigationController?.pushViewController(rankingVC, animated: true)
                     }
                     return subTitleCell
