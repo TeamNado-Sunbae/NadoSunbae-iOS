@@ -71,6 +71,12 @@ class RankingTVC: CodeBaseTVC {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 6, left: 16, bottom: 6, right: 16))
     }
+    
+    override func prepareForReuse() {
+        rankLabel.text = nil
+        rankLabel.textColor = .mainDark
+        [medalImgView, rankLabel].forEach { $0.isHidden = false }
+    }
 }
 
 // MARK: - UI
