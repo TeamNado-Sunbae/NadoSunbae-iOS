@@ -8,8 +8,11 @@
 import UIKit
 import SnapKit
 import Then
+import ReactorKit
+import RxCocoa
+import RxSwift
 
-final class RankingVC: BaseVC {
+final class RankingVC: BaseVC, View {
     
     // MARK: Properties
     private let naviView = NadoSunbaeNaviBar().then {
@@ -20,7 +23,9 @@ final class RankingVC: BaseVC {
     
     private let infoView = NadoStatusBarView(contentText: "선배 랭킹은 어떻게 결정되나요?", type: .labelQuestionMarkButton)
     
-    private let rankingTV = UITableView()
+    private let rankingTV = UITableView().then {
+        $0.rowHeight = 104.adjustedH
+    }
     
     private let infoContentView = UIView().then {
         $0.makeRounded(cornerRadius: 8.adjusted)
@@ -41,15 +46,66 @@ final class RankingVC: BaseVC {
         $0.setTextColorWithLineSpacing(targetStringList: ["1순위", "2순위", "3순위"], color: .mainDark, lineSpacing: 4)
     }
     
-    private var rankingList: [RankingListModel] = []
+    var disposeBag = DisposeBag()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         registerTVC()
-        setUpDelegate()
-        initDummyData()
+    }
+    
+    func bind(reactor: RankingReactor) {
+        bindAction(reactor)
+        bindState(reactor)
+    }
+}
+
+// MARK: - Bind Action & State
+extension RankingVC {
+    
+    // MARK: Action
+    private func bindAction(_ reactor: RankingReactor) {
+        reactor.action.onNext(.viewDidLoad)
+        
+        naviView.backBtn.rx.tap
+            .bind { self.navigationController?.popViewController(animated: true) }
+            .disposed(by: disposeBag)
+        
+        infoView.rightQuestionMarkButton.rx.tap
+            .map { return RankingReactor.Action.tapQuestionMarkBtn }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        closeBtn.rx.tap
+            .map { return RankingReactor.Action.tapCloseBtn }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: State
+    private func bindState(_ reactor: RankingReactor) {
+        reactor.state
+            .map { $0.rankingList }
+            .bind(to: rankingTV.rx.items) { tableView, index, item in
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = tableView.dequeueReusableCell(withIdentifier: RankingTVC.className, for: indexPath)
+                
+                guard let rankingCell = cell as? RankingTVC else { return UITableViewCell() }
+                rankingCell.setData(data: item, indexPath: indexPath.row)
+                
+                return rankingCell
+            }
+            .disposed(by: self.disposeBag)
+        
+        reactor.state
+            .map { $0.isInfoContentViewHidden }
+            .distinctUntilChanged()
+            .map { $0 }
+            .subscribe(onNext: { [weak self] status in
+                self?.infoContentView.isHidden = status
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -104,46 +160,5 @@ extension RankingVC {
     /// 셀 등록 메서드
     private func registerTVC() {
         RankingTVC.register(target: rankingTV)
-    }
-    
-    /// 대리자 위임 메서드
-    private func setUpDelegate() {
-        rankingTV.delegate = self
-        rankingTV.dataSource = self
-    }
-    
-    private func initDummyData() {
-        rankingList.append(contentsOf: [
-            RankingListModel(id: 1, profileImageID: 1, nickname: "안녕하세요", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "디지털미디어학과", secondMajorStart: "19-1", rate: 100),
-            RankingListModel(id: 2, profileImageID: 2, nickname: "선배닉네임최대는", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "디지털미디어학과", secondMajorStart: "20-1", rate: 80),
-            RankingListModel(id: 3, profileImageID: 3, nickname: "하이", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 70),
-            RankingListModel(id: 4, profileImageID: 4, nickname: "나는지은", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과 (세종)", secondMajorStart: "22-1", rate: 90),
-            RankingListModel(id: 5, profileImageID: 5, nickname: "나도선배", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 80),
-            RankingListModel(id: 6, profileImageID: 2, nickname: "정숙이는개발천재", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 10),
-            RankingListModel(id: 7, profileImageID: 3, nickname: "선배닉네임최대는", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "경제학과", secondMajorStart: "22-1", rate: 20),
-        ])
-    }
-}
-
-// MARK: - UITableViewDelegate
-extension RankingVC: UITableViewDelegate {
-    
-    /// cell 높이 설정
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 104.adjustedH
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension RankingVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rankingList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RankingTVC.className) as? RankingTVC else { return UITableViewCell() }
-
-        cell.setData(data: rankingList[indexPath.row], indexPath: indexPath.row)
-        return cell
     }
 }
