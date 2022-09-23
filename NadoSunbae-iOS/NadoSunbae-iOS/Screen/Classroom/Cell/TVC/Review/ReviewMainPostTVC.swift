@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ReactorKit
 
 class ReviewMainPostTVC: BaseTVC {
 
@@ -21,7 +20,6 @@ class ReviewMainPostTVC: BaseTVC {
     
     // MARK: Properties
     var tagImgList: [ReviewTagList] = []
-    var disposeBag = DisposeBag()
     
     // MARK: Life Cycle Part
     override func awakeFromNib() {
