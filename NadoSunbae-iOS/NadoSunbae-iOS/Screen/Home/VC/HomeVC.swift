@@ -102,8 +102,10 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 후기")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        debugPrint("최근 후기 more 버튼 클릭")
+                    subTitleCell.moreBtn.press { [weak self] in
+                        let recentReviewVC = RecentReviewVC()
+                        recentReviewVC.reactor = RecentReviewReactor()
+                        self?.navigationController?.pushViewController(recentReviewVC, animated: true)
                     }
                     return subTitleCell
                 case 1:
