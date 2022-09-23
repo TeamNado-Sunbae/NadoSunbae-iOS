@@ -137,7 +137,7 @@ extension RankingVC {
         
         rankingTV.snp.makeConstraints {
             $0.top.equalTo(infoView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         infoContentView.snp.makeConstraints {
