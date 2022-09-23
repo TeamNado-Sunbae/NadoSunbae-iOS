@@ -55,6 +55,11 @@ final class RankingVC: BaseVC, View {
         registerTVC()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideTabbar()
+    }
+    
     func bind(reactor: RankingReactor) {
         bindAction(reactor)
         bindState(reactor)

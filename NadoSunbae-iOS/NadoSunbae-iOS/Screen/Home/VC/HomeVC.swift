@@ -30,6 +30,11 @@ final class HomeVC: BaseVC {
         setBackgroundTV()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabbar()
+    }
+    
     private func setBackgroundTV() {
         backgroundTV.dataSource = self
         backgroundTV.delegate = self
