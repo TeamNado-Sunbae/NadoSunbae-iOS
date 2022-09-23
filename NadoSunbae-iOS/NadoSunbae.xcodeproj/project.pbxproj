@@ -238,6 +238,7 @@
 		777C18D627D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777C18D427D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift */; };
 		777C18D727D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777C18D527D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib */; };
 		778E0F47287A061900BEEEA5 /* NadoMaskedImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E0F46287A061900BEEEA5 /* NadoMaskedImgView.swift */; };
+		779DC5AB28DDC417009B9A43 /* RecentReviewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DC5AA28DDC417009B9A43 /* RecentReviewPostModel.swift */; };
 		77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */; };
 		77A049F827BEBD2B00D09C69 /* ReviewEditData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A049F727BEBD2B00D09C69 /* ReviewEditData.swift */; };
 		77A7591A279712B700A8E48B /* ReviewPostTagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */; };
@@ -563,6 +564,7 @@
 		777C18D427D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailGrayTVC.swift; sourceTree = "<group>"; };
 		777C18D527D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailGrayTVC.xib; sourceTree = "<group>"; };
 		778E0F46287A061900BEEEA5 /* NadoMaskedImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoMaskedImgView.swift; sourceTree = "<group>"; };
+		779DC5AA28DDC417009B9A43 /* RecentReviewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentReviewPostModel.swift; sourceTree = "<group>"; };
 		77A049F527BD647900D09C69 /* ReviewDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeleteResModel.swift; sourceTree = "<group>"; };
 		77A049F727BEBD2B00D09C69 /* ReviewEditData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEditData.swift; sourceTree = "<group>"; };
 		77A75918279712B700A8E48B /* ReviewPostTagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostTagCVC.swift; sourceTree = "<group>"; };
@@ -1858,6 +1860,7 @@
 			children = (
 				C783BF9E28A7A449000FE3D8 /* HomeRecentReviewResponseModel.swift */,
 				C783BFA828A814DE000FE3D8 /* HomeRankingResponseModel.swift */,
+				779DC5AA28DDC417009B9A43 /* RecentReviewPostModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2162,6 +2165,7 @@
 				C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */,
 				C783BF9C28A7A202000FE3D8 /* HomeRecentReviewQuestionCVC.swift in Sources */,
 				331364722785B26000E0C118 /* Notification.Name.swift in Sources */,
+				779DC5AB28DDC417009B9A43 /* RecentReviewPostModel.swift in Sources */,
 				331364B62786179100E0C118 /* UITabBar+.swift in Sources */,
 				C71BF22527CCB2070030DCB9 /* BlockListVC.swift in Sources */,
 				C7CC017C28A953AC001D2C18 /* HomeRecentPersonalQuestionVC.swift in Sources */,
