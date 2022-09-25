@@ -29,18 +29,18 @@ extension MypageService: TargetType {
         case .getUserPersonalQuestionList(let userID, _):
             return "/user/\(userID)/post/question"
         case .getMypageMyPostList:
-            return "/user/mypage/classroom-post/list"
+            return "/user/classroom-post/list"
         case .getMypageMyAnswerList(let postType):
             switch postType {
             case .question:
-                return "/user/mypage/comment/list/\(3)"
+                return "/user/comment/list/\(3)"
             case .information:
-                return "/user/mypage/comment/list/\(2)"
+                return "/user/comment/list/\(2)"
             }
         case .getMypageMyReviewList(let userID):
             return "/user/\(userID)/review"
         case .getMypageMyLikeList:
-            return "/user/mypage/like/list/"
+            return "/user/like/list/"
         }
     }
     
