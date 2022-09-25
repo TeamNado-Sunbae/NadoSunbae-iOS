@@ -25,7 +25,7 @@ extension MypageService: TargetType {
     var path: String {
         switch self {
         case .getUserInfo(let userID):
-            return "/user/mypage/\(userID)"
+            return "/user/\(userID)"
         case .getUserPersonalQuestionList(let userID, _):
             return "/user/mypage/\(userID)/classroom-post/list"
         case .getMypageMyPostList:
@@ -53,13 +53,11 @@ extension MypageService: TargetType {
     
     var task: Task {
         switch self {
-        case .getUserInfo(let userID):
-            return .requestParameters(parameters: ["userId": userID], encoding: URLEncoding.queryString)
         case .getUserPersonalQuestionList(_, let sort):
             return .requestParameters(parameters: ["sort": sort.rawValue], encoding: URLEncoding.queryString)
         case .getMypageMyPostList(let postType):
             return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)
-        case .getMypageMyAnswerList, .getMypageMyReviewList:
+        case .getMypageMyAnswerList, .getMypageMyReviewList, .getUserInfo:
             return .requestPlain
         case .getMypageMyLikeList(let postType):
             return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)
