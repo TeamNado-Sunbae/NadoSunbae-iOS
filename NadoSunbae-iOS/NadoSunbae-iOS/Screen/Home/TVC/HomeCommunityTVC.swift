@@ -18,7 +18,7 @@ final class HomeCommunityTVC: BaseTVC {
         $0.contentInset = .zero
         $0.separatorColor = .gray0
         $0.isScrollEnabled = false
-        $0.estimatedRowHeight = 150
+        $0.estimatedRowHeight = 120
         $0.rowHeight = UITableView.automaticDimension
     }
     
@@ -30,11 +30,15 @@ final class HomeCommunityTVC: BaseTVC {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
         setRecentPostTV()
-        getRecentCommunityList()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        updateRecentPostTVHeight()
     }
     
     private func setRecentPostTV() {
@@ -47,11 +51,11 @@ final class HomeCommunityTVC: BaseTVC {
     }
     
     func updateRecentPostTVHeight() {
+        self.recentPostTV.reloadData()
         self.recentPostTV.snp.updateConstraints {
             $0.height.equalTo(self.recentPostTV.contentSize.height)
         }
         self.recentPostTV.layoutIfNeeded()
-        NotificationCenter.default.post(name: Notification.Name.sendChangedHeight, object: self.recentPostTV.contentSize.height)
     }
 }
 
@@ -76,26 +80,6 @@ extension HomeCommunityTVC: UITableViewDelegate {
     }
 }
 
-// MARK: - Network
-extension HomeCommunityTVC {
-    func getRecentCommunityList() {
-        PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .community, sort: "recent", search: "") { networkResult in
-            switch networkResult {
-            case .success(let res):
-                if let data = res as? [PostListResModel] {
-                    for i in 0..<3 {
-                        self.communityList.append(data[i])
-                    }
-                    self.recentPostTV.reloadData()
-                    self.updateRecentPostTVHeight()
-                }
-            default:
-                debugPrint(#function, "network error")
-            }
-        }
-    }
-}
-
 // MARK: - UI
 extension HomeCommunityTVC {
     private func configureUI() {
@@ -104,7 +88,7 @@ extension HomeCommunityTVC {
         recentPostTV.snp.makeConstraints {
             $0.top.equalToSuperview().inset(4)
             $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.height.equalTo(148 * 3)
+            $0.height.equalTo(148)
             $0.bottom.equalToSuperview().inset(40)
         }
     }

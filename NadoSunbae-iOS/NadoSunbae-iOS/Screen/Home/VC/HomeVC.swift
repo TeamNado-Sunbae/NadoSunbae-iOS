@@ -22,28 +22,25 @@ final class HomeVC: BaseVC {
     enum HomeBackgroundTVSectionType: Int {
         case banner = 0, review, questionPerson, community
     }
-    private var communityTVCHeight: CGFloat?
     private var communityList: [PostListResModel] = []
+    private let contentSizeObserverKeyPath = "contentSize"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         setBackgroundTV()
-        setNotificationCenter()
+        getRecentCommunityList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showTabbar()
+        self.backgroundTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.sendChangedHeight, object: nil)
-    }
-    
-    private func setNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(getRecentCommunityTVCHeight(notification:)), name: Notification.Name.sendChangedHeight, object: nil)
+        self.backgroundTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
     private func setBackgroundTV() {
@@ -63,9 +60,15 @@ final class HomeVC: BaseVC {
         backgroundTV.register(HomeCommunityTVC.self, forCellReuseIdentifier: HomeCommunityTVC.className)
     }
     
-    @objc private func getRecentCommunityTVCHeight(notification: Notification) {
-        communityTVCHeight = (notification.object) as! CGFloat + 44
-        backgroundTV.reloadRows(at: [IndexPath(row: 1, section: 3)], with: .none)
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                let newSize  = newValue as! CGSize
+                self.backgroundTV.snp.updateConstraints {
+                    $0.height.equalTo(newSize.height)
+                }
+            }
+        }
     }
 }
 
@@ -185,10 +188,8 @@ extension HomeVC: UITableViewDataSource {
                     return subTitleCell
                 case 1:
                     guard let communityCell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityTVC.className) as? HomeCommunityTVC else { return HomeCommunityTVC() }
-                    
-//                    communityCell.communityList = self.communityList
-                    communityCell.layoutIfNeeded()
-//                    communityCell.updateRecentPostTVHeight()
+                    communityCell.communityList = self.communityList
+                    communityCell.updateRecentPostTVHeight()
                     return communityCell
                 default: return UITableViewCell()
                 }
@@ -224,7 +225,7 @@ extension HomeVC: UITableViewDataSource {
                 case 0:
                     return 40
                 case 1:
-                    return communityTVCHeight ?? 0
+                    return UITableView.automaticDimension
                 default: return 0
                 }
             }
@@ -294,6 +295,25 @@ extension HomeVC: UITableViewDelegate {
     }
 }
 
+// MARK: - Network
+extension HomeVC {
+    func getRecentCommunityList() {
+        PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .community, sort: "recent", search: "") { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [PostListResModel] {
+                    for i in 0..<3 {
+                        self.communityList.append(data[i])
+                    }
+                    self.backgroundTV.reloadData()
+                }
+            default:
+                debugPrint(#function, "network error")
+            }
+        }
+    }
+}
+
 // MARK: - UI
 extension HomeVC {
     private func configureUI() {
@@ -303,6 +323,7 @@ extension HomeVC {
         
         backgroundTV.snp.makeConstraints {
             $0.horizontalEdges.verticalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(1600)
         }
     }
 }
