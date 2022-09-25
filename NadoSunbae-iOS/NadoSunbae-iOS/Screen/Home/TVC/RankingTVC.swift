@@ -143,14 +143,11 @@ extension RankingTVC {
         nicknameLabel.text = data.nickname
         majorInfoLabel.text = data.firstMajorName + " " + data.firstMajorStart
         secondMajorInfoLabel.text = data.secondMajorName + " " + data.secondMajorStart
+        profileImgView.image = UIImage(named: "grayProfileImage\(data.profileImageID)")
         
         switch indexPath {
-        case 0:
-            medalImgView.image = UIImage(named: "icMedal1")
-        case 1:
-            medalImgView.image = UIImage(named: "icMedal2")
-        case 2:
-            medalImgView.image = UIImage(named: "icMedal3")
+        case 0...2:
+            medalImgView.image = UIImage(named: "icMedal\(indexPath + 1)")
         default:
             medalImgView.isHidden = true
             rankLabel.text = "\(indexPath + 1)"
@@ -158,19 +155,6 @@ extension RankingTVC {
             if indexPath > 4 {
                 rankLabel.textColor = .gray3
             }
-        }
-        
-        switch data.profileImageID {
-        case 1:
-            profileImgView.image = UIImage(named: "grayProfileImage1")
-        case 2:
-            profileImgView.image = UIImage(named: "grayProfileImage2")
-        case 3:
-            profileImgView.image = UIImage(named: "grayProfileImage3")
-        case 4:
-            profileImgView.image = UIImage(named: "grayProfileImage4")
-        default:
-            profileImgView.image = UIImage(named: "grayProfileImage5")
         }
     }
 }
