@@ -22,17 +22,28 @@ final class HomeVC: BaseVC {
     enum HomeBackgroundTVSectionType: Int {
         case banner = 0, review, questionPerson, community
     }
+    private var communityTVCHeight: CGFloat?
+    private var communityList: [PostListResModel] = []
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         setBackgroundTV()
+        setNotificationCenter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showTabbar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.sendChangedHeight, object: nil)
+    }
+    
+    private func setNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getRecentCommunityTVCHeight(notification:)), name: Notification.Name.sendChangedHeight, object: nil)
     }
     
     private func setBackgroundTV() {
@@ -50,6 +61,11 @@ final class HomeVC: BaseVC {
         backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className + "forPesonalQuestion")
         backgroundTV.register(HomeRankingTVC.self, forCellReuseIdentifier: HomeRankingTVC.className)
         backgroundTV.register(HomeCommunityTVC.self, forCellReuseIdentifier: HomeCommunityTVC.className)
+    }
+    
+    @objc private func getRecentCommunityTVCHeight(notification: Notification) {
+        communityTVCHeight = (notification.object) as! CGFloat + 44
+        backgroundTV.reloadRows(at: [IndexPath(row: 1, section: 3)], with: .none)
     }
 }
 
@@ -169,6 +185,10 @@ extension HomeVC: UITableViewDataSource {
                     return subTitleCell
                 case 1:
                     guard let communityCell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityTVC.className) as? HomeCommunityTVC else { return HomeCommunityTVC() }
+                    
+//                    communityCell.communityList = self.communityList
+                    communityCell.layoutIfNeeded()
+//                    communityCell.updateRecentPostTVHeight()
                     return communityCell
                 default: return UITableViewCell()
                 }
@@ -204,7 +224,7 @@ extension HomeVC: UITableViewDataSource {
                 case 0:
                     return 40
                 case 1:
-                    return 148 * 3 + 44
+                    return communityTVCHeight ?? 0
                 default: return 0
                 }
             }

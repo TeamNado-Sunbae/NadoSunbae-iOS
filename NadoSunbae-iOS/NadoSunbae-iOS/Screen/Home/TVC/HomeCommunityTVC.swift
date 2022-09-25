@@ -18,23 +18,19 @@ final class HomeCommunityTVC: BaseTVC {
         $0.contentInset = .zero
         $0.separatorColor = .gray0
         $0.isScrollEnabled = false
+        $0.estimatedRowHeight = 150
+        $0.rowHeight = UITableView.automaticDimension
     }
     
     // MARK: Properties
-    private let communityDummyData = [
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1))
-    ].shuffled()
+    var communityList: [PostListResModel] = []
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         configureUI()
         setRecentPostTV()
+        getRecentCommunityList()
     }
     
     required init?(coder: NSCoder) {
@@ -49,17 +45,25 @@ final class HomeCommunityTVC: BaseTVC {
         
         recentPostTV.removeSeparatorsOfEmptyCellsAndLastCell()
     }
+    
+    func updateRecentPostTVHeight() {
+        self.recentPostTV.snp.updateConstraints {
+            $0.height.equalTo(self.recentPostTV.contentSize.height)
+        }
+        self.recentPostTV.layoutIfNeeded()
+        NotificationCenter.default.post(name: Notification.Name.sendChangedHeight, object: self.recentPostTV.contentSize.height)
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension HomeCommunityTVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return communityList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-        cell.setCommunityData(data: communityDummyData[indexPath.row])
+        cell.setCommunityData(data: communityList[indexPath.row])
         return cell
     }
 }
@@ -72,6 +76,26 @@ extension HomeCommunityTVC: UITableViewDelegate {
     }
 }
 
+// MARK: - Network
+extension HomeCommunityTVC {
+    func getRecentCommunityList() {
+        PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .community, sort: "recent", search: "") { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [PostListResModel] {
+                    for i in 0..<3 {
+                        self.communityList.append(data[i])
+                    }
+                    self.recentPostTV.reloadData()
+                    self.updateRecentPostTVHeight()
+                }
+            default:
+                debugPrint(#function, "network error")
+            }
+        }
+    }
+}
+
 // MARK: - UI
 extension HomeCommunityTVC {
     private func configureUI() {
@@ -80,6 +104,7 @@ extension HomeCommunityTVC {
         recentPostTV.snp.makeConstraints {
             $0.top.equalToSuperview().inset(4)
             $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.height.equalTo(148 * 3)
             $0.bottom.equalToSuperview().inset(40)
         }
     }
