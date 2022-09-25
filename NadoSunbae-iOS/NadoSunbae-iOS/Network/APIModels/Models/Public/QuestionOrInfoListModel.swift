@@ -16,6 +16,10 @@ struct QuestionOrInfoListModel: Codable {
     }
 }
 
+struct MypageQuestionListResponseData: Codable {
+    var postList: [ClassroomPostList] = []
+}
+
 // MARK: - PostList
 struct ClassroomPostList: Codable {
     var postID: Int = 0

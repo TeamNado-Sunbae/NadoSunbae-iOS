@@ -27,7 +27,7 @@ extension MypageService: TargetType {
         case .getUserInfo(let userID):
             return "/user/\(userID)"
         case .getUserPersonalQuestionList(let userID, _):
-            return "/user/mypage/\(userID)/classroom-post/list"
+            return "/user/\(userID)/post/question"
         case .getMypageMyPostList:
             return "/user/mypage/classroom-post/list"
         case .getMypageMyAnswerList(let postType):
