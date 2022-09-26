@@ -43,6 +43,11 @@ final class HomeVC: BaseVC {
         self.backgroundTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabbar()
+    }
+    
     private func setBackgroundTV() {
         backgroundTV.dataSource = self
         backgroundTV.delegate = self
@@ -136,8 +141,10 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 후기")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        debugPrint("최근 후기 more 버튼 클릭")
+                    subTitleCell.moreBtn.press { [weak self] in
+                        let recentReviewVC = RecentReviewVC()
+                        recentReviewVC.reactor = RecentReviewReactor()
+                        self?.navigationController?.pushViewController(recentReviewVC, animated: true)
                     }
                     return subTitleCell
                 case 1:
@@ -153,8 +160,10 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "선배랭킹")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        debugPrint("선배랭킹 more 버튼 클릭")
+                    subTitleCell.moreBtn.press { [weak self] in
+                        let rankingVC = RankingVC()
+                        rankingVC.reactor = RankingReactor()
+                        self?.navigationController?.pushViewController(rankingVC, animated: true)
                     }
                     return subTitleCell
                 case 1:
