@@ -14,6 +14,11 @@ enum UserType {
     case other
 }
 
+enum QuestionCellType {
+    case question
+    case comment
+}
+
 class DefaultQuestionChatVC: BaseVC {
     
     // MARK: IBOutlet
@@ -53,7 +58,7 @@ class DefaultQuestionChatVC: BaseVC {
             sendAreaTextView.layer.borderWidth = 1
             sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
             sendAreaTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
-            configueTextViewPlaceholder(userType: userType ?? .other, questionType: questionType ?? .personal)
+            configueTextViewPlaceholder(userType: userType ?? .other)
             sendAreaTextView.sizeToFit()
         }
     }
@@ -62,9 +67,7 @@ class DefaultQuestionChatVC: BaseVC {
     
     // MARK: Properties
     var editIndex: [Int]?
-    var moreBtnTapIndex: [Int]?
     var naviStyle: NaviType?
-    var questionType: QuestionType?
     var questionerID: Int?
     var answererID: Int?
     var userID: Int?
@@ -72,7 +75,9 @@ class DefaultQuestionChatVC: BaseVC {
     var postID: Int?
     var isBlocked: Bool?
     private var qnaType: QnAType?
-    private var questionChatData: [ClassroomMessageList] = []
+    private var questionData: DetailPost?
+    private var questionerData: PostDetailWriter?
+    private var commentData: [CommentList] = []
     private var questionLikeData: Like?
     private var isCommentEdited: Bool = false
     private var editedCommentIndexPath: [IndexPath] = []
@@ -111,11 +116,7 @@ class DefaultQuestionChatVC: BaseVC {
     // MARK: IBAction
     @IBAction func tapSendBtn(_ sender: UIButton) {
         if !isTextViewEmpty {
-            if userType == .questioner {
-                leftSendAnimation(text: ".............")
-            } else {
-                rightSendAnimation(text: ".............")
-            }
+            userType == .questioner ? leftSendAnimation(text: ".............") : rightSendAnimation(text: ".............")
             
             DispatchQueue.main.async {
                 self.isCommentSend = true
@@ -181,19 +182,9 @@ extension DefaultQuestionChatVC {
     }
     
     /// userType별로 TextView의 placeholder 지정하는 메서드
-    private func configueTextViewPlaceholder(userType: UserType, questionType: QuestionType) {
-        
-        switch questionType {
-        case .personal:
-            sendAreaTextView.isEditable = (userType == .questioner || userType == .replier) ? true : false
-            sendAreaTextView.text = (userType == .questioner || userType == .replier) ? "답글쓰기" : "다른 선배 개인 페이지에서는 답글 불가!"
-        case .group:
-            sendAreaTextView.isEditable = true
-            sendAreaTextView.text = "답글쓰기"
-        default:
-            print("info or Review")
-        }
-        
+    private func configueTextViewPlaceholder(userType: UserType) {
+        sendAreaTextView.isEditable = (userType == .questioner || userType == .replier) ? true : false
+        sendAreaTextView.text = (userType == .questioner || userType == .replier) ? "답글쓰기" : "다른 선배 개인 페이지에서는 답글 불가!"
         sendAreaTextView.endEditing(true)
         sendAreaTextView.textColor = .gray2
         sendAreaTextView.backgroundColor = .gray0
@@ -231,60 +222,32 @@ extension DefaultQuestionChatVC {
                 questionNaviBar.backBtn.press(vibrate: true, for: .touchUpInside) {
                     self.navigationController?.popViewController(animated: true)
                 }
-                
-                if let questionType = questionType {
-                    switch questionType {
-                    case .personal:
-                        questionNaviBar.configureTitleLabel(title: "1:1 질문")
-                    case .group:
-                        questionNaviBar.configureTitleLabel(title: "질문")
-                    case .info:
-                        questionNaviBar.configureTitleLabel(title: "정보글")
-                    default:
-                        print("Review")
-                    }
-                }
+                questionNaviBar.configureTitleLabel(title: "1:1 질문")
             case .present:
                 questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
                 questionNaviBar.dismissBtn.press(vibrate: true, for: .touchUpInside) {
                     self.dismiss(animated: true, completion: nil)
                 }
-                
-                if let questionType = questionType {
-                    switch questionType {
-                    case .personal:
-                        questionNaviBar.configureTitleLabel(title: "1:1 질문")
-                    case .group:
-                        questionNaviBar.configureTitleLabel(title: "질문")
-                    case .info:
-                        questionNaviBar.configureTitleLabel(title: "정보글")
-                    default:
-                        print("None-Data")
-                    }
-                }
+                questionNaviBar.configureTitleLabel(title: "1:1 질문")
             }
         }
     }
     
     /// 유저 유형을 식별하는 메서드
-    private func identifyUserType(questionerID: Int, answererID: Int) -> UserType {
-        return (userID != questionerID && userID != answererID) ? .other : (userID == questionerID) ? .questioner : .replier
+    private func identifyUserType(questionerID: Int, isAuthorized: Bool) -> UserType {
+        if isAuthorized {
+            return userID == questionerID ? .questioner : .replier
+        } else {
+            return .other
+        }
     }
     
     /// 전송 버튼의 상태를 setUp하는 메서드
-    private func setUpSendBtnEnabledState(questionType: QuestionType, textView: UITextView) {
+    private func setUpSendBtnEnabledState(textView: UITextView) {
         if isTextViewEmpty {
             sendBtn.isEnabled = false
         } else {
-            if questionType == .personal {
-                if userType == .other {
-                    sendBtn.isEnabled = false
-                } else {
-                    sendBtn.isEnabled = true
-                }
-            } else {
-                sendBtn.isEnabled = true
-            }
+            sendBtn.isEnabled = userType == .other ? false : true
         }
     }
     
@@ -373,6 +336,198 @@ extension DefaultQuestionChatVC {
     }
 }
 
+// MARK: - Congifure Cell Methods
+extension DefaultQuestionChatVC {
+    
+    /// 질문 작성자의 "더보기" 버튼 클릭시 액션을 설정하는 메서드
+    private func setQuestionerMoreBtnAction(_ indexPath: IndexPath) {
+        if self.actionSheetString.count > 1 {
+            /// 작성자 본인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
+            self.makeTwoAlertWithCancel(okTitle: self.actionSheetString[0], secondOkTitle: self.actionSheetString[1], okAction: { [weak self] _ in
+                guard let self = self else { return }
+                
+                if indexPath.section == 0 {
+                    /// 수정
+                    /// 질문 원글일 경우
+                    self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
+                        writeQuestionVC.questionType = .questionToPerson
+                        writeQuestionVC.isEditState = true
+                        writeQuestionVC.postID = self?.postID
+                        writeQuestionVC.originTitle = self?.questionData?.title
+                        writeQuestionVC.originContent = self?.questionData?.content
+                    }
+                } else {
+                    /// 질문 답변일 경우
+                    self.dismissKeyboard()
+                    self.editIndex = [1, indexPath.row]
+                }
+                self.defaultQuestionChatTV.reloadData()
+            }, secondOkAction: { [weak self] _ in
+                guard let self = self else { return }
+                /// 삭제
+                self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: indexPath.row == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
+            })
+        } else {
+            /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
+            self.makeAlertWithCancel(okTitle: self.actionSheetString[0], okAction: { [weak self] _ in
+                self?.reportActionSheet { [weak self] reason in
+                    guard let self = self else { return }
+                    self.requestReport(reportedTargetID: indexPath.row == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, reportedTargetTypeID: indexPath.row == 0 ? 2 : 3, reason: reason)
+                }
+            })
+        }
+    }
+    
+    /// 각 셀의 "더보기" 버튼 클릭시 액션을 설정하는 메서드
+    private func setMoreBtnAction(_ type: QuestionCellType, _ indexPath: IndexPath) {
+        if self.actionSheetString.count > 1 {
+            
+            /// 작성자 본인이 말풍선의 더보기 버튼을 눌렀을 경우
+            self.makeTwoAlertWithCancel(okTitle: self.actionSheetString[0], secondOkTitle: self.actionSheetString[1], okAction: { [weak self] _ in
+                guard let self = self else { return }
+                
+                switch type {
+                case .question:
+                    if indexPath.section == 0 {
+                        /// 수정
+                        /// 질문 원글일 경우
+                        self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
+                            writeQuestionVC.questionType = .questionToPerson
+                            writeQuestionVC.isEditState = true
+                            writeQuestionVC.postID = self?.postID
+                            writeQuestionVC.originTitle = self?.questionData?.title
+                            writeQuestionVC.originContent = self?.questionData?.content
+                        }
+                    } else {
+                        /// 질문 답변일 경우
+                        self.dismissKeyboard()
+                        self.editIndex = [1, indexPath.row]
+                    }
+                case .comment:
+                    if self.actionSheetString[0] == "수정" {
+                        self.dismissKeyboard()
+                        self.editIndex = [1,indexPath.row]
+                    }
+                }
+                self.defaultQuestionChatTV.reloadData()
+            }, secondOkAction: { [weak self] _ in
+                guard let self = self else { return }
+                /// 삭제
+                self.makeNadoDeleteAlert(qnaType: indexPath.section == 0 ? .question : .comment, commentID: indexPath.section == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
+            })
+        } else {
+            /// 타인이 말풍선의 더보기 버튼을 눌렀을 경우
+            self.makeAlertWithCancel(okTitle: self.actionSheetString[0], okAction: { [weak self] _ in
+                self?.reportActionSheet { [weak self] reason in
+                    guard let self = self else { return }
+                    self.requestReport(reportedTargetID: indexPath.section == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, reportedTargetTypeID: indexPath.section == 0 ? 2 : 3, reason: reason)
+                }
+            })
+        }
+        
+        self.editIndex = []
+    }
+    
+    /// 질문 Cell을 구성하는 메서드
+    private func configureQuestionCell(indexPath: IndexPath, questionCell: ClassroomQuestionTVC) {
+        if let questionerData = questionerData {
+            questionCell.bindWriterData(indexPath.row == 0 ? questionerData : commentData[indexPath.row].writer)
+        }
+        questionCell.bindLikeData(questionLikeData ?? Like(isLiked: false, likeCount: 0))
+        
+        questionCell.dynamicUpdateDelegate = self
+        questionCell.changeCellDelegate = self
+        
+        questionCell.tapLikeBtnAction = { [weak self] in
+            // ✅ TODO: 좋아요 API 변경 후 작업
+            //            requestPostClassroomLikeData(postID: postID ?? 0, postTypeID: self.questionType ?? .personal)
+        }
+        
+        questionCell.tapNicknameBtnAction = { [weak self] in
+            self?.goToMypageVC(userID: indexPath.row == 0 ? self?.questionerData?.writerID ?? 0 : self?.commentData[indexPath.row].writer.writerID ?? 0)
+        }
+        
+        questionCell.interactURL = { url in
+            self.presentToSafariVC(url: url)
+        }
+        
+        questionCell.tapMoreBtnAction = { [weak self] in
+            guard let self = self else { return }
+            self.actionSheetString = self.setActionSheetString(.question)
+            self.setMoreBtnAction(.question, indexPath)
+        }
+    }
+    
+    /// 댓글 Cell을 구성하는 메서드
+    private func configureCommentCell(_ indexPath: IndexPath, _ commentCell: ClassroomCommentTVC) {
+        commentCell.dynamicUpdateDelegate = self
+        commentCell.changeCellDelegate = self
+        commentCell.tapMoreBtnAction = { [weak self] in
+            guard let self = self else { return }
+            self.actionSheetString = self.setActionSheetString(.comment)
+            self.setMoreBtnAction(.comment, indexPath)
+        }
+        
+        commentCell.tapNicknameBtnAction = { [weak self] in
+            guard let self = self else { return }
+            self.goToMypageVC(userID: self.commentData[indexPath.row].writer.writerID)
+        }
+        
+        commentCell.interactURL = { [weak self] url in
+            self?.presentToSafariVC(url: url)
+        }
+    }
+    
+    /// 1:1 답변자 셀 중 데이터가 삭제된 셀을 구성하는 메서드
+    private func configureDeletedCommentCell(_ indexPath: IndexPath, _ commentCell: ClassroomCommentTVC) {
+        if  commentData[indexPath.row].isDeleted {
+            [commentCell.titleLabelTopConstraint, commentCell.contentTextViewTopConstriaint].forEach {
+                $0?.constant = 0
+            }
+            [commentCell.majorLabel, commentCell.nicknameLabel, commentCell.moreBtn, commentCell.uploadDateLabel].forEach {
+                $0?.isHidden = true
+            }
+        } else {
+            commentCell.titleLabelTopConstraint.constant = 16
+            commentCell.contentTextViewTopConstriaint.constant = 24
+            [commentCell.majorLabel, commentCell.nicknameLabel, commentCell.moreBtn, commentCell.uploadDateLabel].forEach {
+                $0?.isHidden = false
+            }
+        }
+    }
+    
+    /// 1:1 질문자 셀 중 데이터가 삭제된 셀을 구성하는 메서드
+    private func configureDeletedQuestionCell(_ indexPath: IndexPath, _ questionCell: ClassroomQuestionTVC) {
+        if commentData[indexPath.row].isDeleted {
+            [questionCell.titleLabelTopConstraint, questionCell.contentTextViewTopConstriaint].forEach {
+                $0?.constant = 0
+            }
+            [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
+                $0?.isHidden = true
+            }
+        } else {
+            questionCell.contentTextViewTopConstriaint.constant = 24
+            [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
+                $0?.isHidden = false
+            }
+        }
+    }
+    
+    /// QuestionCellType, UserType에 따라 더보기 클릭시 나타나는 ActionSheet의 String을 설정하는 메서드
+    private func setActionSheetString(_ cellType: QuestionCellType) -> [String] {
+        if userType == .questioner {
+            /// 작성자 본인
+            return returnActionSheetType(type: cellType == .question ? .editAndDelete : .onlyReport)
+        } else if userType == .replier {
+            /// 답변자 == 선배
+            return returnActionSheetType(type: cellType == .question ? .reportAndDelete : .editAndDelete)
+        } else {
+            /// 타인
+            return returnActionSheetType(type: .onlyReport)
+        }
+    }
+}
+
 // MARK: - Observer
 extension DefaultQuestionChatVC {
     
@@ -399,7 +554,7 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
         sendAreaDynamicHeight(textView: textView)
         adjustTVContentOffset(textView: textView)
         isTextViewEmpty = textView.text.isEmpty ? true : false
-        setUpSendBtnEnabledState(questionType: questionType ?? .personal, textView: sendAreaTextView)
+        setUpSendBtnEnabledState(textView: sendAreaTextView)
     }
     
     /// textViewDidBeginEditing
@@ -414,7 +569,7 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            configueTextViewPlaceholder(userType: userType ?? .other, questionType: questionType ?? .personal)
+            configueTextViewPlaceholder(userType: userType ?? .other)
             sendBtn.isEnabled = false
             isTextViewEmpty = true
         }
@@ -424,249 +579,102 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
 // MARK: - UITableViewDataSource
 extension DefaultQuestionChatVC: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     /// numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questionChatData.count
+        switch section {
+        case 0:
+            return questionData != nil ? 1 : 0
+        case 1:
+            return commentData.count
+        default:
+            return 0
+        }
     }
     
     /// cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // TODO: 서버통신시 userType별 수정가능 상태 조정 필요
         guard let questionCell = tableView.dequeueReusableCell(withIdentifier: ClassroomQuestionTVC.className) as? ClassroomQuestionTVC,
               let commentCell = tableView.dequeueReusableCell(withIdentifier: ClassroomCommentTVC.className) as? ClassroomCommentTVC,
               let questionEditCell = tableView.dequeueReusableCell(withIdentifier: ClassroomQuestionEditTVC.className) as? ClassroomQuestionEditTVC,
               let commentEditCell = tableView.dequeueReusableCell(withIdentifier: ClassroomCommentEditTVC.className) as? ClassroomCommentEditTVC else { return UITableViewCell() }
         
-        if questionChatData[indexPath.row].writer.isQuestioner {
-            if editIndex == [0,indexPath.row] {
-                
-                /// 1:1 질문자 답변 수정 셀
-                questionEditCell.dynamicUpdateDelegate = self
-                questionEditCell.bindData(questionChatData[indexPath.row])
-                questionEditCell.tapConfirmBtnAction = { [unowned self] in
-                    editIndex = []
-                    requestEditPostComment(commentID: questionChatData[indexPath.row].messageID, content: questionEditCell.commentContentTextView.text)
-                    editedCommentIndexPath = [IndexPath(row: indexPath.row, section: indexPath.section)]
-                }
-                
-                questionEditCell.tapCancelBtnAction = { [unowned self] in
-                    editIndex = []
-                    defaultQuestionChatTV.reloadData()
-                }
-                return questionEditCell
-            } else if questionChatData[indexPath.row].writer.isQuestioner {
-                
-                /// 1:1 질문자 질문원글 셀
-                if indexPath.row == 0 {
-                    questionCell.likeBtn.isHidden = false
-                    questionCell.likeCountLabel.isHidden = false
-                } else {
-                    questionCell.likeBtn.isHidden = true
-                    questionCell.likeCountLabel.isHidden = true
-                    questionCell.titleLabelTopConstraint.constant = 12
-                    questionCell.moreBtnTopConstraint.constant = 16
-                }
-                
-                /// 1:1 질문자 셀 중 데이터가 삭제된 셀
-                if questionChatData[indexPath.row].isDeleted {
-                    [questionCell.titleLabelTopConstraint, questionCell.contentTextViewTopConstriaint].forEach {
-                        $0?.constant = 0
-                    }
-                    [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
-                        $0?.isHidden = true
-                    }
-                } else {
-                    questionCell.contentTextViewTopConstriaint.constant = 24
-                    [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
-                        $0?.isHidden = false
-                    }
-                }
-                
-                questionCell.dynamicUpdateDelegate = self
-                questionCell.changeCellDelegate = self
-                questionCell.tapMoreBtnAction = { [unowned self] in
-                    
-                    if questionType == .personal {
-                        /// 1:1
-                        if userType == .questioner {
-                            /// 작성자 본인
-                            actionSheetString = returnActionSheetType(type: .editAndDelete)
-                        } else if userType == .replier {
-                            /// 답변자 == 선배
-                            actionSheetString = returnActionSheetType(type: .reportAndDelete)
-                        } else {
-                            /// 타인
-                            actionSheetString = returnActionSheetType(type: .onlyReport)
-                        }
-                    } else {
-                        /// 그룹
-                        if userType == .questioner {
-                            /// 작성자 본인
-                            actionSheetString = returnActionSheetType(type: .editAndDelete)
-                        } else if userType == .replier {
-                            /// 답변자
-                            actionSheetString = returnActionSheetType(type: .onlyReport)
-                        } else {
-                            /// 타인
-                            actionSheetString = returnActionSheetType(type: .onlyReport)
-                        }
-                    }
-                    
-                    if actionSheetString.count > 1 {
-                        /// 작성자 본인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { [weak self] _ in
-                            if indexPath.row == 0 {
-                                /// 수정
-                                /// 질문 원글일 경우
-                                self?.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-                                    writeQuestionVC.questionType = self?.questionType ?? .personal
-                                    writeQuestionVC.isEditState = true
-                                    writeQuestionVC.postID = self?.postID
-                                    writeQuestionVC.originTitle = self?.questionChatData[0].title
-                                    writeQuestionVC.originContent = self?.questionChatData[0].content
-                                }
-                            } else {
-                                /// 질문 답변일 경우
-                                self?.dismissKeyboard()
-                                self?.editIndex = [0, indexPath.row]
-                            }
-                            self?.defaultQuestionChatTV.reloadData()
-                        }, secondOkAction: { [weak self] _ in
-                            /// 삭제
-                            self?.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: self?.questionChatData[indexPath.row].messageID ?? 0, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
-                        })
-                    } else {
-                        /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { [weak self] _ in
-                            self?.reportActionSheet { [weak self] reason in
-                                self?.requestReport(reportedTargetID: self?.questionChatData[indexPath.row].messageID ?? 0, reportedTargetTypeID: indexPath.row == 0 ? 2 : 3, reason: reason)
-                            }
-                        })
-                    }
-                    editIndex = []
-                    moreBtnTapIndex = [0,indexPath.row]
-                }
-                questionCell.bindData(questionChatData[indexPath.row])
-                questionCell.bindLikeData(questionLikeData ?? Like(isLiked: false, likeCount: 0))
-                questionCell.tapLikeBtnAction = { [unowned self] in
-                    requestPostClassroomLikeData(postID: postID ?? 0, postTypeID: self.questionType ?? .personal)
-                }
-                
-                questionCell.tapNicknameBtnAction = { [unowned self] in
-                    goToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
-                }
-                
-                questionCell.interactURL = { url in
-                    self.presentToSafariVC(url: url)
-                }
-                return questionCell
-            }
-        } else {
-            if editIndex == [1,indexPath.row] {
-                
-                /// 답변자 답변 수정 셀
-                commentEditCell.dynamicUpdateDelegate = self
-                commentEditCell.changeCellDelegate = self
-                commentEditCell.bindData(questionChatData[indexPath.row])
-                commentEditCell.tapConfirmBtnAction = { [unowned self] in
-                    editIndex = []
-                    requestEditPostComment(commentID: questionChatData[indexPath.row].messageID, content: commentEditCell.commentContentTextView.text)
-                    editedCommentIndexPath = [IndexPath(row: indexPath.row, section: indexPath.section)]
-                }
-                
-                commentEditCell.tapCancelBtnAction = { [unowned self] in
-                    editIndex = []
-                    defaultQuestionChatTV.reloadData()
-                }
-                return commentEditCell
-                
+        // 흰색 말풍선
+        switch indexPath.section {
+        case 0:
+            // 질문 원글
+            questionCell.likeBtn.isHidden = false
+            questionCell.likeCountLabel.isHidden = false
+            if let questionData = questionData {
+                questionCell.bindQuestionData(questionData)
             } else {
-                /// 1:1 답변자 셀
+                questionCell.bindQuestionData(DetailPost(postDetailID: 0, title: "", content: "", createdAt: "", majorName: ""))
+            }
+            configureQuestionCell(indexPath: indexPath, questionCell: questionCell)
+            return questionCell
+        case 1:
+            // 답변글 중 질문자의 글
+            if questionerData?.writerID == commentData[indexPath.row].writer.writerID {
+                // TODO: 1:1 질문자 답변 수정 셀
+                //            //            if editIndex == [0,indexPath.row] {
+                //            //
+                //            //                /// 1:1 질문자 답변 수정 셀
+                //            //                questionEditCell.dynamicUpdateDelegate = self
+                //            //                questionEditCell.bindData(questionChatData[indexPath.row])
+                //            //                questionEditCell.tapConfirmBtnAction = { [unowned self] in
+                //            //                    editIndex = []
+                //            //                    requestEditPostComment(commentID: questionChatData[indexPath.row].messageID, content: questionEditCell.commentContentTextView.text)
+                //            //                    editedCommentIndexPath = [IndexPath(row: indexPath.row, section: indexPath.section)]
+                //            //                }
+                //            //
+                //            //                questionEditCell.tapCancelBtnAction = { [unowned self] in
+                //            //                    editIndex = []
+                //            //                    defaultQuestionChatTV.reloadData()
+                //            //                }
+                //            //                return questionEditCell
+                //            //            }
                 
-                /// 1:1 답변자 셀 중 데이터가 삭제된 셀
-                if questionChatData[indexPath.row].isDeleted {
-                    [commentCell.titleLabelTopConstraint, commentCell.contentTextViewTopConstriaint].forEach {
-                        $0?.constant = 0
-                    }
-                    [commentCell.majorLabel, commentCell.nicknameLabel, commentCell.moreBtn, commentCell.uploadDateLabel].forEach {
-                        $0?.isHidden = true
-                    }
-                } else {
-                    commentCell.titleLabelTopConstraint.constant = 16
-                    commentCell.contentTextViewTopConstriaint.constant = 24
-                    [commentCell.majorLabel, commentCell.nicknameLabel, commentCell.moreBtn, commentCell.uploadDateLabel].forEach {
-                        $0?.isHidden = false
-                    }
-                }
+                // 질문자의 답변 (흰색 말풍선)
+                questionCell.likeBtn.isHidden = true
+                questionCell.likeCountLabel.isHidden = true
+                questionCell.titleLabelTopConstraint.constant = 12
+                questionCell.moreBtnTopConstraint.constant = 16
+                questionCell.bindCommentData(commentData[indexPath.row])
                 
-                commentCell.dynamicUpdateDelegate = self
-                commentCell.changeCellDelegate = self
-                commentCell.tapMoreBtnAction = { [unowned self] in
-                    
-                    if questionType == .personal {
-                        /// 개인
-                        if userType == .questioner {
-                            /// 1:1 -> 작성자 본인
-                            actionSheetString = returnActionSheetType(type: .onlyReport)
-                        } else if userType == .replier {
-                            /// 1:1 -> 답변자
-                            actionSheetString = returnActionSheetType(type: .editAndDelete)
-                        } else {
-                            /// 1:1 -> 타인
-                            actionSheetString = returnActionSheetType(type: .onlyReport)
-                        }
-                    } else {
-                        /// 그룹
-                        if userType == .questioner {
-                            /// 그룹 -> 작성자 본인
-                            actionSheetString = returnActionSheetType(type: .onlyReport)
-                        } else {
-                            /// 그룹 -> 답변자
-                            if questionChatData[indexPath.row].writer.writerID == userID {
-                                actionSheetString = returnActionSheetType(type: .editAndDelete)
-                            } else {
-                                actionSheetString = returnActionSheetType(type: .onlyReport)
-                            }
-                        }
-                    }
-                    
-                    if actionSheetString.count > 1 {
-                        /// 작성자 본인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeTwoAlertWithCancel(okTitle: actionSheetString[0], secondOkTitle: actionSheetString[1], okAction: { [weak self] _ in
-                            if self?.actionSheetString[0] == "수정" {
-                                self?.dismissKeyboard()
-                                self?.editIndex = [1,indexPath.row]
-                            }
-                            self?.defaultQuestionChatTV.reloadData()
-                        }, secondOkAction: { [weak self] _ in
-                            self?.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: self?.questionChatData[indexPath.row].messageID ?? 0, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
-                        })
-                    } else {
-                        /// 타인이 민트색 말풍선의 더보기 버튼을 눌렀을 경우
-                        self.makeAlertWithCancel(okTitle: actionSheetString[0], okAction: { [weak self] _ in
-                            self?.reportActionSheet { [weak self] reason in
-                                self?.requestReport(reportedTargetID: self?.questionChatData[indexPath.row].messageID ?? 0, reportedTargetTypeID: 3, reason: reason)
-                            }
-                        })
-                    }
-                    editIndex = []
-                    moreBtnTapIndex = [1,indexPath.row]
-                }
-                
-                commentCell.tapNicknameBtnAction = { [unowned self] in
-                    goToMypageVC(userID: questionChatData[indexPath.row].writer.writerID)
-                }
-                
-                commentCell.interactURL = { url in
-                    self.presentToSafariVC(url: url)
-                }
-                
-                commentCell.bindData(questionChatData[indexPath.row])
+                configureDeletedQuestionCell(indexPath, questionCell)
+                configureQuestionCell(indexPath: indexPath, questionCell: questionCell)
+                return questionCell
+            } else {
+                // 답변글 중 답변자의 글
+                // TODO: 답변자 수정 셀
+                //            //            if editIndex == [1,indexPath.row] {
+                //            //
+                //            //                /// 답변자 답변 수정 셀
+                //            //                commentEditCell.dynamicUpdateDelegate = self
+                //            //                commentEditCell.changeCellDelegate = self
+                //            //                commentEditCell.bindData(questionChatData[indexPath.row])
+                //            //                commentEditCell.tapConfirmBtnAction = { [unowned self] in
+                //            //                    editIndex = []
+                //            //                    requestEditPostComment(commentID: questionChatData[indexPath.row].messageID, content: commentEditCell.commentContentTextView.text)
+                //            //                    editedCommentIndexPath = [IndexPath(row: indexPath.row, section: indexPath.section)]
+                //            //                }
+                //            //
+                //            //                commentEditCell.tapCancelBtnAction = { [unowned self] in
+                //            //                    editIndex = []
+                //            //                    defaultQuestionChatTV.reloadData()
+                //            //                }
+                //            //                return commentEditCell
+                commentCell.bindData(commentData[indexPath.row])
+                configureCommentCell(indexPath, commentCell)
+                configureDeletedCommentCell(indexPath, commentCell)
                 return commentCell
             }
+        default:
+            return UITableViewCell()
         }
-        return UITableViewCell()
     }
 }
 
@@ -700,7 +708,7 @@ extension DefaultQuestionChatVC: TVCContentUpdate {
 // MARK: - SendBlockedInfoDelegate
 extension DefaultQuestionChatVC: SendBlockedInfoDelegate {
     func sendBlockedInfo(status: Bool, userID: Int) {
-        if questionChatData[0].writer.writerID == userID {
+        if questionerData?.writerID == userID {
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -714,12 +722,12 @@ extension DefaultQuestionChatVC {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             sendAreaTextViewBottom.constant = screenHeight == 667 ? keyboardSize.height + 6 : keyboardSize.height - 25
             sendBtnBottom.constant = screenHeight == 667 ? keyboardSize.height  + 1 : keyboardSize.height - 30
-
+            
             let beginFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
             let endFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
             
             guard !beginFrame.equalTo(endFrame) else {
-                    return
+                return
             }
             
             keyboardShowUpY = (endFrame.origin.y - beginFrame.origin.y)
@@ -745,54 +753,56 @@ extension DefaultQuestionChatVC {
     /// 1:1질문, 전체 질문, 정보글 상세 조회 API 요청 메서드
     private func requestGetDetailQuestionData(postID: Int) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getQuestionDetailAPI(postID: postID) { networkResult in
+        PublicAPI.shared.getPostDetail(postID: postID) { [weak self] networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? ClassroomQuestionDetailData {
-                    self.questionChatData = data.messageList
-                    self.questionLikeData = data.like
-                    self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
-                    self.userType = self.identifyUserType(questionerID: data.questionerID, answererID: data.answererID)
-                    self.setUpSendBtnEnabledState(questionType: self.questionType ?? .personal, textView: self.sendAreaTextView)
+                if let data = res as? PostDetailResModel {
+                    self?.questionData = data.post
+                    self?.commentData = data.commentList
+                    self?.questionLikeData = data.like
+                    self?.questionerData = data.writer
+                    self?.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
+                    self?.userType = self?.identifyUserType(questionerID: data.writer.writerID, isAuthorized: data.isAuthorized)
+                    self?.setUpSendBtnEnabledState(textView: self?.sendAreaTextView ?? UITextView())
                     
                     /// 댓글 수정되었을 때
-                    if self.isCommentEdited {
-                        self.defaultQuestionChatTV.performBatchUpdates {
-                            self.dismissKeyboard()
-                            self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic)
+                    if self?.isCommentEdited == true {
+                        self?.defaultQuestionChatTV.performBatchUpdates {
+                            self?.dismissKeyboard()
+                            self?.defaultQuestionChatTV.reloadRows(at: self?.editedCommentIndexPath ?? [IndexPath](), with: .automatic)
                         }
-                        self.isCommentEdited = false
+                        self?.isCommentEdited = false
                     } else {
-                        self.defaultQuestionChatTV.reloadData()
+                        self?.defaultQuestionChatTV.reloadData()
                     }
                     
                     /// 댓글 send되었을 때
-                    if self.isCommentSend {
-                        self.scrollTVtoBottom(animate: true)
-                        self.isCommentSend = false
+                    if self?.isCommentSend == true {
+                        self?.scrollTVtoBottom(animate: true)
+                        self?.isCommentSend = false
                     }
                     
-                    self.configueTextViewPlaceholder(userType: self.userType ?? .other, questionType: self.questionType ?? .personal)
-                    self.activityIndicator.stopAnimating()
+                    self?.configueTextViewPlaceholder(userType: self?.userType ?? .other)
+                    self?.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
                 if let message = res as? String {
                     print(message)
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self?.activityIndicator.stopAnimating()
+                    self?.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.optionalBindingData()
+                    self?.updateAccessToken { _ in
+                        self?.optionalBindingData()
                     }
                 } else if res is Int {
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "삭제된 게시글입니다.") { _ in
-                        self.navigationController?.popViewController(animated: true)
+                    self?.activityIndicator.stopAnimating()
+                    self?.makeAlert(title: "삭제된 게시글입니다.") { _ in
+                        self?.navigationController?.popViewController(animated: true)
                     }
                 }
             default:
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self?.activityIndicator.stopAnimating()
+                self?.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
@@ -834,31 +844,32 @@ extension DefaultQuestionChatVC {
     }
     
     /// 전체 질문, 정보글 전체 목록에서 좋아요 API 요청 메서드
-    private func requestPostClassroomLikeData(postID: Int, postTypeID: QuestionType) {
-        self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
-            switch networkResult {
-            case .success(let res):
-                if let _ = res as? PostLikeResModel {
-                    self.requestGetDetailQuestionData(postID: self.postID ?? 0)
-                    self.activityIndicator.stopAnimating()
-                }
-            case .requestErr(let res):
-                if let message = res as? String {
-                    print(message)
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.requestPostClassroomLikeData(postID: self.postID ?? 0, postTypeID: self.questionType ?? .personal)
-                    }
-                }
-            default:
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-            }
-        }
-    }
+    // TODO: 좋아요 API 다시 연결하기
+    //    private func requestPostClassroomLikeData(postID: Int, postTypeID: QuestionType) {
+    //        self.activityIndicator.startAnimating()
+    //        ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
+    //            switch networkResult {
+    //            case .success(let res):
+    //                if let _ = res as? PostLikeResModel {
+    //                    self.requestGetDetailQuestionData(postID: self.postID ?? 0)
+    //                    self.activityIndicator.stopAnimating()
+    //                }
+    //            case .requestErr(let res):
+    //                if let message = res as? String {
+    //                    print(message)
+    //                    self.activityIndicator.stopAnimating()
+    //                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+    //                } else if res is Bool {
+    //                    self.updateAccessToken { _ in
+    //                        self.requestPostClassroomLikeData(postID: self.postID ?? 0, postTypeID: self.questionType ?? .personal)
+    //                    }
+    //                }
+    //            default:
+    //                self.activityIndicator.stopAnimating()
+    //                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+    //            }
+    //        }
+    //    }
     
     /// 답변 수정 API 요청 메서드
     private func requestEditPostComment(commentID: Int, content: String) {
