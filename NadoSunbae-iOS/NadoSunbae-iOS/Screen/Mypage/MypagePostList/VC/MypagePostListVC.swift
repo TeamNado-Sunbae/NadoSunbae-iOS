@@ -137,7 +137,6 @@ extension MypagePostListVC: UITableViewDelegate {
             self.divideUserPermission() {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
-                    questionDetailVC.questionType = .personal
                     questionDetailVC.naviStyle = .push
                     questionDetailVC.postID = self.personalQuestionDummyData[indexPath.row].postID
                 }

@@ -51,7 +51,6 @@ extension NotificationMainVC: UITableViewDelegate {
             divideUserPermission() {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
-                    questionDetailVC.questionType = self.notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
                     questionDetailVC.naviStyle = .push
                     questionDetailVC.postID = self.notificationList[indexPath.section].postID
                     self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
@@ -61,7 +60,6 @@ extension NotificationMainVC: UITableViewDelegate {
         case .mypageQuestion:
             self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                 questionDetailVC.hidesBottomBarWhenPushed = true
-                questionDetailVC.questionType = .personal
                 questionDetailVC.naviStyle = .push
                 questionDetailVC.postID = self.notificationList[indexPath.section].postID
                 self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)

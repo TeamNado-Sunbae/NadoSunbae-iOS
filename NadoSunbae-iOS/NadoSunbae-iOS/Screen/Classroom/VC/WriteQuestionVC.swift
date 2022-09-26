@@ -45,7 +45,6 @@ class WriteQuestionVC: BaseVC {
     
     let questionWriteTextView = NadoTextView()
     let contentView = UIView()
-    var questionType: QuestionType?
     var isEditState: Bool = false
     var confirmAlertMsg: String = ""
     var dismissAlertMsg: String = ""
@@ -54,6 +53,7 @@ class WriteQuestionVC: BaseVC {
     var answerID: Int?
     
     /// 질문 수정할 때에는 postID 필수!!!!! 나머지는 설정 X
+    var questionType: PostFilterType?
     var postID: Int?
     var originTitle: String?
     var originContent: String?
@@ -154,13 +154,8 @@ extension WriteQuestionVC {
             }
         } else {
             switch questionType {
-            case .personal:
+            case .questionToPerson:
                 questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
-            case .group:
-                questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!")
-            case .info:
-                questionTitleTextField.placeholder = "제목을 입력하세요."
-                questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "구성원에게 유용한 학과 정보를 공유해주세요.")
             case .community:
                 questionTitleTextField.placeholder = "제목을 입력하세요."
                 questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "내용을 입력하세요.")
@@ -170,12 +165,8 @@ extension WriteQuestionVC {
         }
         
         switch questionType {
-        case .personal:
+        case .questionToPerson:
             questionWriteNaviBar.configureTitleLabel(title: "1:1 질문 작성")
-        case .group:
-            questionWriteNaviBar.configureTitleLabel(title: "전체에게 질문")
-        case .info:
-            questionWriteNaviBar.configureTitleLabel(title: "정보글 작성")
         case .community:
             questionWriteNaviBar.configureTitleLabel(title: "새 게시글 작성")
         default:
@@ -250,12 +241,13 @@ extension WriteQuestionVC {
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
             alert.showNadoAlert(vc: self, message: self.confirmAlertMsg, confirmBtnTitle: "네", cancelBtnTitle: "아니요")
             alert.confirmBtn.press {
-                switch self.questionType {
-                case .group, .info:
-                    self.answerID = nil
-                default:
-                    break
-                }
+                // TODO: 게시글 작성 API 연결하면서 다시 고려하기
+//                switch self.questionType {
+//                case .group, .info:
+//                    self.answerID = nil
+//                default:
+//                    break
+//                }
                 
                 if self.isEditState {
                     if let postID = self.postID {
@@ -263,7 +255,8 @@ extension WriteQuestionVC {
                         
                     }
                 } else {
-                    self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType?.rawValue ?? 3, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                    // TODO: 게시글 작성 API 연결
+//                    self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType?.rawValue ?? 3, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
                 }
             }
         }
@@ -363,16 +356,12 @@ extension WriteQuestionVC: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             switch questionType {
-            case .personal:
+            case .questionToPerson:
                 textView.text = "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!"
-            case .group:
-                textView.text = "질문을 남겨보세요.\n선배들이 답변해 줄 거에요!"
-            case .info:
-                textView.text = "구성원에게 유용한 학과 정보를 공유해주세요."
             case .community:
                 textView.text = "내용을 입력하세요."
             default:
-                print("Review")
+                print("default")
             }
             textView.textColor = .gray2
             isTextViewEmpty = true
@@ -411,20 +400,20 @@ extension WriteQuestionVC {
                 self.activityIndicator.stopAnimating()
                 var postType: String = ""
                 switch self.questionType {
-                    
-                case .info:
-                    postType = "classroom_information"
-                case .group:
-                    postType = "classroom_question_all"
-                case .personal:
-                    postType = "classroom_question_personal"
-                    FirebaseAnalytics.Analytics.logEvent("user_question", parameters: [
-                        "question_type": "question_start",
-                        "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
-                        "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
-                        "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
-                        "reviewedMajor":  (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
-                    ])
+                    // TODO: 게시글 작성 API 연결하면서 다시 고려하기
+//                case .info:
+//                    postType = "classroom_information"
+//                case .group:
+//                    postType = "classroom_question_all"
+//                case .personal:
+//                    postType = "classroom_question_personal"
+//                    FirebaseAnalytics.Analytics.logEvent("user_question", parameters: [
+//                        "question_type": "question_start",
+//                        "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
+//                        "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
+//                        "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? "",
+//                        "reviewedMajor":  (MajorInfo.shared.selectedMajorName != nil) ? MajorInfo.shared.selectedMajorName ?? "" : UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? ""
+//                    ])
                 default:
                     postType = ""
                 }
@@ -438,7 +427,8 @@ extension WriteQuestionVC {
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType?.rawValue ?? 3, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                        // TODO: 게시글 작성 API 연결
+//                        self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType?.rawValue ?? 3, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
                     }
                 }
             default:

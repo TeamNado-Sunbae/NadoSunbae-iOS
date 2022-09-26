@@ -79,7 +79,7 @@ class MypageUserVC: BaseVC {
             guard let self = self else { return }
             if self.userInfo.isOnQuestion == true {
                 self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
-                    writeQuestionVC.questionType = .personal
+                    writeQuestionVC.questionType = .questionToPerson
                     writeQuestionVC.answerID = self.userInfo.userID
                 }
             }

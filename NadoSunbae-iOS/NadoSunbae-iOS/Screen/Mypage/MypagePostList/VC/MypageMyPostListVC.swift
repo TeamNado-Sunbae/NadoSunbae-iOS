@@ -127,15 +127,7 @@ extension MypageMyPostListVC: UITableViewDelegate {
             /// 유저의 권한 분기처리
             self.divideUserPermission() {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
-                    questionDetailVC.questionType = .group
                     questionDetailVC.naviStyle = .push
-                    
-                    if self.isPostOrAnswer {
-                        questionDetailVC.questionType = self.postList[indexPath.row].postTypeID == 3 ? .group : .personal
-                    } else {
-                        questionDetailVC.questionType = self.answerList[indexPath.row].postTypeID == 3 ? .group : .personal
-                    }
-                    
                     questionDetailVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
                 }
             }
