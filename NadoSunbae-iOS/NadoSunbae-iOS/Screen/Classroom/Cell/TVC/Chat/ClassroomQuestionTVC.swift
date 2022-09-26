@@ -97,14 +97,22 @@ extension ClassroomQuestionTVC {
 extension ClassroomQuestionTVC {
     
     /// 데이터 바인딩하는 메서드
-    func bindData(_ model: ClassroomMessageList) {
+    func bindQuestionData(_ model: DetailPost) {
         titleLabel.text = model.title
-        nicknameLabel.text = model.writer.nickname
-        majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
-        majorLabel.sizeToFit()
         questionContentTextView.text = model.content
         configureQuestionContentTextView()
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
+    }
+
+    func bindCommentData(_ model: CommentList) {
+        questionContentTextView.text = model.content
+        configureQuestionContentTextView()
+        uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
+    }
+    
+    func bindWriterData(_ model: PostDetailWriter) {
+        nicknameLabel.text = model.nickname
+        majorLabel.text = convertToMajorInfoString(model.firstMajorName, model.firstMajorStart, model.secondMajorName, model.secondMajorStart)
     }
     
     func bindLikeData(_ model: Like) {
