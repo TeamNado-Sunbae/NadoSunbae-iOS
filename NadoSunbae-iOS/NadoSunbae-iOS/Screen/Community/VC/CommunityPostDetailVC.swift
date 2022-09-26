@@ -1,5 +1,5 @@
 //
-//  InfoDetailVC.swift
+//  CommunityPostDetailVC.swift
 //  NadoSunbae-iOS
 //
 //  Created by hwangJi on 2022/02/13.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class InfoDetailVC: BaseVC {
+class CommunityPostDetailVC: BaseVC {
     
     // MARK: IBOutlet
     private var infoDetailNaviBar = NadoSunbaeNaviBar().then {
@@ -215,8 +215,9 @@ extension InfoDetailVC {
     
     /// 정보글 원글을 수정하기 위해 WriteQuestionVC로 화면전환하는 메서드
     private func presentWriteQuestionVC() {
+        // ✅ TODO: CommunityWriteVC로 이동시키기.
         self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-            writeQuestionVC.questionType = .info
+//            writeQuestionVC.questionType = .info
             writeQuestionVC.isEditState = true
             writeQuestionVC.postID = self?.postID
             writeQuestionVC.originTitle = self?.infoDetailData?.post.title
