@@ -46,4 +46,30 @@ extension UILabel {
             self.attributedText = attributeString
         }
     }
+    
+    /// 특정 문자열 컬러 변경 메서드
+    func setTextColor(targetStringList: [String], color: UIColor) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        targetStringList.forEach {
+            let range = (fullText as NSString).range(of: $0)
+            attributedString.addAttributes([.foregroundColor: color as Any], range: range)
+        }
+        attributedText = attributedString
+    }
+    
+    /// 특정 문자열 컬러 변경 및 행간 조정 메서드
+    func setTextColorWithLineSpacing(targetStringList: [String], color: UIColor, lineSpacing: CGFloat) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineSpacing
+        targetStringList.forEach {
+            let range = (fullText as NSString).range(of: $0)
+            attributedString.addAttributes([.foregroundColor: color as Any], range: range)
+            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: NSMakeRange(0, attributedString.length))
+        }
+        attributedText = attributedString
+    }
+    
 }
