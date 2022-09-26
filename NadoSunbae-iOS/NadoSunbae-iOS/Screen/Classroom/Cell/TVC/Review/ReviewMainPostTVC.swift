@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ReactorKit
 
 class ReviewMainPostTVC: BaseTVC {
 
@@ -21,7 +20,6 @@ class ReviewMainPostTVC: BaseTVC {
     
     // MARK: Properties
     var tagImgList: [ReviewTagList] = []
-    var disposeBag = DisposeBag()
     
     // MARK: Life Cycle Part
     override func awakeFromNib() {
@@ -94,6 +92,19 @@ extension ReviewMainPostTVC {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.title
         majorLabel.text = postData.writer.nickname
+        majorLabel.font = .PretendardSB(size: 14)
+        majorLabel.textColor = .gray4
+        likeCountLabel.text = "\(postData.like.likeCount)"
+        likeImgView.image = postData.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
+    }
+    
+    /// 홈 최근 후기 리스트 데이터 세팅 함수
+    func setHomeRecentReviewData(postData: RecentReviewPostModel) {
+    
+        // TODO: 서버 통신 후 String 변환 코드 추가 필요
+        dateLabel.text = postData.createdAt
+        titleLabel.text = postData.oneLineReview
+        majorLabel.text = postData.majorName
         majorLabel.font = .PretendardSB(size: 14)
         majorLabel.textColor = .gray4
         likeCountLabel.text = "\(postData.like.likeCount)"
