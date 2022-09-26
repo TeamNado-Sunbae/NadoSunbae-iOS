@@ -17,6 +17,7 @@ enum SignService {
     case requestWithDraw(PW: String)
     case resendSignUpMail(email: String, PW: String)
     case updateToken(refreshToken: String)
+    case getUnivEmailDomain(univID: Int)
 }
 
 extension SignService: TargetType {
@@ -42,6 +43,8 @@ extension SignService: TargetType {
             return "/auth/certification/email"
         case .updateToken:
             return "/auth/renewal/token"
+        case .getUnivEmailDomain(let univID):
+            return "auth/university/\(univID)"
         }
     }
     
@@ -49,6 +52,8 @@ extension SignService: TargetType {
         switch self {
         case .requestSignIn, .requestSignUp, .checkNickNameDuplicate, .checkEmailDuplicate, .requestSignOut, .resendSignUpMail, .requestWithDraw, .updateToken:
             return .post
+        case .getUnivEmailDomain:
+            return .get
         }
     }
     
@@ -71,7 +76,7 @@ extension SignService: TargetType {
             return .requestParameters(parameters: ["nickname": nickName], encoding: JSONEncoding.default)
         case .checkEmailDuplicate(let email):
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-        case .requestSignOut, .updateToken:
+        case .requestSignOut, .updateToken, .getUnivEmailDomain:
             return .requestPlain
         case .requestWithDraw(let PW):
             return .requestParameters(parameters: ["password": PW], encoding: JSONEncoding.default)

@@ -163,6 +163,9 @@ extension SignInVC {
                 if let data = res as? SignInDataModel {
                     self.doForIsEmailVerified(data: data)
                     self.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
+                    if env() == .development {
+                        debugPrint("SIGN IN ACCESS TOKEN: \(data.accesstoken)")
+                    }
                     Analytics.setUserID("\(data.user.userID)")
                     Analytics.setUserProperty("제1전공", forName: data.user.firstMajorName)
                     Analytics.setUserProperty("제2전공", forName: data.user.secondMajorName)

@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-class SignAPI {
+class SignAPI: BaseAPI {
     static let shared = SignAPI()
     private var provider = MoyaProvider<SignService>()
     
-    private init() {}
+    override private init() {}
 }
 
 // MARK: - API
@@ -42,7 +42,8 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.signUpJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, SignUpDataModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -58,7 +59,8 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.checkNickNameDuplicateJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -74,7 +76,8 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.checkEmailDuplicateJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -90,7 +93,8 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.signOutJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, SignOutResponseModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -106,7 +110,8 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.withDrawJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, WithDrawResponseModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -114,7 +119,7 @@ extension SignAPI {
         }
     }
     
-    /// [POST] 로그인 요청
+    /// [POST] 회원가입 이메일 재전송 요청
     func resendSignUpMail(email: String, PW: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.resendSignUpMail(email: email, PW: PW)) { result in
             switch result {
@@ -122,7 +127,8 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.resendSignUpMailJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, ResendSignUpMailResponseModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -138,7 +144,25 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                completion(self.updateTokenJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, SignInDataModel.self)
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
+    /// [GET] 학교 이메일 도메인 조회
+    func getUnivEmailDomain(univID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getUnivEmailDomain(univID: univID)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, UnivEmailDomainDataModel.self)
+                completion(networkResult)
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -160,128 +184,6 @@ extension SignAPI {
             return .success(decodedData.data ?? "None-Data")
         case 202:
             return .requestErr(false)
-        case 400...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func signUpJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<SignUpDataModel>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 400...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func checkNickNameDuplicateJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 400...408:
-            return .requestErr(decodedData.message)
-        case 409:
-            return .requestErr(false)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func checkEmailDuplicateJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 400...408:
-            return .requestErr(decodedData.message)
-        case 409:
-            return .requestErr(false)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func signOutJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(SignOutResponseModel.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.message)
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func withDrawJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<WithDrawResponseModel>.self, from: data) else { return .pathErr }
-        switch status {
-        case 200...204:
-            return .success(decodedData.message)
-        case 400...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func resendSignUpMailJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<ResendSignUpMailResponseModel>.self, from: data) else { return .pathErr }
-        switch status {
-        case 200...204:
-            return .success(decodedData.message)
-        case 400...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func updateTokenJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<SignInDataModel>.self, from: data) else { return .pathErr }
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
         case 400...409:
             return .requestErr(decodedData.message)
         case 500:

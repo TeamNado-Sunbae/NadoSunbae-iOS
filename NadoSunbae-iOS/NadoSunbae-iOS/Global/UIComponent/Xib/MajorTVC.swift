@@ -120,5 +120,9 @@ extension MajorTVC {
     func setData(majorName: MajorInfoModel) {
         majorNameLabel.text = majorName.majorName
     }
+    
+    func setMajorNameLabel(data: String) {
+        majorNameLabel.text = data
+    }
 }
 

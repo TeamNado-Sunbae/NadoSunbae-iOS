@@ -6,6 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+enum SignUpMajorInfoEnterType: String {
+    case firstMajor = "본전공"
+    case firstMajorStart = "본전공 진입시기"
+    case secondMajor = "제2전공"
+    case secondMajorStart = "제2전공 진입시기"
+}
 
 class SignUpMajorInfoVC: BaseVC {
     
@@ -33,8 +42,9 @@ class SignUpMajorInfoVC: BaseVC {
     }
     
     // MARK: Properties
-    var univList = ["고려대학교"]
+    var univList = ["고려대학교", "서울여자대학교", "중앙대학교"]
     var signUpData = SignUpBodyModel()
+    let disposeBag = DisposeBag()
     
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
     var enterBtnTag = 0
@@ -43,6 +53,8 @@ class SignUpMajorInfoVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        checkUnivSelected()
+        checkSelectBtnStatus()
     }
     
     // MARK: IBAction
@@ -66,19 +78,44 @@ class SignUpMajorInfoVC: BaseVC {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
-        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
+    @IBAction func tapFirstMajorSelectBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .firstMajor)
+    }
+    
+    @IBAction func tapFirstMajorStartBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .firstMajorStart)
+    }
+    
+    @IBAction func tapSecondMajorSelectBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .secondMajor)
+    }
+    
+    @IBAction func tapSecondMajorStartBtn(_ sender: Any) {
+        showMajorSelectModal(enterType: .secondMajorStart)
+    }
+    
+    private func showMajorSelectModal(enterType: SignUpMajorInfoEnterType) {
         
-        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
-        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
-            slideVC.enterdBtnTag = sender.tag
-            self.enterBtnTag = sender.tag
-            
-            slideVC.modalPresentationStyle = .custom
-            slideVC.transitioningDelegate = self
-            slideVC.selectMajorDelegate = self
-            
-            self.present(slideVC, animated: true, completion: nil)
+        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우 선택버튼 비활성화
+        if !(enterType == .secondMajorStart && secondMajorTextField.text == "미진입") {
+            if let selectedUnivID = self.univList.firstIndex(of: univTextField.text ?? "") {
+                let slideVC = SignUpModalVC()
+                slideVC.univID = selectedUnivID + 1
+                slideVC.enterType = enterType
+                
+                switch enterType {
+                case .firstMajor, .secondMajor:
+                    slideVC.vcType = .search
+                case .firstMajorStart, .secondMajorStart:
+                    slideVC.vcType = .basic
+                }
+                slideVC.cellType = .basic
+                slideVC.modalPresentationStyle = .custom
+                slideVC.transitioningDelegate = self
+                slideVC.selectMajorDelegate = self
+                
+                self.present(slideVC, animated: true, completion: nil)
+            }
         }
     }
     
@@ -124,10 +161,13 @@ extension SignUpMajorInfoVC {
     private func alertAction(title: String, targetTextField: UITextField) -> UIAlertAction {
         let alertAction = UIAlertAction(title: title, style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            targetTextField.text = title
-            self.checkSelectBtnStatus(btn: self.univSelectBtn, textField: self.univTextField)
-            self.signUpData.universityID = 1
-            self.checkNextBtnIsEnabled()
+            if title != targetTextField.text {
+                targetTextField.text = title
+                if let selectedUnivID = self.univList.firstIndex(of: self.univTextField.text ?? "") {
+                    self.signUpData.universityID = selectedUnivID + 1
+                    self.checkNextBtnIsEnabled()
+                }
+            }
         })
         return alertAction
     }
@@ -155,8 +195,29 @@ extension SignUpMajorInfoVC {
     }
     
     /// textField에 값이 있으면 '선택' 버튼을 '변경' 버튼으로 바꾸는 함수
-    private func checkSelectBtnStatus(btn: UIButton, textField: UITextField) {
-        btn.setTitle(textField.isEmpty ? "선택" : "변경", for: .normal)
+    private func checkSelectBtnStatus() {
+        [(univSelectBtn, univTextField),(firstMajorSelectBtn, firstMajorTextField),
+         (firstMajorStartSelectBtn, firstMajorStartTextField),
+         (secondMajorSelectBtn, secondMajorTextField),
+         (secondMajorStartSelectBtn, secondMajorStartTextField)].forEach { (btn, textField) in
+            textField?.rx.observe(String.self, "text")
+                .subscribe(onNext: { changedText in
+                    btn?.setTitle(changedText?.isEmpty ?? false ? "선택" : "변경", for: .normal)
+                }).disposed(by: disposeBag)
+        }
+    }
+    
+    /// 학교 선택 여부에 따라 제1/제2전공 textField, button 상태를 업데이트하는 함수
+    private func checkUnivSelected() {
+        univTextField.rx.observe(String.self, "text")
+            .subscribe(onNext: { univText in
+                [self.firstMajorTextField, self.firstMajorStartTextField, self.secondMajorTextField, self.secondMajorStartTextField].forEach { textField in
+                        textField?.text = ""
+                }
+                [self.firstMajorSelectBtn, self.firstMajorStartSelectBtn, self.secondMajorSelectBtn, self.secondMajorStartSelectBtn].forEach { button in
+                        button?.isEnabled = univText == "" ? false : true
+                }
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -170,38 +231,36 @@ extension SignUpMajorInfoVC: UIViewControllerTransitioningDelegate {
 // MARK: - SendUpdateModalDelegate
 extension SignUpMajorInfoVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
-        switch enterBtnTag {
-        case 0:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.firstMajorTextField.text = majorInfoData.majorName
-                self.signUpData.firstMajorID = majorInfoData.majorID
-            }
-        case 1:
-            self.firstMajorStartTextField.text = data as? String
-            self.signUpData.firstMajorStart = data as? String ?? ""
-        case 2:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.secondMajorTextField.text = majorInfoData.majorName
-                self.signUpData.secondMajorID = majorInfoData.majorID
-                if majorInfoData.majorName == "미진입" {
-                    self.signUpData.secondMajorStart = "미진입"
-                    self.secondMajorStartTextField.text = ""
+        
+        if let majorInfoTuple = data as? (Any, SignUpMajorInfoEnterType) {
+            switch majorInfoTuple.1 {
+            case .firstMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.firstMajorTextField.text = majorInfoData.majorName
+                    self.signUpData.firstMajorID = majorInfoData.majorID
+                }
+            case .firstMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.firstMajorStartTextField.text = majorInfoData
+                    self.signUpData.firstMajorStart = majorInfoData
+                }
+            case .secondMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.secondMajorTextField.text = majorInfoData.majorName
+                    self.signUpData.secondMajorID = majorInfoData.majorID
+                    if majorInfoData.majorName == "미진입" {
+                        self.signUpData.secondMajorStart = "미진입"
+                        self.secondMajorStartTextField.text = ""
+                    }
+                }
+                
+            case .secondMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.secondMajorStartTextField.text = majorInfoData
+                    self.signUpData.secondMajorStart = majorInfoData
                 }
             }
-        case 3:
-            self.secondMajorStartTextField.text = data as? String
-            self.signUpData.secondMajorStart = data as? String ?? ""
-        default:
-            #if DEBUG
-            print("SignUpMajorInfoVC SendUpdateDelegate error")
-            #endif
         }
         checkNextBtnIsEnabled()
-        [(firstMajorSelectBtn, firstMajorTextField),
-         (firstMajorStartSelectBtn, firstMajorStartTextField),
-         (secondMajorSelectBtn, secondMajorTextField),
-         (secondMajorStartSelectBtn, secondMajorStartTextField)].forEach { (btn, textField) in
-            checkSelectBtnStatus(btn: btn, textField: textField)
-        }
     }
 }
