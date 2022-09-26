@@ -12,6 +12,7 @@ import Foundation
 struct PostDetailResModel: Codable {
     let post: DetailPost
     let writer: PostDetailWriter
+    let isAuthorized: Bool
     let like: Like
     let commentCount: Int
     let commentList: [CommentList]
