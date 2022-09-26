@@ -275,7 +275,7 @@ extension QuestionMainVC: UITableViewDataSource {
                 /// 유저의 권한 분기처리
                 self.divideUserPermission() { [weak self] in
                     self?.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
-                        writeQuestionVC.questionType = .group
+//                        writeQuestionVC.questionType = .group
                     }
                 }
             }
@@ -336,15 +336,14 @@ extension QuestionMainVC: UITableViewDelegate {
                 if questionList.count != 0 {
                     self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                         questionDetailVC.hidesBottomBarWhenPushed = true
-                        questionDetailVC.questionType = .group
                         questionDetailVC.naviStyle = .push
                         questionDetailVC.postID = self.questionList[indexPath.row].postID
                     }
                 }
             }
         } else if indexPath.section == 2 {
-            let entireQuestionVC = EntireQuestionListVC()
-            self.navigationController?.pushViewController(entireQuestionVC, animated: true)
+//            let entireQuestionVC = EntireQuestionListVC()
+//            self.navigationController?.pushViewController(entireQuestionVC, animated: true)
         }
     }
 }

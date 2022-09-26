@@ -155,7 +155,6 @@ extension MypageLikeListVC: UITableViewDelegate {
             self.divideUserPermission() {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
-                    questionDetailVC.questionType = .personal
                     questionDetailVC.naviStyle = .push
                     questionDetailVC.postID = self.personalQuestionDummyData[indexPath.row].postID
                 }
@@ -196,7 +195,7 @@ extension MypageLikeListVC: UITableViewDataSource {
             return cell
         case .community:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-            cell.setCommunityData(data: communityDummyData[indexPath.row])
+//            cell.setCommunityData(data: communityDummyData[indexPath.row])
             return cell
         }
     }
