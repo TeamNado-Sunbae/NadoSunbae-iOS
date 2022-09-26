@@ -7,13 +7,33 @@
 
 import Foundation
 
-struct HomeRankingResponseModelElement: Codable {
-    var userID: Int = 0
-    var profileImageID: Int = 0
-    var isOnQuestion: Bool = true
-    var nickname: String = ""
-    var isFirstMajor: Bool = true
-    var responseRate: Int = 0
-}
+struct HomeRankingResponseModel: Codable {
+    let userList: [UserList]
 
-typealias HomeRankingResponseModel = [HomeRankingResponseModelElement]
+    enum CodingKeys: String, CodingKey {
+        case userList = "userList"
+    }
+    
+    // MARK: - UserList
+    struct UserList: Codable {
+        let id: Int
+        let profileImageID: Int
+        let nickname: String
+        let firstMajorName: String
+        let firstMajorStart: String
+        let secondMajorName: String
+        let secondMajorStart: String
+        let rate: Int?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "id"
+            case profileImageID = "profileImageId"
+            case nickname = "nickname"
+            case firstMajorName = "firstMajorName"
+            case firstMajorStart = "firstMajorStart"
+            case secondMajorName = "secondMajorName"
+            case secondMajorStart = "secondMajorStart"
+            case rate = "rate"
+        }
+    }
+}

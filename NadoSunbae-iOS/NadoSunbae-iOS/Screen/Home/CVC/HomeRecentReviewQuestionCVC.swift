@@ -41,7 +41,7 @@ final class HomeRecentReviewQuestionCVC: BaseCVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setRecentReviewData(data: HomeRecentReviewResponseModelElement) {
+    func setRecentReviewData(data: HomeRecentReviewResponseDataElement) {
         majorLabel.isHidden = false
         authorLabel.isHidden = true
         majorLabel.text = data.majorName
@@ -49,13 +49,13 @@ final class HomeRecentReviewQuestionCVC: BaseCVC {
         dateLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
     }
     
-    func setRecentPersonalQuestionData(data: HomeRecentReviewResponseModelElement) {
+    func setRecentPersonalQuestionData(data: PostListResModel) {
         majorLabel.isHidden = true
         authorLabel.isHidden = false
         
         // TODO: 나중에 모델 확정되면 수정 필요
         authorLabel.text = data.majorName
-        contentLabel.text = data.oneLineReview
+        contentLabel.text = data.content
         dateLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
     }
 }

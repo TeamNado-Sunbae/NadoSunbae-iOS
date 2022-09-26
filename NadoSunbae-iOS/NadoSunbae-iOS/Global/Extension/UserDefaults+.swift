@@ -59,5 +59,8 @@ extension UserDefaults {
         
         /// String
         static var PW = "PW"
+        
+        /// Int
+        static var univID = "univID"
     }
 }
