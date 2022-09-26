@@ -43,11 +43,6 @@ final class HomeVC: BaseVC {
         self.backgroundTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        showTabbar()
-    }
-    
     private func setBackgroundTV() {
         backgroundTV.dataSource = self
         backgroundTV.delegate = self
