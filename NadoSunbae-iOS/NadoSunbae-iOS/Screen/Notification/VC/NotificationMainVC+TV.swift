@@ -40,9 +40,9 @@ extension NotificationMainVC: UITableViewDelegate {
         switch notificationList[indexPath.section].notificationTypeID.getNotiType() {
         case .writtenInfo, .answerInfo:
             divideUserPermission() {
-                self.navigator?.instantiateVC(destinationViewControllerType: InfoDetailVC.self, useStoryboard: true, storyboardName: Identifiers.InfoSB, naviType: .push) { infoDetailVC in
-                    infoDetailVC.hidesBottomBarWhenPushed = true
-                    infoDetailVC.postID = self.notificationList[indexPath.section].postID
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: Identifiers.CommunityPostDetailSB, naviType: .push) { communityPostDetailVC in
+                    communityPostDetailVC.hidesBottomBarWhenPushed = true
+                    communityPostDetailVC.postID = self.notificationList[indexPath.section].postID
                     self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
                 }
             }

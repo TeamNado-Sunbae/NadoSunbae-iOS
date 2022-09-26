@@ -143,9 +143,9 @@ extension MypageMyPostListVC: UITableViewDelegate {
             
             /// 유저의 권한 분기처리
             self.divideUserPermission() {
-                self.navigator?.instantiateVC(destinationViewControllerType: InfoDetailVC.self, useStoryboard: true, storyboardName: Identifiers.InfoSB, naviType: .push) { infoDetailVC in
-                    infoDetailVC.hidesBottomBarWhenPushed = true
-                    infoDetailVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: Identifiers.CommunityPostDetailSB, naviType: .push) { communityPostDetailVC in
+                    communityPostDetailVC.hidesBottomBarWhenPushed = true
+                    communityPostDetailVC.postID = self.isPostOrAnswer ? self.postList[indexPath.row].postID : self.answerList[indexPath.row].postID
                 }
             }
         }
