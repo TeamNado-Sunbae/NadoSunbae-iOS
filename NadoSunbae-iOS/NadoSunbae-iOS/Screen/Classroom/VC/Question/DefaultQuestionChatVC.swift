@@ -443,7 +443,6 @@ extension DefaultQuestionChatVC {
         questionCell.bindLikeData(questionLikeData ?? Like(isLiked: false, likeCount: 0))
         
         questionCell.dynamicUpdateDelegate = self
-        questionCell.changeCellDelegate = self
         
         questionCell.tapLikeBtnAction = { [weak self] in
             // ✅ TODO: 좋아요 API 변경 후 작업
@@ -480,7 +479,6 @@ extension DefaultQuestionChatVC {
     /// 댓글 Cell을 구성하는 메서드
     private func configureCommentCell(_ indexPath: IndexPath, _ commentCell: ClassroomCommentTVC) {
         commentCell.dynamicUpdateDelegate = self
-        commentCell.changeCellDelegate = self
         commentCell.tapMoreBtnAction = { [weak self] in
             guard let self = self else { return }
             self.actionSheetString = self.setActionSheetString(.comment)
@@ -717,15 +715,6 @@ extension DefaultQuestionChatVC: TVCHeightDynamicUpdate {
             defaultQuestionChatTV.endUpdates()
             UIView.setAnimationsEnabled(true)
         }
-    }
-}
-
-// MARK: - TVCContentUpdate
-extension DefaultQuestionChatVC: TVCContentUpdate {
-    
-    /// TableView의 내용 or UI를 업데이트하는 메서드
-    func updateTV() {
-        defaultQuestionChatTV.reloadData()
     }
 }
 
