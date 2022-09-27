@@ -96,10 +96,13 @@ extension CommunityMainVC {
             .disposed(by: self.disposeBag)
         
         naviView.rightCustomBtn.rx.tap
-            .map {
-                print("검색 버튼 클릭")
-                return CommunityMainReactor.Action.searchBtnDidTap }
-            .bind(to: reactor.action)
+            .subscribe(onNext: {
+                let searchVC = CommunitySearchVC()
+                let searchReactor = CommunitySearchReactor()
+                searchVC.reactor = searchReactor
+                searchVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(searchVC, animated: true)
+            })
             .disposed(by: disposeBag)
         
         writeFloatingBtn.rx.tap

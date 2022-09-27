@@ -75,8 +75,9 @@ extension CommunitySearchVC {
     // MARK: Action
     private func bindAction(_ reactor: CommunitySearchReactor) {
         searchNaviBar.backBtn.rx.tap
-            .map { CommunitySearchReactor.Action.tapBackBtn }
-            .bind(to: reactor.action)
+            .subscribe(onNext: {
+                self.navigationController?.popViewController(animated: true)
+            })
             .disposed(by: disposeBag)
     }
     
