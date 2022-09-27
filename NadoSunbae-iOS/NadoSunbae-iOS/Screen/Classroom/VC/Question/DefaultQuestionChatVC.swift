@@ -55,7 +55,7 @@ class DefaultQuestionChatVC: BaseVC {
             sendAreaTextView.layer.borderWidth = 1
             sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
             sendAreaTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
-            configueTextViewPlaceholder(userType: userType ?? .other)
+            configueTextViewPlaceholder()
             sendAreaTextView.sizeToFit()
         }
     }
@@ -181,9 +181,9 @@ extension DefaultQuestionChatVC {
     }
     
     /// userType별로 TextView의 placeholder 지정하는 메서드
-    private func configueTextViewPlaceholder(userType: UserType) {
-        sendAreaTextView.isEditable = (userType == .questioner || userType == .replier) ? true : false
-        sendAreaTextView.text = (userType == .questioner || userType == .replier) ? "답글쓰기" : "다른 선배 개인 페이지에서는 답글 불가!"
+    private func configueTextViewPlaceholder() {
+        sendAreaTextView.isEditable = true
+        sendAreaTextView.text = "답글쓰기"
         sendAreaTextView.endEditing(true)
         sendAreaTextView.textColor = .gray2
         sendAreaTextView.backgroundColor = .gray0
@@ -324,6 +324,8 @@ extension DefaultQuestionChatVC {
                         writeQuestionVC.questionType = .questionToPerson
                     }
                 }
+            } else {
+                
             }
         }
     }
@@ -656,7 +658,7 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            configueTextViewPlaceholder(userType: userType ?? .other)
+            configueTextViewPlaceholder()
             sendBtn.isEnabled = false
             isTextViewEmpty = true
         }
@@ -824,7 +826,7 @@ extension DefaultQuestionChatVC {
                         self.isCommentSend = false
                     }
                     
-                    self.configueTextViewPlaceholder(userType: self.userType ?? .other)
+                    self.configueTextViewPlaceholder()
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
