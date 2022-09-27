@@ -53,10 +53,6 @@ class ClassroomQuestionTVC: BaseTVC {
     
     @IBAction func tapMoreBtn(_ sender: UIButton) {
         tapMoreBtnAction?()
-        
-        if let changeCellDelegate = changeCellDelegate {
-            changeCellDelegate.updateTV()
-        }
     }
     
     @IBAction func tapNicknameBtn(_ sender: UIButton) {
@@ -100,12 +96,15 @@ extension ClassroomQuestionTVC {
     func bindQuestionData(_ model: DetailPost) {
         titleLabel.text = model.title
         questionContentTextView.text = model.content
+        questionContentTextView.sizeToFit()
         configureQuestionContentTextView()
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
     }
 
     func bindCommentData(_ model: CommentList) {
+        titleLabel.text = ""
         questionContentTextView.text = model.content
+        questionContentTextView.sizeToFit()
         configureQuestionContentTextView()
         uploadDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
     }
