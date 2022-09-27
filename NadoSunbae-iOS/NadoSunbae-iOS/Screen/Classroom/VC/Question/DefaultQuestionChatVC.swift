@@ -7,16 +7,13 @@
 
 import UIKit
 import FirebaseAnalytics
+import SnapKit
+import Then
 
 enum UserType {
     case questioner
     case replier
     case other
-}
-
-enum QuestionCellType {
-    case question
-    case comment
 }
 
 class DefaultQuestionChatVC: BaseVC {
@@ -64,17 +61,18 @@ class DefaultQuestionChatVC: BaseVC {
     }
     
     @IBOutlet var questionNaviBar: NadoSunbaeNaviBar!
+    private let goToQuestionfloatingBtn = UIButton().then {
+        $0.setImgByName(name: "goToQuestionFloating", selectedName: "goToQuestionFloating")
+    }
     
     // MARK: Properties
-    var editIndex: [Int]?
     var naviStyle: NaviType?
-    var questionerID: Int?
-    var answererID: Int?
-    var userID: Int?
-    var userType: UserType?
     var postID: Int?
-    var isBlocked: Bool?
-    private var qnaType: QnAType?
+    var isAuthorized: Bool?
+    private var userType: UserType?
+    private var isBlocked: Bool?
+    private var editIndex: [Int]?
+    private var answererID: Int?
     private var questionData: DetailPost?
     private var questionerData: PostDetailWriter?
     private var commentData: [CommentList] = []
@@ -87,6 +85,7 @@ class DefaultQuestionChatVC: BaseVC {
     private var sendTextViewLineCount: Int = 1
     private var keyboardShowUpY: CGFloat = 0
     private let textViewMaxHeight: CGFloat = 85
+    private let userID: Int = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -379,7 +378,7 @@ extension DefaultQuestionChatVC {
     }
     
     /// 각 셀의 "더보기" 버튼 클릭시 액션을 설정하는 메서드
-    private func setMoreBtnAction(_ type: QuestionCellType, _ indexPath: IndexPath) {
+    private func setMoreBtnAction(_ type: QnAType, _ indexPath: IndexPath) {
         if self.actionSheetString.count > 1 {
             /// 작성자 본인이 말풍선의 더보기 버튼을 눌렀을 경우
             self.makeTwoAlertWithCancel(okTitle: self.actionSheetString[0], secondOkTitle: self.actionSheetString[1], okAction: { [weak self] _ in
@@ -572,7 +571,7 @@ extension DefaultQuestionChatVC {
     }
     
     /// QuestionCellType, UserType에 따라 더보기 클릭시 나타나는 ActionSheet의 String을 설정하는 메서드
-    private func setActionSheetString(_ cellType: QuestionCellType) -> [String] {
+    private func setActionSheetString(_ cellType: QnAType) -> [String] {
         if userType == .questioner {
             /// 작성자 본인
             return returnActionSheetType(type: cellType == .question ? .editAndDelete : .onlyReport)
@@ -770,33 +769,33 @@ extension DefaultQuestionChatVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? PostDetailResModel {
-                    self?.questionData = data.post
-                    self?.commentData = data.commentList
-                    self?.questionLikeData = data.like
-                    self?.questionerData = data.writer
-                    self?.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
-                    self?.userType = self?.identifyUserType(questionerID: data.writer.writerID, isAuthorized: data.isAuthorized)
-                    self?.setUpSendBtnEnabledState(textView: self?.sendAreaTextView ?? UITextView())
+                    guard let self = self else { return }
+                    self.questionData = data.post
+                    self.commentData = data.commentList
+                    self.questionLikeData = data.like
+                    self.questionerData = data.writer
+                    self.userType = self.identifyUserType(questionerID: data.writer.writerID, isAuthorized: data.isAuthorized)
+                    self.setUpSendBtnEnabledState(textView: self.sendAreaTextView ?? UITextView())
                     
                     /// 댓글 수정되었을 때
-                    if self?.isCommentEdited == true {
-                        self?.defaultQuestionChatTV.performBatchUpdates {
-                            self?.dismissKeyboard()
-                            self?.defaultQuestionChatTV.reloadRows(at: self?.editedCommentIndexPath ?? [IndexPath](), with: .automatic)
+                    if self.isCommentEdited == true {
+                        self.defaultQuestionChatTV.performBatchUpdates {
+                            self.dismissKeyboard()
+                            self.defaultQuestionChatTV.reloadRows(at: self.editedCommentIndexPath, with: .automatic)
                         }
-                        self?.isCommentEdited = false
+                        self.isCommentEdited = false
                     } else {
-                        self?.defaultQuestionChatTV.reloadData()
+                        self.defaultQuestionChatTV.reloadData()
                     }
                     
                     /// 댓글 send되었을 때
-                    if self?.isCommentSend == true {
-                        self?.scrollTVtoBottom(animate: true)
-                        self?.isCommentSend = false
+                    if self.isCommentSend == true {
+                        self.scrollTVtoBottom(animate: true)
+                        self.isCommentSend = false
                     }
                     
-                    self?.configueTextViewPlaceholder(userType: self?.userType ?? .other)
-                    self?.activityIndicator.stopAnimating()
+                    self.configueTextViewPlaceholder(userType: self.userType ?? .other)
+                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
                 if let message = res as? String {
