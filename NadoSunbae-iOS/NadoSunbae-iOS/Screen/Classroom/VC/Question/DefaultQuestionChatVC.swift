@@ -197,6 +197,23 @@ extension DefaultQuestionChatVC {
             self.defaultQuestionChatTV.scrollToRow(at: pathToLastRow as IndexPath, at: UITableView.ScrollPosition.none, animated: animate)
         }
     }
+    
+    /// "이 선배에게 새 질문" 버튼을 띄우는 메서드
+    private func configureQuestionFloatingBtn() {
+        self.sendAreaTextView.isHidden = true
+        self.sendBtn.isHidden = true
+        self.defaultQuestionChatTV.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+        }
+        
+        self.view.addSubview(self.goToQuestionfloatingBtn)
+        self.goToQuestionfloatingBtn.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(45)
+            $0.width.equalTo(174.adjusted)
+            $0.height.equalTo(48.adjustedH)
+            $0.centerX.equalToSuperview()
+        }
+    }
 }
 
 // MARK: - Custom Methods
@@ -294,6 +311,13 @@ extension DefaultQuestionChatVC {
         if let postID = postID {
             DispatchQueue.main.async {
                 self.requestGetDetailQuestionData(postID: postID)
+            }
+        }
+        
+        if let isAuthorized = isAuthorized {
+            if isAuthorized == false {
+                // 타인일 경우
+                configureQuestionFloatingBtn()
             }
         }
     }
