@@ -15,6 +15,7 @@ enum PublicService {
     case getAppLink
     case getPostList(univID: Int, majorID: Int, filter: PostFilterType, sort: String, search: String)
     case getPostDetail(postID: Int)
+    case requestWritePost(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)
 }
 
 extension PublicService: TargetType {
@@ -37,6 +38,8 @@ extension PublicService: TargetType {
             return "/post/university/\(univID)"
         case .getPostDetail(let postID):
             return "/post/\(postID)"
+        case .requestWritePost:
+            return "/post"
         }
     }
     
@@ -44,7 +47,7 @@ extension PublicService: TargetType {
         switch self {
         case .getMajorList, .getAppLink, .getPostList, .getPostDetail:
             return .get
-        case .requestBlockUnBlockUser, .requestReport:
+        case .requestBlockUnBlockUser, .requestReport, .requestWritePost:
             return .post
         }
     }
@@ -75,11 +78,21 @@ extension PublicService: TargetType {
             return .requestParameters(parameters: query, encoding:  URLEncoding.queryString)
         case .getPostDetail:
             return .requestPlain
+        case .requestWritePost(let type, let majorID, let answererID, let title, let content):
+            let body: [String: Any] = [
+                "type": "\(type)",
+                "majorId": majorID,
+                "answererId": answererID,
+                "title": title,
+                "content": content
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     
     var headers: [String: String]? {
         switch self {
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost:
         case .requestBlockUnBlockUser, .requestReport, .getPostList, .getPostDetail:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
