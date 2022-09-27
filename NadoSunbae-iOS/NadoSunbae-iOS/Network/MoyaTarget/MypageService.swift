@@ -11,7 +11,7 @@ import Moya
 enum MypageService {
     case getUserInfo(userID: Int)
     case getUserPersonalQuestionList(userID: Int, sort: ListSortType)
-    case getMypageMyPostList(postType: MypageMyPostType)
+    case getUserPostList(postType: MypageMyPostType)
     case getMypageMyAnswerList(postType: MypageMyPostType)
     case getMypageMyReviewList(userID: Int)
     case getMypageMyLikeList(postType: MypageLikePostType)
@@ -28,13 +28,13 @@ extension MypageService: TargetType {
             return "/user/\(userID)"
         case .getUserPersonalQuestionList(let userID, _):
             return "/user/\(userID)/post/question"
-        case .getMypageMyPostList:
-            return "/user/classroom-post/list"
+        case .getUserPostList:
+            return "/user/post"
         case .getMypageMyAnswerList(let postType):
             switch postType {
-            case .question:
+            case .personalQuestion:
                 return "/user/comment/list/\(3)"
-            case .information:
+            case .community:
                 return "/user/comment/list/\(2)"
             }
         case .getMypageMyReviewList(let userID):
@@ -46,7 +46,7 @@ extension MypageService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .getUserInfo, .getUserPersonalQuestionList, .getMypageMyPostList, .getMypageMyAnswerList, .getMypageMyReviewList, .getMypageMyLikeList:
+        case .getUserInfo, .getUserPersonalQuestionList, .getUserPostList, .getMypageMyAnswerList, .getMypageMyReviewList, .getMypageMyLikeList:
             return .get
         }
     }
@@ -55,8 +55,8 @@ extension MypageService: TargetType {
         switch self {
         case .getUserPersonalQuestionList(_, let sort):
             return .requestParameters(parameters: ["sort": sort.rawValue], encoding: URLEncoding.queryString)
-        case .getMypageMyPostList(let postType):
-            return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)
+        case .getUserPostList(let postType):
+            return .requestParameters(parameters: ["filter": postType.rawValue], encoding: URLEncoding.queryString)
         case .getMypageMyAnswerList, .getMypageMyReviewList, .getUserInfo:
             return .requestPlain
         case .getMypageMyLikeList(let postType):

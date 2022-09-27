@@ -52,9 +52,9 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 내가 쓴 글 - 질문/정보 조회
+    /// [GET] 내가 쓴 글 - 1:1 질문, 커뮤니티 조회
     func getMypageMyPostList(postType: MypageMyPostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.getMypageMyPostList(postType: postType)) { result in
+        provider.request(.getUserPostList(postType: postType)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
