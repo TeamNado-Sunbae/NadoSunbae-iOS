@@ -93,7 +93,7 @@ extension ClassroomQuestionEditTVC {
 extension ClassroomQuestionEditTVC {
     
     /// 데이터 바인딩하는 메서드
-    func bindData(_ model: ClassroomMessageList) {
+    func bindData(_ model: CommentList) {
         nicknameLabel.text = model.writer.nickname
         majorLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
         commentContentTextView.text = model.content
