@@ -318,6 +318,12 @@ extension DefaultQuestionChatVC {
             if isAuthorized == false {
                 // 타인일 경우
                 configureQuestionFloatingBtn()
+                goToQuestionfloatingBtn.press { [weak self] in
+                    guard let self = self else { return }
+                    self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
+                        writeQuestionVC.questionType = .questionToPerson
+                    }
+                }
             }
         }
     }
