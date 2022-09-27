@@ -99,10 +99,8 @@ extension ReviewMainPostTVC {
     }
     
     /// 홈 최근 후기 리스트 데이터 세팅 함수
-    func setHomeRecentReviewData(postData: RecentReviewPostModel) {
-    
-        // TODO: 서버 통신 후 String 변환 코드 추가 필요
-        dateLabel.text = postData.createdAt
+    func setHomeRecentReviewData(postData: HomeRecentReviewResponseDataElement) {
+        dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.oneLineReview
         majorLabel.text = postData.majorName
         majorLabel.font = .PretendardSB(size: 14)
