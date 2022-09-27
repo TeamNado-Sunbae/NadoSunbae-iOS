@@ -13,9 +13,26 @@ struct PostDetailResModel: Codable {
     let post: DetailPost
     let writer: PostDetailWriter
     let isAuthorized: Bool
+    let answererID: Int
     let like: Like
     let commentCount: Int
     let commentList: [CommentList]
+    
+    enum CodingKeys: String, CodingKey {
+        case post, writer, isAuthorized, like, commentCount, commentList
+        case answererID = "answererId"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        post = (try? values.decode(DetailPost.self, forKey: .post)) ?? DetailPost(postDetailID: 0, title: "", content: "", createdAt: "", majorName: "")
+        writer = (try? values.decode(PostDetailWriter.self, forKey: .writer)) ?? PostDetailWriter(writerID: 0, isPostWriter: false, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "")
+        isAuthorized = (try? values.decode(Bool.self, forKey: .isAuthorized)) ?? false
+        answererID = (try? values.decode(Int.self, forKey: .answererID)) ?? 0
+        like = (try? values.decode(Like.self, forKey: .like)) ?? Like(isLiked: false, likeCount: 0)
+        commentCount = (try? values.decode(Int.self, forKey: .commentCount)) ?? 0
+        commentList = (try? values.decode([CommentList].self, forKey: .commentList)) ?? []
+    }
 }
 
 // MARK: - CommentList
