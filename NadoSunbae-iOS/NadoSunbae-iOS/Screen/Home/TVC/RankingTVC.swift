@@ -138,7 +138,7 @@ extension RankingTVC {
 
 // MARK: - Custom Methods
 extension RankingTVC {
-    func setData(data: RankingListModel, indexPath: Int) {
+    func setData(data: HomeRankingResponseModel.UserList, indexPath: Int) {
         responseRateLabel.text = "응답률 \(data.rate ?? 0)%"
         nicknameLabel.text = data.nickname
         majorInfoLabel.text = data.firstMajorName + " " + data.firstMajorStart
