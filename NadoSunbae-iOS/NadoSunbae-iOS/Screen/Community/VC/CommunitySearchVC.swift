@@ -87,6 +87,7 @@ extension CommunitySearchVC {
             .bind(to: searchTV.rx.items) { tableView, index, item in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
+                
                 guard let communityCell = cell as? CommunityTVC else { return UITableViewCell() }
                 communityCell.setCommunityData(data: item)
                 
@@ -99,9 +100,11 @@ extension CommunitySearchVC {
             .subscribe(onNext: { [weak self] data in
                 if data.isEmpty {
                     self?.searchTV.isHidden = true
+                    self?.representStackView.isHidden = false
                     self?.setUpEmptyViewBySearchList(searchCase: .doneSearch)
                 } else {
                     self?.searchTV.isHidden = false
+                    self?.representStackView.isHidden = true
                 }
             })
             .disposed(by: self.disposeBag)
@@ -218,9 +221,11 @@ extension CommunitySearchVC: UISearchBarDelegate {
         }
         return true
     }
-    
+     
+    /// searchBarShouldBeginEditing
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchTV.isHidden = true
+        reactor?.action.onNext(.sendEmptyKeyword)
         setUpEmptyViewBySearchList(searchCase: .enterKeyword)
         return true
     }
