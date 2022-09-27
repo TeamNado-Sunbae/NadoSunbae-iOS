@@ -111,6 +111,16 @@ extension RankingVC {
                 self?.infoContentView.isHidden = status
             })
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .distinctUntilChanged()
+            .map { $0 }
+            .subscribe(onNext: { [weak self] loading in
+                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
