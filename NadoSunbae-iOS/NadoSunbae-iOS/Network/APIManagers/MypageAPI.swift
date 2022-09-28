@@ -128,21 +128,4 @@ extension MypageAPI {
             }
         }
     }
-    
-    /// [GET] 질문글, 정보글 좋아요 목록 조회
-    func getMypageMyLikePostListAPI(postType: MypageLikePostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.getMypageMyLikeList(postType: postType)) { result in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                let networkResult = self.judgeStatus(by: statusCode, data, MypageLikePostData.self)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err.localizedDescription)
-            }
-        }
-    }
 }
