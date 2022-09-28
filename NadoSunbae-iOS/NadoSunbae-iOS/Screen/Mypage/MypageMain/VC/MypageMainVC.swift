@@ -122,7 +122,11 @@ extension MypageMainVC {
             secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         }
         likeCountLabel.text = "\(userInfo.count)"
-        rateLabel.text = "응답률 \(userInfo.responseRate ?? 0)%"
+        if let rate = userInfo.responseRate {
+            rateLabel.text = "응답률 \(rate)%"
+        } else {
+            rateLabel.text = "응답률 -"
+        }
         bioLabel.text = "\(userInfo.bio ?? "")"
         
         DispatchQueue.main.async {
