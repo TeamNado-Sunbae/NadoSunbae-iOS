@@ -30,13 +30,8 @@ extension MypageService: TargetType {
             return "/user/\(userID)/post/question"
         case .getUserPostList:
             return "/user/post"
-        case .getMypageMyAnswerList(let postType):
-            switch postType {
-            case .personalQuestion:
-                return "/user/comment/list/\(3)"
-            case .community:
-                return "/user/comment/list/\(2)"
-            }
+        case .getMypageMyAnswerList:
+            return "/user/comment"
         case .getMypageMyReviewList(let userID):
             return "/user/\(userID)/review"
         case .getMypageMyLikeList:
@@ -55,9 +50,9 @@ extension MypageService: TargetType {
         switch self {
         case .getUserPersonalQuestionList(_, let sort):
             return .requestParameters(parameters: ["sort": sort.rawValue], encoding: URLEncoding.queryString)
-        case .getUserPostList(let postType):
+        case .getUserPostList(let postType), .getMypageMyAnswerList(let postType):
             return .requestParameters(parameters: ["filter": postType.rawValue], encoding: URLEncoding.queryString)
-        case .getMypageMyAnswerList, .getMypageMyReviewList, .getUserInfo:
+        case .getMypageMyReviewList, .getUserInfo:
             return .requestPlain
         case .getMypageMyLikeList(let postType):
             return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)

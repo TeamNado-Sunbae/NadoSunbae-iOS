@@ -69,7 +69,7 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 내가 쓴 답글 - 질문/정보 조회
+    /// [GET] 내가 쓴 답글 - 1:1 질문, 커뮤니티 조회
     func getMypageMyAnswerList(postType: MypageMyPostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.getMypageMyAnswerList(postType: postType)) { result in
             switch result {

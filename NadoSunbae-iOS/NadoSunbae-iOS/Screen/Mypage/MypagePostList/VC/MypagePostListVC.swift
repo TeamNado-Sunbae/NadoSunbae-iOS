@@ -41,6 +41,8 @@ class MypagePostListVC: BaseVC {
     var isPersonalQuestionOrCommunity = true
     private var personalQuestionData: [PostListResModel] = []
     private var communityData: [PostListResModel] = []
+    private var personalQuestionDataForAnswer: [MypageMyAnswerListModel.PostList] = []
+    private var communityDataForAnswer: [MypageMyAnswerListModel.PostList] = []
     private let contentSizeObserverKeyPath = "contentSize"
 
     // MARK: LifeCycle
@@ -51,7 +53,7 @@ class MypagePostListVC: BaseVC {
         configureUI()
         setPostListTV()
         setSegmentedControl()
-        getMypageMyPersonalQuestionList()
+        isPostOrAnswer ? getMypageMyPersonalQuestionList() : getMypageMyAnswerList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,7 +81,7 @@ class MypagePostListVC: BaseVC {
     
     @objc private func didChangeValue(segment: UISegmentedControl) {
         isPersonalQuestionOrCommunity = postListSegmentControl.selectedSegmentIndex == 0
-        isPersonalQuestionOrCommunity ? getMypageMyPersonalQuestionList() : getMypageCommunityPostList()
+        isPostOrAnswer ? (isPersonalQuestionOrCommunity ?  getMypageMyPersonalQuestionList() : getMypageCommunityPostList()) : getMypageMyAnswerList()
     }
     
     private func makeScreenAnalyticsForMyPostList() {
@@ -106,21 +108,38 @@ class MypagePostListVC: BaseVC {
 // MARK: - UITableViewDataSource
 extension MypagePostListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        debugPrint(#function, isPersonalQuestionOrCommunity ? personalQuestionData.count : communityData.count)
-        return isPersonalQuestionOrCommunity ? personalQuestionData.count : communityData.count
+        if isPostOrAnswer {
+            return (isPersonalQuestionOrCommunity ? personalQuestionData.count : communityData.count)
+        } else {
+            return (isPersonalQuestionOrCommunity ? personalQuestionDataForAnswer.count : communityDataForAnswer.count)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isPersonalQuestionOrCommunity {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
-            cell.setPostData(data: personalQuestionData[indexPath.row])
-            cell.layoutSubviews()
-            return cell
+        if isPostOrAnswer {
+            if isPersonalQuestionOrCommunity {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+                cell.setPostData(data: personalQuestionData[indexPath.row])
+                cell.layoutSubviews()
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
+                cell.setCommunityData(data: communityData[indexPath.row])
+                return cell
+            }
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-            cell.setCommunityData(data: communityData[indexPath.row])
-            debugPrint(communityData[indexPath.row])
-            return cell
+            if isPersonalQuestionOrCommunity {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+                let data = personalQuestionDataForAnswer[indexPath.row]
+                cell.setPostData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), commentCount: data.commentCount, like: data.like))
+                cell.layoutSubviews()
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
+                let data = communityDataForAnswer[indexPath.row]
+                cell.setCommunityData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), commentCount: data.commentCount, like: data.like))
+                return cell
+            }
         }
     }
 }
@@ -213,6 +232,37 @@ extension MypagePostListVC {
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.getMypageCommunityPostList()
+                    }
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
+            }
+        })
+    }
+    
+    private func getMypageMyAnswerList() {
+        self.activityIndicator.startAnimating()
+        self.postListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        MypageAPI.shared.getMypageMyAnswerList(postType: isPersonalQuestionOrCommunity ? MypageMyPostType.personalQuestion : MypageMyPostType.community, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageMyAnswerListModel {
+                    if self.isPersonalQuestionOrCommunity {
+                        self.personalQuestionDataForAnswer = data.postList
+                    } else {
+                        self.communityDataForAnswer = data.postList
+                    }
+                    self.activityIndicator.stopAnimating()
+                    self.postListTV.reloadData()
+                }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getMypageMyAnswerList()
                     }
                 }
             default:
