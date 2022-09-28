@@ -40,7 +40,7 @@ struct MypageLikeReviewListModel: Codable {
         var nickname: String
 
         enum CodingKeys: String, CodingKey {
-            case id = "id"
+            case id = "writerId"
             case nickname = "nickname"
         }
     }
