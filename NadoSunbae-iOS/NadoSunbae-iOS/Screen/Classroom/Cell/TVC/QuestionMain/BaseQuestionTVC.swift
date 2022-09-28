@@ -147,7 +147,7 @@ extension BaseQuestionTVC {
         likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
-    func setMypageLikeData(data: MypageLikePostDataModel) {
+    func setMypageLikeData(data: MypageLikeQuestionToPersonListModel.LikeList) {
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.writer.nickname

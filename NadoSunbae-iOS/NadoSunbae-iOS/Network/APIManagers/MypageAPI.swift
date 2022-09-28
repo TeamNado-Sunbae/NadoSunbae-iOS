@@ -103,16 +103,25 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 학과후기 좋아요 목록 조회
-    func getMypageMyLikeReviewListAPI(completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.getMypageMyLikeList(postType: MypageLikePostType.review)) { result in
+    /// [GET] 좋아요 목록 - 후기, 1:1 질문, 커뮤니티 조회
+    func getMypageMyLikeList(postType: MypageLikePostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        provider.request(.getMypageMyLikeList(postType: postType)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeReviewData.self)
-                completion(networkResult)
+                switch postType {
+                case .review:
+                    let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeReviewListModel.self)
+                    completion(networkResult)
+                case .questionToPerson:
+                    let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeQuestionToPersonListModel.self)
+                    completion(networkResult)
+                case .community:
+                    let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeCommunityListModel.self)
+                    completion(networkResult)
+                }
                 
             case .failure(let err):
                 print(err.localizedDescription)

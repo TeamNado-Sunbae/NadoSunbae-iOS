@@ -35,7 +35,7 @@ extension MypageService: TargetType {
         case .getMypageMyReviewList(let userID):
             return "/user/\(userID)/review"
         case .getMypageMyLikeList:
-            return "/user/like/list/"
+            return "/user/like"
         }
     }
     
@@ -55,7 +55,7 @@ extension MypageService: TargetType {
         case .getMypageMyReviewList, .getUserInfo:
             return .requestPlain
         case .getMypageMyLikeList(let postType):
-            return .requestParameters(parameters: ["type": postType.rawValue], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["filter": postType.rawValue], encoding: URLEncoding.queryString)
         }
     }
     
