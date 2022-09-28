@@ -22,12 +22,25 @@ final class HomeVC: BaseVC {
     enum HomeBackgroundTVSectionType: Int {
         case banner = 0, review, questionPerson, community
     }
+    private var communityList: [PostListResModel] = []
+    private let contentSizeObserverKeyPath = "contentSize"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         setBackgroundTV()
+        getRecentCommunityList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabbar()
+        self.backgroundTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.backgroundTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
     private func setBackgroundTV() {
@@ -42,8 +55,20 @@ final class HomeVC: BaseVC {
         backgroundTV.register(HomeBannerTVC.self, forCellReuseIdentifier: HomeBannerTVC.className)
         backgroundTV.register(HomeSubTitleHeaderCell.self, forCellReuseIdentifier: HomeSubTitleHeaderCell.className)
         backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className)
+        backgroundTV.register(HomeRecentReviewQuestionTVC.self, forCellReuseIdentifier: HomeRecentReviewQuestionTVC.className + "forPesonalQuestion")
         backgroundTV.register(HomeRankingTVC.self, forCellReuseIdentifier: HomeRankingTVC.className)
         backgroundTV.register(HomeCommunityTVC.self, forCellReuseIdentifier: HomeCommunityTVC.className)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                let newSize  = newValue as! CGSize
+                self.backgroundTV.snp.updateConstraints {
+                    $0.height.equalTo(newSize.height)
+                }
+            }
+        }
     }
 }
 
@@ -64,6 +89,14 @@ extension HomeVC: SendHomeRecentDataDelegate {
                     questionDetailVC.postID = id
                 }
             }
+        }
+    }
+}
+
+extension HomeVC: SendUpdateModalDelegate {
+    func sendUpdate(data: Any) {
+        if let url = data as? String {
+            self.presentToSafariVC(url: NSURL(string: url)! as URL)
         }
     }
 }
@@ -95,6 +128,7 @@ extension HomeVC: UITableViewDataSource {
             switch tableSection {
             case .banner:
                 guard let bannerCell = tableView.dequeueReusableCell(withIdentifier: HomeBannerTVC.className) as? HomeBannerTVC else { return HomeBannerTVC() }
+                bannerCell.sendUpdateDelegate = self
                 return bannerCell
             case .review:
                 switch indexPath.row {
@@ -102,8 +136,10 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 후기")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        debugPrint("최근 후기 more 버튼 클릭")
+                    subTitleCell.moreBtn.press { [weak self] in
+                        let recentReviewVC = RecentReviewVC()
+                        recentReviewVC.reactor = RecentReviewReactor()
+                        self?.navigationController?.pushViewController(recentReviewVC, animated: true)
                     }
                     return subTitleCell
                 case 1:
@@ -119,8 +155,10 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "선배랭킹")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        debugPrint("선배랭킹 more 버튼 클릭")
+                    subTitleCell.moreBtn.press { [weak self] in
+                        let rankingVC = RankingVC()
+                        rankingVC.reactor = RankingReactor()
+                        self?.navigationController?.pushViewController(rankingVC, animated: true)
                     }
                     return subTitleCell
                 case 1:
@@ -135,9 +173,10 @@ extension HomeVC: UITableViewDataSource {
                     }
                     return subTitleCell
                 case 3:
-                    guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className) as? HomeRecentReviewQuestionTVC else { return HomeRecentReviewQuestionTVC() }
+                    guard let personalQuestionsCell = tableView.dequeueReusableCell(withIdentifier: HomeRecentReviewQuestionTVC.className + "forPesonalQuestion") as? HomeRecentReviewQuestionTVC else { return UITableViewCell() }
                     personalQuestionsCell.recentType = .personalQuestion
                     personalQuestionsCell.sendHomeRecentDataDelegate = self
+                    personalQuestionsCell.prepareForReuse()
                     return personalQuestionsCell
                 default: return UITableViewCell()
                 }
@@ -153,6 +192,8 @@ extension HomeVC: UITableViewDataSource {
                     return subTitleCell
                 case 1:
                     guard let communityCell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityTVC.className) as? HomeCommunityTVC else { return HomeCommunityTVC() }
+                    communityCell.communityList = self.communityList
+                    communityCell.updateRecentPostTVHeight()
                     return communityCell
                 default: return UITableViewCell()
                 }
@@ -188,7 +229,7 @@ extension HomeVC: UITableViewDataSource {
                 case 0:
                     return 40
                 case 1:
-                    return 148 * 3 + 44
+                    return UITableView.automaticDimension
                 default: return 0
                 }
             }
@@ -258,6 +299,25 @@ extension HomeVC: UITableViewDelegate {
     }
 }
 
+// MARK: - Network
+extension HomeVC {
+    func getRecentCommunityList() {
+        PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .community, sort: "recent", search: "") { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? [PostListResModel] {
+                    for i in 0..<3 {
+                        self.communityList.append(data[i])
+                    }
+                    self.backgroundTV.reloadData()
+                }
+            default:
+                debugPrint(#function, "network error")
+            }
+        }
+    }
+}
+
 // MARK: - UI
 extension HomeVC {
     private func configureUI() {
@@ -267,6 +327,7 @@ extension HomeVC {
         
         backgroundTV.snp.makeConstraints {
             $0.horizontalEdges.verticalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(1600)
         }
     }
 }

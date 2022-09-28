@@ -22,4 +22,16 @@ extension Int {
             return nil
         }
     }
+    
+    /// Univ ID를 해당 학교명 예) "서울여자대학교"로 반환
+    func getUnivName() -> String {
+        switch self {
+        case 1: return "고려대학교"
+        case 2: return "서울여자대학교"
+        case 3: return "중앙대학교"
+        default:
+            debugPrint("server univ ID error")
+            return "나도선배대학교"
+        }
+    }
 }

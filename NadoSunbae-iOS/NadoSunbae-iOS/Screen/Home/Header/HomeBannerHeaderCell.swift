@@ -18,7 +18,7 @@ final class HomeBannerHeaderCell: BaseTVC {
         $0.textAlignment = .right
         $0.font = .PretendardM(size: 14)
         $0.textColor = .gray4
-        $0.text = "고려대학교"
+        $0.text = UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID).getUnivName()
     }
     
     // MARK: - Initialization
