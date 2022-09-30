@@ -16,6 +16,8 @@ enum PublicService {
     case getPostList(univID: Int, majorID: Int, filter: PostFilterType, sort: String, search: String)
     case getPostDetail(postID: Int)
     case requestWritePost(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)
+    case editPost(postID: Int, title: String, content: String)
+    case editPostComment(commentID: Int, content: String)
 }
 
 extension PublicService: TargetType {
@@ -40,6 +42,10 @@ extension PublicService: TargetType {
             return "/post/\(postID)"
         case .requestWritePost:
             return "/post"
+        case .editPost(let postID, _, _):
+            return "/post/\(postID)"
+        case .editPostComment(let commentID, _):
+            return "/comment/\(commentID)"
         }
     }
     
@@ -49,6 +55,8 @@ extension PublicService: TargetType {
             return .get
         case .requestBlockUnBlockUser, .requestReport, .requestWritePost:
             return .post
+        case .editPost, .editPostComment:
+            return .put
         }
     }
     
@@ -87,12 +95,21 @@ extension PublicService: TargetType {
                 "content": content
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .editPost(_, let title, let content):
+            let body = [
+                "title": title,
+                "content": content
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .editPostComment(_, let content):
+            let body = ["content": content]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail:
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:
