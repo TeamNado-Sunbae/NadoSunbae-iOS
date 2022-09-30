@@ -14,7 +14,7 @@ struct PostListResModel: Codable {
     let title, content, createdAt: String
     let majorName: String
     let writer: CommunityWriter
-    let isAuthorized: Bool
+    let isAuthorized: Bool?
     let commentCount: Int
     let like: Like
 
