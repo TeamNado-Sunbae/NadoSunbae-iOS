@@ -194,6 +194,12 @@ extension HomeVC: UITableViewDataSource {
                     guard let communityCell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityTVC.className) as? HomeCommunityTVC else { return HomeCommunityTVC() }
                     communityCell.communityList = self.communityList
                     communityCell.updateRecentPostTVHeight()
+                    communityCell.didSelectItem = { postID in
+                        self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                            postDetailVC.postID = postID
+                            postDetailVC.hidesBottomBarWhenPushed = true
+                        }
+                    }
                     return communityCell
                 default: return UITableViewCell()
                 }
