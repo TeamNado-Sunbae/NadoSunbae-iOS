@@ -913,7 +913,7 @@ extension DefaultQuestionChatVC {
     /// 답변 수정 API 요청 메서드
     private func requestEditPostComment(commentID: Int, content: String) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.editPostCommentAPI(commentID: commentID, content: content) { networkResult in
+        PublicAPI.shared.editPostCommentAPI(commentID: commentID, content: content) { networkResult in
             switch networkResult {
             case .success(_):
                 self.isCommentEdited = true
