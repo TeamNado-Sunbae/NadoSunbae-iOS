@@ -22,12 +22,12 @@ final class RankingReactor: Reactor {
     enum Mutation {
         case setLoading(loading: Bool)
         case setInfoContentViewStatus(isHidden: Bool)
-        case requestRankingList(rankingList: [RankingListModel])
+        case requestRankingList(rankingList: [HomeRankingResponseModel.UserList])
     }
     
     struct State {
         var loading = false
-        var rankingList: [RankingListModel] = []
+        var rankingList: [HomeRankingResponseModel.UserList] = []
         var isInfoContentViewHidden: Bool = true
     }
 }
@@ -43,8 +43,7 @@ extension RankingReactor {
         case .viewDidLoad:
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                self.requestRankingList(),
-                Observable.just(.setLoading(loading: false))
+                self.requestRankingList()
             ])
         }
     }
@@ -64,23 +63,24 @@ extension RankingReactor {
     }
 }
 
-// MARK: - Custom Methods
+// MARK: - Network
 extension RankingReactor {
     private func requestRankingList() -> Observable<Mutation> {
         return Observable.create { observer in
-            let dummyList = [
-                RankingListModel(id: 1, profileImageID: 1, nickname: "안녕하세요", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "디지털미디어학과", secondMajorStart: "19-1", rate: 100),
-                RankingListModel(id: 2, profileImageID: 2, nickname: "선배닉네임최대는", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "디지털미디어학과", secondMajorStart: "20-1", rate: 80),
-                RankingListModel(id: 3, profileImageID: 3, nickname: "하이", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 70),
-                RankingListModel(id: 4, profileImageID: 4, nickname: "나는지은", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과 (세종)", secondMajorStart: "22-1", rate: 90),
-                RankingListModel(id: 5, profileImageID: 5, nickname: "나도선배", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 80),
-                RankingListModel(id: 6, profileImageID: 2, nickname: "정숙이는개발천재", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "반도체어쩌구학과", secondMajorStart: "22-1", rate: 10),
-                RankingListModel(id: 7, profileImageID: 3, nickname: "선배닉네임최대는", firstMajorName: "경영학과", firstMajorStart: "18-1", secondMajorName: "경제학과", secondMajorStart: "22-1", rate: 20),
-            ]
-            
-            observer.onNext(Mutation.requestRankingList(rankingList: dummyList))
-            observer.onCompleted()
-            
+            HomeAPI.shared.getUserRankingList { networkResult in
+                switch networkResult {
+                case .success(let res):
+                    if let data = res as? HomeRankingResponseModel {
+                        observer.onNext(Mutation.requestRankingList(rankingList: data.userList))
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    }
+                default:
+//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setLoading(loading: false))
+                    observer.onCompleted()
+                }
+            }
             return Disposables.create()
         }
     }
