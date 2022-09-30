@@ -321,10 +321,9 @@ extension DefaultQuestionChatVC {
                 goToQuestionfloatingBtn.press { [weak self] in
                     guard let self = self else { return }
                     self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
+                        writeQuestionVC.answererID = self.answererID
                     }
                 }
-            } else {
-                
             }
         }
     }
@@ -802,6 +801,7 @@ extension DefaultQuestionChatVC {
                     self.questionData = data.post
                     self.commentData = data.commentList
                     self.questionLikeData = data.like
+                    self.answererID = data.answererID
                     self.questionerData = data.writer
                     self.userType = self.identifyUserType(questionerID: data.writer.writerID, isAuthorized: data.isAuthorized)
                     self.setUpSendBtnEnabledState(textView: self.sendAreaTextView ?? UITextView())
