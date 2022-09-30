@@ -47,6 +47,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var disposeBag = DisposeBag()
     var isEditState: Bool = false
     var postID: Int?
+    var categoryIndex: Int?
     var originTitle: String?
     var originContent: String?
     
@@ -60,6 +61,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
         registerCell()
         setUpInitStyle()
         setUpAlertMsgByEditState()
+        setUpCategoryCVByEditState()
     }
     
     func bind(reactor: CommunityWriteReactor) {
@@ -149,9 +151,16 @@ extension CommunityWriteVC {
             })
             .disposed(by: disposeBag)
         
-        nadoAlert?.confirmBtn.rx.tap.map{ CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: 1, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
+        nadoAlert?.confirmBtn.rx.tap.map{
+            if self.isEditState {
+                return CommunityWriteReactor.Action.tapQuestionEditBtn(postID: self.postID ?? 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ??
+                "")
+            } else {
+                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: 0, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
+            }
+        }
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
         
         questionWriteNaviBar.dismissBtn.rx.tap
             .subscribe(onNext: {
@@ -255,6 +264,14 @@ extension CommunityWriteVC {
         페이지를 나가면
         작성중인 글이 삭제돼요.
         """
+    }
+    
+    /// 수정상태인지 아닌지에 따라 CategoryCV의 수정 상태를 설정하는 메서드
+    private func setUpCategoryCVByEditState() {
+        if isEditState {
+            categoryCV.selectItem(at: IndexPath(row: categoryIndex ?? 0, section: 0), animated: false, scrollPosition: .bottom)
+            categoryCV.isUserInteractionEnabled = false
+        }
     }
 }
 
