@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330ADB0828E353F80099E8D7 /* WritePostReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330ADB0728E353F80099E8D7 /* WritePostReqModel.swift */; };
+		330ADB0A28E358190099E8D7 /* WritePostResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330ADB0928E358190099E8D7 /* WritePostResModel.swift */; };
 		330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4322790BCCC00FE127F /* NadoTextView.swift */; };
 		330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4342790C3E300FE127F /* UIScrollView+.swift */; };
 		3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364292784D3BD00E0C118 /* AppDelegate.swift */; };
@@ -340,6 +342,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330ADB0728E353F80099E8D7 /* WritePostReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostReqModel.swift; sourceTree = "<group>"; };
+		330ADB0928E358190099E8D7 /* WritePostResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostResModel.swift; sourceTree = "<group>"; };
 		330DA4322790BCCC00FE127F /* NadoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextView.swift; sourceTree = "<group>"; };
 		330DA4342790C3E300FE127F /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 		331364262784D3BD00E0C118 /* NadoSunbae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NadoSunbae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1780,6 +1784,8 @@
 				C7F3F6D827D3858600E12888 /* AppLinkResponseModel.swift */,
 				33BD384228C9AC73005528DD /* PostListResModel.swift */,
 				33EDB53F28CFD3660086BE3F /* PostDetailResModel.swift */,
+				330ADB0728E353F80099E8D7 /* WritePostReqModel.swift */,
+				330ADB0928E358190099E8D7 /* WritePostResModel.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2277,6 +2283,7 @@
 				77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
+				330ADB0828E353F80099E8D7 /* WritePostReqModel.swift in Sources */,
 				33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				C790A273289D6B5D00A67135 /* HomeBannerTVC.swift in Sources */,
@@ -2343,6 +2350,7 @@
 				775728A127D652A700148C9A /* FirstOnboardingCVC.swift in Sources */,
 				C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */,
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
+				330ADB0A28E358190099E8D7 /* WritePostResModel.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
 				C7ACE63D27CBEAB70011B23F /* GetLatestVersionResponseModel.swift in Sources */,
 				779DC5A128DB7A51009B9A43 /* RankingReactor.swift in Sources */,

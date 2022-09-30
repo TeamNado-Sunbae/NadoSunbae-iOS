@@ -106,10 +106,11 @@ extension CommunityMainVC {
             .disposed(by: disposeBag)
         
         writeFloatingBtn.rx.tap
-            .map {
-                print("플로팅 버튼 클릭")
-                return CommunityMainReactor.Action.witeFloatingBtnDidTap }
-            .bind(to: reactor.action)
+            .subscribe(onNext: {
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { communityWriteVC in
+                    communityWriteVC.reactor = CommunityWriteReactor()
+                }
+            })
             .disposed(by: disposeBag)
         
         filterBtn.rx.tap
