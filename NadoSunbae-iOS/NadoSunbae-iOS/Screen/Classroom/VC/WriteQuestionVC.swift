@@ -15,6 +15,7 @@ import FirebaseAnalytics
 class WriteQuestionVC: BaseWritePostVC {
     
     // MARK: Properties
+    private let majorID: Int = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID)
     private let disposeBag = DisposeBag()
     var isEditState: Bool = false
     var answererID: Int?
@@ -123,8 +124,9 @@ extension WriteQuestionVC {
                         self.editClassroomPost(postID: postID, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
                     }
                 } else {
-                    // TODO: 게시글 작성 API 연결
-                    //                    self.createClassroomPost(majorID: self.majorID, answerID: self.answerID ?? nil, postTypeID: self.questionType?.rawValue ?? 3, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                    if let answererID = self.answererID {
+                        self.createPersonalQuestionPost(majorID: self.majorID, answererID: answererID, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? "")
+                    }
                 }
             }
         }
@@ -195,6 +197,34 @@ extension WriteQuestionVC: UITextViewDelegate {
 
 // MARK: - Network
 extension WriteQuestionVC {
+    
+    /// 1:1 질문 생성 API 호출
+    private func createPersonalQuestionPost(majorID: Int, answererID: Int, title: String, content: String) {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.requestWritePost(type: .questionToPerson, majorID: majorID, answererID: answererID, title: title, content: content) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let _ = res as? WritePostResModel {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.createPersonalQuestionPost( majorID: majorID, answererID: answererID, title: title, content: content)
+                    }
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
+    
+    /// 1:1 질문 수정 API 호출
     private func editClassroomPost(postID: Int, title: String, content: String) {
         self.activityIndicator.startAnimating()
         ClassroomAPI.shared.editPostQuestionAPI(postID: postID, title: title, content: content) { networkResult in
