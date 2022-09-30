@@ -9,7 +9,7 @@ import UIKit
 
 class MypagePostListTVC: BaseQuestionTVC {
     
-    func setMypageMyPostData(data: MypageMyPostModel) {
+    func setMypageMyPostData(data: PostListResModel) {
         self.questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.majorName
@@ -19,7 +19,7 @@ class MypagePostListTVC: BaseQuestionTVC {
         likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
-    func setMypageMyAnswerData(data: MypageMyAnswerModel) {
+    func setMypageMyAnswerData(data: PostListResModel) {
         self.questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.writer.nickname

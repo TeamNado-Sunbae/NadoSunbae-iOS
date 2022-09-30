@@ -30,6 +30,8 @@ class MypageMainVC: BaseVC {
     @IBOutlet weak var secondMajorFormLabel: UILabel!
     @IBOutlet weak var firstMajorFormLineView: UIView!
     @IBOutlet weak var secondMajorFormLineView: UIView!
+    @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
     
     // MARK: Properties
     var userInfo = MypageUserInfoModel()
@@ -120,6 +122,12 @@ extension MypageMainVC {
             secondMajorLabel.text = "\(userInfo.secondMajorName) \(userInfo.secondMajorStart)"
         }
         likeCountLabel.text = "\(userInfo.count)"
+        if let rate = userInfo.responseRate {
+            rateLabel.text = "응답률 \(rate)%"
+        } else {
+            rateLabel.text = "응답률 -"
+        }
+        bioLabel.text = "\(userInfo.bio ?? "")"
         
         DispatchQueue.main.async {
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true

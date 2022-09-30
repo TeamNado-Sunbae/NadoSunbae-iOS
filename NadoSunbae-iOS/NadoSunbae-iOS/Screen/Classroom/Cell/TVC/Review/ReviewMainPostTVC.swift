@@ -88,7 +88,7 @@ extension ReviewMainPostTVC {
     }
     
     /// 마이페이지 후기 좋아요 리스트 데이터 세팅 함수
-    func setMypageReviewLikeData(postData: MypageLikeReviewDataModel) {
+    func setMypageReviewLikeData(postData: MypageLikeReviewListModel.LikeList) {
         dateLabel.text = postData.createdAt.serverTimeToString(forUse: .forDefault)
         titleLabel.text = postData.title
         majorLabel.text = postData.writer.nickname

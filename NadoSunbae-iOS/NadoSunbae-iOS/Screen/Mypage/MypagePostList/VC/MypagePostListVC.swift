@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Then
+import SnapKit
 
 class MypagePostListVC: BaseVC {
     
@@ -30,26 +32,18 @@ class MypagePostListVC: BaseVC {
         $0.contentInset = .zero
         $0.separatorColor = .gray0
         $0.isScrollEnabled = false
+        $0.estimatedRowHeight = 121
+        $0.rowHeight = UITableView.automaticDimension
     }
     
     // MARK: Properties
     var isPostOrAnswer = true
     var isPersonalQuestionOrCommunity = true
-    private let personalQuestionDummyData: [ClassroomPostList] = [
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2)].shuffled()
-    private let communityDummyData = [
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1)),
-        PostListResModel(postID: 0, type: "전체", title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", majorName: "전체", writer: CommunityWriter(writerID: 0, nickname: "정빈걸"), commentCount: 1, like: Like(isLiked: true, likeCount: 1))
-    ].shuffled()
+    private var personalQuestionData: [PostListResModel] = []
+    private var communityData: [PostListResModel] = []
+    private var personalQuestionDataForAnswer: [MypageMyAnswerListModel.PostList] = []
+    private var communityDataForAnswer: [MypageMyAnswerListModel.PostList] = []
+    private let contentSizeObserverKeyPath = "contentSize"
 
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -59,11 +53,17 @@ class MypagePostListVC: BaseVC {
         configureUI()
         setPostListTV()
         setSegmentedControl()
+        isPostOrAnswer ? getMypageMyPersonalQuestionList() : getMypageMyAnswerList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         postListSegmentControl.setUpNadoSegmentFrame()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.postListTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
     private func setPostListTV() {
@@ -76,17 +76,6 @@ class MypagePostListVC: BaseVC {
         postListTV.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
-    private func updateQuestionTVHeight() {
-        postListTV.reloadData()
-        DispatchQueue.main.async {
-            self.postListTV.layoutIfNeeded()
-            self.postListTV.rowHeight = UITableView.automaticDimension
-            self.postListTV.snp.updateConstraints {
-                $0.height.equalTo(self.postListTV.contentSize.height)
-            }
-        }
-    }
-    
     private func setSegmentedControl() {
         postListSegmentControl.addTarget(self, action: #selector(didChangeValue(segment:)), for: .valueChanged)
         
@@ -96,7 +85,7 @@ class MypagePostListVC: BaseVC {
     
     @objc private func didChangeValue(segment: UISegmentedControl) {
         isPersonalQuestionOrCommunity = postListSegmentControl.selectedSegmentIndex == 0
-        updateQuestionTVHeight()
+        isPostOrAnswer ? (isPersonalQuestionOrCommunity ?  getMypageMyPersonalQuestionList() : getMypageCommunityPostList()) : getMypageMyAnswerList()
     }
     
     private func makeScreenAnalyticsForMyPostList() {
@@ -106,24 +95,55 @@ class MypagePostListVC: BaseVC {
             makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MyAnswerListVC")
         }
     }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                let newSize  = newValue as! CGSize
+                self.postListTV.layoutIfNeeded()
+                self.postListTV.snp.updateConstraints {
+                    $0.height.equalTo(newSize.height)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension MypagePostListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isPersonalQuestionOrCommunity ? personalQuestionDummyData.count : communityDummyData.count
+        if isPostOrAnswer {
+            return (isPersonalQuestionOrCommunity ? personalQuestionData.count : communityData.count)
+        } else {
+            return (isPersonalQuestionOrCommunity ? personalQuestionDataForAnswer.count : communityDataForAnswer.count)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isPersonalQuestionOrCommunity {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
-            cell.setData(data: personalQuestionDummyData[indexPath.row])
-            cell.layoutSubviews()
-            return cell
+        if isPostOrAnswer {
+            if isPersonalQuestionOrCommunity {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+                cell.setPostData(data: personalQuestionData[indexPath.row])
+                cell.layoutSubviews()
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
+                cell.setCommunityData(data: communityData[indexPath.row])
+                return cell
+            }
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-            cell.setCommunityData(data: communityDummyData[indexPath.row])
-            return cell
+            if isPersonalQuestionOrCommunity {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+                let data = personalQuestionDataForAnswer[indexPath.row]
+                cell.setPostData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), commentCount: data.commentCount, like: data.like))
+                cell.layoutSubviews()
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
+                let data = communityDataForAnswer[indexPath.row]
+                cell.setCommunityData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), commentCount: data.commentCount, like: data.like))
+                return cell
+            }
         }
     }
 }
@@ -139,7 +159,7 @@ extension MypagePostListVC: UITableViewDelegate {
                     questionDetailVC.hidesBottomBarWhenPushed = true
                     questionDetailVC.questionType = .personal
                     questionDetailVC.naviStyle = .push
-                    questionDetailVC.postID = self.personalQuestionDummyData[indexPath.row].postID
+                    questionDetailVC.postID = self.personalQuestionData[indexPath.row].postID
                 }
             }
         } else {
@@ -147,33 +167,113 @@ extension MypagePostListVC: UITableViewDelegate {
             debugPrint("didSelectRowAt")
         }
     }
-    
-    /// estimatedHeightForRowAt
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
-    }
-
-    /// heightForRowAt
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
 }
 
 extension MypagePostListVC: SendSegmentStateDelegate {
     func sendSegmentClicked(index: Int) {
         if index == 0 {
             if isPostOrAnswer {
+                getMypageMyPersonalQuestionList()
                 makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostList-PersonalQuestionVC")
             } else {
                 makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyAnswerList-PersonalQuestionVC")
             }
         } else {
             if isPostOrAnswer {
+                getMypageCommunityPostList()
                 makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyPostList-CommunityVC")
             } else {
                 makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyAnswerList-CommunityVC")
             }
         }
+    }
+}
+
+// MARK: - Network
+extension MypagePostListVC {
+    private func getMypageMyPersonalQuestionList() {
+        self.activityIndicator.startAnimating()
+        self.postListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        MypageAPI.shared.getMypageMyPostList(postType: MypageMyPostType.personalQuestion, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageMyPostListModel {
+                    self.personalQuestionData = data.postList
+                    self.activityIndicator.stopAnimating()
+                    self.postListTV.reloadData()
+                }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getMypageMyPersonalQuestionList()
+                    }
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
+            }
+        })
+    }
+    
+    private func getMypageCommunityPostList() {
+        self.activityIndicator.startAnimating()
+        self.postListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        MypageAPI.shared.getMypageMyPostList(postType: MypageMyPostType.community, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageMyPostListModel {
+                    self.communityData = data.postList
+                    self.activityIndicator.stopAnimating()
+                    self.postListTV.reloadData()
+                }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getMypageCommunityPostList()
+                    }
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
+            }
+        })
+    }
+    
+    private func getMypageMyAnswerList() {
+        self.activityIndicator.startAnimating()
+        self.postListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        MypageAPI.shared.getMypageMyAnswerList(postType: isPersonalQuestionOrCommunity ? MypageMyPostType.personalQuestion : MypageMyPostType.community, completion: { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let data = res as? MypageMyAnswerListModel {
+                    if self.isPersonalQuestionOrCommunity {
+                        self.personalQuestionDataForAnswer = data.postList
+                    } else {
+                        self.communityDataForAnswer = data.postList
+                    }
+                    self.activityIndicator.stopAnimating()
+                    self.postListTV.reloadData()
+                }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getMypageMyAnswerList()
+                    }
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
+            }
+        })
     }
 }
 
@@ -205,7 +305,7 @@ extension MypagePostListVC {
         contentView.snp.makeConstraints {
             $0.width.equalToSuperview()
             $0.height.equalToSuperview().priority(.low)
-            $0.centerX.top.bottom.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
         }
         
         postListTV.snp.makeConstraints {

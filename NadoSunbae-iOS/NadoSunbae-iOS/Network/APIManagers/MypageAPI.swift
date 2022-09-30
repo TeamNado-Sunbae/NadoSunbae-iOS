@@ -10,7 +10,7 @@ import Moya
 
 class MypageAPI: BaseAPI {
     static let shared = MypageAPI()
-    private var provider = MoyaProvider<MypageService>()
+    private var provider = MoyaProvider<MypageService>(plugins: [NetworkLoggerPlugin()])
     
     private override init() {}
 }
@@ -43,7 +43,7 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data, QuestionOrInfoListModel.self)
+                let networkResult = self.judgeStatus(by: statusCode, data, MypageQuestionListResponseData.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -52,9 +52,9 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 내가 쓴 글 - 질문/정보 조회
+    /// [GET] 내가 쓴 글 - 1:1 질문, 커뮤니티 조회
     func getMypageMyPostList(postType: MypageMyPostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.getMypageMyPostList(postType: postType)) { result in
+        provider.request(.getUserPostList(postType: postType)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
@@ -69,7 +69,7 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 내가 쓴 답글 - 질문/정보 조회
+    /// [GET] 내가 쓴 답글 - 1:1 질문, 커뮤니티 조회
     func getMypageMyAnswerList(postType: MypageMyPostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.getMypageMyAnswerList(postType: postType)) { result in
             switch result {
@@ -103,33 +103,25 @@ extension MypageAPI {
         }
     }
     
-    /// [GET] 학과후기 좋아요 목록 조회
-    func getMypageMyLikeReviewListAPI(completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        provider.request(.getMypageMyLikeList(postType: MypageLikePostType.review)) { result in
-            switch result {
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeReviewData.self)
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err.localizedDescription)
-            }
-        }
-    }
-    
-    /// [GET] 질문글, 정보글 좋아요 목록 조회
-    func getMypageMyLikePostListAPI(postType: MypageLikePostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+    /// [GET] 좋아요 목록 - 후기, 1:1 질문, 커뮤니티 조회
+    func getMypageMyLikeList(postType: MypageLikePostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.getMypageMyLikeList(postType: postType)) { result in
             switch result {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data, MypageLikePostData.self)
-                completion(networkResult)
+                switch postType {
+                case .review:
+                    let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeReviewListModel.self)
+                    completion(networkResult)
+                case .questionToPerson:
+                    let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeQuestionToPersonListModel.self)
+                    completion(networkResult)
+                case .community:
+                    let networkResult = self.judgeStatus(by: statusCode, data, MypageLikeCommunityListModel.self)
+                    completion(networkResult)
+                }
                 
             case .failure(let err):
                 print(err.localizedDescription)
