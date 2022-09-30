@@ -9,7 +9,7 @@ import Foundation
 
 struct WritePostResModel: Codable {
     let post: WritePost
-    let writer: RankingListModel
+    let writer: HomeRankingResponseModel.UserList
 }
 
 struct WritePost: Codable {

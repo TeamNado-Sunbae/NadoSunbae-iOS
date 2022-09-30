@@ -92,8 +92,7 @@ extension PublicService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost:
-        case .requestBlockUnBlockUser, .requestReport, .getPostList, .getPostDetail:
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:
