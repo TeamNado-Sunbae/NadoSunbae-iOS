@@ -321,7 +321,6 @@ extension DefaultQuestionChatVC {
                 goToQuestionfloatingBtn.press { [weak self] in
                     guard let self = self else { return }
                     self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
-                        writeQuestionVC.questionType = .questionToPerson
                     }
                 }
             } else {
@@ -381,7 +380,6 @@ extension DefaultQuestionChatVC {
                     /// 수정
                     /// 질문 원글일 경우
                     self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-                        writeQuestionVC.questionType = .questionToPerson
                         writeQuestionVC.isEditState = true
                         writeQuestionVC.postID = self?.postID
                         writeQuestionVC.originTitle = self?.questionData?.title
@@ -423,7 +421,6 @@ extension DefaultQuestionChatVC {
                             /// 수정
                             /// 질문 원글일 경우
                             self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-                                writeQuestionVC.questionType = .questionToPerson
                                 writeQuestionVC.isEditState = true
                                 writeQuestionVC.postID = self?.postID
                                 writeQuestionVC.originTitle = self?.questionData?.title
