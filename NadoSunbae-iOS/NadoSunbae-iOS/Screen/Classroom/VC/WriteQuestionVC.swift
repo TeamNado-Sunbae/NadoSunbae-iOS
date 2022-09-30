@@ -57,60 +57,6 @@ extension WriteQuestionVC {
         questionWriteTextView.delegate = self
     }
     
-    /// textField가 채워져 있는지에 따라 highlightView 상태 변경하는 메서드
-    private func setHighlightViewState(textField: UITextField, highlightView: UIView) {
-        textField.rx.text
-            .orEmpty
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] changedText in
-                if self?.questionTitleTextField.text?.isEmpty == true {
-                    self?.textHighlightView.backgroundColor = .gray0
-                } else {
-                    self?.textHighlightView.backgroundColor = .black
-                }
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    /// 제목, 내용이 모두 채워져 있는지에 따라 상단 네비바 버튼 활성화/비활성화 하는 메서드
-    private func setActivateBtnState(textField: UITextField, textView: NadoTextView) {
-        let a = BehaviorSubject<Bool>(value: false)
-        let b = BehaviorSubject<Bool>(value: false)
-        
-        textField.rx.text
-            .orEmpty
-            .distinctUntilChanged()
-            .subscribe(onNext: { changedText in
-                if changedText.isEmpty {
-                    a.onNext(false)
-                } else {
-                    a.onNext(true)
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        textView.rx.text
-            .orEmpty
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] changedText in
-                if changedText.isEmpty || self?.isTextViewEmpty == true {
-                    b.onNext(false)
-                } else {
-                    b.onNext(true)
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        Observable.combineLatest(a, b) {$0 && $1}
-            .bind(to: questionWriteNaviBar.rightActivateBtn.rx.isActivated)
-            .disposed(by: disposeBag)
-        
-        /// 수정상태일 때 (title, content가 있는 상황이므로) 첫 진입상태를 isActivate로 하기 위한 분기처리
-        if isEditState {
-            questionWriteNaviBar.rightActivateBtn.isActivated = true
-        }
-    }
-    
     /// btn Action set 메서드
     private func setTapBtnAction() {
         
