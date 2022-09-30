@@ -173,7 +173,7 @@ extension WriteQuestionVC {
     /// 1:1 질문 수정 API 호출
     private func editClassroomPost(postID: Int, title: String, content: String) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.editPostQuestionAPI(postID: postID, title: title, content: content) { networkResult in
+        PublicAPI.shared.editPostAPI(postID: postID, title: title, content: content) { networkResult in
             switch networkResult {
             case .success(_):
                 self.activityIndicator.stopAnimating()
