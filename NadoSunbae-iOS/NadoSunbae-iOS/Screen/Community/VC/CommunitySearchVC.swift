@@ -12,6 +12,7 @@ import ReactorKit
 
 enum searchCase {
     case enterKeyword
+    case emptySearch
     case doneSearch
 }
 
@@ -100,12 +101,10 @@ extension CommunitySearchVC {
             .map { $0.searchList }
             .subscribe(onNext: { [weak self] data in
                 if data.isEmpty {
-                    self?.searchTV.isHidden = true
-                    self?.representStackView.isHidden = false
-                    self?.setUpEmptyViewBySearchList(searchCase: .doneSearch)
+                    self?.setUpHiddenState(searchTV: true, representStackView: false)
+                    self?.setUpEmptyViewBySearchList(searchCase: .emptySearch)
                 } else {
-                    self?.searchTV.isHidden = false
-                    self?.representStackView.isHidden = true
+                    self?.setUpHiddenState(searchTV: false, representStackView: true)
                 }
             })
             .disposed(by: self.disposeBag)
@@ -126,9 +125,15 @@ extension CommunitySearchVC {
             .map { $0.loading }
             .distinctUntilChanged()
             .map { $0 }
-            .subscribe(onNext: { [weak self] loading in
-                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
-                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            .subscribe(onNext: { loading in
+                self.view.bringSubviewToFront(self.activityIndicator)
+                if loading {
+                    self.activityIndicator.startAnimating()
+                    self.setUpHiddenState(searchTV: true, representStackView: true)
+                } else {
+                    self.activityIndicator.stopAnimating()
+                    self.setUpHiddenState(searchTV: false, representStackView: false)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -197,9 +202,18 @@ extension CommunitySearchVC {
             representStateImageView.image = UIImage(named: "searchFind")
             representStateLabel.text = "커뮤니티의 글을 검색해보세요."
         case .doneSearch:
+            representStateImageView.image = nil
+            representStateLabel.text = ""
+        case .emptySearch:
             representStateImageView.image = UIImage(named: "searchEmpty")
             representStateLabel.text = "검색 결과가 없습니다."
         }
+    }
+    
+    /// searchTV, representStackView의 Hidden 상태를 설정하는 메서드
+    private func setUpHiddenState(searchTV: Bool, representStackView: Bool) {
+        self.searchTV.isHidden = searchTV
+        self.representStackView.isHidden = representStackView
     }
 }
 
@@ -225,8 +239,7 @@ extension CommunitySearchVC: UISearchBarDelegate {
      
     /// searchBarShouldBeginEditing
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchTV.isHidden = true
-        reactor?.action.onNext(.sendEmptyKeyword)
+        setUpHiddenState(searchTV: true, representStackView: false)
         setUpEmptyViewBySearchList(searchCase: .enterKeyword)
         return true
     }
