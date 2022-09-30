@@ -86,6 +86,7 @@ extension HomeVC: SendHomeRecentDataDelegate {
                     questionDetailVC.hidesBottomBarWhenPushed = true
                     questionDetailVC.naviStyle = .push
                     questionDetailVC.postID = id
+                    questionDetailVC.isAuthorized = isAuthorized
                 }
             }
         }
