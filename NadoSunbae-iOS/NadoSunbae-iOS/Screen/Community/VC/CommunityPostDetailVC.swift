@@ -1,5 +1,5 @@
 //
-//  InfoDetailVC.swift
+//  CommunityPostDetailVC.swift
 //  NadoSunbae-iOS
 //
 //  Created by hwangJi on 2022/02/13.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class InfoDetailVC: BaseVC {
+class CommunityPostDetailVC: BaseVC {
     
     // MARK: IBOutlet
     private var infoDetailNaviBar = NadoSunbaeNaviBar().then {
@@ -74,7 +74,7 @@ class InfoDetailVC: BaseVC {
         hideTabbar()
         addKeyboardObserver()
         optionalBindingData()
-        makeScreenAnalyticsEvent(screenName: "ClassRoom_Info Tab", screenClass: InfoDetailVC.className)
+        makeScreenAnalyticsEvent(screenName: "ClassRoom_Info Tab", screenClass: CommunityPostDetailVC.className)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,7 +92,7 @@ class InfoDetailVC: BaseVC {
 }
 
 // MARK: - UI
-extension InfoDetailVC {
+extension CommunityPostDetailVC {
     
     /// 첫 진입시 데이터 로딩되는 동안 backView를 띄우기 위한 whiteBackView 구성 메서드
     private func configureWhiteBackView() {
@@ -121,7 +121,7 @@ extension InfoDetailVC {
 }
 
 // MARK: - Custom Methods
-extension InfoDetailVC {
+extension CommunityPostDetailVC {
     
     /// xib 등록 메서드
     private func registerXib() {
@@ -215,8 +215,9 @@ extension InfoDetailVC {
     
     /// 정보글 원글을 수정하기 위해 WriteQuestionVC로 화면전환하는 메서드
     private func presentWriteQuestionVC() {
+        // ✅ TODO: CommunityWriteVC로 이동시키기.
         self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-            writeQuestionVC.questionType = .info
+//            writeQuestionVC.questionType = .info
             writeQuestionVC.isEditState = true
             writeQuestionVC.postID = self?.postID
             writeQuestionVC.originTitle = self?.infoDetailData?.post.title
@@ -256,7 +257,7 @@ extension InfoDetailVC {
 }
 
 // MARK: - UITableViewDataSource
-extension InfoDetailVC: UITableViewDataSource {
+extension CommunityPostDetailVC: UITableViewDataSource {
     
     /// numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -329,7 +330,7 @@ extension InfoDetailVC: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension InfoDetailVC: UITableViewDelegate {
+extension CommunityPostDetailVC: UITableViewDelegate {
     
     /// estimatedHeightForRowAt
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -338,7 +339,7 @@ extension InfoDetailVC: UITableViewDelegate {
 }
 
 // MARK: - UITextViewDelegate
-extension InfoDetailVC: UITextViewDelegate {
+extension CommunityPostDetailVC: UITextViewDelegate {
     
     /// textViewDidChange
     func textViewDidChange(_ textView: UITextView) {
@@ -368,7 +369,7 @@ extension InfoDetailVC: UITextViewDelegate {
 }
 
 // MARK: - SendBlockedInfoDelegate
-extension InfoDetailVC: SendBlockedInfoDelegate {
+extension CommunityPostDetailVC: SendBlockedInfoDelegate {
     func sendBlockedInfo(status: Bool, userID: Int) {
         if infoDetailData?.writer.writerID == userID {
             self.navigationController?.popToRootViewController(animated: true)
@@ -377,7 +378,7 @@ extension InfoDetailVC: SendBlockedInfoDelegate {
 }
 
 // MARK: - Keyboard
-extension InfoDetailVC {
+extension CommunityPostDetailVC {
     
     /// Keyboard Observer add 메서드
     private func addKeyboardObserver() {
@@ -417,7 +418,7 @@ extension InfoDetailVC {
 }
 
 // MARK: - Network
-extension InfoDetailVC {
+extension CommunityPostDetailVC {
     
     /// 정보글 상세 조회 API 요청 메서드
     private func requestGetDetailInfoData(postID: Int, addLoadBackView: Bool) {
