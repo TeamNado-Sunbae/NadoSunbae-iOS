@@ -74,7 +74,7 @@ final class HomeVC: BaseVC {
 
 // MARK: - SendHomeRecentDataDelegate
 extension HomeVC: SendHomeRecentDataDelegate {
-    func sendRecentPostId(id: Int, type: HomeRecentTVCType) {
+    func sendRecentPostId(id: Int, type: HomeRecentTVCType, isAuthorized: Bool) {
         self.divideUserPermission() {
             switch type {
             case .review:
