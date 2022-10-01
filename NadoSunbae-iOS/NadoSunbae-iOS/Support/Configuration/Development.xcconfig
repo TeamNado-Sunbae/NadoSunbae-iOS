@@ -1,0 +1,10 @@
+//
+//  Development.xcconfig
+//  NadoSunbae
+//
+//  Created by hwangJi on 2022/10/01.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+BASE_URL = https:/$()/asia-northeast3-nadosunbae-server-dev-90ac3.cloudfunctions.net/api
