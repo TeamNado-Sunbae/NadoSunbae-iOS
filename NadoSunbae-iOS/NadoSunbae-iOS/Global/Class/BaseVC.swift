@@ -174,7 +174,7 @@ extension BaseVC {
     
     /// Firebase Analytics 사용자 지정 이벤트를 발생시키는 메서드 (기본 정보만 넘기는 이벤트)
     func makeDefaultAnalyticsEvent(eventName: String) {
-        if env() == .appStoreProduction {
+        if env() == .production {
             FirebaseAnalytics.Analytics.logEvent(eventName, parameters: [
                 "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
                 "FirstMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.FirstMajorName) ?? "",
@@ -186,7 +186,7 @@ extension BaseVC {
     
     /// Firebase Analytics 유저 포스팅 이벤트를 발생시키는 메서드 (기본 정보만 넘기는 이벤트)
     func makePostAnalyticsEvent(postType: String, postedMajor: String) {
-        if env() == .appStoreProduction {
+        if env() == .production {
             FirebaseAnalytics.Analytics.logEvent("user_post", parameters: [
                 "post_type": postType,
                 "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
@@ -199,7 +199,7 @@ extension BaseVC {
     
     /// Firebase Analytics 화면 조회 이벤트를 발생시키는 메서드
     func makeScreenAnalyticsEvent(screenName: String, screenClass: String) {
-        if env() == .appStoreProduction {
+        if env() == .production {
             FirebaseAnalytics.Analytics.logEvent("screen_view", parameters: [
                 AnalyticsParameterScreenName: screenName,
                 AnalyticsParameterScreenClass: screenClass,

@@ -343,7 +343,7 @@ extension EditProfileVC: SendUpdateModalDelegate {
             self.secondMajorStartBtn.setTitle("변경", for: .normal)
             self.changedInfo.secondMajorStart = data as? String ?? ""
         default:
-            #if DEBUG
+            #if DEVELOPMENT
             print("SignUpMajorInfoVC SendUpdateDelegate error")
             #endif
         }
