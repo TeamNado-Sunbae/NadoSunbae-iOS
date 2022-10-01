@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "SecondMajor": UserDefaults.standard.string(forKey: UserDefaults.Keys.SecondMajorName) ?? ""
         ])
         
-        #if DEBUG
+        #if DEVELOPMENT || QA
         Analytics.setAnalyticsCollectionEnabled(false)
         #endif
         
