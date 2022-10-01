@@ -487,6 +487,9 @@
 		33F507FD28E723E60037D632 /* WritePostResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritePostResModel.swift; sourceTree = "<group>"; };
 		33F507FE28E723E60037D632 /* WritePostReqModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritePostReqModel.swift; sourceTree = "<group>"; };
 		33F5080228E737E10037D632 /* BaseWritePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWritePostVC.swift; sourceTree = "<group>"; };
+		33F5080928E79FBC0037D632 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		33F5080A28E79FCD0037D632 /* QA.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = QA.xcconfig; sourceTree = "<group>"; };
+		33F5080B28E79FD70037D632 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVC.swift; sourceTree = "<group>"; };
 		33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteReactor.swift; sourceTree = "<group>"; };
 		33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteCategoryCVC.swift; sourceTree = "<group>"; };
@@ -1383,6 +1386,16 @@
 				33F5080228E737E10037D632 /* BaseWritePostVC.swift */,
 			);
 			path = WritePost;
+			sourceTree = "<group>";
+		};
+		33F5080828E79F960037D632 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				33F5080928E79FBC0037D632 /* Development.xcconfig */,
+				33F5080A28E79FCD0037D632 /* QA.xcconfig */,
+				33F5080B28E79FD70037D632 /* Release.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		33FA5941288DCA5100BC7C32 /* CVC */ = {
@@ -2510,6 +2523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2566,6 +2580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2599,7 +2614,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
 				PRODUCT_NAME = NadoSunbae;
@@ -2631,7 +2646,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
 				PRODUCT_NAME = NadoSunbae;
 				SWIFT_EMIT_LOC_STRINGS = YES;
