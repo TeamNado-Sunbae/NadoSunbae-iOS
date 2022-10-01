@@ -19,7 +19,7 @@ Pods/
 Icon
 
 # Base URL
-APIConstants.swift
+/Configuration
 
 # Thumbnails
 ._*
