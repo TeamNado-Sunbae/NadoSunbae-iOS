@@ -9,57 +9,26 @@ import Foundation
 
 // MARK: - ReviewPostDetailData
 struct ReviewPostDetailData: Codable {
-    var post: PostDetail = PostDetail()
-    var writer: PostWriter = PostWriter()
-    var like: Like
-    var backgroundImage: BackgroundImage
+    let review: Review
+    let writer: Writer
+    let like: Like
+    let backgroundImage: BackgroundImage
 }
 
 // MARK: - BackgroundImage
 struct BackgroundImage: Codable {
     let imageID: Int
-    let imageURL: String = ""
 
     enum CodingKeys: String, CodingKey {
         case imageID = "imageId"
-        case imageURL = "imageUrl"
     }
 }
 
-// MARK: - PostDetail
-struct PostDetail: Codable {
-    var postID: Int = -1
-    var oneLineReview: String = ""
-    var contentList: [PostContent] = []
-    var createdAt: String = ""
-
-    enum CodingKeys: String, CodingKey {
-        case postID = "postId"
-        case oneLineReview, contentList, createdAt
-    }
+// MARK: - Review
+struct Review: Codable {
+    let id: Int
+    let oneLineReview: String
+    let contentList: [ContentList]
+    let createdAt: String
 }
 
-// MARK: - PostContentList
-struct PostContent: Codable {
-    var title: String = ""
-    var content: String = ""
-}
-
-// MARK: - PostWriter
-struct PostWriter: Codable {
-    var writerID: Int = 0
-    var profileImageID: Int = 0
-    var nickname: String = ""
-    var firstMajorName: String = ""
-    var firstMajorStart: String = ""
-    var secondMajorName: String = ""
-    var secondMajorStart: String = ""
-    var isOnQuestion: Bool = false
-    var isReviewed: Bool = false
-    
-    enum CodingKeys: String, CodingKey {
-        case writerID = "writerId"
-        case profileImageID = "profileImageId"
-        case nickname, firstMajorName, firstMajorStart, secondMajorName, secondMajorStart, isOnQuestion, isReviewed
-    }
-}
