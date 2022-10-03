@@ -68,6 +68,7 @@ extension RecentReviewVC {
             .disposed(by: disposeBag)
     }
     
+    // MARK: State
     private func bindState(_ reactor: RecentReviewReactor) {
         reactor.state
             .map { $0.recentReviewList }
