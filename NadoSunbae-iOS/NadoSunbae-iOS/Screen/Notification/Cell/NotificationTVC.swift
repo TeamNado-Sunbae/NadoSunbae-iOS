@@ -50,7 +50,6 @@ extension NotificationTVC {
     func setData(data: NotificationList) {
         redCircleImgView.isHidden = data.isRead
         profileImgView.image = UIImage(named: "profileImage\(data.sender.profileImageID)")
-        let notiType = data.notificationTypeID.getNotiType()
         
         titleLabel.text = getTitleLabelText(notiTypeInt: data.notificationTypeID, nickname: data.sender.nickname)
         contentLabel.text = "\(data.content)"
