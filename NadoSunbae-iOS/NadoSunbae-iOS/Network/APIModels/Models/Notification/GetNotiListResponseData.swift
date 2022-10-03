@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct NotificationDataModel: Codable {
-    var notificationList: [NotificationList] = []
+// MARK: - GetNotiListResponseData
+struct GetNotiListResponseData: Codable {
+    var notificationList: [NotificationList]
 
     enum CodingKeys: String, CodingKey {
         case notificationList = "notificationList"
@@ -17,32 +18,31 @@ struct NotificationDataModel: Codable {
 
 // MARK: - NotificationList
 struct NotificationList: Codable {
-    var notificationID: Int = 0
-    var sender: Sender = Sender()
-    var postID: Int = 0
-    var notificationTypeID: Int = 0
-    var content: String = ""
-    var isRead: Bool = false
-    var isDeleted: Bool = false
-    var createdAt: String = ""
-    var isQuestionToPerson: Bool = false
+    var notificationID: Int
+    var sender: Sender
+    var isRead: Bool
+    var content: String
+    var createdAt: String
+    var postID: Int
+    var commentID: Int
+    var notificationTypeID: Int
 
     enum CodingKeys: String, CodingKey {
         case notificationID = "notificationId"
         case sender = "sender"
-        case postID = "postId"
-        case notificationTypeID = "notificationTypeId"
-        case content = "content"
         case isRead = "isRead"
-        case isDeleted = "isDeleted"
+        case content = "content"
         case createdAt = "createdAt"
-        case isQuestionToPerson = "isQuestionToPerson"
+        case postID = "postId"
+        case commentID = "commentId"
+        case notificationTypeID = "notificationTypeId"
     }
     
+    // MARK: - Sender
     struct Sender: Codable {
-        var senderID: Int = 0
-        var nickname: String = ""
-        var profileImageID: Int = 0
+        var senderID: Int
+        var nickname: String
+        var profileImageID: Int
 
         enum CodingKeys: String, CodingKey {
             case senderID = "senderId"
@@ -54,24 +54,30 @@ struct NotificationList: Codable {
 
 enum NotiType: String {
     
-    /// 작성하신 질문글
+    /// 작성하신 질문글(legacy)
     case writtenQuestion = "작성하신 질문글"
     
-    /// 작성하신 정보글
+    /// 작성하신 정보글(legacy)
     case writtenInfo = "작성하신 정보글"
     
-    /// 답글을 작성하신 질문글
+    /// 답글을 작성하신 질문글(legacy)
     case answerQuestion = "답글을 작성하신 질문글"
     
-    /// 답글을 작성하신 정보글
+    /// 답글을 작성하신 정보글(legacy)
     case answerInfo = "답글을 작성하신 정보글"
     
-    /// 알림을 켜둔 질문글
+    /// 알림을 켜둔 질문글(legacy)
     case notiQuestion = "알림을 켜둔 질문글"
     
-    /// 알림을 켜둔 정보글
+    /// 알림을 켜둔 정보글(legacy)
     case notiInfo = "알림을 켜둔 정보글"
     
     /// 마이페이지에 온 1:1 질문
-    case mypageQuestion = "마이페이지"
+    case questionToPerson = "마이페이지"
+    
+    /// 커뮤니티
+    case community = "커뮤니티"
+    
+    /// 에러 처리를 위한 case
+    case none = "none type"
 }

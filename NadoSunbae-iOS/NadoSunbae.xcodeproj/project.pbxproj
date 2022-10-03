@@ -188,7 +188,7 @@
 		5CB6503627947B5A007694B1 /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB6503527947B5A007694B1 /* NotificationTVC.swift */; };
 		5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */; };
 		5CC0BFD227985D4C00B96905 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD127985D4C00B96905 /* NotificationService.swift */; };
-		5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD32798621600B96905 /* NotificationDataModel.swift */; };
+		5CC0BFD42798621600B96905 /* GetNotiListResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD32798621600B96905 /* GetNotiListResponseData.swift */; };
 		5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */; };
 		5CC0BFD82798768F00B96905 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFD72798768F00B96905 /* Int+.swift */; };
 		5CC0BFDB27987F6400B96905 /* NotificationNVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */; };
@@ -523,7 +523,7 @@
 		5CB6503527947B5A007694B1 /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		5CC0BFCF27985D4200B96905 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
 		5CC0BFD127985D4C00B96905 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		5CC0BFD32798621600B96905 /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
+		5CC0BFD32798621600B96905 /* GetNotiListResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotiListResponseData.swift; sourceTree = "<group>"; };
 		5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNotificationDataModel.swift; sourceTree = "<group>"; };
 		5CC0BFD72798768F00B96905 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		5CC0BFDA27987F6400B96905 /* NotificationNVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNVC.swift; sourceTree = "<group>"; };
@@ -1596,7 +1596,7 @@
 		5CC0BFCE27985D2800B96905 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				5CC0BFD32798621600B96905 /* NotificationDataModel.swift */,
+				5CC0BFD32798621600B96905 /* GetNotiListResponseData.swift */,
 				5CC0BFD5279873B400B96905 /* ReadNotificationDataModel.swift */,
 				5CC0BFDC2798836400B96905 /* DeleteNotificationDataModel.swift */,
 			);
@@ -2160,7 +2160,7 @@
 				C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
 				33286B7B28A4F813006E6FF0 /* CommunitySearchVC.swift in Sources */,
-				5CC0BFD42798621600B96905 /* NotificationDataModel.swift in Sources */,
+				5CC0BFD42798621600B96905 /* GetNotiListResponseData.swift in Sources */,
 				77BAD54628C87952006C2733 /* BaseAPI.swift in Sources */,
 				33A86798288B0227009BA6DE /* CommunityMainReactor.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,

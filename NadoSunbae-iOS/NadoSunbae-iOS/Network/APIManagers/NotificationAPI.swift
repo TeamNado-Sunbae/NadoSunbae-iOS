@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-class NotificationAPI {
+class NotificationAPI: BaseAPI {
     static let shared = NotificationAPI()
     private var provider = MoyaProvider<NotificationService>()
     
-    private init() {}
+    private override init() {}
 }
 
 // MARK: - API
@@ -25,8 +25,9 @@ extension NotificationAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
-                completion(self.getNotiListJudgeData(status: statusCode, data: data))
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, GetNotiListResponseData.self)
+                completion(networkResult)
 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -42,7 +43,8 @@ extension NotificationAPI {
                 let statusCode = response.statusCode
                 let data = response.data
 
-                completion(self.readNotiJudgeData(status: statusCode, data: data))
+                let networkResult = self.judgeStatus(by: statusCode, data, ReadNotificationDataModel.self)
+                completion(networkResult)
 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -57,72 +59,13 @@ extension NotificationAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-
-                completion(self.deleteNotiJudgeData(status: statusCode, data: data))
-
+                
+                let networkResult = self.judgeStatus(by: statusCode, data, DeleteNotificationDataModel.self)
+                completion(networkResult)
+                
             case .failure(let err):
                 print(err.localizedDescription)
             }
-        }
-    }
-}
-
-// MARK: - judgeData
-extension NotificationAPI {
-    private func getNotiListJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<NotificationDataModel>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func readNotiJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<ReadNotificationDataModel>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
-        }
-    }
-    
-    private func deleteNotiJudgeData(status: Int, data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        
-        guard let decodedData = try? decoder.decode(GenericResponse<DeleteNotificationDataModel>.self, from: data) else { return .pathErr }
-        
-        switch status {
-        case 200...204:
-            return .success(decodedData.data ?? "None-Data")
-        case 401:
-            return .requestErr(false)
-        case 400, 402...409:
-            return .requestErr(decodedData.message)
-        case 500:
-            return .serverErr
-        default:
-            return .networkFail
         }
     }
 }

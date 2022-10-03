@@ -51,14 +51,14 @@ extension NotificationMainVC: UITableViewDelegate {
             divideUserPermission() {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
-                    questionDetailVC.questionType = self.notificationList[indexPath.section].isQuestionToPerson ? .personal : .group
+                    questionDetailVC.questionType = (self.notificationList[indexPath.section].notificationTypeID.getNotiType() != nil) ? .personal : .group
                     questionDetailVC.naviStyle = .push
                     questionDetailVC.postID = self.notificationList[indexPath.section].postID
                     self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
                 }
             }
             
-        case .mypageQuestion:
+        case .questionToPerson:
             self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                 questionDetailVC.hidesBottomBarWhenPushed = true
                 questionDetailVC.questionType = .personal
@@ -67,6 +67,9 @@ extension NotificationMainVC: UITableViewDelegate {
                 self.readNoti(notiID: self.notificationList[indexPath.section].notificationID)
             }
             
+        case .community:
+            // TODO: Community Detail로 연결
+            debugPrint("커뮤니티 알림 tap")
         default:
             break
         }

@@ -26,7 +26,7 @@ extension NotificationService: TargetType {
     var path: String {
         switch self {
         case .getNotiList:
-            return "/notification/list/\(userID)"
+            return "/notification/"
         case .readNoti(let notiID):
             return "/notification/read/\(notiID)"
         case .deleteNoti(let notiID):
@@ -48,7 +48,7 @@ extension NotificationService: TargetType {
     var task: Task {
         switch self {
         case .getNotiList:
-            return .requestParameters(parameters: ["receiverId": userID], encoding: URLEncoding.queryString)
+            return .requestPlain
         case .readNoti(let notiID), .deleteNoti(let notiID):
             return .requestParameters(parameters: ["notification": notiID], encoding: URLEncoding.queryString)
         }
