@@ -24,7 +24,7 @@ struct NotificationList: Codable {
     var content: String
     var createdAt: String
     var postID: Int
-    var commentID: Int
+    var commentID: Int?
     var notificationTypeID: Int
 
     enum CodingKeys: String, CodingKey {
