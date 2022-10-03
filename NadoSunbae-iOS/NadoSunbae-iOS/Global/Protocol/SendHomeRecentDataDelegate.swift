@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SendHomeRecentDataDelegate {
-    func sendRecentPostId(id: Int, type: HomeRecentTVCType)
+    func sendRecentPostId(id: Int, type: HomeRecentTVCType, isAuthorized: Bool)
 }
