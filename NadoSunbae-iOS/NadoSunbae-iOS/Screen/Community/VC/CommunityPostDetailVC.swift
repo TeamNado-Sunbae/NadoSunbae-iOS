@@ -49,9 +49,8 @@ class CommunityPostDetailVC: BaseVC {
     // MARK: Properties
     var postID: Int?
     var userID: Int?
-    var questionerID: Int?
-    private var infoDetailData: InfoDetailDataModel?
-    private var infoDetailCommentData: [InfoDetailCommentList] = []
+    private var infoDetailData: PostDetailResModel?
+    private var infoDetailCommentData: [CommentList] = []
     private var infoDetailLikeData: Like?
     private var qnaType: QnAType?
     private var isCommentSend: Bool = false
@@ -71,7 +70,6 @@ class CommunityPostDetailVC: BaseVC {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        hideTabbar()
         addKeyboardObserver()
         optionalBindingData()
         makeScreenAnalyticsEvent(screenName: "ClassRoom_Info Tab", screenClass: CommunityPostDetailVC.className)
@@ -146,7 +144,7 @@ extension CommunityPostDetailVC {
             } else {
                 self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
                     self.reportActionSheet(completion: { reason in
-                        self.requestReport(reportedTargetID: self.infoDetailData?.post.postID ?? 0, reportedTargetTypeID: 2, reason: reason)
+                        self.requestReport(reportedTargetID: self.infoDetailData?.post.postDetailID ?? 0, reportedTargetTypeID: 2, reason: reason)
                     })
                 })
             }
@@ -215,13 +213,22 @@ extension CommunityPostDetailVC {
     
     /// 정보글 원글을 수정하기 위해 WriteQuestionVC로 화면전환하는 메서드
     private func presentWriteQuestionVC() {
-        // ✅ TODO: CommunityWriteVC로 이동시키기.
-        self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-//            writeQuestionVC.questionType = .info
-            writeQuestionVC.isEditState = true
-            writeQuestionVC.postID = self?.postID
-            writeQuestionVC.originTitle = self?.infoDetailData?.post.title
-            writeQuestionVC.originContent = self?.infoDetailData?.post.content
+        self.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { communityWriteVC in
+            communityWriteVC.reactor = CommunityWriteReactor()
+            communityWriteVC.isEditState = true
+            var categoryIndex: Int = 0
+            switch self.infoDetailData?.post.type {
+            case "질문":
+                categoryIndex = 1
+            case "정보":
+                categoryIndex = 2
+            default:
+                categoryIndex = 0
+            }
+            communityWriteVC.categoryIndex = categoryIndex
+            communityWriteVC.postID = self.postID
+            communityWriteVC.originTitle = self.infoDetailData?.post.title
+            communityWriteVC.originContent = self.infoDetailData?.post.content
         }
     }
     
@@ -272,10 +279,11 @@ extension CommunityPostDetailVC: UITableViewDataSource {
         /// 정보글 원글 Cell
         if indexPath.row == 0 {
             infoQuestionCell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
-            infoQuestionCell.bindData(infoDetailData ?? InfoDetailDataModel(post: InfoDetailPost(postID: 0, title: "", content: "", createdAt: ""), writer: InfoDetailWriter(writerID: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isPostWriter: false), like: Like(isLiked: false, likeCount: 0), commentCount: 0, commentList: []))
+            if let infoDetailData = infoDetailData {
+                infoQuestionCell.bindData(infoDetailData)
+            }
             
-            // TODO: 서버 명세서 나오면 상황에 맞춰 변경하기
-            infoQuestionCell.setInfoTypeTitle("정보")
+            infoQuestionCell.setInfoTypeTitle(infoDetailData?.post.type ?? "")
             
             infoQuestionCell.tapLikeBtnAction = { [weak self] in
                 self?.requestPostLikeData(postID: self?.postID ?? 0, postTypeID: .info)
@@ -424,17 +432,16 @@ extension CommunityPostDetailVC {
     private func requestGetDetailInfoData(postID: Int, addLoadBackView: Bool) {
         addLoadBackView ? self.configureWhiteBackView() : nil
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getInfoDetailAPI(postID: postID) { networkResult in
+        PublicAPI.shared.getPostDetail(postID: postID) { [weak self] networkResult in
+            guard let self = self else { return }
             switch networkResult {
             case .success(let res):
-                if let data = res as? InfoDetailDataModel {
+                if let data = res as? PostDetailResModel {
                     self.infoDetailData = data
                     self.infoDetailCommentData = data.commentList
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.isWriter = (self.userID == self.infoDetailData?.writer.writerID) ? true : false
-                    
-                    // TODO: 서버 명세서 나오면 상황에 맞춰 변경하기
-                    self.setUpNaviSubTitle(major: "국어국문학과")
+                    self.setUpNaviSubTitle(major: data.post.majorName)
                     
                     DispatchQueue.main.async {
                         self.infoDetailTV.reloadData()

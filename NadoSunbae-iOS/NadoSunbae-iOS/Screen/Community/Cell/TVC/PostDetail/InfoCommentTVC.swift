@@ -62,7 +62,7 @@ class InfoCommentTVC: BaseTVC {
 extension InfoCommentTVC {
     
     /// 데이터 바인딩하는 메서드
-    func bindData(model: InfoDetailCommentList) {
+    func bindData(model: CommentList) {
         profileImgView.image = UIImage(named: "profileImage\(model.writer.profileImageID)")
         nicknameLabel.text = model.writer.nickname
         writerImgView.isHidden = !(model.writer.isPostWriter ?? false)

@@ -131,40 +131,6 @@ class ClassroomAPI {
             }
         }
     }
-
-    /// [PUT] 1:1질문, 전체 질문, 정보글 질문 수정 API 메서드
-    func editPostQuestionAPI(postID: Int, title: String, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.editPostQuestion(postID: postID, title: title, content: content)) { result in
-            switch result {
-                
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                completion(self.editPostQuestionJudgeData(status: statusCode, data: data))
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    /// [PUT] 1:1질문, 전체 질문, 정보글 댓글 수정 API 메서드
-    func editPostCommentAPI(commentID: Int, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.editPostComment(commentID: commentID, content: content)) { result in
-            switch result {
-                
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                completion(self.editPostCommentJudgeData(status: statusCode, data: data))
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
     
     /// [DELETE] 1:1질문, 전체 질문, 정보글 질문 삭제 API 메서드
     func deletePostQuestionAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {

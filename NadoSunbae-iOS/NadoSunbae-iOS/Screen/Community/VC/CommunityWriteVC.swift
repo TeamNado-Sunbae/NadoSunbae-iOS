@@ -7,8 +7,9 @@
 
 import UIKit
 import ReactorKit
+import RxCocoa
 
-final class CommunityWriteVC: WriteQuestionVC, View {
+final class CommunityWriteVC: BaseWritePostVC, View {
     
     // MARK: Components
     private let selectMajorLabel = UILabel().then {
@@ -39,7 +40,16 @@ final class CommunityWriteVC: WriteQuestionVC, View {
         $0.backgroundColor = .gray0
     }
     
+    private var selectedCategory: PostFilterType = .general
+    
+    private let nadoAlert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: CommunityWriteVC.self, options: nil)?.first as? NadoAlertVC
+    
     var disposeBag = DisposeBag()
+    var isEditState: Bool = false
+    var postID: Int?
+    var categoryIndex: Int?
+    var originTitle: String?
+    var originContent: String?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -49,6 +59,9 @@ final class CommunityWriteVC: WriteQuestionVC, View {
         configureLabel()
         setUpInitAction()
         registerCell()
+        setUpInitStyle()
+        setUpAlertMsgByEditState()
+        setUpCategoryCVByEditState()
     }
     
     func bind(reactor: CommunityWriteReactor) {
@@ -128,8 +141,37 @@ extension CommunityWriteVC {
     // MARK: Action
     private func bindAction(_ reactor: CommunityWriteReactor) {
         majorSelectBtn.rx.tap
-            .map { CommunityWriteReactor.Action.majorSelectBtnDidTap }
+            .map { CommunityWriteReactor.Action.tapMajorSelectBtn }
             .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        questionWriteNaviBar.rightActivateBtn.rx.tap
+            .subscribe(onNext: {
+                self.nadoAlert?.showNadoAlert(vc: self, message: self.confirmAlertMsg, confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+            })
+            .disposed(by: disposeBag)
+        
+        nadoAlert?.confirmBtn.rx.tap.map{
+            if self.isEditState {
+                return CommunityWriteReactor.Action.tapQuestionEditBtn(postID: self.postID ?? 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ??
+                "")
+            } else {
+                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: 0, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
+            }
+        }
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
+        
+        questionWriteNaviBar.dismissBtn.rx.tap
+            .subscribe(onNext: {
+                self.nadoAlert?.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+            })
+            .disposed(by: disposeBag)
+        
+        nadoAlert?.cancelBtn.rx.tap
+            .subscribe(onNext: {
+                self.dismiss(animated: true, completion: nil)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -156,6 +198,15 @@ extension CommunityWriteVC {
                 return categoryCell
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map{ $0.writePostSuccess }
+            .subscribe(onNext: { success in
+                if success {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -171,12 +222,56 @@ extension CommunityWriteVC {
     private func setUpDelegate() {
         categoryCV.rx.setDelegate(self)
             .disposed(by: disposeBag)
+        questionWriteTextView.delegate = self
     }
     
     /// 초기 Action 설정 메서드
     private func setUpInitAction() {
         reactor?.action.onNext(.loadCategoryData)
         categoryCV.selectItem(at: [0, 0], animated: false, scrollPosition: .top)
+    }
+    
+    /// 컴포넌트의 초기 스타일을 구성하는 메서드
+    private func setUpInitStyle() {
+        if isEditState {
+            self.makeScreenAnalyticsEvent(screenName: "Community Tab", screenClass: "CommunityWriteVC+Edit")
+            isTextViewEmpty = false
+            questionWriteTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "")
+            questionTitleTextField.text = originTitle
+            questionWriteTextView.text = originContent
+            questionWriteNaviBar.rightActivateBtn.isActivated = true
+        } else {
+            questionTitleTextField.placeholder = "제목을 입력하세요."
+            questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "내용을 입력하세요.")
+        }
+        
+        questionWriteNaviBar.configureTitleLabel(title: "게시글 작성")
+    }
+    
+    /// 수정상태인지 아닌지에 따라 Alert Message를 지정하는 메서드
+    private func setUpAlertMsgByEditState() {
+        confirmAlertMsg =
+        """
+        글을 올리시겠습니까?
+        """
+        dismissAlertMsg = isEditState ?
+        """
+        페이지를 나가면
+        수정한 내용이 저장되지 않아요.
+        """
+        :
+        """
+        페이지를 나가면
+        작성중인 글이 삭제돼요.
+        """
+    }
+    
+    /// 수정상태인지 아닌지에 따라 CategoryCV의 수정 상태를 설정하는 메서드
+    private func setUpCategoryCVByEditState() {
+        if isEditState {
+            categoryCV.selectItem(at: IndexPath(row: categoryIndex ?? 0, section: 0), animated: false, scrollPosition: .bottom)
+            categoryCV.isUserInteractionEnabled = false
+        }
     }
 }
 
@@ -186,5 +281,50 @@ extension CommunityWriteVC: UICollectionViewDelegateFlowLayout {
     /// sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 61.adjusted, height: 32.adjustedH)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            selectedCategory = .general
+        case 1:
+            selectedCategory = .questionToEveryone
+        default:
+            selectedCategory = .information
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension CommunityWriteVC: UITextViewDelegate {
+    
+    /// scrollViewDidScroll
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        DispatchQueue.main.async() {
+            scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
+        }
+    }
+    
+    /// textViewDidBeginEditing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray2 {
+            textView.text = nil
+            textView.textColor = .mainText
+        }
+    }
+    
+    /// textViewDidChange
+    func textViewDidChange(_ textView: UITextView) {
+        isTextViewEmpty = false
+        scollByTextViewState(textView: textView)
+    }
+    
+    /// textViewDidEndEditing
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "내용을 입력하세요."
+            textView.textColor = .gray2
+            isTextViewEmpty = true
+        }
     }
 }

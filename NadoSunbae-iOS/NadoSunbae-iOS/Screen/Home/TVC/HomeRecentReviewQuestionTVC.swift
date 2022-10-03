@@ -98,9 +98,9 @@ extension HomeRecentReviewQuestionTVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch recentType {
         case .review:
-            sendHomeRecentDataDelegate?.sendRecentPostId(id: recentReviewList[indexPath.row].id, type: .review)
+            sendHomeRecentDataDelegate?.sendRecentPostId(id: recentReviewList[indexPath.row].id, type: .review, isAuthorized: false)
         case .personalQuestion:
-            sendHomeRecentDataDelegate?.sendRecentPostId(id: recentReviewList[indexPath.row].id, type: .personalQuestion)
+            sendHomeRecentDataDelegate?.sendRecentPostId(id: recentPersonalQuestionList[indexPath.row].postID, type: .personalQuestion, isAuthorized: recentPersonalQuestionList[indexPath.row].isAuthorized ??  false)
         default: break
         }
     }

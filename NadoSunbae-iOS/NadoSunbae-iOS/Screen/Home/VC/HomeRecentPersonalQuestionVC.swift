@@ -91,6 +91,7 @@ extension HomeRecentPersonalQuestionVC: UITableViewDelegate {
                 questionDetailVC.hidesBottomBarWhenPushed = true
                 questionDetailVC.naviStyle = .push
                 questionDetailVC.postID = self.questionList[indexPath.row].postID
+                questionDetailVC.isAuthorized = self.questionList[indexPath.row].isAuthorized
             }
         }
     }

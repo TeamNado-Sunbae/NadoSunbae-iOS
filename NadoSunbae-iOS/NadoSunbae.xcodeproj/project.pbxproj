@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330ADB0828E353F80099E8D7 /* WritePostReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330ADB0728E353F80099E8D7 /* WritePostReqModel.swift */; };
+		330ADB0A28E358190099E8D7 /* WritePostResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330ADB0928E358190099E8D7 /* WritePostResModel.swift */; };
 		330DA4332790BCCC00FE127F /* NadoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4322790BCCC00FE127F /* NadoTextView.swift */; };
 		330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330DA4342790C3E300FE127F /* UIScrollView+.swift */; };
 		3313642A2784D3BD00E0C118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331364292784D3BD00E0C118 /* AppDelegate.swift */; };
@@ -68,6 +70,9 @@
 		336216B128D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */; };
 		336216B328D2014C00FEA3E9 /* RecentQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B228D2014C00FEA3E9 /* RecentQuestionTVC.swift */; };
 		336216B528D2064900FEA3E9 /* RecentQuestionTVCReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B428D2064900FEA3E9 /* RecentQuestionTVCReactor.swift */; };
+		3362866128E8404B0033D910 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3362865E28E8404B0033D910 /* Release.xcconfig */; };
+		3362866228E8404B0033D910 /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3362865F28E8404B0033D910 /* Development.xcconfig */; };
+		3362866328E8404C0033D910 /* QA.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3362866028E8404B0033D910 /* QA.xcconfig */; };
 		336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */; };
 		336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */; };
 		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
@@ -144,6 +149,9 @@
 		33EAD1F127C68D09000AD673 /* EditPostCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EAD1F027C68D09000AD673 /* EditPostCommentModel.swift */; };
 		33EDB54028CFD3660086BE3F /* PostDetailResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EDB53F28CFD3660086BE3F /* PostDetailResModel.swift */; };
 		33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */; };
+		33F507FF28E723E60037D632 /* WritePostResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F507FD28E723E60037D632 /* WritePostResModel.swift */; };
+		33F5080028E723E60037D632 /* WritePostReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F507FE28E723E60037D632 /* WritePostReqModel.swift */; };
+		33F5080328E737E10037D632 /* BaseWritePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F5080228E737E10037D632 /* BaseWritePostVC.swift */; };
 		33FA593E288D6B6700BC7C32 /* CommunityWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */; };
 		33FA5940288D72F800BC7C32 /* CommunityWriteReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */; };
 		33FA5943288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */; };
@@ -336,6 +344,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330ADB0728E353F80099E8D7 /* WritePostReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostReqModel.swift; sourceTree = "<group>"; };
+		330ADB0928E358190099E8D7 /* WritePostResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostResModel.swift; sourceTree = "<group>"; };
 		330DA4322790BCCC00FE127F /* NadoTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoTextView.swift; sourceTree = "<group>"; };
 		330DA4342790C3E300FE127F /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 		331364262784D3BD00E0C118 /* NadoSunbae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NadoSunbae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -400,6 +410,9 @@
 		336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonCVC.swift; sourceTree = "<group>"; };
 		336216B228D2014C00FEA3E9 /* RecentQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuestionTVC.swift; sourceTree = "<group>"; };
 		336216B428D2064900FEA3E9 /* RecentQuestionTVCReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuestionTVCReactor.swift; sourceTree = "<group>"; };
+		3362865E28E8404B0033D910 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		3362865F28E8404B0033D910 /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		3362866028E8404B0033D910 /* QA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = QA.xcconfig; sourceTree = "<group>"; };
 		336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionInfo.swift; sourceTree = "<group>"; };
 		336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
@@ -470,6 +483,12 @@
 		33EDB53F28CFD3660086BE3F /* PostDetailResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailResModel.swift; sourceTree = "<group>"; };
 		33F02A8A278889650078F9B7 /* NadoSunbaeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSunbaeBtn.swift; sourceTree = "<group>"; };
 		33F3ED8727C54E9F00731E24 /* EditPostQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostQuestionModel.swift; sourceTree = "<group>"; };
+		33F507FD28E723E60037D632 /* WritePostResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritePostResModel.swift; sourceTree = "<group>"; };
+		33F507FE28E723E60037D632 /* WritePostReqModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritePostReqModel.swift; sourceTree = "<group>"; };
+		33F5080228E737E10037D632 /* BaseWritePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWritePostVC.swift; sourceTree = "<group>"; };
+		33F5080928E79FBC0037D632 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		33F5080A28E79FCD0037D632 /* QA.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = QA.xcconfig; sourceTree = "<group>"; };
+		33F5080B28E79FD70037D632 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		33FA593D288D6B6700BC7C32 /* CommunityWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVC.swift; sourceTree = "<group>"; };
 		33FA593F288D72F800BC7C32 /* CommunityWriteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteReactor.swift; sourceTree = "<group>"; };
 		33FA5942288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteCategoryCVC.swift; sourceTree = "<group>"; };
@@ -758,6 +777,7 @@
 		331364402785A48A00E0C118 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				3362865D28E8404B0033D910 /* Configuration */,
 				331364372784D3C000E0C118 /* Info.plist */,
 				5CB6502C27944415007694B1 /* GoogleService-Info.plist */,
 				331364292784D3BD00E0C118 /* AppDelegate.swift */,
@@ -771,6 +791,7 @@
 		331364412785A4B400E0C118 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				33F5080128E737C60037D632 /* WritePost */,
 				331364632785ADFE00E0C118 /* BaseVC.swift */,
 				33BE2D48278982E0000FB6C8 /* BaseNC.swift */,
 				3385636F278DC74D003C60A6 /* BaseTVC.swift */,
@@ -1066,6 +1087,16 @@
 			path = SB;
 			sourceTree = "<group>";
 		};
+		3362865D28E8404B0033D910 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3362865E28E8404B0033D910 /* Release.xcconfig */,
+				3362865F28E8404B0033D910 /* Development.xcconfig */,
+				3362866028E8404B0033D910 /* QA.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		3381083627D53E52005AF1F9 /* LikeList */ = {
 			isa = PBXGroup;
 			children = (
@@ -1343,6 +1374,24 @@
 				C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		33F5080128E737C60037D632 /* WritePost */ = {
+			isa = PBXGroup;
+			children = (
+				33F5080228E737E10037D632 /* BaseWritePostVC.swift */,
+			);
+			path = WritePost;
+			sourceTree = "<group>";
+		};
+		33F5080828E79F960037D632 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				33F5080928E79FBC0037D632 /* Development.xcconfig */,
+				33F5080A28E79FCD0037D632 /* QA.xcconfig */,
+				33F5080B28E79FD70037D632 /* Release.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		33FA5941288DCA5100BC7C32 /* CVC */ = {
@@ -1750,6 +1799,8 @@
 		77A7593427987E9E00A8E48B /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				33F507FE28E723E60037D632 /* WritePostReqModel.swift */,
+				33F507FD28E723E60037D632 /* WritePostResModel.swift */,
 				5C328020279741C200781EBE /* QuestionOrInfoListModel.swift */,
 				77A7591F2797645E00A8E48B /* WriterData.swift */,
 				77A759252797FDEA00A8E48B /* MajorListData.swift */,
@@ -1760,6 +1811,8 @@
 				33BD384228C9AC73005528DD /* PostListResModel.swift */,
 				33EDB53F28CFD3660086BE3F /* PostDetailResModel.swift */,
 				779DC5AC28EA942A009B9A43 /* ContentListData.swift */,
+				330ADB0728E353F80099E8D7 /* WritePostReqModel.swift */,
+				330ADB0928E358190099E8D7 /* WritePostResModel.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2079,6 +2132,7 @@
 				7757289E27D63E7300148C9A /* OnboardingSB.storyboard in Resources */,
 				777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */,
 				5CC2BC032789FD66003B0AD6 /* NadoTextField.xib in Resources */,
+				3362866128E8404B0033D910 /* Release.xcconfig in Resources */,
 				777C18D727D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib in Resources */,
 				775728A227D652A700148C9A /* FirstOnboardingCVC.xib in Resources */,
 				7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */,
@@ -2101,6 +2155,7 @@
 				5C4ED92A278949AC001EA6BB /* SignInSB.storyboard in Resources */,
 				331364822785D60F00E0C118 /* Pretendard-Light.otf in Resources */,
 				7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */,
+				3362866328E8404C0033D910 /* QA.xcconfig in Resources */,
 				C7ACE63427CBD3130011B23F /* SettingAppInfoVC.storyboard in Resources */,
 				7754A32127947D990093C230 /* ReviewDetailSB.storyboard in Resources */,
 				3391E498278B7AC50079EA31 /* ClassroomQuestionTVC.xib in Resources */,
@@ -2110,6 +2165,7 @@
 				334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */,
 				C71BF22327CCB1EE0030DCB9 /* BlockListVC.storyboard in Resources */,
 				C7ACE63E27CBED1E0011B23F /* SettingVersionTVC.xib in Resources */,
+				3362866228E8404B0033D910 /* Development.xcconfig in Resources */,
 				5CB6502D27944415007694B1 /* GoogleService-Info.plist in Resources */,
 				5C3280152796F2B700781EBE /* MypageSB.storyboard in Resources */,
 				33BAFD01278C004700BFF6BE /* ClassroomCommentTVC.xib in Resources */,
@@ -2196,6 +2252,7 @@
 				5C32801C2797292B00781EBE /* MypageAPI.swift in Sources */,
 				775728A927D6593700148C9A /* ThirdOnboardingCVC.swift in Sources */,
 				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
+				33F5080028E723E60037D632 /* WritePostReqModel.swift in Sources */,
 				336216B328D2014C00FEA3E9 /* RecentQuestionTVC.swift in Sources */,
 				77ED045327AEBDAF00D077CA /* SendUpdateStatusDelegate.swift in Sources */,
 				5C54CECF278DF6190054136D /* SignUpCompleteVC.swift in Sources */,
@@ -2222,6 +2279,7 @@
 				C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */,
 				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
 				77AA830B28A8AB1F00985B80 /* ClassroomMainSection.swift in Sources */,
+				33F5080328E737E10037D632 /* BaseWritePostVC.swift in Sources */,
 				331364C12786217400E0C118 /* ReviewService.swift in Sources */,
 				C7362E9328D9D46800C90DC6 /* HomeAPI.swift in Sources */,
 				5CAB3F2A278AE3C200025DA5 /* AgreeTermsVC.swift in Sources */,
@@ -2255,6 +2313,7 @@
 				77A049F627BD647900D09C69 /* ReviewDeleteResModel.swift in Sources */,
 				331364AE2785DC1900E0C118 /* ViewControllerFactory.swift in Sources */,
 				33CF636827955D9500E92C04 /* ClassroomNC.swift in Sources */,
+				330ADB0828E353F80099E8D7 /* WritePostReqModel.swift in Sources */,
 				33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
 				C790A273289D6B5D00A67135 /* HomeBannerTVC.swift in Sources */,
@@ -2282,6 +2341,7 @@
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
 				5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */,
 				33C79DCF2881B28900B6C32C /* CommunityTVC.swift in Sources */,
+				33F507FF28E723E60037D632 /* WritePostResModel.swift in Sources */,
 				33A666A527BB958800779351 /* ReviewImgModel.swift in Sources */,
 				33834A1527D5F66E001C4947 /* MypageLikePostType.swift in Sources */,
 				779DC59828D84DA0009B9A43 /* RankingTVC.swift in Sources */,
@@ -2320,6 +2380,7 @@
 				775728A127D652A700148C9A /* FirstOnboardingCVC.swift in Sources */,
 				C71BF22727CCB68B0030DCB9 /* GetBlockListResponseModel.swift in Sources */,
 				777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */,
+				330ADB0A28E358190099E8D7 /* WritePostResModel.swift in Sources */,
 				77AEEB4D2789AF900016880B /* TVRegisterable.swift in Sources */,
 				C7ACE63D27CBEAB70011B23F /* GetLatestVersionResponseModel.swift in Sources */,
 				779DC5A128DB7A51009B9A43 /* RankingReactor.swift in Sources */,
@@ -2406,8 +2467,193 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		331364382784D3C000E0C118 /* Debug */ = {
+		331364382784D3C000E0C118 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3362865F28E8404B0033D910 /* Development.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEVELOPMENT;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Development;
+		};
+		331364392784D3C000E0C118 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3362865E28E8404B0033D910 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3313643B2784D3C000E0C118 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3362865F28E8404B0033D910 /* Development.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.0;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
+				PRODUCT_NAME = NadoSunbae;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Development;
+		};
+		3313643C2784D3C000E0C118 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3362865E28E8404B0033D910 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZS26WP93H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
+				PRODUCT_NAME = NadoSunbae;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3362866428E841990033D910 /* QA */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3362866028E8404B0033D910 /* QA.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2462,69 +2708,14 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = QA;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = QA;
 		};
-		331364392784D3C000E0C118 /* Release */ = {
+		3362866528E841990033D910 /* QA */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		3313643B2784D3C000E0C118 /* Debug */ = {
-			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3362866028E8404B0033D910 /* QA.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2552,37 +2743,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Debug;
-		};
-		3313643C2784D3C000E0C118 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "NadoSunbae-iOS/NadoSunbae-iOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2ZS26WP93H;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "NadoSunbae-iOS/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "나도선배";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.swift.Nadosunbae.NadoSunbae-iOS";
-				PRODUCT_NAME = NadoSunbae;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
+			name = QA;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2590,7 +2751,8 @@
 		331364212784D3BD00E0C118 /* Build configuration list for PBXProject "NadoSunbae" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				331364382784D3C000E0C118 /* Debug */,
+				331364382784D3C000E0C118 /* Development */,
+				3362866428E841990033D910 /* QA */,
 				331364392784D3C000E0C118 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2599,7 +2761,8 @@
 		3313643A2784D3C000E0C118 /* Build configuration list for PBXNativeTarget "NadoSunbae" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3313643B2784D3C000E0C118 /* Debug */,
+				3313643B2784D3C000E0C118 /* Development */,
+				3362866528E841990033D910 /* QA */,
 				3313643C2784D3C000E0C118 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

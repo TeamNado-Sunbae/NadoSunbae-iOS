@@ -14,8 +14,10 @@ final class CommunityWriteReactor: Reactor {
     
     // MARK: represent user actions
     enum Action {
-        case majorSelectBtnDidTap
+        case tapMajorSelectBtn
         case loadCategoryData
+        case tapQuestionWriteBtn(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)
+        case tapQuestionEditBtn(postID: Int, title: String, content: String)
     }
     
     // MARK: represent state changes
@@ -23,6 +25,7 @@ final class CommunityWriteReactor: Reactor {
         case setLoading(loading: Bool)
         case printText(text: String)
         case setCategoryData(data: [String])
+        case setSuccess(success: Bool)
     }
     
     // MARK: represent the current view state
@@ -30,6 +33,7 @@ final class CommunityWriteReactor: Reactor {
         var loading: Bool = false
         var printedText: String = ""
         var categoryData: [String] = []
+        var writePostSuccess: Bool = false
     }
 }
 
@@ -40,7 +44,7 @@ extension CommunityWriteReactor {
     /// mutate (Action -> Mutation)
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .majorSelectBtnDidTap:
+        case .tapMajorSelectBtn:
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 Observable.just(.printText(text: "학과선택 버튼 클릭")),
@@ -48,6 +52,18 @@ extension CommunityWriteReactor {
             ])
         case .loadCategoryData:
             return Observable.concat(Observable.just(.setCategoryData(data: ["자유", "질문", "정보"])))
+        case .tapQuestionWriteBtn(let type, let majorID, let answererID, let title, let content):
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                self.requestWritePost(type: type, majorID: majorID, answererID: answererID, title: title, content: content),
+                Observable.just(.setLoading(loading: false))
+            ])
+        case .tapQuestionEditBtn(let postID, let title, let content):
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                self.requestEditPost(postID: postID, title: title, content: content),
+                Observable.just(.setLoading(loading: false))
+            ])
         }
     }
     
@@ -64,8 +80,80 @@ extension CommunityWriteReactor {
             newState.printedText = text
         case .setCategoryData(let data):
             newState.categoryData = data
+        case .setSuccess(let success):
+            newState.writePostSuccess = success
         }
         
         return newState
+    }
+}
+
+// MARK: - Custom Methods
+extension CommunityWriteReactor {
+    
+    /// 게시글 작성 API를 연결하는 메서드
+    private func requestWritePost(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)  -> Observable<Mutation> {
+        return Observable.create { observer in
+            PublicAPI.shared.requestWritePost(type: type, majorID: majorID, answererID: answererID, title: title, content: content) { networkResult in
+                switch networkResult {
+                case .success(let res):
+                    if let _ = res as? WritePostResModel {
+                        observer.onNext(Mutation.setSuccess(success: true))
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    }
+                case .requestErr(let res):
+                    // ✅ TODO: Alert Display Protocol화 하기
+                    if let message = res as? String {
+//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    } else if res is Bool {
+                        // ✅ TODO: updateAccessToken Protocol화 하기
+//                        self.updateAccessToken { _ in
+//                            self.setUpRequestData(sortType: .recent)
+//                        }
+                    }
+                default:
+                    // ✅ TODO: Alert Display Protocol화하기
+//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setLoading(loading: false))
+                    observer.onCompleted()
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    /// 글 수정 API 호출 메서드
+    private func requestEditPost(postID: Int, title: String, content: String) -> Observable<Mutation> {
+        return Observable.create { observer in
+            PublicAPI.shared.editPostAPI(postID: postID, title: title, content: content) { networkResult in
+                switch networkResult {
+                case .success(_):
+                    observer.onNext(Mutation.setSuccess(success: true))
+                    observer.onNext(Mutation.setLoading(loading: false))
+                    observer.onCompleted()
+                case .requestErr(let res):
+                    // ✅ TODO: Alert Display Protocol화 하기
+                    if let message = res as? String {
+//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    } else if res is Bool {
+                        // ✅ TODO: updateAccessToken Protocol화 하기
+//                        self.updateAccessToken { _ in
+//                            self.setUpRequestData(sortType: .recent)
+//                        }
+                    }
+                default:
+                    // ✅ TODO: Alert Display Protocol화하기
+//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setLoading(loading: false))
+                    observer.onCompleted()
+                }
+            }
+            return Disposables.create()
+        }
     }
 }

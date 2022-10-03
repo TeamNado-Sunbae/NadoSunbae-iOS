@@ -55,7 +55,7 @@ final class HomeRecentReviewQuestionCVC: BaseCVC {
         
         // TODO: 나중에 모델 확정되면 수정 필요
         authorLabel.text = data.majorName
-        contentLabel.text = data.content
+        contentLabel.text = data.title
         dateLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
     }
 }

@@ -321,11 +321,9 @@ extension DefaultQuestionChatVC {
                 goToQuestionfloatingBtn.press { [weak self] in
                     guard let self = self else { return }
                     self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
-                        writeQuestionVC.questionType = .questionToPerson
+                        writeQuestionVC.answererID = self.answererID
                     }
                 }
-            } else {
-                
             }
         }
     }
@@ -381,7 +379,6 @@ extension DefaultQuestionChatVC {
                     /// 수정
                     /// 질문 원글일 경우
                     self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-                        writeQuestionVC.questionType = .questionToPerson
                         writeQuestionVC.isEditState = true
                         writeQuestionVC.postID = self?.postID
                         writeQuestionVC.originTitle = self?.questionData?.title
@@ -423,7 +420,6 @@ extension DefaultQuestionChatVC {
                             /// 수정
                             /// 질문 원글일 경우
                             self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-                                writeQuestionVC.questionType = .questionToPerson
                                 writeQuestionVC.isEditState = true
                                 writeQuestionVC.postID = self?.postID
                                 writeQuestionVC.originTitle = self?.questionData?.title
@@ -697,8 +693,6 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
             // 질문 원글
             if let questionData = questionData {
                 questionCell.bindQuestionData(questionData)
-            } else {
-                questionCell.bindQuestionData(DetailPost(postDetailID: 0, title: "", content: "", createdAt: "", majorName: ""))
             }
             configureDeletedQuestionCell(indexPath, questionCell)
             configureQuestionCell(indexPath: indexPath, questionCell: questionCell)
@@ -805,6 +799,7 @@ extension DefaultQuestionChatVC {
                     self.questionData = data.post
                     self.commentData = data.commentList
                     self.questionLikeData = data.like
+                    self.answererID = data.answererID
                     self.questionerData = data.writer
                     self.userType = self.identifyUserType(questionerID: data.writer.writerID, isAuthorized: data.isAuthorized)
                     self.setUpSendBtnEnabledState(textView: self.sendAreaTextView ?? UITextView())
@@ -918,7 +913,7 @@ extension DefaultQuestionChatVC {
     /// 답변 수정 API 요청 메서드
     private func requestEditPostComment(commentID: Int, content: String) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.editPostCommentAPI(commentID: commentID, content: content) { networkResult in
+        PublicAPI.shared.editPostCommentAPI(commentID: commentID, content: content) { networkResult in
             switch networkResult {
             case .success(_):
                 self.isCommentEdited = true
