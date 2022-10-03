@@ -44,8 +44,8 @@ extension ReviewDetailProfileTVC {
 extension ReviewDetailProfileTVC {
     
     /// 리스트 데이터 세팅 함수
-    func setData(profileData: PostWriter) {
-        profileImgView.image = UIImage(named: "profileImage\(profileData.profileImageID)")
+    func setData(profileData: Writer) {
+        profileImgView.image = UIImage(named: "profileImage\(profileData.profileImageId)")
         nickNameLabel.text = profileData.nickname
         if profileData.firstMajorName == "정보없음" {
             majorLabel.text = profileData.firstMajorName

@@ -68,8 +68,8 @@ extension ReviewDetailPostWithImgTVC {
         } else {
             bgImgView.image = UIImage(named: "backgroundMint")
         }
-        titleLabel.text = postData.post.oneLineReview
-        tagLabel.text = postData.post.contentList[0].title
-        contentLabel.text = postData.post.contentList[0].content
+        titleLabel.text = postData.review.oneLineReview
+        tagLabel.text = postData.review.contentList[0].title
+        contentLabel.text = postData.review.contentList[0].content
     }
 }
