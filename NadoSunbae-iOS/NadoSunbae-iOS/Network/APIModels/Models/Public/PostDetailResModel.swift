@@ -25,7 +25,7 @@ struct PostDetailResModel: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        post = (try? values.decode(DetailPost.self, forKey: .post)) ?? DetailPost(postDetailID: 0, title: "", content: "", createdAt: "", majorName: "")
+        post = (try? values.decode(DetailPost.self, forKey: .post)) ?? DetailPost(postDetailID: 0, title: "", type: "", content: "", createdAt: "", majorName: "")
         writer = (try? values.decode(PostDetailWriter.self, forKey: .writer)) ?? PostDetailWriter(writerID: 0, isPostWriter: false, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "")
         isAuthorized = (try? values.decode(Bool.self, forKey: .isAuthorized)) ?? false
         answererID = (try? values.decode(Int.self, forKey: .answererID)) ?? 0
@@ -67,10 +67,10 @@ struct PostDetailWriter: Codable {
 // MARK: - DetailPost
 struct DetailPost: Codable {
     let postDetailID: Int
-    let title, content, createdAt, majorName: String
+    let title, type, content, createdAt, majorName: String
     
     enum CodingKeys: String, CodingKey {
         case postDetailID = "id"
-        case title, content, createdAt, majorName
+        case title, type, content, createdAt, majorName
     }
 }

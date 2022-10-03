@@ -694,7 +694,7 @@ extension DefaultQuestionChatVC: UITableViewDataSource {
             if let questionData = questionData {
                 questionCell.bindQuestionData(questionData)
             } else {
-                questionCell.bindQuestionData(DetailPost(postDetailID: 0, title: "", content: "", createdAt: "", majorName: ""))
+                questionCell.bindQuestionData(DetailPost(postDetailID: 0, title: "", type: "", content: "", createdAt: "", majorName: ""))
             }
             configureDeletedQuestionCell(indexPath, questionCell)
             configureQuestionCell(indexPath: indexPath, questionCell: questionCell)

@@ -59,6 +59,7 @@ final class CommunityMainVC: BaseVC, View {
         registerCell()
         setUpDelegate()
         setUpInitAction()
+        bindCommunityTV()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -176,6 +177,18 @@ extension CommunityMainVC {
     
     private func setUpInitAction() {
         reactor?.action.onNext(.reloadCommunityTV(majorID: 0, type: .community, sort: "recent", search: ""))
+    }
+    
+    /// CommunityTV를 bind하는 메서드
+    private func bindCommunityTV() {
+        communityTV.rx.modelSelected(PostListResModel.self)
+            .subscribe(onNext: { item in
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                    postDetailVC.postID = item.postID
+                    postDetailVC.hidesBottomBarWhenPushed = true
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 

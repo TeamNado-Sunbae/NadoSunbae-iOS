@@ -62,6 +62,7 @@ final class CommunitySearchVC: BaseVC, View {
         setUpDelegate()
         configureUI()
         registerCell()
+        bindSearchTV()
     }
     
     func bind(reactor: CommunitySearchReactor) {
@@ -133,6 +134,17 @@ extension CommunitySearchVC {
                 } else {
                     self.activityIndicator.stopAnimating()
                     self.setUpHiddenState(searchTV: false, representStackView: false)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// searchTV를 bind하는 메서드
+    private func bindSearchTV() {
+        searchTV.rx.modelSelected(PostListResModel.self)
+            .subscribe(onNext: { item in
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                    postDetailVC.postID = item.postID
                 }
             })
             .disposed(by: disposeBag)
