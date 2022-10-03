@@ -49,6 +49,8 @@ extension ReviewDetailPostTVC {
             iconImgView.image = UIImage(named: "compass")
         } else if postData.title == "꿀팁" {
             iconImgView.image = UIImage(named: "honey")
+        } else if postData.title == "장단점" {
+            iconImgView.image = UIImage(named: "cube")
         }
         titleLabel.text = postData.title
         contentLabel.text = postData.content
