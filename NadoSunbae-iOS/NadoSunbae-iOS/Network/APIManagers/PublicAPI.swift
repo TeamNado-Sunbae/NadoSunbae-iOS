@@ -139,4 +139,40 @@ class PublicAPI: BaseAPI {
             }
         }
     }
+    
+    /// [PUT] 게시글 수정 API 메서드
+    func editPostAPI(postID: Int, title: String, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.editPost(postID: postID, title: title, content: content)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, EditPostQuestionModel.self)
+                
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    /// [PUT] 댓글 수정 API 메서드
+    func editPostCommentAPI(commentID: Int, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.editPostComment(commentID: commentID, content: content)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, EditPostCommentModel.self)
+                
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
