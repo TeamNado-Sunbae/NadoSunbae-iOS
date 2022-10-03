@@ -212,8 +212,6 @@
 		7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */; };
 		7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */; };
 		7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */; };
-		7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */; };
-		7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */; };
 		7757289E27D63E7300148C9A /* OnboardingSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7757289D27D63E7300148C9A /* OnboardingSB.storyboard */; };
 		775728A127D652A700148C9A /* FirstOnboardingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */; };
 		775728A227D652A700148C9A /* FirstOnboardingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775728A027D652A700148C9A /* FirstOnboardingCVC.xib */; };
@@ -541,8 +539,6 @@
 		7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostTVC.xib; sourceTree = "<group>"; };
 		7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailPostWithImgTVC.swift; sourceTree = "<group>"; };
 		7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailPostWithImgTVC.xib; sourceTree = "<group>"; };
-		7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailProfileTVC.swift; sourceTree = "<group>"; };
-		7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewDetailProfileTVC.xib; sourceTree = "<group>"; };
 		7757289D27D63E7300148C9A /* OnboardingSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingSB.storyboard; sourceTree = "<group>"; };
 		7757289F27D652A700148C9A /* FirstOnboardingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingCVC.swift; sourceTree = "<group>"; };
 		775728A027D652A700148C9A /* FirstOnboardingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstOnboardingCVC.xib; sourceTree = "<group>"; };
@@ -1221,8 +1217,6 @@
 				7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */,
 				7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */,
 				7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */,
-				7754A32C279583A00093C230 /* ReviewDetailProfileTVC.swift */,
-				7754A32D279583A00093C230 /* ReviewDetailProfileTVC.xib */,
 				777C18D427D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift */,
 				777C18D527D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib */,
 				77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */,
@@ -2090,7 +2084,6 @@
 				7754A32B279573B50093C230 /* ReviewDetailPostWithImgTVC.xib in Resources */,
 				777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */,
 				33B9B0D827B8EB2A00066C1F /* InfoCommentTVC.xib in Resources */,
-				7754A32F279583A00093C230 /* ReviewDetailProfileTVC.xib in Resources */,
 				338CDB07278C9F9B00F8227A /* ClassroomQuestionEditTVC.xib in Resources */,
 				33B9B0DC27B8EB4400066C1F /* InfoQuestionTVC.xib in Resources */,
 				C71BF23E27CD0CDF0030DCB9 /* MailCompleteVC.storyboard in Resources */,
@@ -2378,7 +2371,6 @@
 				33D44564287C27F700D94495 /* HomeNC.swift in Sources */,
 				33A15F732799DDDE006FE040 /* AddCommentData.swift in Sources */,
 				77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */,
-				7754A32E279583A00093C230 /* ReviewDetailProfileTVC.swift in Sources */,
 				C783BFA128A7D7E3000FE3D8 /* SendHomeRecentDataDelegate.swift in Sources */,
 				77ED045527B19DBD00D077CA /* ReviewFilterInfo.swift in Sources */,
 				336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */,
