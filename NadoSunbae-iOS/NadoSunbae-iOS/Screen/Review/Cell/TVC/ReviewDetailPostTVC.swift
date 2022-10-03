@@ -38,7 +38,7 @@ class ReviewDetailPostTVC: BaseTVC {
 extension ReviewDetailPostTVC {
     
     /// 리스트 데이터 세팅 함수
-    func setData(postData: PostContent) {
+    func setData(postData: ContentList) {
         if postData.title == "뭘 배우나요?" {
             iconImgView.image = UIImage(named: "pencil")
         } else if postData.title == "추천 수업" {
@@ -49,6 +49,8 @@ extension ReviewDetailPostTVC {
             iconImgView.image = UIImage(named: "compass")
         } else if postData.title == "꿀팁" {
             iconImgView.image = UIImage(named: "honey")
+        } else if postData.title == "장단점" {
+            iconImgView.image = UIImage(named: "cube")
         }
         titleLabel.text = postData.title
         contentLabel.text = postData.content

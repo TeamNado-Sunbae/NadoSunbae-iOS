@@ -57,8 +57,18 @@ extension RecentReviewVC {
         naviView.backBtn.rx.tap
             .bind { self.navigationController?.popViewController(animated: true) }
             .disposed(by: disposeBag)
+        
+        /// 학과 후기 상세 뷰로 이동 
+        reviewTV.rx.modelSelected(HomeRecentReviewResponseDataElement.self)
+            .subscribe(onNext: { item in
+                self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push) { reviewDetailVC in
+                    reviewDetailVC.postId = item.id
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
+    // MARK: State
     private func bindState(_ reactor: RecentReviewReactor) {
         reactor.state
             .map { $0.recentReviewList }

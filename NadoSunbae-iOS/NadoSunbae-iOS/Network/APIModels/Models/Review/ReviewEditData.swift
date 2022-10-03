@@ -12,7 +12,7 @@ struct ReviewEditData: Codable {
     let post: EditedPost
     let writer: Editer
     let like: Like
-    let backgroundImage: ReviewPostBackgroundImg
+    let backgroundImage: BackgroundImage
 }
 
 // MARK: - EditedPost

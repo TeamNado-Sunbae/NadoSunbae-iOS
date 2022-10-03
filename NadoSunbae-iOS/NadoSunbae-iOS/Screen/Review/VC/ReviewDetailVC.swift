@@ -30,7 +30,7 @@ class ReviewDetailVC: BaseVC {
     @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: Properties
-    var detailPost: ReviewPostDetailData = ReviewPostDetailData(like: Like(isLiked: false, likeCount: 0), backgroundImage: BackgroundImage(imageID: 0))
+    var detailPost: ReviewPostDetailData = ReviewPostDetailData(review: Review(id: 0, oneLineReview: "", contentList: [ContentList(title: "", content: "")], createdAt: ""), writer: Writer(writerID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isOnQuestion: false, isReviewed: false, profileImageId: 0), like: Like(isLiked: false, likeCount: 0), backgroundImage: BackgroundImage(imageID: 0))
     var postId: Int?
     
     // MARK: Life Cycle
@@ -77,7 +77,6 @@ extension ReviewDetailVC {
     private func registerTVC() {
         ReviewDetailPostWithImgTVC.register(target: reviewPostTV)
         ReviewDetailPostTVC.register(target: reviewPostTV)
-        ReviewDetailProfileTVC.register(target: reviewPostTV)
         ReviewDetailGrayTVC.register(target: reviewPostTV)
     }
     
@@ -106,7 +105,7 @@ extension ReviewDetailVC {
                 /// 타인 작성 글인 경우 신고
                 self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
                     self.reportActionSheet { reason in
-                        self.requestReport(reportedTargetID: self.detailPost.post.postID, reportedTargetTypeID: 1, reason: reason)
+                        self.requestReport(reportedTargetID: self.detailPost.review.id, reportedTargetTypeID: 1, reason: reason)
                     }
                 })
             }
@@ -129,7 +128,7 @@ extension ReviewDetailVC {
     
     /// 하단 네비 바 데이터 설정
     private func setUpBottomNaviData(model: ReviewPostDetailData) {
-        dateLabel.text = model.post.createdAt.serverTimeToString(forUse: .forDefault)
+        dateLabel.text = model.review.createdAt.serverTimeToString(forUse: .forDefault)
         
         if model.like.isLiked {
             likeImgView.image = UIImage(named: "heart_filled")
@@ -155,17 +154,17 @@ extension ReviewDetailVC {
         reviewWriteVC.modalPresentationStyle = .fullScreen
         self.present(reviewWriteVC, animated: true, completion: nil)
         
-        reviewWriteVC.setReceivedData(status: false, postId: self.detailPost.post.postID, bgImgId: self.detailPost.backgroundImage.imageID)
+        reviewWriteVC.setReceivedData(status: false, postId: self.detailPost.review.id, bgImgId: self.detailPost.backgroundImage.imageID)
         reviewWriteVC.oneLineReviewTextView.textColor = .mainText
-        reviewWriteVC.oneLineReviewTextView.text = self.detailPost.post.oneLineReview
+        reviewWriteVC.oneLineReviewTextView.text = self.detailPost.review.oneLineReview
         
         let contentTitleDict: [String : UITextView] = ["장단점" : reviewWriteVC.prosAndConsTextView, "뭘 배우나요?" : reviewWriteVC.learnInfoTextView, "추천 수업" : reviewWriteVC.recommendClassTextView, "비추 수업" :  reviewWriteVC.badClassTextView, "향후 진로" : reviewWriteVC.futureTextView, "꿀팁" : reviewWriteVC.tipTextView]
         var newContentTitleDict = [String : UITextView]()
         var newContentDict = [String : String]()
         
-        for i in 0..<self.detailPost.post.contentList.count {
-            newContentTitleDict.updateValue(contentTitleDict[self.detailPost.post.contentList[i].title] ?? UITextView(), forKey: self.detailPost.post.contentList[i].title)
-            newContentDict.updateValue(self.detailPost.post.contentList[i].content, forKey: self.detailPost.post.contentList[i].title)
+        for i in 0..<self.detailPost.review.contentList.count {
+            newContentTitleDict.updateValue(contentTitleDict[self.detailPost.review.contentList[i].title] ?? UITextView(), forKey: self.detailPost.review.contentList[i].title)
+            newContentDict.updateValue(self.detailPost.review.contentList[i].content, forKey: self.detailPost.review.contentList[i].title)
         }
         
         newContentTitleDict.forEach {
@@ -185,17 +184,11 @@ extension ReviewDetailVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableView.automaticDimension
+            return 340
         } else if indexPath.section == 1 {
             return UITableView.automaticDimension
-        } else if indexPath.section == 2{
-            if detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-                return 12
-            } else {
-                return 172
-            }
         } else {
-            return 0
+            return detailPost.writer.isOnQuestion ? 110 : 68
         }
     }
 }
@@ -203,17 +196,15 @@ extension ReviewDetailVC: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension ReviewDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if detailPost.post.postID == -1 {
+        if detailPost.review.id == -1 {
             return 0
         } else {
             if section == 0 {
                 return 1
             } else if section == 1 {
-                return detailPost.post.contentList.count - 1
-            } else if section == 2 {
-                return 1
+                return detailPost.review.contentList.count
             } else {
-                return 0
+                return 1
             }
         }
     }
@@ -221,33 +212,25 @@ extension ReviewDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let reviewDetailPostWithImgTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailPostWithImgTVC.className) as? ReviewDetailPostWithImgTVC,
               let reviewDetailPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailPostTVC.className) as? ReviewDetailPostTVC,
-              let reviewDetailProfileTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailProfileTVC.className) as? ReviewDetailProfileTVC,
               let reviewDetailGrayTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailGrayTVC.className) as? ReviewDetailGrayTVC else { return UITableViewCell() }
         
         if indexPath.section == 0 {
             reviewDetailPostWithImgTVC.setData(postData: detailPost)
+            reviewDetailPostWithImgTVC.tapPresentProfileBtnAction = {
+                self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                    mypageUserVC.targetUserID = self.detailPost.writer.writerID
+                }
+            }
             return reviewDetailPostWithImgTVC
         } else if indexPath.section == 1 {
             reviewDetailPostTVC.contentLabel.sizeToFit()
-            reviewDetailPostTVC.setData(postData: detailPost.post.contentList[indexPath.row + 1])
+            reviewDetailPostTVC.setData(postData: detailPost.review.contentList[indexPath.row])
             return reviewDetailPostTVC
         } else if indexPath.section == 2 {
-            if detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-                return reviewDetailGrayTVC
-            } else {
-                reviewDetailProfileTVC.setData(profileData: detailPost.writer)
-                return reviewDetailProfileTVC
-            }
+            reviewDetailGrayTVC.setData(postData: detailPost)
+            return reviewDetailGrayTVC
         } else {
             return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
-                mypageUserVC.targetUserID = self.detailPost.writer.writerID
-            }
         }
     }
 }
@@ -263,10 +246,10 @@ extension ReviewDetailVC {
                 
             case .success(let res):
                 if let data = res as? ReviewPostDetailData {
+                    self.activityIndicator.stopAnimating()
                     self.detailPost = data
                     self.setUpBottomNaviData(model: data)
                     self.reviewPostTV.reloadData()
-                    self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
                 if let message = res as? String {

@@ -86,6 +86,15 @@ extension RankingVC {
             .map { return RankingReactor.Action.tapCloseBtn }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        /// 선배 개인프로필 뷰로 이동
+        rankingTV.rx.modelSelected(HomeRankingResponseModel.UserList.self)
+            .subscribe(onNext: { item in
+                self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                    mypageUserVC.targetUserID = item.id
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: State

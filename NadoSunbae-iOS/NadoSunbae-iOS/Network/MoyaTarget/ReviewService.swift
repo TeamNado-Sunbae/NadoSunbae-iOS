@@ -30,7 +30,7 @@ extension ReviewService: TargetType {
         case .getReviewMainPostList:
             return "/review-post/list"
         case .getReviewPostDetail(let postID), .deleteReviewPost(let postID):
-            return "/review-post/\(postID)"
+            return "review/\(postID)"
         case .getReviewHomepageURL(let majorID):
             return "/major/\(majorID)"
         case .editReviewPost(let postID, _, _, _, _, _, _, _, _ ):
