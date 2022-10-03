@@ -51,7 +51,7 @@ extension NotificationTVC {
         redCircleImgView.isHidden = data.isRead
         profileImgView.image = UIImage(named: "profileImage\(data.sender.profileImageID)")
         
-        titleLabel.text = getTitleLabelText(notiTypeInt: data.notificationTypeID, nickname: data.sender.nickname)
+        titleLabel.text = getTitleLabelText(notiTypeInt: data.notificationTypeID, nickname: data.sender.senderName)
         contentLabel.text = "\(data.content)"
         timeLabel.text = data.createdAt.serverTimeToString(forUse: .forNotification)
         
@@ -74,7 +74,7 @@ extension NotificationTVC {
         case 9:
             attributedStr = "답글을 작성하신 커뮤니티 글"
         case 10:
-            attributedStr = "커뮤니티에 \(data.sender.nickname) 질문글"
+            attributedStr = "커뮤니티에 \(data.sender.senderName) 질문글"
         default:
             debugPrint("notification type error")
         }

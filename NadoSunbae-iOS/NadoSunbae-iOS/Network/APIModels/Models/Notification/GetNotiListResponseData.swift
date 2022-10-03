@@ -41,12 +41,12 @@ struct NotificationList: Codable {
     // MARK: - Sender
     struct Sender: Codable {
         var senderID: Int
-        var nickname: String
+        var senderName: String
         var profileImageID: Int
 
         enum CodingKeys: String, CodingKey {
             case senderID = "senderId"
-            case nickname = "nickname"
+            case senderName = "senderName"
             case profileImageID = "profileImageId"
         }
     }
