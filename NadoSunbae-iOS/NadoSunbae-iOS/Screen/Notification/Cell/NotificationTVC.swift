@@ -68,4 +68,40 @@ extension NotificationTVC {
         
         titleLabel.attributedText = mintAttributeStr
     }
+    
+    private func getTitleLabelText(notiTypeInt: Int, nickname: String?) -> String {
+        switch notiTypeInt {
+            
+            /// 후배가 1:1 질문글 처음 작성 시
+        case 1:
+            return "마이페이지에 \(nickname ?? "") 님이 1:1 질문을 남겼습니다."
+            
+            /// (legacy) 내 글에 답글 달린 경우
+        case 2, 3, 4, 5:
+            return "\(notiTypeInt.getNotiType().rawValue)에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+            /// 후배가 1:1 질문글에 답글 남긴 경우
+        case 6:
+            return "\(nickname ?? "") 님이 1:1 질문글에 답글을 남겼습니다."
+            
+            /// 선배가 1:1 질문글에 답글 남긴 경우
+        case 7:
+            return "작성하신 1:1 질문글에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+            /// 본인이 작성한 커뮤니티 글에 답글 달린 경우
+        case 8:
+            return "작성하신 커뮤니티 글에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+            /// 답글 작성한 커뮤니티 글에 답글 달린 경우
+        case 9:
+            return "답글을 작성하신 커뮤니티 글에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+             /// 특정 학과 대상 질문글 알림
+        case 10:
+            return "커뮤니티에 \(nickname ?? "") 질문글이 올라왔습니다."
+        default:
+            debugPrint("notification type error")
+            return ""
+        }
+    }
 }
