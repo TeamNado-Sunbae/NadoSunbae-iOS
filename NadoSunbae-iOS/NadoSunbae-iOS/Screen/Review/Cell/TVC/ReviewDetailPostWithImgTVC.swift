@@ -9,18 +9,23 @@ import UIKit
 import SnapKit
 
 class ReviewDetailPostWithImgTVC: BaseTVC {
+    
+    // MARK: Properties
+    var tapPresentProfileBtnAction: (() -> ())?
 
     // MARK: IBOutlet
     @IBOutlet weak var bgImgView: UIImageView!
-    @IBOutlet weak var postContentView: UIView!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var profileContainertView: UIView!
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.sizeToFit()
         }
     }
-    
-    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var profileImgView: UIImageView!
+    @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var majorInfoLabel: UILabel!
+    @IBOutlet weak var secondMajorInfoLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     // MARK: Life Cycle
     override func awakeFromNib() {
@@ -31,13 +36,18 @@ class ReviewDetailPostWithImgTVC: BaseTVC {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    // MARK: IBAction
+    @IBAction func tapPresentProfileBtn(_ sender: UIButton) {
+        tapPresentProfileBtnAction?()
+    }
+    
 }
 
 // MARK: - UI
 extension ReviewDetailPostWithImgTVC {
     private func configureUI() {
-        postContentView.makeRounded(cornerRadius: 40.adjusted)
-        contentLabel.setLineSpacing(lineSpacing: 5)
+        profileContainertView.makeRounded(cornerRadius: 40.adjusted)
         titleLabel.snp.makeConstraints {
             $0.centerY.equalTo(bgImgView)
             $0.centerX.equalTo(bgImgView.frame.size.height - 40)
@@ -51,25 +61,30 @@ extension ReviewDetailPostWithImgTVC {
     
     /// 리스트 데이터 세팅 함수
     func setData(postData: ReviewPostDetailData) {
-        if postData.backgroundImage.imageID == 6 {
+        titleLabel.text = postData.review.oneLineReview
+        profileImgView.image = UIImage(named: "grayProfileImage\(postData.writer.profileImageId)")
+        nicknameLabel.text = postData.writer.nickname
+        majorInfoLabel.text = postData.writer.firstMajorName + " (\(postData.writer.firstMajorStart))"
+        secondMajorInfoLabel.text = postData.writer.secondMajorName + " (\(postData.writer.secondMajorStart))"
+        statusLabel.text = postData.writer.isOnQuestion ? "선배에게 1:1 질문을 남겨보세요!" : "지금 이 선배에겐 질문할 수 없어요."
+
+        switch postData.backgroundImage.imageID {
+        case 6:
             bgImgView.image = UIImage(named: "backgroundMint")
-        } else if postData.backgroundImage.imageID == 7 {
+        case 7:
             bgImgView.image = UIImage(named: "backgroundBlack")
-        } else if postData.backgroundImage.imageID == 8 {
+        case 8:
             bgImgView.image = UIImage(named: "backgroundSkyblue")
-        } else if postData.backgroundImage.imageID == 9 {
+        case 9:
             bgImgView.image = UIImage(named: "backgroundPink")
-        } else if postData.backgroundImage.imageID == 10 {
+        case 10:
             bgImgView.image = UIImage(named: "backgroundNavy")
-        } else if postData.backgroundImage.imageID == 11 {
+        case 11:
             bgImgView.image = UIImage(named: "backgroundOrange")
-        } else if postData.backgroundImage.imageID == 12 {
+        case 12:
             bgImgView.image = UIImage(named: "backgroundPurple")
-        } else {
+        default:
             bgImgView.image = UIImage(named: "backgroundMint")
         }
-        titleLabel.text = postData.review.oneLineReview
-        tagLabel.text = postData.review.contentList[0].title
-        contentLabel.text = postData.review.contentList[0].content
     }
 }
