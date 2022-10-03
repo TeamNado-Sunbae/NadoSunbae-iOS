@@ -44,7 +44,7 @@ extension NotificationTVC {
         self.backgroundColor = .clear
     }
 }
-    
+
 // MARK: - Custom Methods
 extension NotificationTVC {
     func setData(data: NotificationList) {
@@ -52,20 +52,35 @@ extension NotificationTVC {
         profileImgView.image = UIImage(named: "profileImage\(data.sender.profileImageID)")
         let notiType = data.notificationTypeID.getNotiType()
         
-        titleLabel.text = "\(notiType!.rawValue)에 \(data.sender.nickname)님이 \(notiType != .mypageQuestion ? "답글" : "1:1 질문")을 남겼습니다."
+        titleLabel.text = getTitleLabelText(notiTypeInt: data.notificationTypeID, nickname: data.sender.nickname)
         contentLabel.text = "\(data.content)"
         timeLabel.text = data.createdAt.serverTimeToString(forUse: .forNotification)
         
         /// 알림 case별 텍스트 컬러 변경을 위한 Attribute 사용
         let mintAttributeStr = NSMutableAttributedString(string: titleLabel.text!)
         
-        switch notiType {
-        case .mypageQuestion:
-            mintAttributeStr.addAttributes([.foregroundColor : UIColor.mainDefault], range: (titleLabel.text! as NSString).range(of: "1:1 질문"))
+        var attributedStr = ""
+        
+        switch data.notificationTypeID {
+        case 1:
+            attributedStr = "마이페이지"
+        case 2, 3, 4, 5:
+            attributedStr = "\(data.notificationTypeID.getNotiType().rawValue)"
+        case 6:
+            attributedStr = "1:1 질문글"
+        case 7:
+            attributedStr = "작성하신 1:1 질문글"
+        case 8:
+            attributedStr = "작성하신 커뮤니티 글"
+        case 9:
+            attributedStr = "답글을 작성하신 커뮤니티 글"
+        case 10:
+            attributedStr = "커뮤니티에 \(data.sender.nickname) 질문글"
         default:
-            mintAttributeStr.addAttributes([.foregroundColor : UIColor.mainDefault], range: (titleLabel.text! as NSString).range(of: "\(notiType!.rawValue)"))
+            debugPrint("notification type error")
         }
         
+        mintAttributeStr.addAttributes([.foregroundColor : UIColor.mainDefault], range: (titleLabel.text! as NSString).range(of: attributedStr))
         titleLabel.attributedText = mintAttributeStr
     }
     
