@@ -28,7 +28,7 @@ extension NotificationService: TargetType {
         case .getNotiList:
             return "/notification/"
         case .readNoti(let notiID):
-            return "/notification/read/\(notiID)"
+            return "/notification/\(notiID)/read"
         case .deleteNoti(let notiID):
             return "/notification/\(notiID)"
         }

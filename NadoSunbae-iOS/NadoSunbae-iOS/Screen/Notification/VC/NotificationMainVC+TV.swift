@@ -66,6 +66,7 @@ extension NotificationMainVC: UITableViewDelegate {
             default:
                 debugPrint("notification type error")
             }
+            readNoti(notiID: notificationList[indexPath.section].notificationID)
         }
     }
     
