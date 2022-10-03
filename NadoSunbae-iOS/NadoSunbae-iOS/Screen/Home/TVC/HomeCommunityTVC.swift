@@ -24,6 +24,7 @@ final class HomeCommunityTVC: BaseTVC {
     
     // MARK: Properties
     var communityList: [PostListResModel] = []
+    var didSelectItem: ((Int) -> ())?
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -75,8 +76,7 @@ extension HomeCommunityTVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension HomeCommunityTVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Community Detail로 연결
-        debugPrint("didselectRowAt")
+        didSelectItem?(communityList[indexPath.row].postID)
     }
 }
 

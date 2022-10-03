@@ -138,12 +138,17 @@ extension RankingTVC {
 
 // MARK: - Custom Methods
 extension RankingTVC {
-    func setData(data: RankingListModel, indexPath: Int) {
+    func setData(data: HomeRankingResponseModel.UserList, indexPath: Int) {
         responseRateLabel.text = "응답률 \(data.rate ?? 0)%"
+        profileImgView.image = UIImage(named: "grayProfileImage\(data.profileImageID)")
         nicknameLabel.text = data.nickname
         majorInfoLabel.text = data.firstMajorName + " " + data.firstMajorStart
-        secondMajorInfoLabel.text = data.secondMajorName + " " + data.secondMajorStart
-        profileImgView.image = UIImage(named: "grayProfileImage\(data.profileImageID)")
+        
+        if data.secondMajorName == "미진입" {
+            secondMajorInfoLabel.text = data.secondMajorName
+        } else {
+            secondMajorInfoLabel.text = data.secondMajorName + " " + data.secondMajorStart
+        }
         
         switch indexPath {
         case 0...2:

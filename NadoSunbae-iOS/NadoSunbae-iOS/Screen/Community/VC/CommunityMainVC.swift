@@ -59,6 +59,7 @@ final class CommunityMainVC: BaseVC, View {
         registerCell()
         setUpDelegate()
         setUpInitAction()
+        bindCommunityTV()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,17 +97,21 @@ extension CommunityMainVC {
             .disposed(by: self.disposeBag)
         
         naviView.rightCustomBtn.rx.tap
-            .map {
-                print("검색 버튼 클릭")
-                return CommunityMainReactor.Action.searchBtnDidTap }
-            .bind(to: reactor.action)
+            .subscribe(onNext: {
+                let searchVC = CommunitySearchVC()
+                let searchReactor = CommunitySearchReactor()
+                searchVC.reactor = searchReactor
+                searchVC.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(searchVC, animated: true)
+            })
             .disposed(by: disposeBag)
         
         writeFloatingBtn.rx.tap
-            .map {
-                print("플로팅 버튼 클릭")
-                return CommunityMainReactor.Action.witeFloatingBtnDidTap }
-            .bind(to: reactor.action)
+            .subscribe(onNext: {
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { communityWriteVC in
+                    communityWriteVC.reactor = CommunityWriteReactor()
+                }
+            })
             .disposed(by: disposeBag)
         
         filterBtn.rx.tap
@@ -172,6 +177,18 @@ extension CommunityMainVC {
     
     private func setUpInitAction() {
         reactor?.action.onNext(.reloadCommunityTV(majorID: 0, type: .community, sort: "recent", search: ""))
+    }
+    
+    /// CommunityTV를 bind하는 메서드
+    private func bindCommunityTV() {
+        communityTV.rx.modelSelected(PostListResModel.self)
+            .subscribe(onNext: { item in
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                    postDetailVC.postID = item.postID
+                    postDetailVC.hidesBottomBarWhenPushed = true
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 

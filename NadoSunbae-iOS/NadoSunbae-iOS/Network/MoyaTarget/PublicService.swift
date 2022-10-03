@@ -14,6 +14,10 @@ enum PublicService {
     case requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String)
     case getAppLink
     case getPostList(univID: Int, majorID: Int, filter: PostFilterType, sort: String, search: String)
+    case getPostDetail(postID: Int)
+    case requestWritePost(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)
+    case editPost(postID: Int, title: String, content: String)
+    case editPostComment(commentID: Int, content: String)
 }
 
 extension PublicService: TargetType {
@@ -34,15 +38,25 @@ extension PublicService: TargetType {
             return "/app/link"
         case .getPostList(let univID, _, _, _, _):
             return "/post/university/\(univID)"
+        case .getPostDetail(let postID):
+            return "/post/\(postID)"
+        case .requestWritePost:
+            return "/post"
+        case .editPost(let postID, _, _):
+            return "/post/\(postID)"
+        case .editPostComment(let commentID, _):
+            return "/comment/\(commentID)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getMajorList, .getAppLink, .getPostList:
+        case .getMajorList, .getAppLink, .getPostList, .getPostDetail:
             return .get
-        case .requestBlockUnBlockUser, .requestReport:
+        case .requestBlockUnBlockUser, .requestReport, .requestWritePost:
             return .post
+        case .editPost, .editPostComment:
+            return .put
         }
     }
     
@@ -70,12 +84,32 @@ extension PublicService: TargetType {
                 "search": search
             ]
             return .requestParameters(parameters: query, encoding:  URLEncoding.queryString)
+        case .getPostDetail:
+            return .requestPlain
+        case .requestWritePost(let type, let majorID, let answererID, let title, let content):
+            let body: [String: Any] = [
+                "type": "\(type)",
+                "majorId": majorID,
+                "answererId": answererID,
+                "title": title,
+                "content": content
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .editPost(_, let title, let content):
+            let body = [
+                "title": title,
+                "content": content
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .editPostComment(_, let content):
+            let body = ["content": content]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser, .requestReport, .getPostList:
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:

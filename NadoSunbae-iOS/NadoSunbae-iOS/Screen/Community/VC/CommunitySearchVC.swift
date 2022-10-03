@@ -12,6 +12,7 @@ import ReactorKit
 
 enum searchCase {
     case enterKeyword
+    case emptySearch
     case doneSearch
 }
 
@@ -61,6 +62,7 @@ final class CommunitySearchVC: BaseVC, View {
         setUpDelegate()
         configureUI()
         registerCell()
+        bindSearchTV()
     }
     
     func bind(reactor: CommunitySearchReactor) {
@@ -75,8 +77,9 @@ extension CommunitySearchVC {
     // MARK: Action
     private func bindAction(_ reactor: CommunitySearchReactor) {
         searchNaviBar.backBtn.rx.tap
-            .map { CommunitySearchReactor.Action.tapBackBtn }
-            .bind(to: reactor.action)
+            .subscribe(onNext: {
+                self.navigationController?.popViewController(animated: true)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -87,6 +90,7 @@ extension CommunitySearchVC {
             .bind(to: searchTV.rx.items) { tableView, index, item in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
+                
                 guard let communityCell = cell as? CommunityTVC else { return UITableViewCell() }
                 communityCell.setCommunityData(data: item)
                 
@@ -98,10 +102,10 @@ extension CommunitySearchVC {
             .map { $0.searchList }
             .subscribe(onNext: { [weak self] data in
                 if data.isEmpty {
-                    self?.searchTV.isHidden = true
-                    self?.setUpEmptyViewBySearchList(searchCase: .doneSearch)
+                    self?.setUpHiddenState(searchTV: true, representStackView: false)
+                    self?.setUpEmptyViewBySearchList(searchCase: .emptySearch)
                 } else {
-                    self?.searchTV.isHidden = false
+                    self?.setUpHiddenState(searchTV: false, representStackView: true)
                 }
             })
             .disposed(by: self.disposeBag)
@@ -122,9 +126,26 @@ extension CommunitySearchVC {
             .map { $0.loading }
             .distinctUntilChanged()
             .map { $0 }
-            .subscribe(onNext: { [weak self] loading in
-                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
-                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            .subscribe(onNext: { loading in
+                self.view.bringSubviewToFront(self.activityIndicator)
+                if loading {
+                    self.activityIndicator.startAnimating()
+                    self.setUpHiddenState(searchTV: true, representStackView: true)
+                } else {
+                    self.activityIndicator.stopAnimating()
+                    self.setUpHiddenState(searchTV: false, representStackView: false)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// searchTV를 bind하는 메서드
+    private func bindSearchTV() {
+        searchTV.rx.modelSelected(PostListResModel.self)
+            .subscribe(onNext: { item in
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                    postDetailVC.postID = item.postID
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -193,9 +214,18 @@ extension CommunitySearchVC {
             representStateImageView.image = UIImage(named: "searchFind")
             representStateLabel.text = "커뮤니티의 글을 검색해보세요."
         case .doneSearch:
+            representStateImageView.image = nil
+            representStateLabel.text = ""
+        case .emptySearch:
             representStateImageView.image = UIImage(named: "searchEmpty")
             representStateLabel.text = "검색 결과가 없습니다."
         }
+    }
+    
+    /// searchTV, representStackView의 Hidden 상태를 설정하는 메서드
+    private func setUpHiddenState(searchTV: Bool, representStackView: Bool) {
+        self.searchTV.isHidden = searchTV
+        self.representStackView.isHidden = representStackView
     }
 }
 
@@ -218,9 +248,10 @@ extension CommunitySearchVC: UISearchBarDelegate {
         }
         return true
     }
-    
+     
+    /// searchBarShouldBeginEditing
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchTV.isHidden = true
+        setUpHiddenState(searchTV: true, representStackView: false)
         setUpEmptyViewBySearchList(searchCase: .enterKeyword)
         return true
     }

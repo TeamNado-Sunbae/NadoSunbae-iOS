@@ -73,7 +73,7 @@ class InfoQuestionTVC: BaseTVC {
 extension InfoQuestionTVC {
     
     /// 데이터 바인딩하는 메서드
-    func bindData(_ model: InfoDetailDataModel) {
+    func bindData(_ model: PostDetailResModel) {
         infoTitleLabel.text = model.post.title
         nicknameLabel.text = model.writer.nickname
         majorInfoLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)

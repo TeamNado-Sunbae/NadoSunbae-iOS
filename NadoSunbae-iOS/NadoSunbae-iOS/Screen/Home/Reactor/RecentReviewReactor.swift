@@ -19,12 +19,12 @@ final class RecentReviewReactor: Reactor {
     
     enum Mutation {
         case setLoading(loading: Bool)
-        case requestRecentReviewList(reviewList: [RecentReviewPostModel])
+        case requestRecentReviewList(reviewList: [HomeRecentReviewResponseDataElement])
     }
     
     struct State {
         var loading = false
-        var recentReviewList: [RecentReviewPostModel] = []
+        var recentReviewList: [HomeRecentReviewResponseDataElement] = []
     }
 }
 
@@ -54,21 +54,24 @@ final class RecentReviewReactor: Reactor {
      }
  }
 
-// MARK: - Custom Methods
+// MARK: - Network
 extension RecentReviewReactor {
     private func requestReviewList() -> Observable<Mutation> {
         return Observable.create { observer in
-            let dummyList = [
-                RecentReviewPostModel(id: 1, oneLineReview: "난 자유롭고 싶어 지금 전투력 수치 111퍼", majorName: "국어국문학과", createdAt: "21/12/23", tagList: [ReviewTagList(tagName: "추천 수업"), ReviewTagList(tagName: "힘든 수업"), ReviewTagList(tagName: "꿀팁")], like: Like(isLiked: true, likeCount: 3)),
-                RecentReviewPostModel(id: 12, oneLineReview: "난 자유롭고 싶어 지금 전투력 수치 111퍼 입고싶은 옷 입고싶어 최대 40자", majorName: "국어국문학과", createdAt: "21/12/23", tagList: [ReviewTagList(tagName: "추천 수업"), ReviewTagList(tagName: "힘든 수업"), ReviewTagList(tagName: "꿀팁")], like: Like(isLiked: false, likeCount: 3)),
-                RecentReviewPostModel(id: 32, oneLineReview: "안녕하세요", majorName: "국어국문학과", createdAt: "21/12/23", tagList: [ReviewTagList(tagName: "추천 수업"), ReviewTagList(tagName: "꿀팁")], like: Like(isLiked: false, likeCount: 3)),
-                RecentReviewPostModel(id: 11, oneLineReview: "난 자유롭고 싶어 지금 전투력 수치 111퍼 입고싶은 옷 입고싶어 최대 40자", majorName: "국어국문학과", createdAt: "21/12/23", tagList: [ReviewTagList(tagName: "추천 수업"), ReviewTagList(tagName: "힘든 수업"), ReviewTagList(tagName: "꿀팁")], like: Like(isLiked: false, likeCount: 2)),
-                RecentReviewPostModel(id: 12, oneLineReview: "난 자유롭고 싶어 지금 전투력 수치 111퍼 입고싶은 옷 입고싶어 최대 40자", majorName: "국어국문학과", createdAt: "21/12/23", tagList: [ReviewTagList(tagName: "꿀팁")], like: Like(isLiked: false, likeCount: 5))
-            ]
-            
-            observer.onNext(Mutation.requestRecentReviewList(reviewList: dummyList))
-            observer.onCompleted()
-            
+            HomeAPI.shared.getAllReviewList { networkResult in
+                switch networkResult {
+                case .success(let res):
+                    if let data = res as? [HomeRecentReviewResponseDataElement] {
+                        observer.onNext(Mutation.requestRecentReviewList(reviewList: data))
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    }
+                default:
+//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setLoading(loading: false))
+                    observer.onCompleted()
+                }
+            }
             return Disposables.create()
         }
     }

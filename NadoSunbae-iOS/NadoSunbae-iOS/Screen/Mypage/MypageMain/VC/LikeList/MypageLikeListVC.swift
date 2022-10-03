@@ -42,30 +42,10 @@ class MypageLikeListVC: BaseVC {
     
     // MARK: Properties
     private var likeListType: MypageLikeListType = .review
-    private let reviewDummyData: [MypageLikeReviewDataModel] = [
-        MypageLikeReviewDataModel(postID: 111, title: "2MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
-        MypageLikeReviewDataModel(postID: 111, title: "3MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
-        MypageLikeReviewDataModel(postID: 111, title: "4MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
-        MypageLikeReviewDataModel(postID: 111, title: "5MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
-        MypageLikeReviewDataModel(postID: 111, title: "6MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
-        MypageLikeReviewDataModel(postID: 111, title: "7MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3)),
-        MypageLikeReviewDataModel(postID: 111, title: "8MVVM개어렵다...", createdAt: "2022-06-12T01:35:59.500Z", tagList: [ReviewTagList(tagName: "어쩌구")], writer: MypageLikeWriter(writerID: 1, nickname: "리액터은주"), like: Like(isLiked: false, likeCount: 3))
-        ]
-    private let personalQuestionDummyData: [ClassroomPostList] = [
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2),
-        ClassroomPostList(postID: 131, title: "개인게시판 질문제목", content: "질문내용", createdAt: "2022-06-12T01:35:59.500Z", writer: .init(writerID: 241, profileImageID: 1, nickname: "정비니"), like: Like(isLiked: true, likeCount: 3), commentCount: 2)].shuffled()
-    private let communityDummyData = [
-        CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "닉"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-        CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "네"), like: Like(isLiked: false, likeCount: 1), commentCount: 1),
-        CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "임"), like: Like(isLiked: true, likeCount: 1), commentCount: 1),
-        CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: false, likeCount: 2), commentCount: 1),
-        CommunityPostList(category: "전체", postID: 1, title: "커뮤니티 제목", content: "커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목커뮤니티 제목", createdAt: "2022-08-14T01:35:59.500Z", writer: CommunityPostList.Writer(writerID: 1, profileImageID: 1, nickname: "slr"), like: Like(isLiked: true, likeCount: 1), commentCount: 1)
-    ].shuffled()
+    private var reviewData: [MypageLikeReviewListModel.LikeList] = []
+    private var questionToPersonData: [MypageLikeQuestionToPersonListModel.LikeList] = []
+    private var communityData: [MypageLikeCommunityListModel.LikeList] = []
+    private let contentSizeObserverKeyPath = "contentSize"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -84,6 +64,11 @@ class MypageLikeListVC: BaseVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         likeListSegmentControl.setUpNadoSegmentFrame()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.likeListTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
     private func setlikeListTV() {
@@ -105,7 +90,6 @@ class MypageLikeListVC: BaseVC {
                 self.likeListTV.snp.updateConstraints {
                     $0.top.equalToSuperview().offset(-16)
                     $0.left.right.equalToSuperview()
-                    $0.height.equalTo(self.likeListTV.contentSize.height)
                 }
                 
             case .personalQuestion, .community:
@@ -117,7 +101,6 @@ class MypageLikeListVC: BaseVC {
                 self.likeListTV.snp.updateConstraints {
                     $0.top.equalToSuperview()
                     $0.left.right.equalToSuperview().inset(16)
-                    $0.height.equalTo(self.likeListTV.contentSize.height)
                 }
             }
             self.likeListTV.setNeedsLayout()
@@ -134,8 +117,26 @@ class MypageLikeListVC: BaseVC {
     @objc private func didChangeValue(segment: UISegmentedControl) {
         likeListType = MypageLikeListType(rawValue: likeListSegmentControl.selectedSegmentIndex) ?? .review
         
-        likeListTV.reloadData()
-        updateLikeListTVUI()
+        switch likeListType {
+        case .review:
+            getMypageMyLikeList(postType: .review)
+        case .personalQuestion:
+            getMypageMyLikeList(postType: .questionToPerson)
+        case .community:
+            getMypageMyLikeList(postType: .community)
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                let newSize  = newValue as! CGSize
+                self.likeListTV.layoutIfNeeded()
+                self.likeListTV.snp.updateConstraints {
+                    $0.height.equalTo(newSize.height)
+                }
+            }
+        }
     }
 }
 
@@ -148,16 +149,15 @@ extension MypageLikeListVC: UITableViewDelegate {
         case .review:
             self.divideUserPermission {
                 self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
-                    reviewDetailVC.postId = self.reviewDummyData[indexPath.row].postID
+                    reviewDetailVC.postId = self.reviewData[indexPath.row].id
                 }
             }
         case .personalQuestion:
             self.divideUserPermission() {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
-                    questionDetailVC.questionType = .personal
                     questionDetailVC.naviStyle = .push
-                    questionDetailVC.postID = self.personalQuestionDummyData[indexPath.row].postID
+                    questionDetailVC.postID = self.questionToPersonData[indexPath.row].id
                 }
             }
         case .community:
@@ -172,11 +172,11 @@ extension MypageLikeListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch likeListType {
         case .review:
-            return reviewDummyData.count
+            return reviewData.count
         case .personalQuestion:
-            return personalQuestionDummyData.count
+            return questionToPersonData.count
         case .community:
-            return communityDummyData.count
+            return communityData.count
         }
     }
     
@@ -184,20 +184,22 @@ extension MypageLikeListVC: UITableViewDataSource {
         switch likeListType {
         case .review:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewMainPostTVC.className, for: indexPath) as? ReviewMainPostTVC else { return ReviewMainPostTVC() }
-            cell.setMypageReviewLikeData(postData: reviewDummyData[indexPath.row])
+            cell.setMypageReviewLikeData(postData: reviewData[indexPath.row])
             cell.contentView.backgroundColor = .bgGray
             cell.reviewContentView.layer.borderWidth = 1
             cell.reviewContentView.layer.borderColor = UIColor.gray0.cgColor
+            cell.tagImgList = reviewData[indexPath.row].tagList
             return cell
         case .personalQuestion:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
-            cell.setData(data: personalQuestionDummyData[indexPath.row])
+            cell.setMypageLikeData(data: questionToPersonData[indexPath.row])
             cell.layoutSubviews()
             return cell
         case .community:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-            // TODO: PostListResModel로 수정
-//            cell.setCommunityData(data: communityDummyData[indexPath.row])
+            
+            let data = communityData[indexPath.row]
+            cell.setCommunityData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), isAuthorized: true, commentCount: data.commentCount, like: data.like))
             return cell
         }
     }
@@ -212,6 +214,48 @@ extension MypageLikeListVC: SendSegmentStateDelegate {
             makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyLikeList-PersonalQuestion")
         } else {
             makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MypageMyLikeList-Community")
+        }
+    }
+}
+
+// MARK: - Network
+extension MypageLikeListVC {
+    private func getMypageMyLikeList(postType: MypageLikePostType) {
+        self.activityIndicator.startAnimating()
+        self.likeListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        MypageAPI.shared.getMypageMyLikeList(postType: postType) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                switch postType {
+                case .review:
+                    if let data = res as? MypageLikeReviewListModel {
+                        self.reviewData = data.likeList
+                    }
+                case .questionToPerson:
+                    if let data = res as? MypageLikeQuestionToPersonListModel {
+                        self.questionToPersonData = data.likeList
+                    }
+                case .community:
+                    if let data = res as? MypageLikeCommunityListModel {
+                        self.communityData = data.likeList
+                    }
+                }
+                self.activityIndicator.stopAnimating()
+                self.likeListTV.reloadData()
+                self.updateLikeListTVUI()
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getMypageMyLikeList(postType: postType)
+                    }
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.activityIndicator.stopAnimating()
+            }
         }
     }
 }

@@ -9,6 +9,6 @@ import Foundation
 
 enum MypageLikePostType: String {
     case review = "review"
-    case question = "question"
-    case information = "information"
+    case questionToPerson = "questionToPerson"
+    case community = "community"
 }

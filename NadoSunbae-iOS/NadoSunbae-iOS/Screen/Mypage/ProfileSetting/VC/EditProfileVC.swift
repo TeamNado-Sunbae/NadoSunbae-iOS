@@ -149,20 +149,21 @@ class EditProfileVC: BaseVC {
     
     /// 변경할 profileData 세팅
     private func setProfileData() {
-        profileData.nickName = changedInfo.nickname
-        profileData.firstMajorID = changedInfo.firstMajorID
-        profileData.secondMajorID = changedInfo.secondMajorID
-        profileData.firstMajorStart = changedInfo.firstMajorStart
-        profileData.secondMajorStart = changedInfo.secondMajorID == 1 ? "미진입" : changedInfo.secondMajorStart
-        profileData.isOnQuestion = changedInfo.isOnQuestion
+        // TODO: 기존엔 MypageUserInfoModel을 사용하였으나, 서버 모델 변경 이후 MypageUserInfoModel을 사용하여 put request를 보낼 수 없게 됨. 이 뷰 담당자가 새로 모델 만들어야 함!
+//        profileData.nickName = changedInfo.nickname
+//        profileData.firstMajorID = changedInfo.firstMajorID
+//        profileData.secondMajorID = changedInfo.secondMajorID
+//        profileData.firstMajorStart = changedInfo.firstMajorStart
+//        profileData.secondMajorStart = changedInfo.secondMajorID == 1 ? "미진입" : changedInfo.secondMajorStart
+//        profileData.isOnQuestion = changedInfo.isOnQuestion
     }
     
     private func judgeSaveBtnState() {
-        if (userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입") || !(checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField)) {
-            setNavViewNadoRightBtn(status: false)
-        } else {
-            setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
-        }
+//        if (userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입") || !(checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField)) {
+//            setNavViewNadoRightBtn(status: false)
+//        } else {
+//            setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
+//        }
     }
     
     /// 제1, 제2전공 중복 선택 검사, 중복되지 않으면 true
@@ -322,8 +323,8 @@ extension EditProfileVC: SendUpdateModalDelegate {
         switch enterBtnTag {
         case 0:
             if let majorInfoData = data as? MajorInfoModel {
-                self.firstMajorTextField.text = majorInfoData.majorName
-                self.changedInfo.firstMajorID = majorInfoData.majorID
+//                self.firstMajorTextField.text = majorInfoData.majorName
+//                self.changedInfo.firstMajorID = majorInfoData.majorID
             }
         case 1:
             self.firstMajorStartTextField.text = data as? String
@@ -331,10 +332,10 @@ extension EditProfileVC: SendUpdateModalDelegate {
         case 2:
             if let majorInfoData = data as? MajorInfoModel {
                 self.secondMajorTextField.text = majorInfoData.majorName
-                self.changedInfo.secondMajorID = majorInfoData.majorID
-                if changedInfo.secondMajorID == 1 {
-                    changedInfo.secondMajorStart = "미진입"
-                }
+//                self.changedInfo.secondMajorID = majorInfoData.majorID
+//                if changedInfo.secondMajorID == 1 {
+//                    changedInfo.secondMajorStart = "미진입"
+//                }
                 checkSecondMajorStatus()
             }
         case 3:
@@ -342,7 +343,7 @@ extension EditProfileVC: SendUpdateModalDelegate {
             self.secondMajorStartBtn.setTitle("변경", for: .normal)
             self.changedInfo.secondMajorStart = data as? String ?? ""
         default:
-            #if DEBUG
+            #if DEVELOPMENT
             print("SignUpMajorInfoVC SendUpdateDelegate error")
             #endif
         }
