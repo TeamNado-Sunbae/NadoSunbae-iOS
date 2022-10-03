@@ -77,7 +77,6 @@ extension ReviewDetailVC {
     private func registerTVC() {
         ReviewDetailPostWithImgTVC.register(target: reviewPostTV)
         ReviewDetailPostTVC.register(target: reviewPostTV)
-        ReviewDetailProfileTVC.register(target: reviewPostTV)
         ReviewDetailGrayTVC.register(target: reviewPostTV)
     }
     
@@ -185,17 +184,11 @@ extension ReviewDetailVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableView.automaticDimension
+            return 340
         } else if indexPath.section == 1 {
             return UITableView.automaticDimension
-        } else if indexPath.section == 2{
-            if detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-                return 12
-            } else {
-                return 172
-            }
         } else {
-            return 0
+            return detailPost.writer.isOnQuestion ? 110 : 68
         }
     }
 }
@@ -209,11 +202,9 @@ extension ReviewDetailVC: UITableViewDataSource {
             if section == 0 {
                 return 1
             } else if section == 1 {
-                return detailPost.review.contentList.count - 1
-            } else if section == 2 {
-                return 1
+                return detailPost.review.contentList.count
             } else {
-                return 0
+                return 1
             }
         }
     }
@@ -221,33 +212,25 @@ extension ReviewDetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let reviewDetailPostWithImgTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailPostWithImgTVC.className) as? ReviewDetailPostWithImgTVC,
               let reviewDetailPostTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailPostTVC.className) as? ReviewDetailPostTVC,
-              let reviewDetailProfileTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailProfileTVC.className) as? ReviewDetailProfileTVC,
               let reviewDetailGrayTVC = tableView.dequeueReusableCell(withIdentifier: ReviewDetailGrayTVC.className) as? ReviewDetailGrayTVC else { return UITableViewCell() }
         
         if indexPath.section == 0 {
             reviewDetailPostWithImgTVC.setData(postData: detailPost)
+            reviewDetailPostWithImgTVC.tapPresentProfileBtnAction = {
+                self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                    mypageUserVC.targetUserID = self.detailPost.writer.writerID
+                }
+            }
             return reviewDetailPostWithImgTVC
         } else if indexPath.section == 1 {
             reviewDetailPostTVC.contentLabel.sizeToFit()
-            reviewDetailPostTVC.setData(postData: detailPost.review.contentList[indexPath.row + 1])
+            reviewDetailPostTVC.setData(postData: detailPost.review.contentList[indexPath.row])
             return reviewDetailPostTVC
         } else if indexPath.section == 2 {
-            if detailPost.writer.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-                return reviewDetailGrayTVC
-            } else {
-                reviewDetailProfileTVC.setData(profileData: detailPost.writer)
-                return reviewDetailProfileTVC
-            }
+            reviewDetailGrayTVC.setData(postData: detailPost)
+            return reviewDetailGrayTVC
         } else {
             return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
-                mypageUserVC.targetUserID = self.detailPost.writer.writerID
-            }
         }
     }
 }
