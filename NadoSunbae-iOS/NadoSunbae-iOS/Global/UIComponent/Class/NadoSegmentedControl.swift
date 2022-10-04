@@ -92,18 +92,18 @@ extension NadoSegmentedControl {
     
     /// 세그먼트가 선택되었을 때 강조되는 뷰를 찾아 Style을 커스텀하는 메서드
     private func configureSelectedSegmentStyle(index itemCount: Int) {
-        if let imageView = subviews[itemCount] as? UIImageView {
-            imageView.makeRounded(cornerRadius: 6)
+        if let selectedSegmentView = subviews[itemCount] as? UIImageView {
+            selectedSegmentView.makeRounded(cornerRadius: 6)
             
-            let originFrame = imageView.frame
-            imageView.layer.frame = CGRect(x: originFrame.minX + 2, y: originFrame.minY + 2, width: originFrame.width - 4, height: originFrame.height - 4)
-            imageView.layer.shadowColor = nil
-            imageView.layer.shadowPath = .none
-            imageView.layer.shadowOffset = .zero
+            let originFrame = selectedSegmentView.frame
+            selectedSegmentView.layer.frame = CGRect(x: originFrame.minX + 2, y: originFrame.minY + 2, width: originFrame.width - 4, height: originFrame.height - 4)
+            selectedSegmentView.layer.shadowColor = nil
+            selectedSegmentView.layer.shadowPath = .none
+            selectedSegmentView.layer.shadowOffset = .zero
             
             // Bounds를 업데이트할 때 발생하는 animation인 "SelectionBounds"을 제거
-            imageView.layer.removeAnimation(forKey: "SelectionBounds")
-            imageView.layer.masksToBounds = true
+            selectedSegmentView.layer.removeAnimation(forKey: "SelectionBounds")
+            selectedSegmentView.layer.masksToBounds = true
         }
     }
 }
