@@ -76,7 +76,7 @@ extension NotificationMainVC {
             switch networkResult {
             case .success(let res):
                 self.activityIndicator.stopAnimating()
-                if let data = res as? NotificationDataModel {
+                if let data = res as? GetNotiListResponseData {
                     self.notificationList = data.notificationList
                     DispatchQueue.main.async {
                         self.notificationTV.reloadData()

@@ -44,28 +44,52 @@ extension NotificationTVC {
         self.backgroundColor = .clear
     }
 }
-    
+
 // MARK: - Custom Methods
 extension NotificationTVC {
     func setData(data: NotificationList) {
         redCircleImgView.isHidden = data.isRead
         profileImgView.image = UIImage(named: "profileImage\(data.sender.profileImageID)")
-        let notiType = data.notificationTypeID.getNotiType()
         
-        titleLabel.text = "\(notiType!.rawValue)에 \(data.sender.nickname)님이 \(notiType != .mypageQuestion ? "답글" : "1:1 질문")을 남겼습니다."
+        titleLabel.text = getTitleLabelText(notiTypeInt: data.notificationTypeID, nickname: data.sender.senderName)
         contentLabel.text = "\(data.content)"
         timeLabel.text = data.createdAt.serverTimeToString(forUse: .forNotification)
-        
-        /// 알림 case별 텍스트 컬러 변경을 위한 Attribute 사용
-        let mintAttributeStr = NSMutableAttributedString(string: titleLabel.text!)
-        
-        switch notiType {
-        case .mypageQuestion:
-            mintAttributeStr.addAttributes([.foregroundColor : UIColor.mainDefault], range: (titleLabel.text! as NSString).range(of: "1:1 질문"))
+        titleLabel.setTextColor(targetStringList: ["마이페이지", "\(data.notificationTypeID.getNotiType().rawValue)", "1:1 질문글", "작성하신 1:1 질문글", "작성하신 커뮤니티 글", "답글을 작성하신 커뮤니티 글", "커뮤니티에 \(data.sender.senderName) 질문글"], color: .mainDefault)
+    }
+    
+    private func getTitleLabelText(notiTypeInt: Int, nickname: String?) -> String {
+        switch notiTypeInt {
+            
+            /// 후배가 1:1 질문글 처음 작성 시
+        case 1:
+            return "마이페이지에 \(nickname ?? "") 님이 1:1 질문을 남겼습니다."
+            
+            /// (legacy) 내 글에 답글 달린 경우
+        case 2, 3, 4, 5:
+            return "\(notiTypeInt.getNotiType().rawValue)에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+            /// 후배가 1:1 질문글에 답글 남긴 경우
+        case 6:
+            return "\(nickname ?? "") 님이 1:1 질문글에 답글을 남겼습니다."
+            
+            /// 선배가 1:1 질문글에 답글 남긴 경우
+        case 7:
+            return "작성하신 1:1 질문글에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+            /// 본인이 작성한 커뮤니티 글에 답글 달린 경우
+        case 8:
+            return "작성하신 커뮤니티 글에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+            /// 답글 작성한 커뮤니티 글에 답글 달린 경우
+        case 9:
+            return "답글을 작성하신 커뮤니티 글에 \(nickname ?? "") 님이 답글을 남겼습니다."
+            
+             /// 특정 학과 대상 질문글 알림
+        case 10:
+            return "커뮤니티에 \(nickname ?? "") 질문글이 올라왔습니다."
         default:
-            mintAttributeStr.addAttributes([.foregroundColor : UIColor.mainDefault], range: (titleLabel.text! as NSString).range(of: "\(notiType!.rawValue)"))
+            debugPrint("notification type error")
+            return ""
         }
-        
-        titleLabel.attributedText = mintAttributeStr
     }
 }
