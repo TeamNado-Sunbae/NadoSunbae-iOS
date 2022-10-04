@@ -38,10 +38,7 @@ final class NadoSegmentedControl: UISegmentedControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         configureSelectedSegmentStyle(index: numberOfSegments)
-        
-        for i in 0...(numberOfSegments - 1)  {
-            subviews[i].isHidden = true
-        }
+        hideWhiteImageSubviews()
     }
 }
 
@@ -121,5 +118,12 @@ extension NadoSegmentedControl {
             insertSegment(withTitle: items[i], at: i, animated: false)
         }
         selectedSegmentIndex = 0
+    }
+    
+    /// Segment의 배경색을 탁하게 만드는 원인인 subview들을 숨김
+    private func hideWhiteImageSubviews() {
+        for i in 0..<numberOfSegments {
+            subviews[i].isHidden = true
+        }
     }
 }
