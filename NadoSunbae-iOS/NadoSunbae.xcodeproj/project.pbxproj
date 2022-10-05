@@ -319,6 +319,7 @@
 		C790A276289D6D7D00A67135 /* HomeBannerCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A275289D6D7D00A67135 /* HomeBannerCVC.swift */; };
 		C790A278289E29D900A67135 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A277289E29D900A67135 /* UIImageView+.swift */; };
 		C790A27A289E7DC500A67135 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790A279289E7DC500A67135 /* ImageCacheManager.swift */; };
+		C7A81AC528ED681600642B70 /* SendRankerDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A81AC428ED681600642B70 /* SendRankerDataDelegate.swift */; };
 		C7ACE62D27CB71EA0011B23F /* SettingVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */; };
 		C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE62E27CB71FA0011B23F /* SettingVC.swift */; };
 		C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ACE63127CB73F80011B23F /* SettingTVC.swift */; };
@@ -651,6 +652,7 @@
 		C790A275289D6D7D00A67135 /* HomeBannerCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerCVC.swift; sourceTree = "<group>"; };
 		C790A277289E29D900A67135 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		C790A279289E7DC500A67135 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		C7A81AC428ED681600642B70 /* SendRankerDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRankerDataDelegate.swift; sourceTree = "<group>"; };
 		C7ACE62C27CB71EA0011B23F /* SettingVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingVC.storyboard; sourceTree = "<group>"; };
 		C7ACE62E27CB71FA0011B23F /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		C7ACE63127CB73F80011B23F /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
@@ -1838,6 +1840,7 @@
 				5CC7E3EE278C7312000A8BD3 /* SendUpdateModalDelegate.swift */,
 				3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */,
 				C783BFA028A7D7E3000FE3D8 /* SendHomeRecentDataDelegate.swift */,
+				C7A81AC428ED681600642B70 /* SendRankerDataDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2303,6 +2306,7 @@
 				330ADB0828E353F80099E8D7 /* WritePostReqModel.swift in Sources */,
 				33F3ED8827C54E9F00731E24 /* EditPostQuestionModel.swift in Sources */,
 				33BE2D4727897DD1000FB6C8 /* NadoSunbaeNaviBar.swift in Sources */,
+				C7A81AC528ED681600642B70 /* SendRankerDataDelegate.swift in Sources */,
 				C790A273289D6B5D00A67135 /* HomeBannerTVC.swift in Sources */,
 				7754A32A279573B50093C230 /* ReviewDetailPostWithImgTVC.swift in Sources */,
 				5C32801F27973E1A00781EBE /* ListSortType.swift in Sources */,
