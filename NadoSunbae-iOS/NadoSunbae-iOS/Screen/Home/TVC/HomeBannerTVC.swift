@@ -63,6 +63,9 @@ final class HomeBannerTVC: BaseTVC {
     
     private func setPageControl() {
         pageControl.numberOfPages = bannerImaURLsData.count - 2
+        pageControl.subviews.forEach {
+            $0.transform = CGAffineTransform(scaleX: 0.4615, y: 0.4615)
+        }
     }
 }
 
