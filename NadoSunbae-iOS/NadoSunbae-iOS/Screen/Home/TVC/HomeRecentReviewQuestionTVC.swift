@@ -127,6 +127,7 @@ extension HomeRecentReviewQuestionTVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? HomeRecentReviewResponseData {
+                    self.recentReviewList = []
                     for i in 0..<5 {
                         self.recentReviewList.append(data[i])
                     }
