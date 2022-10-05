@@ -101,6 +101,16 @@ extension HomeVC: SendUpdateModalDelegate {
     }
 }
 
+extension HomeVC: SendRankerDataDelegate {
+    func sendRankerData(data: HomeRankingResponseModel.UserList) {
+        divideUserPermission {
+            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                mypageUserVC.targetUserID = data.id
+            }
+        }
+    }
+}
+
 // MARK: - UITableViewDataSource
 extension HomeVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -163,6 +173,7 @@ extension HomeVC: UITableViewDataSource {
                     return subTitleCell
                 case 1:
                     guard let rankingCell = tableView.dequeueReusableCell(withIdentifier: HomeRankingTVC.className) as? HomeRankingTVC else { return HomeRankingTVC() }
+                    rankingCell.sendRankerDataDelegate = self
                     return rankingCell
                 case 2:
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }

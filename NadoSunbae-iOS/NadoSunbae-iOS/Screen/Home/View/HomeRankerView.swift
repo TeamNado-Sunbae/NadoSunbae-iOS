@@ -63,6 +63,7 @@ final class HomeRankerView: UIView {
 // MARK: - UI
 extension HomeRankerView {
     private func configureUI() {
+        self.isUserInteractionEnabled = true
         addSubviews([userNameLabel, responseRateLabel, profileImgView])
         
         userNameLabel.snp.makeConstraints {
