@@ -41,6 +41,7 @@ extension MypageUserVC: UITableViewDelegate {
                 questionDetailVC.hidesBottomBarWhenPushed = true
                 questionDetailVC.naviStyle = .push
                 questionDetailVC.postID = self.questionList[indexPath.row].postID
+                questionDetailVC.isAuthorized = self.userInfo.userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
             }
         }
     }
