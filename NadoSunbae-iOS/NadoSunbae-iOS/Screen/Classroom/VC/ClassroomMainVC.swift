@@ -79,11 +79,11 @@ final class ClassroomMainVC: BaseVC, View {
         setUpTV()
         registerTVC()
         tapMajorSelectBtn()
-        requestGetMajorList(univID: 1, filterType: "all")
         NotificationCenter.default.addObserver(self, selector: #selector(getRecentQuestionHeight(notification:)), name: Notification.Name.sendChangedHeight, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        requestGetMajorList(univID: 1, filterType: "all")
         setUpMajorLabel()
         showTabbar()
         makeScreenAnalyticsEvent(screenName: "ClassRoom Tab", screenClass: ClassroomMainVC.className)
@@ -290,7 +290,7 @@ extension ClassroomMainVC {
                 var list: [MajorInfoModel] = []
                 DispatchQueue.main.async {
                     if let data = res as? [MajorInfoModel] {
-                        for i in 0...data.count - 1 {
+                        for i in 1...data.count - 1 {
                             list.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }
                         MajorInfo.shared.majorList = list
