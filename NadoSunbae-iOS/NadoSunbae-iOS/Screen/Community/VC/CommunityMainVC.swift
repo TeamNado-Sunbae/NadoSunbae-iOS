@@ -65,6 +65,7 @@ final class CommunityMainVC: BaseVC, View {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         communitySegmentedControl.setUpNadoSegmentFrame()
+        reactor?.action.onNext(.viewWillAppear)
     }
     
     func bind(reactor: CommunityMainReactor) {
