@@ -43,7 +43,7 @@ extension MypageAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data, MypageQuestionListResponseData.self)
+                let networkResult = self.judgeStatus(by: statusCode, data, GetUserPersonalQuestionListResponseData.self)
                 completion(networkResult)
                 
             case .failure(let err):

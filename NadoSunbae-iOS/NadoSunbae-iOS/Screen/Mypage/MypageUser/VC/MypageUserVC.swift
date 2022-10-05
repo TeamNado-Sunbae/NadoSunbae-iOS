@@ -51,7 +51,7 @@ class MypageUserVC: BaseVC {
     // MARK: Properties
     var targetUserID = 1
     var userInfo = MypageUserInfoModel()
-    var questionList: [ClassroomPostList] = []
+    var questionList: [GetUserPersonalQuestionListResponseData.PostList] = []
     var sortType: ListSortType = .recent
     var judgeBlockStatusDelegate: SendBlockedInfoDelegate?
     
@@ -210,10 +210,10 @@ extension MypageUserVC {
         MypageAPI.shared.getUserPersonalQuestionList(userID: targetUserID, sort: sort, completion: { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? QuestionOrInfoListModel {
+                if let data = res as? GetUserPersonalQuestionListResponseData {
                     self.activityIndicator.stopAnimating()
                     self.questionList = []
-                    self.questionList = data.classroomPostList
+                    self.questionList = data.postList
                     DispatchQueue.main.async {
                         self.questionTV.reloadData()
                         
