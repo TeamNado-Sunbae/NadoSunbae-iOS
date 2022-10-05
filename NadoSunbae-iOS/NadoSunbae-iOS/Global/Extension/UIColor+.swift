@@ -97,14 +97,8 @@ extension UIColor {
         return UIColor(red: 239.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0)
     }
     
-    // 💡 과방탭에서 사용되는 segment Bg Color
-    @nonobjc class var segmentDarkBgColor: UIColor {
+    @nonobjc class var segmentBgColor: UIColor {
         return UIColor(red: 242.0 / 255.0, green: 241.0 / 255.0, blue: 248.0 / 255.0, alpha: 1.0)
-    }
-    
-    // 💡 커뮤니티탭에서 사용되는 segment Bg Color
-    @nonobjc class var segmentLightBgColor: UIColor {
-        return UIColor(red: 245.0 / 255.0, green: 244.0 / 255.0, blue: 252.0 / 255.0, alpha: 1.0)
     }
     
     @nonobjc class var dropShadowColor: UIColor {

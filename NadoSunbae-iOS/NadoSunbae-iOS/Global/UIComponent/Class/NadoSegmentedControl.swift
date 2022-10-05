@@ -17,17 +17,10 @@ import Then
  
  - Note:
  - setBackgroundColor: SegmentControl Background 색 변경
- - setUpNadoSegmentFrame: NadoSegmentedControl의 Frame을 통해 HighlightView Frame을 설정
  - setSegmentItems: Segment가 될 Item들 설정 [String]
  */
 
 final class NadoSegmentedControl: UISegmentedControl {
-    
-    // MARK: Properties
-    private lazy var highlightView = UIView().then {
-        $0.backgroundColor = .white
-        $0.makeRounded(cornerRadius: 6)
-    }
     
     // MARK: init
     init(items: [String]) {
@@ -39,20 +32,13 @@ final class NadoSegmentedControl: UISegmentedControl {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         configureDefaultStyle()
-        setUpNadoSegmentFrame()
     }
     
     // MARK: layoutSubViews
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        let finalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex) + 4.0
-        UIView.animate(
-            withDuration: 0.2,
-            animations: {
-                self.highlightView.frame.origin.x = finalXPosition
-            }
-        )
+        configureSelectedSegmentStyle(index: numberOfSegments)
+        hideWhiteImageSubviews()
     }
 }
 
@@ -61,8 +47,8 @@ extension NadoSegmentedControl {
     
     /// NadoSegmentedControl의 기본 UI Style을 구성하는 메서드
     private func configureDefaultStyle() {
-        backgroundColor = .segmentLightBgColor
-        selectedSegmentTintColor = .clear
+        backgroundColor = .segmentBgColor
+        selectedSegmentTintColor = .white
         setDefaultTextStyle()
         setSelectedTextStyle()
         removeDivider()
@@ -104,15 +90,21 @@ extension NadoSegmentedControl {
         setTitleTextAttributes(selectedAttributes, for: .selected)
     }
     
-    /// NadoSegmentedControl의 Frame을 통해 HighlightView Frame을 설정하는 메서드
-    func setUpNadoSegmentFrame() {
-        let width = self.bounds.size.width / CGFloat(self.numberOfSegments) - 8.0
-        let height = self.bounds.size.height - 8.0
-        let xPosition = CGFloat(self.selectedSegmentIndex * Int(width)) + 4.0
-        let yPosition = 4.0
-        let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
-        highlightView.frame = frame
-        addSubview(highlightView)
+    /// 세그먼트가 선택되었을 때 강조되는 뷰를 찾아 Style을 커스텀하는 메서드
+    private func configureSelectedSegmentStyle(index itemCount: Int) {
+        if let selectedSegmentView = subviews[itemCount] as? UIImageView {
+            selectedSegmentView.makeRounded(cornerRadius: 6)
+            
+            let originFrame = selectedSegmentView.frame
+            selectedSegmentView.layer.frame = CGRect(x: originFrame.minX + 2, y: originFrame.minY + 2, width: originFrame.width - 4, height: originFrame.height - 4)
+            selectedSegmentView.layer.shadowColor = nil
+            selectedSegmentView.layer.shadowPath = .none
+            selectedSegmentView.layer.shadowOffset = .zero
+            
+            // Bounds를 업데이트할 때 발생하는 animation인 "SelectionBounds"을 제거
+            selectedSegmentView.layer.removeAnimation(forKey: "SelectionBounds")
+            selectedSegmentView.layer.masksToBounds = true
+        }
     }
 }
 
@@ -126,5 +118,12 @@ extension NadoSegmentedControl {
             insertSegment(withTitle: items[i], at: i, animated: false)
         }
         selectedSegmentIndex = 0
+    }
+    
+    /// Segment의 배경색을 탁하게 만드는 원인인 subview들을 숨김
+    private func hideWhiteImageSubviews() {
+        for i in 0..<numberOfSegments {
+            subviews[i].isHidden = true
+        }
     }
 }

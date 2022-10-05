@@ -58,7 +58,6 @@ class MypagePostListVC: BaseVC {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        postListSegmentControl.setUpNadoSegmentFrame()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
