@@ -14,7 +14,6 @@ final class CommunityWriteReactor: Reactor {
     
     // MARK: represent user actions
     enum Action {
-        case tapMajorSelectBtn
         case loadCategoryData
         case tapQuestionWriteBtn(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)
         case tapQuestionEditBtn(postID: Int, title: String, content: String)
@@ -23,7 +22,6 @@ final class CommunityWriteReactor: Reactor {
     // MARK: represent state changes
     enum Mutation {
         case setLoading(loading: Bool)
-        case printText(text: String)
         case setCategoryData(data: [String])
         case setSuccess(success: Bool)
     }
@@ -31,7 +29,6 @@ final class CommunityWriteReactor: Reactor {
     // MARK: represent the current view state
     struct State {
         var loading: Bool = false
-        var printedText: String = ""
         var categoryData: [String] = []
         var writePostSuccess: Bool = false
     }
@@ -44,12 +41,6 @@ extension CommunityWriteReactor {
     /// mutate (Action -> Mutation)
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .tapMajorSelectBtn:
-            return Observable.concat([
-                Observable.just(.setLoading(loading: true)),
-                Observable.just(.printText(text: "학과선택 버튼 클릭")),
-                Observable.just(.setLoading(loading: false))
-            ])
         case .loadCategoryData:
             return Observable.concat(Observable.just(.setCategoryData(data: ["자유", "질문", "정보"])))
         case .tapQuestionWriteBtn(let type, let majorID, let answererID, let title, let content):
@@ -76,8 +67,6 @@ extension CommunityWriteReactor {
             
         case .setLoading(let loading):
             newState.loading = loading
-        case .printText(let text):
-            newState.printedText = text
         case .setCategoryData(let data):
             newState.categoryData = data
         case .setSuccess(let success):
