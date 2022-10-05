@@ -69,6 +69,7 @@ class HalfModalVC: UIViewController {
         applySnapshot(filter: "")
         tapCancelBtnAction()
         tapCompleteBtnAction()
+        setUpDefaultStatus()
     }
 }
 
@@ -208,6 +209,20 @@ extension HalfModalVC {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
             })
         }
+    }
+    
+    /// 0번째 인덱스 셀이 초기 선택되도록하는 메서드
+    private func setUpDefaultStatus() {
+        if majorList[0].majorName == "학과 무관" {
+            self.majorTV.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+            completeBtn.isActivated = true
+            completeBtn.titleLabel?.textColor = UIColor.mainDefault
+        }
+    }
+    
+    /// 타이틀 변경 메서드
+    func setUpTitleLabel(_ title: String) {
+        self.titleLabel.text = title
     }
 }
 
