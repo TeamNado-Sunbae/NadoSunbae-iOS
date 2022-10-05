@@ -14,9 +14,7 @@ import ReactorKit
 
 class ClassroomMainHeaderView: UITableViewHeaderFooterView, View {
 
-    lazy var classroomSegmentedControl = NadoSegmentedControl(items: ["후기", "1:1질문"]).then {
-        $0.frame = CGRect(x: 16, y: 10, width: 160, height: 37)
-    }
+    var classroomSegmentedControl = NadoSegmentedControl(items: ["후기", "1:1질문"])
     
     lazy var filterBtn = UIButton().then {
         $0.setImgByName(name: "btnFilter", selectedName: "filterSelected")
@@ -31,7 +29,6 @@ class ClassroomMainHeaderView: UITableViewHeaderFooterView, View {
     // MARK: init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        classroomSegmentedControl.setUpNadoSegmentFrame()
         configureUI()
     }
     
