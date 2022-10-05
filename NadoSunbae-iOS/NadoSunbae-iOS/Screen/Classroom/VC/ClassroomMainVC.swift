@@ -289,7 +289,7 @@ extension ClassroomMainVC {
             case .success(let res):
                 var list: [MajorInfoModel] = []
                 DispatchQueue.main.async {
-                    if let data = res as? [MajorListData] {
+                    if let data = res as? [MajorInfoModel] {
                         for i in 0...data.count - 1 {
                             list.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
                         }

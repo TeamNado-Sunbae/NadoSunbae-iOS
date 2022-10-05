@@ -22,7 +22,7 @@ class PublicAPI: BaseAPI {
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, [MajorListData].self)
+                let networkResult = self.judgeStatus(by: statusCode, data, [MajorInfoModel].self)
 
                 completion(networkResult)
                 
