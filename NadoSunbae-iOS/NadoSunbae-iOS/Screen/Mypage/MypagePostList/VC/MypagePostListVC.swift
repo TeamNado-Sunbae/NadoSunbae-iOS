@@ -187,8 +187,10 @@ extension MypagePostListVC: UITableViewDelegate {
                 }
             }
         } else {
-            // TODO: Community Detail로 연결
-            debugPrint("didSelectRowAt")
+            self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                postDetailVC.postID = self.communityData[indexPath.row].postID
+                postDetailVC.hidesBottomBarWhenPushed = true
+            }
         }
     }
 }
