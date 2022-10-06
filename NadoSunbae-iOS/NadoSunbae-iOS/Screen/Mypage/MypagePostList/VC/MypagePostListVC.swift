@@ -183,12 +183,12 @@ extension MypagePostListVC: UITableViewDelegate {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
                     questionDetailVC.naviStyle = .push
-                    questionDetailVC.postID = self.personalQuestionData[indexPath.row].postID
+                    questionDetailVC.postID = self.isPostOrAnswer ? self.personalQuestionData[indexPath.row].postID : self.personalQuestionDataForAnswer[indexPath.row].id
                 }
             }
         } else {
             self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
-                postDetailVC.postID = self.communityData[indexPath.row].postID
+                postDetailVC.postID = self.isPostOrAnswer ? self.communityData[indexPath.row].postID : self.communityDataForAnswer[indexPath.row].id
                 postDetailVC.hidesBottomBarWhenPushed = true
             }
         }
