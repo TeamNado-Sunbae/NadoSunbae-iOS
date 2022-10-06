@@ -293,6 +293,7 @@ extension MypagePostListVC {
         postListSegmentControl.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(16)
+            $0.height.equalTo(36)
             $0.width.equalTo(160)
         }
         
