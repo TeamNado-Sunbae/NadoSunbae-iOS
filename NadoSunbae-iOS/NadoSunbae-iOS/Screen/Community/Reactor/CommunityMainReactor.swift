@@ -84,7 +84,7 @@ extension CommunityMainReactor {
 extension CommunityMainReactor {
     private func requestCommunityList(majorID: Int?, type: PostFilterType, sort: String?, search: String?) -> Observable<Mutation> {
         return Observable.create { observer in
-            PublicAPI.shared.getPostList(univID: 1, majorID: majorID ?? 0, filter: type, sort: sort ?? "recent", search: search ?? "") { networkResult in
+            PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: majorID ?? 0, filter: type, sort: sort ?? "recent", search: search ?? "") { networkResult in
                 switch networkResult {
                 case .success(let res):
                     if let data = res as? [PostListResModel] {
@@ -94,7 +94,7 @@ extension CommunityMainReactor {
                     }
                 case .requestErr(let res):
                     // ✅ TODO: Alert Display Protocol화 하기
-                    if let message = res as? String {
+                    if let _ = res as? String {
 //                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
