@@ -64,7 +64,7 @@ class HalfModalVC: UIViewController {
         super.viewDidLoad()
         configureUI(type: vcType)
         searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        setUpClassroomMajorList(isHasOption: isHasOption)
+        setUpMajorList(isHasOption: isHasOption)
         setUpDelegate()
         setUpTV()
         applySnapshot(filter: "")
@@ -222,7 +222,7 @@ extension HalfModalVC {
     }
     
     /// 학과 리스트 삽입 메서드 (학과 무관 옵션 유무 Bool값으로 결정)
-    private func setUpClassroomMajorList(isHasOption: Bool) {
+    private func setUpMajorList(isHasOption: Bool) {
         if isHasOption {
             majorList = MajorInfo.shared.majorList ?? []
         } else {
