@@ -93,6 +93,7 @@ extension HomeVC: SendHomeRecentDataDelegate {
     }
 }
 
+// MARK: - SendUpdateModalDelegate
 extension HomeVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         if let url = data as? String {
@@ -101,6 +102,7 @@ extension HomeVC: SendUpdateModalDelegate {
     }
 }
 
+// MARK: - SendRankerDataDelegate
 extension HomeVC: SendRankerDataDelegate {
     func sendRankerData(data: HomeRankingResponseModel.UserList) {
         divideUserPermission {
