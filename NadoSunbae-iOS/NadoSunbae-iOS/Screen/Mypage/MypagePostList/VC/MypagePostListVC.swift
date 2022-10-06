@@ -35,6 +35,9 @@ class MypagePostListVC: BaseVC {
         $0.estimatedRowHeight = 121
         $0.rowHeight = UITableView.automaticDimension
     }
+    private let emptyView = NadoEmptyView().then {
+        $0.makeRounded(cornerRadius: 16)
+    }
     
     // MARK: Properties
     var isPostOrAnswer = true
@@ -104,6 +107,28 @@ class MypagePostListVC: BaseVC {
                     $0.height.equalTo(newSize.height)
                 }
             }
+        }
+    }
+    
+    /// emptyView의 Text를 분기처리하여 설정하는 메서드
+    func setEmptyView(data: Array<Any>) {
+        if data.isEmpty {
+            emptyView.isHidden = false
+            if isPostOrAnswer {
+                if isPersonalQuestionOrCommunity {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 1:1 질문이 없습니다.")
+                } else {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 커뮤니티 글이 없습니다.")
+                }
+            } else {
+                if isPersonalQuestionOrCommunity {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 1:1 질문 답글이 없습니다.")
+                } else {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 커뮤니티 답글이 없습니다.")
+                }
+            }
+        } else {
+            emptyView.isHidden = true
         }
     }
 }
@@ -200,6 +225,7 @@ extension MypagePostListVC {
                     self.personalQuestionData = data.postList
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()
+                    self.setEmptyView(data: data.postList)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
@@ -227,6 +253,7 @@ extension MypagePostListVC {
                     self.communityData = data.postList
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()
+                    self.setEmptyView(data: data.postList)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
@@ -258,6 +285,7 @@ extension MypagePostListVC {
                     }
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()
+                    self.setEmptyView(data: data.postList)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
@@ -281,9 +309,9 @@ extension MypagePostListVC {
     private func configureUI() {
         view.backgroundColor = .bgGray
         
-        view.addSubviews([naviView, postListSegmentControl, postListSV])
+        view.addSubviews([naviView, postListSegmentControl, postListSV, emptyView])
         postListSV.addSubview(contentView)
-        contentView.addSubview(postListTV)
+        contentView.addSubviews([postListTV])
         
         naviView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -312,6 +340,12 @@ extension MypagePostListVC {
             $0.top.equalToSuperview()
             $0.left.right.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(13)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(postListSegmentControl.snp.bottom).offset(18)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(18)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }
