@@ -56,11 +56,11 @@ class MypagePostListVC: BaseVC {
         configureUI()
         setPostListTV()
         setSegmentedControl()
-        isPostOrAnswer ? getMypageMyPersonalQuestionList() : getMypageMyAnswerList()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isPostOrAnswer ? getMypageMyPersonalQuestionList() : getMypageMyAnswerList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
