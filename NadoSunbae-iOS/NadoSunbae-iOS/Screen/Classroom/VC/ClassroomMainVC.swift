@@ -194,7 +194,7 @@ extension ClassroomMainVC {
         let slideVC = HalfModalVC()
         slideVC.vcType = .search
         slideVC.cellType = .star
-        slideVC.isHasOption = false
+        slideVC.hasNoMajorOption = false
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         slideVC.selectMajorDelegate = self
