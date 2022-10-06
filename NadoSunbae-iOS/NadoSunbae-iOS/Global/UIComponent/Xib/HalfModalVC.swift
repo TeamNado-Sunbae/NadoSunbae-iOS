@@ -57,13 +57,14 @@ class HalfModalVC: UIViewController {
     var selectFilterDelegate: SendUpdateStatusDelegate?
     var vcType: ModalType = .basic
     var cellType: MajorCellType = .basic
+    var isHasOption: Bool = true
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI(type: vcType)
         searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        majorList = MajorInfo.shared.majorList ?? []
+        setUpClassroomMajorList(isHasOption: isHasOption)
         setUpDelegate()
         setUpTV()
         applySnapshot(filter: "")
@@ -217,6 +218,17 @@ extension HalfModalVC {
             self.majorTV.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
             completeBtn.isActivated = true
             completeBtn.titleLabel?.textColor = UIColor.mainDefault
+        }
+    }
+    
+    /// 학과 리스트 삽입 메서드 (학과 무관 옵션 유무 Bool값으로 결정)
+    private func setUpClassroomMajorList(isHasOption: Bool) {
+        if isHasOption {
+            majorList = MajorInfo.shared.majorList ?? []
+        } else {
+            var classroomList = MajorInfo.shared.majorList
+            classroomList?.remove(at: 0)
+            majorList = classroomList ?? []
         }
     }
     
