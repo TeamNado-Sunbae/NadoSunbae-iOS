@@ -58,8 +58,12 @@ final class CommunityMainVC: BaseVC, View {
         configureUI()
         registerCell()
         setUpDelegate()
-        setUpInitAction()
         bindCommunityTV()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpInitAction()
     }
     
     func bind(reactor: CommunityMainReactor) {

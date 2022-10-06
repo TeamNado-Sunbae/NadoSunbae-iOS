@@ -47,6 +47,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var disposeBag = DisposeBag()
     var isEditState: Bool = false
     var postID: Int?
+    var majorID: Int = 128
     var categoryIndex: Int?
     var originTitle: String?
     var originContent: String?
@@ -141,8 +142,9 @@ extension CommunityWriteVC {
     // MARK: Action
     private func bindAction(_ reactor: CommunityWriteReactor) {
         majorSelectBtn.rx.tap
-            .map { CommunityWriteReactor.Action.tapMajorSelectBtn }
-            .bind(to: reactor.action)
+            .subscribe(onNext: {
+                self.presentHalfModalView()
+            })
             .disposed(by: disposeBag)
         
         questionWriteNaviBar.rightActivateBtn.rx.tap
@@ -156,7 +158,7 @@ extension CommunityWriteVC {
                 return CommunityWriteReactor.Action.tapQuestionEditBtn(postID: self.postID ?? 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ??
                 "")
             } else {
-                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: 0, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
+                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: self.majorID, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
             }
         }
         .bind(to: reactor.action)
@@ -177,13 +179,6 @@ extension CommunityWriteVC {
     
     // MARK: State
     private func bindState(_ reactor: CommunityWriteReactor) {
-        reactor.state
-            .map { $0.printedText }
-            .subscribe(onNext: { text in
-                print(text)
-            })
-            .disposed(by: disposeBag)
-        
         reactor.state
             .map { $0.categoryData }
             .distinctUntilChanged()
@@ -273,6 +268,18 @@ extension CommunityWriteVC {
             categoryCV.isUserInteractionEnabled = false
         }
     }
+    
+    // HalfModalView를 present하는 메서드
+    private func presentHalfModalView() {
+        let slideVC = HalfModalVC()
+        slideVC.vcType = .search
+        slideVC.cellType = .star
+        slideVC.setUpTitleLabel("글을 올릴 학과를 선택해보세요.")
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        slideVC.selectMajorDelegate = self
+        self.present(slideVC, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -326,5 +333,22 @@ extension CommunityWriteVC: UITextViewDelegate {
             textView.textColor = .gray2
             isTextViewEmpty = true
         }
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension CommunityWriteVC: UIViewControllerTransitioningDelegate {
+    
+    /// presentationController - forPresented
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+// MARK: - SendUpdateModalDelegate
+extension CommunityWriteVC: SendUpdateModalDelegate {
+    func sendUpdate(data: Any) {
+        majorSelectTextField.text = data as? String
+        majorID = MajorInfo.shared.selectedMajorID ?? 128
     }
 }
