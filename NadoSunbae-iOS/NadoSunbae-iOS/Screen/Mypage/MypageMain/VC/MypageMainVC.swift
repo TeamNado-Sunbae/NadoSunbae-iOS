@@ -36,7 +36,7 @@ class MypageMainVC: BaseVC {
     // MARK: Properties
     var userInfo = MypageUserInfoModel()
     
-    var questionList: [ClassroomPostList] = []
+    var questionList: [GetUserPersonalQuestionListResponseData.PostList] = []
     
     // MARK: LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -199,8 +199,8 @@ extension MypageMainVC {
         MypageAPI.shared.getUserPersonalQuestionList(userID: UserDefaults.standard.value(forKey: UserDefaults.Keys.UserID) as! Int, sort: .recent, completion: { networkResult in
             switch networkResult {
             case .success(let res):
-                if let data = res as? QuestionOrInfoListModel {
-                    self.questionList = data.classroomPostList
+                if let data = res as? GetUserPersonalQuestionListResponseData {
+                    self.questionList = data.postList
                     DispatchQueue.main.async {
                         self.questionTV.reloadData()
 
@@ -212,6 +212,9 @@ extension MypageMainVC {
                         self.questionTVHeight.constant = self.questionTV.contentSize.height
                         self.activityIndicator.stopAnimating()
                     }
+                } else {
+                    debugPrint(#function, "데이터타입 에러")
+                    debugPrint(res)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
