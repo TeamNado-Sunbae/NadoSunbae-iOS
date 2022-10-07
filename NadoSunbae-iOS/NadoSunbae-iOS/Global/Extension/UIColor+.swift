@@ -104,4 +104,12 @@ extension UIColor {
     @nonobjc class var dropShadowColor: UIColor {
         return UIColor(red: 70.0 / 255.0, green: 71.0 / 255.0, blue: 78.0 / 255.0, alpha: 0.1)
     }
+    
+    @nonobjc class var reviewTitleColor: UIColor {
+        return UIColor(red: 233.0 / 255.0, green: 241.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var reviewSubTitleColor: UIColor {
+        return UIColor(red: 78.0 / 255.0, green: 123.0 / 255.0, blue: 118.0 / 255.0, alpha: 1.0)
+    }
 }
