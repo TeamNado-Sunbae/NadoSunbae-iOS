@@ -10,10 +10,13 @@ import UIKit
 final class HomeRecentPersonalQuestionVC: BaseVC {
     
     // MARK: Components
-    private let naviView = NadoSunbaeNaviBar().then {
+    private lazy var naviView = NadoSunbaeNaviBar().then {
         $0.setUpNaviStyle(state: .backWithCenterTitle)
         $0.configureTitleLabel(title: "최근 1:1 질문")
         $0.rightCustomBtn.isHidden = true
+        $0.backBtn.press {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     private let statusBarView = NadoStatusBarView(contentText: "특정 학과 선배에게 1:1 질문을 하고 싶다면 과방탭을 이용하세요.", type: .label)
     private let questionSV = UIScrollView().then {
