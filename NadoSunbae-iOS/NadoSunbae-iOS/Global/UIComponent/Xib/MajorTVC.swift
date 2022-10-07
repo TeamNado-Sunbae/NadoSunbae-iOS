@@ -46,6 +46,11 @@ class MajorTVC: CodeBaseTVC {
         configureUI(type: cellType)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        starBtn.isHidden = false
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         checkImgView.isHidden = selected ? false : true
@@ -119,6 +124,7 @@ extension MajorTVC {
     /// Label에 학과 이름 setting하는 함수
     func setData(majorName: MajorInfoModel) {
         majorNameLabel.text = majorName.majorName
+        starBtn.isHidden = majorName.majorName == "학과 무관" ? true : false
     }
     
     func setMajorNameLabel(data: String) {

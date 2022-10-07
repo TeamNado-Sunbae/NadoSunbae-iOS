@@ -31,6 +31,7 @@ final class HomeVC: BaseVC {
         configureUI()
         setBackgroundTV()
         getRecentCommunityList()
+        requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +90,20 @@ extension HomeVC: SendHomeRecentDataDelegate {
                     questionDetailVC.isAuthorized = isAuthorized
                 }
             }
+        }
+    }
+}
+
+// MARK: - UI
+extension HomeVC {
+    private func configureUI() {
+        navigationController?.navigationBar.isHidden = true
+        view.backgroundColor = .white
+        view.addSubviews([backgroundTV])
+        
+        backgroundTV.snp.makeConstraints {
+            $0.horizontalEdges.verticalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(1600)
         }
     }
 }
@@ -339,18 +354,19 @@ extension HomeVC {
             }
         }
     }
-}
-
-// MARK: - UI
-extension HomeVC {
-    private func configureUI() {
-        navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .white
-        view.addSubviews([backgroundTV])
-        
-        backgroundTV.snp.makeConstraints {
-            $0.horizontalEdges.verticalEdges.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(1600)
+    
+    /// 학과 리스트 조회 메서드
+    private func requestGetMajorList(univID: Int, filterType: String) {
+        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? [MajorInfoModel] {
+                    MajorInfo.shared.majorList = data
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
         }
     }
 }

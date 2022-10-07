@@ -58,13 +58,12 @@ final class CommunityMainVC: BaseVC, View {
         configureUI()
         registerCell()
         setUpDelegate()
-        setUpInitAction()
         bindCommunityTV()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        communitySegmentedControl.setUpNadoSegmentFrame()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpInitAction()
     }
     
     func bind(reactor: CommunityMainReactor) {
