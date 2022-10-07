@@ -22,6 +22,7 @@ final class HomeRankingTVC: BaseTVC {
     // MARK: Properties
     private lazy var rankerViewList = [firstRankerView, secondRankerView, thirdRankerView, fourthRankerView, fifthRankerView]
     private var rankerDummyData: [HomeRankingResponseModel.UserList] = []
+    var sendRankerDataDelegate: SendRankerDataDelegate?
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,6 +44,22 @@ final class HomeRankingTVC: BaseTVC {
             rankerViewList[i].profileImgView.image = UIImage(named: "profileImage\(rankerDummyData[i].profileImageID)")
         }
     }
+    
+    private func setRankerViewAction() {
+        for i in 0..<5 {
+            let tapRankerGestureRecognizer = RankerTapGestureRecognizer(target: self, action: #selector(rankerTapped))
+            tapRankerGestureRecognizer.rankerData = rankerDummyData[i]
+            rankerViewList[i].addGestureRecognizer(tapRankerGestureRecognizer)
+        }
+    }
+    
+    @objc func rankerTapped(sender: RankerTapGestureRecognizer) {
+        sendRankerDataDelegate?.sendRankerData(data: sender.rankerData ?? HomeRankingResponseModel.UserList(id: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", rate: nil))
+    }
+}
+
+final class RankerTapGestureRecognizer: UITapGestureRecognizer {
+    var rankerData: HomeRankingResponseModel.UserList?
 }
 
 // MARK: - UI
@@ -103,6 +120,7 @@ extension HomeRankingTVC {
                         self.rankerDummyData.append(data.userList[i])
                     }
                     self.setData()
+                    self.setRankerViewAction()
                 }
             default:
                 debugPrint(#function, "network error")
