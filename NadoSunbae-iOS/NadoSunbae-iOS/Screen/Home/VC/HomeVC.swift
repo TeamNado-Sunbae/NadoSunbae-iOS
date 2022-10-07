@@ -10,7 +10,7 @@ import SnapKit
 import Then
 
 final class HomeVC: BaseVC {
-
+    
     // MARK: Components
     private var backgroundTV = UITableView(frame: .zero, style: .grouped).then {
         $0.separatorStyle = .none
@@ -106,8 +106,12 @@ extension HomeVC: SendUpdateModalDelegate {
 extension HomeVC: SendRankerDataDelegate {
     func sendRankerData(data: HomeRankingResponseModel.UserList) {
         divideUserPermission {
-            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
-                mypageUserVC.targetUserID = data.id
+            if data.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+                goToRootOfTab(index: 3)
+            } else {
+                self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                    mypageUserVC.targetUserID = data.id
+                }
             }
         }
     }
