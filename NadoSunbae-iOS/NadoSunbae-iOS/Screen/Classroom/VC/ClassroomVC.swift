@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import ReactorKit
+import RxSwift
 
 final class ClassroomVC: BaseVC {
     
@@ -54,7 +55,21 @@ final class ClassroomVC: BaseVC {
     
     private let segmentedControlContainerView = UIView()
     private let segmentedControl = NadoSegmentedControl(items: ["후기", "1:1 질문"])
+    private lazy var filterBtn = UIButton().then {
+        $0.setImgByName(name: "btnFilter", selectedName: "filterSelected")
+    }
+    
+    private let arrangeBtn = UIButton().then {
+        $0.setImgByName(name: "btnArray", selectedName: "property1Variant3")
+    }
+    
     private let contentVCContainerView = UIView()
+    private let reviewWriteBtn = UIButton().then {
+        $0.setImgByName(name: "infoFloating", selectedName: "infoFloating")
+        $0.contentMode = .scaleAspectFill
+    }
+    
+    var disposeBag = DisposeBag()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -63,6 +78,30 @@ final class ClassroomVC: BaseVC {
         addShadowToTopMajorSelectView()
         tapMajorSelectBtn()
         setUpDelegate()
+        bindAction()
+    }
+}
+
+// MARK: - Bind
+extension ClassroomVC {
+    private func bindAction() {
+        segmentedControl.rx.selectedSegmentIndex
+            .subscribe(onNext: { [weak self] selectIndex in
+                self?.hideFilterArrangeBtn(isHidden: selectIndex == 0 ? false : true)
+            })
+            .disposed(by: disposeBag)
+        
+        // TODO: filterBtn Action 처리하기
+        filterBtn.rx.tap
+            .subscribe(onNext: {
+            })
+            .disposed(by: disposeBag)
+        
+        arrangeBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.arrangeBtn.isSelected = !(self?.arrangeBtn.isSelected ?? false)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -72,7 +111,7 @@ extension ClassroomVC {
     /// UI 구성하는 메서드
     private func configureUI() {
         self.view.backgroundColor = .paleGray
-        view.addSubviews([reviewImageContainerView, classroomSV, segmentedControlContainerView, topMajorSelectView])
+        view.addSubviews([reviewImageContainerView, classroomSV, segmentedControlContainerView, topMajorSelectView, reviewWriteBtn])
         classroomSV.addSubview(contentView)
         contentView.addSubviews([contentVCContainerView])
         
@@ -107,6 +146,12 @@ extension ClassroomVC {
             $0.top.equalToSuperview().offset(352)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(0)
+        }
+        
+        reviewWriteBtn.snp.makeConstraints {
+            $0.bottom.equalTo(view.layoutMarginsGuide).inset(24)
+            $0.trailing.equalToSuperview().inset(24)
+            $0.width.height.equalTo(64)
         }
         
         configureTopMajorSelectView()
@@ -157,7 +202,7 @@ extension ClassroomVC {
     /// segmentedContolContainerView UI 구성 메서드
     private func configureSegmentedControlContainerView() {
         segmentedControlContainerView.backgroundColor = .white
-        segmentedControlContainerView.addSubview(segmentedControl)
+        segmentedControlContainerView.addSubviews([segmentedControl, filterBtn, arrangeBtn])
         
         segmentedControl.snp.makeConstraints {
             $0.top.equalToSuperview().offset(10)
@@ -165,6 +210,20 @@ extension ClassroomVC {
             $0.bottom.equalToSuperview().inset(10)
             $0.width.equalTo(160)
             $0.height.equalTo(36)
+        }
+        
+        arrangeBtn.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(10)
+            $0.centerY.equalTo(segmentedControl)
+            $0.width.equalTo(68)
+            $0.height.equalTo(24)
+        }
+        
+        filterBtn.snp.makeConstraints {
+            $0.trailing.equalTo(arrangeBtn.snp.leading).offset(-12)
+            $0.centerY.equalTo(segmentedControl)
+            $0.width.equalTo(48)
+            $0.height.equalTo(24)
         }
     }
     
@@ -208,6 +267,13 @@ extension ClassroomVC {
     /// delegate 대리자 위임 메서드
     private func setUpDelegate() {
         classroomSV.delegate = self
+    }
+    
+    /// filterBtn, arrangeBtn 숨기는 메서드
+    private func hideFilterArrangeBtn(isHidden: Bool) {
+        [filterBtn, arrangeBtn].forEach {
+            $0?.isHidden = isHidden
+        }
     }
 }
 
