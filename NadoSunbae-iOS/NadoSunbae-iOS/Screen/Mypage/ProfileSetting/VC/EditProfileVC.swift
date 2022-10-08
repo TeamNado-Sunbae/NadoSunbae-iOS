@@ -55,6 +55,7 @@ class EditProfileVC: BaseVC {
             }
         }
     }
+    @IBOutlet weak var introTextView: NadoTextView!
     @IBOutlet weak var firstMajorTextField: NadoTextField!
     @IBOutlet weak var firstMajorStartTextField: NadoTextField!
     @IBOutlet weak var secondMajorTextField: NadoTextField!
@@ -180,6 +181,7 @@ extension EditProfileVC {
         profileImgChangBtn.makeRounded(cornerRadius: 8)
         nickNameTextField.placeholder = userInfo.nickname
         isOnQuestionToggleBtn.isSelected = userInfo.isOnQuestion
+        introTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "나를 한줄로 소개해보세요.")
         firstMajorTextField.text = userInfo.firstMajorName
         firstMajorStartTextField.text = userInfo.firstMajorStart
         secondMajorTextField.text = userInfo.secondMajorName
