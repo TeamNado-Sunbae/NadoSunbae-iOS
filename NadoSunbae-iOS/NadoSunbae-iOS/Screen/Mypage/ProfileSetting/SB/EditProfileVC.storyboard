@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -20,12 +20,12 @@
         <!--Edit ProfileVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="EditProfileVC" id="Y6W-OH-hqX" customClass="EditProfileVC" customModule="NadoSunbae_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileVC" id="Y6W-OH-hqX" customClass="EditProfileVC" customModule="NadoSunbae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="991"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwr-Rv-tsA" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwr-Rv-tsA" customClass="NadoSunbaeNaviBar" customModule="NadoSunbae" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="104" width="375" height="853"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Erw-kK-1XW" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="832"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="848"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5gb-Ep-3Xu">
                                                 <rect key="frame" x="151.66666666666666" y="22" width="72" height="72"/>
@@ -45,7 +45,7 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCw-NE-m6i">
-                                                <rect key="frame" x="0.0" y="134" width="375" height="89"/>
+                                                <rect key="frame" x="0.0" y="150" width="375" height="89"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임: 영문, 한글, 숫자를 합하여 2-8자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryd-VX-cuU">
                                                         <rect key="frame" x="20" y="8" width="189" height="14"/>
@@ -53,7 +53,7 @@
                                                         <color key="textColor" name="gray3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Se9-Pm-suD" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Se9-Pm-suD" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="30" width="343" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -93,11 +93,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yxu-89-rbn" userLabel="Seperator View">
-                                                <rect key="frame" x="0.0" y="223" width="375" height="19.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="239" width="375" height="19.666666666666686"/>
                                                 <color key="backgroundColor" name="paleGray"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06h-gZ-1Ql">
-                                                <rect key="frame" x="0.0" y="242.66666666666669" width="375" height="96"/>
+                                                <rect key="frame" x="0.0" y="258.66666666666669" width="375" height="96"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후배들의 1:1 질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYz-w2-Jy6">
                                                         <rect key="frame" x="20.000000000000007" y="31" width="109.66666666666669" height="20"/>
@@ -134,11 +134,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPC-LY-t9L" userLabel="Seperator View">
-                                                <rect key="frame" x="0.0" y="338.66666666666669" width="375" height="19.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="354.66666666666669" width="375" height="19.333333333333314"/>
                                                 <color key="backgroundColor" name="paleGray"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjb-FV-VUF">
-                                                <rect key="frame" x="0.0" y="404" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="420" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nST-UQ-tGE">
                                                         <rect key="frame" x="20" y="8" width="32" height="14"/>
@@ -146,7 +146,7 @@
                                                         <color key="textColor" name="gray3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Id-FO-cOf" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Id-FO-cOf" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="30" width="343" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -177,7 +177,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-iU-uvI">
-                                                <rect key="frame" x="0.0" y="504" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="520" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssl-du-0Vr">
                                                         <rect key="frame" x="20" y="8" width="76" height="14"/>
@@ -185,7 +185,7 @@
                                                         <color key="textColor" name="gray3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6os-Af-bg4" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6os-Af-bg4" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="30" width="343" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -216,7 +216,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="je0-ZA-3ow">
-                                                <rect key="frame" x="0.0" y="604" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="620" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wa-we-lov">
                                                         <rect key="frame" x="20" y="8" width="38" height="14"/>
@@ -224,7 +224,7 @@
                                                         <color key="textColor" name="gray3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rKj-Cv-S40" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입력 전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rKj-Cv-S40" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="30" width="343" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -255,7 +255,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grc-Fv-Dm1">
-                                                <rect key="frame" x="0.0" y="704" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="720" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제2전공 진입시기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7d-W7-WQR">
                                                         <rect key="frame" x="20" y="8" width="83" height="14"/>
@@ -263,7 +263,7 @@
                                                         <color key="textColor" name="gray3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="미진입" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f41-2G-Zfn" customClass="NadoTextField" customModule="NadoSunbae_iOS" customModuleProvider="target">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="미진입" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f41-2G-Zfn" customClass="NadoTextField" customModule="NadoSunbae" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="30" width="343" height="43"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -294,7 +294,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전공정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N29-Za-8kN">
-                                                <rect key="frame" x="20" y="382" width="335" height="17"/>
+                                                <rect key="frame" x="20" y="398" width="335" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="qX8-sA-yUh"/>
                                                 </constraints>
@@ -302,16 +302,38 @@
                                                 <color key="textColor" name="mainDefault"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SoY-QL-A2b">
+                                                <rect key="frame" x="142" y="106" width="91" height="24"/>
+                                                <color key="backgroundColor" name="gray0"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="3ge-ku-t8V"/>
+                                                    <constraint firstAttribute="width" constant="91" id="S05-wR-1UD"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                                <color key="tintColor" name="gray4"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="프로필 사진 변경"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 사진 변경" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf4-IR-ZfU">
+                                                <rect key="frame" x="148" y="110.66666666666666" width="79" height="15"/>
+                                                <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                                                <color key="textColor" name="gray4"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="qRN-KH-qzR" firstAttribute="leading" secondItem="Erw-kK-1XW" secondAttribute="leading" constant="20" id="0xu-aj-cvT"/>
                                             <constraint firstAttribute="trailing" secondItem="yjb-FV-VUF" secondAttribute="trailing" id="30Y-hs-eQi"/>
-                                            <constraint firstItem="pCw-NE-m6i" firstAttribute="top" secondItem="5gb-Ep-3Xu" secondAttribute="bottom" constant="40" id="4tw-61-2Rn"/>
+                                            <constraint firstItem="SoY-QL-A2b" firstAttribute="top" secondItem="5gb-Ep-3Xu" secondAttribute="bottom" constant="12" id="49U-dP-xej"/>
                                             <constraint firstItem="5gb-Ep-3Xu" firstAttribute="top" secondItem="Erw-kK-1XW" secondAttribute="top" constant="22" id="8ZO-YU-DRY"/>
                                             <constraint firstItem="LPC-LY-t9L" firstAttribute="top" secondItem="06h-gZ-1Ql" secondAttribute="bottom" id="9Ud-rW-Ptv"/>
                                             <constraint firstItem="Yxu-89-rbn" firstAttribute="top" secondItem="pCw-NE-m6i" secondAttribute="bottom" id="AUf-O2-faQ"/>
                                             <constraint firstItem="N29-Za-8kN" firstAttribute="leading" secondItem="Erw-kK-1XW" secondAttribute="leading" constant="20" id="BuO-A0-wJl"/>
+                                            <constraint firstItem="Lf4-IR-ZfU" firstAttribute="centerX" secondItem="SoY-QL-A2b" secondAttribute="centerX" id="CYh-Ho-nb2"/>
+                                            <constraint firstItem="pCw-NE-m6i" firstAttribute="top" secondItem="SoY-QL-A2b" secondAttribute="bottom" constant="20" id="DiQ-rg-1Ct"/>
+                                            <constraint firstItem="Lf4-IR-ZfU" firstAttribute="centerY" secondItem="SoY-QL-A2b" secondAttribute="centerY" id="Eko-Hr-Jkf"/>
                                             <constraint firstItem="06h-gZ-1Ql" firstAttribute="top" secondItem="Yxu-89-rbn" secondAttribute="bottom" id="GFi-8o-K2s"/>
                                             <constraint firstAttribute="bottom" secondItem="grc-Fv-Dm1" secondAttribute="bottom" constant="28" id="GFx-Z9-NmA"/>
                                             <constraint firstItem="06h-gZ-1Ql" firstAttribute="leading" secondItem="Erw-kK-1XW" secondAttribute="leading" id="IyJ-Nq-dMl"/>
@@ -335,6 +357,7 @@
                                             <constraint firstItem="je0-ZA-3ow" firstAttribute="top" secondItem="Wzw-iU-uvI" secondAttribute="bottom" id="mEs-b8-JCd"/>
                                             <constraint firstItem="yjb-FV-VUF" firstAttribute="top" secondItem="N29-Za-8kN" secondAttribute="bottom" constant="5" id="ndC-uk-5TW"/>
                                             <constraint firstItem="yjb-FV-VUF" firstAttribute="leading" secondItem="Erw-kK-1XW" secondAttribute="leading" id="rz3-jz-vRi"/>
+                                            <constraint firstItem="SoY-QL-A2b" firstAttribute="centerX" secondItem="5gb-Ep-3Xu" secondAttribute="centerX" id="vE3-ua-Ycj"/>
                                             <constraint firstItem="grc-Fv-Dm1" firstAttribute="leading" secondItem="Erw-kK-1XW" secondAttribute="leading" id="vIb-jo-tgr"/>
                                             <constraint firstItem="grc-Fv-Dm1" firstAttribute="top" secondItem="je0-ZA-3ow" secondAttribute="bottom" id="wvz-el-8oX"/>
                                             <constraint firstItem="Wzw-iU-uvI" firstAttribute="top" secondItem="yjb-FV-VUF" secondAttribute="bottom" id="y6i-j2-jwU"/>
@@ -377,6 +400,7 @@
                         <outlet property="nickNameInfoLabel" destination="Ne5-k1-x9f" id="j7c-60-4f3"/>
                         <outlet property="nickNameRuleLabel" destination="Ryd-VX-cuU" id="gn2-eK-3IN"/>
                         <outlet property="nickNameTextField" destination="Se9-Pm-suD" id="HMe-Z1-lO4"/>
+                        <outlet property="profileImgChangBtn" destination="SoY-QL-A2b" id="rOQ-yd-DjO"/>
                         <outlet property="profileImgView" destination="5gb-Ep-3Xu" id="I4f-Ri-6Yi"/>
                         <outlet property="secondMajorStartBtn" destination="pEJ-dA-VQf" id="P4f-nb-czx"/>
                         <outlet property="secondMajorStartTextField" destination="f41-2G-Zfn" id="Uho-2j-TcD"/>
@@ -390,8 +414,14 @@
     </scenes>
     <resources>
         <image name="toggle_off" width="50" height="28"/>
+        <namedColor name="gray0">
+            <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="gray3">
             <color red="0.58039215686274515" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray4">
+            <color red="0.33725490196078434" green="0.33725490196078434" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="mainDark">
             <color red="0.019607843137254902" green="0.63137254901960782" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -33,6 +33,7 @@ class EditProfileVC: BaseVC {
         }
     }
     @IBOutlet weak var profileImgView: UIImageView!
+    @IBOutlet weak var profileImgChangBtn: UIButton!
     @IBOutlet weak var nickNameChangeBtn: UIButton! {
         didSet {
             nickNameChangeBtn.isEnabled = false
@@ -176,6 +177,7 @@ class EditProfileVC: BaseVC {
 extension EditProfileVC {
     private func configureUI() {
         profileImgView.image = UIImage(named: "profileImage\(userInfo.profileImageID)")
+        profileImgChangBtn.makeRounded(cornerRadius: 8)
         nickNameTextField.placeholder = userInfo.nickname
         isOnQuestionToggleBtn.isSelected = userInfo.isOnQuestion
         firstMajorTextField.text = userInfo.firstMajorName
