@@ -11,9 +11,8 @@ import Moya
 enum ClassroomService {
     case getQuestionDetail(postID: Int)
     case getInfoDetail(postID: Int)
-    case getGroupQuestionOrInfoList(majorID: Int, postTypeID: Int, sort: ListSortType)
     case postComment(postID: Int, comment: String)
-    case getMajorUserList(majorID: Int)
+    case getMajorUserList(majorID: Int, isExclude: Bool)
     case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
     case likePost(postID: Int, postTypeID: Int)
     case deletePostQuestion(postID: Int)
@@ -32,12 +31,10 @@ extension ClassroomService: TargetType {
             return "/classroom-post/question/\(postID)"
         case .getInfoDetail(let postID):
             return "/classroom-post/information/\(postID)"
-        case .getGroupQuestionOrInfoList(let majorID, let postTypeID, _):
-            return "/classroom-post/\(postTypeID)/major/\(majorID)/list"
         case .postComment:
             return "/comment"
-        case .getMajorUserList(let majorID):
-            return "/user/mypage/list/major/\(majorID)"
+        case .getMajorUserList(let majorID, _):
+            return "/user/major/\(majorID)"
         case .postClassroomContent:
             return "/classroom-post"
         case .likePost:
@@ -52,7 +49,7 @@ extension ClassroomService: TargetType {
     var method: Moya.Method {
         switch self {
             
-        case .getQuestionDetail, .getInfoDetail, .getGroupQuestionOrInfoList, .getMajorUserList:
+        case .getQuestionDetail, .getInfoDetail, .getMajorUserList:
             return .get
         case .postComment, .postClassroomContent, .likePost:
             return .post
@@ -66,17 +63,17 @@ extension ClassroomService: TargetType {
             
         case .getQuestionDetail, .getInfoDetail:
             return .requestPlain
-        case .getGroupQuestionOrInfoList(_, _, let sort):
-            let body = ["sort": sort]
-            return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         case .postComment(let postID, let comment):
             let body: [String: Any] = [
                 "postId": postID,
                 "content": comment
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
-        case .getMajorUserList(let majorID):
-            let body = ["majorId": majorID]
+        case .getMajorUserList(let majorID, let isExclude):
+            let excludeValue = isExclude ? "noReview" : ""
+            let body = [
+                "majorId": majorID,
+                "exclude:": excludeValue] as [String : Any]
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         case .postClassroomContent(let majorID, let answerID, let postTypeID, let title, let content):
             let body: [String: Any] = [

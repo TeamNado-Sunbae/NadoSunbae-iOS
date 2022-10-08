@@ -204,7 +204,7 @@ extension QuestionPersonListVC {
     /// 특정 학과 User List 조회를 요청하는 API
     private func getMajorUserList() {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getMajorUserListAPI(majorID: majorID, completion: { networkResult in
+        ClassroomAPI.shared.getMajorUserListAPI(majorID: majorID, isExclude: true, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 self.activityIndicator.stopAnimating()

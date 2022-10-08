@@ -48,23 +48,6 @@ class ClassroomAPI {
         }
     }
     
-    /// [GET] 전체 질문, 정보글 전체 목록 조회 및 정렬 API 메서드
-    func getGroupQuestionOrInfoListAPI(majorID: Int, postTypeID: Int, sort: ListSortType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.getGroupQuestionOrInfoList(majorID: majorID, postTypeID: postTypeID, sort: sort)) { result in
-            switch result {
-                
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                
-                completion(self.getGroupQuestionOrInfoListJudgeData(status: statusCode, data: data))
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
     /// [POST] 1:1질문, 전체 질문, 정보글에 댓글 등록 API 메서드
     func createCommentAPI(postID: Int, comment: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         classroomProvider.request(.postComment(postID: postID, comment: comment)) { result in
@@ -82,8 +65,8 @@ class ClassroomAPI {
         }
     }
     /// [GET] 선택한 학과 user 구성원 목록 조회
-    func getMajorUserListAPI(majorID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.getMajorUserList(majorID: majorID)) { result in
+    func getMajorUserListAPI(majorID: Int, isExclude: Bool, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        classroomProvider.request(.getMajorUserList(majorID: majorID, isExclude: isExclude)) { result in
             switch result {
                 
             case .success(let response):
