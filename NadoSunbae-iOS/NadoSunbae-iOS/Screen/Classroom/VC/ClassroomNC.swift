@@ -14,9 +14,9 @@ class ClassroomNC: BaseNC {
         super.viewDidLoad()
         navigationBar.isHidden = true
         
-        let classroomVC = ClassroomMainVC()
-        classroomVC.reactor = ClassroomMainReactor()
-        
+        let classroomVC = ClassroomVC()
+//        classroomVC.reactor = ClassroomReactor()
+
         self.setViewControllers([classroomVC], animated: true)
     }
 }
