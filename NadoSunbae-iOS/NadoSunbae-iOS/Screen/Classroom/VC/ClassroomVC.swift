@@ -22,11 +22,11 @@ final class ClassroomVC: BaseVC {
         $0.textColor = .black
         $0.sizeToFit()
     }
-
+    
     private let bottomArrowImgView = UIImageView().then {
         $0.image = UIImage(named: "btnArrow")
     }
-
+    
     private let topMajorSelectView = UIView().then {
         $0.backgroundColor = .white
     }
@@ -45,7 +45,7 @@ final class ClassroomVC: BaseVC {
         $0.font = .PretendardB(size: 21.0)
         $0.sizeToFit()
     }
-
+    
     
     private let reviewSubTitleLabel = UILabel().then {
         $0.text = "후기 작성 시 전체 학과 후기 열람 가능"
@@ -65,9 +65,13 @@ final class ClassroomVC: BaseVC {
     
     private let contentVCContainerView = UIView()
     private let reviewWriteBtn = UIButton().then {
-        $0.setImgByName(name: "infoFloating", selectedName: "infoFloating")
+        $0.setImgByName(name: "reviewFloatingBtn", selectedName: "reviewFloatingBtn")
         $0.contentMode = .scaleAspectFill
     }
+    
+    // TODO: 과방 reviewVC content 채우기
+    private var reviewVC: ReviewVC = ReviewVC()
+    private var personalQuestionVC: PersonalQuestionVC = PersonalQuestionVC()
     
     var disposeBag = DisposeBag()
     
@@ -79,6 +83,7 @@ final class ClassroomVC: BaseVC {
         tapMajorSelectBtn()
         setUpDelegate()
         bindAction()
+        injectReactor()
     }
 }
 
@@ -88,6 +93,7 @@ extension ClassroomVC {
         segmentedControl.rx.selectedSegmentIndex
             .subscribe(onNext: { [weak self] selectIndex in
                 self?.hideFilterArrangeBtn(isHidden: selectIndex == 0 ? false : true)
+                self?.configureContentVCBySegmentIndex(by: selectIndex)
             })
             .disposed(by: disposeBag)
         
@@ -145,6 +151,7 @@ extension ClassroomVC {
         contentVCContainerView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(352)
             $0.leading.trailing.bottom.equalToSuperview()
+            $0.width.equalToSuperview()
             $0.height.equalTo(0)
         }
         
@@ -227,6 +234,41 @@ extension ClassroomVC {
         }
     }
     
+    /// ChildVC를 제거하는 메서드
+    private func removeChildVC() {
+        if self.children.count > 0 {
+            let viewControllers:[UIViewController] = self.children
+            viewControllers.last?.willMove(toParent: nil)
+            viewControllers.last?.removeFromParent()
+            viewControllers.last?.view.removeFromSuperview()
+        }
+    }
+    
+    /// contentVCContainerView UI 구성 메서드
+    private func configureContentVCContainerView(VC: UIViewController) {
+        removeChildVC()
+        self.addChild(VC)
+        let contentView = VC.view
+        VC.didMove(toParent: self)
+        VC.view.frame.size = CGSize(width: contentVCContainerView.frame.width, height: VC.view.frame.height)
+        contentVCContainerView.addSubview(contentView ?? UIView())
+    }
+    
+    /// segmentedControl의 selectedIndex에 따른 VC 구성 메서드
+    private func configureContentVCBySegmentIndex(by segmentIndex: Int) {
+        switch segmentIndex {
+        case 0:
+            reviewVC = ReviewVC()
+            configureContentVCContainerView(VC: reviewVC)
+            reviewVC.contentSizeDelegate = self
+        case 1:
+            configureContentVCContainerView(VC: personalQuestionVC)
+            personalQuestionVC.contentSizeDelegate = self
+        default:
+            print("segment default")
+        }
+    }
+    
     /// topMajorSelectView dropShadow 설정 메서드
     private func addShadowToTopMajorSelectView() {
         topMajorSelectView.layer.shadowColor = UIColor(red: 0.898, green: 0.898, blue: 0.91, alpha: 0.16).cgColor
@@ -254,8 +296,9 @@ extension ClassroomVC {
     
     /// 전공 선택 버튼을 tap했을 때 메서드
     private func tapMajorSelectBtn() {
-        majorSelectBtn.press(vibrate: true) {
-            self.presentHalfModalView()
+        majorSelectBtn.press(vibrate: true) { [weak self] in
+            self?.presentHalfModalView()
+            NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
         }
     }
     
@@ -274,6 +317,11 @@ extension ClassroomVC {
         [filterBtn, arrangeBtn].forEach {
             $0?.isHidden = isHidden
         }
+    }
+    
+    /// reactor를 주입하는 메서드
+    private func injectReactor() {
+        personalQuestionVC.reactor = PersonalQuestionReactor()
     }
 }
 
@@ -329,5 +377,14 @@ extension ClassroomVC: UIViewControllerTransitioningDelegate {
 extension ClassroomVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         majorLabel.text = data as? String
+    }
+}
+
+// MARK: - SendContentSizeDelegate
+extension ClassroomVC: SendContentSizeDelegate {
+    func sendContentSize(height: CGFloat) {
+        contentVCContainerView.snp.updateConstraints {
+            $0.height.equalTo(height)
+        }
     }
 }
