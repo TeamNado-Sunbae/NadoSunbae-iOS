@@ -28,6 +28,7 @@ extension CommunityTVC {
         categoryLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
+            $0.height.equalTo(18)
         }
         
         questionTitleLabel.snp.removeConstraints()
@@ -48,6 +49,8 @@ extension CommunityTVC {
         categoryLabel.text = data.type
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
+        questionContentLabel.setLineSpacing(lineSpacing: 5.0)
+        questionContentLabel.layoutIfNeeded()
         nicknameLabel.text = data.writer.nickname
         questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
         commentCountLabel.text = "\(data.commentCount)"
