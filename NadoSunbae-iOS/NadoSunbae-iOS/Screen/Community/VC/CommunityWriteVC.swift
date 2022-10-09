@@ -51,6 +51,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var categoryIndex: Int?
     var originTitle: String?
     var originContent: String?
+    var sendPostTypeDelegate: SendUpdateModalDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -196,9 +197,11 @@ extension CommunityWriteVC {
         
         reactor.state
             .map{ $0.writePostSuccess }
-            .subscribe(onNext: { success in
+            .subscribe(onNext: { [weak self] success in
                 if success {
-                    self.dismiss(animated: true, completion: nil)
+                    self?.dismiss(animated: true, completion: {
+                        self?.sendPostTypeDelegate?.sendUpdate(data: (self?.selectedCategory ?? .community) as PostFilterType)
+                    })
                 }
             })
             .disposed(by: disposeBag)
