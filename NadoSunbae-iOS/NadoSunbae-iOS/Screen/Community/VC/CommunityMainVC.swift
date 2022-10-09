@@ -50,6 +50,10 @@ final class CommunityMainVC: BaseVC, View {
         $0.addShadow(offset: CGSize(width: 1, height: 1), color: UIColor(red: 68/255, green: 69/255, blue: 75/255, alpha: 0.2), opacity: 1, radius: 0)
     }
     
+    private let refreshControl = UIRefreshControl().then {
+        $0.tintColor = .mainDefault
+    }
+    
     var disposeBag = DisposeBag()
     
     // MARK: Life Cycle
@@ -60,6 +64,7 @@ final class CommunityMainVC: BaseVC, View {
         setUpDelegate()
         bindCommunityTV()
         setUpSegmentAction(type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community)
+        setUpCommunityTVRefreshControl()
     }
     
     func bind(reactor: CommunityMainReactor) {
@@ -116,6 +121,13 @@ extension CommunityMainVC {
                 return CommunityMainReactor.Action.filterFilled }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe(onNext: {
+                reactor.action.onNext(.refreshControl(majorID: 0, type: <#T##PostFilterType#>, sort: <#T##String?#>, search: <#T##String?#>))
+            })
+            .disposed(by: disposeBag)
+                       
     }
     
     // MARK: State
@@ -259,6 +271,12 @@ extension CommunityMainVC {
     /// segment Action을 설정하는 메서드
     private func setUpSegmentAction(type: PostFilterType) {
         reactor?.action.onNext(.reloadCommunityTV(type: type))
+    }
+    
+    /// communityTV의 refreshControl을 등록하는 메서드
+    private func setUpCommunityTVRefreshControl() {
+        refreshControl.endRefreshing()
+        communityTV.refreshControl = refreshControl
     }
 }
 
