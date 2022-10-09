@@ -30,6 +30,8 @@ class WriteQuestionVC: BaseWritePostVC {
         setTapBtnAction()
         setTextViewDelegate()
         setUpAlertMsgByEditState()
+        setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
+        setActivateBtnState(textField: questionTitleTextField, textView: questionWriteTextView)
     }
 }
 
