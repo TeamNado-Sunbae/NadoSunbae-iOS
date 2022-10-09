@@ -34,10 +34,14 @@ class MypageLikeListVC: BaseVC {
         $0.layer.borderColor = UIColor.gray0.cgColor
         $0.contentInset = .zero
         $0.separatorColor = .gray0
+        $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         $0.isScrollEnabled = false
         $0.estimatedRowHeight = 160
         $0.rowHeight = UITableView.automaticDimension
         $0.setBottomEmptyView()
+    }
+    private let emptyView = NadoEmptyView().then {
+        $0.makeRounded(cornerRadius: 16)
     }
     
     // MARK: Properties
@@ -59,6 +63,7 @@ class MypageLikeListVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideTabbar()
+        didChangeValue(segment: likeListSegmentControl)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,6 +142,23 @@ class MypageLikeListVC: BaseVC {
             }
         }
     }
+    
+    /// emptyView의 Text를 분기처리하여 설정하는 메서드
+    func setEmptyView(data: Array<Any>) {
+        if data.isEmpty {
+            emptyView.isHidden = false
+            switch likeListType {
+            case .review:
+                emptyView.setTitleLabel(titleText: "좋아요한 후기가 없습니다.")
+            case .personalQuestion:
+                emptyView.setTitleLabel(titleText: "좋아요한 1:1 질문이 없습니다.")
+            case .community:
+                emptyView.setTitleLabel(titleText: "좋아요한 커뮤니티 글이 없습니다.")
+            }
+        } else {
+            emptyView.isHidden = true
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -160,8 +182,10 @@ extension MypageLikeListVC: UITableViewDelegate {
                 }
             }
         case .community:
-                // TODO: Community Detail로 연결
-                debugPrint("didSelectRowAt")
+            self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                postDetailVC.postID = self.communityData[indexPath.row].id
+                postDetailVC.hidesBottomBarWhenPushed = true
+            }
         }
     }
 }
@@ -229,14 +253,17 @@ extension MypageLikeListVC {
                 case .review:
                     if let data = res as? MypageLikeReviewListModel {
                         self.reviewData = data.likeList
+                        self.setEmptyView(data: data.likeList)
                     }
                 case .questionToPerson:
                     if let data = res as? MypageLikeQuestionToPersonListModel {
                         self.questionToPersonData = data.likeList
+                        self.setEmptyView(data: data.likeList)
                     }
                 case .community:
                     if let data = res as? MypageLikeCommunityListModel {
                         self.communityData = data.likeList
+                        self.setEmptyView(data: data.likeList)
                     }
                 }
                 self.activityIndicator.stopAnimating()
@@ -264,7 +291,7 @@ extension MypageLikeListVC {
     private func configureUI() {
         view.backgroundColor = .bgGray
         
-        view.addSubviews([naviView, likeListSegmentControl, likeListSV])
+        view.addSubviews([naviView, likeListSegmentControl, likeListSV, emptyView])
         likeListSV.addSubview(contentView)
         contentView.addSubview(likeListTV)
         
@@ -276,6 +303,7 @@ extension MypageLikeListVC {
         likeListSegmentControl.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(16)
+            $0.height.equalTo(36)
             $0.width.equalTo(240)
         }
         
@@ -294,6 +322,12 @@ extension MypageLikeListVC {
             $0.top.equalToSuperview()
             $0.left.right.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(13)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(likeListSegmentControl.snp.bottom).offset(18)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(18)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }

@@ -35,6 +35,9 @@ class MypagePostListVC: BaseVC {
         $0.estimatedRowHeight = 121
         $0.rowHeight = UITableView.automaticDimension
     }
+    private let emptyView = NadoEmptyView().then {
+        $0.makeRounded(cornerRadius: 16)
+    }
     
     // MARK: Properties
     var isPostOrAnswer = true
@@ -53,11 +56,11 @@ class MypagePostListVC: BaseVC {
         configureUI()
         setPostListTV()
         setSegmentedControl()
-        isPostOrAnswer ? getMypageMyPersonalQuestionList() : getMypageMyAnswerList()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isPostOrAnswer ? getMypageMyPersonalQuestionList() : getMypageMyAnswerList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,6 +107,28 @@ class MypagePostListVC: BaseVC {
                     $0.height.equalTo(newSize.height)
                 }
             }
+        }
+    }
+    
+    /// emptyView의 Text를 분기처리하여 설정하는 메서드
+    func setEmptyView(data: Array<Any>) {
+        if data.isEmpty {
+            emptyView.isHidden = false
+            if isPostOrAnswer {
+                if isPersonalQuestionOrCommunity {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 1:1 질문이 없습니다.")
+                } else {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 커뮤니티 글이 없습니다.")
+                }
+            } else {
+                if isPersonalQuestionOrCommunity {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 1:1 질문 답글이 없습니다.")
+                } else {
+                    emptyView.setTitleLabel(titleText: "내가 쓴 커뮤니티 답글이 없습니다.")
+                }
+            }
+        } else {
+            emptyView.isHidden = true
         }
     }
 }
@@ -158,12 +183,14 @@ extension MypagePostListVC: UITableViewDelegate {
                 self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: Identifiers.QuestionChatSB, naviType: .push) { questionDetailVC in
                     questionDetailVC.hidesBottomBarWhenPushed = true
                     questionDetailVC.naviStyle = .push
-                    questionDetailVC.postID = self.personalQuestionData[indexPath.row].postID
+                    questionDetailVC.postID = self.isPostOrAnswer ? self.personalQuestionData[indexPath.row].postID : self.personalQuestionDataForAnswer[indexPath.row].id
                 }
             }
         } else {
-            // TODO: Community Detail로 연결
-            debugPrint("didSelectRowAt")
+            self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                postDetailVC.postID = self.isPostOrAnswer ? self.communityData[indexPath.row].postID : self.communityDataForAnswer[indexPath.row].id
+                postDetailVC.hidesBottomBarWhenPushed = true
+            }
         }
     }
 }
@@ -200,6 +227,7 @@ extension MypagePostListVC {
                     self.personalQuestionData = data.postList
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()
+                    self.setEmptyView(data: data.postList)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
@@ -227,6 +255,7 @@ extension MypagePostListVC {
                     self.communityData = data.postList
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()
+                    self.setEmptyView(data: data.postList)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
@@ -258,6 +287,7 @@ extension MypagePostListVC {
                     }
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()
+                    self.setEmptyView(data: data.postList)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
@@ -281,9 +311,9 @@ extension MypagePostListVC {
     private func configureUI() {
         view.backgroundColor = .bgGray
         
-        view.addSubviews([naviView, postListSegmentControl, postListSV])
+        view.addSubviews([naviView, postListSegmentControl, postListSV, emptyView])
         postListSV.addSubview(contentView)
-        contentView.addSubview(postListTV)
+        contentView.addSubviews([postListTV])
         
         naviView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -293,6 +323,7 @@ extension MypagePostListVC {
         postListSegmentControl.snp.makeConstraints {
             $0.top.equalTo(naviView.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(16)
+            $0.height.equalTo(36)
             $0.width.equalTo(160)
         }
         
@@ -311,6 +342,12 @@ extension MypagePostListVC {
             $0.top.equalToSuperview()
             $0.left.right.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(13)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.top.equalTo(postListSegmentControl.snp.bottom).offset(18)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(18)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }
