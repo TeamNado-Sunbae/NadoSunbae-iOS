@@ -183,12 +183,18 @@ extension CommunityWriteVC {
             .map { $0.categoryData }
             .distinctUntilChanged()
             .map { $0 }
-            .bind(to: categoryCV.rx.items) { collectionView, index, item in
+            .bind(to: categoryCV.rx.items) { [weak self] collectionView, index, item in
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityWriteCategoryCVC.className, for: indexPath)
                 
                 guard let categoryCell = cell as? CommunityWriteCategoryCVC else { return UICollectionViewCell() }
                 categoryCell.setData(categoryText: item)
+                
+                // 수정 상태이고, 선택된 카테고리 인덱스일 때
+                if self?.isEditState ?? false && index == self?.categoryIndex {
+                    // 선택된 카테고리 인덱스의 라디오버튼 이미지를 darkColor로 설정한다.
+                    categoryCell.setSelectedRadioBtnImage(isEdit: true)
+                }
                 
                 return categoryCell
             }
