@@ -118,7 +118,7 @@ class SignUpModalVC: BaseVC {
             switch self.enterType {
             case .firstMajor, .secondMajor:
                 let sendData = { () -> MajorInfoModel in
-                    return self.majorList[self.majorTV.indexPathForSelectedRow?.row ?? 0]
+                    return self.filteredList[self.majorTV.indexPathForSelectedRow?.row ?? 0]
                 }()
                 self.selectMajorDelegate?.sendUpdate(data: (sendData, self.enterType))
             case .firstMajorStart, .secondMajorStart:
