@@ -111,9 +111,6 @@ extension BaseWritePostVC {
             $0.leading.trailing.equalTo(questionTitleTextField)
             $0.bottom.equalTo(contentView.snp.bottom).offset(-102)
         }
-        
-        setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
-        setActivateBtnState(textField: questionTitleTextField, textView: questionWriteTextView)
     }
 }
 
@@ -126,7 +123,7 @@ extension BaseWritePostVC {
     }
     
     /// textField가 채워져 있는지에 따라 highlightView 상태 변경하는 메서드
-    private func setHighlightViewState(textField: UITextField, highlightView: UIView) {
+    func setHighlightViewState(textField: UITextField, highlightView: UIView) {
         textField.rx.text
             .orEmpty
             .distinctUntilChanged()
@@ -141,7 +138,7 @@ extension BaseWritePostVC {
     }
     
     /// 제목, 내용이 모두 채워져 있는지에 따라 상단 네비바 버튼 활성화/비활성화 하는 메서드
-    private func setActivateBtnState(textField: UITextField, textView: NadoTextView) {
+    func setActivateBtnState(textField: UITextField, textView: NadoTextView) {
         let a = BehaviorSubject<Bool>(value: false)
         let b = BehaviorSubject<Bool>(value: false)
         
