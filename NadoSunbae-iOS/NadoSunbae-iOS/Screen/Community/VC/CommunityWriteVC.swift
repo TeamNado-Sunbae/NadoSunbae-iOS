@@ -52,6 +52,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var originTitle: String?
     var originContent: String?
     var sendPostTypeDelegate: SendUpdateModalDelegate?
+    var originMajor: String?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -64,6 +65,8 @@ final class CommunityWriteVC: BaseWritePostVC, View {
         setUpInitStyle()
         setUpAlertMsgByEditState()
         setUpCategoryCVByEditState()
+        setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
+        setActivateBtnState(textField: questionTitleTextField, textView: questionWriteTextView)
     }
     
     func bind(reactor: CommunityWriteReactor) {
@@ -243,7 +246,7 @@ extension CommunityWriteVC {
             questionWriteTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "")
             questionTitleTextField.text = originTitle
             questionWriteTextView.text = originContent
-            questionWriteNaviBar.rightActivateBtn.isActivated = true
+            majorSelectTextField.setText(text: originMajor ?? "")
         } else {
             questionTitleTextField.placeholder = "제목을 입력하세요."
             questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "내용을 입력하세요.")
