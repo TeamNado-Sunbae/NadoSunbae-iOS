@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum PostFilterType: CaseIterable {
-    case community
-    case general
-    case questionToEveryone // 전체에게 질문 (커뮤니티 질문)
-    case information
+enum PostFilterType: Int, CaseIterable {
+    case community = 0
+    case general = 1
+    case questionToEveryone = 2 // 전체에게 질문 (커뮤니티 질문)
+    case information = 3
     case questionToPerson // 1:1 질문
 }
 
