@@ -26,6 +26,7 @@ class InfoCommentTVC: BaseTVC {
             commentTextView.textColor = .gray4
         }
     }
+    @IBOutlet weak var infoBtn: UIButton!
     @IBOutlet var commentDateLabel: UILabel!
     @IBOutlet var writerImgView: UIImageView!
     
