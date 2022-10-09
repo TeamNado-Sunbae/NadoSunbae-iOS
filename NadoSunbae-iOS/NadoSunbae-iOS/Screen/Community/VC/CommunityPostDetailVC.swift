@@ -307,6 +307,7 @@ extension CommunityPostDetailVC: UITableViewDataSource {
         else {
             /// 정보글 댓글 Cell
             infoCommentCell.bindData(model: infoDetailCommentData[indexPath.row - 2])
+            infoCommentCell.hideInfoBtn(isDeleted: (infoDetailCommentData[indexPath.row - 2].isDeleted == true) ? true : false)
             infoCommentCell.tapMoreInfoBtnAction = { [unowned self] in
                 if userID == infoDetailCommentData[indexPath.row - 2].writer.writerID {
                     makeAlertWithCancel(okTitle: "삭제", okAction: { [weak self] _ in
