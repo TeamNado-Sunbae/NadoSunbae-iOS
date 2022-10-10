@@ -59,11 +59,7 @@ final class CommunityMainVC: BaseVC, View {
         registerCell()
         setUpDelegate()
         bindCommunityTV()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setUpInitAction()
+        setUpSegmentAction(type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community)
     }
     
     func bind(reactor: CommunityMainReactor) {
@@ -109,6 +105,7 @@ extension CommunityMainVC {
             .subscribe(onNext: {
                 self.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { communityWriteVC in
                     communityWriteVC.reactor = CommunityWriteReactor()
+                    communityWriteVC.sendPostTypeDelegate = self
                 }
             })
             .disposed(by: disposeBag)
@@ -172,10 +169,6 @@ extension CommunityMainVC {
                 self?.filterBtn.isSelected = filled
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func setUpInitAction() {
-        reactor?.action.onNext(.reloadCommunityTV(majorID: 0, type: .community, sort: "recent", search: ""))
     }
     
     /// CommunityTV를 bind하는 메서드
@@ -262,6 +255,11 @@ extension CommunityMainVC {
         communityTV.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
+    
+    /// segment Action을 설정하는 메서드
+    private func setUpSegmentAction(type: PostFilterType) {
+        reactor?.action.onNext(.reloadCommunityTV(type: type))
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -275,5 +273,14 @@ extension CommunityMainVC: UITableViewDelegate {
     /// heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+// MARK: - SendUpdateModalDelegate
+extension CommunityMainVC: SendUpdateModalDelegate {
+    func sendUpdate(data: Any) {
+        let postFilterType = data as? PostFilterType
+        communitySegmentedControl.selectedSegmentIndex = postFilterType?.rawValue ?? 0
+        setUpSegmentAction(type: postFilterType ?? .community)
     }
 }
