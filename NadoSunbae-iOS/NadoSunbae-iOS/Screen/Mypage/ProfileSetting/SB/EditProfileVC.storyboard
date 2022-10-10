@@ -92,6 +92,12 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/최대 40자" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1g-tW-kXL">
+                                                        <rect key="frame" x="298.33333333333331" y="102.66666666666669" width="60.666666666666686" height="15"/>
+                                                        <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
+                                                        <color key="textColor" name="gray2"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Ne5-k1-x9f" secondAttribute="trailing" constant="20" id="200-eP-dLO"/>
@@ -102,7 +108,9 @@
                                                     <constraint firstItem="v54-EU-nVZ" firstAttribute="top" secondItem="Ne5-k1-x9f" secondAttribute="bottom" constant="22" id="Ku5-0a-vIV"/>
                                                     <constraint firstItem="btV-gX-V3e" firstAttribute="centerY" secondItem="Se9-Pm-suD" secondAttribute="centerY" id="RR8-Xc-InG"/>
                                                     <constraint firstItem="Ne5-k1-x9f" firstAttribute="leading" secondItem="pCw-NE-m6i" secondAttribute="leading" constant="20" id="S5c-DF-Zsz"/>
+                                                    <constraint firstItem="B1g-tW-kXL" firstAttribute="centerY" secondItem="v54-EU-nVZ" secondAttribute="centerY" id="T6D-CI-EaV"/>
                                                     <constraint firstItem="btV-gX-V3e" firstAttribute="trailing" secondItem="Se9-Pm-suD" secondAttribute="trailing" constant="-5" id="WnV-nT-U3n"/>
+                                                    <constraint firstAttribute="trailing" secondItem="B1g-tW-kXL" secondAttribute="trailing" constant="16" id="XZF-sF-Lat"/>
                                                     <constraint firstItem="Se9-Pm-suD" firstAttribute="leading" secondItem="pCw-NE-m6i" secondAttribute="leading" constant="16" id="ZsA-NN-4fr"/>
                                                     <constraint firstItem="btV-gX-V3e" firstAttribute="width" secondItem="Se9-Pm-suD" secondAttribute="width" multiplier="0.139942" id="aa3-bU-f4V"/>
                                                     <constraint firstAttribute="trailing" secondItem="Se9-Pm-suD" secondAttribute="trailing" constant="16" id="gSz-ox-IMM"/>
@@ -419,6 +427,7 @@
                     <connections>
                         <outlet property="firstMajorStartTextField" destination="6os-Af-bg4" id="15E-WV-Lfr"/>
                         <outlet property="firstMajorTextField" destination="0Id-FO-cOf" id="agy-fd-Ulh"/>
+                        <outlet property="introTextCountLabel" destination="B1g-tW-kXL" id="nYk-Yb-7Nb"/>
                         <outlet property="introTextView" destination="YSI-fE-HpE" id="yG3-au-E3c"/>
                         <outlet property="isOnQuestionToggleBtn" destination="FcP-rM-8Kp" id="t8z-3e-bCH"/>
                         <outlet property="navView" destination="mwr-Rv-tsA" id="ilw-fz-lmg"/>
@@ -442,6 +451,9 @@
         <image name="toggle_off" width="50" height="28"/>
         <namedColor name="gray0">
             <color red="0.96470588235294119" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="gray2">
+            <color red="0.75294117647058822" green="0.75294117647058822" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="gray3">
             <color red="0.58039215686274515" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

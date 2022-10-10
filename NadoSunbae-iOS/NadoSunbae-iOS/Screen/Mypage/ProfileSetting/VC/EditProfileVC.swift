@@ -56,6 +56,7 @@ class EditProfileVC: BaseVC {
         }
     }
     @IBOutlet weak var introTextView: NadoTextView!
+    @IBOutlet weak var introTextCountLabel: UILabel!
     @IBOutlet weak var firstMajorTextField: NadoTextField!
     @IBOutlet weak var firstMajorStartTextField: NadoTextField!
     @IBOutlet weak var secondMajorTextField: NadoTextField!
@@ -79,6 +80,7 @@ class EditProfileVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTextViewDelegate()
         checkNickNameIsValid()
         hideKeyboardWhenTappedAround()
         setSaveBtn()
@@ -114,6 +116,11 @@ class EditProfileVC: BaseVC {
     
     // MARK: Custom Methods
     
+    /// TextView delegate 설정
+    private func setTextViewDelegate() {
+        introTextView.delegate = self
+    }
+    
     /// 닉네임 유효성 검사
     private func checkNickNameIsValid() {
         nickNameTextField.rx.text
@@ -147,6 +154,14 @@ class EditProfileVC: BaseVC {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    /// 한줄소개 글자수 제한 메서드
+    private func checkIntroText(input: String) {
+        if input.count >= 40 {
+            let index = input.index(input.startIndex, offsetBy: 40)
+            self.introTextView.text = String(input[..<index])
+        }
     }
     
     /// 변경할 profileData 세팅
@@ -187,6 +202,17 @@ extension EditProfileVC {
         secondMajorTextField.text = userInfo.secondMajorName
         secondMajorStartTextField.text = userInfo.secondMajorStart
         checkSecondMajorStatus()
+        
+        introTextView.rx.text.orEmpty
+            .skip(1)
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: {
+                self.checkIntroText(input: $0)
+                if self.introTextView.textColor != .gray2 {
+                    self.introTextCountLabel.text = "\($0.count)/최대 40자"
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func changeLabelColor(isOK: Bool, label: UILabel) {
@@ -222,6 +248,25 @@ extension EditProfileVC {
             }
             
             alert.showNadoAlert(vc: self, message: "내 정보를 수정하시겠습니까?", confirmBtnTitle: "저장", cancelBtnTitle: "아니요")
+        }
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension EditProfileVC: UITextViewDelegate {
+    
+    /// textViewDidBeginEditing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray2 {
+            textView.text = nil
+            textView.textColor = .mainText
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.textColor = .gray2
+            textView.text = "나를 한줄로 소개해보세요."
         }
     }
 }
