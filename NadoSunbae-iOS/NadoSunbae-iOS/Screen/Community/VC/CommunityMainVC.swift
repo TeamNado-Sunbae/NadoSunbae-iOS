@@ -50,6 +50,8 @@ final class CommunityMainVC: BaseVC, View {
         $0.addShadow(offset: CGSize(width: 1, height: 1), color: UIColor(red: 68/255, green: 69/255, blue: 75/255, alpha: 0.2), opacity: 1, radius: 0)
     }
     
+    private let refreshControl = UIRefreshControl()
+    
     var disposeBag = DisposeBag()
     
     // MARK: Life Cycle
@@ -60,6 +62,7 @@ final class CommunityMainVC: BaseVC, View {
         setUpDelegate()
         bindCommunityTV()
         setUpSegmentAction(type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community)
+        setUpCommunitySVRefreshControl()
     }
     
     func bind(reactor: CommunityMainReactor) {
@@ -116,6 +119,13 @@ extension CommunityMainVC {
                 return CommunityMainReactor.Action.filterFilled }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe(onNext: { [weak self] in
+                reactor.action.onNext(.refreshControl(type: PostFilterType(rawValue: self?.communitySegmentedControl.selectedSegmentIndex ?? 0) ?? .community))
+            })
+            .disposed(by: disposeBag)
+                       
     }
     
     // MARK: State
@@ -168,6 +178,13 @@ extension CommunityMainVC {
             .subscribe(onNext: { [weak self] filled in
                 self?.filterBtn.isSelected = filled
             })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.refreshLoading }
+            .distinctUntilChanged()
+            .map { $0 }
+            .bind(to: refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
     }
     
@@ -259,6 +276,12 @@ extension CommunityMainVC {
     /// segment Action을 설정하는 메서드
     private func setUpSegmentAction(type: PostFilterType) {
         reactor?.action.onNext(.reloadCommunityTV(type: type))
+    }
+    
+    /// communityTV의 refreshControl을 등록하는 메서드
+    private func setUpCommunitySVRefreshControl() {
+        refreshControl.endRefreshing()
+        communitySV.refreshControl = refreshControl
     }
 }
 

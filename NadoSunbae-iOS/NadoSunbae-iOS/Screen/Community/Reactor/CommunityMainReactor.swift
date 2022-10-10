@@ -19,6 +19,7 @@ final class CommunityMainReactor: Reactor {
         case reloadCommunityTV(majorID: Int? = 0, type: PostFilterType, sort: String? = "recent", search: String? = "")
         case witeFloatingBtnDidTap
         case filterFilled
+        case refreshControl(majorID: Int? = 0, type: PostFilterType, sort: String? = "recent", search: String? = "")
     }
     
     // MARK: represent state changes
@@ -27,11 +28,13 @@ final class CommunityMainReactor: Reactor {
         case setLoading(loading: Bool)
         case requestCommunityList(communityList: [PostListResModel])
         case setFilterBtnState(selected: Bool)
+        case setRefreshLoading(loading: Bool)
     }
     
     // MARK: represent the current view state
     struct State {
         var loading: Bool = false
+        var refreshLoading: Bool = false
         var communityList: [PostListResModel] = []
         var majorList: [MajorInfoModel] = []
         var filterBtnSelected: Bool = false
@@ -58,6 +61,11 @@ extension CommunityMainReactor {
             return Observable.concat(Observable.just(.setLoading(loading: true)))
         case .filterFilled:
             return Observable.concat(Observable.just(.setFilterBtnState(selected: true)))
+        case .refreshControl(let majorID, let type, let sort, let search):
+            return Observable.concat([
+                Observable.just(.setRefreshLoading(loading: true)),
+                self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
+                ])
         }
     }
     
@@ -74,6 +82,8 @@ extension CommunityMainReactor {
             newState.communityList = communityList
         case .setFilterBtnState(let selected):
             newState.filterBtnSelected = selected
+        case .setRefreshLoading(let loading):
+            newState.refreshLoading = loading
         }
         
         return newState
@@ -89,6 +99,7 @@ extension CommunityMainReactor {
                 case .success(let res):
                     if let data = res as? [PostListResModel] {
                         observer.onNext(Mutation.requestCommunityList(communityList: data))
+                        observer.onNext(Mutation.setRefreshLoading(loading: false))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     }
