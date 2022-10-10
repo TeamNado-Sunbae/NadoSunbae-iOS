@@ -213,11 +213,11 @@ extension CommunityPostDetailVC {
     
     /// 정보글 원글을 수정하기 위해 WriteQuestionVC로 화면전환하는 메서드
     private func presentWriteQuestionVC() {
-        self.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { communityWriteVC in
+        self.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] communityWriteVC in
             communityWriteVC.reactor = CommunityWriteReactor()
             communityWriteVC.isEditState = true
             var categoryIndex: Int = 0
-            switch self.infoDetailData?.post.type {
+            switch self?.infoDetailData?.post.type {
             case "질문":
                 categoryIndex = 1
             case "정보":
@@ -226,9 +226,10 @@ extension CommunityPostDetailVC {
                 categoryIndex = 0
             }
             communityWriteVC.categoryIndex = categoryIndex
-            communityWriteVC.postID = self.postID
-            communityWriteVC.originTitle = self.infoDetailData?.post.title
-            communityWriteVC.originContent = self.infoDetailData?.post.content
+            communityWriteVC.postID = self?.postID
+            communityWriteVC.originTitle = self?.infoDetailData?.post.title
+            communityWriteVC.originContent = self?.infoDetailData?.post.content
+            communityWriteVC.originMajor = self?.infoDetailData?.post.majorName
         }
     }
     
