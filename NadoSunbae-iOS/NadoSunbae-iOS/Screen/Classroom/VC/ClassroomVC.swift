@@ -46,7 +46,6 @@ final class ClassroomVC: BaseVC {
         $0.sizeToFit()
     }
     
-    
     private let reviewSubTitleLabel = UILabel().then {
         $0.text = "후기 작성 시 전체 학과 후기 열람 가능"
         $0.textColor = .reviewSubTitleColor
