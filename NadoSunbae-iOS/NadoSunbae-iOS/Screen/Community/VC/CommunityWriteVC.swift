@@ -51,7 +51,6 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var categoryIndex: Int?
     var originTitle: String?
     var originContent: String?
-    var sendPostTypeDelegate: SendUpdateModalDelegate?
     var originMajor: String?
     
     // MARK: Life Cycle
