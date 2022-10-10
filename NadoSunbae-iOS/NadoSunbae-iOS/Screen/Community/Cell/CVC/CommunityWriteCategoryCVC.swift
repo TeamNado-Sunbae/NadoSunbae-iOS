@@ -58,4 +58,9 @@ extension CommunityWriteCategoryCVC {
     func setData(categoryText: String) {
         categoryLabel.text = categoryText
     }
+    
+    func setSelectedRadioBtnImage(isEdit: Bool) {
+        radioBtn.isSelected = true
+        radioBtn.setImage(UIImage(named: isEdit ? "RadioButtonDark" : "RadioButtonMint"), for: .selected)
+    }
 }
