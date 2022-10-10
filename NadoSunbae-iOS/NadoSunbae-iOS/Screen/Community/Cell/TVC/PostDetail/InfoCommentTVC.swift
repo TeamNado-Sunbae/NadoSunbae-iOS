@@ -26,6 +26,7 @@ class InfoCommentTVC: BaseTVC {
             commentTextView.textColor = .gray4
         }
     }
+    @IBOutlet weak var infoBtn: UIButton!
     @IBOutlet var commentDateLabel: UILabel!
     @IBOutlet var writerImgView: UIImageView!
     
@@ -70,6 +71,11 @@ extension InfoCommentTVC {
         commentTextView.text = model.content
         commentDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
         setLabelSizeToFit()
+    }
+    
+    /// infoBtn을 숨김처리하는 메서드 (isDeleted에 따라)
+    func hideInfoBtn(isDeleted: Bool) {
+        infoBtn.isHidden = isDeleted ? true : false
     }
     
     /// label sizeToFit 일괄 적용 메서드
