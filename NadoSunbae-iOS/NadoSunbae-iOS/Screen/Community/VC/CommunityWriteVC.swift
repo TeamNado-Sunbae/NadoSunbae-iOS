@@ -52,6 +52,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var originTitle: String?
     var originContent: String?
     var originMajor: String?
+    var sendPostTypeDelegate: SendUpdateModalDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
