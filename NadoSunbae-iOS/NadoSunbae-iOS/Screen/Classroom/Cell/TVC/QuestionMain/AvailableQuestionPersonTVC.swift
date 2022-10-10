@@ -23,14 +23,15 @@ final class AvailableQuestionPersonTVC: CodeBaseTVC {
     }
     
     private var majorUserList = MajorUserListDataModel(onQuestionUserList: [
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
-        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1")], offQuestionUserList: [])
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1"),
+//        QuestionUser(userID: 0, profileImageID: 1, isOnQuestion: true, nickname: "지으니", isFirstMajor: true, majorStart: "22-1")
+    ], offQuestionUserList: [])
     
     override func setViews() {
         configureUI()
