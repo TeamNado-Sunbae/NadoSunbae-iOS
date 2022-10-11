@@ -93,22 +93,41 @@ extension BaseVC {
     }
     
     /// 앱 최신 버전 조회 후 alert 띄우는 함수
-    func getLatestVersion() {
+    func getLatestVersion(completion: @escaping () -> ()) {
         getLatestVersion { response in
-            if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
-                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                alert.confirmBtn.press {
-                    if let url = URL(string: "itms-apps://itunes.apple.com/app/1605763068"), UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            alert.view.backgroundColor = .init(white: 1, alpha: 0.5)
+            alert.confirmBtn.press {
+                if let url = URL(string: "itms-apps://itunes.apple.com/app/1605763068"), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
-                alert.showNadoAlert(vc: self, message:
-        """
-        유저들의 의견을 반영하여
-        사용성을 개선했어요.
-        지금 바로 업데이트해보세요!
-        """
-                                    , confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+            }
+            alert.cancelBtn.press {
+                completion()
+            }
+            if env() == .development || env() == .qa {
+                completion()
+            } else {
+                
+                /// 앞자리가 최신 버전과 다르다면 강제 업데이트 알럿
+                if AppVersion.shared.latestVersion.prefix(1) != AppVersion.shared.currentVersion.prefix(1) {
+                    alert.showNadoAlert(vc: self, message:
+            """
+            안정적인 서비스 이용을 위해
+            최신 버전으로 업데이트해주세요.
+            """
+                                        , confirmBtnTitle: "나도선배 앱 업데이트", cancelBtnTitle: "", type: .withSingleBtn)
+                } else if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
+                    alert.showNadoAlert(vc: self, message:
+            """
+            유저들의 의견을 반영하여
+            사용성을 개선했어요.
+            지금 바로 업데이트해보세요!
+            """
+                                        , confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+                } else {
+                    completion()
+                }
             }
         }
     }
