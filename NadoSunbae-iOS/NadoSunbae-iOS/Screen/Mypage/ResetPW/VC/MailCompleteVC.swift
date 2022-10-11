@@ -82,16 +82,9 @@ extension MailCompleteVC {
                 case .success:
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "메일이 재전송되었습니다.")
-                case .requestErr(let res):
-                    if let message = res as? String {
-                        debugPrint(message)
-                        self.activityIndicator.stopAnimating()
-                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                    } else if res is Bool {
-                        self.updateAccessToken { _ in
-                            self.resendEmail(email: email)
-                        }
-                    }
+                case .requestErr:
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 default:
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
@@ -103,16 +96,9 @@ extension MailCompleteVC {
                 case .success:
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "메일이 재전송되었습니다.")
-                case .requestErr(let res):
-                    if let message = res as? String {
-                        debugPrint(message)
-                        self.activityIndicator.stopAnimating()
-                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                    } else if res is Bool {
-                        self.updateAccessToken { _ in
-                            self.resendEmail(email: email)
-                        }
-                    }
+                case .requestErr:
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 default:
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")

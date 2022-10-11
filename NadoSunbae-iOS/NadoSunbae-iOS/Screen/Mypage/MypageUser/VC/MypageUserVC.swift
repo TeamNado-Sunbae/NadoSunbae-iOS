@@ -195,15 +195,9 @@ extension MypageUserVC {
                     self.userInfo = data
                     self.configureUI()
                 }
-            case .requestErr(let res):
-                if let message = res as? String {
-                    debugPrint(message)
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.getUserInfo()
-                    }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
                 }
             default:
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
@@ -232,15 +226,9 @@ extension MypageUserVC {
                         self.sortBtn.setImage(UIImage(named: sort == .recent ? "btnArray" : "property1Variant3"), for: .normal)
                     }
                 }
-            case .requestErr(let res):
-                if let message = res as? String {
-                    debugPrint(message)
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.getUserPersonalQuestionList(sort: sort)
-                    }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
                 }
             default:
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
@@ -265,7 +253,7 @@ extension MypageUserVC {
                 }
             case .requestErr(let res):
                 if let message = res as? String {
-                    debugPrint(message)
+                    print(message)
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
@@ -291,12 +279,13 @@ extension MypageUserVC {
                 }
             case .requestErr(let res):
                 if let message = res as? String {
-                    debugPrint(message)
+                    print(message)
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.requestGetDetailQuestionData(chatPostID: chatPostID)
+                        self.activityIndicator.stopAnimating()
+                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                     }
                 }
             default:

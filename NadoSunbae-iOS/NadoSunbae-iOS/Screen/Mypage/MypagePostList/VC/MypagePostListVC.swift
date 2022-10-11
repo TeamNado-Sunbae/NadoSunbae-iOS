@@ -203,7 +203,7 @@ extension MypagePostListVC {
                 }
             case .requestErr(let res):
                 if let message = res as? String {
-                    debugPrint(message)
+                    print(message)
                     self.activityIndicator.stopAnimating()
                 } else if res is Bool {
                     self.updateAccessToken { _ in
@@ -230,7 +230,7 @@ extension MypagePostListVC {
                 }
             case .requestErr(let res):
                 if let message = res as? String {
-                    debugPrint(message)
+                    print(message)
                     self.activityIndicator.stopAnimating()
                 } else if res is Bool {
                     self.updateAccessToken { _ in
@@ -261,7 +261,7 @@ extension MypagePostListVC {
                 }
             case .requestErr(let res):
                 if let message = res as? String {
-                    debugPrint(message)
+                    print(message)
                     self.activityIndicator.stopAnimating()
                 } else if res is Bool {
                     self.updateAccessToken { _ in
