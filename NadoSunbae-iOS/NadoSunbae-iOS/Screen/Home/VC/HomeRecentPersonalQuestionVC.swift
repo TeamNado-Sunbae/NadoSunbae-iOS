@@ -114,6 +114,16 @@ extension HomeRecentPersonalQuestionVC {
                     self.updateQuestionTVHeight()
                     self.updateQuestionTVHeight()
                 }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    debugPrint(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getRecentPersonalQuestionList()
+                    }
+                }
             default:
                 debugPrint(#function, "network error")
             }
