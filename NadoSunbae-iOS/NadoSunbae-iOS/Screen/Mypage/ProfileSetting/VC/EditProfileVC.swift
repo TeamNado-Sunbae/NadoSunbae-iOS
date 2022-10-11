@@ -73,6 +73,8 @@ class EditProfileVC: BaseVC {
     var userInfo = MypageUserInfoModel()
     var changedInfo = MypageUserInfoModel()
     var profileData = EditProfileRequestModel()
+    var secondMajorList: [MajorInfoModel] = []
+    var isPresentingHalfModal = true
     
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
     var enterBtnTag = 0
@@ -84,6 +86,7 @@ class EditProfileVC: BaseVC {
         checkNickNameIsValid()
         hideKeyboardWhenTappedAround()
         setSaveBtn()
+        requestSecondMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "secondMajor")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +100,14 @@ class EditProfileVC: BaseVC {
         requestCheckNickName(nickName: nickNameTextField.text!)
     }
     
-    @IBAction func tapSelectMajorORStartBtn(_ sender: UIButton) {
+    @IBAction func tapChangeProfileImgBtn(_ sender: UIButton) {
+        presentChangeProfileImgVC()
+    }
+    
+    
+    @IBAction func tapSelectFirstMajorBtn(_ sender: UIButton) {
+        presentHalfModalView(title: "본전공", hasNoMajorOption: false)
+        
         // TODO: SignUpModalVC로 변경
 //        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
 //
@@ -112,6 +122,18 @@ class EditProfileVC: BaseVC {
 //
 //            self.present(slideVC, animated: true, completion: nil)
 //        }
+    }
+    
+    @IBAction func tapSelectFirstMajorStartBtn(_ sender: UIButton) {
+
+    }
+    
+    @IBAction func tapSelectSecondMajorBtn(_ sender: UIButton) {
+        presentHalfModalView(title: "제2전공", hasNoMajorOption: true, isSecondMajorSheet: true)
+    }
+    
+    @IBAction func tapSelectSecondMajorStartBtn(_ sender: UIButton) {
+
     }
     
     // MARK: Custom Methods
@@ -186,6 +208,31 @@ class EditProfileVC: BaseVC {
     /// 제1, 제2전공 중복 선택 검사, 중복되지 않으면 true
     private func checkMajorDuplicate(firstTextField: UITextField, secondTextField: UITextField) -> Bool {
         return !(firstTextField.text == secondTextField.text)
+    }
+    
+    // 프로필 사진 변경 바텀시트를 present하는 메서드
+    private func presentChangeProfileImgVC() {
+        let slideVC = EditProfileImgModalVC()
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.isPresentingHalfModal = false
+        self.present(slideVC, animated: true)
+    }
+    
+    // HalfModalView를 present하는 메서드
+    private func presentHalfModalView(title: String, hasNoMajorOption: Bool, isSecondMajorSheet: Bool = false) {
+        let slideVC = HalfModalVC()
+        slideVC.vcType = .search
+        slideVC.cellType = .star
+        slideVC.setUpTitleLabel(title)
+        slideVC.hasNoMajorOption = hasNoMajorOption
+        slideVC.isSecondMajorSheet = isSecondMajorSheet
+        slideVC.secondMajorList = self.secondMajorList
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        slideVC.selectMajorDelegate = self
+        self.isPresentingHalfModal = true
+        self.present(slideVC, animated: true)
     }
 }
 
@@ -271,7 +318,16 @@ extension EditProfileVC: UITextViewDelegate {
     }
 }
 
-// MARK:- Network
+// MARK: - UIViewControllerTransitioningDelegate
+extension EditProfileVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let halfModalVC = HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
+        halfModalVC.modalHeight = isPresentingHalfModal ? 632 : 449
+        
+        return halfModalVC
+    }
+}
+
 extension EditProfileVC {
     private func getMyInfo() {
         self.activityIndicator.startAnimating()
@@ -326,6 +382,21 @@ extension EditProfileVC {
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 }
+            }
+        }
+    }
+    
+    /// 제2전공 학과 리스트 조회 메서드
+    private func requestSecondMajorList(univID: Int, filterType: String) {
+        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? [MajorInfoModel] {
+                    self.secondMajorList = data
+                }
+            default:
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
