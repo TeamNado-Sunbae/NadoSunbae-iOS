@@ -188,7 +188,7 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="변경"/>
                                                         <connections>
-                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Pfv-eZ-cz0"/>
+                                                            <action selector="tapSelectFirstMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cEz-Ib-WCc"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -228,7 +228,7 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="변경"/>
                                                         <connections>
-                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jba-YD-B0F"/>
+                                                            <action selector="tapSelectFirstMajorStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hBb-dd-rTA"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -268,7 +268,7 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="변경"/>
                                                         <connections>
-                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GkH-hl-vW6"/>
+                                                            <action selector="tapSelectSecondMajorBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XlY-M1-r54"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -308,7 +308,7 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="변경"/>
                                                         <connections>
-                                                            <action selector="tapSelectMajorORStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Vsp-vY-cOr"/>
+                                                            <action selector="tapSelectSecondMajorStartBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hD4-tt-m65"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -347,6 +347,9 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="프로필 사진 변경"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="tapChangeProfileImgBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1NW-ZO-TMg"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 사진 변경" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf4-IR-ZfU">
                                                 <rect key="frame" x="148" y="111" width="79" height="14"/>
