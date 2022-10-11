@@ -122,9 +122,9 @@ class MypagePostListVC: BaseVC {
                 }
             } else {
                 if isPersonalQuestionOrCommunity {
-                    emptyView.setTitleLabel(titleText: "내가 쓴 1:1 질문 답글이 없습니다.")
+                    emptyView.setTitleLabel(titleText: "답글을 작성한 1:1 질문글이 없습니다.")
                 } else {
-                    emptyView.setTitleLabel(titleText: "내가 쓴 커뮤니티 답글이 없습니다.")
+                    emptyView.setTitleLabel(titleText: "답글을 작성한 커뮤니티 글이 없습니다.")
                 }
             }
         } else {
