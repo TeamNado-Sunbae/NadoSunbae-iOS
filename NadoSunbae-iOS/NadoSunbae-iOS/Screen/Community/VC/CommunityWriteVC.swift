@@ -47,7 +47,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var disposeBag = DisposeBag()
     var isEditState: Bool = false
     var postID: Int?
-    var majorID: Int = 128
+    var majorID: Int = MajorInfo.shared.majorList?[0].majorID ?? 0
     var categoryIndex: Int?
     var originTitle: String?
     var originContent: String?
@@ -349,6 +349,6 @@ extension CommunityWriteVC: UIViewControllerTransitioningDelegate {
 extension CommunityWriteVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         majorSelectTextField.text = data as? String
-        majorID = MajorInfo.shared.selectedMajorID ?? 128
+        majorID = MajorInfo.shared.selectedMajorID ?? 0
     }
 }
