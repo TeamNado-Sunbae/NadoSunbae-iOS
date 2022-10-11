@@ -103,8 +103,8 @@ class NadoAlertVC: BaseVC {
                 self.messageLabel.snp.makeConstraints {
                     $0.leading.equalTo(self.containerView.snp.leading).offset(24)
                     $0.trailing.equalTo(self.containerView.snp.trailing).offset(-24)
-                    $0.top.equalTo(self.containerView.snp.top).offset(12)
-                    $0.bottom.equalTo(self.textField.snp.top).offset(-12)
+                    $0.top.equalTo(self.containerView.snp.top).offset(34)
+                    $0.bottom.equalTo(self.textField.snp.top).offset(-23)
                 }
                 self.textField.snp.makeConstraints {
                     $0.leading.equalTo(self.containerView.snp.leading).offset(14)
