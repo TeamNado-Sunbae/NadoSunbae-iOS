@@ -349,22 +349,12 @@ extension HomeVC {
                     }
                     self.backgroundTV.reloadData()
                 }
-            case .requestErr(let res):
-                if let message = res as? String {
-                    debugPrint(message)
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.getRecentCommunityList()
-                    }
-                }
             default:
                 debugPrint(#function, "network error")
             }
         }
     }
-
+    
     /// 학과 리스트 조회 메서드
     private func requestGetMajorList(univID: Int, filterType: String) {
         PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
@@ -373,16 +363,6 @@ extension HomeVC {
             case .success(let res):
                 if let data = res as? [MajorInfoModel] {
                     MajorInfo.shared.majorList = data
-                }
-            case .requestErr(let res):
-                if let message = res as? String {
-                    debugPrint(message)
-                    self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all")
-                    }
                 }
             default:
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
