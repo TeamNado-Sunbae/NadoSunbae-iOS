@@ -10,7 +10,7 @@ import Moya
 
 class SignAPI: BaseAPI {
     static let shared = SignAPI()
-    private var provider = MoyaProvider<SignService>()
+    private var provider = MoyaProvider<SignService>(plugins: [NetworkLoggerPlugin()])
     
     override private init() {}
 }
@@ -59,8 +59,12 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
-                completion(networkResult)
+                if statusCode == 409 {
+                    completion(NetworkResult.requestErr(false))
+                } else {
+                    let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                    completion(networkResult)
+                }
                 
             case .failure(let err):
                 print(err.localizedDescription)
@@ -76,9 +80,12 @@ extension SignAPI {
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
-                completion(networkResult)
-                
+                if statusCode == 409 {
+                    completion(NetworkResult.requestErr(false))
+                } else {
+                    let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                    completion(networkResult)
+                }
             case .failure(let err):
                 print(err.localizedDescription)
             }
