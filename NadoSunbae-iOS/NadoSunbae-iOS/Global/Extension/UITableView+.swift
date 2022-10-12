@@ -24,4 +24,12 @@ extension UITableView {
     func removeSeparatorsOfEmptyCellsAndLastCell() {
         tableFooterView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: 1)))
     }
+    
+    /// tableView의 indexPath가 마지막 셀인지 검사하는 함수
+    func isLast(for indexPath: IndexPath) -> Bool {
+        let indexOfLastSection = numberOfSections > 0 ? numberOfSections - 1 : 0
+        let indexOfLastRowInLastSection = numberOfRows(inSection: indexOfLastSection) - 1
+        
+        return indexPath.section == indexOfLastSection && indexPath.row == indexOfLastRowInLastSection
+    }
 }
