@@ -149,11 +149,11 @@ class MypageLikeListVC: BaseVC {
             emptyView.isHidden = false
             switch likeListType {
             case .review:
-                emptyView.setTitleLabel(titleText: "좋아요한 후기가 없습니다.")
+                emptyView.setTitleLabel(titleText: "좋아요 한 후기글이 없습니다.")
             case .personalQuestion:
-                emptyView.setTitleLabel(titleText: "좋아요한 1:1 질문이 없습니다.")
+                emptyView.setTitleLabel(titleText: "좋아요 한 1:1 질문글이 없습니다.")
             case .community:
-                emptyView.setTitleLabel(titleText: "좋아요한 커뮤니티 글이 없습니다.")
+                emptyView.setTitleLabel(titleText: "좋아요 한 커뮤니티 글이 없습니다.")
             }
         } else {
             emptyView.isHidden = true
