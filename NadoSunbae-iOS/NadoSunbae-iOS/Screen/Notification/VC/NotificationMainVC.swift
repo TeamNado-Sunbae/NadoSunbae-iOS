@@ -86,7 +86,7 @@ extension NotificationMainVC {
             case .requestErr(let res):
                 self.activityIndicator.stopAnimating()
                 if let message = res as? String {
-                    print(message)
+                    debugPrint(message)
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
@@ -115,7 +115,7 @@ extension NotificationMainVC {
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.getNotiList()
+                        self.readNoti(notiID: notiID)
                     }
                 }
             default:
@@ -139,7 +139,7 @@ extension NotificationMainVC {
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.getNotiList()
+                        self.deleteNoti(notiID: notiID)
                     }
                 }
             default:
