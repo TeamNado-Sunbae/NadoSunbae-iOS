@@ -38,7 +38,7 @@ class ReviewMainVC: BaseVC {
     // MARK: Life Cycle Part
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getLatestVersion()
+//        self.getLatestVersion()
         registerTVC()
         setUpTV()
         initImgList()

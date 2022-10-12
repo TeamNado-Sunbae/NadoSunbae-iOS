@@ -25,7 +25,7 @@ extension MypageSettingService: TargetType {
         case .editProfile:
             return "/user/mypage"
         case .getLatestVersion:
-            return "/user/mypage/app-version/recent"
+            return "/app/version/recent"
         case .getBlockList:
             return "/block/list"
         case .requestResetPW:

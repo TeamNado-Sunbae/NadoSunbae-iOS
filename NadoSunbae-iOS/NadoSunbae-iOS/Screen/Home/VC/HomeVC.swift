@@ -28,10 +28,12 @@ final class HomeVC: BaseVC {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        setBackgroundTV()
-        getRecentCommunityList()
-        requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all")
+        getLatestVersion {
+            self.configureUI()
+            self.setBackgroundTV()
+            self.getRecentCommunityList()
+            self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
