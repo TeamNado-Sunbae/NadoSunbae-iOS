@@ -86,7 +86,7 @@ class NadoAlertVC: BaseVC {
                     $0.leading.equalTo(self.containerView.snp.leading).offset(14)
                     $0.trailing.equalTo(self.containerView.snp.trailing).offset(-14)
                     $0.bottom.equalTo(self.containerView.snp.bottom).offset(-14)
-                    $0.height.equalTo(self.containerView.frame.height * 0.3095)
+                    $0.height.equalTo(52)
                 }
             }
         case .withTextField:
@@ -96,27 +96,26 @@ class NadoAlertVC: BaseVC {
                 self.view.addSubview(self.containerView)
                 self.containerView.addSubview(self.textField)
                 self.containerView.snp.makeConstraints {
-                    $0.height.equalTo(self.view.frame.height * 0.258620)
                     $0.width.equalTo(self.view.frame.width * 0.704)
                     $0.center.equalTo(self.view.snp.center)
                 }
                 self.messageLabel.snp.makeConstraints {
                     $0.leading.equalTo(self.containerView.snp.leading).offset(24)
                     $0.trailing.equalTo(self.containerView.snp.trailing).offset(-24)
-                    $0.top.equalTo(self.containerView.snp.top).offset(12)
-                    $0.bottom.equalTo(self.textField.snp.top).offset(-12)
+                    $0.top.equalTo(self.containerView.snp.top).offset(34)
+                    $0.bottom.equalTo(self.textField.snp.top).offset(-23)
                 }
                 self.textField.snp.makeConstraints {
                     $0.leading.equalTo(self.containerView.snp.leading).offset(14)
                     $0.trailing.equalTo(self.containerView.snp.trailing).offset(-14)
                     $0.bottom.equalTo(self.confirmBtn.snp.top).offset(-24)
-                    $0.height.equalTo(48.adjustedH)
+                    $0.height.equalTo(48)
                 }
                 self.cancelBtn.snp.makeConstraints {
                     $0.leading.equalTo(self.containerView.snp.leading).offset(14)
                     $0.trailing.equalTo(self.confirmBtn.snp.leading).offset(-12)
                     $0.bottom.equalTo(self.containerView.snp.bottom).offset(-14)
-                    $0.height.equalTo(52.adjustedH)
+                    $0.height.equalTo(52)
                 }
                 self.confirmBtn.snp.makeConstraints {
                     $0.height.equalTo(self.cancelBtn.snp.height)
