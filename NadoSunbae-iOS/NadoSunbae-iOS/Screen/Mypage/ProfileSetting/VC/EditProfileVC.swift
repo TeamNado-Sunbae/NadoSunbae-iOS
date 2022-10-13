@@ -275,16 +275,17 @@ extension EditProfileVC {
         return !(firstTextField.text == secondTextField.text)
     }
     
-    // 프로필 사진 변경 바텀시트를 present하는 메서드
+    /// 프로필 사진 변경 바텀시트를 present하는 메서드
     private func presentChangeProfileImgVC() {
         let slideVC = EditProfileImgModalVC()
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
+        slideVC.originProfileImgID = userInfo.profileImageID
         self.isPresentingHalfModal = false
         self.present(slideVC, animated: true)
     }
     
-    // HalfModalView를 present하는 메서드
+    /// HalfModalView를 present하는 메서드
     private func presentHalfModalView(title: String, hasNoMajorOption: Bool, isSecondMajorSheet: Bool = false) {
         let slideVC = HalfModalVC()
         slideVC.vcType = .search
