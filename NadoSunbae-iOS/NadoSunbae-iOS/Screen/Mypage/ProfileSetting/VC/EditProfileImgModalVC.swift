@@ -27,29 +27,49 @@ final class EditProfileImgModalVC: BaseVC {
     }
     
     private let completeBtn = NadoSunbaeBtn().then {
-        $0.isActivated = false
         $0.setTitle("선택 완료", for: .normal)
     }
     
     private let profileImgBtn1 = UIButton().then {
-        $0.setImgByName(name: "grayProfileImage1", selectedName: "grayProfileImage1")
+        $0.setImgByName(name: "profileImage5", selectedName: "Frame 920")
     }
     
     private let profileImgBtn2 = UIButton().then {
-        $0.setImgByName(name: "grayProfileImage2", selectedName: "grayProfileImage2")
+        $0.setImgByName(name: "profileImage3", selectedName: "Frame 921")
     }
     
     private let profileImgBtn3 = UIButton().then {
-        $0.setImgByName(name: "grayProfileImage3", selectedName: "grayProfileImage3")
+        $0.setImgByName(name: "profileImage1", selectedName: "Frame 922")
     }
     
     private let profileImgBtn4 = UIButton().then {
-        $0.setImgByName(name: "grayProfileImage4", selectedName: "grayProfileImage4")
+        $0.setImgByName(name: "profileImage4", selectedName: "Frame 923")
     }
     
     private let profileImgBtn5 = UIButton().then {
-        $0.setImgByName(name: "grayProfileImage5", selectedName: "grayProfileImage5")
+        $0.setImgByName(name: "profileImage2", selectedName: "Frame 924")
     }
+    
+    private lazy var checkImgView1 = UIImageView().then {
+        $0.image = UIImage(named: "icon_check_img")
+    }
+    
+    private lazy var checkImgView2 = UIImageView().then {
+        $0.image = UIImage(named: "icon_check_img")
+    }
+    
+    private lazy var checkImgView3 = UIImageView().then {
+        $0.image = UIImage(named: "icon_check_img")
+    }
+    
+    private lazy var checkImgView4 = UIImageView().then {
+        $0.image = UIImage(named: "icon_check_img")
+    }
+    
+    private lazy var checkImgView5 = UIImageView().then {
+        $0.image = UIImage(named: "icon_check_img")
+    }
+    
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -63,7 +83,7 @@ final class EditProfileImgModalVC: BaseVC {
 extension EditProfileImgModalVC {
     private func configureUI() {
         view.backgroundColor = .white
-        view.addSubviews([titleLabel, lineView, cancelBtn, completeBtn, profileImgBtn1, profileImgBtn2, profileImgBtn3, profileImgBtn4, profileImgBtn5])
+        view.addSubviews([titleLabel, lineView, cancelBtn, completeBtn, profileImgBtn1, profileImgBtn2, profileImgBtn3, profileImgBtn4, profileImgBtn5, checkImgView1, checkImgView2, checkImgView3, checkImgView4, checkImgView5])
         
         titleLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(24)
@@ -86,10 +106,22 @@ extension EditProfileImgModalVC {
             $0.width.height.equalTo(72)
         }
         
+        checkImgView2.snp.makeConstraints {
+            $0.centerX.equalTo(profileImgBtn2.snp.centerX)
+            $0.top.equalTo(profileImgBtn2.snp.bottom).offset(-10)
+            $0.width.height.equalTo(20)
+        }
+        
         profileImgBtn1.snp.makeConstraints {
             $0.trailing.equalTo(profileImgBtn2.snp.leading).offset(-16)
             $0.centerY.equalTo(profileImgBtn2.snp.centerY)
             $0.width.height.equalTo(72)
+        }
+        
+        checkImgView1.snp.makeConstraints {
+            $0.centerX.equalTo(profileImgBtn1.snp.centerX)
+            $0.top.equalTo(profileImgBtn1.snp.bottom).offset(-10)
+            $0.width.height.equalTo(20)
         }
         
         profileImgBtn3.snp.makeConstraints {
@@ -98,10 +130,22 @@ extension EditProfileImgModalVC {
             $0.width.height.equalTo(72)
         }
         
+        checkImgView3.snp.makeConstraints {
+            $0.centerX.equalTo(profileImgBtn3.snp.centerX)
+            $0.top.equalTo(profileImgBtn3.snp.bottom).offset(-10)
+            $0.width.height.equalTo(20)
+        }
+        
         profileImgBtn4.snp.makeConstraints {
             $0.top.equalTo(profileImgBtn2.snp.bottom).offset(24)
             $0.trailing.equalTo(view.snp.centerX).offset(-8)
             $0.width.height.equalTo(72)
+        }
+        
+        checkImgView4.snp.makeConstraints {
+            $0.centerX.equalTo(profileImgBtn4.snp.centerX)
+            $0.top.equalTo(profileImgBtn4.snp.bottom).offset(-10)
+            $0.width.height.equalTo(20)
         }
         
         profileImgBtn5.snp.makeConstraints {
@@ -110,12 +154,21 @@ extension EditProfileImgModalVC {
             $0.width.height.equalTo(72)
         }
         
+        checkImgView5.snp.makeConstraints {
+            $0.centerX.equalTo(profileImgBtn5.snp.centerX)
+            $0.top.equalTo(profileImgBtn5.snp.bottom).offset(-10)
+            $0.width.height.equalTo(20)
+        }
+        
         completeBtn.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(32)
             $0.bottom.equalToSuperview().inset(34)
             $0.height.equalTo(60)
         }
-    }
+        
+        [checkImgView1, checkImgView2, checkImgView3, checkImgView4, checkImgView5].forEach {
+            $0.isHidden = true
+        }
 }
 
 // MARK: - Custom Methods
