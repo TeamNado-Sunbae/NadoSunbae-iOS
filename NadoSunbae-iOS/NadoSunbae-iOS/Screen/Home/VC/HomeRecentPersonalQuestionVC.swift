@@ -70,6 +70,7 @@ extension HomeRecentPersonalQuestionVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
         cell.setPostData(data: questionList[indexPath.row])
         cell.layoutSubviews()
+        cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
         return cell
     }
 }

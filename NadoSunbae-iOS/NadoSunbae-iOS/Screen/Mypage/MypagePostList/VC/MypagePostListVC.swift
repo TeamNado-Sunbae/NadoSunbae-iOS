@@ -149,10 +149,12 @@ extension MypagePostListVC: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
                 cell.setPostData(data: personalQuestionData[indexPath.row])
                 cell.layoutSubviews()
+                cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
                 cell.setCommunityData(data: communityData[indexPath.row])
+                cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             }
         } else {
@@ -162,11 +164,13 @@ extension MypagePostListVC: UITableViewDataSource {
                 // TODO: MypageResModel에도 isAuthorized값 넣어달라고 요청하기.
                 cell.setPostData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), isAuthorized: true, commentCount: data.commentCount, like: data.like))
                 cell.layoutSubviews()
+                cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
                 let data = communityDataForAnswer[indexPath.row]
                 cell.setCommunityData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), isAuthorized: true, commentCount: data.commentCount, like: data.like))
+                cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             }
         }
