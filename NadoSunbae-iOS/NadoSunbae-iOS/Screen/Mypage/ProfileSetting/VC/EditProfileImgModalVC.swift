@@ -70,6 +70,9 @@ final class EditProfileImgModalVC: BaseVC {
         $0.image = UIImage(named: "icon_check_img")
     }
     
+    var originProfileImgID = 0
+    var changedProfileImgID = 0
+    var defaultSelectedBtn = UIButton()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -169,6 +172,59 @@ extension EditProfileImgModalVC {
         [checkImgView1, checkImgView2, checkImgView3, checkImgView4, checkImgView5].forEach {
             $0.isHidden = true
         }
+        
+        completeBtn.isActivated = originProfileImgID == changedProfileImgID ? false : true
+    }
+    
+    /// 원래 프로필 이미지 선택되어있도록 하는 메서드
+    private func configureDefaultProfileUI() {
+        
+        switch originProfileImgID {
+        case 1:
+            defaultSelectedBtn = profileImgBtn3
+        case 2:
+            defaultSelectedBtn = profileImgBtn5
+        case 3:
+            defaultSelectedBtn = profileImgBtn2
+        case 4:
+            defaultSelectedBtn = profileImgBtn4
+        case 5:
+            defaultSelectedBtn = profileImgBtn5
+        default:
+            break
+        }
+        
+        switch changedProfileImgID {
+        case 1:
+            profileImgBtn3.isSelected = true
+            checkImgView3.isHidden = false
+        case 2:
+            profileImgBtn5.isSelected = true
+            checkImgView5.isHidden = false
+        case 3:
+            profileImgBtn2.isSelected = true
+            checkImgView2.isHidden = false
+        case 4:
+            profileImgBtn4.isSelected = true
+            checkImgView4.isHidden = false
+        case 5:
+            profileImgBtn1.isSelected = true
+            checkImgView1.isHidden = false
+        default:
+            break
+        }
+    }
+    
+    /// 선택완료 버튼 활성화 조건 설정 메서드
+    private func configureCompleteBtnUI(sender: UIButton) {
+        if sender != defaultSelectedBtn {
+            completeBtn.isActivated = true
+        } else {
+            completeBtn.isActivated = false
+        }
+        
+        selectedImg = sender.image(for: .normal)!
+    }
 }
 
 // MARK: - Custom Methods
