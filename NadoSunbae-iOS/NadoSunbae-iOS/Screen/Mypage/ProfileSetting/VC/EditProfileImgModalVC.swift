@@ -73,12 +73,21 @@ final class EditProfileImgModalVC: BaseVC {
     var originProfileImgID = 0
     var changedProfileImgID = 0
     var defaultSelectedBtn = UIButton()
+    var selectedImg = UIImage()
+    var selectNewProfileDelegate: SendUpdateModalDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureDefaultProfileUI()
         tapCancelBtnAction()
+        tapCompleteBtnAction()
+        tapProfile1BtnAction()
+        tapProfile2BtnAction()
+        tapProfile3BtnAction()
+        tapProfile4BtnAction()
+        tapProfile5BtnAction()
     }
 }
 
@@ -234,6 +243,103 @@ extension EditProfileImgModalVC {
     private func tapCancelBtnAction() {
         cancelBtn.press { [weak self] in
             self?.dismiss(animated: true)
+        }
+    }
+    
+    /// 선택완료 버튼 클릭 시 데이터 전달
+    private func tapCompleteBtnAction() {
+        completeBtn.press { [weak self] in
+            guard let self = self else { return }
+            
+            self.selectNewProfileDelegate?.sendUpdate(data: self.selectedImg)
+            self.dismiss(animated: true, completion: {
+                NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+            })
+        }
+    }
+    
+    /// 프로필이미지버튼1 액션 설정 메서드
+    private func tapProfile1BtnAction() {
+        profileImgBtn1.press { [weak self] in
+            guard let self = self else { return }
+            
+            self.profileImgBtn1.isSelected.toggle()
+            self.checkImgView1.isHidden.toggle()
+            [self.profileImgBtn2, self.profileImgBtn3, self.profileImgBtn4, self.profileImgBtn5].forEach {
+                $0.isSelected = false
+            }
+            [self.checkImgView2, self.checkImgView3, self.checkImgView4, self.checkImgView5].forEach {
+                $0.isHidden = true
+            }
+            self.configureCompleteBtnUI(sender: self.profileImgBtn1)
+        }
+    }
+    
+    /// 프로필이미지버튼2 액션 설정 메서드
+    private func tapProfile2BtnAction() {
+        profileImgBtn2.press { [weak self] in
+            guard let self = self else { return }
+            
+            self.profileImgBtn2.isSelected.toggle()
+            self.checkImgView2.isHidden.toggle()
+            [self.profileImgBtn1, self.profileImgBtn3, self.profileImgBtn4, self.profileImgBtn5].forEach {
+                $0?.isSelected = false
+            }
+            [self.checkImgView1, self.checkImgView3, self.checkImgView4, self.checkImgView5].forEach {
+                $0.isHidden = true
+            }
+            self.configureCompleteBtnUI(sender: self.profileImgBtn2)
+        }
+    }
+    
+    /// 프로필이미지버튼3 액션 설정 메서드
+    private func tapProfile3BtnAction() {
+        profileImgBtn3.press { [weak self] in
+            guard let self = self else { return }
+            
+            self.profileImgBtn3.isSelected.toggle()
+            self.checkImgView3.isHidden.toggle()
+            [self.profileImgBtn1, self.profileImgBtn2, self.profileImgBtn4, self.profileImgBtn5].forEach {
+                $0.isSelected = false
+            }
+            [self.checkImgView1, self.checkImgView2, self.checkImgView4, self.checkImgView5].forEach {
+                $0.isHidden = true
+            }
+            self.configureCompleteBtnUI(sender: self.profileImgBtn3)
+        }
+    }
+    
+    /// 프로필이미지버튼4 액션 설정 메서드
+    private func tapProfile4BtnAction() {
+        profileImgBtn4.press { [weak self] in
+            guard let self = self else { return }
+            
+            self.profileImgBtn4.isSelected.toggle()
+            self.checkImgView4.isHidden.toggle()
+            [self.profileImgBtn1, self.profileImgBtn2, self.profileImgBtn3, self.profileImgBtn5].forEach {
+                $0.isSelected = false
+            }
+            [self.checkImgView1, self.checkImgView2, self.checkImgView3, self.checkImgView5].forEach {
+                $0.isHidden = true
+            }
+            self.configureCompleteBtnUI(sender: self.profileImgBtn4)
+        }
+    }
+    
+    /// 프로필이미지버튼5 액션 설정 메서드
+    private func tapProfile5BtnAction() {
+        profileImgBtn5.press { [weak self] in
+            guard let self = self else { return }
+            
+            self.profileImgBtn5.isSelected.toggle()
+            self.checkImgView5.isHidden.toggle()
+            [self.profileImgBtn1, self.profileImgBtn2, self.profileImgBtn3, self.profileImgBtn4].forEach {
+                $0.isSelected = false
+            }
+            [self.checkImgView1, self.checkImgView2, self.checkImgView3, self.checkImgView4].forEach {
+                $0?.isHidden = true
+            }
+            self.configureCompleteBtnUI(sender: self.profileImgBtn5)
         }
     }
 }

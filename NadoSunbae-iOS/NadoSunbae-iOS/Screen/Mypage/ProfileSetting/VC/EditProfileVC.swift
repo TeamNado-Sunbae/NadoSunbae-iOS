@@ -75,6 +75,7 @@ class EditProfileVC: BaseVC {
     var profileData = EditProfileRequestModel()
     var secondMajorList: [MajorInfoModel] = []
     var isPresentingHalfModal = true
+    var selectedProfileImgID = 0
     
     /// 내가 선택을 위해 '진입하는' 버튼의 태그
     var enterBtnTag = 0
@@ -281,6 +282,8 @@ extension EditProfileVC {
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         slideVC.originProfileImgID = userInfo.profileImageID
+        slideVC.changedProfileImgID = selectedProfileImgID
+        slideVC.selectNewProfileDelegate = self
         self.isPresentingHalfModal = false
         self.present(slideVC, animated: true)
     }
@@ -334,6 +337,25 @@ extension EditProfileVC: UIViewControllerTransitioningDelegate {
 // MARK: - SendUpdateModalDelegate
 extension EditProfileVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
+        if let selectedImg = data as? UIImage {
+            self.profileImgView.image = selectedImg
+            
+            switch selectedImg {
+            case UIImage(named: "profileImage1"):
+                selectedProfileImgID = 1
+            case UIImage(named: "profileImage2"):
+                selectedProfileImgID = 2
+            case UIImage(named: "profileImage3"):
+                selectedProfileImgID = 3
+            case UIImage(named: "profileImage4"):
+                selectedProfileImgID = 4
+            case UIImage(named: "profileImage5"):
+                selectedProfileImgID = 5
+            default:
+                break
+            }
+        }
+            
         switch enterBtnTag {
         case 0:
             if let majorInfoData = data as? MajorInfoModel {
@@ -376,6 +398,7 @@ extension EditProfileVC {
                 if let data = res as? MypageUserInfoModel {
                     self.userInfo = data
                     self.changedInfo = data
+                    self.selectedProfileImgID = data.profileImageID
                     self.configureUI()
                 }
                 self.activityIndicator.stopAnimating()
