@@ -104,6 +104,7 @@
 		33A867BB288B0E9E009BA6DE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BA288B0E9E009BA6DE /* RxCocoa */; };
 		33A867BD288B0E9E009BA6DE /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BC288B0E9E009BA6DE /* RxRelay */; };
 		33A867BF288B0E9E009BA6DE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 33A867BE288B0E9E009BA6DE /* RxSwift */; };
+		33AE9BC928F4309D0081D069 /* NadoSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE9BC828F4309D0081D069 /* NadoSwitch.swift */; };
 		33B9B0D327B8EAC200066C1F /* CommunityPostDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D227B8EAC200066C1F /* CommunityPostDetailVC.swift */; };
 		33B9B0D727B8EB2A00066C1F /* InfoCommentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */; };
 		33B9B0D827B8EB2A00066C1F /* InfoCommentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */; };
@@ -444,6 +445,7 @@
 		33A666A227BB8F3100779351 /* PostLikeResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikeResModel.swift; sourceTree = "<group>"; };
 		33A666A427BB958800779351 /* ReviewImgModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImgModel.swift; sourceTree = "<group>"; };
 		33A86797288B0227009BA6DE /* CommunityMainReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMainReactor.swift; sourceTree = "<group>"; };
+		33AE9BC828F4309D0081D069 /* NadoSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NadoSwitch.swift; sourceTree = "<group>"; };
 		33B9B0D227B8EAC200066C1F /* CommunityPostDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPostDetailVC.swift; sourceTree = "<group>"; };
 		33B9B0D527B8EB2A00066C1F /* InfoCommentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCommentTVC.swift; sourceTree = "<group>"; };
 		33B9B0D627B8EB2A00066C1F /* InfoCommentTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoCommentTVC.xib; sourceTree = "<group>"; };
@@ -1384,6 +1386,7 @@
 				33C79DCA287F350100B6C32C /* NadoSegmentedControl.swift */,
 				C709CB1A28B3C6E700F04335 /* NadoStatusBarView.swift */,
 				C7C7759628EE7A9100F72091 /* NadoEmptyView.swift */,
+				33AE9BC828F4309D0081D069 /* NadoSwitch.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -2349,6 +2352,7 @@
 				5CD42137279080A600D09DEE /* MypageUserVC.swift in Sources */,
 				331C53752795B7830052B309 /* QuestionPersonListVC.swift in Sources */,
 				33DAB83A27914EAD00214CA8 /* WriteQuestionVC.swift in Sources */,
+				33AE9BC928F4309D0081D069 /* NadoSwitch.swift in Sources */,
 				33FA593E288D6B6700BC7C32 /* CommunityWriteVC.swift in Sources */,
 				331364BD27861CD300E0C118 /* UITextView+.swift in Sources */,
 				5C0606AD27C3F662000941DA /* MypageMyReviewModel.swift in Sources */,
