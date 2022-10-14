@@ -18,7 +18,7 @@ struct MypageMyAnswerListModel: Codable {
     // MARK: - PostList
     struct PostList: Codable {
         var id: Int
-        var type: String
+        var type: String?
         var title: String
         var content: String
         var createdAt: String
