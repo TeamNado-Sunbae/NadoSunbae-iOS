@@ -123,4 +123,14 @@ extension UIView {
         let generator = UIImpactFeedbackGenerator(style: degree)
         generator.impactOccurred()
     }
+    
+    /// view의 하단에 white color의 줄을 긋는 함수
+    func addAboveTheBottomBorderWithColor() {
+        DispatchQueue.main.async {
+            let border = CALayer()
+            border.backgroundColor = UIColor.white.cgColor
+            border.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
+            self.layer.addSublayer(border)
+        }
+    }
 }

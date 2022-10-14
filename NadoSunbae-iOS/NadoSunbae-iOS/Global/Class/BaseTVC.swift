@@ -20,6 +20,16 @@ class BaseTVC: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    /// 마지막 셀의 separator를 제거하는 함수, cellForRowAt에서 호출한다.
+    func removeBottomSeparator(isLast: Bool) {
+        if isLast {
+            self.addAboveTheBottomBorderWithColor()
+        } else {
+            if self.layer.sublayers?.last?.bounds.height == 1 {
+                self.layer.sublayers?.last?.removeFromSuperlayer()
+            }
+        }
+    }
 }
 
 // MARK: - TVRegisterable
