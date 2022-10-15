@@ -17,8 +17,6 @@ final class NadoSwitch: UIButton {
     private var barView: UIView!
     private var circleView: UIView!
     
-    // 스위치 isOn 값 변경 시 애니메이션 여부
-    private var isAnimated: Bool = false
     typealias SwitchColor = (bar: UIColor, circle: UIColor)
     
     // barView의 상, 하단 마진 값
@@ -44,16 +42,13 @@ final class NadoSwitch: UIButton {
         }
     }
     
-    var isOn: Bool = false {
-        didSet {
-            self.changeState()
-        }
-    }
+    var isOn: Bool = false
     
     // 스위치가 이동하는 애니메이션 시간
     var animationDuration: TimeInterval = 0.25
     weak var switchDelegate: SwitchButtonDelegate?
     
+    // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.buttonInit(frame: frame)
@@ -87,14 +82,22 @@ extension NadoSwitch {
 // MARK: - Custom Methods
 extension NadoSwitch {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.setOn(on: !self.isOn, animated: true)
+        self.setOn(on: !self.isOn)
+        changeState()
     }
     
-    func setOn(on: Bool, animated: Bool) {
-        self.isAnimated = animated
+    private func setOn(on: Bool) {
         self.isOn = on
     }
     
+    /// switch의 state를 설정하는 메서드
+    private func setSwitchState() {
+        self.circleView.center.x = self.isOn ? self.frame.width - (self.circleView.frame.width / 2) : self.circleView.frame.width / 2
+        self.barView.backgroundColor = self.isOn ? self.onColor.bar : self.offColor.bar
+        self.circleView.backgroundColor = self.isOn ? self.onColor.circle : self.offColor.circle
+    }
+    
+    /// switch의 state가 변화될 때 애니메이션을 그리는 메서드
     private func changeState() {
         var circleCenter: CGFloat = 0
         var barViewColor: UIColor = .clear
@@ -110,20 +113,22 @@ extension NadoSwitch {
             circleViewColor = self.offColor.circle
         }
         
-        let duration = self.isAnimated ? self.animationDuration : 0
-        
-        UIView.animate(withDuration: duration, animations: { [weak self] in
+        UIView.animate(withDuration: self.animationDuration, animations: { [weak self] in
             guard let self = self else { return }
             
             self.circleView.center.x = circleCenter
             self.barView.backgroundColor = barViewColor
             self.circleView.backgroundColor = circleViewColor
-            
-        }) { [weak self] _ in
+        }, completion: { [weak self] _ in
             guard let self = self else { return }
-            
+
             self.switchDelegate?.isOnValueChange(isOn: self.isOn)
-            self.isAnimated = false
-        }
+        })
+    }
+    
+    /// 외부에서 switch의 state를 설정하는 메서드
+    func setUpNadoSwitchState(isOn: Bool) {
+        setOn(on: isOn)
+        setSwitchState()
     }
 }
