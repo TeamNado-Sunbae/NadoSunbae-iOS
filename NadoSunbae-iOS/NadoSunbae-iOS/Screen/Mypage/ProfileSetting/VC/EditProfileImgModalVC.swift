@@ -31,23 +31,28 @@ final class EditProfileImgModalVC: BaseVC {
     }
     
     private let profileImgBtn1 = UIButton().then {
-        $0.setImgByName(name: "profileImage5", selectedName: "Frame 920")
+        $0.setImgByName(name: "grayProfileImage1", selectedName: "Frame 922")
+        $0.tag = 1
     }
     
     private let profileImgBtn2 = UIButton().then {
-        $0.setImgByName(name: "profileImage3", selectedName: "Frame 921")
+        $0.setImgByName(name: "grayProfileImage2", selectedName: "Frame 924")
+        $0.tag = 2
     }
     
     private let profileImgBtn3 = UIButton().then {
-        $0.setImgByName(name: "profileImage1", selectedName: "Frame 922")
+        $0.setImgByName(name: "grayProfileImage3", selectedName: "Frame 921")
+        $0.tag = 3
     }
     
     private let profileImgBtn4 = UIButton().then {
-        $0.setImgByName(name: "profileImage4", selectedName: "Frame 923")
+        $0.setImgByName(name: "grayProfileImage4", selectedName: "Frame 923")
+        $0.tag = 4
     }
     
     private let profileImgBtn5 = UIButton().then {
-        $0.setImgByName(name: "profileImage2", selectedName: "Frame 924")
+        $0.setImgByName(name: "grayProfileImage5", selectedName: "Frame 920")
+        $0.tag = 5
     }
     
     private lazy var checkImgView1 = UIImageView().then {
@@ -73,7 +78,7 @@ final class EditProfileImgModalVC: BaseVC {
     var originProfileImgID = 0
     var changedProfileImgID = 0
     var defaultSelectedBtn = UIButton()
-    var selectedImg = UIImage()
+    var selectedProfileID = 0
     var selectNewProfileDelegate: SendUpdateModalDelegate?
     
     // MARK: Life Cycle
@@ -187,14 +192,13 @@ extension EditProfileImgModalVC {
     
     /// 원래 프로필 이미지 선택되어있도록 하는 메서드
     private func configureDefaultProfileUI() {
-        
         switch originProfileImgID {
         case 1:
-            defaultSelectedBtn = profileImgBtn3
+            defaultSelectedBtn = profileImgBtn1
         case 2:
-            defaultSelectedBtn = profileImgBtn5
-        case 3:
             defaultSelectedBtn = profileImgBtn2
+        case 3:
+            defaultSelectedBtn = profileImgBtn3
         case 4:
             defaultSelectedBtn = profileImgBtn4
         case 5:
@@ -205,20 +209,20 @@ extension EditProfileImgModalVC {
         
         switch changedProfileImgID {
         case 1:
-            profileImgBtn3.isSelected = true
-            checkImgView3.isHidden = false
+            profileImgBtn1.isSelected = true
+            checkImgView1.isHidden = false
         case 2:
-            profileImgBtn5.isSelected = true
-            checkImgView5.isHidden = false
-        case 3:
             profileImgBtn2.isSelected = true
             checkImgView2.isHidden = false
+        case 3:
+            profileImgBtn3.isSelected = true
+            checkImgView3.isHidden = false
         case 4:
             profileImgBtn4.isSelected = true
             checkImgView4.isHidden = false
         case 5:
-            profileImgBtn1.isSelected = true
-            checkImgView1.isHidden = false
+            profileImgBtn5.isSelected = true
+            checkImgView5.isHidden = false
         default:
             break
         }
@@ -226,13 +230,8 @@ extension EditProfileImgModalVC {
     
     /// 선택완료 버튼 활성화 조건 설정 메서드
     private func configureCompleteBtnUI(sender: UIButton) {
-        if sender != defaultSelectedBtn {
-            completeBtn.isActivated = true
-        } else {
-            completeBtn.isActivated = false
-        }
-        
-        selectedImg = sender.image(for: .normal)!
+        completeBtn.isActivated = sender != defaultSelectedBtn
+        selectedProfileID = sender.tag
     }
 }
 
@@ -251,7 +250,7 @@ extension EditProfileImgModalVC {
         completeBtn.press { [weak self] in
             guard let self = self else { return }
             
-            self.selectNewProfileDelegate?.sendUpdate(data: self.selectedImg)
+            self.selectNewProfileDelegate?.sendUpdate(data: self.selectedProfileID)
             self.dismiss(animated: true, completion: {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
             })

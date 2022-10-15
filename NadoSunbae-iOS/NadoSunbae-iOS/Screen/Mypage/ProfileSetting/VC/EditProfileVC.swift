@@ -141,7 +141,7 @@ class EditProfileVC: BaseVC {
     // MARK: - UI
 extension EditProfileVC {
     private func configureUI() {
-        profileImgView.image = UIImage(named: "profileImage\(userInfo.profileImageID)")
+        profileImgView.image = UIImage(named: "grayProfileImage\(userInfo.profileImageID)")
         profileImgChangBtn.makeRounded(cornerRadius: 8)
         nickNameTextField.placeholder = userInfo.nickname
         isOnQuestionToggleBtn.isSelected = userInfo.isOnQuestion
@@ -337,23 +337,9 @@ extension EditProfileVC: UIViewControllerTransitioningDelegate {
 // MARK: - SendUpdateModalDelegate
 extension EditProfileVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
-        if let selectedImg = data as? UIImage {
-            self.profileImgView.image = selectedImg
-            
-            switch selectedImg {
-            case UIImage(named: "profileImage1"):
-                selectedProfileImgID = 1
-            case UIImage(named: "profileImage2"):
-                selectedProfileImgID = 2
-            case UIImage(named: "profileImage3"):
-                selectedProfileImgID = 3
-            case UIImage(named: "profileImage4"):
-                selectedProfileImgID = 4
-            case UIImage(named: "profileImage5"):
-                selectedProfileImgID = 5
-            default:
-                break
-            }
+        if let selectedImgID = data as? Int {
+            self.profileImgView.image = UIImage(named: "grayProfileImage\(selectedImgID)")
+            selectedProfileImgID = selectedImgID
         }
             
         switch enterBtnTag {
