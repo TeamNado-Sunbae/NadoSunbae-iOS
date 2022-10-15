@@ -140,12 +140,15 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
             switch indexPath.section {
             case 0:
                 headerView.headerTitleLabel.text = "질문 가능해요"
+                headerView.configureUI(isQuestion: true)
+                headerView.reviewFilterSwitch.setUpNadoSwitchState(isOn: switchIsOn)
+                headerView.reviewFilterSwitch.switchDelegate = self
                 return headerView
             case 1:
                 headerView.headerTitleLabel.text = "쉬고 있어요"
+                headerView.configureUI(isQuestion: false)
                 return headerView
-            default: headerView.headerTitleLabel.text = "질문 가능해요"
-                return headerView
+            default: return UICollectionReusableView()
             }
         default: return UICollectionViewCell()
         }
@@ -227,5 +230,13 @@ extension QuestionPersonListVC {
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
+    }
+}
+
+// MARK: - SwitchButtonDelegate
+extension QuestionPersonListVC: SwitchButtonDelegate {
+    func isOnValueChange(isOn: Bool) {
+        switchIsOn = isOn
+        getMajorUserList(isExclude: isOn)
     }
 }
