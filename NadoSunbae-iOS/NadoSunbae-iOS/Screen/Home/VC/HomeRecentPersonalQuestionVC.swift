@@ -29,6 +29,7 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
         $0.layer.borderColor = UIColor.gray0.cgColor
         $0.layer.borderWidth = 1
         $0.isScrollEnabled = false
+        $0.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
         $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         $0.separatorColor = .gray0
     }

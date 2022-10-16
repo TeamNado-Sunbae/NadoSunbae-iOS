@@ -29,7 +29,6 @@ class MypagePostListVC: BaseVC {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray0.cgColor
         $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        $0.contentInset = .zero
         $0.separatorColor = .gray0
         $0.isScrollEnabled = false
         $0.estimatedRowHeight = 121
@@ -51,7 +50,6 @@ class MypagePostListVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         makeScreenAnalyticsForMyPostList()
         configureUI()
         setPostListTV()
@@ -96,6 +94,10 @@ class MypagePostListVC: BaseVC {
         } else {
             makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MyAnswerListVC")
         }
+    }
+    
+    private func updateContentInset(insetIsZero: Bool) {
+        postListTV.contentInset = insetIsZero ? UIEdgeInsets.zero : UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -224,6 +226,7 @@ extension MypagePostListVC: SendSegmentStateDelegate {
 // MARK: - Network
 extension MypagePostListVC {
     private func getMypageMyPersonalQuestionList() {
+        self.postListTV.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
         self.activityIndicator.startAnimating()
         self.postListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
         MypageAPI.shared.getMypageMyPostList(postType: MypageMyPostType.personalQuestion, completion: { networkResult in
@@ -232,6 +235,7 @@ extension MypagePostListVC {
                 if let data = res as? MypageMyPostListModel {
                     self.personalQuestionData = data.postList
                     self.activityIndicator.stopAnimating()
+                    self.updateContentInset(insetIsZero: false)
                     self.postListTV.reloadData()
                     self.setEmptyView(data: data.postList)
                 }
@@ -260,6 +264,7 @@ extension MypagePostListVC {
                 if let data = res as? MypageMyPostListModel {
                     self.communityData = data.postList
                     self.activityIndicator.stopAnimating()
+                    self.updateContentInset(insetIsZero: true)
                     self.postListTV.reloadData()
                     self.setEmptyView(data: data.postList)
                 }
@@ -288,8 +293,10 @@ extension MypagePostListVC {
                 if let data = res as? MypageMyAnswerListModel {
                     if self.isPersonalQuestionOrCommunity {
                         self.personalQuestionDataForAnswer = data.postList
+                        self.updateContentInset(insetIsZero: false)
                     } else {
                         self.communityDataForAnswer = data.postList
+                        self.updateContentInset(insetIsZero: true)
                     }
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()
