@@ -44,10 +44,12 @@ extension RecentQuestionTVC {
             .map { $0.questionList }
             .bind(to: recentQuestionTV.rx.items) { tableView, index, item in
                 let indexPath = IndexPath(row: index, section: 0)
-                let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTVC.className, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath)
                 
-                guard let questionCell = cell as? QuestionTVC else { return UITableViewCell() }
-                questionCell.setPostData(data: item)
+                guard let questionCell = cell as? BaseQuestionTVC else { return UITableViewCell() }
+                questionCell.setEssentialCellInfo(data: item)
+                questionCell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
+                
                 return questionCell
             }
             .disposed(by: self.disposeBag)
@@ -94,7 +96,7 @@ extension RecentQuestionTVC {
     
     /// 셀 등록 메서드
     private func registerCell() {
-        recentQuestionTV.register(QuestionTVC.self, forCellReuseIdentifier: QuestionTVC.className)
+        recentQuestionTV.register(BaseQuestionTVC.self, forCellReuseIdentifier: BaseQuestionTVC.className)
     }
 }
 

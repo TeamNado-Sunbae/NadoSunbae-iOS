@@ -113,10 +113,12 @@ extension PersonalQuestionVC: View {
             .map { $0.recentQuestionList }
             .bind(to: recentQuestionTV.rx.items) { tableView, index, item in
                 let indexPath = IndexPath(row: index, section: 0)
-                let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTVC.className, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath)
                 
-                guard let questionCell = cell as? QuestionTVC else { return UITableViewCell() }
-                questionCell.setPostData(data: item)
+                guard let questionCell = cell as? BaseQuestionTVC else { return UITableViewCell() }
+                questionCell.setEssentialCellInfo(data: item)
+                questionCell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
+                
                 return questionCell
             }
             .disposed(by: self.disposeBag)
@@ -214,7 +216,7 @@ extension PersonalQuestionVC {
     private func registerCell() {
         availableQuestionPersonCV.register(AvailableQuestionPersonCVC.self, forCellWithReuseIdentifier: AvailableQuestionPersonCVC.className)
         availableQuestionPersonCV.register(SeeMoreQuestionPersonCVC.self, forCellWithReuseIdentifier: SeeMoreQuestionPersonCVC.className)
-        recentQuestionTV.register(QuestionTVC.self, forCellReuseIdentifier: QuestionTVC.className)
+        recentQuestionTV.register(BaseQuestionTVC.self, forCellReuseIdentifier: BaseQuestionTVC.className)
     }
     
     /// 대리자 위임 메서드
