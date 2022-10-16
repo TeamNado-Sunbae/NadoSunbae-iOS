@@ -268,7 +268,7 @@ extension SignUpModalVC {
                 $0.height.equalTo(60)
             }
             
-        case .search:
+        case .search, .communityFilter:
             titleLabel.snp.makeConstraints {
                 $0.top.leading.equalToSuperview().inset(24)
             }
