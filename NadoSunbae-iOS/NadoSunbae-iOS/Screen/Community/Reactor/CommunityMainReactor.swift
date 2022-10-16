@@ -15,11 +15,10 @@ final class CommunityMainReactor: Reactor {
     // MARK: represent user actions
     enum Action {
         case searchBtnDidTap
-        case filterBtnDidTap
-        case reloadCommunityTV(majorID: Int? = 0, type: PostFilterType, sort: String? = "recent", search: String? = "")
+        case filterFilled(fill: Bool, majorID: Int, type: PostFilterType)
+        case reloadCommunityTV(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
         case witeFloatingBtnDidTap
-        case filterFilled
-        case refreshControl(majorID: Int? = 0, type: PostFilterType, sort: String? = "recent", search: String? = "")
+        case refreshControl(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
     }
     
     // MARK: represent state changes
@@ -28,6 +27,7 @@ final class CommunityMainReactor: Reactor {
         case setLoading(loading: Bool)
         case requestCommunityList(communityList: [PostListResModel])
         case setFilterBtnState(selected: Bool)
+        case setFilterMajorID(majorID: Int)
         case setRefreshLoading(loading: Bool)
     }
     
@@ -38,6 +38,7 @@ final class CommunityMainReactor: Reactor {
         var communityList: [PostListResModel] = []
         var majorList: [MajorInfoModel] = []
         var filterBtnSelected: Bool = false
+        var filterMajorID: Int = MajorIDConstants.allMajorID
     }
 }
 
@@ -50,8 +51,13 @@ extension CommunityMainReactor {
             
         case .searchBtnDidTap:
             return Observable.concat(Observable.just(.setLoading(loading: true)))
-        case .filterBtnDidTap:
-            return Observable.concat(Observable.just(.setLoading(loading: true)))
+        case .filterFilled(let fill, let majorID, let type):
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                Observable.just(.setFilterBtnState(selected: fill)),
+                Observable.just(.setFilterMajorID(majorID: majorID)),
+                self.requestCommunityList(majorID: majorID, type: type, sort: "recent", search: "")
+            ])
         case .reloadCommunityTV(let majorID, let type, let sort, let search):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
@@ -59,13 +65,11 @@ extension CommunityMainReactor {
             ])
         case .witeFloatingBtnDidTap:
             return Observable.concat(Observable.just(.setLoading(loading: true)))
-        case .filterFilled:
-            return Observable.concat(Observable.just(.setFilterBtnState(selected: true)))
         case .refreshControl(let majorID, let type, let sort, let search):
             return Observable.concat([
                 Observable.just(.setRefreshLoading(loading: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
-                ])
+            ])
         }
     }
     
@@ -84,6 +88,8 @@ extension CommunityMainReactor {
             newState.filterBtnSelected = selected
         case .setRefreshLoading(let loading):
             newState.refreshLoading = loading
+        case .setFilterMajorID(let majorID):
+            newState.filterMajorID = majorID
         }
         
         return newState
