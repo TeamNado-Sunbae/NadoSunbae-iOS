@@ -82,13 +82,13 @@ extension CommunityMainVC {
                 
                 switch selectIndex {
                 case 1:
-                    return CommunityMainReactor.Action.reloadCommunityTV(type: .general)
+                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .general)
                 case 2:
-                    return CommunityMainReactor.Action.reloadCommunityTV(type: .questionToEveryone)
+                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .questionToEveryone)
                 case 3:
-                    return CommunityMainReactor.Action.reloadCommunityTV(type: .information)
+                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .information)
                 default:
-                    return CommunityMainReactor.Action.reloadCommunityTV(type: .community)
+                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .community)
                 }
             }
             .bind(to: reactor.action)
@@ -114,18 +114,18 @@ extension CommunityMainVC {
             .disposed(by: disposeBag)
         
         filterBtn.rx.tap
-            .map {
-                print("학과 버튼 클릭")
-                return CommunityMainReactor.Action.filterFilled }
-            .bind(to: reactor.action)
+            .subscribe(onNext: { [weak self] in
+                self?.presentHalfModalView()
+            })
             .disposed(by: disposeBag)
         
         refreshControl.rx.controlEvent(.valueChanged)
             .subscribe(onNext: { [weak self] in
-                reactor.action.onNext(.refreshControl(type: PostFilterType(rawValue: self?.communitySegmentedControl.selectedSegmentIndex ?? 0) ?? .community))
+                guard let self = self else { return }
+                reactor.action.onNext(.refreshControl(majorID: reactor.currentState.filterMajorID, type: PostFilterType(rawValue: self.communitySegmentedControl.selectedSegmentIndex) ?? .community))
             })
             .disposed(by: disposeBag)
-                       
+        
     }
     
     // MARK: State
@@ -138,7 +138,7 @@ extension CommunityMainVC {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
                 
                 guard let communityCell = cell as? CommunityTVC else { return UITableViewCell() }
-                communityCell.setCommunityData(data: item)
+                communityCell.setEssentialCommunityCellInfo(data: item)
                 
                 return communityCell
             }
@@ -283,6 +283,18 @@ extension CommunityMainVC {
         refreshControl.endRefreshing()
         communitySV.refreshControl = refreshControl
     }
+    
+    // HalfModalView를 present하는 메서드
+    private func presentHalfModalView() {
+        let slideVC = HalfModalVC()
+        slideVC.vcType = .communityFilter
+        slideVC.cellType = .star
+        slideVC.setUpTitleLabel("특정학과 글 불러오기")
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        slideVC.selectCommunityFilterDelegate = self
+        self.present(slideVC, animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -299,11 +311,27 @@ extension CommunityMainVC: UITableViewDelegate {
     }
 }
 
-// MARK: - SendUpdateModalDelegate
-extension CommunityMainVC: SendUpdateModalDelegate {
-    func sendUpdate(data: Any) {
-        let postFilterType = data as? PostFilterType
-        communitySegmentedControl.selectedSegmentIndex = postFilterType?.rawValue ?? 0
-        setUpSegmentAction(type: postFilterType ?? .community)
+// MARK: - UIViewControllerTransitioningDelegate
+extension CommunityMainVC: UIViewControllerTransitioningDelegate {
+    
+    /// presentationController - forPresented
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+// MARK: - SendPostTypeDelegate
+extension CommunityMainVC: SendPostTypeDelegate {
+    func sendPostType(postType: PostFilterType) {
+        let postFilterType = postType
+        communitySegmentedControl.selectedSegmentIndex = postFilterType.rawValue
+        setUpSegmentAction(type: postFilterType)
+    }
+}
+
+// MARK: - SendCommunityFilterInfoDelegate
+extension CommunityMainVC: SendCommunityFilterInfoDelegate {
+    func sendCommunityFilterInfo(majorID: Int, majorName: String) {
+        reactor?.action.onNext(.filterFilled(fill: majorName == "" ? false : true, majorID: majorID, type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community))
     }
 }
