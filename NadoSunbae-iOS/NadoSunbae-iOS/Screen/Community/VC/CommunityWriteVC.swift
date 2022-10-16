@@ -9,6 +9,10 @@ import UIKit
 import ReactorKit
 import RxCocoa
 
+protocol SendPostTypeDelegate {
+    func sendPostType(postType: PostFilterType)
+}
+
 final class CommunityWriteVC: BaseWritePostVC, View {
     
     // MARK: Components
@@ -52,7 +56,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var originTitle: String?
     var originContent: String?
     var originMajor: String?
-    var sendPostTypeDelegate: SendUpdateModalDelegate?
+    var sendPostTypeDelegate: SendPostTypeDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -209,7 +213,7 @@ extension CommunityWriteVC {
             .subscribe(onNext: { [weak self] success in
                 if success {
                     self?.dismiss(animated: true, completion: {
-                        self?.sendPostTypeDelegate?.sendUpdate(data: (self?.selectedCategory ?? .community) as PostFilterType)
+                        self?.sendPostTypeDelegate?.sendPostType(postType: self?.selectedCategory ?? .community)
                     })
                 }
             })
