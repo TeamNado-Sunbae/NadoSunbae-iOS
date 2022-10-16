@@ -289,10 +289,10 @@ extension HalfModalVC: UITableViewDelegate {
         case .basic, .search:
             return indexPath
         case .communityFilter:
-            let cell = tableView.cellForRow(at: indexPath)
+            guard let cellIndexPath = tableView.cellForRow(at: indexPath) else { return IndexPath(row: 0, section: 0) }
             
             // 이미 선택된 셀을 다시 선택할 경우
-            if cell?.isSelected == true {
+            if cellIndexPath.isSelected {
                 // 선택 해제
                 tableView.deselectRow(at: indexPath, animated: true)
                 return nil
