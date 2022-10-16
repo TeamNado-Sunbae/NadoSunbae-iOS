@@ -810,6 +810,7 @@
 		331364422785A4BA00E0C118 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				33CBEC1A28FC72F2002D0C84 /* MajorIDConstants.swift */,
 				331364932785D78F00E0C118 /* Identifiers.swift */,
 				33CF636B279567AF00E92C04 /* QuestionType.swift */,
 				5C32801E27973E1A00781EBE /* ListSortType.swift */,
