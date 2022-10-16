@@ -35,7 +35,7 @@ class BaseQuestionTVC: BaseTVC {
         $0.sizeToFit()
     }
     
-    private let commentImgView = UIImageView().then {
+    let commentImgView = UIImageView().then {
         $0.image = UIImage(named: "icComment")
         $0.contentMode = .scaleAspectFill
     }
@@ -60,7 +60,6 @@ class BaseQuestionTVC: BaseTVC {
     // MARK: init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureUI()
         selectionStyle = .none
     }
     
@@ -72,13 +71,12 @@ class BaseQuestionTVC: BaseTVC {
 
 // MARK: - UI
 extension BaseQuestionTVC {
-    
-    @objc
-    func configureUI() {
+    private func configureUI() {
         contentView.addSubviews([questionTitleLabel, questionContentLabel, nicknameLabel, questionTimeLabel, commentImgView, commentCountLabel, likeImgView, likeCountLabel])
         
         questionTitleLabel.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(12)
+            $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
         }
         
@@ -92,7 +90,7 @@ extension BaseQuestionTVC {
         nicknameLabel.snp.makeConstraints {
             $0.top.equalTo(questionContentLabel.snp.bottom).offset(8)
             $0.leading.equalToSuperview().offset(16)
-            $0.bottom.equalToSuperview().offset(-18)
+            $0.bottom.equalToSuperview().offset(-19)
         }
         
         questionTimeLabel.snp.makeConstraints {
@@ -126,8 +124,7 @@ extension BaseQuestionTVC {
 
 // MARK: - Custom Methods
 extension BaseQuestionTVC {
-    // TODO: 날잡고 Issue 파서 PostListResModel로 바꿀 예정 (얽혀있는 VC들이 많아서 다음에 작업단위 나눠서 처리할게요-!)
-    func setData(data: ClassroomPostList) {
+    private func setPostData(data: PostListResModel) {
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.writer.nickname
@@ -137,17 +134,7 @@ extension BaseQuestionTVC {
         likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
     }
     
-    func setPostData(data: PostListResModel) {
-        questionTitleLabel.text = data.title
-        questionContentLabel.text = data.content
-        nicknameLabel.text = data.writer.nickname
-        questionTimeLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
-        commentCountLabel.text = "\(data.commentCount)"
-        likeCountLabel.text = "\(data.like.likeCount)"
-        likeImgView.image = data.like.isLiked ? UIImage(named: "heart_filled") : UIImage(named: "btn_heart")
-    }
-    
-    func setMypageLikeData(data: MypageLikeQuestionToPersonListModel.LikeList) {
+    private func setMypageLikeData(data: MypageLikeQuestionToPersonListModel.LikeList) {
         questionTitleLabel.text = data.title
         questionContentLabel.text = data.content
         nicknameLabel.text = data.writer.nickname
@@ -158,3 +145,18 @@ extension BaseQuestionTVC {
     }
 }
 
+// MARK: - Public Methods
+extension BaseQuestionTVC {
+    
+    /// Cell의 필수 구성요소를 설정하는 메서드
+    func setEssentialCellInfo(data: PostListResModel) {
+        configureUI()
+        setPostData(data: data)
+    }
+    
+    /// 마이페이지 좋아요 관련 Cell의 필수 구성요소를 설정하는 메서드
+    func setEssentialMypageLikeCellInfo(data: MypageLikeQuestionToPersonListModel.LikeList) {
+        configureUI()
+        setMypageLikeData(data: data)
+    }
+}
