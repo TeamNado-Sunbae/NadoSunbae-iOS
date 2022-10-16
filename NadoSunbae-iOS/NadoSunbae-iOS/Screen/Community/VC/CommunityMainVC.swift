@@ -51,6 +51,11 @@ final class CommunityMainVC: BaseVC, View {
     }
     
     private let refreshControl = UIRefreshControl()
+    private let contentEmptyLabel = UILabel().then {
+        $0.text = "등록된 게시글이 없습니다."
+        $0.textColor = UIColor.gray3
+        $0.font = .PretendardR(size: 14.0)
+    }
     
     var disposeBag = DisposeBag()
     
@@ -164,9 +169,11 @@ extension CommunityMainVC {
                 self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
                 if loading {
                     self?.activityIndicator.startAnimating()
+                    self?.setEmptyLabelIsHidden(isHidden: true)
                 } else {
                     self?.activityIndicator.stopAnimating()
                     self?.communitySV.contentOffset.y = 0
+                    self?.setEmptyLabelIsHidden(isHidden: reactor.currentState.communityList.isEmpty ? false : true)
                 }
             })
             .disposed(by: disposeBag)
@@ -205,7 +212,7 @@ extension CommunityMainVC {
 extension CommunityMainVC {
     private func configureUI() {
         view.backgroundColor = .paleGray
-        view.addSubviews([naviView, topStickyBar, communitySV, writeFloatingBtn])
+        view.addSubviews([naviView, topStickyBar, communitySV, contentEmptyLabel, writeFloatingBtn])
         topStickyBar.addSubviews([communitySegmentedControl, filterBtn])
         communitySV.addSubview(contentView)
         contentView.addSubview(communityTV)
@@ -251,11 +258,20 @@ extension CommunityMainVC {
             $0.width.equalTo(48)
         }
         
+        contentEmptyLabel.snp.makeConstraints {
+            $0.centerX.equalTo(communitySV)
+            $0.centerY.equalToSuperview()
+        }
+        
         communityTV.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.bottom.equalToSuperview().offset(-16)
         }
+    }
+    
+    private func setEmptyLabelIsHidden(isHidden: Bool) {
+        contentEmptyLabel.isHidden = isHidden
     }
 }
 
