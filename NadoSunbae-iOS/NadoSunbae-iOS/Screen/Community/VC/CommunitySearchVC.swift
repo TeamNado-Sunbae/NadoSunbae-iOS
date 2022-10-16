@@ -92,7 +92,7 @@ extension CommunitySearchVC {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath)
                 
                 guard let communityCell = cell as? CommunityTVC else { return UITableViewCell() }
-                communityCell.setCommunityData(data: item)
+                communityCell.setEssentialCommunityCellInfo(data: item)
                 
                 return communityCell
             }
