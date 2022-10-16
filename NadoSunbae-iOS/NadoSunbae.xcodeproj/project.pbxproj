@@ -1839,6 +1839,7 @@
 		77AEEB1D2788B4670016880B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				33CBEC1C28FC7384002D0C84 /* SendCommunityFilterInfoDelegate.swift */,
 				33CF635327945C1200E92C04 /* SendSegmentStateDelegate.swift */,
 				77ED045227AEBDAF00D077CA /* SendUpdateStatusDelegate.swift */,
 				77AEEB4C2789AF900016880B /* CVRegisterable.swift */,
