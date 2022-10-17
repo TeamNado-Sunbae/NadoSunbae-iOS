@@ -1,35 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pretendard-Regular.otf">
+            <string>Pretendard-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QuestionPeopleHeaderView" id="lKY-sB-cPj" customClass="QuestionPeopleHeaderView" customModule="NadoSunbae_iOS" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QuestionPeopleHeaderView" id="lKY-sB-cPj" customClass="QuestionPeopleHeaderView" customModule="NadoSunbae" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdd-cs-kdz">
-                    <rect key="frame" x="0.0" y="0.0" width="42" height="50"/>
+                    <rect key="frame" x="25" y="16" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5U-S7-BSh" customClass="NadoSwitch" customModule="NadoSunbae" customModuleProvider="target">
+                    <rect key="frame" x="361" y="16.5" width="34" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="0ey-ev-vYe"/>
+                        <constraint firstAttribute="width" constant="34" id="UcN-Nh-JVm"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title=""/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후기 작성한 선배만 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGW-dJ-cAE">
+                    <rect key="frame" x="240" y="19" width="113" height="15"/>
+                    <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
+                    <color key="textColor" name="mainDefault"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Tbg-y0-bJZ"/>
             <constraints>
-                <constraint firstItem="Tbg-y0-bJZ" firstAttribute="bottom" secondItem="Qdd-cs-kdz" secondAttribute="bottom" id="ep8-xb-5lN"/>
-                <constraint firstItem="Qdd-cs-kdz" firstAttribute="leading" secondItem="lKY-sB-cPj" secondAttribute="leading" id="hBN-jM-9Ah"/>
-                <constraint firstItem="Qdd-cs-kdz" firstAttribute="top" secondItem="lKY-sB-cPj" secondAttribute="top" id="r3J-M0-QCG"/>
+                <constraint firstItem="T5U-S7-BSh" firstAttribute="centerY" secondItem="Qdd-cs-kdz" secondAttribute="centerY" id="cNE-uP-VhJ"/>
+                <constraint firstAttribute="trailing" secondItem="T5U-S7-BSh" secondAttribute="trailing" constant="19" id="d2I-qj-Vge"/>
+                <constraint firstItem="Qdd-cs-kdz" firstAttribute="leading" secondItem="lKY-sB-cPj" secondAttribute="leading" constant="25" id="hBN-jM-9Ah"/>
+                <constraint firstItem="T5U-S7-BSh" firstAttribute="leading" secondItem="hGW-dJ-cAE" secondAttribute="trailing" constant="8" id="i1z-K8-OTY"/>
+                <constraint firstItem="hGW-dJ-cAE" firstAttribute="centerY" secondItem="T5U-S7-BSh" secondAttribute="centerY" id="lfl-BF-TEM"/>
+                <constraint firstItem="Qdd-cs-kdz" firstAttribute="top" secondItem="lKY-sB-cPj" secondAttribute="top" constant="16" id="r3J-M0-QCG"/>
             </constraints>
             <connections>
+                <outlet property="headerSubLabel" destination="hGW-dJ-cAE" id="kSv-XE-hDJ"/>
                 <outlet property="headerTitleLabel" destination="Qdd-cs-kdz" id="fcb-oB-TtH"/>
+                <outlet property="reviewFilterSwitch" destination="T5U-S7-BSh" id="x5V-GO-GSa"/>
             </connections>
-            <point key="canvasLocation" x="-222" y="125"/>
+            <point key="canvasLocation" x="-223.18840579710147" y="124.55357142857142"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <namedColor name="mainDefault">
+            <color red="0.0" green="0.78431372549019607" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

@@ -73,7 +73,7 @@ extension ClassroomService: TargetType {
             let excludeValue = isExclude ? "noReview" : ""
             let body = [
                 "majorId": majorID,
-                "exclude:": excludeValue] as [String : Any]
+                "exclude": excludeValue] as [String : Any]
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         case .postClassroomContent(let majorID, let answerID, let postTypeID, let title, let content):
             let body: [String: Any] = [

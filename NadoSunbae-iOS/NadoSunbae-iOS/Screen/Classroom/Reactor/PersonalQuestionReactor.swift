@@ -107,7 +107,7 @@ extension PersonalQuestionReactor {
     private func requestSeniorList() -> Observable<Mutation> {
         return Observable.create { observer in
             let majorID = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID)
-            ClassroomAPI.shared.getMajorUserListAPI(majorID: majorID, isExclude: true) { networkResult in
+            ClassroomAPI.shared.getMajorUserListAPI(majorID: majorID, isExclude: false) { networkResult in
                 switch networkResult {
                 case .success(let res):
                     if let data = res as? MajorUserListDataModel {
