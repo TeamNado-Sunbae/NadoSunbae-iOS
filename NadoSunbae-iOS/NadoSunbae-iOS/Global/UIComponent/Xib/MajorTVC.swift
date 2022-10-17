@@ -124,7 +124,7 @@ extension MajorTVC {
     /// Label에 학과 이름 setting하는 함수
     func setData(majorName: MajorInfoModel) {
         majorNameLabel.text = majorName.majorName
-        starBtn.isHidden = majorName.majorName == "학과 무관" ? true : false
+        starBtn.isHidden = majorName.majorName == "학과 무관" || majorName.majorName == "미진입" ? true : false
     }
     
     func setMajorNameLabel(data: String) {

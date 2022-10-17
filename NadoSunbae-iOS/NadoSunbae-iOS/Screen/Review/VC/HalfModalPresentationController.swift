@@ -12,6 +12,7 @@ class HalfModalPresentationController: UIPresentationController {
     // MARK: Properties
     let backView = UIView()
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
+    var modalHeight: CGFloat = 632
     
     /// 뒷 배경 블랙 블러 처리
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
@@ -25,9 +26,9 @@ class HalfModalPresentationController: UIPresentationController {
     
     /// 보여질 하프 모달 뷰 프레임 설정(높이 180 ~ 632 슬라이드, 보여지는 높이는 632)
     override var frameOfPresentedViewInContainerView: CGRect {
-        CGRect(origin: CGPoint(x: 0, y: self.containerView!.frame.height * 180/812),
+        CGRect(origin: CGPoint(x: 0, y: self.containerView!.frame.height * (812 - modalHeight)/812),
                size: CGSize(width: self.containerView!.frame.width, height: self.containerView!.frame.height *
-                            632/812))
+                            modalHeight/812))
     }
     
     /// present 시작할 때
