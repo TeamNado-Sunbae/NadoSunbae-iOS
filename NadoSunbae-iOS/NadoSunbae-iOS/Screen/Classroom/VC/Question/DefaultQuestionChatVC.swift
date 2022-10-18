@@ -472,8 +472,7 @@ extension DefaultQuestionChatVC {
         questionCell.dynamicUpdateDelegate = self
         
         questionCell.tapLikeBtnAction = { [weak self] in
-            // ✅ TODO: 좋아요 API 변경 후 작업
-            //            requestPostClassroomLikeData(postID: postID ?? 0, postTypeID: self.questionType ?? .personal)
+            self?.requestPostLikeData(postID: self?.postID ?? 0, postType: .post)
         }
         
         questionCell.tapNicknameBtnAction = { [weak self] in
@@ -544,12 +543,12 @@ extension DefaultQuestionChatVC {
     private func configureDeletedQuestionCell(_ indexPath: IndexPath, _ questionCell: ClassroomQuestionTVC) {
         if indexPath.section == 1 {
             if commentData[indexPath.row].isDeleted {
-                    [questionCell.titleLabelTopConstraint, questionCell.contentTextViewTopConstriaint].forEach {
-                        $0?.constant = 0
-                    }
-                    [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
-                        $0?.isHidden = true
-                    }
+                [questionCell.titleLabelTopConstraint, questionCell.contentTextViewTopConstriaint].forEach {
+                    $0?.constant = 0
+                }
+                [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
+                    $0?.isHidden = true
+                }
             } else {
                 questionCell.contentTextViewTopConstriaint.constant = 24
                 [questionCell.majorLabel, questionCell.nicknameLabel, questionCell.moreBtn, questionCell.uploadDateLabel].forEach {
@@ -883,32 +882,31 @@ extension DefaultQuestionChatVC {
     }
     
     /// 전체 질문, 정보글 전체 목록에서 좋아요 API 요청 메서드
-    // TODO: 좋아요 API 다시 연결하기
-    //    private func requestPostClassroomLikeData(postID: Int, postTypeID: QuestionType) {
-    //        self.activityIndicator.startAnimating()
-    //        ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
-    //            switch networkResult {
-    //            case .success(let res):
-    //                if let _ = res as? PostLikeResModel {
-    //                    self.requestGetDetailQuestionData(postID: self.postID ?? 0)
-    //                    self.activityIndicator.stopAnimating()
-    //                }
-    //            case .requestErr(let res):
-    //                if let message = res as? String {
-    //                    print(message)
-    //                    self.activityIndicator.stopAnimating()
-    //                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-    //                } else if res is Bool {
-    //                    self.updateAccessToken { _ in
-    //                        self.requestPostClassroomLikeData(postID: self.postID ?? 0, postTypeID: self.questionType ?? .personal)
-    //                    }
-    //                }
-    //            default:
-    //                self.activityIndicator.stopAnimating()
-    //                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-    //            }
-    //        }
-    //    }
+    private func requestPostLikeData(postID: Int, postType: RequestLikePostType) {
+        self.activityIndicator.startAnimating()
+        PublicAPI.shared.postLikeAPI(postID: postID, postType: .post) { networkResult in
+            switch networkResult {
+            case .success(let res):
+                if let _ = res as? PostLikeResModel {
+                    self.requestGetDetailQuestionData(postID: self.postID ?? 0)
+                    self.activityIndicator.stopAnimating()
+                }
+            case .requestErr(let res):
+                if let message = res as? String {
+                    print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestPostLikeData(postID: self.postID ?? 0, postType: .post)
+                    }
+                }
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+            }
+        }
+    }
     
     /// 답변 수정 API 요청 메서드
     private func requestEditPostComment(commentID: Int, content: String) {
