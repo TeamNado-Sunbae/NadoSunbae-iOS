@@ -13,7 +13,7 @@ struct PostLikeResModel: Codable {
     let isLiked: Bool
 
     enum CodingKeys: String, CodingKey {
-        case postID = "postId"
+        case postID = "targetId"
         case isLiked
     }
 }
