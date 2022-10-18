@@ -51,7 +51,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var disposeBag = DisposeBag()
     var isEditState: Bool = false
     var postID: Int?
-    var majorID: Int = MajorIDConstants.regardlessMajorID
+    var majorID: Int?
     var categoryIndex: Int?
     var originTitle: String?
     var originContent: String?
@@ -166,7 +166,7 @@ extension CommunityWriteVC {
                 return CommunityWriteReactor.Action.tapQuestionEditBtn(postID: self.postID ?? 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ??
                 "")
             } else {
-                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: self.majorID, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
+                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: self.majorID ?? MajorIDConstants.regardlessMajorID, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
             }
         }
         .bind(to: reactor.action)
@@ -293,7 +293,7 @@ extension CommunityWriteVC {
         slideVC.setUpTitleLabel("글을 올릴 학과를 선택해보세요.")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
-        slideVC.selectMajorDelegate = self
+        slideVC.selectCommunityDelegate = self
         self.present(slideVC, animated: true)
     }
 }
@@ -361,10 +361,10 @@ extension CommunityWriteVC: UIViewControllerTransitioningDelegate {
     }
 }
 
-// MARK: - SendUpdateModalDelegate
-extension CommunityWriteVC: SendUpdateModalDelegate {
-    func sendUpdate(data: Any) {
-        majorSelectTextField.text = data as? String
-        majorID = MajorInfo.shared.selectedMajorID ?? MajorIDConstants.regardlessMajorID
+// MARK: - SendCommunityInfoDelegate
+extension CommunityWriteVC: SendCommunityInfoDelegate {
+    func sendCommunityInfo(majorID: Int, majorName: String) {
+        self.majorSelectTextField.text = majorName
+        self.majorID = majorID
     }
 }

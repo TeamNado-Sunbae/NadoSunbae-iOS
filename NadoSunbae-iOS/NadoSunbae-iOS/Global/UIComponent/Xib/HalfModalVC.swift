@@ -57,7 +57,7 @@ class HalfModalVC: UIViewController {
     var snapshot: NSDiffableDataSourceSnapshot<Section, MajorInfoModel>!
     var selectMajorDelegate: SendUpdateModalDelegate?
     var selectFilterDelegate: SendUpdateStatusDelegate?
-    var selectCommunityFilterDelegate: SendCommunityFilterInfoDelegate?
+    var selectCommunityDelegate: SendCommunityInfoDelegate?
     var vcType: ModalType = .basic
     var cellType: MajorCellType = .basic
     var hasNoMajorOption: Bool = true
@@ -218,10 +218,10 @@ extension HalfModalVC {
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
             
-            // communityFilterDelegate일 때
-            if let selectCommunityFilterDelegate = self.selectCommunityFilterDelegate {
+            // communityDelegate일 때
+            if let selectCommunityDelegate = self.selectCommunityDelegate {
                 // 선택된 값이 없을 때에는 majorID: 0 (전체), majorName: "" 으로 전달
-                selectCommunityFilterDelegate.sendCommunityFilterInfo(majorID: selectedMajorID, majorName: selectedMajorName)
+                selectCommunityDelegate.sendCommunityInfo(majorID: selectedMajorID, majorName: selectedMajorName)
             }
             
             if self.selectFilterDelegate != nil {
