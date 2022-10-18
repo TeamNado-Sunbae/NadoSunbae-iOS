@@ -140,6 +140,24 @@ class PublicAPI: BaseAPI {
         }
     }
     
+    /// [POST] 후기글, 1:1 질문글, 커뮤니티글에 좋아요/좋아요취소 요청하는 API 메서드
+    func postLikeAPI(postID: Int, postType: RequestLikePostType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.likePost(postID: postID, postType: postType)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, PostLikeResModel.self)
+
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     /// [PUT] 게시글 수정 API 메서드
     func editPostAPI(postID: Int, title: String, content: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         publicProvider.request(.editPost(postID: postID, title: title, content: content)) { result in

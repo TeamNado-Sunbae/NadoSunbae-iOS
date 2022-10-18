@@ -103,24 +103,6 @@ class ClassroomAPI: BaseAPI {
         }
     }
     
-    /// [POST] 1:1질문, 전체 질문, 정보글에 좋아요 다는 API 메서드
-    func postClassroomLikeAPI(postID: Int, postTypeID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.likePost(postID: postID, postTypeID: postTypeID)) { result in
-            switch result {
-                
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, PostLikeResModel.self)
-
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
     /// [DELETE] 1:1질문, 전체 질문, 정보글 질문 삭제 API 메서드
     func deletePostQuestionAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         classroomProvider.request(.deletePostQuestion(postID: postID)) { result in
