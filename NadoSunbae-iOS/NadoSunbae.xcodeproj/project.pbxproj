@@ -70,6 +70,8 @@
 		335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */; };
 		336216B128D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */; };
 		336216B528D2064900FEA3E9 /* RecentQuestionTVCReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336216B428D2064900FEA3E9 /* RecentQuestionTVCReactor.swift */; };
+		3363431428FFF61F005D4230 /* RecentQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3363431328FFF61F005D4230 /* RecentQuestionTVC.swift */; };
+		3363431628FFF62B005D4230 /* AvailableQuestionPersonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3363431528FFF62B005D4230 /* AvailableQuestionPersonTVC.swift */; };
 		336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */; };
 		336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */; };
 		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
@@ -415,6 +417,8 @@
 		335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreQuestionPersonCVC.swift; sourceTree = "<group>"; };
 		336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonCVC.swift; sourceTree = "<group>"; };
 		336216B428D2064900FEA3E9 /* RecentQuestionTVCReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuestionTVCReactor.swift; sourceTree = "<group>"; };
+		3363431328FFF61F005D4230 /* RecentQuestionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentQuestionTVC.swift; sourceTree = "<group>"; };
+		3363431528FFF62B005D4230 /* AvailableQuestionPersonTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonTVC.swift; sourceTree = "<group>"; };
 		336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionInfo.swift; sourceTree = "<group>"; };
 		336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
@@ -1281,8 +1285,8 @@
 		33CF63632794A04C00E92C04 /* QuestionToPerson */ = {
 			isa = PBXGroup;
 			children = (
-				33CBEBFD28FC3FCE002D0C84 /* AvailableQuestionPersonTVC.swift */,
-				33CBEBFE28FC3FCE002D0C84 /* RecentQuestionTVC.swift */,
+				3363431528FFF62B005D4230 /* AvailableQuestionPersonTVC.swift */,
+				3363431328FFF61F005D4230 /* RecentQuestionTVC.swift */,
 				331C5381279629620052B309 /* BaseQuestionTVC.swift */,
 				33CF636527954D2400E92C04 /* QuestionEmptyTVC.swift */,
 				335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */,
@@ -1854,7 +1858,6 @@
 				C783BFA028A7D7E3000FE3D8 /* SendHomeRecentDataDelegate.swift */,
 				C7A81AC428ED681600642B70 /* SendRankerDataDelegate.swift */,
 				3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */,
-				33CBEBFB28FB4FA9002D0C84 /* SendCommunityFilterInfoDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2219,9 +2222,9 @@
 				C790A278289E29D900A67135 /* UIImageView+.swift in Sources */,
 				3381083527D53E19005AF1F9 /* MypageLikeListVC.swift in Sources */,
 				33834A1D27D67FAB001C4947 /* MypageLikeResponseData.swift in Sources */,
-				33CF63602794A03300E92C04 /* QuestionHeaderTVC.swift in Sources */,
 				33CBEC1B28FC72F2002D0C84 /* MajorIDConstants.swift in Sources */,
 				331364642785ADFE00E0C118 /* BaseVC.swift in Sources */,
+				3363431428FFF61F005D4230 /* RecentQuestionTVC.swift in Sources */,
 				3332359B28EF37C200F92793 /* ClassroomReactor.swift in Sources */,
 				779DC5AD28EA942A009B9A43 /* ContentListData.swift in Sources */,
 				7754A32627954B770093C230 /* ReviewDetailPostTVC.swift in Sources */,
@@ -2232,6 +2235,7 @@
 				33AFBE8A28FE976B002DF669 /* UnivType.swift in Sources */,
 				77AA831A28A95B3D00985B80 /* ClassroomMainHeaderView.swift in Sources */,
 				33C1B8A327974A4F004BABEC /* ClassroomQuestionDetailData.swift in Sources */,
+				3363431628FFF62B005D4230 /* AvailableQuestionPersonTVC.swift in Sources */,
 				776B73DA28F4017E001216E7 /* EditProfileImgModalVC.swift in Sources */,
 				33D9EA8F27D75335000AF8DB /* NotificationInfo.swift in Sources */,
 				331364BF27861D0600E0C118 /* Adjusted+.swift in Sources */,
@@ -2285,7 +2289,6 @@
 				775728A527D6572100148C9A /* OnboardingCVC.swift in Sources */,
 				33CF636C279567AF00E92C04 /* QuestionType.swift in Sources */,
 				33FA5943288DCA7600BC7C32 /* CommunityWriteCategoryCVC.swift in Sources */,
-				33CBEC0028FC3FCE002D0C84 /* RecentQuestionTVC.swift in Sources */,
 				33FA5940288D72F800BC7C32 /* CommunityWriteReactor.swift in Sources */,
 				C75926AD27D7CB72006ECD9E /* AppVersion.swift in Sources */,
 				77A759222797649A00A8E48B /* LikeData.swift in Sources */,
@@ -2310,7 +2313,6 @@
 				33C1B8A72797505D004BABEC /* ClassroomAPI.swift in Sources */,
 				C71BF22927CCB9550030DCB9 /* BlockListTVC.swift in Sources */,
 				5CC0BFE12798A3C300B96905 /* SignService.swift in Sources */,
-				33CBEBFF28FC3FCE002D0C84 /* AvailableQuestionPersonTVC.swift in Sources */,
 				77A759242797656B00A8E48B /* ReviewPostData.swift in Sources */,
 				778E0F47287A061900BEEEA5 /* NadoMaskedImgView.swift in Sources */,
 				779DC5A528DCC004009B9A43 /* RecentReviewVC.swift in Sources */,
