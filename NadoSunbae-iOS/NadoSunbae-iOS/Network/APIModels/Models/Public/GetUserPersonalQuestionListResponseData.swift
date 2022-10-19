@@ -16,33 +16,13 @@ struct GetUserPersonalQuestionListResponseData: Codable {
         var postID: Int
         var title, content, createdAt: String
         var writer: CommunityWriter
+        var isAuthorized: Bool?
         var commentCount: Int
         var like: Like
 
         enum CodingKeys: String, CodingKey {
             case postID = "postId"
-            case title, content, createdAt, writer, commentCount, like
+            case title, content, createdAt, writer, isAuthorized, commentCount, like
         }
-    }
-}
-
-// MARK: - PostList
-struct ClassroomPostList: Codable {
-    var postID: Int = 0
-    var title: String = ""
-    var content: String = ""
-    var createdAt: String = ""
-    var writer: Writer = Writer(writerID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", isOnQuestion: false, isReviewed: false, profileImageId: 1)
-    var like: Like = Like(isLiked: true, likeCount: 0)
-    var commentCount: Int = 0
-    
-    enum CodingKeys: String, CodingKey {
-        case postID = "postId"
-        case title = "title"
-        case content = "content"
-        case createdAt = "createdAt"
-        case writer = "writer"
-        case commentCount = "commentCount"
-        case like = "like"
     }
 }
