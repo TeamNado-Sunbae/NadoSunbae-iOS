@@ -332,9 +332,9 @@ extension BaseVC {
     }
     
     /// 신고 API 요청 메서드
-    func requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String) {
+    func requestReport(reportedTargetID: Int, postType: ReportPostType, reason: String) {
         self.activityIndicator.startAnimating()
-        PublicAPI.shared.requestReport(reportedTargetID: reportedTargetID, reportedTargetTypeID: reportedTargetTypeID, reason: reason) { networkResult in
+        PublicAPI.shared.requestReport(reportedTargetID: reportedTargetID, postType: postType, reason: reason) { networkResult in
             switch networkResult {
             case .success(_):
                 self.makeAlert(title: "신고되었습니다.")

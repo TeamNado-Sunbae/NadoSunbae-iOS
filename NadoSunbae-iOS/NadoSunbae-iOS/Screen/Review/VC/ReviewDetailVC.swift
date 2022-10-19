@@ -105,7 +105,7 @@ extension ReviewDetailVC {
                 /// 타인 작성 글인 경우 신고
                 self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
                     self.reportActionSheet { reason in
-                        self.requestReport(reportedTargetID: self.detailPost.review.id, reportedTargetTypeID: 1, reason: reason)
+                        self.requestReport(reportedTargetID: self.detailPost.review.id, postType: .review, reason: reason)
                     }
                 })
             }
