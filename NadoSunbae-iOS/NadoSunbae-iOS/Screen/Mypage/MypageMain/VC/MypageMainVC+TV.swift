@@ -16,7 +16,7 @@ extension MypageMainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath) as? BaseQuestionTVC else { return UITableViewCell() }
         let questionData = self.questionList[indexPath.row]
-        cell.setEssentialCellInfo(data: PostListResModel(postID: questionData.postID, type: nil, title: questionData.title, content: questionData.content, createdAt: questionData.createdAt, majorName: "", writer: questionData.writer, isAuthorized: false, commentCount: questionData.commentCount, like: questionData.like))
+        cell.setEssentialCellInfo(data: PostListResModel(postID: questionData.postID, type: nil, title: questionData.title, content: questionData.content, createdAt: questionData.createdAt, majorName: "", writer: questionData.writer, isAuthorized: true, commentCount: questionData.commentCount, like: questionData.like))
         cell.layoutIfNeeded()
         
         return cell
