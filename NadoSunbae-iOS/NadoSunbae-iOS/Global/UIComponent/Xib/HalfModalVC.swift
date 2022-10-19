@@ -13,10 +13,11 @@ import Moya
 enum ModalType {
     case basic
     case search
+    case communityFilter
 }
 
 enum Section: CaseIterable {
-  case recent
+    case recent
 }
 
 class HalfModalVC: UIViewController {
@@ -47,7 +48,7 @@ class HalfModalVC: UIViewController {
         $0.setSearchStyle()
         $0.returnKeyType = .done
     }
-
+    
     // MARK: Properties
     private var majorList: [MajorInfoModel] = []
     private var filteredList: [MajorInfoModel] = []
@@ -56,6 +57,7 @@ class HalfModalVC: UIViewController {
     var snapshot: NSDiffableDataSourceSnapshot<Section, MajorInfoModel>!
     var selectMajorDelegate: SendUpdateModalDelegate?
     var selectFilterDelegate: SendUpdateStatusDelegate?
+    var selectCommunityDelegate: SendCommunityInfoDelegate?
     var vcType: ModalType = .basic
     var cellType: MajorCellType = .basic
     var hasNoMajorOption: Bool = true
@@ -71,7 +73,7 @@ class HalfModalVC: UIViewController {
         setUpTV()
         applySnapshot(filter: "")
         tapCancelBtnAction()
-        tapCompleteBtnAction()
+        tapCompleteBtnAction(type: vcType)
         setUpDefaultStatus()
     }
 }
@@ -111,7 +113,7 @@ extension HalfModalVC {
                 $0.height.equalTo(60)
             }
             
-        case .search:
+        case .search, .communityFilter:
             titleLabel.snp.makeConstraints {
                 $0.top.leading.equalToSuperview().inset(24)
             }
@@ -190,24 +192,43 @@ extension HalfModalVC {
     }
     
     /// 선택완료 버튼 클릭 시 데이터 전달
-    private func tapCompleteBtnAction() {
+    private func tapCompleteBtnAction(type: ModalType) {
         completeBtn.press { [weak self] in
             guard let self = self else { return }
             
-            let selectedMajorName = self.filteredList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
-            let selectedMajorID = self.filteredList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
-
+            var selectedMajorName: String = ""
+            var selectedMajorID: Int = MajorIDConstants.allMajorID // 기본값을 allMajorID로 설정
+            
+            switch type {
+                
+            case .basic, .search:
+                selectedMajorName = self.filteredList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorName
+                selectedMajorID = self.filteredList[self.majorTV.indexPathForSelectedRow?.row ?? 0].majorID
+            case .communityFilter:
+                if let selectRow = self.majorTV.indexPathForSelectedRow?.row {
+                    selectedMajorName = self.filteredList[selectRow].majorName
+                    selectedMajorID = self.filteredList[selectRow].majorID
+                }
+            }
+            
+            // selectMajorDelegate일 때
             if let selectMajorDelegate = self.selectMajorDelegate {
                 MajorInfo.shared.selectedMajorName = selectedMajorName
                 MajorInfo.shared.selectedMajorID = selectedMajorID
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
             
+            // communityDelegate일 때
+            if let selectCommunityDelegate = self.selectCommunityDelegate {
+                // 선택된 값이 없을 때에는 majorID: 0 (전체), majorName: "" 으로 전달
+                selectCommunityDelegate.sendCommunityInfo(majorID: selectedMajorID, majorName: selectedMajorName)
+            }
+            
             if self.selectFilterDelegate != nil {
                 ReviewFilterInfo.shared.selectedBtnList = [false, false, false, false, false, false, false]
                 self.selectFilterDelegate?.sendStatus(data: false)
             }
-    
+            
             self.dismiss(animated: true, completion: {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
             })
@@ -249,7 +270,7 @@ extension HalfModalVC: UITextFieldDelegate {
         searchTextField.resignFirstResponder()
         return true
     }
-            
+    
     @objc
     func textFieldDidChange(_ sender: Any?) {
         applySnapshot(filter: searchTextField.text)
@@ -260,6 +281,25 @@ extension HalfModalVC: UITextFieldDelegate {
 extension HalfModalVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54.adjustedH
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        switch vcType {
+            
+        case .basic, .search:
+            return indexPath
+        case .communityFilter:
+            guard let cellIndexPath = tableView.cellForRow(at: indexPath) else { return IndexPath(row: 0, section: 0) }
+            
+            // 이미 선택된 셀을 다시 선택할 경우
+            if cellIndexPath.isSelected {
+                // 선택 해제
+                tableView.deselectRow(at: indexPath, animated: true)
+                return nil
+            } else {
+                return indexPath
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

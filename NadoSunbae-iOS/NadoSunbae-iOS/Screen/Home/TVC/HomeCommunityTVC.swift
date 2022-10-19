@@ -68,7 +68,7 @@ extension HomeCommunityTVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-        cell.setCommunityData(data: communityList[indexPath.row])
+        cell.setEssentialCommunityCellInfo(data: communityList[indexPath.row])
         return cell
     }
 }

@@ -9,6 +9,10 @@ import UIKit
 import ReactorKit
 import RxCocoa
 
+protocol SendPostTypeDelegate {
+    func sendPostType(postType: PostFilterType)
+}
+
 final class CommunityWriteVC: BaseWritePostVC, View {
     
     // MARK: Components
@@ -47,12 +51,12 @@ final class CommunityWriteVC: BaseWritePostVC, View {
     var disposeBag = DisposeBag()
     var isEditState: Bool = false
     var postID: Int?
-    var majorID: Int = MajorInfo.shared.majorList?[0].majorID ?? 0
+    var majorID: Int?
     var categoryIndex: Int?
     var originTitle: String?
     var originContent: String?
     var originMajor: String?
-    var sendPostTypeDelegate: SendUpdateModalDelegate?
+    var sendPostTypeDelegate: SendPostTypeDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -162,7 +166,7 @@ extension CommunityWriteVC {
                 return CommunityWriteReactor.Action.tapQuestionEditBtn(postID: self.postID ?? 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ??
                 "")
             } else {
-                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: self.majorID, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
+                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: self.majorID ?? MajorIDConstants.regardlessMajorID, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
             }
         }
         .bind(to: reactor.action)
@@ -209,7 +213,7 @@ extension CommunityWriteVC {
             .subscribe(onNext: { [weak self] success in
                 if success {
                     self?.dismiss(animated: true, completion: {
-                        self?.sendPostTypeDelegate?.sendUpdate(data: (self?.selectedCategory ?? .community) as PostFilterType)
+                        self?.sendPostTypeDelegate?.sendPostType(postType: self?.selectedCategory ?? .community)
                     })
                 }
             })
@@ -289,7 +293,7 @@ extension CommunityWriteVC {
         slideVC.setUpTitleLabel("글을 올릴 학과를 선택해보세요.")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
-        slideVC.selectMajorDelegate = self
+        slideVC.selectCommunityDelegate = self
         self.present(slideVC, animated: true)
     }
 }
@@ -357,10 +361,10 @@ extension CommunityWriteVC: UIViewControllerTransitioningDelegate {
     }
 }
 
-// MARK: - SendUpdateModalDelegate
-extension CommunityWriteVC: SendUpdateModalDelegate {
-    func sendUpdate(data: Any) {
-        majorSelectTextField.text = data as? String
-        majorID = MajorInfo.shared.selectedMajorID ?? 0
+// MARK: - SendCommunityInfoDelegate
+extension CommunityWriteVC: SendCommunityInfoDelegate {
+    func sendCommunityInfo(majorID: Int, majorName: String) {
+        self.majorSelectTextField.text = majorName
+        self.majorID = majorID
     }
 }
