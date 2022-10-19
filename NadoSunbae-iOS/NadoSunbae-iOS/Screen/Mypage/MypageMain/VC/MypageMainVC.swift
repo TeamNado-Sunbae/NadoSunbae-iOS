@@ -19,7 +19,11 @@ class MypageMainVC: BaseVC {
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var likeListView: UIView!
-    @IBOutlet weak var questionTV: UITableView!
+    @IBOutlet weak var questionTV: UITableView! {
+        didSet {
+            questionTV.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+        }
+    }
     @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
     @IBOutlet weak var questionEmptyView: UIView!
     @IBOutlet weak var nickNameLabel: UILabel!

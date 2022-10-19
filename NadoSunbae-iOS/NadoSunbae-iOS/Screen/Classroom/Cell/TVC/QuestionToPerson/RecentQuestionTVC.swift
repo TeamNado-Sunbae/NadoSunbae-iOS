@@ -48,7 +48,6 @@ extension RecentQuestionTVC {
                 
                 guard let questionCell = cell as? BaseQuestionTVC else { return UITableViewCell() }
                 questionCell.setEssentialCellInfo(data: item)
-                questionCell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 
                 return questionCell
             }

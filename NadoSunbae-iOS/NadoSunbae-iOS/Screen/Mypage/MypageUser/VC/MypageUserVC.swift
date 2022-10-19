@@ -15,7 +15,11 @@ class MypageUserVC: BaseVC {
     @IBOutlet weak var majorReviewView: UIView!
     @IBOutlet weak var userStateView: UIView!
     @IBOutlet weak var userStateViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var questionTV: UITableView!
+    @IBOutlet weak var questionTV: UITableView! {
+        didSet {
+            questionTV.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+        }
+    }
     @IBOutlet weak var questionTVHeight: NSLayoutConstraint!
     @IBOutlet weak var questionEmptyView: UIView!
     @IBOutlet weak var nickNameLabel: UILabel!

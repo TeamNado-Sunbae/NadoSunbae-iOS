@@ -29,7 +29,6 @@ class MypagePostListVC: BaseVC {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray0.cgColor
         $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        $0.contentInset = .zero
         $0.separatorColor = .gray0
         $0.isScrollEnabled = false
         $0.estimatedRowHeight = 121
@@ -51,7 +50,6 @@ class MypagePostListVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         makeScreenAnalyticsForMyPostList()
         configureUI()
         setPostListTV()
@@ -73,7 +71,7 @@ class MypagePostListVC: BaseVC {
         postListTV.delegate = self
         
         postListTV.register(CommunityTVC.self, forCellReuseIdentifier: CommunityTVC.className)
-        postListTV.register(EntireQuestionListTVC.self, forCellReuseIdentifier: EntireQuestionListTVC.className)
+        postListTV.register(BaseQuestionTVC.self, forCellReuseIdentifier: BaseQuestionTVC.className)
         
         postListTV.removeSeparatorsOfEmptyCellsAndLastCell()
     }
@@ -96,6 +94,10 @@ class MypagePostListVC: BaseVC {
         } else {
             makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: "MyAnswerListVC")
         }
+    }
+    
+    private func updateContentInset(insetIsZero: Bool) {
+        postListTV.contentInset = insetIsZero ? UIEdgeInsets.zero : UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -146,30 +148,32 @@ extension MypagePostListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isPostOrAnswer {
             if isPersonalQuestionOrCommunity {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
-                cell.setPostData(data: personalQuestionData[indexPath.row])
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath) as? BaseQuestionTVC else { return BaseQuestionTVC() }
+                cell.setEssentialCellInfo(data: personalQuestionData[indexPath.row])
+               
                 cell.layoutSubviews()
                 cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
-                cell.setCommunityData(data: communityData[indexPath.row])
+                cell.setEssentialCommunityCellInfo(data: communityData[indexPath.row])
                 cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             }
         } else {
             if isPersonalQuestionOrCommunity {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath) as? BaseQuestionTVC else { return BaseQuestionTVC() }
                 let data = personalQuestionDataForAnswer[indexPath.row]
                 // TODO: MypageResModel에도 isAuthorized값 넣어달라고 요청하기.
-                cell.setPostData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), isAuthorized: true, commentCount: data.commentCount, like: data.like))
+                cell.setEssentialCellInfo(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), isAuthorized: true, commentCount: data.commentCount, like: data.like))
+                
                 cell.layoutSubviews()
                 cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVC.className, for: indexPath) as? CommunityTVC else { return CommunityTVC() }
                 let data = communityDataForAnswer[indexPath.row]
-                cell.setCommunityData(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), isAuthorized: true, commentCount: data.commentCount, like: data.like))
+                cell.setEssentialCommunityCellInfo(data: PostListResModel(postID: data.id, type: data.type, title: data.title, content: data.content, createdAt: data.createdAt, majorName: data.majorName, writer: CommunityWriter(writerID: data.writer.id, nickname: data.writer.nickname), isAuthorized: true, commentCount: data.commentCount, like: data.like))
                 cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
                 return cell
             }
@@ -222,6 +226,7 @@ extension MypagePostListVC: SendSegmentStateDelegate {
 // MARK: - Network
 extension MypagePostListVC {
     private func getMypageMyPersonalQuestionList() {
+        self.postListTV.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
         self.activityIndicator.startAnimating()
         self.postListTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
         MypageAPI.shared.getMypageMyPostList(postType: MypageMyPostType.personalQuestion, completion: { networkResult in
@@ -230,6 +235,7 @@ extension MypagePostListVC {
                 if let data = res as? MypageMyPostListModel {
                     self.personalQuestionData = data.postList
                     self.activityIndicator.stopAnimating()
+                    self.updateContentInset(insetIsZero: false)
                     self.postListTV.reloadData()
                     self.setEmptyView(data: data.postList)
                 }
@@ -258,6 +264,7 @@ extension MypagePostListVC {
                 if let data = res as? MypageMyPostListModel {
                     self.communityData = data.postList
                     self.activityIndicator.stopAnimating()
+                    self.updateContentInset(insetIsZero: true)
                     self.postListTV.reloadData()
                     self.setEmptyView(data: data.postList)
                 }
@@ -286,8 +293,10 @@ extension MypagePostListVC {
                 if let data = res as? MypageMyAnswerListModel {
                     if self.isPersonalQuestionOrCommunity {
                         self.personalQuestionDataForAnswer = data.postList
+                        self.updateContentInset(insetIsZero: false)
                     } else {
                         self.communityDataForAnswer = data.postList
+                        self.updateContentInset(insetIsZero: true)
                     }
                     self.activityIndicator.stopAnimating()
                     self.postListTV.reloadData()

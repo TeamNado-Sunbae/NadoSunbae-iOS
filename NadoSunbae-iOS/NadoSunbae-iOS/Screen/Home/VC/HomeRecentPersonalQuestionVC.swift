@@ -27,7 +27,9 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
     private let questionTV = UITableView().then {
         $0.layer.cornerRadius = 16
         $0.layer.borderColor = UIColor.gray0.cgColor
+        $0.layer.borderWidth = 1
         $0.isScrollEnabled = false
+        $0.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
         $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         $0.separatorColor = .gray0
     }
@@ -48,7 +50,7 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
         questionTV.delegate = self
         questionTV.dataSource = self
         
-        questionTV.register(EntireQuestionListTVC.self, forCellReuseIdentifier: EntireQuestionListTVC.className)
+        questionTV.register(BaseQuestionTVC.self, forCellReuseIdentifier: BaseQuestionTVC.className)
     }
     
     private func updateQuestionTVHeight() {
@@ -67,8 +69,8 @@ extension HomeRecentPersonalQuestionVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EntireQuestionListTVC.className, for: indexPath) as? EntireQuestionListTVC else { return EntireQuestionListTVC() }
-        cell.setPostData(data: questionList[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath) as? BaseQuestionTVC else { return BaseQuestionTVC() }
+        cell.setEssentialCellInfo(data: questionList[indexPath.row])
         cell.layoutSubviews()
         cell.removeBottomSeparator(isLast: tableView.isLast(for: indexPath))
         return cell
