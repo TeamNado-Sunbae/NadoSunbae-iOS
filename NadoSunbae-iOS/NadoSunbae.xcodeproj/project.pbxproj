@@ -73,6 +73,7 @@
 		3363431828FFFBC3005D4230 /* UnivType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3363431728FFFBC3005D4230 /* UnivType.swift */; };
 		3363431A28FFFC0D005D4230 /* SendCommunityInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3363431928FFFC0D005D4230 /* SendCommunityInfoDelegate.swift */; };
 		3362EF5728FD522D0019E9F7 /* RequestLikePostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */; };
+		3362EF5728FD522D0019E9F7 /* RequestLikePostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */; };
 		336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */; };
 		336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */; };
 		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
@@ -422,6 +423,7 @@
 		3363431528FFF62B005D4230 /* AvailableQuestionPersonTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonTVC.swift; sourceTree = "<group>"; };
 		3363431728FFFBC3005D4230 /* UnivType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnivType.swift; sourceTree = "<group>"; };
 		3363431928FFFC0D005D4230 /* SendCommunityInfoDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCommunityInfoDelegate.swift; sourceTree = "<group>"; };
+		3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLikePostType.swift; sourceTree = "<group>"; };
 		3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLikePostType.swift; sourceTree = "<group>"; };
 		336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionInfo.swift; sourceTree = "<group>"; };
 		336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
@@ -833,6 +835,7 @@
 				33C500FF281A4E24004AAEEE /* Navigator.swift */,
 				33BD384428C9AF15005528DD /* PostFilterType.swift */,
 				33CBEBF928FB45B3002D0C84 /* MajorIDConstants.swift */,
+				3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */,
 				3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */,
 			);
 			path = Struct;
