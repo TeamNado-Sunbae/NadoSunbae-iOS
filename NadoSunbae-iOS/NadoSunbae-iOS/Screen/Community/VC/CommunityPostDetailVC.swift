@@ -317,7 +317,7 @@ extension CommunityPostDetailVC: UITableViewDataSource {
                 } else {
                     makeAlertWithCancel(okTitle: "신고", okAction: { [weak self] _ in
                         self?.reportActionSheet(completion: { [weak self] reason in
-                            self?.requestReport(reportedTargetID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, postType: .post, reason: reason)
+                            self?.requestReport(reportedTargetID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, postType: .comment, reason: reason)
                         })
                     })
                 }
