@@ -18,6 +18,7 @@ enum PublicService {
     case requestWritePost(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)
     case editPost(postID: Int, title: String, content: String)
     case editPostComment(commentID: Int, content: String)
+    case likePost(postID: Int, postType: RequestLikePostType)
 }
 
 extension PublicService: TargetType {
@@ -46,6 +47,8 @@ extension PublicService: TargetType {
             return "/post/\(postID)"
         case .editPostComment(let commentID, _):
             return "/comment/\(commentID)"
+        case .likePost:
+            return "/like"
         }
     }
     
@@ -53,7 +56,7 @@ extension PublicService: TargetType {
         switch self {
         case .getMajorList, .getAppLink, .getPostList, .getPostDetail:
             return .get
-        case .requestBlockUnBlockUser, .requestReport, .requestWritePost:
+        case .requestBlockUnBlockUser, .requestReport, .requestWritePost, .likePost:
             return .post
         case .editPost, .editPostComment:
             return .put
@@ -104,12 +107,18 @@ extension PublicService: TargetType {
         case .editPostComment(_, let content):
             let body = ["content": content]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .likePost(let postID, let type):
+            let body: [String: Any] = [
+                "targetId": postID,
+                "type": type.rawValue
+            ]
+            return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment:
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment, .likePost:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:

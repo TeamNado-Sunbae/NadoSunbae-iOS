@@ -287,7 +287,7 @@ extension CommunityPostDetailVC: UITableViewDataSource {
             infoQuestionCell.setInfoTypeTitle(infoDetailData?.post.type ?? "")
             
             infoQuestionCell.tapLikeBtnAction = { [weak self] in
-                self?.requestPostLikeData(postID: self?.postID ?? 0, postTypeID: .info)
+                self?.requestPostLikeData(postID: self?.postID ?? 0, postType: .post)
             }
             
             infoQuestionCell.interactURL = { url in
@@ -506,9 +506,9 @@ extension CommunityPostDetailVC {
     }
     
     /// 좋아요 API 요청 메서드
-    private func requestPostLikeData(postID: Int, postTypeID: QuestionType) {
+    private func requestPostLikeData(postID: Int, postType: RequestLikePostType) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.postClassroomLikeAPI(postID: postID, postTypeID: postTypeID.rawValue) { networkResult in
+        PublicAPI.shared.postLikeAPI(postID: postID, postType: postType) { networkResult in
             switch networkResult {
             case .success(let res):
                 if let _ = res as? PostLikeResModel {
@@ -524,7 +524,7 @@ extension CommunityPostDetailVC {
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.requestPostLikeData(postID: self.postID ?? 0, postTypeID: .info)
+                        self.requestPostLikeData(postID: self.postID ?? 0, postType: .post)
                     }
                 }
             default:
