@@ -103,24 +103,6 @@ class ClassroomAPI: BaseAPI {
         }
     }
     
-    /// [DELETE] 1:1질문, 전체 질문, 정보글 질문 삭제 API 메서드
-    func deletePostQuestionAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        classroomProvider.request(.deletePostQuestion(postID: postID)) { result in
-            switch result {
-                
-            case .success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
-
-                completion(networkResult)
-                
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
     /// [DELETE] 1:1질문, 전체 질문, 정보글 댓글 삭제 API 메서드
     func deletePostCommentAPI(commentID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         classroomProvider.request(.deletePostComment(commentID: commentID)) { result in

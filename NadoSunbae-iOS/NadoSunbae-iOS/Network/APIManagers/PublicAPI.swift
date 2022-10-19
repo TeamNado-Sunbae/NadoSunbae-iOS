@@ -193,4 +193,22 @@ class PublicAPI: BaseAPI {
             }
         }
     }
+    
+    /// [DELETE] 게시글 삭제 API 메서드
+    func deletePostAPI(postID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.deletePost(postID: postID)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, String.self)
+                
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
