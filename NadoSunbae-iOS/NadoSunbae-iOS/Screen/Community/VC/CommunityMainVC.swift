@@ -308,7 +308,7 @@ extension CommunityMainVC {
         slideVC.setUpTitleLabel("특정학과 글 불러오기")
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
-        slideVC.selectCommunityFilterDelegate = self
+        slideVC.selectCommunityDelegate = self
         self.present(slideVC, animated: true)
     }
 }
@@ -345,9 +345,9 @@ extension CommunityMainVC: SendPostTypeDelegate {
     }
 }
 
-// MARK: - SendCommunityFilterInfoDelegate
-extension CommunityMainVC: SendCommunityFilterInfoDelegate {
-    func sendCommunityFilterInfo(majorID: Int, majorName: String) {
+// MARK: - SendCommunityInfoDelegate
+extension CommunityMainVC: SendCommunityInfoDelegate {
+    func sendCommunityInfo(majorID: Int, majorName: String) {
         reactor?.action.onNext(.filterFilled(fill: majorName == "" ? false : true, majorID: majorID, type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community))
     }
 }

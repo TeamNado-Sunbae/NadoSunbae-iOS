@@ -79,7 +79,7 @@ extension QuestionPersonCVC {
 extension QuestionPersonCVC {
     func setData(model: QuestionUser) {
         nicknameLabel.text = model.nickname
-        personProfileImageView.image = UIImage(named: "grayProfileImage\(model.profileImageID)")!
+        personProfileImageView.image = UIImage(named: "grayProfileImage\(model.profileImageID)") ?? nil
         if model.isFirstMajor == true {
             majorLabel.text = "본"
         } else {

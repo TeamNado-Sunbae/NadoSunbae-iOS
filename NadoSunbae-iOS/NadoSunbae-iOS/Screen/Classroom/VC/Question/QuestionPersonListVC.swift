@@ -22,13 +22,13 @@ class QuestionPersonListVC: BaseVC {
         layout.minimumLineSpacing = 12
         $0.collectionViewLayout = layout
         $0.backgroundColor = .paleGray
-        $0.contentInset = UIEdgeInsets.init(top: 16, left: 24, bottom: 0, right: 24)
         $0.showsVerticalScrollIndicator = false
     }
     
-    var majorID: Int = 0
+    var majorID: Int = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID)
     var majorUserList = MajorUserListDataModel()
     var isBlocked: Bool = false
+    private var switchIsOn: Bool = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -39,13 +39,13 @@ class QuestionPersonListVC: BaseVC {
         registerXib()
         setUpTapNaviBackBtn()
         setUpMajorLabel()
-        getMajorUserList()
+        getMajorUserList(isExclude: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isBlocked {
-            getMajorUserList()
+            getMajorUserList(isExclude: false)
         }
     }
 }
@@ -140,12 +140,15 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
             switch indexPath.section {
             case 0:
                 headerView.headerTitleLabel.text = "질문 가능해요"
+                headerView.configureUI(isQuestion: true)
+                headerView.reviewFilterSwitch.setUpNadoSwitchState(isOn: switchIsOn)
+                headerView.reviewFilterSwitch.switchDelegate = self
                 return headerView
             case 1:
                 headerView.headerTitleLabel.text = "쉬고 있어요"
+                headerView.configureUI(isQuestion: false)
                 return headerView
-            default: headerView.headerTitleLabel.text = "질문 가능해요"
-                return headerView
+            default: return UICollectionReusableView()
             }
         default: return UICollectionViewCell()
         }
@@ -180,7 +183,7 @@ extension QuestionPersonListVC: UICollectionViewDelegateFlowLayout {
     
     /// insetForSectionAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 0, bottom: 40, right: 0)
+        return UIEdgeInsets(top: 16, left: 24, bottom: 40, right: 24)
     }
     
     /// referenceSizeForHeaderInSection
@@ -202,9 +205,9 @@ extension QuestionPersonListVC: SendBlockedInfoDelegate {
 extension QuestionPersonListVC {
     
     /// 특정 학과 User List 조회를 요청하는 API
-    private func getMajorUserList() {
+    private func getMajorUserList(isExclude: Bool) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.getMajorUserListAPI(majorID: majorID, isExclude: true, completion: { networkResult in
+        ClassroomAPI.shared.getMajorUserListAPI(majorID: majorID, isExclude: isExclude, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 self.activityIndicator.stopAnimating()
@@ -219,7 +222,7 @@ extension QuestionPersonListVC {
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.getMajorUserList()
+                        self.getMajorUserList(isExclude: isExclude)
                     }
                 }
             default:
@@ -227,5 +230,13 @@ extension QuestionPersonListVC {
                 self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         })
+    }
+}
+
+// MARK: - SwitchButtonDelegate
+extension QuestionPersonListVC: SwitchButtonDelegate {
+    func isOnValueChange(isOn: Bool) {
+        switchIsOn = isOn
+        getMajorUserList(isExclude: isOn)
     }
 }

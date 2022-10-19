@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MajorIDConstants {
+enum MajorIDConstants {
     static let allMajorID = 0
-    static let regardlessMajorID = 128
+    static let regardlessMajorID = UnivType(rawValue: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID))!.regardlessMajorID
 }

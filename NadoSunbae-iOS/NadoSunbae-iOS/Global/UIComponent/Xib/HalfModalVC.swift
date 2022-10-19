@@ -52,14 +52,16 @@ class HalfModalVC: UIViewController {
     // MARK: Properties
     private var majorList: [MajorInfoModel] = []
     private var filteredList: [MajorInfoModel] = []
+    var secondMajorList: [MajorInfoModel] = []
     var dataSource: UITableViewDiffableDataSource<Section, MajorInfoModel>!
     var snapshot: NSDiffableDataSourceSnapshot<Section, MajorInfoModel>!
     var selectMajorDelegate: SendUpdateModalDelegate?
     var selectFilterDelegate: SendUpdateStatusDelegate?
-    var selectCommunityFilterDelegate: SendCommunityFilterInfoDelegate?
+    var selectCommunityDelegate: SendCommunityInfoDelegate?
     var vcType: ModalType = .basic
     var cellType: MajorCellType = .basic
     var hasNoMajorOption: Bool = true
+    var isSecondMajorSheet: Bool = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -216,10 +218,10 @@ extension HalfModalVC {
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
             
-            // communityFilterDelegate일 때
-            if let selectCommunityFilterDelegate = self.selectCommunityFilterDelegate {
+            // communityDelegate일 때
+            if let selectCommunityDelegate = self.selectCommunityDelegate {
                 // 선택된 값이 없을 때에는 majorID: 0 (전체), majorName: "" 으로 전달
-                selectCommunityFilterDelegate.sendCommunityFilterInfo(majorID: selectedMajorID, majorName: selectedMajorName)
+                selectCommunityDelegate.sendCommunityInfo(majorID: selectedMajorID, majorName: selectedMajorName)
             }
             
             if self.selectFilterDelegate != nil {
@@ -235,7 +237,7 @@ extension HalfModalVC {
     
     /// 0번째 인덱스 셀이 초기 선택되도록하는 메서드
     private func setUpDefaultStatus() {
-        if majorList[0].majorName == "학과 무관" {
+        if majorList[0].majorName == "학과 무관" || majorList[0].majorName == "미진입" {
             self.majorTV.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
             completeBtn.isActivated = true
             completeBtn.titleLabel?.textColor = UIColor.mainDefault
@@ -246,6 +248,9 @@ extension HalfModalVC {
     private func setUpMajorList(hasNoMajorOption: Bool) {
         if hasNoMajorOption {
             majorList = MajorInfo.shared.majorList ?? []
+            if isSecondMajorSheet {
+                majorList = secondMajorList
+            }
         } else {
             var classroomList = MajorInfo.shared.majorList
             classroomList?.remove(at: 0)
