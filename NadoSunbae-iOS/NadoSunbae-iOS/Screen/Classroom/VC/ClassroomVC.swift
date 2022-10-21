@@ -321,6 +321,7 @@ extension ClassroomVC {
     /// reactor를 주입하는 메서드
     private func injectReactor() {
         personalQuestionVC.reactor = PersonalQuestionReactor()
+        reviewVC.reactor = ReviewReactor()
     }
 }
 
