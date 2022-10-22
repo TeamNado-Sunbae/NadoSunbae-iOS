@@ -46,13 +46,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본전명 18-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQD-Tl-WV6">
-                        <rect key="frame" x="56" y="37" width="57.5" height="14"/>
+                        <rect key="frame" x="56" y="37" width="248" height="14"/>
                         <fontDescription key="fontDescription" name="Pretendard-Medium" family="Pretendard" pointSize="12"/>
                         <color key="textColor" name="gray2"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="댓글내용 오토레이아웃 어케 걸지,,,, 댓글내용 오토레이아웃 어케 걸지,,,,댓글내용 오토레이아웃 어케 걸지,,,,댓글내용 오토레이아웃 어케 걸지,,,,댓글내용 오토레이아웃 어케 걸지,,,,댓글내용 오토레이아웃 어케 걸지,,,," textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3ks-MP-Tdt">
-                        <rect key="frame" x="56" y="59" width="248" height="116"/>
+                        <rect key="frame" x="56" y="59" width="232" height="116"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="b2d-EM-EvF"/>
                         </constraints>
@@ -118,15 +118,16 @@
                     <constraint firstItem="Vkz-r6-rzK" firstAttribute="leading" secondItem="E7S-Ue-Mte" secondAttribute="leading" id="QUe-0p-GcP"/>
                     <constraint firstItem="Vkz-r6-rzK" firstAttribute="trailing" secondItem="E7S-Ue-Mte" secondAttribute="trailing" id="TvH-u3-PzS"/>
                     <constraint firstItem="6S1-Ac-BEa" firstAttribute="top" secondItem="E7S-Ue-Mte" secondAttribute="top" id="Wkm-Ok-ezy"/>
+                    <constraint firstAttribute="trailing" secondItem="3ks-MP-Tdt" secondAttribute="trailing" constant="32" id="Yt7-Tq-wbb"/>
                     <constraint firstItem="pid-x2-e1v" firstAttribute="bottom" secondItem="rKz-xJ-yQq" secondAttribute="bottom" id="Zb1-4k-QCL"/>
                     <constraint firstItem="anB-1a-uTg" firstAttribute="centerY" secondItem="rKz-xJ-yQq" secondAttribute="centerY" id="cMR-MC-23c"/>
                     <constraint firstItem="E7S-Ue-Mte" firstAttribute="leading" secondItem="htk-89-fzd" secondAttribute="leading" constant="16" id="dI2-Zj-75T"/>
                     <constraint firstItem="rKz-xJ-yQq" firstAttribute="leading" secondItem="E7S-Ue-Mte" secondAttribute="trailing" constant="8" id="dkN-bo-gDu"/>
                     <constraint firstItem="WQD-Tl-WV6" firstAttribute="top" secondItem="rKz-xJ-yQq" secondAttribute="bottom" constant="4" id="fUG-Wi-hAd"/>
+                    <constraint firstAttribute="trailing" secondItem="WQD-Tl-WV6" secondAttribute="trailing" constant="16" id="jnd-pw-Fce"/>
                     <constraint firstAttribute="trailing" secondItem="6S1-Ac-BEa" secondAttribute="trailing" constant="16" id="qfb-SN-i0E"/>
                     <constraint firstItem="rKz-xJ-yQq" firstAttribute="top" secondItem="E7S-Ue-Mte" secondAttribute="top" id="r8v-lM-VqE"/>
                     <constraint firstItem="oTA-58-wpP" firstAttribute="top" secondItem="3ks-MP-Tdt" secondAttribute="bottom" constant="8" id="rjc-I9-XFY"/>
-                    <constraint firstItem="3ks-MP-Tdt" firstAttribute="trailing" secondItem="6S1-Ac-BEa" secondAttribute="trailing" id="wQv-O3-9p0"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="PvY-3h-edP"/>
