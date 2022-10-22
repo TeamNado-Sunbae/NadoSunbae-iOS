@@ -74,6 +74,18 @@ extension String {
         }
         return nil
     }
+    
+    /// 줄바꿈을 적용한 majorText를 return하는 메서드
+    func makeLineBreakMajorText() -> String {
+        if self.contains("|") {
+            let splitText = self.split(separator: "|")
+            let firstText = splitText[0]
+            let secondText = splitText[1].trimmingCharacters(in: .whitespaces)
+            return firstText + "|" + "\n" + secondText
+        } else {
+            return self
+        }
+    }
 }
 
 /// 전공정보 String으로 반환하는 함수
