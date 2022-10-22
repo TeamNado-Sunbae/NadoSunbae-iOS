@@ -200,11 +200,14 @@ extension CommunityWriteVC {
                 
                 // 수정 상태이고, 선택된 카테고리 인덱스일 때
                 if self?.isEditState ?? false && index == self?.categoryIndex {
-                    // 학과 선택, 카테고리 선택 기능을 막는다
-                    categoryCell.setSelectedRadioBtnImage(isEdit: true)
+                    // 학과 선택 기능을 막는다
                     self?.majorSelectBtn.isEnabled = false
                     self?.majorSelectTextField.setChangeLabelHidden(isHidden: true)
                     self?.majorSelectTextField.setTextColor(color: .gray3)
+                    
+                    // 카테고리 선택 기능을 막는다
+                    categoryCell.setSelectedRadioBtnImage(isEdit: true)
+                    categoryCell.setCategoryLabelTextColor(color: .gray3)
                 }
                 
                 return categoryCell
