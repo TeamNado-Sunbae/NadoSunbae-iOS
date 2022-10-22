@@ -200,8 +200,11 @@ extension CommunityWriteVC {
                 
                 // 수정 상태이고, 선택된 카테고리 인덱스일 때
                 if self?.isEditState ?? false && index == self?.categoryIndex {
-                    // 선택된 카테고리 인덱스의 라디오버튼 이미지를 darkColor로 설정한다.
+                    // 학과 선택, 카테고리 선택 기능을 막는다
                     categoryCell.setSelectedRadioBtnImage(isEdit: true)
+                    self?.majorSelectBtn.isEnabled = false
+                    self?.majorSelectTextField.setChangeLabelHidden(isHidden: true)
+                    self?.majorSelectTextField.setTextColor(color: .gray3)
                 }
                 
                 return categoryCell
