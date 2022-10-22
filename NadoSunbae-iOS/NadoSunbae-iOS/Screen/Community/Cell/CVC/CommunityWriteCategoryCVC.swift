@@ -59,6 +59,12 @@ extension CommunityWriteCategoryCVC {
         categoryLabel.text = categoryText
     }
     
+    /// categoryLabel의 textColor를 설정하는 메서드
+    func setCategoryLabelTextColor(color: UIColor) {
+        categoryLabel.textColor = color
+    }
+    
+    /// isEdit state에 따라 radioBtn의 선택상태 이미지를 설정하는 메서드
     func setSelectedRadioBtnImage(isEdit: Bool) {
         radioBtn.isSelected = true
         radioBtn.setImage(UIImage(named: isEdit ? "RadioButtonDark" : "RadioButtonMint"), for: .selected)
