@@ -40,6 +40,13 @@ final class CommunityWriteVC: BaseWritePostVC, View {
         $0.showsHorizontalScrollIndicator = false
     }
     
+    private let questionDescLabel = UILabel().then {
+        $0.text = "특정 학과 선택시 해당 학과 유저들에게 알림이 갑니다."
+        $0.font = .PretendardR(size: 12.0)
+        $0.textColor = .mainDark
+        $0.isHidden = true
+    }
+    
     private let partitionBar = UIView().then {
         $0.backgroundColor = .gray0
     }
@@ -83,7 +90,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
 extension CommunityWriteVC {
     private func configureUI() {
         view.backgroundColor = .white
-        contentView.addSubviews([selectMajorLabel, majorSelectTextField, majorSelectBtn, categoryLabel, categoryCV, partitionBar])
+        contentView.addSubviews([selectMajorLabel, majorSelectTextField, majorSelectBtn, categoryLabel, categoryCV, questionDescLabel, partitionBar])
         
         selectMajorLabel.snp.makeConstraints {
             $0.top.equalTo(questionWriteNaviBar.snp.bottom).offset(24)
@@ -111,6 +118,11 @@ extension CommunityWriteVC {
             $0.leading.equalTo(categoryLabel)
             $0.trailing.equalToSuperview().offset(-24)
             $0.height.equalTo(20)
+        }
+        
+        questionDescLabel.snp.makeConstraints {
+            $0.top.equalTo(categoryCV.snp.bottom).offset(7)
+            $0.leading.equalTo(categoryLabel)
         }
         
         partitionBar.snp.makeConstraints {
@@ -310,10 +322,13 @@ extension CommunityWriteVC: UICollectionViewDelegateFlowLayout {
         switch indexPath.row {
         case 0:
             selectedCategory = .general
+            questionDescLabel.isHidden = true
         case 1:
             selectedCategory = .questionToEveryone
+            questionDescLabel.isHidden = false
         default:
             selectedCategory = .information
+            questionDescLabel.isHidden = true
         }
     }
 }
