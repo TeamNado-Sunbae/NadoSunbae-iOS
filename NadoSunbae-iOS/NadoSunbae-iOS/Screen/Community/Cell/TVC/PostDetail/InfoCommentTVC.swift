@@ -12,7 +12,12 @@ class InfoCommentTVC: BaseTVC {
     // MARK: IBOutlet
     @IBOutlet var profileImgView: UIImageView!
     @IBOutlet var nicknameLabel: UILabel!
-    @IBOutlet var majorInfoLabel: UILabel!
+    @IBOutlet var majorInfoLabel: UILabel! {
+        didSet {
+            majorInfoLabel.numberOfLines = 0
+        }
+    }
+    
     @IBOutlet var commentTextView: UITextView! {
         didSet {
             commentTextView.delegate = self
@@ -67,7 +72,15 @@ extension InfoCommentTVC {
         profileImgView.image = UIImage(named: "profileImage\(model.writer.profileImageID)")
         nicknameLabel.text = model.writer.nickname
         writerImgView.isHidden = !(model.writer.isPostWriter ?? false)
-        majorInfoLabel.text = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
+        
+        let majorInfoString = convertToMajorInfoString(model.writer.firstMajorName, model.writer.firstMajorStart, model.writer.secondMajorName, model.writer.secondMajorStart)
+        
+        if majorInfoString.count >= 36 {
+            majorInfoLabel.text = majorInfoString.makeLineBreakMajorText()
+        } else {
+            majorInfoLabel.text = majorInfoString
+        }
+        
         commentTextView.text = model.content
         commentDateLabel.text = model.createdAt.serverTimeToString(forUse: .forDefault)
         setLabelSizeToFit()
