@@ -95,4 +95,14 @@ extension NadoTextField {
     func setBoderColor(color: UIColor) {
         self.layer.borderColor = color.cgColor
     }
+    
+    /// textColor 설정 메서드
+    func setTextColor(color: UIColor) {
+        self.textColor = color
+    }
+    
+    /// 변경 label 숨김상태를 설정 메서드
+    func setChangeLabelHidden(isHidden: Bool) {
+        changeLabel.isHidden = isHidden
+    }
 }
