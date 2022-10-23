@@ -368,44 +368,6 @@ extension DefaultQuestionChatVC {
 // MARK: - Congifure Cell Methods
 extension DefaultQuestionChatVC {
     
-    /// 질문 작성자의 "더보기" 버튼 클릭시 액션을 설정하는 메서드
-    private func setQuestionerMoreBtnAction(_ indexPath: IndexPath) {
-        if self.actionSheetString.count > 1 {
-            /// 작성자 본인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
-            self.makeTwoAlertWithCancel(okTitle: self.actionSheetString[0], secondOkTitle: self.actionSheetString[1], okAction: { [weak self] _ in
-                guard let self = self else { return }
-                
-                if indexPath.section == 0 {
-                    /// 수정
-                    /// 질문 원글일 경우
-                    self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { [weak self] writeQuestionVC in
-                        writeQuestionVC.isEditState = true
-                        writeQuestionVC.postID = self?.postID
-                        writeQuestionVC.originTitle = self?.questionData?.title
-                        writeQuestionVC.originContent = self?.questionData?.content
-                    }
-                } else {
-                    /// 질문 답변일 경우
-                    self.dismissKeyboard()
-                    self.editIndex = [1, indexPath.row]
-                }
-                self.defaultQuestionChatTV.reloadData()
-            }, secondOkAction: { [weak self] _ in
-                guard let self = self else { return }
-                /// 삭제
-                self.makeNadoDeleteAlert(qnaType: indexPath.row == 0 ? .question : .comment, commentID: indexPath.row == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, indexPath: [IndexPath(row: indexPath.row, section: indexPath.section)])
-            })
-        } else {
-            /// 타인이 흰색 말풍선의 더보기 버튼을 눌렀을 경우
-            self.makeAlertWithCancel(okTitle: self.actionSheetString[0], okAction: { [weak self] _ in
-                self?.reportActionSheet { [weak self] reason in
-                    guard let self = self else { return }
-                    self.requestReport(reportedTargetID: indexPath.row == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, reportedTargetTypeID: indexPath.row == 0 ? 2 : 3, reason: reason)
-                }
-            })
-        }
-    }
-    
     /// 각 셀의 "더보기" 버튼 클릭시 액션을 설정하는 메서드
     private func setMoreBtnAction(_ type: QnAType, _ indexPath: IndexPath) {
         if self.actionSheetString.count > 1 {
@@ -935,10 +897,10 @@ extension DefaultQuestionChatVC {
         }
     }
     
-    /// 1:1질문, 전체 질문 질문 원글 삭제 API 요청 메서드
+    /// 1:1질문글 삭제 API 요청 메서드
     private func requestDeletePostQuestion(postID: Int) {
         self.activityIndicator.startAnimating()
-        ClassroomAPI.shared.deletePostQuestionAPI(postID: postID) { networkResult in
+        PublicAPI.shared.deletePostAPI(postID: postID) { networkResult in
             switch networkResult {
             case .success(_):
                 self.navigationController?.popViewController(animated: true)

@@ -19,6 +19,7 @@ enum PublicService {
     case editPost(postID: Int, title: String, content: String)
     case editPostComment(commentID: Int, content: String)
     case likePost(postID: Int, postType: RequestLikePostType)
+    case deletePost(postID: Int)
 }
 
 extension PublicService: TargetType {
@@ -49,6 +50,8 @@ extension PublicService: TargetType {
             return "/comment/\(commentID)"
         case .likePost:
             return "/like"
+        case .deletePost(let postID):
+            return "/post/\(postID)"
         }
     }
     
@@ -60,6 +63,8 @@ extension PublicService: TargetType {
             return .post
         case .editPost, .editPostComment:
             return .put
+        case .deletePost:
+            return .delete
         }
     }
     
@@ -113,12 +118,14 @@ extension PublicService: TargetType {
                 "type": type.rawValue
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
+        case .deletePost:
+            return .requestPlain
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment, .likePost:
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment, .likePost, .deletePost:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:

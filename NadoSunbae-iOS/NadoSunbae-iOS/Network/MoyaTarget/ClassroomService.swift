@@ -14,7 +14,6 @@ enum ClassroomService {
     case postComment(postID: Int, comment: String)
     case getMajorUserList(majorID: Int, isExclude: Bool)
     case postClassroomContent(majorID: Int, answerID: Int?, postTypeID: Int, title: String, content: String)
-    case deletePostQuestion(postID: Int)
     case deletePostComment(commentID: Int)
 }
 
@@ -36,8 +35,6 @@ extension ClassroomService: TargetType {
             return "/user/major/\(majorID)"
         case .postClassroomContent:
             return "/classroom-post"
-        case .deletePostQuestion(let postID):
-            return "/classroom-post/\(postID)"
         case .deletePostComment(let commentID):
             return "/comment/\(commentID)"
         }
@@ -50,7 +47,7 @@ extension ClassroomService: TargetType {
             return .get
         case .postComment, .postClassroomContent:
             return .post
-        case .deletePostQuestion, .deletePostComment:
+        case .deletePostComment:
             return .delete
         }
     }
@@ -81,7 +78,7 @@ extension ClassroomService: TargetType {
                 "content": content
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
-        case .deletePostQuestion, .deletePostComment:
+        case .deletePostComment:
             return .requestPlain
         }
     }
