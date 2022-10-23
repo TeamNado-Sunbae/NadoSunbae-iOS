@@ -168,7 +168,7 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
         let targetUserID = indexPath.section == 0 ? self.majorUserList.onQuestionUserList[indexPath.row].userID : self.majorUserList.offQuestionUserList[indexPath.row].userID
      
         if targetUserID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-           goToRootOfTab(index: 3)
+           goToRootOfTab(index: 4)
         } else {
             self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                 mypageUserVC.targetUserID = targetUserID
