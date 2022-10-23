@@ -46,7 +46,20 @@ final class ReviewVC: BaseVC {
 // MARK: - Bind
 extension ReviewVC: View {
     func bind(reactor: ReviewReactor) {
+        bindAction(reactor: reactor)
         bindState(reactor: reactor)
+    }
+    
+    private func bindAction(reactor: ReviewReactor) {
+        
+        /// 학과 후기 상세 뷰로 이동
+        reviewTV.rx.modelSelected(ReviewMainPostListData.self)
+            .subscribe(onNext: { item in
+                self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push) { reviewDetailVC in
+                    reviewDetailVC.postId = item.postID
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: ReviewReactor) {
