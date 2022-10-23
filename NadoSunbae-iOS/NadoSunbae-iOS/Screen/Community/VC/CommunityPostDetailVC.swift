@@ -144,7 +144,7 @@ extension CommunityPostDetailVC {
             } else {
                 self.makeAlertWithCancel(okTitle: "신고", okAction: { _ in
                     self.reportActionSheet(completion: { reason in
-                        self.requestReport(reportedTargetID: self.infoDetailData?.post.postDetailID ?? 0, reportedTargetTypeID: 2, reason: reason)
+                        self.requestReport(reportedTargetID: self.infoDetailData?.post.postDetailID ?? 0, postType: .post, reason: reason)
                     })
                 })
             }
@@ -317,7 +317,7 @@ extension CommunityPostDetailVC: UITableViewDataSource {
                 } else {
                     makeAlertWithCancel(okTitle: "신고", okAction: { [weak self] _ in
                         self?.reportActionSheet(completion: { [weak self] reason in
-                            self?.requestReport(reportedTargetID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, reportedTargetTypeID: 3, reason: reason)
+                            self?.requestReport(reportedTargetID: self?.infoDetailCommentData[indexPath.row - 2].commentID ?? 0, postType: .comment, reason: reason)
                         })
                     })
                 }

@@ -73,6 +73,7 @@
 		3362EF5728FD522D0019E9F7 /* RequestLikePostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */; };
 		3363431828FFFBC3005D4230 /* UnivType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3363431728FFFBC3005D4230 /* UnivType.swift */; };
 		3363431A28FFFC0D005D4230 /* SendCommunityInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3363431928FFFC0D005D4230 /* SendCommunityInfoDelegate.swift */; };
+		3367955E29002E54005E83FC /* ReportPostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367955D29002E54005E83FC /* ReportPostType.swift */; };
 		336EEE3C27D93E9A0010A9E3 /* UserPermissionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */; };
 		336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */; };
 		336EEE4127DA77700010A9E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 336EEE4027DA77700010A9E3 /* FirebaseAnalytics */; };
@@ -423,6 +424,7 @@
 		3363431528FFF62B005D4230 /* AvailableQuestionPersonTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonTVC.swift; sourceTree = "<group>"; };
 		3363431728FFFBC3005D4230 /* UnivType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnivType.swift; sourceTree = "<group>"; };
 		3363431928FFFC0D005D4230 /* SendCommunityInfoDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCommunityInfoDelegate.swift; sourceTree = "<group>"; };
+		3367955D29002E54005E83FC /* ReportPostType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPostType.swift; sourceTree = "<group>"; };
 		336EEE3B27D93E9A0010A9E3 /* UserPermissionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionInfo.swift; sourceTree = "<group>"; };
 		336EEE3D27D9A72C0010A9E3 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		3381083427D53E18005AF1F9 /* MypageLikeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageLikeListVC.swift; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 				33BD384428C9AF15005528DD /* PostFilterType.swift */,
 				33CBEBF928FB45B3002D0C84 /* MajorIDConstants.swift */,
 				3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */,
+				3367955D29002E54005E83FC /* ReportPostType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -2215,6 +2218,7 @@
 				5CC0BFD42798621600B96905 /* GetNotiListResponseData.swift in Sources */,
 				77BAD54628C87952006C2733 /* BaseAPI.swift in Sources */,
 				338EF68728F08D1500F71AC2 /* PersonalQuestionVC.swift in Sources */,
+				3367955E29002E54005E83FC /* ReportPostType.swift in Sources */,
 				33A86798288B0227009BA6DE /* CommunityMainReactor.swift in Sources */,
 				77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */,
 				331364512785A85E00E0C118 /* GenericResponse.swift in Sources */,

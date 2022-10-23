@@ -51,8 +51,8 @@ class PublicAPI: BaseAPI {
     }
     
     /// [POST] 신고 요청
-    func requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        publicProvider.request(.requestReport(reportedTargetID: reportedTargetID, reportedTargetTypeID: reportedTargetTypeID, reason: reason)) { result in
+    func requestReport(reportedTargetID: Int, postType: ReportPostType, reason: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.requestReport(reportedTargetID: reportedTargetID, postType: postType, reason: reason)) { result in
             switch result {
                 
             case .success(let response):

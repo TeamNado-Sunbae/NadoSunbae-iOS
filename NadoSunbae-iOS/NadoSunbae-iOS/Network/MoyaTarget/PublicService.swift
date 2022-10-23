@@ -11,7 +11,7 @@ import Moya
 enum PublicService {
     case getMajorList(univID: Int, filter: String)
     case requestBlockUnBlockUser(blockUserID: Int)
-    case requestReport(reportedTargetID: Int, reportedTargetTypeID: Int, reason: String)
+    case requestReport(reportedTargetID: Int, postType: ReportPostType, reason: String)
     case getAppLink
     case getPostList(univID: Int, majorID: Int, filter: PostFilterType, sort: String, search: String)
     case getPostDetail(postID: Int)
@@ -75,10 +75,10 @@ extension PublicService: TargetType {
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
         case .requestBlockUnBlockUser(let blockUserID):
             return .requestParameters(parameters: ["blockedUserId": blockUserID], encoding: JSONEncoding.default)
-        case .requestReport(let reportedTargetID, let reportedTargetTypeID, let reason):
+        case .requestReport(let reportedTargetID, let postType, let reason):
             let body: [String: Any] = [
-                "reportedTargetId": reportedTargetID,
-                "reportedTargetTypeId": reportedTargetTypeID,
+                "targetId": reportedTargetID,
+                "type": postType.rawValue,
                 "reason": reason
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)

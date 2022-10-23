@@ -390,7 +390,7 @@ extension DefaultQuestionChatVC {
                         } else {
                             self.reportActionSheet { [weak self] reason in
                                 guard let self = self else { return }
-                                self.requestReport(reportedTargetID: indexPath.section == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, reportedTargetTypeID: indexPath.section == 0 ? 2 : 3, reason: reason)
+                                self.requestReport(reportedTargetID: indexPath.section == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, postType: indexPath.section == 0 ? .post : .comment, reason: reason)
                             }
                         }
                     } else {
@@ -416,7 +416,7 @@ extension DefaultQuestionChatVC {
             self.makeAlertWithCancel(okTitle: self.actionSheetString[0], okAction: { [weak self] _ in
                 self?.reportActionSheet { [weak self] reason in
                     guard let self = self else { return }
-                    self.requestReport(reportedTargetID: indexPath.section == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, reportedTargetTypeID: indexPath.section == 0 ? 2 : 3, reason: reason)
+                    self.requestReport(reportedTargetID: indexPath.section == 0 ? self.questionData?.postDetailID ?? 0 : self.commentData[indexPath.row].commentID, postType: indexPath.section == 0 ? .post : .comment, reason: reason)
                 }
             })
         }
