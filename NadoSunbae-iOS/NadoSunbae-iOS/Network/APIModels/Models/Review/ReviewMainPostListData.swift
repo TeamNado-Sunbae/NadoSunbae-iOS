@@ -21,7 +21,7 @@ struct ReviewMainPostListData: Codable {
     let like: Like
 
     enum CodingKeys: String, CodingKey {
-        case postID = "postId"
+        case postID = "id"
         case oneLineReview, createdAt, writer, tagList, like
     }
 }

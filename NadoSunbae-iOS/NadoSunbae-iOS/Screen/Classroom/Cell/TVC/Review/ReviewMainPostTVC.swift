@@ -52,9 +52,9 @@ extension ReviewMainPostTVC {
 // MARK: - Custom Methods
 extension ReviewMainPostTVC {
     
-    func setData(data: ReviewPostModel) {
-        dateLabel.text = data.createdAt
-        titleLabel.text = data.title
+    func setData(data: ReviewMainPostListData) {
+        dateLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
+        titleLabel.text = data.oneLineReview
         likeCountLabel.text = "\(data.like.likeCount)"
         majorLabel.font = .PretendardSB(size: 14)
         majorLabel.textColor = .gray4

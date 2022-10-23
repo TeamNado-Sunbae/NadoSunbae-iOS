@@ -83,6 +83,7 @@ final class ClassroomVC: BaseVC {
         setUpDelegate()
         bindAction()
         injectReactor()
+        tapReviewWriteBtnAction()
     }
 }
 
@@ -257,12 +258,13 @@ extension ClassroomVC {
     private func configureContentVCBySegmentIndex(by segmentIndex: Int) {
         switch segmentIndex {
         case 0:
-            reviewVC = ReviewVC()
             configureContentVCContainerView(VC: reviewVC)
             reviewVC.contentSizeDelegate = self
+            reviewWriteBtn.isHidden = false
         case 1:
             configureContentVCContainerView(VC: personalQuestionVC)
             personalQuestionVC.contentSizeDelegate = self
+            reviewWriteBtn.isHidden = true
         default:
             print("segment default")
         }
@@ -321,6 +323,15 @@ extension ClassroomVC {
     /// reactor를 주입하는 메서드
     private func injectReactor() {
         personalQuestionVC.reactor = PersonalQuestionReactor()
+        reviewVC.reactor = ReviewReactor()
+    }
+    
+    /// 후기 작성 플로팅 버튼 Action 설정 메서드
+    private func tapReviewWriteBtnAction() {
+        reviewWriteBtn.press { [weak self] in
+            guard let self = self else { return }
+            self.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
+        }
     }
 }
 
