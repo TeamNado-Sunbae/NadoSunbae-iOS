@@ -16,7 +16,7 @@ extension MypageUserVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BaseQuestionTVC()
         let questionData = self.questionList[indexPath.row]
-        cell.setEssentialCellInfo(data: PostListResModel(postID: questionData.postID, type: nil, title: questionData.title, content: questionData.content, createdAt: questionData.createdAt, majorName: "", writer: questionData.writer, isAuthorized: false, commentCount: questionData.commentCount, like: questionData.like))
+        cell.setEssentialCellInfo(data: PostListResModel(postID: questionData.postID, type: nil, title: questionData.title, content: questionData.content, createdAt: questionData.createdAt, majorName: "", writer: questionData.writer, isAuthorized: questionData.isAuthorized, commentCount: questionData.commentCount, like: questionData.like))
         cell.layoutIfNeeded()
 
         return cell
@@ -41,7 +41,7 @@ extension MypageUserVC: UITableViewDelegate {
                 questionDetailVC.hidesBottomBarWhenPushed = true
                 questionDetailVC.naviStyle = .push
                 questionDetailVC.postID = self.questionList[indexPath.row].postID
-                questionDetailVC.isAuthorized = self.userInfo.userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) || self.userInfo.userID == self.questionList[indexPath.row].writer.writerID
+                questionDetailVC.isAuthorized = self.questionList[indexPath.row].isAuthorized
             }
         }
     }
