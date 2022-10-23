@@ -89,9 +89,13 @@ extension RankingVC {
         
         /// 선배 개인프로필 뷰로 이동
         rankingTV.rx.modelSelected(HomeRankingResponseModel.UserList.self)
-            .subscribe(onNext: { item in
-                self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
-                    mypageUserVC.targetUserID = item.id
+            .subscribe(onNext: { [weak self] item in
+                if item.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+                    self?.goToRootOfTab(index: 4)
+                } else {
+                    self?.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                        mypageUserVC.targetUserID = item.id
+                    }
                 }
             })
             .disposed(by: disposeBag)
