@@ -28,6 +28,7 @@ final class ReviewVC: BaseVC {
         configureUI()
         registerTVC()
         setUpDelegate()
+        NotificationCenter.default.addObserver(self, selector: #selector(setUpInitAction), name: Notification.Name.dismissHalfModal, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +86,7 @@ extension ReviewVC: View {
             .disposed(by: disposeBag)
     }
     
+    @objc
     private func setUpInitAction() {
         reactor?.action.onNext(.reloadReviewList)
     }
