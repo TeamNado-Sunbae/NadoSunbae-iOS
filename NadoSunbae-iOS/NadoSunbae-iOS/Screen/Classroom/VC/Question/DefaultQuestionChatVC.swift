@@ -233,19 +233,17 @@ extension DefaultQuestionChatVC {
             switch naviStyle {
             case .push:
                 questionNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
-                questionNaviBar.rightCustomBtn.isHidden = true
-                
                 questionNaviBar.backBtn.press(vibrate: true, for: .touchUpInside) {
                     self.navigationController?.popViewController(animated: true)
                 }
-                questionNaviBar.configureTitleLabel(title: "1:1 질문")
             case .present:
                 questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
                 questionNaviBar.dismissBtn.press(vibrate: true, for: .touchUpInside) {
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true)
                 }
-                questionNaviBar.configureTitleLabel(title: "1:1 질문")
             }
+            questionNaviBar.rightCustomBtn.isHidden = true
+            questionNaviBar.configureTitleLabel(title: "1:1 질문")
         }
     }
     
@@ -322,7 +320,9 @@ extension DefaultQuestionChatVC {
                     guard let self = self else { return }
                     self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
                         writeQuestionVC.answererID = self.answererID
+                        writeQuestionVC.isFromQuestionDetailVC = true
                     }
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }
