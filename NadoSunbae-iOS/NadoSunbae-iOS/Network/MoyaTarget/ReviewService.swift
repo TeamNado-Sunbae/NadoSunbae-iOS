@@ -10,7 +10,7 @@ import Moya
 
 enum ReviewService {
     case createReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String)
-    case getReviewMainPostList(majorID: Int, writerFilter: Int, tagFilter:[Int], sort: String)
+    case getReviewMainPostList(majorID: Int, writerFilter: String, tagFilter: String, sort: String)
     case getReviewPostDetail(postID: Int)
     case getReviewHomepageURL(majorID: Int)
     case deleteReviewPost(postID: Int)
@@ -27,8 +27,8 @@ extension ReviewService: TargetType {
             
         case .createReviewPost:
             return "/review-post"
-        case .getReviewMainPostList:
-            return "/review-post/list"
+        case .getReviewMainPostList(let majorID, _, _, _):
+            return "/review/major/\(majorID)"
         case .getReviewPostDetail(let postID), .deleteReviewPost(let postID):
             return "review/\(postID)"
         case .getReviewHomepageURL(let majorID):
@@ -41,9 +41,9 @@ extension ReviewService: TargetType {
     var method: Moya.Method {
         switch self {
             
-        case .createReviewPost, .getReviewMainPostList:
+        case .createReviewPost:
             return .post
-        case .getReviewPostDetail, .getReviewHomepageURL:
+        case .getReviewMainPostList, .getReviewPostDetail, .getReviewHomepageURL:
             return .get
         case .deleteReviewPost:
             return .delete
@@ -85,17 +85,14 @@ extension ReviewService: TargetType {
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
             
         /// 후기 메인 뷰에서 리스트를 요청하는 경우
-        case .getReviewMainPostList(let majorID, let writerFilter, let tagFilter, let sort):
-            let body: [String : Any] = [
-                "majorId" : majorID,
-                "writerFilter" : writerFilter,
-                "tagFilter" : tagFilter
+        case .getReviewMainPostList(_, let writerFilter, let tagFilter, let sort):
+            let query: [String: Any] = [
+                "writerFilter": writerFilter,
+                "tagFilter": tagFilter,
+                "sort": sort
             ]
             
-            let query = [ "sort" : sort ]
-            
-            // 배열값([Int])을 보낼 때는 JSONEncoding.prettyPrinted 사용해야함
-            return .requestCompositeParameters(bodyParameters: body, bodyEncoding: JSONEncoding.prettyPrinted, urlParameters: query)
+            return .requestParameters(parameters: query, encoding: URLEncoding.queryString)
             
         case .getReviewPostDetail, .getReviewHomepageURL, .deleteReviewPost:
             return .requestPlain
