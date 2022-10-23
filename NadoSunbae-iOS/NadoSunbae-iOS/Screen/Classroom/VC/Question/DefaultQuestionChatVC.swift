@@ -349,7 +349,7 @@ extension DefaultQuestionChatVC {
     /// 마이페이지로 뷰를 전환하는 메서드 (본인 마이페이지일 경우 탭 이동)
     private func goToMypageVC(userID: Int) {
         if userID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-            goToRootOfTab(index: 3)
+            goToRootOfTab(index: 4)
         } else {
             self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                 mypageUserVC.targetUserID = userID
@@ -361,7 +361,7 @@ extension DefaultQuestionChatVC {
     /// 알림탭 메인으로 뷰를 전환하는 메서드
     @objc
     private func goToNotificationVC() {
-        goToRootOfTab(index: 2)
+        goToRootOfTab(index: 3)
     }
 }
 

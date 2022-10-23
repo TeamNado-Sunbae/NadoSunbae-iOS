@@ -124,7 +124,7 @@ extension HomeVC: SendRankerDataDelegate {
     func sendRankerData(data: HomeRankingResponseModel.UserList) {
         divideUserPermission {
             if data.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-                goToRootOfTab(index: 3)
+                goToRootOfTab(index: 4)
             } else {
                 self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                     mypageUserVC.targetUserID = data.id
