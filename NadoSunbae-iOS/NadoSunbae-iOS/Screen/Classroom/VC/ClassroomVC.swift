@@ -257,7 +257,6 @@ extension ClassroomVC {
     private func configureContentVCBySegmentIndex(by segmentIndex: Int) {
         switch segmentIndex {
         case 0:
-            reviewVC = ReviewVC()
             configureContentVCContainerView(VC: reviewVC)
             reviewVC.contentSizeDelegate = self
         case 1:
