@@ -18,6 +18,7 @@ class WriteQuestionVC: BaseWritePostVC {
     private let majorID: Int = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID)
     private let disposeBag = DisposeBag()
     var isEditState: Bool = false
+    var isFromQuestionDetailVC: Bool = false
     var answererID: Int?
     var postID: Int?
     var originTitle: String?
@@ -152,8 +153,20 @@ extension WriteQuestionVC {
         PublicAPI.shared.requestWritePost(type: .questionToPerson, majorID: majorID, answererID: answererID, title: title, content: content) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? WritePostResModel {
-                    self.dismiss(animated: true, completion: nil)
+                if let data = res as? WritePostResModel {
+                    guard let presentingVC = self.presentingViewController else { return }
+                    self.dismiss(animated: true) { [weak self] in
+                        guard let self = self else { return }
+                        if self.isFromQuestionDetailVC {
+                            let questionChatSB = UIStoryboard(name: "QuestionChatSB", bundle: nil)
+                            guard let questionChatVC = questionChatSB.instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+                            questionChatVC.naviStyle = .present
+                            questionChatVC.postID = data.post.id
+                            questionChatVC.isAuthorized = true
+                            questionChatVC.modalPresentationStyle = .fullScreen
+                            presentingVC.present(questionChatVC, animated: true, completion: nil)
+                        }
+                    }
                 }
             case .requestErr(let res):
                 if let message = res as? String {
