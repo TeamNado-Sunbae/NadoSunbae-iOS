@@ -100,8 +100,8 @@ class ReviewAPI: BaseAPI {
     }
     
     /// [PUT] 후기글 수정 API
-    func editReviewPostAPI(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        userProvider.request(.editReviewPost(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip)) { result in
+    func editReviewPostAPI(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, recommendLecture: String, nonRecommendLecture: String, career: String, tip: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        userProvider.request(.editReviewPost(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, career: career, tip: tip)) { result in
             switch result {
                 
             case .success(let response):
