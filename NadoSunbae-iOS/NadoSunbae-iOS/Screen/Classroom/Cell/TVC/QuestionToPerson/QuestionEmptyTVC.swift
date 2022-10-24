@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuestionEmptyTVC: UITableViewCell {
+final class QuestionEmptyTVC: UITableViewCell {
 
     // MARK: Properties
     private var emptyQuestionLabel = UILabel().then {
@@ -42,7 +42,8 @@ extension QuestionEmptyTVC {
         
         emptyQuestionLabel.snp.makeConstraints {
             $0.centerX.equalTo(contentView)
-            $0.centerY.equalTo(contentView)
+            $0.top.equalToSuperview().offset(45)
+            $0.bottom.equalToSuperview().inset(45)
         }
     }
 }
