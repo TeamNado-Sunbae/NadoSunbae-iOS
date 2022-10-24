@@ -15,7 +15,7 @@ struct ReviewPost: Codable {
     let createdAt: String
 
     enum CodingKeys: String, CodingKey {
-        case reviewPostID = "postId"
+        case reviewPostID = "id"
         case oneLineReview, contentList, createdAt
     }
 }

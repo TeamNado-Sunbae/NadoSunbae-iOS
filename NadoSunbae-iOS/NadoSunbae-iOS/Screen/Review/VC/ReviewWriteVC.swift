@@ -460,11 +460,11 @@ extension ReviewWriteVC {
     
     /// 게시글 등록
     func requestCreateReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
-        ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
+        ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, career: career, tip: tip) { networkResult in
             switch networkResult {
                 
             case .success(let res):
-                if let _ = res as? ReviewPostRegisterData {
+                if let _ = res as? ReviewPostDetailData {
                     self.dismiss(animated: true)
                     self.makePostAnalyticsEvent(postType: !UserPermissionInfo.shared.isReviewed ? "review_new" : "review_additional", postedMajor: self.majorNameLabel.text ?? "")
                 }
