@@ -95,17 +95,30 @@ extension PersonalQuestionVC: View {
     private func bindState(reactor: PersonalQuestionReactor) {
         reactor.state
             .map { $0.seniorList }
-            .bind(to: availableQuestionPersonCV.rx.items) { collectionView, index, item in
-                let indexPath = IndexPath(row: index, section: 0)
-                guard let seniorCell = collectionView.dequeueReusableCell(withReuseIdentifier: AvailableQuestionPersonCVC.className, for: indexPath) as? AvailableQuestionPersonCVC else { return UICollectionViewCell() }
-                guard let seeMoreCell = collectionView.dequeueReusableCell(withReuseIdentifier: SeeMoreQuestionPersonCVC.className, for: indexPath) as? SeeMoreQuestionPersonCVC else { return UICollectionViewCell() }
+            .map { $0.isEmpty ? [QuestionUser()] : $0 }
+            .bind(to: availableQuestionPersonCV.rx.items) { [weak self] collectionView, index, item in
                 
-                if indexPath.row == 8 {
-                    return seeMoreCell
+                let indexPath = IndexPath(row: index, section: 0)
+                guard let seniorCell = collectionView.dequeueReusableCell(withReuseIdentifier: AvailableQuestionPersonCVC.className, for: indexPath) as? AvailableQuestionPersonCVC,
+                      let seeMoreCell = collectionView.dequeueReusableCell(withReuseIdentifier: SeeMoreQuestionPersonCVC.className, for: indexPath) as? SeeMoreQuestionPersonCVC,
+                      let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: AvailableQuestionPersonEmptyCVC.className, for: indexPath) as? AvailableQuestionPersonEmptyCVC else { return UICollectionViewCell() }
+                
+                let emptyCase = item.userID == -2 && index == 0
+
+                if emptyCase {
+                    self?.seeMoreBtn.isHidden = true
+                    return emptyCell
                 } else {
-                    seniorCell.setData(model: item)
-                    seniorCell.contentView.isHidden = true
-                    return seniorCell
+                    self?.seeMoreBtn.isHidden = false
+                    
+                    // 선배 더보기 >
+                    if indexPath.row == 8 {
+                        return seeMoreCell
+                    } else {
+                        seniorCell.setData(model: item)
+                        seniorCell.contentView.isHidden = true
+                        return seniorCell
+                    }
                 }
             }
             .disposed(by: disposeBag)
@@ -113,13 +126,22 @@ extension PersonalQuestionVC: View {
         reactor.state
             .map { $0.recentQuestionList }
             .bind(to: recentQuestionTV.rx.items) { tableView, index, item in
+                
                 let indexPath = IndexPath(row: index, section: 0)
                 let cell = tableView.dequeueReusableCell(withIdentifier: BaseQuestionTVC.className, for: indexPath)
+                let emptyCell = tableView.dequeueReusableCell(withIdentifier: QuestionEmptyTVC.className, for: indexPath)
                 
-                guard let questionCell = cell as? BaseQuestionTVC else { return UITableViewCell() }
+                guard let questionCell = cell as? BaseQuestionTVC,
+                      let emptyCell = emptyCell as? QuestionEmptyTVC else { return UITableViewCell() }
+                
                 questionCell.setEssentialCellInfo(data: item)
                 
-                return questionCell
+                // emptyCell
+                if item.postID == -1 && index == 0 {
+                    return emptyCell
+                } else {
+                    return questionCell
+                }
             }
             .disposed(by: self.disposeBag)
         
@@ -142,7 +164,7 @@ extension PersonalQuestionVC: View {
         reactor?.action.onNext(.reloadRecentQuestionListTV)
     }
     
-    /// recentQuestionTV를 bind하는 메서드r
+    /// recentQuestionTV를 bind하는 메서드
     private func bindrecentQuestionTV() {
         recentQuestionTV.rx.modelSelected(PostListResModel.self)
             .subscribe(onNext: { item in
@@ -153,6 +175,7 @@ extension PersonalQuestionVC: View {
                     postDetailVC.isAuthorized = item.isAuthorized
                 }
             })
+            .disposed(by: disposeBag)
     }
     
     /// recentQuestionTV를 bind하는 메서드
@@ -167,6 +190,7 @@ extension PersonalQuestionVC: View {
                     }
                 }
             })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -216,12 +240,15 @@ extension PersonalQuestionVC {
     private func registerCell() {
         availableQuestionPersonCV.register(AvailableQuestionPersonCVC.self, forCellWithReuseIdentifier: AvailableQuestionPersonCVC.className)
         availableQuestionPersonCV.register(SeeMoreQuestionPersonCVC.self, forCellWithReuseIdentifier: SeeMoreQuestionPersonCVC.className)
+        availableQuestionPersonCV.register(AvailableQuestionPersonEmptyCVC.self, forCellWithReuseIdentifier: AvailableQuestionPersonEmptyCVC.className)
         recentQuestionTV.register(BaseQuestionTVC.self, forCellReuseIdentifier: BaseQuestionTVC.className)
+        recentQuestionTV.register(QuestionEmptyTVC.self, forCellReuseIdentifier: QuestionEmptyTVC.className)
     }
     
     /// 대리자 위임 메서드
     private func setUpDelegate() {
         availableQuestionPersonCV.rx.setDelegate(self)
+            .disposed(by: disposeBag)
         recentQuestionTV.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
@@ -232,7 +259,13 @@ extension PersonalQuestionVC: UICollectionViewDelegateFlowLayout {
     
     /// sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 69.0, height: 108.0)
+        
+        // 질문 가능한 선배가 없는 경우
+        if reactor?.currentState.seniorList.isEmpty == true {
+            return CGSize(width: availableQuestionPersonCV.frame.width - 32, height: 108.0)
+        } else {
+            return CGSize(width: 69.0, height: 108.0)
+        }
     }
 }
 
