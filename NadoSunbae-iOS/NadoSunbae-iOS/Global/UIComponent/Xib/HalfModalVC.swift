@@ -62,6 +62,7 @@ class HalfModalVC: UIViewController {
     var cellType: MajorCellType = .basic
     var hasNoMajorOption: Bool = true
     var isSecondMajorSheet: Bool = false
+    var selectFilterIndex: Int = 0
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -235,10 +236,25 @@ extension HalfModalVC {
         }
     }
     
-    /// 0번째 인덱스 셀이 초기 선택되도록하는 메서드
+    /// 인덱스 셀이 초기 선택되도록하는 메서드
     private func setUpDefaultStatus() {
-        if majorList[0].majorName == "학과 무관" || majorList[0].majorName == "미진입" {
-            self.majorTV.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        switch vcType {
+            
+        case .basic, .search:
+            if majorList[0].majorName == "학과 무관" || majorList[0].majorName == "미진입" {
+                self.majorTV.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+                completeBtn.isActivated = true
+                completeBtn.titleLabel?.textColor = UIColor.mainDefault
+            }
+        case .communityFilter:
+            
+            // 학과무관의 ID값이 넘어올 경우
+            if selectFilterIndex == MajorIDConstants.regardlessMajorID {
+                // indexPath를 지정해주기 위해 값을 0으로 변경한다
+                selectFilterIndex = 0
+            }
+            
+            self.majorTV.selectRow(at: IndexPath(row: selectFilterIndex == 0 ? selectFilterIndex : selectFilterIndex - 1, section: 0), animated: false, scrollPosition: .top)
             completeBtn.isActivated = true
             completeBtn.titleLabel?.textColor = UIColor.mainDefault
         }
