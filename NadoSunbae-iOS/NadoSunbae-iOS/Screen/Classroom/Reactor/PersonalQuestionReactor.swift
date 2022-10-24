@@ -61,7 +61,7 @@ extension PersonalQuestionReactor {
         case .requestSeniorList(let seniorList):
             newState.seniorList = seniorList
         case .requestRecentQuestionList(let recentQuestionList):
-            newState.recentQuestionList = recentQuestionList
+            newState.recentQuestionList = recentQuestionList.isEmpty ? makeEmptyPostListResModel() : recentQuestionList
         }
         
         return newState
@@ -113,7 +113,7 @@ extension PersonalQuestionReactor {
                     if let data = res as? MajorUserListDataModel {
                         var questionUserList = data.onQuestionUserList
                         if questionUserList.count > 8 {
-                            questionUserList = Array(data.onQuestionUserList.suffix(from: 8))
+                            questionUserList = Array(data.onQuestionUserList.prefix(upTo: 8))
                             questionUserList.append(QuestionUser())
                         }
                         observer.onNext(Mutation.requestSeniorList(seniorList: questionUserList))
@@ -141,5 +141,9 @@ extension PersonalQuestionReactor {
             }
             return Disposables.create()
         }
+    }
+    
+    private func makeEmptyPostListResModel() -> [PostListResModel] {
+        return [PostListResModel(postID: -1, type: "", title: "", content: "", createdAt: "", majorName: "", writer: CommunityWriter(writerID: 0, nickname: ""), isAuthorized: false, commentCount: 0, like: Like(isLiked: false, likeCount: 0))]
     }
 }
