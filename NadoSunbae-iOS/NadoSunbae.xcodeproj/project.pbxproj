@@ -64,6 +64,7 @@
 		3332359D28EF482000F92793 /* SendContentSizeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */; };
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
 		3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */; };
+		33463ADA290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33463AD9290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		335D91AB28D05758000C05EF /* QuestionToPersonHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */; };
 		335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */; };
@@ -409,6 +410,7 @@
 		3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContentSizeDelegate.swift; sourceTree = "<group>"; };
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBlockedInfoDelegate.swift; sourceTree = "<group>"; };
+		33463AD9290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonEmptyCVC.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionToPersonHeaderTVC.swift; sourceTree = "<group>"; };
 		335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreQuestionPersonCVC.swift; sourceTree = "<group>"; };
@@ -1086,6 +1088,7 @@
 		331C53782795C7B50052B309 /* CVC */ = {
 			isa = PBXGroup;
 			children = (
+				33463AD9290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift */,
 				331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */,
 				335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */,
 				336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */,
@@ -2337,6 +2340,7 @@
 				331364A62785D90D00E0C118 /* NotificationMainVC.swift in Sources */,
 				5CC0BFD6279873B400B96905 /* ReadNotificationDataModel.swift in Sources */,
 				33856370278DC74D003C60A6 /* BaseTVC.swift in Sources */,
+				33463ADA290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift in Sources */,
 				77AEEB452789AF380016880B /* MajorTVC.swift in Sources */,
 				5CC0BFDF2798A3B900B96905 /* SignAPI.swift in Sources */,
 				33C79DD22881B50D00B6C32C /* CommunityPostList.swift in Sources */,
