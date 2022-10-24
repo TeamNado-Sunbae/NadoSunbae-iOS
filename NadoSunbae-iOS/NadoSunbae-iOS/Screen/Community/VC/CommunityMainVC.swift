@@ -309,6 +309,7 @@ extension CommunityMainVC {
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         slideVC.selectCommunityDelegate = self
+        slideVC.selectFilterIndex = reactor?.currentState.filterMajorID ?? MajorIDConstants.regardlessMajorID
         self.present(slideVC, animated: true)
     }
 }
