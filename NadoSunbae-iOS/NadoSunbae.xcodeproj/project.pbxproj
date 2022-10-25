@@ -64,6 +64,8 @@
 		3332359D28EF482000F92793 /* SendContentSizeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */; };
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
 		3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */; };
+		33463AE02907E10400323072 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33463ADF2907E10400323072 /* AlertType.swift */; };
+		33463AE22908016300323072 /* SendLoadingStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33463AE12908016300323072 /* SendLoadingStatusDelegate.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		335D91AB28D05758000C05EF /* QuestionToPersonHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */; };
 		335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */; };
@@ -409,6 +411,8 @@
 		3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContentSizeDelegate.swift; sourceTree = "<group>"; };
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBlockedInfoDelegate.swift; sourceTree = "<group>"; };
+		33463ADF2907E10400323072 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		33463AE12908016300323072 /* SendLoadingStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLoadingStatusDelegate.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionToPersonHeaderTVC.swift; sourceTree = "<group>"; };
 		335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreQuestionPersonCVC.swift; sourceTree = "<group>"; };
@@ -829,6 +833,7 @@
 				33CBEBF928FB45B3002D0C84 /* MajorIDConstants.swift */,
 				3362EF5628FD522D0019E9F7 /* RequestLikePostType.swift */,
 				3367955D29002E54005E83FC /* ReportPostType.swift */,
+				33463ADF2907E10400323072 /* AlertType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1858,6 +1863,7 @@
 				C783BFA028A7D7E3000FE3D8 /* SendHomeRecentDataDelegate.swift */,
 				C7A81AC428ED681600642B70 /* SendRankerDataDelegate.swift */,
 				3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */,
+				33463AE12908016300323072 /* SendLoadingStatusDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2240,6 +2246,7 @@
 				C7CC017A28A8E7F2001D2C18 /* HomeCommunityTVC.swift in Sources */,
 				33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
+				33463AE22908016300323072 /* SendLoadingStatusDelegate.swift in Sources */,
 				77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */,
 				C790A27A289E7DC500A67135 /* ImageCacheManager.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
@@ -2279,6 +2286,7 @@
 				331C53772795B9CA0052B309 /* QuestionPersonCVC.swift in Sources */,
 				338CDB02278C9F8600F8227A /* ClassroomCommentEditTVC.swift in Sources */,
 				7754A31C27912F3A0093C230 /* ReviewWriteBgImgCVC.swift in Sources */,
+				33463AE02907E10400323072 /* AlertType.swift in Sources */,
 				5CB6503027947A5E007694B1 /* NotificationMainVC+TV.swift in Sources */,
 				C71BF23C27CD0CC80030DCB9 /* ResetPWVC.swift in Sources */,
 				33CF635027945C0400E92C04 /* NadoHorizonContainerViews.swift in Sources */,
