@@ -97,6 +97,15 @@ extension ReviewVC: View {
                 self?.reviewTV.layoutIfNeeded()
             })
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showAlert }
+            .subscribe(onNext: { [weak self] showAlert in
+                if showAlert {
+                    self?.makeAlert(title: reactor.currentState.alertMessage)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc
