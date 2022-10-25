@@ -65,6 +65,7 @@
 		33393ADF27D4E85E007F2585 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */; };
 		3341DB6C27D7D728007E65B6 /* SendBlockedInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */; };
 		33463ADA290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33463AD9290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift */; };
+		33463ADE2906AF6E00323072 /* QuestionPersonEmptyLabelCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33463ADD2906AF6E00323072 /* QuestionPersonEmptyLabelCVC.swift */; };
 		334D2E0427914C8800A4CA23 /* WriteQuestionSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */; };
 		335D91AB28D05758000C05EF /* QuestionToPersonHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */; };
 		335D91AF28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */; };
@@ -409,6 +410,7 @@
 		33393ADE27D4E85E007F2585 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		3341DB6B27D7D728007E65B6 /* SendBlockedInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBlockedInfoDelegate.swift; sourceTree = "<group>"; };
 		33463AD9290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableQuestionPersonEmptyCVC.swift; sourceTree = "<group>"; };
+		33463ADD2906AF6E00323072 /* QuestionPersonEmptyLabelCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPersonEmptyLabelCVC.swift; sourceTree = "<group>"; };
 		334D2E0327914C8800A4CA23 /* WriteQuestionSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteQuestionSB.storyboard; sourceTree = "<group>"; };
 		335D91AA28D05758000C05EF /* QuestionToPersonHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionToPersonHeaderTVC.swift; sourceTree = "<group>"; };
 		335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreQuestionPersonCVC.swift; sourceTree = "<group>"; };
@@ -1085,6 +1087,7 @@
 			isa = PBXGroup;
 			children = (
 				33463AD9290662B000323072 /* AvailableQuestionPersonEmptyCVC.swift */,
+				33463ADD2906AF6E00323072 /* QuestionPersonEmptyLabelCVC.swift */,
 				331C53762795B9CA0052B309 /* QuestionPersonCVC.swift */,
 				335D91AE28D062FF000C05EF /* SeeMoreQuestionPersonCVC.swift */,
 				336216B028D1DBFD00FEA3E9 /* AvailableQuestionPersonCVC.swift */,
@@ -2372,6 +2375,7 @@
 				5CC0BFD027985D4200B96905 /* NotificationAPI.swift in Sources */,
 				5CCCE06F27BEA57300F0E5FD /* MypagePostListTVC.swift in Sources */,
 				5CCCE06C27BEA4E300F0E5FD /* MypageMyPostListModel.swift in Sources */,
+				33463ADE2906AF6E00323072 /* QuestionPersonEmptyLabelCVC.swift in Sources */,
 				5C4ED92C278949C4001EA6BB /* SignInVC.swift in Sources */,
 				5C4B5AA027BFFDEC0012A898 /* MypageMyReviewVC.swift in Sources */,
 				336EEE3E27D9A72C0010A9E3 /* PermissionType.swift in Sources */,

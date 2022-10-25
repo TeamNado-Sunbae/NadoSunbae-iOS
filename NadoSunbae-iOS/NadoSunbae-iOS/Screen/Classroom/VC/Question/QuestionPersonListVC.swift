@@ -84,6 +84,7 @@ extension QuestionPersonListVC {
     /// 셀 등록 메서드
     private func registerCell() {
         questionPersonCV.register(QuestionPersonCVC.self, forCellWithReuseIdentifier: QuestionPersonCVC.className)
+        questionPersonCV.register(QuestionPersonEmptyLabelCVC.self, forCellWithReuseIdentifier: QuestionPersonEmptyLabelCVC.className)
     }
     
     /// xib 등록 메서드
@@ -117,9 +118,9 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return majorUserList.onQuestionUserList.count
+            return majorUserList.onQuestionUserList.isEmpty ? 1 : majorUserList.onQuestionUserList.count
         case 1:
-            return majorUserList.offQuestionUserList.count
+            return majorUserList.offQuestionUserList.isEmpty ? 1 : majorUserList.offQuestionUserList.count
         default:
             return 0
         }
@@ -127,9 +128,27 @@ extension QuestionPersonListVC: UICollectionViewDataSource {
     
     /// cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let questionPeopleCell = collectionView.dequeueReusableCell(withReuseIdentifier: QuestionPersonCVC.className, for: indexPath) as? QuestionPersonCVC else { return UICollectionViewCell() }
-        questionPeopleCell.setData(model: indexPath.section == 0 ? majorUserList.onQuestionUserList[indexPath.row] : majorUserList.offQuestionUserList[indexPath.row])
-        return questionPeopleCell
+        guard let questionPeopleCell = collectionView.dequeueReusableCell(withReuseIdentifier: QuestionPersonCVC.className, for: indexPath) as? QuestionPersonCVC,
+              let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: QuestionPersonEmptyLabelCVC.className, for: indexPath) as? QuestionPersonEmptyLabelCVC else { return UICollectionViewCell() }
+        
+        switch indexPath.section {
+        case 0:
+            if majorUserList.onQuestionUserList.isEmpty {
+                return emptyCell
+            } else {
+                questionPeopleCell.setData(model: majorUserList.onQuestionUserList[indexPath.row])
+                return questionPeopleCell
+            }
+        case 1:
+            if majorUserList.offQuestionUserList.isEmpty {
+                return emptyCell
+            } else {
+                questionPeopleCell.setData(model: majorUserList.offQuestionUserList[indexPath.row])
+                return questionPeopleCell
+            }
+        default:
+            return UICollectionViewCell()
+        }
     }
     
     /// viewForSupplementaryElementOfKind
@@ -160,7 +179,14 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
     
     /// sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 88.0, height: 120.0)
+        switch indexPath.section {
+        case 0:
+            return majorUserList.onQuestionUserList.isEmpty ? CGSize(width: 130.0, height: 22.0) : CGSize(width: 88.0, height: 120.0)
+        case 1:
+            return majorUserList.offQuestionUserList.isEmpty ? CGSize(width: 130.0, height: 22.0) : CGSize(width: 88.0, height: 120.0)
+        default:
+            return CGSize.zero
+        }
     }
     
     /// sizeForItemAt
