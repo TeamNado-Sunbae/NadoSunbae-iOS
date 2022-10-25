@@ -21,6 +21,7 @@ final class ReviewVC: BaseVC {
     
     var disposeBag = DisposeBag()
     var contentSizeDelegate: SendContentSizeDelegate?
+    var loadingDelegate: SendLoadingStatusDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -81,8 +82,7 @@ extension ReviewVC: View {
             .distinctUntilChanged()
             .map { $0 }
             .subscribe(onNext: { [weak self] loading in
-                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
-                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+                self?.loadingDelegate?.sendLoadingStatus(loading: loading)
             })
             .disposed(by: disposeBag)
         

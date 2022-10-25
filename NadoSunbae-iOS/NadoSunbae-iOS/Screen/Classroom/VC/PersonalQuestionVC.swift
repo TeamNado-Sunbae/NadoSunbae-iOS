@@ -58,6 +58,7 @@ final class PersonalQuestionVC: BaseVC {
     
     var disposeBag = DisposeBag()
     var contentSizeDelegate: SendContentSizeDelegate?
+    var loadingDelegate: SendLoadingStatusDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -132,6 +133,33 @@ extension PersonalQuestionVC: View {
                     }
                 }
                 self?.recentQuestionTV.layoutIfNeeded()
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .subscribe(onNext: { [weak self] loading in
+                self?.loadingDelegate?.sendLoadingStatus(loading: loading)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showAlert }
+            .subscribe(onNext: { show in
+                if show {
+                    self.makeAlert(title: reactor.currentState.alertMessage)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isUpdateAccessToken }
+            .subscribe(onNext: { state in
+                if state {
+                    self.updateAccessToken { _ in
+                        reactor.action.onNext(reactor.currentState.reloadAction)
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }

@@ -68,9 +68,9 @@ final class ClassroomVC: BaseVC {
         $0.contentMode = .scaleAspectFill
     }
     
-    // TODO: 과방 reviewVC content 채우기
     private var reviewVC: ReviewVC = ReviewVC()
     private var personalQuestionVC: PersonalQuestionVC = PersonalQuestionVC()
+    private let loadingDispatchGroup = DispatchGroup()
     
     var disposeBag = DisposeBag()
     
@@ -117,7 +117,7 @@ extension ClassroomVC {
     /// UI 구성하는 메서드
     private func configureUI() {
         self.view.backgroundColor = .paleGray
-        view.addSubviews([reviewImageContainerView, classroomSV, segmentedControlContainerView, topMajorSelectView, reviewWriteBtn])
+        view.addSubviews([reviewImageContainerView, classroomSV, segmentedControlContainerView, topMajorSelectView, reviewWriteBtn, activityIndicator])
         classroomSV.addSubview(contentView)
         contentView.addSubviews([contentVCContainerView])
         
@@ -260,10 +260,12 @@ extension ClassroomVC {
         case 0:
             configureContentVCContainerView(VC: reviewVC)
             reviewVC.contentSizeDelegate = self
+            reviewVC.loadingDelegate = self
             reviewWriteBtn.isHidden = false
         case 1:
             configureContentVCContainerView(VC: personalQuestionVC)
             personalQuestionVC.contentSizeDelegate = self
+            personalQuestionVC.loadingDelegate = self
             reviewWriteBtn.isHidden = true
         default:
             print("segment default")
@@ -333,6 +335,13 @@ extension ClassroomVC {
             self.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
         }
     }
+    
+    /// loadingDispatchGroup의 count가 0이 되었음을 알리는 메서드
+    private func notifyLoadingDispatchGroupFinished() {
+        loadingDispatchGroup.notify(queue: DispatchQueue.main) {
+            self.activityIndicator.stopAnimating()
+        }
+    }
 }
 
 // MARK: - UIScrollViewDelegate
@@ -396,5 +405,23 @@ extension ClassroomVC: SendContentSizeDelegate {
         contentVCContainerView.snp.updateConstraints {
             $0.height.equalTo(height)
         }
+    }
+}
+
+// MARK: - SendLoadingStatusDelegate
+extension ClassroomVC: SendLoadingStatusDelegate {
+    func sendLoadingStatus(loading: Bool) {
+        let dispatchCount = self.loadingDispatchGroup.debugDescription.components(separatedBy: ",").filter({ $0.contains("count") }).first?.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap({ Int($0)} ).first ?? 0
+        
+        if loading {
+            self.activityIndicator.startAnimating()
+            loadingDispatchGroup.enter()
+        } else {
+            if dispatchCount > 0 {
+                self.loadingDispatchGroup.leave()
+            }
+        }
+        
+        self.notifyLoadingDispatchGroupFinished()
     }
 }
