@@ -31,4 +31,3 @@ struct Review: Codable {
     let contentList: [ContentList]
     let createdAt: String
 }
-

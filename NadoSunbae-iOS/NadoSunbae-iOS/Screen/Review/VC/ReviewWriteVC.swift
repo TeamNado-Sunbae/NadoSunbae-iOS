@@ -458,19 +458,18 @@ extension ReviewWriteVC {
 // MARK: - Network
 extension ReviewWriteVC {
     
-    /// 게시글 등록
+    /// 후기 게시글 등록 메서드
     func requestCreateReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
-        ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
+        ReviewAPI.shared.createReviewPostAPI(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, career: career, tip: tip) { networkResult in
             switch networkResult {
                 
             case .success(let res):
-                if let _ = res as? ReviewPostRegisterData {
+                if let _ = res as? ReviewPostDetailData {
                     self.dismiss(animated: true)
                     self.makePostAnalyticsEvent(postType: !UserPermissionInfo.shared.isReviewed ? "review_new" : "review_additional", postedMajor: self.majorNameLabel.text ?? "")
                 }
             case .requestErr(let res):
-                if let message = res as? String {
-                    print(message)
+                if let _ = res as? String {
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
@@ -479,28 +478,24 @@ extension ReviewWriteVC {
                         self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                     }
                 }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
+            default:
+                self.activityIndicator.stopAnimating()
+                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
             }
         }
     }
     
-    /// 게시글 수정
+    /// 후기 게시글 수정 메서드
     func requestEditReviewPost(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String) {
-        ReviewAPI.shared.editReviewPostAPI(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip) { networkResult in
+        ReviewAPI.shared.editReviewPostAPI(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, career: career, tip: tip) { networkResult in
             switch networkResult {
                 
             case .success(let res):
-                if res is ReviewEditData {
+                if let _ = res as? ReviewEditData {
                     self.dismiss(animated: true)
                 }
             case .requestErr(let res):
-                if let message = res as? String {
-                    print(message)
+                if let _ = res as? String {
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
                 } else if res is Bool {
