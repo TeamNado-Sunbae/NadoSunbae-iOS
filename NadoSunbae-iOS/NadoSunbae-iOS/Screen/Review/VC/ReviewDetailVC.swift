@@ -255,7 +255,7 @@ extension ReviewDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.requestGetReviewPostDetail(postID: self.postId ?? -1)
@@ -263,7 +263,7 @@ extension ReviewDetailVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -283,7 +283,7 @@ extension ReviewDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.requestPostReviewDetailLikeData(postID: self.postId ?? 0, postTypeID: .review)
@@ -291,7 +291,7 @@ extension ReviewDetailVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -312,7 +312,7 @@ extension ReviewDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.requestDeleteReviewPost(postID: self.postId ?? -1)
@@ -320,7 +320,7 @@ extension ReviewDetailVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
