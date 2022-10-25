@@ -9,9 +9,10 @@ import UIKit
 import Then
 import SnapKit
 
-final class AvailableQuestionPersonEmptyCVC: CodeBaseCVC {
+class AvailableQuestionPersonEmptyCVC: CodeBaseCVC {
+    
     // MARK: Property
-    private let emptyLabel = UILabel().then {
+    let emptyLabel = UILabel().then {
         $0.text = "등록된 선배가 없습니다."
         $0.textColor = .gray2
         $0.font = .PretendardR(size: 14.0)
