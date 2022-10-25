@@ -9,12 +9,12 @@ import Foundation
 import Moya
 
 enum ReviewService {
-    case createReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String)
+    case createReviewPost(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, recommendLecture: String, nonRecommendLecture: String, career: String, tip: String)
     case getReviewMainPostList(majorID: Int, writerFilter: String, tagFilter: String, sort: String)
     case getReviewPostDetail(postID: Int)
     case getReviewHomepageURL(majorID: Int)
     case deleteReviewPost(postID: Int)
-    case editReviewPost(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String)
+    case editReviewPost(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, recommendLecture: String, nonRecommendLecture: String, career: String, tip: String)
 }
 
 extension ReviewService: TargetType {
@@ -26,7 +26,7 @@ extension ReviewService: TargetType {
         switch self {
             
         case .createReviewPost:
-            return "/review-post"
+            return "/review/"
         case .getReviewMainPostList(let majorID, _, _, _):
             return "/review/major/\(majorID)"
         case .getReviewPostDetail(let postID), .deleteReviewPost(let postID):
@@ -34,7 +34,7 @@ extension ReviewService: TargetType {
         case .getReviewHomepageURL(let majorID):
             return "/major/\(majorID)"
         case .editReviewPost(let postID, _, _, _, _, _, _, _, _ ):
-            return "/review-post/\(postID)"
+            return "/review/\(postID)"
         }
     }
     
@@ -56,30 +56,30 @@ extension ReviewService: TargetType {
         switch self {
             
         /// 후기글 작성 경우
-        case .createReviewPost(let majorID, let bgImgID, let oneLineReview, let prosCons, let curriculum, let career, let recommendLecture, let nonRecommendLecture, let tip):
+        case .createReviewPost(let majorID, let bgImgID, let oneLineReview, let prosCons, let curriculum, let recommendLecture, let nonRecommendLecture, let career, let tip):
             let body: [String : Any] = [
                 "majorId" : majorID,
                 "backgroundImageId" : bgImgID,
                 "oneLineReview" : oneLineReview,
                 "prosCons" : prosCons,
                 "curriculum" : curriculum,
-                "career" : career,
                 "recommendLecture" : recommendLecture,
                 "nonRecommendLecture" : nonRecommendLecture,
+                "career" : career,
                 "tip" : tip
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)
         
         /// 후기글 수정 경우
-        case .editReviewPost( _, let bgImgID, let oneLineReview, let prosCons, let curriculum, let career, let recommendLecture, let nonRecommendLecture, let tip):
+        case .editReviewPost( _, let bgImgID, let oneLineReview, let prosCons, let curriculum, let recommendLecture, let nonRecommendLecture, let career, let tip):
             let body: [String : Any] = [
                 "backgroundImageId" : bgImgID,
                 "oneLineReview" : oneLineReview,
                 "prosCons" : prosCons,
                 "curriculum" : curriculum,
-                "career" : career,
                 "recommendLecture" : recommendLecture,
                 "nonRecommendLecture" : nonRecommendLecture,
+                "career" : career,
                 "tip" : tip
             ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.prettyPrinted)

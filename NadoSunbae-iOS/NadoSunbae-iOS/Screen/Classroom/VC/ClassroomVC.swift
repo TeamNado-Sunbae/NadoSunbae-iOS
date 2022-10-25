@@ -85,6 +85,11 @@ final class ClassroomVC: BaseVC {
         injectReactor()
         tapReviewWriteBtnAction()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabbar()
+    }
 }
 
 // MARK: - Bind

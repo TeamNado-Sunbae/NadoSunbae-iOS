@@ -15,14 +15,14 @@ class ReviewAPI: BaseAPI {
     private override init() {}
     
     /// [POST] 후기글 등록 API
-    func createReviewPostAPI(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        userProvider.request(.createReviewPost(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip)) { result in
+    func createReviewPostAPI(majorID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, recommendLecture: String, nonRecommendLecture: String, career: String, tip: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        userProvider.request(.createReviewPost(majorID: majorID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, career: career, tip: tip)) { result in
             switch result {
                 
             case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, ReviewPostRegisterData.self)
+                let networkResult = self.judgeStatus(by: statusCode, data, ReviewPostDetailData.self)
                 completion(networkResult)
                 
             case .failure(let err):
@@ -100,8 +100,8 @@ class ReviewAPI: BaseAPI {
     }
     
     /// [PUT] 후기글 수정 API
-    func editReviewPostAPI(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, career: String, recommendLecture: String, nonRecommendLecture: String, tip: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        userProvider.request(.editReviewPost(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, career: career, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, tip: tip)) { result in
+    func editReviewPostAPI(postID: Int, bgImgID: Int, oneLineReview: String, prosCons: String, curriculum: String, recommendLecture: String, nonRecommendLecture: String, career: String, tip: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        userProvider.request(.editReviewPost(postID: postID, bgImgID: bgImgID, oneLineReview: oneLineReview, prosCons: prosCons, curriculum: curriculum, recommendLecture: recommendLecture, nonRecommendLecture: nonRecommendLecture, career: career, tip: tip)) { result in
             switch result {
                 
             case .success(let response):
