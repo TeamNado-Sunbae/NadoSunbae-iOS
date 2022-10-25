@@ -111,20 +111,9 @@ extension BaseVC {
                 
                 /// 앞자리가 최신 버전과 다르다면 강제 업데이트 알럿
                 if AppVersion.shared.latestVersion.prefix(1) != AppVersion.shared.currentVersion.prefix(1) {
-                    alert.showNadoAlert(vc: self, message:
-            """
-            안정적인 서비스 이용을 위해
-            최신 버전으로 업데이트해주세요.
-            """
-                                        , confirmBtnTitle: "나도선배 앱 업데이트", cancelBtnTitle: "", type: .withSingleBtn)
+                    alert.showNadoAlert(vc: self, message: AlertType.forceUpdate.alertMessage, confirmBtnTitle: "나도선배 앱 업데이트", cancelBtnTitle: "", type: .withSingleBtn)
                 } else if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
-                    alert.showNadoAlert(vc: self, message:
-            """
-            유저들의 의견을 반영하여
-            사용성을 개선했어요.
-            지금 바로 업데이트해보세요!
-            """
-                                        , confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+                    alert.showNadoAlert(vc: self, message: AlertType.softUpdate.alertMessage, confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
                 } else {
                     completion()
                 }
@@ -134,7 +123,7 @@ extension BaseVC {
     
     /// 권한에 따른 제한 알럿 띄워주는 함수
     func showRestrictionAlert(permissionStatus: PermissionType) {
-        var permissionMsg = "내 학과 후기를 작성해야\n이용할 수 있는 기능이에요."
+        var permissionMsg = AlertType.noPermission.alertMessage
         var comfirmTitle = "후기 작성"
         var cancelTitle = "다음에 작성"
         
@@ -146,7 +135,7 @@ extension BaseVC {
                 self.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { reviewWriteVC in }
             }
         case .inappropriate:
-            permissionMsg = "부적절한 후기 작성이 확인되어\n열람 권한이 제한되었습니다.\n권한을 얻고 싶다면\n다시 학과후기를 작성해주세요."
+            permissionMsg = AlertType.inappropriateReview.alertMessage
             restrictionAlert.confirmBtn.press {
                 self.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { reviewWriteVC in }
             }
@@ -162,7 +151,7 @@ extension BaseVC {
                 }
             }
         case .firstInappropriate:
-            permissionMsg = "부적절한 후기 작성이 확인되어\n열람 권한이 제한되었습니다.\n권한을 얻고 싶다면\n다시 학과후기를 작성해주세요."
+            permissionMsg = AlertType.inappropriateReview.alertMessage
             comfirmTitle = "문의하기"
             cancelTitle = "닫기"
             restrictionAlert.confirmBtn.press {
@@ -274,10 +263,10 @@ extension BaseVC {
                     print("request err: ", message)
                 }
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -316,7 +305,7 @@ extension BaseVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.alreadyReported.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.getLatestVersion { response in
@@ -326,7 +315,7 @@ extension BaseVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.alreadyReported.alertMessage)
             }
         }
     }
@@ -341,20 +330,20 @@ extension BaseVC {
                 self.activityIndicator.stopAnimating()
             case .requestErr(let res):
                 if let message = res as? String {
-                    if message == "이미 신고한 글/답글입니다." {
-                        self.makeAlert(title: "이미 신고한 글/답글입니다.")
+                    if message == AlertType.alreadyReported.alertMessage {
+                        self.makeAlert(title: AlertType.alreadyReported.alertMessage)
                     } else {
-                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        self.makeAlert(title: AlertType.alreadyReported.alertMessage)
                     }
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        self.makeAlert(title: AlertType.alreadyReported.alertMessage)
                     }
                 }
                 self.activityIndicator.stopAnimating()
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.alreadyReported.alertMessage)
             }
         }
     }

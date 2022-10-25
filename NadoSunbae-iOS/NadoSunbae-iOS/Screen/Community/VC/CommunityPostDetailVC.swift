@@ -457,20 +457,20 @@ extension CommunityPostDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.optionalBindingData()
                     }
                 } else if res is Int {
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "삭제된 게시글입니다.") { _ in
+                    self.makeAlert(title: AlertType.deletedPost.alertMessage) { _ in
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -492,7 +492,7 @@ extension CommunityPostDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.requestCreateComment(postID: self.postID ?? 0, comment: self.commentTextView.text)
@@ -500,7 +500,7 @@ extension CommunityPostDetailVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -521,7 +521,7 @@ extension CommunityPostDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.requestPostLikeData(postID: self.postID ?? 0, postType: .post)
@@ -529,7 +529,7 @@ extension CommunityPostDetailVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -546,7 +546,7 @@ extension CommunityPostDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.requestDeletePostQuestion(postID: self.postID ?? 0)
@@ -554,7 +554,7 @@ extension CommunityPostDetailVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -571,16 +571,16 @@ extension CommunityPostDetailVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.activityIndicator.stopAnimating()
-                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        self.makeAlert(title: AlertType.networkError.alertMessage)
                     }
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }

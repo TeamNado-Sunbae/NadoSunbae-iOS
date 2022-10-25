@@ -297,7 +297,7 @@ extension SignUpUserInfoVC {
                     self.emailTextField.placeholder = self.univEmailDomain.email
                 }
             default:
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -324,7 +324,7 @@ extension SignUpUserInfoVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
                 self.checkIsCompleted()
             }
         }
@@ -352,7 +352,7 @@ extension SignUpUserInfoVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
                 self.checkIsCompleted()
             }
         }
@@ -376,12 +376,11 @@ extension SignUpUserInfoVC {
             case .requestErr(let msg):
                 self.activityIndicator.stopAnimating()
                 if let message = msg as? String {
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                    print("requestSignUp requestErr", message)
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }

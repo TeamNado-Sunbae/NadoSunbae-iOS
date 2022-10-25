@@ -21,12 +21,15 @@ final class ReviewReactor: Reactor {
     enum Mutation {
         case setLoading(loading: Bool)
         case requestReviewList(reviewList: [ReviewMainPostListData])
+        case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
     }
     
     // MARK: State
     struct State {
         var loading = false
         var reviewList: [ReviewMainPostListData] = []
+        var showAlert: Bool = false
+        var alertMessage: String = ""
     }
 }
 
@@ -54,6 +57,9 @@ extension ReviewReactor {
             newState.loading = loading
         case .requestReviewList(let reviewList):
             newState.reviewList = reviewList
+        case .setAlertState(let showState, let message):
+            newState.showAlert = showState
+            newState.alertMessage = message
         }
         
         return newState
@@ -74,9 +80,7 @@ extension ReviewReactor {
                         observer.onCompleted()
                     }
                 default:
-                    // ✅ TODO: Alert Display Protocol화하기
-                    // self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-
+                    observer.onNext(.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }

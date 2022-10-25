@@ -81,12 +81,12 @@ extension MailCompleteVC {
                 switch networkResult {
                 case .success:
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "메일이 재전송되었습니다.")
+                    self.makeAlert(title: AlertType.resendMail.alertMessage)
                 case .requestErr(let res):
                     if let message = res as? String {
                         debugPrint(message)
                         self.activityIndicator.stopAnimating()
-                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        self.makeAlert(title: AlertType.networkError.alertMessage)
                     } else if res is Bool {
                         self.updateAccessToken { _ in
                             self.resendEmail(email: email)
@@ -94,7 +94,7 @@ extension MailCompleteVC {
                     }
                 default:
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 }
             }
         case .signUp:
@@ -102,12 +102,12 @@ extension MailCompleteVC {
                 switch networkResult {
                 case .success:
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "메일이 재전송되었습니다.")
+                    self.makeAlert(title: AlertType.resendMail.alertMessage)
                 case .requestErr(let res):
                     if let message = res as? String {
                         debugPrint(message)
                         self.activityIndicator.stopAnimating()
-                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        self.makeAlert(title: AlertType.networkError.alertMessage)
                     } else if res is Bool {
                         self.updateAccessToken { _ in
                             self.resendEmail(email: email)
@@ -115,7 +115,7 @@ extension MailCompleteVC {
                     }
                 default:
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 }
             }
         }

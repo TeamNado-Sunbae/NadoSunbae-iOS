@@ -23,6 +23,8 @@ final class PersonalQuestionReactor: Reactor {
         case setLoading(loading: Bool)
         case requestSeniorList(seniorList: [QuestionUser])
         case requestRecentQuestionList(recentQuestionList: [PostListResModel])
+        case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
+        case updateAccessToken(state: Bool, action: Action)
     }
     
     // MARK: State
@@ -30,6 +32,10 @@ final class PersonalQuestionReactor: Reactor {
         var loading: Bool = false
         var seniorList: [QuestionUser] = []
         var recentQuestionList: [PostListResModel] = []
+        var showAlert: Bool = false
+        var alertMessage: String = ""
+        var isUpdateAccessToken: Bool = false
+        var reloadAction: Action = .reloadAvailableSeniorListCV
     }
 }
 
@@ -62,6 +68,12 @@ extension PersonalQuestionReactor {
             newState.seniorList = seniorList
         case .requestRecentQuestionList(let recentQuestionList):
             newState.recentQuestionList = recentQuestionList.isEmpty ? makeEmptyPostListResModel() : recentQuestionList
+        case .setAlertState(let showState, let message):
+            newState.showAlert = showState
+            newState.alertMessage = message
+        case .updateAccessToken(let state, let action):
+            newState.isUpdateAccessToken = state
+            newState.reloadAction = action
         }
         
         return newState
@@ -82,20 +94,15 @@ extension PersonalQuestionReactor {
                         observer.onCompleted()
                     }
                 case .requestErr(let res):
-                    // ✅ TODO: Alert Display Protocol화 하기
                     if let _ = res as? String {
-//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        observer.onNext(Mutation.setAlertState(showState: true))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        // ✅ TODO: updateAccessToken Protocol화 하기
-//                        self.updateAccessToken { _ in
-//                            self.setUpRequestData(sortType: .recent)
-//                        }
+                        observer.onNext(.updateAccessToken(state: true, action: .reloadRecentQuestionListTV))
                     }
                 default:
-                    // ✅ TODO: Alert Display Protocol화하기
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }
@@ -121,20 +128,15 @@ extension PersonalQuestionReactor {
                         observer.onCompleted()
                     }
                 case .requestErr(let res):
-                    // ✅ TODO: Alert Display Protocol화 하기
                     if let _ = res as? String {
-//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                        observer.onNext(Mutation.setAlertState(showState: true))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        // ✅ TODO: updateAccessToken Protocol화 하기
-//                        self.updateAccessToken { _ in
-//                            self.setUpRequestData(sortType: .recent)
-//                        }
+                        observer.onNext(.updateAccessToken(state: true, action: .reloadAvailableSeniorListCV))
                     }
                 default:
-                    // ✅ TODO: Alert Display Protocol화하기
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }

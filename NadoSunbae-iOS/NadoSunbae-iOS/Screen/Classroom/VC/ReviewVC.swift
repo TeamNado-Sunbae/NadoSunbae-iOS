@@ -21,6 +21,7 @@ final class ReviewVC: BaseVC {
     
     var disposeBag = DisposeBag()
     var contentSizeDelegate: SendContentSizeDelegate?
+    var loadingDelegate: SendLoadingStatusDelegate?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -81,8 +82,7 @@ extension ReviewVC: View {
             .distinctUntilChanged()
             .map { $0 }
             .subscribe(onNext: { [weak self] loading in
-                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
-                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+                self?.loadingDelegate?.sendLoadingStatus(loading: loading)
             })
             .disposed(by: disposeBag)
         
@@ -95,6 +95,15 @@ extension ReviewVC: View {
                     }
                 }
                 self?.reviewTV.layoutIfNeeded()
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showAlert }
+            .subscribe(onNext: { [weak self] showAlert in
+                if showAlert {
+                    self?.makeAlert(title: reactor.currentState.alertMessage)
+                }
             })
             .disposed(by: disposeBag)
     }
