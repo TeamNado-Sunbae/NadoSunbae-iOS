@@ -65,6 +65,7 @@ extension CommunityMainReactor {
                 Observable.just(.setLoading(loading: true)),
                 Observable.just(.setFilterBtnState(selected: fill)),
                 Observable.just(.setFilterMajorID(majorID: majorID)),
+                Observable.just(.setTapSegmentState(state: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: "recent", search: "")
             ])
         case .requestNewCommunityList(let majorID, let type, let sort, let search):
