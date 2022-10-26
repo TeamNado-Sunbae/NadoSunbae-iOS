@@ -197,12 +197,14 @@ extension PersonalQuestionVC: View {
         recentQuestionTV.rx.modelSelected(PostListResModel.self)
             .subscribe(onNext: { [weak self] item in
                 self?.divideUserPermission() {
-                    self?.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: "QuestionChatSB", naviType: .push) { postDetailVC in
-                        postDetailVC.hidesBottomBarWhenPushed = true
-                        postDetailVC.naviStyle = .push
-                        postDetailVC.postID = item.postID
-                        postDetailVC.isAuthorized = item.isAuthorized
-                    }
+                    guard let postDetailVC = UIStoryboard.init(name: "QuestionChatSB", bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+                    let postDetailNC = UINavigationController(rootViewController: postDetailVC)
+                    postDetailVC.naviStyle = .present
+                    postDetailVC.postID = item.postID
+                    postDetailVC.isAuthorized = item.isAuthorized
+                    postDetailNC.modalPresentationStyle = .fullScreen
+                    postDetailNC.navigationBar.isHidden = true
+                    self?.present(postDetailNC, animated: true)
                 }
             })
             .disposed(by: disposeBag)
