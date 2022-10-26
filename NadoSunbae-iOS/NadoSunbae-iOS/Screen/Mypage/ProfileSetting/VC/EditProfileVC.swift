@@ -51,7 +51,7 @@ class EditProfileVC: BaseVC {
             isOnQuestionToggleBtn.press {
                 self.isOnQuestionToggleBtn.isSelected.toggle()
                 self.changedInfo.isOnQuestion = self.isOnQuestionToggleBtn.isSelected
-                self.judgeSaveBtnState()
+                self.setProfileData()
             }
         }
     }
@@ -70,9 +70,8 @@ class EditProfileVC: BaseVC {
     
     // MARK: Properties
     let disposeBag = DisposeBag()
-    var userInfo = MypageUserInfoModel()
-    var changedInfo = MypageUserInfoModel()
-    var profileData = EditProfileRequestModel()
+    var userInfo = MypageEditProfileRequestBodyModel()
+    var changedInfo = MypageEditProfileRequestBodyModel()
     var secondMajorList: [MajorInfoModel] = []
     var isPresentingHalfModal = true
     var selectedProfileImgID = 0
@@ -87,7 +86,6 @@ class EditProfileVC: BaseVC {
         checkNickNameIsValid()
         hideKeyboardWhenTappedAround()
         setSaveBtn()
-        requestSecondMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "secondMajor")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,47 +103,36 @@ class EditProfileVC: BaseVC {
         presentChangeProfileImgVC()
     }
     
-    
     @IBAction func tapSelectFirstMajorBtn(_ sender: UIButton) {
-        presentHalfModalView(title: "본전공", hasNoMajorOption: false)
-        
-        // TODO: SignUpModalVC로 변경
-        //        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
-        //
-        //        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
-        //        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
-        //            slideVC.enterdBtnTag = sender.tag
-        //            self.enterBtnTag = sender.tag
-        //
-        //            slideVC.modalPresentationStyle = .custom
-        //            slideVC.transitioningDelegate = self
-        //            slideVC.selectMajorDelegate = self
-        //
-        //            self.present(slideVC, animated: true, completion: nil)
-        //        }
+        showMajorSelectModal(enterType: .firstMajor)
     }
     
     @IBAction func tapSelectFirstMajorStartBtn(_ sender: UIButton) {
-        
+        showMajorSelectModal(enterType: .firstMajorStart)
     }
     
     @IBAction func tapSelectSecondMajorBtn(_ sender: UIButton) {
-        presentHalfModalView(title: "제2전공", hasNoMajorOption: true, isSecondMajorSheet: true)
+        showMajorSelectModal(enterType: .secondMajor)
     }
     
     @IBAction func tapSelectSecondMajorStartBtn(_ sender: UIButton) {
-        
+        showMajorSelectModal(enterType: .secondMajorStart)
     }
 }
     
-    // MARK: - UI
+// MARK: - UI
 extension EditProfileVC {
     private func configureUI() {
         profileImgView.image = UIImage(named: "grayProfileImage\(userInfo.profileImageID)")
         profileImgChangBtn.makeRounded(cornerRadius: 8)
         nickNameTextField.placeholder = userInfo.nickname
         isOnQuestionToggleBtn.isSelected = userInfo.isOnQuestion
-        introTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "나를 한줄로 소개해보세요.")
+        if userInfo.bio.isEmpty {
+            introTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "나를 한줄로 소개해보세요.")
+        } else {
+            introTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "나를 한줄로 소개해보세요.")
+            introTextView.text = userInfo.bio
+        }
         firstMajorTextField.text = userInfo.firstMajorName
         firstMajorStartTextField.text = userInfo.firstMajorStart
         secondMajorTextField.text = userInfo.secondMajorName
@@ -171,10 +158,12 @@ extension EditProfileVC {
     private func checkSecondMajorStatus() {
         if secondMajorTextField.text == "미진입" {
             secondMajorStartBtn.setTitle("선택", for: .normal)
+            secondMajorStartTextField.placeholder = "미진입"
             secondMajorStartTextField.text = ""
             secondMajorStartBtn.isEnabled = false
         } else {
             secondMajorStartBtn.isEnabled = true
+            self.secondMajorStartTextField.placeholder = "선택하기"
         }
     }
     
@@ -193,7 +182,7 @@ extension EditProfileVC {
             
             alert.confirmBtn.press {
                 self.setProfileData()
-                self.requestEditProfile(data: self.profileData)
+                self.requestEditProfile(data: self.changedInfo)
             }
             
             alert.showNadoAlert(vc: self, message: "내 정보를 수정하시겠습니까?", confirmBtnTitle: "저장", cancelBtnTitle: "아니요")
@@ -252,23 +241,30 @@ extension EditProfileVC {
         }
     }
     
-    /// 변경할 profileData 세팅
+    /// 변경할 changedInfo 세팅
     private func setProfileData() {
-        // TODO: 기존엔 MypageUserInfoModel을 사용하였으나, 서버 모델 변경 이후 MypageUserInfoModel을 사용하여 put request를 보낼 수 없게 됨. 이 뷰 담당자가 새로 모델 만들어야 함!
-        //        profileData.nickName = changedInfo.nickname
-        //        profileData.firstMajorID = changedInfo.firstMajorID
-        //        profileData.secondMajorID = changedInfo.secondMajorID
-        //        profileData.firstMajorStart = changedInfo.firstMajorStart
-        //        profileData.secondMajorStart = changedInfo.secondMajorID == 1 ? "미진입" : changedInfo.secondMajorStart
-        //        profileData.isOnQuestion = changedInfo.isOnQuestion
+        changedInfo.profileImageID = selectedProfileImgID
+        if introTextView.textColor == .gray2 {
+            changedInfo.bio = ""
+        } else {
+            changedInfo.bio = introTextView.text
+        }
+        changedInfo.nickname = nickNameTextField.isEmpty ? userInfo.nickname : nickNameTextField.text ?? ""
+        changedInfo.isOnQuestion = isOnQuestionToggleBtn.isSelected
+        judgeSaveBtnState()
     }
     
     private func judgeSaveBtnState() {
-        //        if (userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입") || !(checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField)) {
-        //            setNavViewNadoRightBtn(status: false)
-        //        } else {
-        //            setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
-        //        }
+        
+        /// 아래 세 경우, 저장 버튼 비활성화
+        /// 1. 수정한 정보가 없거나
+        /// 2. 제1전공, 제2전공 동일하게 선택했거나
+        /// 3. 미진입이 아닌데 제2전공 진입시기를 선택하지 않은 경우
+        if userInfo == changedInfo || !(checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField)) || (secondMajorStartTextField.isEmpty && secondMajorStartTextField.placeholder == "선택하기") {
+            setNavViewNadoRightBtn(status: false)
+        } else {
+            setNavViewNadoRightBtn(status: true)
+        }
     }
     
     /// 제1, 제2전공 중복 선택 검사, 중복되지 않으면 true
@@ -288,20 +284,39 @@ extension EditProfileVC {
         self.present(slideVC, animated: true)
     }
     
-    /// HalfModalView를 present하는 메서드
-    private func presentHalfModalView(title: String, hasNoMajorOption: Bool, isSecondMajorSheet: Bool = false) {
-        let slideVC = HalfModalVC()
-        slideVC.vcType = .search
-        slideVC.cellType = .star
-        slideVC.setUpTitleLabel(title)
-        slideVC.hasNoMajorOption = hasNoMajorOption
-        slideVC.isSecondMajorSheet = isSecondMajorSheet
-        slideVC.secondMajorList = self.secondMajorList
+    private func showMajorSelectModal(enterType: SignUpMajorInfoEnterType) {
+        let slideVC = SignUpModalVC()
+        slideVC.univID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID)
+        slideVC.enterType = enterType
+        
+        switch enterType {
+        case .firstMajor, .secondMajor:
+            slideVC.vcType = .search
+        case .firstMajorStart, .secondMajorStart:
+            slideVC.vcType = .basic
+        }
+        slideVC.cellType = .basic
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         slideVC.selectMajorDelegate = self
-        self.isPresentingHalfModal = true
-        self.present(slideVC, animated: true)
+        
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
+    /// 서버에 요청해 받아 온 UserInfo를 EditProfile에 맞게 변환하여 리턴
+    private func getEditProfileUserInfo(data: MypageUserInfoModel) -> MypageEditProfileRequestBodyModel{
+        var editProfileUserInfo = MypageEditProfileRequestBodyModel()
+        editProfileUserInfo.profileImageID = data.profileImageID
+        editProfileUserInfo.bio = data.bio ?? ""
+        editProfileUserInfo.nickname = data.nickname
+        editProfileUserInfo.isOnQuestion = data.isOnQuestion
+        editProfileUserInfo.firstMajorName = data.firstMajorName
+        editProfileUserInfo.firstMajorID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID)
+        editProfileUserInfo.firstMajorStart = data.firstMajorStart
+        editProfileUserInfo.secondMajorName = data.secondMajorName
+        editProfileUserInfo.secondMajorID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID)
+        editProfileUserInfo.secondMajorStart = data.secondMajorStart
+        return editProfileUserInfo
     }
 }
 
@@ -314,6 +329,7 @@ extension EditProfileVC: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .mainText
         }
+        navView.rightActivateBtn.isUserInteractionEnabled = false
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -321,6 +337,8 @@ extension EditProfileVC: UITextViewDelegate {
             textView.textColor = .gray2
             textView.text = "나를 한줄로 소개해보세요."
         }
+        navView.rightActivateBtn.isUserInteractionEnabled = true
+        setProfileData()
     }
 }
 
@@ -341,35 +359,40 @@ extension EditProfileVC: SendUpdateModalDelegate {
             self.profileImgView.image = UIImage(named: "grayProfileImage\(selectedImgID)")
             selectedProfileImgID = selectedImgID
         }
-            
-        switch enterBtnTag {
-        case 0:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.firstMajorTextField.text = majorInfoData.majorName
-                //                self.changedInfo.firstMajorID = majorInfoData.majorID
+        
+        if let majorInfoTuple = data as? (Any, SignUpMajorInfoEnterType) {
+            switch majorInfoTuple.1 {
+            case .firstMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.firstMajorTextField.text = majorInfoData.majorName
+                    self.changedInfo.firstMajorID = majorInfoData.majorID
+                    self.changedInfo.firstMajorName = majorInfoData.majorName
+                }
+            case .firstMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.firstMajorStartTextField.text = majorInfoData
+                    self.changedInfo.firstMajorStart = majorInfoData
+                }
+            case .secondMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.secondMajorTextField.text = majorInfoData.majorName
+                    self.changedInfo.secondMajorID = majorInfoData.majorID
+                    self.changedInfo.secondMajorName = majorInfoData.majorName
+                    if majorInfoData.majorName == "미진입" {
+                        self.changedInfo.secondMajorStart = "미진입"
+                    }
+                    checkSecondMajorStatus()
+                }
+                
+            case .secondMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.secondMajorStartTextField.text = majorInfoData
+                    self.secondMajorStartBtn.setTitle("변경", for: .normal)
+                    self.changedInfo.secondMajorStart = majorInfoData
+                }
             }
-        case 1:
-            self.firstMajorStartTextField.text = data as? String
-            self.changedInfo.firstMajorStart = data as? String ?? ""
-        case 2:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.secondMajorTextField.text = majorInfoData.majorName
-                //                self.changedInfo.secondMajorID = majorInfoData.majorID
-                //                if changedInfo.secondMajorID == 1 {
-                //                    changedInfo.secondMajorStart = "미진입"
-                //                }
-                checkSecondMajorStatus()
-            }
-        case 3:
-            self.secondMajorStartTextField.text = data as? String
-            self.secondMajorStartBtn.setTitle("변경", for: .normal)
-            self.changedInfo.secondMajorStart = data as? String ?? ""
-        default:
-#if DEVELOPMENT
-            print("SignUpMajorInfoVC SendUpdateDelegate error")
-#endif
         }
-        self.judgeSaveBtnState()
+        self.setProfileData()
     }
 }
 
@@ -382,8 +405,8 @@ extension EditProfileVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserInfoModel {
-                    self.userInfo = data
-                    self.changedInfo = data
+                    self.userInfo = self.getEditProfileUserInfo(data: data)
+                    self.changedInfo = self.getEditProfileUserInfo(data: data)
                     self.selectedProfileImgID = data.profileImageID
                     self.configureUI()
                 }
@@ -407,7 +430,7 @@ extension EditProfileVC {
             self.nickNameInfoLabel.textColor = .mainDark
             self.nickNameTextField.text = nickName
             self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
-            self.judgeSaveBtnState()
+            self.setProfileData()
         } else {
             self.activityIndicator.startAnimating()
             SignAPI.shared.checkNickNameDuplicate(nickName: nickName) { networkResult in
@@ -418,13 +441,13 @@ extension EditProfileVC {
                     self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
                     self.changedInfo.nickname = nickName
                     self.nickNameTextField.text = nickName
-                    self.judgeSaveBtnState()
+                    self.setProfileData()
                 case .requestErr(let success):
                     self.activityIndicator.stopAnimating()
                     if success is Bool {
                         self.nickNameInfoLabel.textColor = .red
                         self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
-                        self.judgeSaveBtnState()
+                        self.setProfileData()
                     }
                 default:
                     self.activityIndicator.stopAnimating()
@@ -434,22 +457,7 @@ extension EditProfileVC {
         }
     }
     
-    /// 제2전공 학과 리스트 조회 메서드
-    private func requestSecondMajorList(univID: Int, filterType: String) {
-        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
-            switch networkResult {
-                
-            case .success(let res):
-                if let data = res as? [MajorInfoModel] {
-                    self.secondMajorList = data
-                }
-            default:
-                self.makeAlert(title: AlertType.networkError.alertMessage)
-            }
-        }
-    }
-    
-    private func requestEditProfile(data: EditProfileRequestModel) {
+    private func requestEditProfile(data: MypageEditProfileRequestBodyModel) {
         self.activityIndicator.startAnimating()
         MypageSettingAPI.shared.editProfile(data: data, completion: { networkResult in
             switch networkResult {
@@ -467,7 +475,7 @@ extension EditProfileVC {
                     self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.requestEditProfile(data: self.profileData)
+                        self.requestEditProfile(data: data)
                     }
                 }
             default:

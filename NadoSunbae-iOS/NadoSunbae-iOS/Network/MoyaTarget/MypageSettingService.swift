@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum MypageSettingService {
-    case editProfile(data: EditProfileRequestModel)
+    case editProfile(data: MypageEditProfileRequestBodyModel)
     case getLatestVersion
     case getBlockList
     case requestResetPW(email: String)
@@ -23,7 +23,7 @@ extension MypageSettingService: TargetType {
     var path: String {
         switch self {
         case .editProfile:
-            return "/user/mypage"
+            return "/user/"
         case .getLatestVersion:
             return "/app/version/recent"
         case .getBlockList:
@@ -48,12 +48,14 @@ extension MypageSettingService: TargetType {
         switch self {
         case .editProfile(let data):
             return .requestParameters(parameters: [
-                "nickname": data.nickName,
+                "profileImageId": data.profileImageID,
+                "nickname": data.nickname,
+                "bio": data.bio,
+                "isOnQuestion": data.isOnQuestion,
                 "firstMajorId": data.firstMajorID,
                 "firstMajorStart": data.firstMajorStart,
                 "secondMajorId": data.secondMajorID,
-                "secondMajorStart": data.secondMajorStart,
-                "isOnQuestion": data.isOnQuestion
+                "secondMajorStart": data.secondMajorStart
             ], encoding: JSONEncoding.default)
         case .getLatestVersion, .getBlockList:
             return .requestPlain
