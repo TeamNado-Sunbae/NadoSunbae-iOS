@@ -158,6 +158,7 @@ extension ReviewVC {
             .disposed(by: disposeBag)
     }
     
+    /// emptyView 숨김 상태 세팅 메서드
     private func setUpEmptyViewHiddenStatus(isHidden: Bool) {
         emptyView.isHidden = isHidden
     }
