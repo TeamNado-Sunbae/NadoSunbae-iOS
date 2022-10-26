@@ -65,6 +65,12 @@ final class CommunitySearchVC: BaseVC, View {
         bindSearchTV()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if reactor?.currentState.searchKeyword != "" {
+            reactor?.action.onNext(.requestNewSearchList(searchKeyword: reactor?.currentState.searchKeyword ?? ""))
+        }
+    }
+    
     func bind(reactor: CommunitySearchReactor) {
         bindAction(reactor)
         bindState(reactor)
@@ -134,6 +140,26 @@ extension CommunitySearchVC {
                 } else {
                     self.activityIndicator.stopAnimating()
                     self.setUpHiddenState(searchTV: false, representStackView: false)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showAlert }
+            .subscribe(onNext: { show in
+                if show {
+                    self.makeAlert(title: reactor.currentState.alertMessage)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isUpdateAccessToken }
+            .subscribe(onNext: { state in
+                if state {
+                    self.updateAccessToken { _ in
+                        reactor.action.onNext(reactor.currentState.reloadAction)
+                    }
                 }
             })
             .disposed(by: disposeBag)
