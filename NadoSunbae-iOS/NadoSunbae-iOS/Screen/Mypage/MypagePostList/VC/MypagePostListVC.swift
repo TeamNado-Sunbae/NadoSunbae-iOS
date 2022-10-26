@@ -58,7 +58,7 @@ class MypagePostListVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        isPostOrAnswer ? getMypageMyPersonalQuestionList() : getMypageMyAnswerList()
+        isPostOrAnswer ? (isPersonalQuestionOrCommunity ? getMypageMyPersonalQuestionList() : getMypageCommunityPostList()) : getMypageMyAnswerList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,7 +85,7 @@ class MypagePostListVC: BaseVC {
     
     @objc private func didChangeValue(segment: UISegmentedControl) {
         isPersonalQuestionOrCommunity = postListSegmentControl.selectedSegmentIndex == 0
-        isPostOrAnswer ? (isPersonalQuestionOrCommunity ?  getMypageMyPersonalQuestionList() : getMypageCommunityPostList()) : getMypageMyAnswerList()
+        isPostOrAnswer ? (isPersonalQuestionOrCommunity ? getMypageMyPersonalQuestionList() : getMypageCommunityPostList()) : getMypageMyAnswerList()
     }
     
     private func makeScreenAnalyticsForMyPostList() {
