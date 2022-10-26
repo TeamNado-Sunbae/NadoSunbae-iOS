@@ -70,8 +70,8 @@ class EditProfileVC: BaseVC {
     
     // MARK: Properties
     let disposeBag = DisposeBag()
-    var userInfo = MypageEditProfileBodyModel()
-    var changedInfo = MypageEditProfileBodyModel()
+    var userInfo = MypageEditProfileRequestBodyModel()
+    var changedInfo = MypageEditProfileRequestBodyModel()
     var profileData = EditProfileRequestModel()
     var secondMajorList: [MajorInfoModel] = []
     var isPresentingHalfModal = true
@@ -293,8 +293,8 @@ extension EditProfileVC {
     }
     
     /// 서버에 요청해 받아 온 UserInfo를 EditProfile에 맞게 변환하여 리턴
-    private func getEditProfileUserInfo(data: MypageUserInfoModel) -> MypageEditProfileBodyModel{
-        var editProfileUserInfo = MypageEditProfileBodyModel()
+    private func getEditProfileUserInfo(data: MypageUserInfoModel) -> MypageEditProfileRequestBodyModel{
+        var editProfileUserInfo = MypageEditProfileRequestBodyModel()
         editProfileUserInfo.profileImageID = data.profileImageID
         editProfileUserInfo.bio = data.bio ?? ""
         editProfileUserInfo.nickname = data.nickname
