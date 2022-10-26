@@ -93,6 +93,7 @@ class DefaultQuestionChatVC: BaseVC {
         setUpNaviInitStyle()
         registerXib()
         hideKeyboardWhenTappedAround()
+        setUserSendMessageAuthorized()
     }
     
     override func viewDidLayoutSubviews() {
@@ -198,19 +199,23 @@ extension DefaultQuestionChatVC {
         }
     }
     
-    /// "이 선배에게 새 질문" 버튼을 띄우는 메서드
-    private func configureQuestionFloatingBtn() {
+    /// message text 영역을 숨기는 메서드
+    private func hideTextArea() {
         self.sendAreaTextView.isHidden = true
         self.sendBtn.isHidden = true
+        
         self.defaultQuestionChatTV.snp.makeConstraints {
             $0.bottom.equalToSuperview()
         }
-        
+    }
+    
+    /// "이 선배에게 새 질문" 버튼을 띄우는 메서드
+    private func configureQuestionFloatingBtn() {
         self.view.addSubview(self.goToQuestionfloatingBtn)
         self.goToQuestionfloatingBtn.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(45)
-            $0.width.equalTo(174.adjusted)
-            $0.height.equalTo(48.adjustedH)
+            $0.width.equalTo(174)
+            $0.height.equalTo(48)
             $0.centerX.equalToSuperview()
         }
     }
@@ -307,23 +312,8 @@ extension DefaultQuestionChatVC {
     /// 전달받은 데이터를 바인딩하는 메서드
     private func optionalBindingData() {
         if let postID = postID {
-            DispatchQueue.main.async {
-                self.requestGetDetailQuestionData(postID: postID)
-            }
-        }
-        
-        if let isAuthorized = isAuthorized {
-            if isAuthorized == false {
-                // 타인일 경우
-                configureQuestionFloatingBtn()
-                goToQuestionfloatingBtn.press { [weak self] in
-                    guard let self = self else { return }
-                    self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
-                        writeQuestionVC.answererID = self.answererID
-                        writeQuestionVC.isFromQuestionDetailVC = true
-                    }
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
+            DispatchQueue.main.async { [weak self] in
+                self?.requestGetDetailQuestionData(postID: postID)
             }
         }
     }
@@ -362,6 +352,40 @@ extension DefaultQuestionChatVC {
     @objc
     private func goToNotificationVC() {
         goToRootOfTab(index: 3)
+    }
+    
+    /// 답변자가 답변을 했는지에 대한 여부를 리턴하는 메서드
+    private func didAnswererReplied() -> Bool {
+        for i in self.commentData {
+            if i.writer.writerID == self.answererID {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    /// 유저의 권한을 설정하는 메서드
+    private func setUserSendMessageAuthorized() {
+        if let isAuthorized = isAuthorized {
+            if isAuthorized == false {
+                // 타인일 경우
+                hideTextArea()
+                
+                // 답변자가 답변을 한개 이상 한 경우 floating Btn을 띄운다
+                if didAnswererReplied() {
+                    configureQuestionFloatingBtn()
+                    goToQuestionfloatingBtn.press { [weak self] in
+                        guard let self = self else { return }
+                        self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
+                            writeQuestionVC.answererID = self.answererID
+                            writeQuestionVC.isFromQuestionDetailVC = true
+                        }
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -764,6 +788,7 @@ extension DefaultQuestionChatVC {
                     self.questionerData = data.writer
                     self.userType = self.identifyUserType(questionerID: data.writer.writerID, isAuthorized: data.isAuthorized)
                     self.setUpSendBtnEnabledState(textView: self.sendAreaTextView ?? UITextView())
+                    self.setUserSendMessageAuthorized()
                     
                     /// 댓글 수정되었을 때
                     if self.isCommentEdited == true {
