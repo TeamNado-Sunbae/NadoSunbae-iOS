@@ -457,7 +457,6 @@ extension ClassroomVC: SendUpdateStatusDelegate {
                 selectedTagFilter = selectedTagList.joined(separator: ", ")
             }
         }
-        print("여기요", selectedTagFilter)
         
         if filterStatus {
             /// 필터 on 상태일 때
