@@ -128,8 +128,14 @@ extension HomeRecentReviewQuestionTVC {
             case .success(let res):
                 if let data = res as? HomeRecentReviewResponseData {
                     self.recentReviewList = []
-                    for i in 0..<5 {
-                        self.recentReviewList.append(data[i])
+                    if data.count >= 5 {
+                        for i in 0..<5 {
+                            self.recentReviewList.append(data[i])
+                        }
+                    } else {
+                        for i in 0..<data.count {
+                            self.recentReviewList.append(data[i])
+                        }
                     }
                     self.recentCV.reloadData()
                 }
@@ -144,8 +150,15 @@ extension HomeRecentReviewQuestionTVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? [PostListResModel] {
-                    for i in 0..<5 {
-                        self.recentPersonalQuestionList.append(data[i])
+                    self.recentPersonalQuestionList = []
+                    if data.count >= 5 {
+                        for i in 0..<5 {
+                            self.recentPersonalQuestionList.append(data[i])
+                        }
+                    } else {
+                        for i in 0..<data.count {
+                            self.recentPersonalQuestionList.append(data[i])
+                        }
                     }
                     self.recentCV.reloadData()
                 }

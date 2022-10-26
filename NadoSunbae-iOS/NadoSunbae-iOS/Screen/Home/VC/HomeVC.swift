@@ -346,8 +346,10 @@ extension HomeVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? [PostListResModel] {
-                    for i in 0..<3 {
-                        self.communityList.append(data[i])
+                    if data.count >= 3 {
+                        for i in 0..<3 {
+                            self.communityList.append(data[i])
+                        }
                     }
                     self.backgroundTV.reloadData()
                 }
