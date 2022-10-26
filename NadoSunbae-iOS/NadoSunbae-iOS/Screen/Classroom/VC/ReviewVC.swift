@@ -129,13 +129,13 @@ extension ReviewVC: View {
 extension ReviewVC {
     private func configureUI() {
         view.addSubviews([reviewTV, emptyView])
+        view.backgroundColor = .paleGray
         
         reviewTV.separatorStyle = .none
         reviewTV.backgroundColor = .paleGray
         
         reviewTV.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(460)
         }
         
         emptyView.snp.makeConstraints {
