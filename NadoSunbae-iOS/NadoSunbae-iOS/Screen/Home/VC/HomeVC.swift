@@ -122,7 +122,7 @@ extension HomeVC: SendUpdateModalDelegate {
 // MARK: - SendRankerDataDelegate
 extension HomeVC: SendRankerDataDelegate {
     func sendRankerData(data: HomeRankingResponseModel.UserList) {
-        divideUserPermission {
+        divideUserPermission() {
             if data.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
                 goToRootOfTab(index: 4)
             } else {

@@ -56,7 +56,7 @@ extension ReviewVC: View {
         /// 학과 후기 상세 뷰로 이동
         reviewTV.rx.modelSelected(ReviewMainPostListData.self)
             .subscribe(onNext: { [weak self] item in
-                self?.divideUserPermission {
+                self?.divideUserPermission() {
                     self?.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push) { reviewDetailVC in
                         reviewDetailVC.postId = item.postID
                     }
