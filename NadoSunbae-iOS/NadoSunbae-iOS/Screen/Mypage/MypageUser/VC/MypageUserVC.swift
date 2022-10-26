@@ -111,7 +111,7 @@ class MypageUserVC: BaseVC {
     
     @IBAction func tapReviewBtn(_ sender: UIButton) {
         guard let reviewVC = UIStoryboard.init(name: MypageMyReviewVC.className, bundle: nil).instantiateViewController(withIdentifier: MypageMyReviewVC.className) as? MypageMyReviewVC else { return }
-        
+        reviewVC.isFromUserPage = true
         reviewVC.userID = userInfo.userID
         self.navigationController?.pushViewController(reviewVC, animated: true)
     }
