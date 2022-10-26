@@ -121,6 +121,7 @@ extension HomeRankingTVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? HomeRankingResponseModel {
+                    self.rankerDummyData = []
                     for i in 0..<5 {
                         self.rankerDummyData.append(data.userList[i])
                     }
