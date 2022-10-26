@@ -27,7 +27,7 @@ extension MypageSettingService: TargetType {
         case .getLatestVersion:
             return "/app/version/recent"
         case .getBlockList:
-            return "/block/list"
+            return "/block/"
         case .requestResetPW:
             return "/auth/reset/password"
         }
