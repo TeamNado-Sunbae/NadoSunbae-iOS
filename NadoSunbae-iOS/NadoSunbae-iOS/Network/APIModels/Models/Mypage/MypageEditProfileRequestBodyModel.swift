@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MypageEditProfileRequestBodyModel: Codable {
+struct MypageEditProfileRequestBodyModel: Codable, Equatable {
     var profileImageID: Int = 1
     var nickname: String = ""
     var bio: String = ""
