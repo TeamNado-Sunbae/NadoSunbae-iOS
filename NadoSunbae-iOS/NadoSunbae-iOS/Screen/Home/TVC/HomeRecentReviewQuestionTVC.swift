@@ -115,13 +115,20 @@ extension HomeRecentReviewQuestionTVC: UICollectionViewDelegate {
 extension HomeRecentReviewQuestionTVC {
     private func configureUI() {
         contentView.addSubviews([recentCV])
+        setRecentCVInset()
         
         recentCV.snp.makeConstraints {
             $0.top.equalToSuperview().inset(4)
-            $0.left.equalToSuperview().inset(16)
-            $0.right.equalToSuperview()
+            $0.left.right.equalToSuperview()
             $0.bottom.equalToSuperview().inset(40)
         }
+    }
+    
+    private func setRecentCVInset() {
+        var inset = recentCV.contentInset
+        inset.right = 16
+        inset.left = 16
+        recentCV.contentInset = inset
     }
 }
 
