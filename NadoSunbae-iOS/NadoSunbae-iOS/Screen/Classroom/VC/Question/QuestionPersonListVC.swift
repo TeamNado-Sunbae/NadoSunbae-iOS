@@ -56,7 +56,7 @@ extension QuestionPersonListVC {
     /// UI 구성 메서드
     private func configureUI() {
         self.view.backgroundColor = .white
-        self.view.addSubviews([questionPersonNaviBar, questionPersonCV])
+        self.view.addSubviews([questionPersonNaviBar, questionPersonCV, activityIndicator])
         
         questionPersonNaviBar.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
