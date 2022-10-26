@@ -381,7 +381,6 @@ extension DefaultQuestionChatVC {
                             writeQuestionVC.answererID = self.answererID
                             writeQuestionVC.isFromQuestionDetailVC = true
                         }
-                        self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
             }
