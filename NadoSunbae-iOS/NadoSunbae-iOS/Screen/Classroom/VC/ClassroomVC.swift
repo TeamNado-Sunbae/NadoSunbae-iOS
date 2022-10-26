@@ -72,7 +72,7 @@ final class ClassroomVC: BaseVC {
     private var personalQuestionVC: PersonalQuestionVC = PersonalQuestionVC()
     private let loadingDispatchGroup = DispatchGroup()
     private var filterStatus = false
-    private var selectedWriterFilter: WriterType = .all
+    private var selectedWriterFilter: ReviewWriterType = .all
     private var selectedTagFilter = "1, 2, 3, 4, 5"
     
     var disposeBag = DisposeBag()

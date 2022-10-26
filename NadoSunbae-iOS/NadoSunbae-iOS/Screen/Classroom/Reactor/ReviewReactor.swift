@@ -12,7 +12,7 @@ final class ReviewReactor: Reactor {
     
     var initialState: State = State()
     var sortType: ListSortType = .recent
-    var writerType: WriterType = .all
+    var writerType: ReviewWriterType = .all
     var tagFilter = "1, 2, 3, 4, 5"
     
     // MARK: Action
@@ -72,7 +72,7 @@ extension ReviewReactor {
 // MARK: - Network
 extension ReviewReactor {
     
-    private func requestReviewList(majorID: Int, writerFilter: WriterType, tagFilter: String, sort: ListSortType) -> Observable<Mutation> {
+    private func requestReviewList(majorID: Int, writerFilter: ReviewWriterType, tagFilter: String, sort: ListSortType) -> Observable<Mutation> {
         return Observable.create { observer in
             ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter, sort: sort) { networkResult in
                 switch networkResult {

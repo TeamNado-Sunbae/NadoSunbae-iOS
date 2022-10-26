@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WriterType: String {
+enum ReviewWriterType: String {
     case all = "all"
     case firstMajor = "firstMajor"
     case secondMajor = "secondMajor"
