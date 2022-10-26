@@ -17,6 +17,7 @@ class QuestionPersonCVC: CodeBaseCVC {
     }
     
     private (set) lazy var nicknameLabel = UILabel().then {
+        $0.textAlignment = .center
         $0.textColor = .nadoBlack
         $0.font = .PretendardSB(size: 14.0)
         $0.sizeToFit()
@@ -66,6 +67,7 @@ extension QuestionPersonCVC {
         nicknameLabel.snp.makeConstraints {
             $0.top.equalTo(personProfileImageView.snp.bottom).offset(8)
             $0.centerX.equalTo(personProfileImageView)
+            $0.width.equalTo(68)
         }
         
         majorNameStackView.snp.makeConstraints {
