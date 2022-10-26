@@ -184,6 +184,7 @@ extension BaseVC {
     func checkIsFirstInappropriate(defaultAction: () -> Void) {
         if UserPermissionInfo.shared.isReviewInappropriate {
             self.showRestrictionAlert(permissionStatus: .firstInappropriate)
+            UserPermissionInfo.shared.isReviewInappropriate = false
         } else {
             // 아무런 제한이 없을 때 실행되는 action
             defaultAction()
