@@ -354,7 +354,6 @@ extension HomeVC {
                     }
                     guard let cell = self.backgroundTV.cellForRow(at: IndexPath(row: 1, section: 3)) as? HomeCommunityTVC else { return }
                     cell.communityList = self.communityList
-                    cell.updateRecentPostTVHeight()
                     NotificationCenter.default.post(name: Notification.Name.reloadHomeRecentCell, object: nil, userInfo: nil)
                 }
             case .requestErr(let res):
