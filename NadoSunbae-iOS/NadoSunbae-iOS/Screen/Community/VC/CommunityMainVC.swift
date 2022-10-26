@@ -178,7 +178,7 @@ extension CommunityMainVC {
                     self?.setEmptyLabelIsHidden(isHidden: true)
                 } else {
                     self?.activityIndicator.stopAnimating()
-                    if reactor.currentState.toSetContentOffsetZero {
+                    if reactor.currentState.animateToTopState {
                         self?.communitySV.contentOffset.y = 0
                     }
                     self?.setEmptyLabelIsHidden(isHidden: reactor.currentState.communityList.isEmpty ? false : true)
