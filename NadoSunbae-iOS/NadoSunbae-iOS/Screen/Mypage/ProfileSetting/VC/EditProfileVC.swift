@@ -70,8 +70,8 @@ class EditProfileVC: BaseVC {
     
     // MARK: Properties
     let disposeBag = DisposeBag()
-    var userInfo = MypageUserInfoModel()
-    var changedInfo = MypageUserInfoModel()
+    var userInfo = MypageEditProfileBodyModel()
+    var changedInfo = MypageEditProfileBodyModel()
     var profileData = EditProfileRequestModel()
     var secondMajorList: [MajorInfoModel] = []
     var isPresentingHalfModal = true
@@ -302,6 +302,20 @@ extension EditProfileVC {
         slideVC.selectMajorDelegate = self
         self.isPresentingHalfModal = true
         self.present(slideVC, animated: true)
+    /// 서버에 요청해 받아 온 UserInfo를 EditProfile에 맞게 변환하여 리턴
+    private func getEditProfileUserInfo(data: MypageUserInfoModel) -> MypageEditProfileBodyModel{
+        var editProfileUserInfo = MypageEditProfileBodyModel()
+        editProfileUserInfo.profileImageID = data.profileImageID
+        editProfileUserInfo.bio = data.bio ?? ""
+        editProfileUserInfo.nickname = data.nickname
+        editProfileUserInfo.isOnQuestion = data.isOnQuestion
+        editProfileUserInfo.firstMajorName = data.firstMajorName
+        editProfileUserInfo.firstMajorID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID)
+        editProfileUserInfo.firstMajorStart = data.firstMajorStart
+        editProfileUserInfo.secondMajorName = data.secondMajorName
+        editProfileUserInfo.secondMajorID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID)
+        editProfileUserInfo.secondMajorStart = data.secondMajorStart
+        return editProfileUserInfo
     }
 }
 
@@ -382,8 +396,8 @@ extension EditProfileVC {
             switch networkResult {
             case .success(let res):
                 if let data = res as? MypageUserInfoModel {
-                    self.userInfo = data
-                    self.changedInfo = data
+                    self.userInfo = self.getEditProfileUserInfo(data: data)
+                    self.changedInfo = self.getEditProfileUserInfo(data: data)
                     self.selectedProfileImgID = data.profileImageID
                     self.configureUI()
                 }
