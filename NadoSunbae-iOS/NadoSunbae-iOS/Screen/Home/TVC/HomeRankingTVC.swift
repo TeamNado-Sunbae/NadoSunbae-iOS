@@ -30,6 +30,7 @@ final class HomeRankingTVC: BaseTVC {
         
         configureUI()
         getUserRankingList()
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveReloadNotification(_:)), name: Notification.Name.reloadHomeRecentCell, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +56,10 @@ final class HomeRankingTVC: BaseTVC {
     
     @objc func rankerTapped(sender: RankerTapGestureRecognizer) {
         sendRankerDataDelegate?.sendRankerData(data: sender.rankerData ?? HomeRankingResponseModel.UserList(id: 0, profileImageID: 0, nickname: "", firstMajorName: "", firstMajorStart: "", secondMajorName: "", secondMajorStart: "", rate: nil))
+    }
+    
+    @objc func didReceiveReloadNotification(_ notification: Notification) {
+        getUserRankingList()
     }
 }
 
