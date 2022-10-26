@@ -128,7 +128,12 @@ extension EditProfileVC {
         profileImgChangBtn.makeRounded(cornerRadius: 8)
         nickNameTextField.placeholder = userInfo.nickname
         isOnQuestionToggleBtn.isSelected = userInfo.isOnQuestion
-        introTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "나를 한줄로 소개해보세요.")
+        if userInfo.bio.isEmpty {
+            introTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "나를 한줄로 소개해보세요.")
+        } else {
+            introTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "나를 한줄로 소개해보세요.")
+            introTextView.text = userInfo.bio
+        }
         firstMajorTextField.text = userInfo.firstMajorName
         firstMajorStartTextField.text = userInfo.firstMajorStart
         secondMajorTextField.text = userInfo.secondMajorName
@@ -247,7 +252,6 @@ extension EditProfileVC {
         }
         changedInfo.nickname = nickNameTextField.isEmpty ? userInfo.nickname : nickNameTextField.text ?? ""
         changedInfo.isOnQuestion = isOnQuestionToggleBtn.isSelected
-
         judgeSaveBtnState()
     }
     

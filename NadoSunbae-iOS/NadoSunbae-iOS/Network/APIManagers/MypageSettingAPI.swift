@@ -15,7 +15,7 @@ class MypageSettingAPI {
     private init() {}
     
     /// [PUT] 프로필 수정
-    func editProfile(data: EditProfileRequestModel, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+    func editProfile(data: MypageEditProfileRequestBodyModel, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         provider.request(.editProfile(data: data)) { result in
             switch result {
                 
