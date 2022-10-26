@@ -87,7 +87,6 @@ class EditProfileVC: BaseVC {
         checkNickNameIsValid()
         hideKeyboardWhenTappedAround()
         setSaveBtn()
-        requestSecondMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "secondMajor")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -438,21 +437,6 @@ extension EditProfileVC {
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: AlertType.networkError.alertMessage)
                 }
-            }
-        }
-    }
-    
-    /// 제2전공 학과 리스트 조회 메서드
-    private func requestSecondMajorList(univID: Int, filterType: String) {
-        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
-            switch networkResult {
-                
-            case .success(let res):
-                if let data = res as? [MajorInfoModel] {
-                    self.secondMajorList = data
-                }
-            default:
-                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
