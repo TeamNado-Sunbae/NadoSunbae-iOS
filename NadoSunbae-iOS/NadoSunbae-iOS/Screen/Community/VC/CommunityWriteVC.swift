@@ -93,7 +93,7 @@ extension CommunityWriteVC {
         contentView.addSubviews([selectMajorLabel, majorSelectTextField, majorSelectBtn, categoryLabel, categoryCV, questionDescLabel, partitionBar])
         
         selectMajorLabel.snp.makeConstraints {
-            $0.top.equalTo(questionWriteNaviBar.snp.bottom).offset(24)
+            $0.top.equalToSuperview().offset(24)
             $0.leading.equalToSuperview().offset(24)
         }
         
@@ -314,6 +314,36 @@ extension CommunityWriteVC {
         slideVC.selectCommunityDelegate = self
         self.present(slideVC, animated: true)
     }
+    
+    override func scollByTextViewState(textView: UITextView) {
+        var contentOffsetY = questionSV.contentOffset.y
+        var isLineAdded = true
+        
+        if questionTextViewLineCount != textView.numberOfLines() {
+            
+            if questionTextViewLineCount > textView.numberOfLines() {
+                isLineAdded = false
+            } else {
+                isLineAdded = true
+            }
+            
+            if  isLineAdded && textView.numberOfLines() > 2 && questionSV.contentOffset.y < 193 {
+                contentOffsetY += 38
+                questionSV.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
+                
+            } else if !isLineAdded && questionTextViewLineCount < 9 && questionSV.contentOffset.y > 0 {
+                
+                if contentOffsetY - 38 > 0 {
+                    contentOffsetY -= 38
+                    questionSV.setContentOffset(CGPoint(x: 0, y: contentOffsetY), animated: true)
+                } else {
+                    contentOffsetY = 0
+                    questionSV.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                }
+            }
+        }
+        questionTextViewLineCount = textView.numberOfLines()
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -354,6 +384,10 @@ extension CommunityWriteVC: UITextViewDelegate {
         if textView.textColor == .gray2 {
             textView.text = nil
             textView.textColor = .mainText
+        }
+        
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.questionSV.contentOffset.y = 193
         }
     }
     
