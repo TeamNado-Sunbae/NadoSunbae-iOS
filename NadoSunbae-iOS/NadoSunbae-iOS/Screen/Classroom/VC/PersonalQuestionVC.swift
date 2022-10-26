@@ -195,18 +195,20 @@ extension PersonalQuestionVC: View {
     /// recentQuestionTV를 bind하는 메서드
     private func bindrecentQuestionTV() {
         recentQuestionTV.rx.modelSelected(PostListResModel.self)
-            .subscribe(onNext: { item in
-                self.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: "QuestionChatSB", naviType: .push) { postDetailVC in
-                    postDetailVC.hidesBottomBarWhenPushed = true
-                    postDetailVC.naviStyle = .push
-                    postDetailVC.postID = item.postID
-                    postDetailVC.isAuthorized = item.isAuthorized
+            .subscribe(onNext: { [weak self] item in
+                self?.divideUserPermission() {
+                    self?.navigator?.instantiateVC(destinationViewControllerType: DefaultQuestionChatVC.self, useStoryboard: true, storyboardName: "QuestionChatSB", naviType: .push) { postDetailVC in
+                        postDetailVC.hidesBottomBarWhenPushed = true
+                        postDetailVC.naviStyle = .push
+                        postDetailVC.postID = item.postID
+                        postDetailVC.isAuthorized = item.isAuthorized
+                    }
                 }
             })
             .disposed(by: disposeBag)
     }
     
-    /// recentQuestionTV를 bind하는 메서드
+    /// seniorCV를 bind하는 메서드
     private func bindSeniorCV() {
         availableQuestionPersonCV.rx.modelSelected(QuestionUser.self)
             .subscribe(onNext: { [weak self] item in
