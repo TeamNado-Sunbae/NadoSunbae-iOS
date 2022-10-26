@@ -12,9 +12,9 @@ import RxSwift
 class BaseWritePostVC: BaseVC {
 
     // MARK: Properties
-    private let questionSV = UIScrollView()
+    let questionSV = UIScrollView()
     private let disposeBag = DisposeBag()
-    private var questionTextViewLineCount: Int = 1
+    var questionTextViewLineCount: Int = 1
     private var majorID: Int = MajorInfo.shared.selectedMajorID ?? UserDefaults.standard.value(forKey: UserDefaults.Keys.FirstMajorID) as! Int
     
     let questionWriteNaviBar = NadoSunbaeNaviBar().then {
@@ -172,6 +172,7 @@ extension BaseWritePostVC {
     }
     
     /// textView의 상태에 따라 스크롤뷰를 Up, Down 하는 메서드
+    @objc
     func scollByTextViewState(textView: UITextView) {
         var contentOffsetY = questionSV.contentOffset.y
         var isLineAdded = true
@@ -200,6 +201,11 @@ extension BaseWritePostVC {
             }
         }
         questionTextViewLineCount = textView.numberOfLines()
+    }
+    
+    /// questionWriteNaviBar의 rightActivateBtn의 활성상태를 설정하는 메서드
+    func setNaviBarRightActivateState(isActivated: Bool) {
+        questionWriteNaviBar.rightActivateBtn.isActivated = isActivated
     }
 }
 
