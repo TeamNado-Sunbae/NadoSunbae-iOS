@@ -41,6 +41,7 @@ final class HomeVC: BaseVC {
         super.viewWillAppear(animated)
         showTabbar()
         self.backgroundTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        NotificationCenter.default.post(name: Notification.Name.reloadHomeRecentCell, object: nil, userInfo: nil)
         self.getRecentCommunityList()
     }
     
