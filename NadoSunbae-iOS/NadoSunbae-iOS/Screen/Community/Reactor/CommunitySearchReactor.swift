@@ -16,6 +16,7 @@ final class CommunitySearchReactor: Reactor {
     enum Action {
         case tapBackBtn
         case tapCompleteSearchBtn(searchKeyword: String)
+        case requestNewSearchList(searchKeyword: String)
         case sendEmptyKeyword
     }
     
@@ -24,12 +25,20 @@ final class CommunitySearchReactor: Reactor {
         case setLoading(loading: Bool)
         case requestSearchList(searchList: [PostListResModel])
         case setSearchListEmpty
+        case setSearchKeyword(keyword: String)
+        case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
+        case updateAccessToken(state: Bool, action: Action)
     }
     
     // MARK: represent the current view state
     struct State {
         var loading: Bool = false
         var searchList: [PostListResModel] = []
+        var searchKeyword: String = ""
+        var showAlert: Bool = false
+        var alertMessage: String = ""
+        var isUpdateAccessToken: Bool = false
+        var reloadAction: Action = .tapCompleteSearchBtn(searchKeyword: "")
     }
 }
 
@@ -44,11 +53,18 @@ extension CommunitySearchReactor {
         case .tapCompleteSearchBtn(let keyword):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                self.requestCommunitySearchList(majorID: 0, type: .community, sort: "recent", search: keyword),
+                Observable.just(.setSearchKeyword(keyword: keyword)),
+                self.requestCommunitySearchList(majorID: 0, type: .community, sort: "recent", search: keyword, action: .tapCompleteSearchBtn(searchKeyword: keyword)),
                 Observable.just(.setLoading(loading: false))
             ])
         case .sendEmptyKeyword:
             return Observable.concat(Observable.just(.setSearchListEmpty))
+        case .requestNewSearchList(let searchKeyword):
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                self.requestCommunitySearchList(majorID: 0, type: .community, sort: "recent", search: searchKeyword, action: .requestNewSearchList(searchKeyword: searchKeyword)),
+                Observable.just(.setLoading(loading: false))
+            ])
         }
     }
     
@@ -64,6 +80,14 @@ extension CommunitySearchReactor {
             newState.searchList = searchList
         case .setSearchListEmpty:
             newState.searchList = []
+        case .setAlertState(let showState, let message):
+            newState.showAlert = showState
+            newState.alertMessage = message
+        case .updateAccessToken(let state, let action):
+            newState.isUpdateAccessToken = state
+            newState.reloadAction = action
+        case .setSearchKeyword(let keyword):
+            newState.searchKeyword = keyword
         }
         
         return newState
@@ -72,7 +96,7 @@ extension CommunitySearchReactor {
 
 // MARK: - Custom Methods
 extension CommunitySearchReactor {
-    private func requestCommunitySearchList(majorID: Int?, type: PostFilterType, sort: String?, search: String?)  -> Observable<Mutation> {
+    private func requestCommunitySearchList(majorID: Int?, type: PostFilterType, sort: String?, search: String?, action: Action)  -> Observable<Mutation> {
         return Observable.create { observer in
             PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: majorID ?? 0, filter: type, sort: sort ?? "recent", search: search ?? "") { networkResult in
                 switch networkResult {
@@ -83,20 +107,15 @@ extension CommunitySearchReactor {
                         observer.onCompleted()
                     }
                 case .requestErr(let res):
-                    // ✅ TODO: Alert Display Protocol화 하기
-                    if let message = res as? String {
-//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    if let _ = res as? String {
+                        observer.onNext(Mutation.setAlertState(showState: true))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        // ✅ TODO: updateAccessToken Protocol화 하기
-//                        self.updateAccessToken { _ in
-//                            self.setUpRequestData(sortType: .recent)
-//                        }
+                        observer.onNext(.updateAccessToken(state: true, action: action))
                     }
                 default:
-                    // ✅ TODO: Alert Display Protocol화하기
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }
