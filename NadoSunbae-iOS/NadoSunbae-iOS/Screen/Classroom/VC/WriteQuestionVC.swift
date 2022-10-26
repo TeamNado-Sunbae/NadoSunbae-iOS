@@ -160,13 +160,14 @@ extension WriteQuestionVC {
                     self.dismiss(animated: true) { [weak self] in
                         guard let self = self else { return }
                         if self.isFromQuestionDetailVC {
-                            let questionChatSB = UIStoryboard(name: "QuestionChatSB", bundle: nil)
-                            guard let questionChatVC = questionChatSB.instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+                            guard let questionChatVC = UIStoryboard(name: "QuestionChatSB", bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+                            let questionChatNC = UINavigationController(rootViewController: questionChatVC)
                             questionChatVC.naviStyle = .present
                             questionChatVC.postID = data.post.id
                             questionChatVC.isAuthorized = true
-                            questionChatVC.modalPresentationStyle = .fullScreen
-                            presentingVC.present(questionChatVC, animated: true, completion: nil)
+                            questionChatNC.modalPresentationStyle = .fullScreen
+                            questionChatNC.navigationBar.isHidden = true
+                            presentingVC.present(questionChatNC, animated: false, completion: nil)
                         }
                     }
                 }
