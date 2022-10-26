@@ -19,6 +19,13 @@ final class ReviewVC: BaseVC {
         $0.isScrollEnabled = false
     }
     
+    private let emptyView = NadoEmptyView().then {
+        $0.setTitleLabel(titleText: "등록된 후기가 없습니다.")
+        $0.makeRounded(cornerRadius: 8.adjusted)
+        $0.layer.borderColor = UIColor.gray0.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
     var disposeBag = DisposeBag()
     var contentSizeDelegate: SendContentSizeDelegate?
     var loadingDelegate: SendLoadingStatusDelegate?
@@ -85,6 +92,7 @@ extension ReviewVC: View {
             .map { $0 }
             .subscribe(onNext: { [weak self] loading in
                 self?.loadingDelegate?.sendLoadingStatus(loading: loading)
+                self?.setUpEmptyViewHiddenStatus(isHidden: reactor.currentState.reviewList.isEmpty ? false : true)
             })
             .disposed(by: disposeBag)
         
@@ -119,7 +127,7 @@ extension ReviewVC: View {
 // MARK: - UI
 extension ReviewVC {
     private func configureUI() {
-        view.addSubview(reviewTV)
+        view.addSubviews([reviewTV, emptyView])
         
         reviewTV.separatorStyle = .none
         reviewTV.backgroundColor = .paleGray
@@ -127,6 +135,11 @@ extension ReviewVC {
         reviewTV.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(460)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(428)
         }
     }
 }
@@ -143,6 +156,10 @@ extension ReviewVC {
     private func setUpDelegate() {
         reviewTV.rx.setDelegate(self)
             .disposed(by: disposeBag)
+    }
+    
+    private func setUpEmptyViewHiddenStatus(isHidden: Bool) {
+        emptyView.isHidden = isHidden
     }
 }
 
