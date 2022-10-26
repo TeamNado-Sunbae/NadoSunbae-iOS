@@ -117,7 +117,7 @@ extension MypageMainVC {
         questionTV.makeRounded(cornerRadius: 8.adjusted)
         questionTV.removeSeparatorsOfEmptyCellsAndLastCell()
         
-        profileImgView.image = UIImage(named: "profileImage\(userInfo.profileImageID)")!
+        profileImgView.image = UIImage(named: "grayProfileImage\(userInfo.profileImageID)")!
         nickNameLabel.text = userInfo.nickname
         firstMajorLabel.text = "\(userInfo.firstMajorName) \(userInfo.firstMajorStart)"
         if userInfo.secondMajorName == "미진입" {
