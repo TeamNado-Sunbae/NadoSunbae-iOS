@@ -135,6 +135,8 @@ extension HomeRecentReviewQuestionTVC {
 // MARK: - Network
 extension HomeRecentReviewQuestionTVC {
     private func getAllReviewList() {
+        self.recentReviewList = []
+        self.recentCV.reloadData()
         HomeAPI.shared.getAllReviewList { networkResult in
             switch networkResult {
             case .success(let res):
@@ -158,6 +160,8 @@ extension HomeRecentReviewQuestionTVC {
     }
     
     private func getRecentPersonalQuestionList() {
+        self.recentPersonalQuestionList = []
+        self.recentCV.reloadData()
         PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .questionToPerson, sort: "recent", search: "") { networkResult in
             switch networkResult {
             case .success(let res):
