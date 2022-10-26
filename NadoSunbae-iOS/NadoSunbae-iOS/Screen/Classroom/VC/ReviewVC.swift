@@ -44,7 +44,8 @@ final class ReviewVC: BaseVC {
     }
     
     override func viewWillLayoutSubviews() {
-        contentSizeDelegate?.sendContentSize(height: reviewTV.contentSize.height + 24)
+        contentSizeDelegate?.sendContentSize(height: reviewTV.contentSize.height + 24, comeFrom: self.className)
+        
         reviewTV.snp.updateConstraints {
             $0.height.equalTo(reviewTV.contentSize.height)
         }

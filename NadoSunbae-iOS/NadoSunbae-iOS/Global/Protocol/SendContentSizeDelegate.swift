@@ -8,5 +8,5 @@
 import UIKit
 
 protocol SendContentSizeDelegate {
-    func sendContentSize(height: CGFloat)
+    func sendContentSize(height: CGFloat, comeFrom: String)
 }
