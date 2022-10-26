@@ -59,7 +59,7 @@ final class ClassroomVC: BaseVC {
     }
     
     private let arrangeBtn = UIButton().then {
-        $0.setImgByName(name: "btnArray", selectedName: "property1Variant3")
+        $0.setImgByName(name: "btnArray", selectedName: "btnArray")
     }
     
     private let contentVCContainerView = UIView()
@@ -110,7 +110,7 @@ extension ClassroomVC {
         
         arrangeBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.arrangeBtn.isSelected = !(self?.arrangeBtn.isSelected ?? false)
+                self?.presentArrangeActionSheet()
             })
             .disposed(by: disposeBag)
     }
@@ -300,6 +300,19 @@ extension ClassroomVC {
         slideVC.transitioningDelegate = self
         slideVC.selectMajorDelegate = self
         self.present(slideVC, animated: true, completion: nil)
+    }
+    
+    /// 정렬 기준 선택 액션시트 present하는 메서드
+    private func presentArrangeActionSheet() {
+        makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순", okAction: { _ in
+            self.arrangeBtn.setImage(UIImage(named: "btnArray"), for: .normal)
+            self.reviewVC.reactor?.sortType = .recent
+            NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+        }, secondOkAction: { _ in
+            self.arrangeBtn.setImage(UIImage(named: "property1Variant3"), for: .normal)
+            self.reviewVC.reactor?.sortType = .like
+            NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+        })
     }
     
     /// 전공 선택 버튼을 tap했을 때 메서드

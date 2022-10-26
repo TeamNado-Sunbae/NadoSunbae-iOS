@@ -11,6 +11,7 @@ import ReactorKit
 final class ReviewReactor: Reactor {
     
     var initialState: State = State()
+    var sortType: ListSortType = .recent
     
     // MARK: Action
     enum Action {
@@ -44,7 +45,7 @@ extension ReviewReactor {
                 Observable.just(.setLoading(loading: true)),
                 
                 /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청
-                requestReviewList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: "all", tagFilter: "1, 2, 3, 4, 5", sort: .recent)])
+                requestReviewList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: "all", tagFilter: "1, 2, 3, 4, 5", sort: sortType)])
         }
     }
 
