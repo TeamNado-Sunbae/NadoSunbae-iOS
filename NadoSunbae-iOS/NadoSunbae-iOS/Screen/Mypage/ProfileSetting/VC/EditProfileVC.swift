@@ -51,7 +51,7 @@ class EditProfileVC: BaseVC {
             isOnQuestionToggleBtn.press {
                 self.isOnQuestionToggleBtn.isSelected.toggle()
                 self.changedInfo.isOnQuestion = self.isOnQuestionToggleBtn.isSelected
-                self.judgeSaveBtnState()
+                self.setProfileData()
             }
         }
     }
@@ -178,7 +178,7 @@ extension EditProfileVC {
             
             alert.confirmBtn.press {
                 self.setProfileData()
-                self.requestEditProfile(data: self.profileData)
+                self.requestEditProfile(data: self.changedInfo)
             }
             
             alert.showNadoAlert(vc: self, message: "내 정보를 수정하시겠습니까?", confirmBtnTitle: "저장", cancelBtnTitle: "아니요")
@@ -237,23 +237,31 @@ extension EditProfileVC {
         }
     }
     
-    /// 변경할 profileData 세팅
+    /// 변경할 changedInfo 세팅
     private func setProfileData() {
-        // TODO: 기존엔 MypageUserInfoModel을 사용하였으나, 서버 모델 변경 이후 MypageUserInfoModel을 사용하여 put request를 보낼 수 없게 됨. 이 뷰 담당자가 새로 모델 만들어야 함!
-        //        profileData.nickName = changedInfo.nickname
-        //        profileData.firstMajorID = changedInfo.firstMajorID
-        //        profileData.secondMajorID = changedInfo.secondMajorID
-        //        profileData.firstMajorStart = changedInfo.firstMajorStart
-        //        profileData.secondMajorStart = changedInfo.secondMajorID == 1 ? "미진입" : changedInfo.secondMajorStart
-        //        profileData.isOnQuestion = changedInfo.isOnQuestion
+        changedInfo.profileImageID = selectedProfileImgID
+        if introTextView.textColor == .gray2 {
+            changedInfo.bio = ""
+        } else {
+            changedInfo.bio = introTextView.text
+        }
+        changedInfo.nickname = nickNameTextField.isEmpty ? userInfo.nickname : nickNameTextField.text ?? ""
+        changedInfo.isOnQuestion = isOnQuestionToggleBtn.isSelected
+
+        judgeSaveBtnState()
     }
     
     private func judgeSaveBtnState() {
-        //        if (userInfo.secondMajorID != changedInfo.secondMajorID && changedInfo.secondMajorID != 1 && changedInfo.secondMajorStart == "미진입") || !(checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField)) {
-        //            setNavViewNadoRightBtn(status: false)
-        //        } else {
-        //            setNavViewNadoRightBtn(status: userInfo == changedInfo ? false : true)
-        //        }
+        
+        /// 아래 세 경우, 저장 버튼 비활성화
+        /// 1. 수정한 정보가 없거나
+        /// 2. 제1전공, 제2전공 동일하게 선택했거나
+        /// 3. 미진입이 아닌데 제2전공 진입시기를 선택하지 않은 경우
+        if userInfo == changedInfo || !(checkMajorDuplicate(firstTextField: firstMajorTextField, secondTextField: secondMajorTextField)) || (secondMajorStartTextField.isEmpty && secondMajorStartTextField.placeholder == "선택하기") {
+            setNavViewNadoRightBtn(status: false)
+        } else {
+            setNavViewNadoRightBtn(status: true)
+        }
     }
     
     /// 제1, 제2전공 중복 선택 검사, 중복되지 않으면 true
@@ -318,6 +326,7 @@ extension EditProfileVC: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .mainText
         }
+        navView.rightActivateBtn.isUserInteractionEnabled = false
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -325,6 +334,8 @@ extension EditProfileVC: UITextViewDelegate {
             textView.textColor = .gray2
             textView.text = "나를 한줄로 소개해보세요."
         }
+        navView.rightActivateBtn.isUserInteractionEnabled = true
+        setProfileData()
     }
 }
 
@@ -352,6 +363,7 @@ extension EditProfileVC: SendUpdateModalDelegate {
                 if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
                     self.firstMajorTextField.text = majorInfoData.majorName
                     self.changedInfo.firstMajorID = majorInfoData.majorID
+                    self.changedInfo.firstMajorName = majorInfoData.majorName
                 }
             case .firstMajorStart:
                 if let majorInfoData = majorInfoTuple.0 as? String {
@@ -362,6 +374,7 @@ extension EditProfileVC: SendUpdateModalDelegate {
                 if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
                     self.secondMajorTextField.text = majorInfoData.majorName
                     self.changedInfo.secondMajorID = majorInfoData.majorID
+                    self.changedInfo.secondMajorName = majorInfoData.majorName
                     if majorInfoData.majorName == "미진입" {
                         self.changedInfo.secondMajorStart = "미진입"
                     }
@@ -376,7 +389,7 @@ extension EditProfileVC: SendUpdateModalDelegate {
                 }
             }
         }
-        self.judgeSaveBtnState()
+        self.setProfileData()
     }
 }
 
@@ -414,7 +427,7 @@ extension EditProfileVC {
             self.nickNameInfoLabel.textColor = .mainDark
             self.nickNameTextField.text = nickName
             self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
-            self.judgeSaveBtnState()
+            self.setProfileData()
         } else {
             self.activityIndicator.startAnimating()
             SignAPI.shared.checkNickNameDuplicate(nickName: nickName) { networkResult in
@@ -425,13 +438,13 @@ extension EditProfileVC {
                     self.nickNameInfoLabel.text = "사용 가능한 닉네임입니다."
                     self.changedInfo.nickname = nickName
                     self.nickNameTextField.text = nickName
-                    self.judgeSaveBtnState()
+                    self.setProfileData()
                 case .requestErr(let success):
                     self.activityIndicator.stopAnimating()
                     if success is Bool {
                         self.nickNameInfoLabel.textColor = .red
                         self.nickNameInfoLabel.text = "이미 사용중인 닉네임입니다."
-                        self.judgeSaveBtnState()
+                        self.setProfileData()
                     }
                 default:
                     self.activityIndicator.stopAnimating()
@@ -441,7 +454,7 @@ extension EditProfileVC {
         }
     }
     
-    private func requestEditProfile(data: EditProfileRequestModel) {
+    private func requestEditProfile(data: MypageEditProfileRequestBodyModel) {
         self.activityIndicator.startAnimating()
         MypageSettingAPI.shared.editProfile(data: data, completion: { networkResult in
             switch networkResult {
@@ -459,7 +472,7 @@ extension EditProfileVC {
                     self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.requestEditProfile(data: self.profileData)
+                        self.requestEditProfile(data: data)
                     }
                 }
             default:
