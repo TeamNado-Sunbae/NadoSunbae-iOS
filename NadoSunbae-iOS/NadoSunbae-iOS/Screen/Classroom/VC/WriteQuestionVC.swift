@@ -33,6 +33,7 @@ class WriteQuestionVC: BaseWritePostVC {
         setUpAlertMsgByEditState()
         setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
         setActivateBtnState(textField: questionTitleTextField, textView: questionWriteTextView)
+        setNaviBarRightActivateState(isActivated: false)
     }
 }
 
@@ -47,7 +48,6 @@ extension WriteQuestionVC {
             questionWriteTextView.setDefaultStyle(isUsePlaceholder: false, placeholderText: "")
             questionTitleTextField.text = originTitle
             questionWriteTextView.text = originContent
-            questionWriteNaviBar.rightActivateBtn.isActivated = true
         } else {
             questionWriteTextView.setDefaultStyle(isUsePlaceholder: true, placeholderText: "선배에게 1:1 질문을 남겨보세요.\n선배가 답변해 줄 거에요!")
         }

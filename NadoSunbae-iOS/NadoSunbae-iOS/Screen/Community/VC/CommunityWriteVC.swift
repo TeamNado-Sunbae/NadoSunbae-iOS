@@ -78,6 +78,7 @@ final class CommunityWriteVC: BaseWritePostVC, View {
         setUpCategoryCVByEditState()
         setHighlightViewState(textField: questionTitleTextField, highlightView: textHighlightView)
         setActivateBtnState(textField: questionTitleTextField, textView: questionWriteTextView)
+        setNaviBarRightActivateState(isActivated: false)
     }
     
     func bind(reactor: CommunityWriteReactor) {
