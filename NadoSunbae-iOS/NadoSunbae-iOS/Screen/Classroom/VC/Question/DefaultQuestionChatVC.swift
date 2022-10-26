@@ -244,7 +244,7 @@ extension DefaultQuestionChatVC {
             case .present:
                 questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
                 questionNaviBar.dismissBtn.press(vibrate: true, for: .touchUpInside) {
-                    self.dismiss(animated: true)
+                    self.view.window?.rootViewController?.presentedViewController!.dismiss(animated: true, completion: nil)
                 }
             }
             questionNaviBar.rightCustomBtn.isHidden = true
