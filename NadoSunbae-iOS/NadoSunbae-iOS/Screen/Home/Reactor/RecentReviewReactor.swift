@@ -14,17 +14,20 @@ final class RecentReviewReactor: Reactor {
     var initialState: State = State()
     
     enum Action {
-        case viewDidLoad
+        case reloadRecentReviewList
     }
     
     enum Mutation {
         case setLoading(loading: Bool)
         case requestRecentReviewList(reviewList: [HomeRecentReviewResponseDataElement])
+        case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
     }
     
     struct State {
         var loading = false
         var recentReviewList: [HomeRecentReviewResponseDataElement] = []
+        var showAlert: Bool = false
+        var alertMessage: String = ""
     }
 }
 
@@ -32,11 +35,10 @@ final class RecentReviewReactor: Reactor {
  extension RecentReviewReactor {
      func mutate(action: Action) -> Observable<Mutation> {
          switch action {
-         case .viewDidLoad:
+         case .reloadRecentReviewList:
              return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                self.requestReviewList(),
-                Observable.just(.setLoading(loading: false))
+                self.requestReviewList()
              ])
          }
      }
@@ -49,6 +51,9 @@ final class RecentReviewReactor: Reactor {
              newState.loading = loading
          case .requestRecentReviewList(let recentReviewList):
              newState.recentReviewList = recentReviewList
+         case .setAlertState(let showState, let message):
+             newState.showAlert = showState
+             newState.alertMessage = message
          }
          return newState
      }
@@ -67,7 +72,7 @@ extension RecentReviewReactor {
                         observer.onCompleted()
                     }
                 default:
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }

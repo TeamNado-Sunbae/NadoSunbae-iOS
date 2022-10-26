@@ -238,8 +238,6 @@
 		776B73DA28F4017E001216E7 /* EditProfileImgModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B73D928F4017E001216E7 /* EditProfileImgModalVC.swift */; };
 		777ABF74278C7947002D3214 /* ReviewMainImgTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */; };
 		777ABF75278C7947002D3214 /* ReviewMainImgTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */; };
-		777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */; };
-		777ABF7D278C844E002D3214 /* ReviewMainLinkTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */; };
 		777ABF80278C9584002D3214 /* ReviewMainPostTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */; };
 		777ABF81278C9584002D3214 /* ReviewMainPostTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */; };
 		777ABF83278CB327002D3214 /* ReviewMainStickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */; };
@@ -268,8 +266,6 @@
 		77A7592F27981A0E00A8E48B /* MajorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7592E27981A0E00A8E48B /* MajorInfo.swift */; };
 		77A7593627988E7300A8E48B /* ReviewMainPostListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */; };
 		77A7593C2799C81B00A8E48B /* ReviewPostDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593B2799C81B00A8E48B /* ReviewPostDetailData.swift */; };
-		77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */; };
-		77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */; };
 		77A75944279B111300A8E48B /* ReviewHomePageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A75943279B111300A8E48B /* ReviewHomePageData.swift */; };
 		77AA830928A8A85700985B80 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 77AA830828A8A85700985B80 /* RxDataSources */; };
 		77AEEB442789AF380016880B /* HalfModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEEB402789AF380016880B /* HalfModalVC.swift */; };
@@ -581,8 +577,6 @@
 		776B73D928F4017E001216E7 /* EditProfileImgModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileImgModalVC.swift; sourceTree = "<group>"; };
 		777ABF72278C7947002D3214 /* ReviewMainImgTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainImgTVC.swift; sourceTree = "<group>"; };
 		777ABF73278C7947002D3214 /* ReviewMainImgTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainImgTVC.xib; sourceTree = "<group>"; };
-		777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainLinkTVC.swift; sourceTree = "<group>"; };
-		777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainLinkTVC.xib; sourceTree = "<group>"; };
 		777ABF7E278C9584002D3214 /* ReviewMainPostTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainPostTVC.swift; sourceTree = "<group>"; };
 		777ABF7F278C9584002D3214 /* ReviewMainPostTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainPostTVC.xib; sourceTree = "<group>"; };
 		777ABF82278CB327002D3214 /* ReviewMainStickyHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewMainStickyHeader.xib; sourceTree = "<group>"; };
@@ -611,8 +605,6 @@
 		77A7592E27981A0E00A8E48B /* MajorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfo.swift; sourceTree = "<group>"; };
 		77A7593527988E7300A8E48B /* ReviewMainPostListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainPostListData.swift; sourceTree = "<group>"; };
 		77A7593B2799C81B00A8E48B /* ReviewPostDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostDetailData.swift; sourceTree = "<group>"; };
-		77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEmptyTVC.swift; sourceTree = "<group>"; };
-		77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewEmptyTVC.xib; sourceTree = "<group>"; };
 		77A75943279B111300A8E48B /* ReviewHomePageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewHomePageData.swift; sourceTree = "<group>"; };
 		77AEEB402789AF380016880B /* HalfModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfModalVC.swift; sourceTree = "<group>"; };
 		77AEEB412789AF380016880B /* MajorTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTVC.swift; sourceTree = "<group>"; };
@@ -1256,16 +1248,12 @@
 		33C7ABED278F2066000A325A /* TVC */ = {
 			isa = PBXGroup;
 			children = (
-				777ABF7A278C844E002D3214 /* ReviewMainLinkTVC.swift */,
-				777ABF7B278C844E002D3214 /* ReviewMainLinkTVC.xib */,
 				7754A32427954B770093C230 /* ReviewDetailPostTVC.swift */,
 				7754A32527954B770093C230 /* ReviewDetailPostTVC.xib */,
 				7754A328279573B50093C230 /* ReviewDetailPostWithImgTVC.swift */,
 				7754A329279573B50093C230 /* ReviewDetailPostWithImgTVC.xib */,
 				777C18D427D7B04C00A5ADEC /* ReviewDetailGrayTVC.swift */,
 				777C18D527D7B04C00A5ADEC /* ReviewDetailGrayTVC.xib */,
-				77A7593F279AF62A00A8E48B /* ReviewEmptyTVC.swift */,
-				77A75940279AF62A00A8E48B /* ReviewEmptyTVC.xib */,
 			);
 			path = TVC;
 			sourceTree = "<group>";
@@ -2121,7 +2109,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				777ABF7D278C844E002D3214 /* ReviewMainLinkTVC.xib in Resources */,
 				C71BF22F27CCD2BD0030DCB9 /* NotificationSettingVC.storyboard in Resources */,
 				5CAB3F28278AE39D00025DA5 /* AgreeTermsVC.storyboard in Resources */,
 				C740A85927C7C55D00C4518A /* EditProfileVC.storyboard in Resources */,
@@ -2178,7 +2165,6 @@
 				7754A32727954B770093C230 /* ReviewDetailPostTVC.xib in Resources */,
 				5C8D8BFA278B1E820045E600 /* SignUpMajorInfoVC.storyboard in Resources */,
 				77ED045127AD75E700D077CA /* FilterVC.xib in Resources */,
-				77A75942279AF62A00A8E48B /* ReviewEmptyTVC.xib in Resources */,
 				779DC5B128EB2E04009B9A43 /* Development.xcconfig in Resources */,
 				5C4B5A9E27BFFDD40012A898 /* MypageMyReviewVC.storyboard in Resources */,
 				5C54CECD278DF6120054136D /* SignUpCompleteVC.storyboard in Resources */,
@@ -2236,7 +2222,6 @@
 				33BE2D49278982E0000FB6C8 /* BaseNC.swift in Sources */,
 				331364AC2785D96D00E0C118 /* MypageMainVC.swift in Sources */,
 				33463AE22908016300323072 /* SendLoadingStatusDelegate.swift in Sources */,
-				77A75941279AF62A00A8E48B /* ReviewEmptyTVC.swift in Sources */,
 				C790A27A289E7DC500A67135 /* ImageCacheManager.swift in Sources */,
 				3313645A2785A98B00E0C118 /* UIView+.swift in Sources */,
 				C7F3F6DB27D3E38000E12888 /* WithDrawResponseModel.swift in Sources */,
@@ -2430,7 +2415,6 @@
 				33B9B0D327B8EAC200066C1F /* CommunityPostDetailVC.swift in Sources */,
 				33D4456B287C28AE00D94495 /* CommunityMainVC.swift in Sources */,
 				77ED045027AD75E700D077CA /* FilterVC.swift in Sources */,
-				777ABF7C278C844E002D3214 /* ReviewMainLinkTVC.swift in Sources */,
 				3313642C2784D3BD00E0C118 /* SceneDelegate.swift in Sources */,
 				5C49669327BD469200983689 /* AutoSignInVC.swift in Sources */,
 				C7ACE63827CBD8450011B23F /* SettingVersionTVC.swift in Sources */,

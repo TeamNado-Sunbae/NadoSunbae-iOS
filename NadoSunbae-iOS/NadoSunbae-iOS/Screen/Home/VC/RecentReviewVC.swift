@@ -39,6 +39,7 @@ final class RecentReviewVC: BaseVC, View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideTabbar()
+        reactor?.action.onNext(.reloadRecentReviewList)
     }
     
     func bind(reactor: RecentReviewReactor) {
@@ -52,7 +53,7 @@ extension RecentReviewVC {
     
     // MARK: Action
     private func bindAction(_ reactor: RecentReviewReactor) {
-        reactor.action.onNext(.viewDidLoad)
+        reactor.action.onNext(.reloadRecentReviewList)
         
         naviView.backBtn.rx.tap
             .bind { self.navigationController?.popViewController(animated: true) }
