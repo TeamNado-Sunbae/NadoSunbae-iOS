@@ -29,6 +29,7 @@ final class HomeVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         getLatestVersion {
+            self.checkIsFirstInappropriate() {}
             self.configureUI()
             self.setBackgroundTV()
             self.getRecentCommunityList()
@@ -40,6 +41,7 @@ final class HomeVC: BaseVC {
         super.viewWillAppear(animated)
         showTabbar()
         self.backgroundTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        self.getRecentCommunityList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -228,9 +230,11 @@ extension HomeVC: UITableViewDataSource {
                     guard let communityCell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityTVC.className) as? HomeCommunityTVC else { return HomeCommunityTVC() }
                     communityCell.communityList = self.communityList
                     communityCell.didSelectItem = { postID in
-                        self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
-                            postDetailVC.postID = postID
-                            postDetailVC.hidesBottomBarWhenPushed = true
+                        self.divideUserPermission {
+                            self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                                postDetailVC.postID = postID
+                                postDetailVC.hidesBottomBarWhenPushed = true
+                            }
                         }
                     }
                     return communityCell
@@ -351,7 +355,9 @@ extension HomeVC {
                             self.communityList.append(data[i])
                         }
                     }
-                    self.backgroundTV.reloadData()
+                    guard let cell = self.backgroundTV.cellForRow(at: IndexPath(row: 1, section: 3)) as? HomeCommunityTVC else { return }
+                    cell.communityList = self.communityList
+                    NotificationCenter.default.post(name: Notification.Name.reloadHomeRecentCell, object: nil, userInfo: nil)
                 }
             case .requestErr(let res):
                 if let message = res as? String {

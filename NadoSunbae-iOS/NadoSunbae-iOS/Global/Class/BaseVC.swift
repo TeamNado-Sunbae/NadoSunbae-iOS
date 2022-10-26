@@ -180,6 +180,16 @@ extension BaseVC {
         }
     }
     
+    /// 로그인 시 부적절 후기 작성자 권한 처리를 위한 메서드
+    func checkIsFirstInappropriate(defaultAction: () -> Void) {
+        if UserPermissionInfo.shared.isReviewInappropriate {
+            self.showRestrictionAlert(permissionStatus: .firstInappropriate)
+        } else {
+            // 아무런 제한이 없을 때 실행되는 action
+            defaultAction()
+        }
+    }
+    
     /// Firebase Analytics 사용자 지정 이벤트를 발생시키는 메서드 (기본 정보만 넘기는 이벤트)
     func makeDefaultAnalyticsEvent(eventName: String) {
         if env() == .production {

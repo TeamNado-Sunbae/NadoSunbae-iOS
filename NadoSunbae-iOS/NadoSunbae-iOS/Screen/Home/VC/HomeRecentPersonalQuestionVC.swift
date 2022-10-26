@@ -43,6 +43,9 @@ final class HomeRecentPersonalQuestionVC: BaseVC {
         
         configureUI()
         setQuestionTV()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getRecentPersonalQuestionList()
     }
     

@@ -32,6 +32,7 @@ final class HomeCommunityTVC: BaseTVC {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
         setRecentPostTV()
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveReloadNotification(_:)), name: Notification.Name.reloadHomeRecentCell, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -58,6 +59,10 @@ final class HomeCommunityTVC: BaseTVC {
                 }
             }
         }
+    }
+    
+    @objc func didReceiveReloadNotification(_ notification: Notification) {
+        recentPostTV.reloadData()
     }
 }
 

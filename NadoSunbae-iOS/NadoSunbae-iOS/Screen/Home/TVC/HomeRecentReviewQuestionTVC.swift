@@ -37,6 +37,7 @@ final class HomeRecentReviewQuestionTVC: BaseTVC {
         configureUI()
         setRecentCV()
         setData(type: recentType ?? .review)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveReloadNotification(_:)), name: Notification.Name.reloadHomeRecentCell, object: nil)
     }
     
     override func prepareForReuse() {
@@ -64,6 +65,10 @@ final class HomeRecentReviewQuestionTVC: BaseTVC {
             debugPrint("setData question")
             getRecentPersonalQuestionList()
         }
+    }
+    
+    @objc func didReceiveReloadNotification(_ notification: Notification) {
+        setData(type: recentType ?? .review)
     }
 }
 

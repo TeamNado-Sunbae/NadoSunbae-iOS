@@ -54,7 +54,7 @@ final class HomeRecentReviewQuestionCVC: BaseCVC {
         authorLabel.isHidden = false
         
         // TODO: 나중에 모델 확정되면 수정 필요
-        authorLabel.text = data.majorName
+        authorLabel.text = data.writer.nickname
         contentLabel.text = data.title
         dateLabel.text = data.createdAt.serverTimeToString(forUse: .forDefault)
     }
