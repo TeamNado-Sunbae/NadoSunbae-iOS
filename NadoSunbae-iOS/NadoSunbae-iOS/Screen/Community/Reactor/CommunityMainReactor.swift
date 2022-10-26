@@ -16,9 +16,10 @@ final class CommunityMainReactor: Reactor {
     enum Action {
         case searchBtnDidTap
         case filterFilled(fill: Bool, majorID: Int, type: PostFilterType)
-        case reloadCommunityTV(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
+        case requestNewCommunityList(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
         case witeFloatingBtnDidTap
         case refreshControl(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
+        case tapSegmentedControl(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
     }
     
     // MARK: represent state changes
@@ -29,6 +30,9 @@ final class CommunityMainReactor: Reactor {
         case setFilterBtnState(selected: Bool)
         case setFilterMajorID(majorID: Int)
         case setRefreshLoading(loading: Bool)
+        case setTapSegmentState(state: Bool)
+        case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
+        case updateAccessToken(state: Bool, action: Action)
     }
     
     // MARK: represent the current view state
@@ -39,6 +43,11 @@ final class CommunityMainReactor: Reactor {
         var majorList: [MajorInfoModel] = []
         var filterBtnSelected: Bool = false
         var filterMajorID: Int = MajorIDConstants.allMajorID
+        var toSetContentOffsetZero: Bool = true
+        var showAlert: Bool = false
+        var alertMessage: String = ""
+        var isUpdateAccessToken: Bool = false
+        var reloadAction: Action = .requestNewCommunityList(type: .community)
     }
 }
 
@@ -58,7 +67,7 @@ extension CommunityMainReactor {
                 Observable.just(.setFilterMajorID(majorID: majorID)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: "recent", search: "")
             ])
-        case .reloadCommunityTV(let majorID, let type, let sort, let search):
+        case .requestNewCommunityList(let majorID, let type, let sort, let search):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
@@ -68,6 +77,12 @@ extension CommunityMainReactor {
         case .refreshControl(let majorID, let type, let sort, let search):
             return Observable.concat([
                 Observable.just(.setRefreshLoading(loading: true)),
+                self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
+            ])
+        case .tapSegmentedControl(let majorID, let type, let sort, let search):
+            return Observable.concat([
+                Observable.just(.setLoading(loading: true)),
+                Observable.just(.setTapSegmentState(state: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
             ])
         }
@@ -90,6 +105,14 @@ extension CommunityMainReactor {
             newState.refreshLoading = loading
         case .setFilterMajorID(let majorID):
             newState.filterMajorID = majorID
+        case .setTapSegmentState(let state):
+            newState.toSetContentOffsetZero = state
+        case .setAlertState(let showState, let message):
+            newState.showAlert = showState
+            newState.alertMessage = message
+        case .updateAccessToken(let state, let action):
+            newState.isUpdateAccessToken = state
+            newState.reloadAction = action
         }
         
         return newState
@@ -100,32 +123,31 @@ extension CommunityMainReactor {
 extension CommunityMainReactor {
     private func requestCommunityList(majorID: Int?, type: PostFilterType, sort: String?, search: String?) -> Observable<Mutation> {
         return Observable.create { observer in
-            PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: majorID ?? 0, filter: type, sort: sort ?? "recent", search: search ?? "") { networkResult in
-                switch networkResult {
-                case .success(let res):
-                    if let data = res as? [PostListResModel] {
-                        observer.onNext(Mutation.requestCommunityList(communityList: data))
-                        observer.onNext(Mutation.setRefreshLoading(loading: false))
+            DispatchQueue.global().async {
+                PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: majorID ?? 0, filter: type, sort: sort ?? "recent", search: search ?? "") { networkResult in
+                    switch networkResult {
+                    case .success(let res):
+                        if let data = res as? [PostListResModel] {
+                            observer.onNext(Mutation.requestCommunityList(communityList: data))
+                            observer.onNext(Mutation.setRefreshLoading(loading: false))
+                            observer.onNext(Mutation.setLoading(loading: false))
+                            observer.onNext(Mutation.setTapSegmentState(state: false))
+                            observer.onCompleted()
+                        }
+                    case .requestErr(let res):
+                        if let _ = res as? String {
+                            observer.onNext(Mutation.setAlertState(showState: true))
+                            observer.onNext(Mutation.setLoading(loading: false))
+                            observer.onCompleted()
+                        } else if res is Bool {
+                            observer.onNext(.updateAccessToken(state: true, action: .requestNewCommunityList(majorID: majorID, type: type, sort: sort, search: search)))
+                        }
+                    default:
+                        observer.onNext(Mutation.setAlertState(showState: true))
+                        observer.onNext(Mutation.setLoading(loading: false))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     }
-                case .requestErr(let res):
-                    // ✅ TODO: Alert Display Protocol화 하기
-                    if let _ = res as? String {
-//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                        observer.onNext(Mutation.setLoading(loading: false))
-                        observer.onCompleted()
-                    } else if res is Bool {
-                        // ✅ TODO: updateAccessToken Protocol화 하기
-//                        self.updateAccessToken { _ in
-//                            self.setUpRequestData(sortType: .recent)
-//                        }
-                    }
-                default:
-                    // ✅ TODO: Alert Display Protocol화하기
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
-                    observer.onNext(Mutation.setLoading(loading: false))
-                    observer.onCompleted()
                 }
             }
             return Disposables.create()

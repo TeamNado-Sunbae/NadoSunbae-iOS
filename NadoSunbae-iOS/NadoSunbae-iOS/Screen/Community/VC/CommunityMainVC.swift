@@ -70,6 +70,10 @@ final class CommunityMainVC: BaseVC, View {
         setUpCommunitySVRefreshControl()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        reactor?.action.onNext(.requestNewCommunityList(type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community))
+    }
+    
     func bind(reactor: CommunityMainReactor) {
         bindAction(reactor)
         bindState(reactor)
@@ -87,13 +91,13 @@ extension CommunityMainVC {
                 
                 switch selectIndex {
                 case 1:
-                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .general)
+                    return CommunityMainReactor.Action.tapSegmentedControl(majorID: reactor.currentState.filterMajorID, type: .general)
                 case 2:
-                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .questionToEveryone)
+                    return CommunityMainReactor.Action.tapSegmentedControl(majorID: reactor.currentState.filterMajorID, type: .questionToEveryone)
                 case 3:
-                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .information)
+                    return CommunityMainReactor.Action.tapSegmentedControl(majorID: reactor.currentState.filterMajorID, type: .information)
                 default:
-                    return CommunityMainReactor.Action.reloadCommunityTV(majorID: reactor.currentState.filterMajorID, type: .community)
+                    return CommunityMainReactor.Action.tapSegmentedControl(majorID: reactor.currentState.filterMajorID, type: .community)
                 }
             }
             .bind(to: reactor.action)
@@ -172,7 +176,9 @@ extension CommunityMainVC {
                     self?.setEmptyLabelIsHidden(isHidden: true)
                 } else {
                     self?.activityIndicator.stopAnimating()
-                    self?.communitySV.contentOffset.y = 0
+                    if reactor.currentState.toSetContentOffsetZero {
+                        self?.communitySV.contentOffset.y = 0
+                    }
                     self?.setEmptyLabelIsHidden(isHidden: reactor.currentState.communityList.isEmpty ? false : true)
                 }
             })
@@ -192,6 +198,26 @@ extension CommunityMainVC {
             .distinctUntilChanged()
             .map { $0 }
             .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showAlert }
+            .subscribe(onNext: { show in
+                if show {
+                    self.makeAlert(title: reactor.currentState.alertMessage)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isUpdateAccessToken }
+            .subscribe(onNext: { state in
+                if state {
+                    self.updateAccessToken { _ in
+                        reactor.action.onNext(reactor.currentState.reloadAction)
+                    }
+                }
+            })
             .disposed(by: disposeBag)
     }
     
@@ -291,7 +317,7 @@ extension CommunityMainVC {
     
     /// segment Action을 설정하는 메서드
     private func setUpSegmentAction(type: PostFilterType) {
-        reactor?.action.onNext(.reloadCommunityTV(type: type))
+        reactor?.action.onNext(.requestNewCommunityList(type: type))
     }
     
     /// communityTV의 refreshControl을 등록하는 메서드
