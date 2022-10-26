@@ -169,25 +169,30 @@ extension CommunityWriteVC {
             .disposed(by: disposeBag)
         
         questionWriteNaviBar.rightActivateBtn.rx.tap
-            .subscribe(onNext: {
-                self.nadoAlert?.showNadoAlert(vc: self, message: self.confirmAlertMsg, confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                
+                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                alert.showNadoAlert(vc: self, message: self.confirmAlertMsg, confirmBtnTitle: "네", cancelBtnTitle: "아니요")
+                alert.confirmBtn.press {
+                    if self.isEditState {
+                        reactor.action.onNext(.tapQuestionEditBtn(postID: self.postID ?? 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ?? ""))
+                    } else {
+                        reactor.action.onNext(.tapQuestionWriteBtn(type: self.selectedCategory, majorID: self.majorID ?? MajorIDConstants.regardlessMajorID, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text))
+                    }
+                }
             })
             .disposed(by: disposeBag)
         
-        nadoAlert?.confirmBtn.rx.tap.map{
-            if self.isEditState {
-                return CommunityWriteReactor.Action.tapQuestionEditBtn(postID: self.postID ?? 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text ??
-                "")
-            } else {
-                return CommunityWriteReactor.Action.tapQuestionWriteBtn(type: self.selectedCategory, majorID: self.majorID ?? MajorIDConstants.regardlessMajorID, answererID: 0, title: self.questionTitleTextField.text ?? "", content: self.questionWriteTextView.text)
-            }
-        }
-        .bind(to: reactor.action)
-        .disposed(by: disposeBag)
-        
         questionWriteNaviBar.dismissBtn.rx.tap
-            .subscribe(onNext: {
-                self.nadoAlert?.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                
+                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                alert.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: self.isEditState ? "계속 수정" : "계속 작성", cancelBtnTitle: "나갈래요")
+                alert.cancelBtn.press {
+                    self.dismiss(animated: true, completion: nil)
+                }
             })
             .disposed(by: disposeBag)
         
