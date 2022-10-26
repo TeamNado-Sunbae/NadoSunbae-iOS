@@ -71,6 +71,7 @@ final class ClassroomVC: BaseVC {
     private var reviewVC: ReviewVC = ReviewVC()
     private var personalQuestionVC: PersonalQuestionVC = PersonalQuestionVC()
     private let loadingDispatchGroup = DispatchGroup()
+    private var segmentChangeActionStatus: Bool = false
     private var filterStatus = false
     private var selectedWriterFilter: ReviewWriterType = .all
     private var selectedTagFilter = "1, 2, 3, 4, 5"
@@ -88,6 +89,8 @@ final class ClassroomVC: BaseVC {
         bindAction()
         injectReactor()
         tapReviewWriteBtnAction()
+        self.addChild(reviewVC)
+        self.addChild(personalQuestionVC)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -243,28 +246,18 @@ extension ClassroomVC {
         }
     }
     
-    /// ChildVC를 제거하는 메서드
-    private func removeChildVC() {
-        if self.children.count > 0 {
-            let viewControllers:[UIViewController] = self.children
-            viewControllers.last?.willMove(toParent: nil)
-            viewControllers.last?.removeFromParent()
-            viewControllers.last?.view.removeFromSuperview()
-        }
-    }
-    
     /// contentVCContainerView UI 구성 메서드
     private func configureContentVCContainerView(VC: UIViewController) {
-        removeChildVC()
-        self.addChild(VC)
-        let contentView = VC.view
+        VC.viewWillLayoutSubviews()
         VC.didMove(toParent: self)
         VC.view.frame.size = CGSize(width: contentVCContainerView.frame.width, height: VC.view.frame.height)
-        contentVCContainerView.addSubview(contentView ?? UIView())
+        contentVCContainerView.addSubview(VC.view ?? UIView())
     }
     
     /// segmentedControl의 selectedIndex에 따른 VC 구성 메서드
     private func configureContentVCBySegmentIndex(by segmentIndex: Int) {
+        segmentChangeActionStatus = true
+        
         switch segmentIndex {
         case 0:
             configureContentVCContainerView(VC: reviewVC)
@@ -373,6 +366,23 @@ extension ClassroomVC {
             self.activityIndicator.stopAnimating()
         }
     }
+    
+    /// contentVCContainerView의 높이값을 기반으로 classroomSV의 contentOffset의 y좌표를 설정하는 메서드
+    private func setClassroomSVContentYOffsetByHeight(height: CGFloat) {
+        var contentYOffset = classroomSV.contentOffset.y
+        
+        // yOffset이 192보다 크거나 같을 때
+        // 스크롤되어 segmentedControlContainerView가 네비게이션 뷰 bottom에 닿았을 때
+        if contentYOffset >= 192 {
+            
+            // 만약 contentVCContainerView의 높이값 + 352(top ~ segmentedControlContainerView bottom까지의 높이 값)가 스크린의 height값보다 크다면
+            // classroomSV contentOffset의 y좌표를 192로 설정 -> segmentedControlContainerView가 상단 고정된 상태 유지
+            
+            // 만약 작다면
+            // classroomSV contentOffset의 y좌표를 0으로 설정
+            classroomSV.contentOffset.y = 352 + height > UIScreen.main.bounds.height ? 192 : 0
+        }
+    }
 }
 
 // MARK: - UIScrollViewDelegate
@@ -427,6 +437,7 @@ extension ClassroomVC: UIViewControllerTransitioningDelegate {
 extension ClassroomVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         majorLabel.text = data as? String
+        segmentChangeActionStatus = true
     }
 }
 
@@ -474,9 +485,17 @@ extension ClassroomVC: SendUpdateStatusDelegate {
 
 // MARK: - SendContentSizeDelegate
 extension ClassroomVC: SendContentSizeDelegate {
-    func sendContentSize(height: CGFloat) {
-        contentVCContainerView.snp.updateConstraints {
-            $0.height.equalTo(height)
+    func sendContentSize(height: CGFloat, comeFrom: String) {
+        if comeFrom == reviewVC.className && segmentedControl.selectedSegmentIndex == 0 || comeFrom == personalQuestionVC.className && segmentedControl.selectedSegmentIndex == 1 {
+            
+            if segmentChangeActionStatus {
+                setClassroomSVContentYOffsetByHeight(height: height)
+                segmentChangeActionStatus = false
+            }
+            
+            contentVCContainerView.snp.updateConstraints {
+                $0.height.equalTo(height)
+            }
         }
     }
 }
