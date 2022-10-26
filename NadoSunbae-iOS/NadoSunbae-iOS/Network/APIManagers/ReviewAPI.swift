@@ -32,8 +32,8 @@ class ReviewAPI: BaseAPI {
     }
     
     /// [GET] 후기글 리스트 API
-    func getReviewPostListAPI(majorID: Int, writerFilter: String, tagFilter: String, sort: ListSortType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        userProvider.request(.getReviewMainPostList(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter, sort: sort.rawValue)) { result in
+    func getReviewPostListAPI(majorID: Int, writerFilter: WriterType, tagFilter: String, sort: ListSortType, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        userProvider.request(.getReviewMainPostList(majorID: majorID, writerFilter: writerFilter.rawValue, tagFilter: tagFilter, sort: sort.rawValue)) { result in
             switch result {
                 
             case .success(let response):
