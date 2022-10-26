@@ -72,4 +72,17 @@ extension UILabel {
         attributedText = attributedString
     }
     
+    /// 특정 문자열 폰트 변경 및 행간 조정 메서드
+    func setTextFontWithLineSpacing(targetStringList: [String], font: UIFont, lineSpacing: CGFloat) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineSpacing
+        targetStringList.forEach {
+            let range = (fullText as NSString).range(of: $0)
+            attributedString.addAttributes([.font: font as Any], range: range)
+            attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: style, range: NSMakeRange(0, attributedString.length))
+        }
+        attributedText = attributedString
+    }
 }

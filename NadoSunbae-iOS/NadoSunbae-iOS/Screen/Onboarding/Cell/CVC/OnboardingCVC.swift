@@ -17,15 +17,6 @@ class OnboardingCVC: BaseCVC {
     // MARK: Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureUI()
-    }
-}
-
-// MARK: - UI
-extension OnboardingCVC {
-    private func configureUI() {
-        subTitleLabel.setLineSpacing(lineSpacing: 5)
-        subTitleLabel.textAlignment = .center
     }
 }
 
@@ -33,10 +24,22 @@ extension OnboardingCVC {
 extension OnboardingCVC {
     
     /// 데이터 세팅 함수
-    func setData(contentData: OnboardingContentData) {
+    func setData(index: Int, contentData: OnboardingContentData) {
         titleLabel.text = contentData.title
         subTitleLabel.text = contentData.subtitle
         mainImgView.image = contentData.makeImg()
+        
+        switch index {
+        case 2:
+            subTitleLabel.setTextFontWithLineSpacing(targetStringList: ["1:1 질문", "기존에 나눴던 질의응답"], font: .PretendardSB(size: 14), lineSpacing: 5)
+            subTitleLabel.textAlignment = .center
+        case 3:
+            subTitleLabel.setTextFontWithLineSpacing(targetStringList: ["각 학과 학생들로 구성된 커뮤니티"], font: .PretendardSB(size: 14), lineSpacing: 5)
+            subTitleLabel.textAlignment = .center
+        default:
+            subTitleLabel.setLineSpacing(lineSpacing: 5)
+            subTitleLabel.textAlignment = .center
+        }
     }
 }
 
