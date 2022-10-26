@@ -71,7 +71,7 @@ final class CommunityMainVC: BaseVC, View {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        reactor?.action.onNext(.requestNewCommunityList(type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community))
+        reactor?.action.onNext(.requestNewCommunityList(majorID: reactor?.currentState.filterMajorID, type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community, sort: "recent", search: ""))
     }
     
     func bind(reactor: CommunityMainReactor) {
