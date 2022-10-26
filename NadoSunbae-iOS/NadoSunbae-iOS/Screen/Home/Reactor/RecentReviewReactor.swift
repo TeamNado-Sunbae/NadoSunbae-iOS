@@ -14,7 +14,7 @@ final class RecentReviewReactor: Reactor {
     var initialState: State = State()
     
     enum Action {
-        case viewDidLoad
+        case reloadRecentReviewList
     }
     
     enum Mutation {
@@ -32,11 +32,10 @@ final class RecentReviewReactor: Reactor {
  extension RecentReviewReactor {
      func mutate(action: Action) -> Observable<Mutation> {
          switch action {
-         case .viewDidLoad:
+         case .reloadRecentReviewList:
              return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                self.requestReviewList(),
-                Observable.just(.setLoading(loading: false))
+                self.requestReviewList()
              ])
          }
      }
