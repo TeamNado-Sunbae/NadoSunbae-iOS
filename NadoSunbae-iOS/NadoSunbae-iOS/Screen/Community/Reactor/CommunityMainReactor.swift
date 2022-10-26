@@ -30,7 +30,7 @@ final class CommunityMainReactor: Reactor {
         case setFilterBtnState(selected: Bool)
         case setFilterMajorID(majorID: Int)
         case setRefreshLoading(loading: Bool)
-        case setTapSegmentState(state: Bool)
+        case setAnimateToTopState(state: Bool)
         case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
         case updateAccessToken(state: Bool, action: Action)
     }
@@ -43,7 +43,7 @@ final class CommunityMainReactor: Reactor {
         var majorList: [MajorInfoModel] = []
         var filterBtnSelected: Bool = false
         var filterMajorID: Int = MajorIDConstants.allMajorID
-        var toSetContentOffsetZero: Bool = true
+        var animateToTopState: Bool = true
         var showAlert: Bool = false
         var alertMessage: String = ""
         var isUpdateAccessToken: Bool = false
@@ -65,7 +65,7 @@ extension CommunityMainReactor {
                 Observable.just(.setLoading(loading: true)),
                 Observable.just(.setFilterBtnState(selected: fill)),
                 Observable.just(.setFilterMajorID(majorID: majorID)),
-                Observable.just(.setTapSegmentState(state: true)),
+                Observable.just(.setAnimateToTopState(state: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: "recent", search: "")
             ])
         case .requestNewCommunityList(let majorID, let type, let sort, let search):
@@ -83,7 +83,7 @@ extension CommunityMainReactor {
         case .tapSegmentedControl(let majorID, let type, let sort, let search):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                Observable.just(.setTapSegmentState(state: true)),
+                Observable.just(.setAnimateToTopState(state: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
             ])
         }
@@ -106,8 +106,8 @@ extension CommunityMainReactor {
             newState.refreshLoading = loading
         case .setFilterMajorID(let majorID):
             newState.filterMajorID = majorID
-        case .setTapSegmentState(let state):
-            newState.toSetContentOffsetZero = state
+        case .setAnimateToTopState(let state):
+            newState.animateToTopState = state
         case .setAlertState(let showState, let message):
             newState.showAlert = showState
             newState.alertMessage = message
@@ -132,7 +132,7 @@ extension CommunityMainReactor {
                             observer.onNext(Mutation.requestCommunityList(communityList: data))
                             observer.onNext(Mutation.setRefreshLoading(loading: false))
                             observer.onNext(Mutation.setLoading(loading: false))
-                            observer.onNext(Mutation.setTapSegmentState(state: false))
+                            observer.onNext(Mutation.setAnimateToTopState(state: false))
                             observer.onCompleted()
                         }
                     case .requestErr(let res):
