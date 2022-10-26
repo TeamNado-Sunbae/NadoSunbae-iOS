@@ -72,7 +72,6 @@ class EditProfileVC: BaseVC {
     let disposeBag = DisposeBag()
     var userInfo = MypageEditProfileRequestBodyModel()
     var changedInfo = MypageEditProfileRequestBodyModel()
-    var profileData = EditProfileRequestModel()
     var secondMajorList: [MajorInfoModel] = []
     var isPresentingHalfModal = true
     var selectedProfileImgID = 0
