@@ -81,9 +81,11 @@ extension WriteQuestionVC {
         }
         
         /// dismissBtn Press
-        questionWriteNaviBar.dismissBtn.press {
+        questionWriteNaviBar.dismissBtn.press { [weak self] in
+            guard let self = self else { return }
+            
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-            alert.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+            alert.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: self.isEditState ? "계속 수정" : "계속 작성", cancelBtnTitle: "나갈래요")
             alert.cancelBtn.press {
                 self.dismiss(animated: true, completion: nil)
             }
