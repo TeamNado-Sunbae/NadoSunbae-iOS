@@ -189,7 +189,7 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
         }
     }
     
-    /// sizeForItemAt
+    /// didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let targetUserID = indexPath.section == 0 ? self.majorUserList.onQuestionUserList[indexPath.row].userID : self.majorUserList.offQuestionUserList[indexPath.row].userID
      
