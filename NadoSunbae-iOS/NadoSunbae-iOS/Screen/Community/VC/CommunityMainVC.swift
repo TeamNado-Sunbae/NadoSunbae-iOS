@@ -114,10 +114,12 @@ extension CommunityMainVC {
             .disposed(by: disposeBag)
         
         writeFloatingBtn.rx.tap
-            .subscribe(onNext: {
-                self.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { communityWriteVC in
-                    communityWriteVC.reactor = CommunityWriteReactor()
-                    communityWriteVC.sendPostTypeDelegate = self
+            .subscribe(onNext: { [weak self] in
+                self?.divideUserPermission() {
+                    self?.navigator?.instantiateVC(destinationViewControllerType: CommunityWriteVC.self, useStoryboard: false, storyboardName: "", naviType: .present, modalPresentationStyle: .fullScreen) { communityWriteVC in
+                        communityWriteVC.reactor = CommunityWriteReactor()
+                        communityWriteVC.sendPostTypeDelegate = self
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -224,10 +226,12 @@ extension CommunityMainVC {
     /// CommunityTV를 bind하는 메서드
     private func bindCommunityTV() {
         communityTV.rx.modelSelected(PostListResModel.self)
-            .subscribe(onNext: { item in
-                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
-                    postDetailVC.postID = item.postID
-                    postDetailVC.hidesBottomBarWhenPushed = true
+            .subscribe(onNext: { [weak self] item in
+                self?.divideUserPermission() {
+                    self?.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                        postDetailVC.postID = item.postID
+                        postDetailVC.hidesBottomBarWhenPushed = true
+                    }
                 }
             })
             .disposed(by: disposeBag)
