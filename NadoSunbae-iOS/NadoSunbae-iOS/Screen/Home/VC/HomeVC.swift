@@ -40,6 +40,7 @@ final class HomeVC: BaseVC {
         super.viewWillAppear(animated)
         showTabbar()
         self.backgroundTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
+        self.getRecentCommunityList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -352,7 +353,10 @@ extension HomeVC {
                             self.communityList.append(data[i])
                         }
                     }
-                    self.backgroundTV.reloadData()
+                    guard let cell = self.backgroundTV.cellForRow(at: IndexPath(row: 1, section: 3)) as? HomeCommunityTVC else { return }
+                    cell.communityList = self.communityList
+                    cell.updateRecentPostTVHeight()
+                    NotificationCenter.default.post(name: Notification.Name.reloadHomeRecentCell, object: nil, userInfo: nil)
                 }
             case .requestErr(let res):
                 if let message = res as? String {
