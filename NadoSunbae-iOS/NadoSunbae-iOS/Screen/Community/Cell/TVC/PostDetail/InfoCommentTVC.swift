@@ -77,6 +77,7 @@ extension InfoCommentTVC {
         
         if majorInfoString.count >= 36 {
             majorInfoLabel.text = majorInfoString.makeLineBreakMajorText()
+            majorInfoLabel.setLineSpacing(lineSpacing: 2.0)
         } else {
             majorInfoLabel.text = majorInfoString
         }
