@@ -12,7 +12,6 @@ class MypageMyReviewVC: BaseVC {
     // MARK: @IBOutlet
     @IBOutlet weak var navView: NadoSunbaeNaviBar! {
         didSet {
-            navView.configureTitleLabel(title: "내가 쓴 후기")
             navView.setUpNaviStyle(state: .backDefault)
             navView.backBtn.press {
                 self.navigationController?.popViewController(animated: true)
@@ -33,6 +32,7 @@ class MypageMyReviewVC: BaseVC {
     // MARK: Properties
     var reviewList: [MypageMyReviewPostModel] = []
     var userID: Int = 0
+    var isFromUserPage = false
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -61,6 +61,7 @@ extension MypageMyReviewVC {
         let attributedString = NSMutableAttributedString(string: titleText)
         attributedString.addAttribute(.foregroundColor, value: UIColor.mainDefault, range: (titleText as NSString).range(of: userName))
         titleLabel.attributedText = attributedString
+        navView.configureTitleLabel(title: isFromUserPage ? "학과후기" : "내가 쓴 후기")
     }
     
     private func setEmptyView() {
