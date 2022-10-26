@@ -65,13 +65,13 @@ extension OnboardingVC {
     private func registerCVC() {
         OnboardingCVC.register(target: onboardingCV)
         FirstOnboardingCVC.register(target: onboardingCV)
-        ThirdOnboardingCVC.register(target: onboardingCV)
     }
     
     private func initOnboardingData() {
         onboardingData.append(contentsOf: [
-            OnboardingContentData(title: "생생한 학과 후기", subtitle: "장단점, 뭘배우나요?, 추천수업, 비추수업,\n향후진로, 꿀팁 등으로 구성되어 있어요.", onboardingImgName: "group687"),
-            OnboardingContentData(title: "다양한 정보 공유까지 !", subtitle: "학과 공지사항, 족보 등의 유용한 자료들이\n정보 게시판에 학과 별로 누적되고 있어요. ", onboardingImgName: "lastPage")
+            OnboardingContentData(title: "생생한 학과 후기", subtitle: "장단점, 뭘배우나요?, 추천수업, 비추수업,\n향후진로, 꿀팁 등으로 구성되어 있어요.", onboardingImgName: "onboarding1"),
+            OnboardingContentData(title: "선배와의 1:1 질문", subtitle: "궁금한 학과 선배의 페이지에 방문해\n1:1 질문을 작성해보세요.\n선배가 기존에 나눴던 질의응답도 확인할 수 있어요.", onboardingImgName: "onboarding2"),
+            OnboardingContentData(title: "다양한 정보 공유까지 !", subtitle: "1:1 질문으로 해소되지 않은 내용은\n각 학과 학생들로 구성된 커뮤니티의\n질문, 정보, 자유 게시글을 통해서 해결해보세요.", onboardingImgName: "onboarding3")
         ])
     }
     
@@ -100,20 +100,14 @@ extension OnboardingVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let onboardingCell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCVC.className, for: indexPath) as? OnboardingCVC,
-              let firstOnboardingCell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstOnboardingCVC.className, for: indexPath) as? FirstOnboardingCVC,
-              let thirdOnboardingCell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdOnboardingCVC.className, for: indexPath) as? ThirdOnboardingCVC else { return UICollectionViewCell() }
+              let firstOnboardingCell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstOnboardingCVC.className, for: indexPath) as? FirstOnboardingCVC else { return UICollectionViewCell() }
+        
         
         if indexPath.row == 0 {
             return firstOnboardingCell
-        } else if indexPath.row == 1 {
-            onboardingCell.setData(contentData: onboardingData[0])
-            return onboardingCell
-        } else if indexPath.row == 2 {
-            return thirdOnboardingCell
-        } else if indexPath.row == 3 {
-            onboardingCell.setData(contentData: onboardingData[1])
+        } else {
+            onboardingCell.setData(index: indexPath.row, contentData: onboardingData[indexPath.row - 1])
             return onboardingCell
         }
-        return UICollectionViewCell()
     }
 }
