@@ -14,7 +14,7 @@ struct ReviewDeleteResModel: Codable {
     let isReviewed: Bool
 
     enum CodingKeys: String, CodingKey {
-        case postID = "postId"
+        case postID = "id"
         case isDeleted, isReviewed
     }
 }

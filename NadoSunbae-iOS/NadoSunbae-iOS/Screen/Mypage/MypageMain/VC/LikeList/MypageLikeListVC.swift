@@ -75,6 +75,7 @@ class MypageLikeListVC: BaseVC {
         self.likeListTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
+    // MARK: Functions
     private func setlikeListTV() {
         likeListTV.dataSource = self
         likeListTV.delegate = self

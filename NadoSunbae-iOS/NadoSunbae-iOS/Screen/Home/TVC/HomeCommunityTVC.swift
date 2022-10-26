@@ -25,6 +25,7 @@ final class HomeCommunityTVC: BaseTVC {
     // MARK: Properties
     var communityList: [PostListResModel] = []
     var didSelectItem: ((Int) -> ())?
+    private let contentSizeObserverKeyPath = "contentSize"
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -37,11 +38,6 @@ final class HomeCommunityTVC: BaseTVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        updateRecentPostTVHeight()
-    }
-    
     private func setRecentPostTV() {
         recentPostTV.dataSource = self
         recentPostTV.delegate = self
@@ -51,12 +47,17 @@ final class HomeCommunityTVC: BaseTVC {
         recentPostTV.removeSeparatorsOfEmptyCellsAndLastCell()
     }
     
-    func updateRecentPostTVHeight() {
-        self.recentPostTV.reloadData()
-        self.recentPostTV.snp.updateConstraints {
-            $0.height.equalTo(self.recentPostTV.contentSize.height)
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        debugPrint(#function)
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                let newSize  = newValue as! CGSize
+                self.recentPostTV.layoutIfNeeded()
+                self.recentPostTV.snp.updateConstraints {
+                    $0.height.equalTo(newSize.height)
+                }
+            }
         }
-        self.recentPostTV.layoutIfNeeded()
     }
 }
 
@@ -84,7 +85,7 @@ extension HomeCommunityTVC: UITableViewDelegate {
 extension HomeCommunityTVC {
     private func configureUI() {
         contentView.addSubviews([recentPostTV])
-        
+        recentPostTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
         recentPostTV.snp.makeConstraints {
             $0.top.equalToSuperview().inset(4)
             $0.horizontalEdges.equalToSuperview().inset(16)

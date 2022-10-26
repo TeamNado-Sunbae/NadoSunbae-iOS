@@ -58,6 +58,7 @@ class MypageUserVC: BaseVC {
     var questionList: [GetUserPersonalQuestionListResponseData.PostList] = []
     var sortType: ListSortType = .recent
     var judgeBlockStatusDelegate: SendBlockedInfoDelegate?
+    private let contentSizeObserverKeyPath = "contentSize"
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -73,6 +74,11 @@ class MypageUserVC: BaseVC {
         getUserInfo()
         getUserPersonalQuestionList(sort: sortType)
         makeScreenAnalyticsEvent(screenName: "Mypage Tab", screenClass: MypageUserVC.className)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.questionTV.removeObserver(self, forKeyPath: contentSizeObserverKeyPath)
     }
     
     // MARK: @IBAction
@@ -172,6 +178,19 @@ extension MypageUserVC {
             }
         }
     }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == contentSizeObserverKeyPath) {
+            if let newValue = change?[.newKey] {
+                debugPrint(#function, newValue)
+                let newSize  = newValue as! CGSize
+                self.questionTV.layoutIfNeeded()
+                DispatchQueue.main.async {
+                    self.questionTVHeight.constant = newSize.height
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Custom Methods
@@ -185,6 +204,8 @@ extension MypageUserVC {
     private func setUpTV() {
         questionTV.delegate = self
         questionTV.dataSource = self
+        questionTV.rowHeight = UITableView.automaticDimension
+        questionTV.estimatedRowHeight = 120
     }
 }
 
@@ -217,22 +238,18 @@ extension MypageUserVC {
     
     private func getUserPersonalQuestionList(sort: ListSortType) {
         self.activityIndicator.startAnimating()
+        
         MypageAPI.shared.getUserPersonalQuestionList(userID: targetUserID, sort: sort, completion: { networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? GetUserPersonalQuestionListResponseData {
                     self.activityIndicator.stopAnimating()
-                    self.questionList = []
+                    self.questionTV.addObserver(self, forKeyPath: self.contentSizeObserverKeyPath, options: .new, context: nil)
                     self.questionList = data.postList
+                    self.questionTV.reloadData()
                     DispatchQueue.main.async {
-                        self.questionTV.reloadData()
-                        
                         self.questionTV.isHidden = self.questionList.isEmpty ? true : false
                         self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
-                        
-                        self.questionTV.layoutIfNeeded()
-                        self.questionTV.rowHeight = UITableView.automaticDimension
-                        self.questionTVHeight.constant = self.questionTV.contentSize.height
                         self.sortBtn.setImage(UIImage(named: sort == .recent ? "btnArray" : "property1Variant3"), for: .normal)
                     }
                 }
