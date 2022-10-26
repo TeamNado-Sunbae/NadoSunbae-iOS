@@ -51,10 +51,10 @@ extension NotificationTVC {
         redCircleImgView.isHidden = data.isRead
         profileImgView.image = UIImage(named: "profileImage\(data.sender.profileImageID)")
         
-        titleLabel.text = getTitleLabelText(notiTypeInt: data.notificationTypeID, nickname: data.sender.senderName)
+        titleLabel.text = getTitleLabelText(notiTypeInt: data.notificationTypeID, nickname: data.sender.nickname)
         contentLabel.text = "\(data.content)"
         timeLabel.text = data.createdAt.serverTimeToString(forUse: .forNotification)
-        titleLabel.setTextColor(targetStringList: ["마이페이지", "\(data.notificationTypeID.getNotiType().rawValue)", "1:1 질문글", "작성하신 1:1 질문글", "작성하신 커뮤니티 글", "답글을 작성하신 커뮤니티 글", "커뮤니티에 \(data.sender.senderName) 질문글"], color: .mainDefault)
+        titleLabel.setTextColor(targetStringList: ["마이페이지", "\(data.notificationTypeID.getNotiType().rawValue)", "1:1 질문글", "작성하신 1:1 질문글", "작성하신 커뮤니티 글", "답글을 작성하신 커뮤니티 글", "커뮤니티에 \(data.sender.nickname) 질문글"], color: .mainDefault)
     }
     
     private func getTitleLabelText(notiTypeInt: Int, nickname: String?) -> String {

@@ -21,18 +21,14 @@ struct NotificationList: Codable {
     var notificationID: Int
     var sender: Sender
     var isRead: Bool
-    var content: String
-    var createdAt: String
+    var content, createdAt: String
     var postID: Int
     var commentID: Int?
     var notificationTypeID: Int
 
     enum CodingKeys: String, CodingKey {
         case notificationID = "notificationId"
-        case sender = "sender"
-        case isRead = "isRead"
-        case content = "content"
-        case createdAt = "createdAt"
+        case sender, isRead, content, createdAt
         case postID = "postId"
         case commentID = "commentId"
         case notificationTypeID = "notificationTypeId"
@@ -41,12 +37,12 @@ struct NotificationList: Codable {
     // MARK: - Sender
     struct Sender: Codable {
         var senderID: Int
-        var senderName: String
+        var nickname: String
         var profileImageID: Int
 
         enum CodingKeys: String, CodingKey {
             case senderID = "senderId"
-            case senderName = "senderName"
+            case nickname
             case profileImageID = "profileImageId"
         }
     }
