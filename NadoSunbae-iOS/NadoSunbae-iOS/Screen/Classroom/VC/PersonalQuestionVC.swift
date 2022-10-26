@@ -80,7 +80,7 @@ final class PersonalQuestionVC: BaseVC {
     }
     
     override func viewWillLayoutSubviews() {
-        contentSizeDelegate?.sendContentSize(height: recentQuestionTV.contentSize.height + 264)
+        contentSizeDelegate?.sendContentSize(height: recentQuestionTV.contentSize.height + 264, comeFrom: self.className)
         recentQuestionTV.snp.updateConstraints {
             $0.height.equalTo(recentQuestionTV.contentSize.height)
         }
