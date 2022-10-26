@@ -11,6 +11,9 @@ import ReactorKit
 final class ReviewReactor: Reactor {
     
     var initialState: State = State()
+    var sortType: ListSortType = .recent
+    var writerType: ReviewWriterType = .all
+    var tagFilter = "1, 2, 3, 4, 5"
     
     // MARK: Action
     enum Action {
@@ -44,7 +47,7 @@ extension ReviewReactor {
                 Observable.just(.setLoading(loading: true)),
                 
                 /// shared에 데이터가 있으면 shared정보로 데이터를 요청하고, 그렇지 않으면 Userdefaults의 전공ID로 요청
-                requestReviewList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: "all", tagFilter: "1, 2, 3, 4, 5", sort: .recent)])
+                requestReviewList(majorID: (MajorInfo.shared.selectedMajorID == nil ? UserDefaults.standard.integer(forKey: UserDefaults.Keys.FirstMajorID) : MajorInfo.shared.selectedMajorID ?? -1), writerFilter: writerType, tagFilter: self.tagFilter, sort: sortType)])
         }
     }
 
@@ -69,7 +72,7 @@ extension ReviewReactor {
 // MARK: - Network
 extension ReviewReactor {
     
-    private func requestReviewList(majorID: Int, writerFilter: String, tagFilter: String, sort: ListSortType) -> Observable<Mutation> {
+    private func requestReviewList(majorID: Int, writerFilter: ReviewWriterType, tagFilter: String, sort: ListSortType) -> Observable<Mutation> {
         return Observable.create { observer in
             ReviewAPI.shared.getReviewPostListAPI(majorID: majorID, writerFilter: writerFilter, tagFilter: tagFilter, sort: sort) { networkResult in
                 switch networkResult {

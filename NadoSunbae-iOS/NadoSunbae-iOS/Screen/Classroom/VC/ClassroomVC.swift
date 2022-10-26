@@ -59,7 +59,7 @@ final class ClassroomVC: BaseVC {
     }
     
     private let arrangeBtn = UIButton().then {
-        $0.setImgByName(name: "btnArray", selectedName: "property1Variant3")
+        $0.setImgByName(name: "btnArray", selectedName: "btnArray")
     }
     
     private let contentVCContainerView = UIView()
@@ -71,8 +71,12 @@ final class ClassroomVC: BaseVC {
     private var reviewVC: ReviewVC = ReviewVC()
     private var personalQuestionVC: PersonalQuestionVC = PersonalQuestionVC()
     private let loadingDispatchGroup = DispatchGroup()
+    private var filterStatus = false
+    private var selectedWriterFilter: ReviewWriterType = .all
+    private var selectedTagFilter = "1, 2, 3, 4, 5"
     
     var disposeBag = DisposeBag()
+    
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -102,15 +106,15 @@ extension ClassroomVC {
             })
             .disposed(by: disposeBag)
         
-        // TODO: filterBtn Action 처리하기
         filterBtn.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
+                self?.presentFilterView()
             })
             .disposed(by: disposeBag)
         
         arrangeBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.arrangeBtn.isSelected = !(self?.arrangeBtn.isSelected ?? false)
+                self?.presentArrangeActionSheet()
             })
             .disposed(by: disposeBag)
     }
@@ -302,6 +306,28 @@ extension ClassroomVC {
         self.present(slideVC, animated: true, completion: nil)
     }
     
+    /// 필터 바텀시트를 present하는 메서드
+    private func presentFilterView() {
+        let slideVC = FilterVC()
+        slideVC.selectFilterDelegate = self
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
+    /// 정렬 기준 선택 액션시트 present하는 메서드
+    private func presentArrangeActionSheet() {
+        makeTwoAlertWithCancel(okTitle: "최신순", secondOkTitle: "좋아요순", okAction: { _ in
+            self.arrangeBtn.setImage(UIImage(named: "btnArray"), for: .normal)
+            self.reviewVC.reactor?.sortType = .recent
+            NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+        }, secondOkAction: { _ in
+            self.arrangeBtn.setImage(UIImage(named: "property1Variant3"), for: .normal)
+            self.reviewVC.reactor?.sortType = .like
+            NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+        })
+    }
+    
     /// 전공 선택 버튼을 tap했을 때 메서드
     private func tapMajorSelectBtn() {
         majorSelectBtn.press(vibrate: true) { [weak self] in
@@ -401,6 +427,48 @@ extension ClassroomVC: UIViewControllerTransitioningDelegate {
 extension ClassroomVC: SendUpdateModalDelegate {
     func sendUpdate(data: Any) {
         majorLabel.text = data as? String
+    }
+}
+
+// MARK: - SendUpdateStatusDelegate
+extension ClassroomVC: SendUpdateStatusDelegate {
+    func sendStatus(data: Bool) {
+        let selectedList = ReviewFilterInfo.shared.selectedBtnList
+        
+        /// 필터 on/off 판단
+        filterStatus = data
+        
+        /// 태그 필터 초기화
+        var selectedTagList: [String] = []
+        
+        /// 작성자 필터 판단
+        if selectedList[0] == true  && selectedList[1] == false {
+            selectedWriterFilter = .firstMajor
+        } else if selectedList[0] == false && selectedList[1] == true {
+            selectedWriterFilter = .secondMajor
+        } else {
+            selectedWriterFilter = .all
+        }
+        
+        /// 태그 필터 판단
+        for i in 2...selectedList.count - 1 {
+            if selectedList[i] == true {
+                selectedTagList.append(String(i - 1))
+                selectedTagFilter = selectedTagList.joined(separator: ", ")
+            }
+        }
+        
+        if filterStatus {
+            /// 필터 on 상태일 때
+            filterBtn.setImage(UIImage(named: "filterSelected"), for: .normal)
+            reviewVC.reactor?.writerType = selectedWriterFilter
+            reviewVC.reactor?.tagFilter = selectedTagFilter
+        } else {
+            /// 필터 off 상태일 때
+            filterBtn.setImage(UIImage(named: "btnFilter"), for: .normal)
+            reviewVC.reactor?.writerType = .all
+            reviewVC.reactor?.tagFilter = "1, 2, 3, 4, 5"
+        }
     }
 }
 
