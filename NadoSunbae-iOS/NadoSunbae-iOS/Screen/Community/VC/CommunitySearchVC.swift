@@ -142,9 +142,11 @@ extension CommunitySearchVC {
     /// searchTV를 bind하는 메서드
     private func bindSearchTV() {
         searchTV.rx.modelSelected(PostListResModel.self)
-            .subscribe(onNext: { item in
-                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
-                    postDetailVC.postID = item.postID
+            .subscribe(onNext: { [weak self] item in
+                self?.divideUserPermission() {
+                    self?.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                        postDetailVC.postID = item.postID
+                    }
                 }
             })
             .disposed(by: disposeBag)
