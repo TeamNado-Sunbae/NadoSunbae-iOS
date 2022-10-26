@@ -248,15 +248,18 @@ extension HalfModalVC {
             }
         case .communityFilter:
             
-            // 학과무관의 ID값이 넘어올 경우
-            if selectFilterIndex == MajorIDConstants.regardlessMajorID {
-                // indexPath를 지정해주기 위해 값을 0으로 변경한다
-                selectFilterIndex = 0
+            // 초기값은 아무것도 선택되어있지 않은 상태여야 함
+            if selectFilterIndex != 0 {
+                // 학과무관의 ID값이 넘어올 경우
+                if selectFilterIndex == MajorIDConstants.regardlessMajorID {
+                    // indexPath를 지정해주기 위해 값을 0으로 변경한다
+                    selectFilterIndex = 0
+                }
+                
+                self.majorTV.selectRow(at: IndexPath(row: selectFilterIndex == 0 ? selectFilterIndex : selectFilterIndex - 1, section: 0), animated: false, scrollPosition: .top)
+                completeBtn.isActivated = true
+                completeBtn.titleLabel?.textColor = UIColor.mainDefault
             }
-            
-            self.majorTV.selectRow(at: IndexPath(row: selectFilterIndex == 0 ? selectFilterIndex : selectFilterIndex - 1, section: 0), animated: false, scrollPosition: .top)
-            completeBtn.isActivated = true
-            completeBtn.titleLabel?.textColor = UIColor.mainDefault
         }
     }
     
