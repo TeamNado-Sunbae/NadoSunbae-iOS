@@ -29,6 +29,7 @@ final class HomeVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         getLatestVersion {
+            self.checkIsFirstInappropriate() {}
             self.configureUI()
             self.setBackgroundTV()
             self.getRecentCommunityList()
