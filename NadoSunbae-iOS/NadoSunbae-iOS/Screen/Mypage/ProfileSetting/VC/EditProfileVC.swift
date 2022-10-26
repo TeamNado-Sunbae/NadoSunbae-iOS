@@ -105,40 +105,24 @@ class EditProfileVC: BaseVC {
         presentChangeProfileImgVC()
     }
     
-    
     @IBAction func tapSelectFirstMajorBtn(_ sender: UIButton) {
-        presentHalfModalView(title: "본전공", hasNoMajorOption: false)
-        
-        // TODO: SignUpModalVC로 변경
-        //        guard let slideVC = UIStoryboard.init(name: SelectMajorModalVC.className, bundle: nil).instantiateViewController(withIdentifier: SelectMajorModalVC.className) as? SelectMajorModalVC else { return }
-        //
-        //        /// 제2전공 진입시기 선택 버튼을 탭했는데, 제2전공이 선택되어있지 않을 경우
-        //        if !(sender.tag == 3 && secondMajorTextField.text == "미진입") {
-        //            slideVC.enterdBtnTag = sender.tag
-        //            self.enterBtnTag = sender.tag
-        //
-        //            slideVC.modalPresentationStyle = .custom
-        //            slideVC.transitioningDelegate = self
-        //            slideVC.selectMajorDelegate = self
-        //
-        //            self.present(slideVC, animated: true, completion: nil)
-        //        }
+        showMajorSelectModal(enterType: .firstMajor)
     }
     
     @IBAction func tapSelectFirstMajorStartBtn(_ sender: UIButton) {
-        
+        showMajorSelectModal(enterType: .firstMajorStart)
     }
     
     @IBAction func tapSelectSecondMajorBtn(_ sender: UIButton) {
-        presentHalfModalView(title: "제2전공", hasNoMajorOption: true, isSecondMajorSheet: true)
+        showMajorSelectModal(enterType: .secondMajor)
     }
     
     @IBAction func tapSelectSecondMajorStartBtn(_ sender: UIButton) {
-        
+        showMajorSelectModal(enterType: .secondMajorStart)
     }
 }
     
-    // MARK: - UI
+// MARK: - UI
 extension EditProfileVC {
     private func configureUI() {
         profileImgView.image = UIImage(named: "grayProfileImage\(userInfo.profileImageID)")
@@ -171,10 +155,12 @@ extension EditProfileVC {
     private func checkSecondMajorStatus() {
         if secondMajorTextField.text == "미진입" {
             secondMajorStartBtn.setTitle("선택", for: .normal)
+            secondMajorStartTextField.placeholder = "미진입"
             secondMajorStartTextField.text = ""
             secondMajorStartBtn.isEnabled = false
         } else {
             secondMajorStartBtn.isEnabled = true
+            self.secondMajorStartTextField.placeholder = "선택하기"
         }
     }
     
@@ -288,20 +274,25 @@ extension EditProfileVC {
         self.present(slideVC, animated: true)
     }
     
-    /// HalfModalView를 present하는 메서드
-    private func presentHalfModalView(title: String, hasNoMajorOption: Bool, isSecondMajorSheet: Bool = false) {
-        let slideVC = HalfModalVC()
-        slideVC.vcType = .search
-        slideVC.cellType = .star
-        slideVC.setUpTitleLabel(title)
-        slideVC.hasNoMajorOption = hasNoMajorOption
-        slideVC.isSecondMajorSheet = isSecondMajorSheet
-        slideVC.secondMajorList = self.secondMajorList
+    private func showMajorSelectModal(enterType: SignUpMajorInfoEnterType) {
+        let slideVC = SignUpModalVC()
+        slideVC.univID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID)
+        slideVC.enterType = enterType
+        
+        switch enterType {
+        case .firstMajor, .secondMajor:
+            slideVC.vcType = .search
+        case .firstMajorStart, .secondMajorStart:
+            slideVC.vcType = .basic
+        }
+        slideVC.cellType = .basic
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         slideVC.selectMajorDelegate = self
-        self.isPresentingHalfModal = true
-        self.present(slideVC, animated: true)
+        
+        self.present(slideVC, animated: true, completion: nil)
+    }
+    
     /// 서버에 요청해 받아 온 UserInfo를 EditProfile에 맞게 변환하여 리턴
     private func getEditProfileUserInfo(data: MypageUserInfoModel) -> MypageEditProfileBodyModel{
         var editProfileUserInfo = MypageEditProfileBodyModel()
@@ -355,33 +346,36 @@ extension EditProfileVC: SendUpdateModalDelegate {
             self.profileImgView.image = UIImage(named: "grayProfileImage\(selectedImgID)")
             selectedProfileImgID = selectedImgID
         }
-            
-        switch enterBtnTag {
-        case 0:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.firstMajorTextField.text = majorInfoData.majorName
-                //                self.changedInfo.firstMajorID = majorInfoData.majorID
+        
+        if let majorInfoTuple = data as? (Any, SignUpMajorInfoEnterType) {
+            switch majorInfoTuple.1 {
+            case .firstMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.firstMajorTextField.text = majorInfoData.majorName
+                    self.changedInfo.firstMajorID = majorInfoData.majorID
+                }
+            case .firstMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.firstMajorStartTextField.text = majorInfoData
+                    self.changedInfo.firstMajorStart = majorInfoData
+                }
+            case .secondMajor:
+                if let majorInfoData = majorInfoTuple.0 as? MajorInfoModel {
+                    self.secondMajorTextField.text = majorInfoData.majorName
+                    self.changedInfo.secondMajorID = majorInfoData.majorID
+                    if majorInfoData.majorName == "미진입" {
+                        self.changedInfo.secondMajorStart = "미진입"
+                    }
+                    checkSecondMajorStatus()
+                }
+                
+            case .secondMajorStart:
+                if let majorInfoData = majorInfoTuple.0 as? String {
+                    self.secondMajorStartTextField.text = majorInfoData
+                    self.secondMajorStartBtn.setTitle("변경", for: .normal)
+                    self.changedInfo.secondMajorStart = majorInfoData
+                }
             }
-        case 1:
-            self.firstMajorStartTextField.text = data as? String
-            self.changedInfo.firstMajorStart = data as? String ?? ""
-        case 2:
-            if let majorInfoData = data as? MajorInfoModel {
-                self.secondMajorTextField.text = majorInfoData.majorName
-                //                self.changedInfo.secondMajorID = majorInfoData.majorID
-                //                if changedInfo.secondMajorID == 1 {
-                //                    changedInfo.secondMajorStart = "미진입"
-                //                }
-                checkSecondMajorStatus()
-            }
-        case 3:
-            self.secondMajorStartTextField.text = data as? String
-            self.secondMajorStartBtn.setTitle("변경", for: .normal)
-            self.changedInfo.secondMajorStart = data as? String ?? ""
-        default:
-#if DEVELOPMENT
-            print("SignUpMajorInfoVC SendUpdateDelegate error")
-#endif
         }
         self.judgeSaveBtnState()
     }
