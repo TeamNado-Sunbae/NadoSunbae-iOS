@@ -342,7 +342,8 @@ extension MypagePostListVC {
         
         postListSV.snp.makeConstraints {
             $0.top.equalTo(postListSegmentControl.snp.bottom).offset(18)
-            $0.left.right.bottom.equalToSuperview()
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         contentView.snp.makeConstraints {
