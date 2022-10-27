@@ -12,4 +12,5 @@ extension Notification.Name {
     static let pushNotificationClicked = Notification.Name("pushNotificationClicked")
     static let sendChangedHeight = Notification.Name("sendChangedHeight")
     static let reloadHomeRecentCell = Notification.Name("reloadHomeRecentCell")
+    static let endOfHomeLoading = Notification.Name("endOfHomeLoading")
 }
