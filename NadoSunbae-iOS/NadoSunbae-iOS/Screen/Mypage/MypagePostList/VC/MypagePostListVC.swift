@@ -195,9 +195,11 @@ extension MypagePostListVC: UITableViewDelegate {
                 }
             }
         } else {
-            self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
-                postDetailVC.postID = self.isPostOrAnswer ? self.communityData[indexPath.row].postID : self.communityDataForAnswer[indexPath.row].id
-                postDetailVC.hidesBottomBarWhenPushed = true
+            self.divideUserPermission {
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                    postDetailVC.postID = self.isPostOrAnswer ? self.communityData[indexPath.row].postID : self.communityDataForAnswer[indexPath.row].id
+                    postDetailVC.hidesBottomBarWhenPushed = true
+                }
             }
         }
     }

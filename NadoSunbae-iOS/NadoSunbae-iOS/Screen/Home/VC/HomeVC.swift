@@ -124,13 +124,11 @@ extension HomeVC: SendUpdateModalDelegate {
 // MARK: - SendRankerDataDelegate
 extension HomeVC: SendRankerDataDelegate {
     func sendRankerData(data: HomeRankingResponseModel.UserList) {
-        divideUserPermission() {
-            if data.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
-                goToRootOfTab(index: 4)
-            } else {
-                self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
-                    mypageUserVC.targetUserID = data.id
-                }
+        if data.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
+            goToRootOfTab(index: 4)
+        } else {
+            self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                mypageUserVC.targetUserID = data.id
             }
         }
     }
