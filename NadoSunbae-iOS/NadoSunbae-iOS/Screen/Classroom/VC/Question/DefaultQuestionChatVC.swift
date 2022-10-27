@@ -16,7 +16,7 @@ enum UserType {
     case other
 }
 
-class DefaultQuestionChatVC: BaseVC {
+final class DefaultQuestionChatVC: BaseVC {
     
     // MARK: IBOutlet
     @IBOutlet var sendAreaTextViewHeight: NSLayoutConstraint!
@@ -218,6 +218,8 @@ extension DefaultQuestionChatVC {
             $0.height.equalTo(48)
             $0.centerX.equalToSuperview()
         }
+        
+        self.defaultQuestionChatTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 96, right: 0)
     }
 }
 
