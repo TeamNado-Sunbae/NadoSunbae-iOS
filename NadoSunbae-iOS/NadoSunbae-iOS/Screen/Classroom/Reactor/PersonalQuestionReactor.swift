@@ -24,7 +24,8 @@ final class PersonalQuestionReactor: Reactor {
         case requestSeniorList(seniorList: [QuestionUser])
         case requestRecentQuestionList(recentQuestionList: [PostListResModel])
         case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
-        case updateAccessToken(state: Bool, action: Action)
+        case setUpdateAccessTokenAction(action: Action)
+        case setUpdateAccessTokenState(state: Bool)
     }
     
     // MARK: State
@@ -35,7 +36,7 @@ final class PersonalQuestionReactor: Reactor {
         var showAlert: Bool = false
         var alertMessage: String = ""
         var isUpdateAccessToken: Bool = false
-        var reloadAction: Action = .reloadAvailableSeniorListCV
+        var reRequestAction: Action = .reloadAvailableSeniorListCV
     }
 }
 
@@ -71,9 +72,10 @@ extension PersonalQuestionReactor {
         case .setAlertState(let showState, let message):
             newState.showAlert = showState
             newState.alertMessage = message
-        case .updateAccessToken(let state, let action):
+        case .setUpdateAccessTokenAction(let action):
+            newState.reRequestAction = action
+        case .setUpdateAccessTokenState(let state):
             newState.isUpdateAccessToken = state
-            newState.reloadAction = action
         }
         
         return newState
@@ -99,7 +101,8 @@ extension PersonalQuestionReactor {
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        observer.onNext(.updateAccessToken(state: true, action: .reloadRecentQuestionListTV))
+                        observer.onNext(.setUpdateAccessTokenAction(action: .reloadRecentQuestionListTV))
+                        observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
                     }
                 default:
                     observer.onNext(Mutation.setAlertState(showState: true))
@@ -133,7 +136,8 @@ extension PersonalQuestionReactor {
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        observer.onNext(.updateAccessToken(state: true, action: .reloadAvailableSeniorListCV))
+                        observer.onNext(.setUpdateAccessTokenAction(action: .reloadAvailableSeniorListCV))
+                        observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
                     }
                 default:
                     observer.onNext(Mutation.setAlertState(showState: true))
