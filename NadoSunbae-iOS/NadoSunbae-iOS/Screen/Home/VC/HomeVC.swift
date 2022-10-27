@@ -33,7 +33,7 @@ final class HomeVC: BaseVC {
             self.configureUI()
             self.setBackgroundTV()
             self.getRecentCommunityList()
-            self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all")
+            self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
         }
     }
     
@@ -376,8 +376,8 @@ extension HomeVC {
     }
 
     /// 학과 리스트 조회 메서드
-    private func requestGetMajorList(univID: Int, filterType: String) {
-        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
+    func requestGetMajorList(univID: Int, filterType: String, userID: Int) {
+        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType, userID: userID) { networkResult in
             switch networkResult {
                 
             case .success(let res):
@@ -391,7 +391,7 @@ extension HomeVC {
                     self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
-                        self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all")
+                        self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
                     }
                 }
             default:

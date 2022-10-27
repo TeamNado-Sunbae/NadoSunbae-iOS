@@ -9,7 +9,8 @@ import Foundation
 import Moya
 
 enum PublicService {
-    case getMajorList(univID: Int, filter: String)
+    case getMajorList(univID: Int, filter: String, userID: Int)
+    case registerFavoriteMajor(majorID: Int)
     case requestBlockUnBlockUser(blockUserID: Int)
     case requestReport(reportedTargetID: Int, postType: ReportPostType, reason: String)
     case getAppLink
@@ -30,8 +31,10 @@ extension PublicService: TargetType {
     
     var path: String {
         switch self {
-        case .getMajorList(let univID, _):
+        case .getMajorList(let univID, _, _):
             return "/major/university/\(univID)"
+        case .registerFavoriteMajor:
+            return "/favorites"
         case .requestBlockUnBlockUser:
             return "/block"
         case .requestReport:
@@ -59,7 +62,7 @@ extension PublicService: TargetType {
         switch self {
         case .getMajorList, .getAppLink, .getPostList, .getPostDetail:
             return .get
-        case .requestBlockUnBlockUser, .requestReport, .requestWritePost, .likePost:
+        case .requestBlockUnBlockUser, .requestReport, .requestWritePost, .likePost, .registerFavoriteMajor:
             return .post
         case .editPost, .editPostComment:
             return .put
@@ -70,9 +73,14 @@ extension PublicService: TargetType {
     
     var task: Task {
         switch self {
-        case .getMajorList(_, let filter):
-            let body = ["filter": filter]
+        case .getMajorList(_, let filter, let userID):
+            let body: [String: Any] = [
+                "filter": filter,
+                "userId": userID
+            ]
             return .requestParameters(parameters: body, encoding: URLEncoding.queryString)
+        case .registerFavoriteMajor(let majorID):
+            return .requestParameters(parameters: ["majorId": majorID], encoding: JSONEncoding.default)
         case .requestBlockUnBlockUser(let blockUserID):
             return .requestParameters(parameters: ["blockedUserId": blockUserID], encoding: JSONEncoding.default)
         case .requestReport(let reportedTargetID, let postType, let reason):
@@ -125,7 +133,7 @@ extension PublicService: TargetType {
     
     var headers: [String: String]? {
         switch self {
-        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment, .likePost, .deletePost:
+        case .requestBlockUnBlockUser, .requestReport, .getPostList, .requestWritePost, .getPostDetail, .editPost, .editPostComment, .likePost, .deletePost, .registerFavoriteMajor:
             let accessToken = UserToken.shared.accessToken ?? ""
             return ["accessToken": accessToken]
         default:

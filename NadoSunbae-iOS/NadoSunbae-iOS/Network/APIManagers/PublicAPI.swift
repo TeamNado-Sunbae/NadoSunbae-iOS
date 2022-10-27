@@ -32,6 +32,24 @@ class PublicAPI: BaseAPI {
         }
     }
     
+    /// [POST] 즐겨찾기 학과 등록 및 취소 API
+    func registerFavoriteMajorAPI(majorID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.registerFavoriteMajor(majorID: majorID)) { result in
+            switch result {
+                
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, FavoriteMajorPostResModel.self)
+
+                completion(networkResult)
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     /// [POST] 차단/차단해제 요청
     func requestBlockUnBlockUser(blockUserID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
         publicProvider.request(.requestBlockUnBlockUser(blockUserID: blockUserID)) { result in
