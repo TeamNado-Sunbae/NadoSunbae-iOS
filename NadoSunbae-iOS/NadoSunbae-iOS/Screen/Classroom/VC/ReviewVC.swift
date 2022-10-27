@@ -117,6 +117,18 @@ extension ReviewVC: View {
                 }
             })
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isUpdateAccessToken }
+            .distinctUntilChanged()
+            .subscribe(onNext: { state in
+                if state {
+                    self.updateAccessToken { _ in
+                        reactor.action.onNext(reactor.currentState.reRequestAction)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc
