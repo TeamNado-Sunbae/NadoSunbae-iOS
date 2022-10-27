@@ -35,6 +35,7 @@ final class HomeVC: BaseVC {
             self.getRecentCommunityList()
             self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveEndOfHomeLoadingNotification(_:)), name: Notification.Name.endOfHomeLoading, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +75,12 @@ final class HomeVC: BaseVC {
                     $0.height.equalTo(newSize.height)
                 }
             }
+        }
+    }
+    
+    @objc func didReceiveEndOfHomeLoadingNotification(_ notification: Notification) {
+        if self.activityIndicator.isAnimating {
+            self.activityIndicator.stopAnimating()
         }
     }
 }
@@ -344,6 +351,7 @@ extension HomeVC: UITableViewDelegate {
 // MARK: - Network
 extension HomeVC {
     func getRecentCommunityList() {
+        self.activityIndicator.startAnimating()
         PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .community, sort: "recent", search: "") { networkResult in
             switch networkResult {
             case .success(let res):
