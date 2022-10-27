@@ -24,6 +24,9 @@ final class CommunityWriteReactor: Reactor {
         case setLoading(loading: Bool)
         case setCategoryData(data: [String])
         case setSuccess(success: Bool)
+        case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
+        case setUpdateAccessTokenAction(action: Action)
+        case setUpdateAccessTokenState(state: Bool)
     }
     
     // MARK: represent the current view state
@@ -31,6 +34,10 @@ final class CommunityWriteReactor: Reactor {
         var loading: Bool = false
         var categoryData: [String] = []
         var writePostSuccess: Bool = false
+        var showAlert: Bool = false
+        var alertMessage: String = ""
+        var isUpdateAccessToken: Bool = false
+        var reRequestAction: Action = .tapQuestionWriteBtn(type: .community, majorID: 0, answererID: 0, title: "", content: "")
     }
 }
 
@@ -71,6 +78,16 @@ extension CommunityWriteReactor {
             newState.categoryData = data
         case .setSuccess(let success):
             newState.writePostSuccess = success
+            if success {
+                newState.loading = false
+            }
+        case .setAlertState(let showState, let message):
+            newState.showAlert = showState
+            newState.alertMessage = message
+        case .setUpdateAccessTokenAction(let action):
+            newState.reRequestAction = action
+        case .setUpdateAccessTokenState(let state):
+            newState.isUpdateAccessToken = state
         }
         
         return newState
@@ -88,24 +105,19 @@ extension CommunityWriteReactor {
                 case .success(let res):
                     if let _ = res as? WritePostResModel {
                         observer.onNext(Mutation.setSuccess(success: true))
-                        observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     }
                 case .requestErr(let res):
-                    // ✅ TODO: Alert Display Protocol화 하기
-                    if let message = res as? String {
-//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    if let _ = res as? String {
+                        observer.onNext(Mutation.setAlertState(showState: true))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        // ✅ TODO: updateAccessToken Protocol화 하기
-//                        self.updateAccessToken { _ in
-//                            self.setUpRequestData(sortType: .recent)
-//                        }
+                        observer.onNext(.setUpdateAccessTokenAction(action: .tapQuestionWriteBtn(type: type, majorID: majorID, answererID: answererID, title: title, content: content)))
+                        observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
                     }
                 default:
-                    // ✅ TODO: Alert Display Protocol화하기
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }
@@ -121,23 +133,18 @@ extension CommunityWriteReactor {
                 switch networkResult {
                 case .success(_):
                     observer.onNext(Mutation.setSuccess(success: true))
-                    observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 case .requestErr(let res):
-                    // ✅ TODO: Alert Display Protocol화 하기
-                    if let message = res as? String {
-//                        self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    if let _ = res as? String {
+                        observer.onNext(Mutation.setAlertState(showState: true))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        // ✅ TODO: updateAccessToken Protocol화 하기
-//                        self.updateAccessToken { _ in
-//                            self.setUpRequestData(sortType: .recent)
-//                        }
+                        observer.onNext(.setUpdateAccessTokenAction(action: .tapQuestionEditBtn(postID: postID, title: title, content: content)))
+                        observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
                     }
                 default:
-                    // ✅ TODO: Alert Display Protocol화하기
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }

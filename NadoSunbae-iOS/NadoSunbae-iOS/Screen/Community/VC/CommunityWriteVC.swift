@@ -236,9 +236,40 @@ extension CommunityWriteVC {
             .map{ $0.writePostSuccess }
             .subscribe(onNext: { [weak self] success in
                 if success {
-                    self?.dismiss(animated: true, completion: {
-                        self?.sendPostTypeDelegate?.sendPostType(postType: self?.selectedCategory ?? .community)
-                    })
+                    self?.sendPostTypeDelegate?.sendPostType(postType: self?.selectedCategory ?? .community)
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .distinctUntilChanged()
+            .skip(1)
+            .map { $0 }
+            .subscribe(onNext: { [weak self] loading in
+                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showAlert }
+            .subscribe(onNext: { show in
+                if show {
+                    self.makeAlert(title: reactor.currentState.alertMessage)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isUpdateAccessToken }
+            .distinctUntilChanged()
+            .subscribe(onNext: { state in
+                if state {
+                    self.updateAccessToken { _ in
+                        reactor.action.onNext(reactor.currentState.reRequestAction)
+                    }
                 }
             })
             .disposed(by: disposeBag)
