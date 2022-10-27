@@ -350,6 +350,15 @@ extension HalfModalVC {
                 if let data = res as? [MajorInfoModel] {
                     MajorInfo.shared.majorList = data
                 }
+            case .requestErr(let res):
+                if let _ = res as? String {
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.requestGetMajorList(univID: univID, filterType: filterType, userID: userID)
+                    }
+                }
             default:
                 self.makeAlert(title: AlertType.networkError.alertMessage)
             }
@@ -365,6 +374,15 @@ extension HalfModalVC {
                 if let _ = res as? FavoriteMajorPostResModel {
                     self.applySnapshot(filter: self.searchTextField.text?.isEmpty ?? false ? "" : self.searchTextField.text, applyAnimation: false)
                     self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
+                }
+            case .requestErr(let res):
+                if let _ = res as? String {
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.registerFavoriteMajor(majorID: majorID)
+                    }
                 }
             default:
                 self.makeAlert(title: AlertType.networkError.alertMessage)
