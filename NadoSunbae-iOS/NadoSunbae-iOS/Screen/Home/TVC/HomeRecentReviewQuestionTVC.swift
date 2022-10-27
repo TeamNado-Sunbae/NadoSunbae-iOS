@@ -115,19 +115,28 @@ extension HomeRecentReviewQuestionTVC: UICollectionViewDelegate {
 extension HomeRecentReviewQuestionTVC {
     private func configureUI() {
         contentView.addSubviews([recentCV])
+        setRecentCVInset()
         
         recentCV.snp.makeConstraints {
             $0.top.equalToSuperview().inset(4)
-            $0.left.equalToSuperview().inset(16)
-            $0.right.equalToSuperview()
+            $0.left.right.equalToSuperview()
             $0.bottom.equalToSuperview().inset(40)
         }
+    }
+    
+    private func setRecentCVInset() {
+        var inset = recentCV.contentInset
+        inset.right = 16
+        inset.left = 16
+        recentCV.contentInset = inset
     }
 }
 
 // MARK: - Network
 extension HomeRecentReviewQuestionTVC {
     private func getAllReviewList() {
+        self.recentReviewList = []
+        self.recentCV.reloadData()
         HomeAPI.shared.getAllReviewList { networkResult in
             switch networkResult {
             case .success(let res):
@@ -151,6 +160,8 @@ extension HomeRecentReviewQuestionTVC {
     }
     
     private func getRecentPersonalQuestionList() {
+        self.recentPersonalQuestionList = []
+        self.recentCV.reloadData()
         PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .questionToPerson, sort: "recent", search: "") { networkResult in
             switch networkResult {
             case .success(let res):
