@@ -27,7 +27,8 @@ final class CommunitySearchReactor: Reactor {
         case setSearchListEmpty
         case setSearchKeyword(keyword: String)
         case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
-        case updateAccessToken(state: Bool, action: Action)
+        case setUpdateAccessTokenAction(action: Action)
+        case setUpdateAccessTokenState(state: Bool)
     }
     
     // MARK: represent the current view state
@@ -38,7 +39,7 @@ final class CommunitySearchReactor: Reactor {
         var showAlert: Bool = false
         var alertMessage: String = ""
         var isUpdateAccessToken: Bool = false
-        var reloadAction: Action = .tapCompleteSearchBtn(searchKeyword: "")
+        var reRequestAction: Action = .requestNewSearchList(searchKeyword: "")
     }
 }
 
@@ -54,7 +55,7 @@ extension CommunitySearchReactor {
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 Observable.just(.setSearchKeyword(keyword: keyword)),
-                self.requestCommunitySearchList(majorID: 0, type: .community, sort: "recent", search: keyword, action: .tapCompleteSearchBtn(searchKeyword: keyword)),
+                self.requestCommunitySearchList(majorID: 0, type: .community, sort: "recent", search: keyword),
                 Observable.just(.setLoading(loading: false))
             ])
         case .sendEmptyKeyword:
@@ -62,7 +63,7 @@ extension CommunitySearchReactor {
         case .requestNewSearchList(let searchKeyword):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
-                self.requestCommunitySearchList(majorID: 0, type: .community, sort: "recent", search: searchKeyword, action: .requestNewSearchList(searchKeyword: searchKeyword)),
+                self.requestCommunitySearchList(majorID: 0, type: .community, sort: "recent", search: searchKeyword),
                 Observable.just(.setLoading(loading: false))
             ])
         }
@@ -83,11 +84,12 @@ extension CommunitySearchReactor {
         case .setAlertState(let showState, let message):
             newState.showAlert = showState
             newState.alertMessage = message
-        case .updateAccessToken(let state, let action):
+        case .setUpdateAccessTokenState(let state):
             newState.isUpdateAccessToken = state
-            newState.reloadAction = action
         case .setSearchKeyword(let keyword):
             newState.searchKeyword = keyword
+        case .setUpdateAccessTokenAction(let action):
+            newState.reRequestAction = action
         }
         
         return newState
@@ -96,7 +98,7 @@ extension CommunitySearchReactor {
 
 // MARK: - Custom Methods
 extension CommunitySearchReactor {
-    private func requestCommunitySearchList(majorID: Int?, type: PostFilterType, sort: String?, search: String?, action: Action)  -> Observable<Mutation> {
+    private func requestCommunitySearchList(majorID: Int?, type: PostFilterType, sort: String?, search: String?)  -> Observable<Mutation> {
         return Observable.create { observer in
             PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: majorID ?? 0, filter: type, sort: sort ?? "recent", search: search ?? "") { networkResult in
                 switch networkResult {
@@ -104,6 +106,7 @@ extension CommunitySearchReactor {
                     if let data = res as? [PostListResModel] {
                         observer.onNext(Mutation.requestSearchList(searchList: data))
                         observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onNext(.setUpdateAccessTokenState(state: false))
                         observer.onCompleted()
                     }
                 case .requestErr(let res):
@@ -112,7 +115,8 @@ extension CommunitySearchReactor {
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        observer.onNext(.updateAccessToken(state: true, action: action))
+                        observer.onNext(.setUpdateAccessTokenAction(action: .requestNewSearchList(searchKeyword: search ?? "")))
+                        observer.onNext(.setUpdateAccessTokenState(state: true))
                     }
                 default:
                     observer.onNext(Mutation.setAlertState(showState: true))
