@@ -36,6 +36,8 @@ class MajorTVC: CodeBaseTVC {
     
     // MARK: Properties
     var cellType: MajorCellType = .basic
+    var sendBtnStatusDelegate: SendCellBtnStatusDelegate?
+    private var indexPath: IndexPath?
     
     // MARK: Life Cycle
     override func setViews() {
@@ -49,6 +51,7 @@ class MajorTVC: CodeBaseTVC {
     override func prepareForReuse() {
         super.prepareForReuse()
         starBtn.isHidden = false
+        starBtn.isSelected = false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -117,18 +120,23 @@ extension MajorTVC {
 extension MajorTVC {
     private func tapStarBtnAction() {
         starBtn.press { [weak self] in
-            self?.starBtn.isSelected.toggle()
+            guard let self = self else { return }
+        
+            self.starBtn.isSelected.toggle()
+            self.sendBtnStatusDelegate?.sendBtnState(indexPath: self.indexPath ?? IndexPath(item: 0, section: 0), selectedState: self.starBtn.isSelected)
         }
     }
     
     /// Label에 학과 이름 setting하는 함수
-    func setData(majorName: MajorInfoModel) {
-        majorNameLabel.text = majorName.majorName
-        starBtn.isHidden = majorName.majorName == "학과 무관" || majorName.majorName == "미진입" ? true : false
+    func setData(model: MajorInfoModel, indexPath: IndexPath) {
+        majorNameLabel.text = model.majorName
+        starBtn.isHidden = model.majorName == "학과 무관" || model.majorName == "미진입" ? true : false
+        starBtn.isSelected = model.isFavorites
+        
+        self.indexPath = indexPath
     }
     
     func setMajorNameLabel(data: String) {
         majorNameLabel.text = data
     }
 }
-
