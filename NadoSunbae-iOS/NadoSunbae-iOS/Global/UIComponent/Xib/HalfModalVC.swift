@@ -303,7 +303,7 @@ extension HalfModalVC: SendCellBtnStatusDelegate {
     func sendBtnState(indexPath: IndexPath, selectedState: Bool) {
         majorList[indexPath.row].isFavorites = selectedState
         filteredList[indexPath.row].isFavorites = selectedState
-        registerFavoriteMajor(majorID: majorList[indexPath.row].majorID)
+        registerFavoriteMajor(majorID: filteredList[indexPath.row].majorID)
     }
 }
 
@@ -363,7 +363,7 @@ extension HalfModalVC {
                 
             case .success(let res):
                 if let _ = res as? FavoriteMajorPostResModel {
-                    self.applySnapshot(filter: "", applyAnimation: false)
+                    self.applySnapshot(filter: self.searchTextField.text?.isEmpty ?? false ? "" : self.searchTextField.text, applyAnimation: false)
                     self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
                 }
             default:
