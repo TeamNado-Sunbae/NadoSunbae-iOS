@@ -214,6 +214,7 @@
 		771F2081290235D9000D56CF /* ReviewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771F2080290235D9000D56CF /* ReviewReactor.swift */; };
 		771F20C929095635000D56CF /* ReviewWriterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771F20C829095635000D56CF /* ReviewWriterType.swift */; };
 		771F20CB2909B306000D56CF /* FavoriteMajorPostResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771F20CA2909B306000D56CF /* FavoriteMajorPostResModel.swift */; };
+		771F20CD2909D673000D56CF /* SendCellBtnStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771F20CC2909D673000D56CF /* SendCellBtnStatusDelegate.swift */; };
 		7754A3142790182A0093C230 /* ReviewWriteSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */; };
 		7754A31627901FE50093C230 /* ReviewWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A31527901FE50093C230 /* ReviewWriteVC.swift */; };
 		7754A318279028250093C230 /* ReviewNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754A317279028250093C230 /* ReviewNC.swift */; };
@@ -551,6 +552,7 @@
 		771F2080290235D9000D56CF /* ReviewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewReactor.swift; sourceTree = "<group>"; };
 		771F20C829095635000D56CF /* ReviewWriterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriterType.swift; sourceTree = "<group>"; };
 		771F20CA2909B306000D56CF /* FavoriteMajorPostResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMajorPostResModel.swift; sourceTree = "<group>"; };
+		771F20CC2909D673000D56CF /* SendCellBtnStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCellBtnStatusDelegate.swift; sourceTree = "<group>"; };
 		7754A3132790182A0093C230 /* ReviewWriteSB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewWriteSB.storyboard; sourceTree = "<group>"; };
 		7754A31527901FE50093C230 /* ReviewWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteVC.swift; sourceTree = "<group>"; };
 		7754A317279028250093C230 /* ReviewNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNC.swift; sourceTree = "<group>"; };
@@ -1841,6 +1843,7 @@
 				C7A81AC428ED681600642B70 /* SendRankerDataDelegate.swift */,
 				3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */,
 				33463AE12908016300323072 /* SendLoadingStatusDelegate.swift */,
+				771F20CC2909D673000D56CF /* SendCellBtnStatusDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2236,6 +2239,7 @@
 				77A7592A2798028900A8E48B /* PublicAPI.swift in Sources */,
 				77A7593C2799C81B00A8E48B /* ReviewPostDetailData.swift in Sources */,
 				C71BF24027CD0CEB0030DCB9 /* MailCompleteVC.swift in Sources */,
+				771F20CD2909D673000D56CF /* SendCellBtnStatusDelegate.swift in Sources */,
 				5C32801C2797292B00781EBE /* MypageAPI.swift in Sources */,
 				5CF0EC2C279317FA00AF63E4 /* MypageUserVC+TV.swift in Sources */,
 				33F5080028E723E60037D632 /* WritePostReqModel.swift in Sources */,
