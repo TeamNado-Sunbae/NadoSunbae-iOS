@@ -94,6 +94,27 @@ extension RecentReviewVC {
                 loading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
             })
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showAlert }
+            .subscribe(onNext: { show in
+                if show {
+                    self.makeAlert(title: reactor.currentState.alertMessage)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isUpdateAccessToken }
+            .distinctUntilChanged()
+            .subscribe(onNext: { state in
+                if state {
+                    self.updateAccessToken { _ in
+                        reactor.action.onNext(reactor.currentState.reRequestAction)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
