@@ -18,7 +18,9 @@ class BaseAPI {
         switch statusCode {
         case 200...202:
             return .success(decodedData.data ?? "None-Data")
-        case 400..<500:
+        case 401:
+            return .requestErr(false)
+        case 400, 402..<500:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
