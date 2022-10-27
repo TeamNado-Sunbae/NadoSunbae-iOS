@@ -25,6 +25,8 @@ final class ReviewReactor: Reactor {
         case setLoading(loading: Bool)
         case requestReviewList(reviewList: [ReviewMainPostListData])
         case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
+        case setUpdateAccessTokenAction(action: Action)
+        case setUpdateAccessTokenState(state: Bool)
     }
     
     // MARK: State
@@ -33,6 +35,8 @@ final class ReviewReactor: Reactor {
         var reviewList: [ReviewMainPostListData] = []
         var showAlert: Bool = false
         var alertMessage: String = ""
+        var isUpdateAccessToken: Bool = false
+        var reRequestAction: Action = .reloadReviewList
     }
 }
 
@@ -63,6 +67,10 @@ extension ReviewReactor {
         case .setAlertState(let showState, let message):
             newState.showAlert = showState
             newState.alertMessage = message
+        case .setUpdateAccessTokenAction(let action):
+            newState.reRequestAction = action
+        case .setUpdateAccessTokenState(let state):
+            newState.isUpdateAccessToken = state
         }
         
         return newState
@@ -81,6 +89,15 @@ extension ReviewReactor {
                         observer.onNext(Mutation.requestReviewList(reviewList: data))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
+                    }
+                case .requestErr(let res):
+                    if let _ = res as? String {
+                        observer.onNext(Mutation.setAlertState(showState: true))
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    } else if res is Bool {
+                        observer.onNext(.setUpdateAccessTokenAction(action: .reloadReviewList))
+                        observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
                     }
                 default:
                     observer.onNext(.setAlertState(showState: true))
