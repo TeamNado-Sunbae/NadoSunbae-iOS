@@ -248,9 +248,17 @@ extension ClassroomVC {
     
     /// contentVCContainerView UI 구성 메서드
     private func configureContentVCContainerView(VC: UIViewController) {
+        let oppositeVC = VC == reviewVC ? personalQuestionVC : reviewVC
+        
+        if self.children.count > 0 {
+            oppositeVC.willMove(toParent: nil)
+            oppositeVC.removeFromParent()
+            oppositeVC.view.removeFromSuperview()
+        }
+        
+        addChild(VC)
         VC.viewWillLayoutSubviews()
         VC.didMove(toParent: self)
-        VC.view.frame.size = CGSize(width: contentVCContainerView.frame.width, height: VC.view.frame.height)
         contentVCContainerView.addSubview(VC.view ?? UIView())
     }
     
@@ -369,7 +377,7 @@ extension ClassroomVC {
     
     /// contentVCContainerView의 높이값을 기반으로 classroomSV의 contentOffset의 y좌표를 설정하는 메서드
     private func setClassroomSVContentYOffsetByHeight(height: CGFloat) {
-        var contentYOffset = classroomSV.contentOffset.y
+        let contentYOffset = classroomSV.contentOffset.y
         
         // yOffset이 192보다 크거나 같을 때
         // 스크롤되어 segmentedControlContainerView가 네비게이션 뷰 bottom에 닿았을 때
@@ -493,8 +501,21 @@ extension ClassroomVC: SendContentSizeDelegate {
                 segmentChangeActionStatus = false
             }
             
+            let screenHeight = UIScreen.main.bounds.height
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+            var contentVCHeight: CGFloat?
+            
+            // 컨텐츠 영역이 tabBar에 가려져서 컨텐츠 영역이 제대로 보여지지 않는 경우
+            if height < screenHeight && height + 352 > screenHeight - tabBarHeight {
+                contentVCHeight = height + 47
+            }
+            
+            [reviewVC, personalQuestionVC].forEach {
+                $0.view.frame.size = CGSize(width: contentVCContainerView.frame.width, height: contentVCHeight ?? height)
+            }
+                
             contentVCContainerView.snp.updateConstraints {
-                $0.height.equalTo(height)
+                $0.height.equalTo(contentVCHeight ?? height)
             }
         }
     }
