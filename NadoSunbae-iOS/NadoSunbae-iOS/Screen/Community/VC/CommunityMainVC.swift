@@ -66,12 +66,11 @@ final class CommunityMainVC: BaseVC, View {
         registerCell()
         setUpDelegate()
         bindCommunityTV()
-        setUpSegmentAction(type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community)
         setUpCommunitySVRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        reactor?.action.onNext(.requestNewCommunityList(majorID: reactor?.currentState.filterMajorID, type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community, sort: "recent", search: ""))
+        setUpSegmentAction(type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community)
     }
     
     func bind(reactor: CommunityMainReactor) {
@@ -169,8 +168,8 @@ extension CommunityMainVC {
         
         reactor.state
             .map { $0.loading }
-            .distinctUntilChanged()
             .map { $0 }
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] loading in
                 self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
                 if loading {
@@ -213,10 +212,11 @@ extension CommunityMainVC {
         
         reactor.state
             .map { $0.isUpdateAccessToken }
+            .distinctUntilChanged()
             .subscribe(onNext: { state in
                 if state {
                     self.updateAccessToken { _ in
-                        reactor.action.onNext(reactor.currentState.reloadAction)
+                        reactor.action.onNext(reactor.currentState.reRequestAction)
                     }
                 }
             })
@@ -321,7 +321,7 @@ extension CommunityMainVC {
     
     /// segment Action을 설정하는 메서드
     private func setUpSegmentAction(type: PostFilterType) {
-        reactor?.action.onNext(.requestNewCommunityList(type: type))
+        reactor?.action.onNext(.requestNewCommunityList(majorID: reactor?.currentState.filterMajorID, type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community, sort: "recent", search: ""))
     }
     
     /// communityTV의 refreshControl을 등록하는 메서드

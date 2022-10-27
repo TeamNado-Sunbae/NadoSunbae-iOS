@@ -17,7 +17,6 @@ final class CommunityMainReactor: Reactor {
         case searchBtnDidTap
         case filterFilled(fill: Bool, majorID: Int, type: PostFilterType)
         case requestNewCommunityList(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
-        case witeFloatingBtnDidTap
         case refreshControl(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
         case tapSegmentedControl(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
     }
@@ -32,7 +31,8 @@ final class CommunityMainReactor: Reactor {
         case setRefreshLoading(loading: Bool)
         case setAnimateToTopState(state: Bool)
         case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
-        case updateAccessToken(state: Bool, action: Action)
+        case setUpdateAccessTokenAction(action: Action)
+        case setUpdateAccessTokenState(state: Bool)
     }
     
     // MARK: represent the current view state
@@ -47,7 +47,7 @@ final class CommunityMainReactor: Reactor {
         var showAlert: Bool = false
         var alertMessage: String = ""
         var isUpdateAccessToken: Bool = false
-        var reloadAction: Action = .requestNewCommunityList(type: .community)
+        var reRequestAction: Action = .requestNewCommunityList(type: .community)
     }
 }
 
@@ -73,8 +73,6 @@ extension CommunityMainReactor {
                 Observable.just(.setLoading(loading: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
             ])
-        case .witeFloatingBtnDidTap:
-            return Observable.concat(Observable.just(.setLoading(loading: true)))
         case .refreshControl(let majorID, let type, let sort, let search):
             return Observable.concat([
                 Observable.just(.setRefreshLoading(loading: true)),
@@ -111,9 +109,10 @@ extension CommunityMainReactor {
         case .setAlertState(let showState, let message):
             newState.showAlert = showState
             newState.alertMessage = message
-        case .updateAccessToken(let state, let action):
+        case .setUpdateAccessTokenAction(let action):
+            newState.reRequestAction = action
+        case .setUpdateAccessTokenState(let state):
             newState.isUpdateAccessToken = state
-            newState.reloadAction = action
         }
         
         return newState
@@ -131,8 +130,9 @@ extension CommunityMainReactor {
                         if let data = res as? [PostListResModel] {
                             observer.onNext(Mutation.requestCommunityList(communityList: data))
                             observer.onNext(Mutation.setRefreshLoading(loading: false))
-                            observer.onNext(Mutation.setLoading(loading: false))
                             observer.onNext(Mutation.setAnimateToTopState(state: false))
+                            observer.onNext(Mutation.setUpdateAccessTokenState(state: false))
+                            observer.onNext(Mutation.setLoading(loading: false))
                             observer.onCompleted()
                         }
                     case .requestErr(let res):
@@ -141,7 +141,8 @@ extension CommunityMainReactor {
                             observer.onNext(Mutation.setLoading(loading: false))
                             observer.onCompleted()
                         } else if res is Bool {
-                            observer.onNext(.updateAccessToken(state: true, action: .requestNewCommunityList(majorID: majorID, type: type, sort: sort, search: search)))
+                            observer.onNext(.setUpdateAccessTokenAction(action: .requestNewCommunityList(majorID: majorID, type: type, sort: sort, search: search)))
+                            observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
                         }
                     default:
                         observer.onNext(Mutation.setAlertState(showState: true))
