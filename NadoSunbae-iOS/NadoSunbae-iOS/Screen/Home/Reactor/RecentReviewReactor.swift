@@ -21,6 +21,8 @@ final class RecentReviewReactor: Reactor {
         case setLoading(loading: Bool)
         case requestRecentReviewList(reviewList: [HomeRecentReviewResponseDataElement])
         case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
+        case setUpdateAccessTokenAction(action: Action)
+        case setUpdateAccessTokenState(state: Bool)
     }
     
     struct State {
@@ -28,6 +30,8 @@ final class RecentReviewReactor: Reactor {
         var recentReviewList: [HomeRecentReviewResponseDataElement] = []
         var showAlert: Bool = false
         var alertMessage: String = ""
+        var isUpdateAccessToken: Bool = false
+        var reRequestAction: Action = .reloadRecentReviewList
     }
 }
 
@@ -54,6 +58,10 @@ final class RecentReviewReactor: Reactor {
          case .setAlertState(let showState, let message):
              newState.showAlert = showState
              newState.alertMessage = message
+         case .setUpdateAccessTokenAction(let action):
+             newState.reRequestAction = action
+         case .setUpdateAccessTokenState(let state):
+             newState.isUpdateAccessToken = state
          }
          return newState
      }
@@ -71,8 +79,17 @@ extension RecentReviewReactor {
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     }
+                case .requestErr(let res):
+                    if let _ = res as? String {
+                        observer.onNext(Mutation.setAlertState(showState: true))
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    } else if res is Bool {
+                        observer.onNext(.setUpdateAccessTokenAction(action: .reloadRecentReviewList))
+                        observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
+                    }
                 default:
-                    observer.onNext(.setAlertState(showState: true))
+                    observer.onNext(Mutation.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }
