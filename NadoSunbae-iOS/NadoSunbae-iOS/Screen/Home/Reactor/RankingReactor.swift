@@ -23,12 +23,19 @@ final class RankingReactor: Reactor {
         case setLoading(loading: Bool)
         case setInfoContentViewStatus(isHidden: Bool)
         case requestRankingList(rankingList: [HomeRankingResponseModel.UserList])
+        case setAlertState(showState: Bool, message: String = AlertType.networkError.alertMessage)
+        case setUpdateAccessTokenAction(action: Action)
+        case setUpdateAccessTokenState(state: Bool)
     }
     
     struct State {
         var loading = false
         var rankingList: [HomeRankingResponseModel.UserList] = []
         var isInfoContentViewHidden: Bool = true
+        var showAlert: Bool = false
+        var alertMessage: String = ""
+        var isUpdateAccessToken: Bool = false
+        var reRequestAction: Action = .viewDidLoad
     }
 }
 
@@ -58,6 +65,13 @@ extension RankingReactor {
             newState.isInfoContentViewHidden = isHidden
         case .requestRankingList(let rankingList):
             newState.rankingList = rankingList
+        case .setAlertState(let showState, let message):
+            newState.showAlert = showState
+            newState.alertMessage = message
+        case .setUpdateAccessTokenAction(let action):
+            newState.reRequestAction = action
+        case .setUpdateAccessTokenState(let state):
+            newState.isUpdateAccessToken = state
         }
         return newState
     }
@@ -75,8 +89,17 @@ extension RankingReactor {
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     }
+                case .requestErr(let res):
+                    if let _ = res as? String {
+                        observer.onNext(Mutation.setAlertState(showState: true))
+                        observer.onNext(Mutation.setLoading(loading: false))
+                        observer.onCompleted()
+                    } else if res is Bool {
+                        observer.onNext(.setUpdateAccessTokenAction(action: .viewDidLoad))
+                        observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
+                    }
                 default:
-//                    self.makeAlert(title: "네트워크 오류로 인해\n데이터를 불러올 수 없습니다.\n다시 시도해 주세요.")
+                    observer.onNext(Mutation.setAlertState(showState: true))
                     observer.onNext(Mutation.setLoading(loading: false))
                     observer.onCompleted()
                 }
