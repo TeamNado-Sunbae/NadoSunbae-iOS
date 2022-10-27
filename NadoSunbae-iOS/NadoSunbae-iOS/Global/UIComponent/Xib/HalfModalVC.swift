@@ -20,7 +20,7 @@ enum Section: CaseIterable {
     case recent
 }
 
-class HalfModalVC: UIViewController {
+class HalfModalVC: BaseVC {
     
     // MARK: Components
     private let titleLabel = UILabel().then {
@@ -162,16 +162,18 @@ extension HalfModalVC {
         majorTV.separatorStyle = .none
         MajorTVC.register(target: majorTV)
         
-        self.dataSource = UITableViewDiffableDataSource<Section, MajorInfoModel>(tableView: self.majorTV) { (tableView, indexPath, majorName) -> UITableViewCell? in
+        self.dataSource = UITableViewDiffableDataSource<Section, MajorInfoModel>(tableView: self.majorTV) { (tableView, indexPath, majorModel) -> UITableViewCell? in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className, for: indexPath) as? MajorTVC else { preconditionFailure() }
             
             cell.cellType = self.cellType
-            cell.setData(majorName: majorName)
+            cell.setData(model: majorModel, indexPath: indexPath)
+            cell.sendBtnStatusDelegate = self
+            
             return cell
         }
     }
     
-    private func applySnapshot(filter: String?) {
+    private func applySnapshot(filter: String?, applyAnimation: Bool = true) {
         let filtered = self.majorList.filter { $0.majorName.contains(filter ?? "")}
         
         snapshot = NSDiffableDataSourceSnapshot<Section, MajorInfoModel>()
@@ -183,7 +185,7 @@ extension HalfModalVC {
             filteredList = filtered
             snapshot.appendItems(filtered)
         }
-        self.dataSource.apply(snapshot, animatingDifferences: true)
+        self.dataSource.apply(snapshot, animatingDifferences: applyAnimation)
     }
     
     private func tapCancelBtnAction() {
@@ -296,6 +298,15 @@ extension HalfModalVC: UITextFieldDelegate {
     }
 }
 
+// MARK: - SendCellBtnStatusDelegate
+extension HalfModalVC: SendCellBtnStatusDelegate {
+    func sendBtnState(indexPath: IndexPath, selectedState: Bool) {
+        majorList[indexPath.row].isFavorites = selectedState
+        filteredList[indexPath.row].isFavorites = selectedState
+        registerFavoriteMajor(majorID: filteredList[indexPath.row].majorID)
+    }
+}
+
 // MARK: - UITableViewDelegate
 extension HalfModalVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -324,5 +335,40 @@ extension HalfModalVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         completeBtn.isActivated = true
         completeBtn.titleLabel?.textColor = UIColor.mainDefault
+    }
+}
+
+// MARK: - Network
+extension HalfModalVC {
+    
+    /// 학과 리스트 조회 메서드
+    private func requestGetMajorList(univID: Int, filterType: String, userID: Int) {
+        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType, userID: userID) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let data = res as? [MajorInfoModel] {
+                    MajorInfo.shared.majorList = data
+                }
+            default:
+                self.makeAlert(title: AlertType.networkError.alertMessage)
+            }
+        }
+    }
+    
+    /// 즐겨찾기 등록 및 취소 메서드
+    private func registerFavoriteMajor(majorID: Int) {
+        PublicAPI.shared.registerFavoriteMajorAPI(majorID: majorID) { networkResult in
+            switch networkResult {
+                
+            case .success(let res):
+                if let _ = res as? FavoriteMajorPostResModel {
+                    self.applySnapshot(filter: self.searchTextField.text?.isEmpty ?? false ? "" : self.searchTextField.text, applyAnimation: false)
+                    self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
+                }
+            default:
+                self.makeAlert(title: AlertType.networkError.alertMessage)
+            }
+        }
     }
 }

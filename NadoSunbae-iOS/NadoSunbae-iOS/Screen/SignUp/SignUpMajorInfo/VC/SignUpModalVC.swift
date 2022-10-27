@@ -70,13 +70,13 @@ class SignUpModalVC: BaseVC {
     private func setData(enterType: SignUpMajorInfoEnterType) {
         switch enterType {
         case .firstMajor:
-            requestGetMajorList(univID: univID, filterType: "firstMajor")
+            requestGetMajorList(univID: univID, filterType: "firstMajor", userID: 0)
             applySnapshotForMajor(filter: "")
         case .firstMajorStart, .secondMajorStart:
             setStartList()
             applySnapshotForStart()
         case .secondMajor:
-            requestGetMajorList(univID: univID, filterType: "secondMajor")
+            requestGetMajorList(univID: univID, filterType: "secondMajor", userID: 0)
             applySnapshotForMajor(filter: "")
         }
     }
@@ -96,7 +96,8 @@ class SignUpModalVC: BaseVC {
             self.dataSourceForMajor = UITableViewDiffableDataSource<Section, MajorInfoModel>(tableView: self.majorTV) { (tableView, indexPath, data) -> UITableViewCell? in
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: MajorTVC.className, for: indexPath) as? MajorTVC else { preconditionFailure() }
                 cell.cellType = self.cellType
-                cell.setData(majorName: data)
+                cell.setData(model: data, indexPath: indexPath)
+                
                 return cell
             }
         case .firstMajorStart, .secondMajorStart:
@@ -173,18 +174,18 @@ class SignUpModalVC: BaseVC {
 extension SignUpModalVC {
     
     /// 학과 정보 리스트 조회
-    func requestGetMajorList(univID: Int, filterType: String) {
+    func requestGetMajorList(univID: Int, filterType: String, userID: Int) {
         self.activityIndicator.startAnimating()
-        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType) { networkResult in
+        PublicAPI.shared.getMajorListAPI(univID: univID, filterType: filterType, userID: userID) { networkResult in
             switch networkResult {
             case .success(let res):
                 DispatchQueue.main.async {
                     if let data = res as? [MajorInfoModel] {
                         for i in 0..<data.count {
-                            self.majorList.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName))
+                            self.majorList.append(MajorInfoModel(majorID: data[i].majorID, majorName: data[i].majorName, isFavorites: data[i].isFavorites))
                         }
-                        self.activityIndicator.stopAnimating()
                         self.applySnapshotForMajor(filter: "")
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             case .requestErr(let msg):
