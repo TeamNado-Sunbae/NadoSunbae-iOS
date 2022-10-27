@@ -11,9 +11,10 @@ import Foundation
 struct MajorInfoModel: Codable, Hashable {
     let majorID: Int
     let majorName: String
+    var isFavorites: Bool
 
     enum CodingKeys: String, CodingKey {
         case majorID = "majorId"
-        case majorName
+        case majorName, isFavorites
     }
 }

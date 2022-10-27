@@ -15,8 +15,8 @@ class PublicAPI: BaseAPI {
     private override init() {}
     
     /// [GET] 학과 리스트 조회  API
-    func getMajorListAPI(univID: Int, filterType: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        publicProvider.request(.getMajorList(univID: univID, filter: filterType)) { result in
+    func getMajorListAPI(univID: Int, filterType: String, userID: Int, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        publicProvider.request(.getMajorList(univID: univID, filter: filterType, userID: userID)) { result in
             switch result {
                 
             case .success(let response):
