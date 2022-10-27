@@ -176,10 +176,11 @@ extension PersonalQuestionVC: View {
         
         reactor.state
             .map { $0.isUpdateAccessToken }
+            .distinctUntilChanged()
             .subscribe(onNext: { state in
                 if state {
                     self.updateAccessToken { _ in
-                        reactor.action.onNext(reactor.currentState.reloadAction)
+                        reactor.action.onNext(reactor.currentState.reRequestAction)
                     }
                 }
             })
