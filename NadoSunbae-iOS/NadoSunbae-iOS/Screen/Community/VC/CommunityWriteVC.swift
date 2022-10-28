@@ -184,17 +184,15 @@ extension CommunityWriteVC {
             })
             .disposed(by: disposeBag)
         
-        questionWriteNaviBar.dismissBtn.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                
-                guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
-                alert.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: self.isEditState ? "계속 수정" : "계속 작성", cancelBtnTitle: "나갈래요")
-                alert.cancelBtn.press {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            })
-            .disposed(by: disposeBag)
+        questionWriteNaviBar.dismissBtn.press(vibrate: true) { [weak self] in
+            guard let self = self else { return }
+            
+            guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+            alert.showNadoAlert(vc: self, message: self.dismissAlertMsg, confirmBtnTitle: self.isEditState ? "계속 수정" : "계속 작성", cancelBtnTitle: "나갈래요")
+            alert.cancelBtn.press {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
         
         nadoAlert?.cancelBtn.rx.tap
             .subscribe(onNext: {

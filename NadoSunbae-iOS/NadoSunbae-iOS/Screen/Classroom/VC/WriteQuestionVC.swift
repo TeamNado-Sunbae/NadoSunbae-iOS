@@ -64,7 +64,8 @@ extension WriteQuestionVC {
     private func setTapBtnAction() {
         
         /// rightActivate Btn Press
-        questionWriteNaviBar.rightActivateBtn.press(vibrate: true, for: .touchUpInside) {
+        questionWriteNaviBar.rightActivateBtn.press(vibrate: true, for: .touchUpInside) { [weak self] in
+            guard let self = self else { return }
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
             alert.showNadoAlert(vc: self, message: self.confirmAlertMsg, confirmBtnTitle: "네", cancelBtnTitle: "아니요")
             alert.confirmBtn.press {
@@ -81,7 +82,7 @@ extension WriteQuestionVC {
         }
         
         /// dismissBtn Press
-        questionWriteNaviBar.dismissBtn.press { [weak self] in
+        questionWriteNaviBar.dismissBtn.press(vibrate: true) { [weak self] in
             guard let self = self else { return }
             
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
