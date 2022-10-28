@@ -101,7 +101,7 @@ class ReviewWriteVC: BaseVC {
         [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
             textView in setUpCharCount(textView: textView)
         }
-        setUpDefaultBgImg()
+        setUpDefaultStatus()
         makeDefaultAnalyticsEvent(eventName: "후기작성뷰_진입")
         makeScreenAnalyticsEvent(screenName: "Review Tab", screenClass: ReviewWriteVC.className)
     }
@@ -185,9 +185,10 @@ extension ReviewWriteVC {
         ])
     }
     
-    /// 디폴트로 선택된 배경 이미지 설정 함수
-    private func setUpDefaultBgImg() {
+    /// 디폴트로 선택된 배경 이미지 설정 및 완료버튼 비활성화 상태 설정 함수
+    private func setUpDefaultStatus() {
         self.bgImgCV.selectItem(at: IndexPath(item: bgImgID - 6, section: 0), animated: true, scrollPosition: .left)
+        reviewWriteNaviBar.rightActivateBtn.isActivated = false
     }
     
     /// 조건에 따라 완료버튼 상태 설정하는 함수
@@ -315,6 +316,9 @@ extension ReviewWriteVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.bgImgID = indexPath.row + 6
+        
+        /// 완료 버튼 활성화 조건 검사 (필수작성항목 모두 채워지고, 선택항목 조건 달성)
+        reviewWriteNaviBar.rightActivateBtn.isActivated = essentialTextViewStatus && choiceTextViewStatus
     }
 }
 
