@@ -20,7 +20,9 @@ class BaseAPI {
             return .success(decodedData.data ?? "None-Data")
         case 401:
             return .requestErr(false)
-        case 400, 402..<500:
+        case 404:
+            return .requestErr(404)
+        case 400, 402, 403, 405..<500:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
