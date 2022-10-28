@@ -70,7 +70,6 @@ final class ClassroomVC: BaseVC {
     
     private var reviewVC: ReviewVC = ReviewVC()
     private var personalQuestionVC: PersonalQuestionVC = PersonalQuestionVC()
-    private let loadingDispatchGroup = DispatchGroup()
     private var segmentChangeActionStatus: Bool = false
     private var filterStatus = false
     private var selectedWriterFilter: ReviewWriterType = .all
@@ -370,13 +369,6 @@ extension ClassroomVC {
         }
     }
     
-    /// loadingDispatchGroup의 count가 0이 되었음을 알리는 메서드
-    private func notifyLoadingDispatchGroupFinished() {
-        loadingDispatchGroup.notify(queue: DispatchQueue.main) {
-            self.activityIndicator.stopAnimating()
-        }
-    }
-    
     /// contentVCContainerView의 높이값을 기반으로 classroomSV의 contentOffset의 y좌표를 설정하는 메서드
     private func setClassroomSVContentYOffsetByHeight(height: CGFloat) {
         let contentYOffset = classroomSV.contentOffset.y
@@ -526,17 +518,6 @@ extension ClassroomVC: SendContentSizeDelegate {
 // MARK: - SendLoadingStatusDelegate
 extension ClassroomVC: SendLoadingStatusDelegate {
     func sendLoadingStatus(loading: Bool) {
-        let dispatchCount = self.loadingDispatchGroup.debugDescription.components(separatedBy: ",").filter({ $0.contains("count") }).first?.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap({ Int($0)} ).first ?? 0
-        
-        if loading {
-            self.activityIndicator.startAnimating()
-            loadingDispatchGroup.enter()
-        } else {
-            if dispatchCount > 0 {
-                self.loadingDispatchGroup.leave()
-            }
-        }
-        
-        self.notifyLoadingDispatchGroupFinished()
+        loading ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
     }
 }
