@@ -15,7 +15,8 @@ class ReviewWriteVC: BaseVC {
         didSet {
             
             /// x버튼 클릭 시 커스텀 팝업창 띄움
-            reviewWriteNaviBar.dismissBtn.press {
+            reviewWriteNaviBar.dismissBtn.press(vibrate: true) { [weak self] in
+                guard let self = self else { return }
                 guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                 if self.isPosting {
                     alert.showNadoAlert(vc: self, message: "페이지를 나가면 \n 작성중인 글이 삭제돼요.", confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
