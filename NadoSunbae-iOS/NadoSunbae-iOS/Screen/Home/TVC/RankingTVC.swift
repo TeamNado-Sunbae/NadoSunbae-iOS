@@ -161,5 +161,6 @@ extension RankingTVC {
                 rankLabel.textColor = .gray3
             }
         }
+        NotificationCenter.default.post(name: Notification.Name.endOfHomeLoading, object: nil, userInfo: nil)
     }
 }
