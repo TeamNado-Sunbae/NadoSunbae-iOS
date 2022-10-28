@@ -49,11 +49,10 @@ extension ReviewDetailPostWithImgTVC {
     private func configureUI() {
         profileContainertView.makeRounded(cornerRadius: 40.adjusted)
         titleLabel.snp.makeConstraints {
-            $0.centerY.equalTo(bgImgView)
-            $0.centerX.equalTo(bgImgView.frame.size.height - 40)
+            $0.centerX.centerY.equalTo(bgImgView)
             $0.width.equalTo(312.adjusted)
         }
-    }  
+    }
     
     private func configureMyReviewUI() {
         bgImgView.snp.makeConstraints {

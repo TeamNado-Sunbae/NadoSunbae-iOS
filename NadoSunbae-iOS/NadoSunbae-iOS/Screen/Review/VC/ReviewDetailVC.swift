@@ -252,8 +252,7 @@ extension ReviewDetailVC {
                     self.reviewPostTV.reloadData()
                 }
             case .requestErr(let res):
-                if let message = res as? String {
-                    print(message)
+                if let _ = res as? String {
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
