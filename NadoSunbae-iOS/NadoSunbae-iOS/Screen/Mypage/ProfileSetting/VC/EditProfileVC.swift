@@ -411,12 +411,16 @@ extension EditProfileVC {
                     self.configureUI()
                 }
                 self.activityIndicator.stopAnimating()
-            case .requestErr(let msg):
-                if let message = msg as? String {
+            case .requestErr(let res):
+                if let message = res as? String {
                     print(message)
+                    self.activityIndicator.stopAnimating()
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
+                } else if res is Bool {
+                    self.updateAccessToken { _ in
+                        self.getMyInfo()
+                    }
                 }
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: AlertType.networkError.alertMessage)
             default:
                 self.activityIndicator.stopAnimating()
                 self.makeAlert(title: AlertType.networkError.alertMessage)
