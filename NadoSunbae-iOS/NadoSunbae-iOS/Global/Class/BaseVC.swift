@@ -229,6 +229,13 @@ extension BaseVC {
             ])
         }
     }
+    
+    
+    /// sceneDelegate의 window의 rootViewController를 SignInVC로 설정하는 메서드
+    func setWindowRootVC() {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.window?.rootViewController = self
+    }
 }
 
 // MARK: - Custom Methods(화면전환)
