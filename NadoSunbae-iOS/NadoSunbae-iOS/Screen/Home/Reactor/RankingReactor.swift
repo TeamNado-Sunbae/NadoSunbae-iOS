@@ -85,7 +85,15 @@ extension RankingReactor {
                 switch networkResult {
                 case .success(let res):
                     if let data = res as? HomeRankingResponseModel {
-                        observer.onNext(Mutation.requestRankingList(rankingList: data.userList))
+                        var rankingList: [HomeRankingResponseModel.UserList] = []
+                        if data.userList.count > 30 {
+                            for i in 0...29 {
+                                rankingList.append(data.userList[i])
+                            }
+                        } else {
+                            rankingList = data.userList
+                        }
+                        observer.onNext(Mutation.requestRankingList(rankingList: rankingList))
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     }
