@@ -240,12 +240,14 @@ extension DefaultQuestionChatVC {
             switch naviStyle {
             case .push:
                 questionNaviBar.setUpNaviStyle(state: .backWithCenterTitle)
-                questionNaviBar.backBtn.press(vibrate: true, for: .touchUpInside) {
+                questionNaviBar.backBtn.press { [weak self] in
+                    guard let self = self else { return }
                     self.navigationController?.popViewController(animated: true)
                 }
             case .present:
                 questionNaviBar.setUpNaviStyle(state: .dismissWithCustomRightBtn)
-                questionNaviBar.dismissBtn.press(vibrate: true, for: .touchUpInside) {
+                questionNaviBar.dismissBtn.press { [weak self] in
+                    guard let self = self else { return }
                     self.view.window?.rootViewController?.presentedViewController!.dismiss(animated: true, completion: nil)
                 }
             }
