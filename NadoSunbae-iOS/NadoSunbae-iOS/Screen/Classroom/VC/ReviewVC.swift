@@ -152,7 +152,7 @@ extension ReviewVC {
         
         emptyView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview().inset(16)
-            $0.height.equalTo(428)
+            $0.height.equalTo(361.adjustedH)
         }
     }
 }

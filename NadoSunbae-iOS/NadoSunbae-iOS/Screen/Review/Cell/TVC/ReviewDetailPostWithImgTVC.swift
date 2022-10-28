@@ -49,11 +49,17 @@ extension ReviewDetailPostWithImgTVC {
     private func configureUI() {
         profileContainertView.makeRounded(cornerRadius: 40.adjusted)
         titleLabel.snp.makeConstraints {
-            $0.centerY.equalTo(bgImgView)
-            $0.centerX.equalTo(bgImgView.frame.size.height - 40)
+            $0.centerX.centerY.equalTo(bgImgView)
             $0.width.equalTo(312.adjusted)
         }
-    }  
+    }
+    
+    private func configureMyReviewUI() {
+        bgImgView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(12)
+        }
+    }
 }
 
 // MARK: - Custom Methods
@@ -85,6 +91,13 @@ extension ReviewDetailPostWithImgTVC {
             bgImgView.image = UIImage(named: "backgroundPurple")
         default:
             bgImgView.image = UIImage(named: "backgroundMint")
+        }
+        
+        if postData.writer.writerID == UserDefaults.standard.integer(forKey:UserDefaults.Keys.UserID) {
+            configureMyReviewUI()
+            profileContainertView.isHidden = true
+        } else {
+            profileContainertView.isHidden = false
         }
     }
 }

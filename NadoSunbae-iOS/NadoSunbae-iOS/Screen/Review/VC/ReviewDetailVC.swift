@@ -184,7 +184,7 @@ extension ReviewDetailVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 340
+            return detailPost.writer.writerID == UserDefaults.standard.integer(forKey:UserDefaults.Keys.UserID) ? 208 : 340
         } else if indexPath.section == 1 {
             return UITableView.automaticDimension
         } else {
@@ -252,8 +252,7 @@ extension ReviewDetailVC {
                     self.reviewPostTV.reloadData()
                 }
             case .requestErr(let res):
-                if let message = res as? String {
-                    print(message)
+                if let _ = res as? String {
                     self.activityIndicator.stopAnimating()
                     self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
