@@ -27,6 +27,7 @@ class SignInVC: BaseVC {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setWindowRootVC()
         setUpNotificationPermission()
         configureUI()
         getAppLink { appLink in
