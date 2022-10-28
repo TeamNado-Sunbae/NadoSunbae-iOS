@@ -127,6 +127,7 @@ extension HomeRankingTVC {
                     }
                     self.setData()
                     self.setRankerViewAction()
+                    NotificationCenter.default.post(name: Notification.Name.endOfHomeLoading, object: nil, userInfo: nil)
                 }
             default:
                 debugPrint(#function, "network error")

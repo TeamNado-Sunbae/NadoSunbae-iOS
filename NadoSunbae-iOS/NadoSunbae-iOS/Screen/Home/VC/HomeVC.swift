@@ -40,10 +40,13 @@ final class HomeVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        
         showTabbar()
         self.backgroundTV.addObserver(self, forKeyPath: contentSizeObserverKeyPath, options: .new, context: nil)
-        NotificationCenter.default.post(name: Notification.Name.reloadHomeRecentCell, object: nil, userInfo: nil)
         self.getRecentCommunityList()
+        NotificationCenter.default.post(name: Notification.Name.reloadHomeRecentCell, object: nil, userInfo: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -351,7 +354,6 @@ extension HomeVC: UITableViewDelegate {
 // MARK: - Network
 extension HomeVC {
     func getRecentCommunityList() {
-        self.activityIndicator.startAnimating()
         PublicAPI.shared.getPostList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), majorID: 0, filter: .community, sort: "recent", search: "") { networkResult in
             switch networkResult {
             case .success(let res):
