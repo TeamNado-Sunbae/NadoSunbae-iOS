@@ -58,6 +58,7 @@ final class RankingVC: BaseVC, View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideTabbar()
+        reactor?.action.onNext(.reloadRankingList)
     }
     
     func bind(reactor: RankingReactor) {
@@ -71,7 +72,7 @@ extension RankingVC {
     
     // MARK: Action
     private func bindAction(_ reactor: RankingReactor) {
-        reactor.action.onNext(.viewDidLoad)
+        reactor.action.onNext(.reloadRankingList)
         
         naviView.backBtn.rx.tap
             .bind { self.navigationController?.popViewController(animated: true) }
