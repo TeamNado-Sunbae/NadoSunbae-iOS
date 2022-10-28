@@ -54,6 +54,13 @@ extension ReviewDetailPostWithImgTVC {
             $0.width.equalTo(312.adjusted)
         }
     }  
+    
+    private func configureMyReviewUI() {
+        bgImgView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(12)
+        }
+    }
 }
 
 // MARK: - Custom Methods
@@ -85,6 +92,13 @@ extension ReviewDetailPostWithImgTVC {
             bgImgView.image = UIImage(named: "backgroundPurple")
         default:
             bgImgView.image = UIImage(named: "backgroundMint")
+        }
+        
+        if postData.writer.writerID == UserDefaults.standard.integer(forKey:UserDefaults.Keys.UserID) {
+            configureMyReviewUI()
+            profileContainertView.isHidden = true
+        } else {
+            profileContainertView.isHidden = false
         }
     }
 }

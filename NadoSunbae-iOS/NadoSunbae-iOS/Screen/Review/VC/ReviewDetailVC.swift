@@ -184,7 +184,7 @@ extension ReviewDetailVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 340
+            return detailPost.writer.writerID == UserDefaults.standard.integer(forKey:UserDefaults.Keys.UserID) ? 208 : 340
         } else if indexPath.section == 1 {
             return UITableView.automaticDimension
         } else {
