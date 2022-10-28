@@ -167,13 +167,13 @@ extension BaseVC {
     }
     
     /// 신고, 부적절 후기 사용, 후기 미등록자, 일반유저 권한 최종 분기처리 메서드
-    func divideUserPermission(defaultAction: () -> Void) {
+    func divideUserPermission(isReviewBtn: Bool = false, defaultAction: () -> Void) {
         if UserPermissionInfo.shared.isUserReported {
             self.showRestrictionAlert(permissionStatus: .report)
         } else if UserPermissionInfo.shared.isReviewInappropriate {
             self.showRestrictionAlert(permissionStatus: .inappropriate)
         } else if !(UserPermissionInfo.shared.isReviewed) {
-            self.showRestrictionAlert(permissionStatus: .review)
+            isReviewBtn ? defaultAction() : self.showRestrictionAlert(permissionStatus: .review)
         } else {
             // 아무런 제한이 없을 때 실행되는 action
             defaultAction()
