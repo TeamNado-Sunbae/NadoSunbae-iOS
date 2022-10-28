@@ -161,7 +161,16 @@ extension PersonalQuestionVC: View {
         reactor.state
             .map { $0.loading }
             .subscribe(onNext: { [weak self] loading in
-                self?.loadingDelegate?.sendLoadingStatus(loading: loading)
+                
+                // loading array에 true값이 하나라도 포함되어있다면 loadingStatus: true를 보낸다.
+                if loading.contains(true) {
+                    self?.loadingDelegate?.sendLoadingStatus(loading: true)
+                }
+                
+                // 통신작업이 모두 끝나고 loading array값이 모두 false가 되었다면 loadingStatus: false를 보낸다.
+                if loading.allSatisfy({ $0 == false }) {
+                    self?.loadingDelegate?.sendLoadingStatus(loading: false)
+                }
             })
             .disposed(by: disposeBag)
         
@@ -178,9 +187,12 @@ extension PersonalQuestionVC: View {
             .map { $0.isUpdateAccessToken }
             .distinctUntilChanged()
             .subscribe(onNext: { state in
-                if state {
+
+                if state.contains(true) {
                     self.updateAccessToken { _ in
-                        reactor.action.onNext(reactor.currentState.reRequestAction)
+                        for i in reactor.currentState.reRequestAction {
+                            reactor.action.onNext(i)
+                        }
                     }
                 }
             })
