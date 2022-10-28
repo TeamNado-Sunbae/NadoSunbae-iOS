@@ -53,6 +53,8 @@ class SettingVC: BaseVC {
     
     // MARK: @IBAction
     @IBAction func tapSignOutBtn(_ sender: Any) {
+        makeVibrate()
+        
         guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
         
         alert.cancelBtn.press {
@@ -158,6 +160,7 @@ extension SettingVC {
             case .success:
                 self.setRemoveUserdefaultValues()
                 self.navigator?.instantiateVC(destinationViewControllerType: SignInVC.self, useStoryboard: true, storyboardName: "SignInSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
+   
             case .requestErr(let res):
                 if let message = res as? String {
                     debugPrint(message)
