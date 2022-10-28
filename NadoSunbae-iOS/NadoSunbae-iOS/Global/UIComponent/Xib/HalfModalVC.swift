@@ -63,6 +63,7 @@ class HalfModalVC: BaseVC {
     var hasNoMajorOption: Bool = true
     var isSecondMajorSheet: Bool = false
     var selectFilterIndex: Int = 0
+    var filteredIndex: Int = 0
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -258,7 +259,13 @@ extension HalfModalVC {
                     selectFilterIndex = 0
                 }
                 
-                self.majorTV.selectRow(at: IndexPath(row: selectFilterIndex == 0 ? selectFilterIndex : selectFilterIndex - 1, section: 0), animated: false, scrollPosition: .top)
+                for i in 0...filteredList.count - 1 {
+                    if filteredList[i].majorID == selectFilterIndex {
+                        filteredIndex = i
+                    }
+                }
+                
+                self.majorTV.selectRow(at: IndexPath(row: filteredIndex, section: 0), animated: false, scrollPosition: .top)
                 completeBtn.isActivated = true
                 completeBtn.titleLabel?.textColor = UIColor.mainDefault
             }
