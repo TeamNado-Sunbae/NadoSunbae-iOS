@@ -54,7 +54,7 @@ extension NotificationMainVC: UITableViewDelegate {
                     questionDetailVC.hidesBottomBarWhenPushed = true
                     questionDetailVC.naviStyle = .push
                     questionDetailVC.postID = self.notificationList[indexPath.section].postID
-                    questionDetailVC.isAuthorized = false
+                    questionDetailVC.isAuthorized = true
                 }
                 
                 /// 커뮤니티로 이동
