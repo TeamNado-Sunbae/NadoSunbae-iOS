@@ -364,7 +364,9 @@ extension ClassroomVC {
     private func tapReviewWriteBtnAction() {
         reviewWriteBtn.press { [weak self] in
             guard let self = self else { return }
-            self.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
+            self.divideUserPermission(isReviewBtn: true) {
+                self.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
+            }
         }
     }
     

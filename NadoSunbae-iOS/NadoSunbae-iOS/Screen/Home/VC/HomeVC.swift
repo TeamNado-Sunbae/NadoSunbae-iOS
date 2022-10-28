@@ -178,9 +178,11 @@ extension HomeVC: UITableViewDataSource {
                     subTitleCell.setTitleLabel(title: "최근 후기")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press { [weak self] in
-                        let recentReviewVC = RecentReviewVC()
-                        recentReviewVC.reactor = RecentReviewReactor()
-                        self?.navigationController?.pushViewController(recentReviewVC, animated: true)
+                        self?.divideUserPermission() {
+                            let recentReviewVC = RecentReviewVC()
+                            recentReviewVC.reactor = RecentReviewReactor()
+                            self?.navigationController?.pushViewController(recentReviewVC, animated: true)
+                        }
                     }
                     return subTitleCell
                 case 1:
