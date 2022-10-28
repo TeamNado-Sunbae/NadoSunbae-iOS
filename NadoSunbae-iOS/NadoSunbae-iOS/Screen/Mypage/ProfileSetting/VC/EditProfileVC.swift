@@ -16,7 +16,7 @@ class EditProfileVC: BaseVC {
         didSet {
             navView.setUpNaviStyle(state: .backDefaultWithNadoBtn)
             navView.configureTitleLabel(title: "프로필 수정")
-            navView.rightActivateBtn.setTitleWithStyle(title: "저장", size: 14)
+            navView.rightActivateBtn.setTitleWithStyle(title: "저장", size: 14, weight: .semiBold)
             navView.backBtn.press {
                 guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                 
