@@ -16,7 +16,7 @@ final class RankingReactor: Reactor {
     enum Action {
         case tapCloseBtn
         case tapQuestionMarkBtn
-        case viewDidLoad
+        case reloadRankingList
     }
     
     enum Mutation {
@@ -35,7 +35,7 @@ final class RankingReactor: Reactor {
         var showAlert: Bool = false
         var alertMessage: String = ""
         var isUpdateAccessToken: Bool = false
-        var reRequestAction: Action = .viewDidLoad
+        var reRequestAction: Action = .reloadRankingList
     }
 }
 
@@ -47,7 +47,7 @@ extension RankingReactor {
             return Observable.concat(Observable.just(.setInfoContentViewStatus(isHidden: true)))
         case .tapQuestionMarkBtn:
             return Observable.concat(Observable.just(.setInfoContentViewStatus(isHidden: false)))
-        case .viewDidLoad:
+        case .reloadRankingList:
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
                 self.requestRankingList()
@@ -103,7 +103,7 @@ extension RankingReactor {
                         observer.onNext(Mutation.setLoading(loading: false))
                         observer.onCompleted()
                     } else if res is Bool {
-                        observer.onNext(.setUpdateAccessTokenAction(action: .viewDidLoad))
+                        observer.onNext(.setUpdateAccessTokenAction(action: .reloadRankingList))
                         observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
                     }
                 default:
