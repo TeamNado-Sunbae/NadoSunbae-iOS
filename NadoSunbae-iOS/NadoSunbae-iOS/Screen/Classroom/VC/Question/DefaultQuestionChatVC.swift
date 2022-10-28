@@ -821,8 +821,12 @@ extension DefaultQuestionChatVC {
                         self?.optionalBindingData()
                     }
                 } else if res is Int {
-                    self?.activityIndicator.stopAnimating()
-                    self?.makeAlert(title: AlertType.deletedPost.alertMessage) { _ in
+                    guard let self = self else { return }
+                    self.activityIndicator.stopAnimating()
+                    
+                    guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
+                    alert.showNadoAlert(vc: self, message: AlertType.deletedPost.alertMessage, confirmBtnTitle: "네", cancelBtnTitle: "", type: .withSingleBtn)
+                    alert.confirmBtn.press(vibrate: true, for: .touchUpInside) { [weak self] in
                         self?.navigationController?.popViewController(animated: true)
                     }
                 }
