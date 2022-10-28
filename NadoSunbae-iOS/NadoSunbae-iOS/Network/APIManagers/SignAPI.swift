@@ -10,7 +10,7 @@ import Moya
 
 class SignAPI: BaseAPI {
     static let shared = SignAPI()
-    private var provider = MoyaProvider<SignService>(plugins: [NetworkLoggerPlugin()])
+    private var provider = MoyaProvider<SignService>()
     
     override private init() {}
 }
