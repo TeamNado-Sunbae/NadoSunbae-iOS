@@ -130,9 +130,9 @@ extension CommunityMainReactor {
                         if let data = res as? [PostListResModel] {
                             observer.onNext(Mutation.requestCommunityList(communityList: data))
                             observer.onNext(Mutation.setRefreshLoading(loading: false))
-                            observer.onNext(Mutation.setAnimateToTopState(state: false))
                             observer.onNext(Mutation.setUpdateAccessTokenState(state: false))
                             observer.onNext(Mutation.setLoading(loading: false))
+                            observer.onNext(Mutation.setAnimateToTopState(state: false))
                             observer.onCompleted()
                         }
                     case .requestErr(let res):
