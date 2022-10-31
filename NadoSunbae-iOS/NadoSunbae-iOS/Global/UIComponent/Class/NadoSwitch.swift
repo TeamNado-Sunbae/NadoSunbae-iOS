@@ -16,6 +16,7 @@ final class NadoSwitch: UIButton {
     // MARK: Properties
     private var barView: UIView!
     private var circleView: UIView!
+    private var switchAnimator: UIViewPropertyAnimator?
     
     typealias SwitchColor = (bar: UIColor, circle: UIColor)
     
@@ -83,7 +84,7 @@ extension NadoSwitch {
 extension NadoSwitch {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.setOn(on: !self.isOn)
-        changeState()
+        drawAnimationWhenSwitchStateChanged()
     }
     
     private func setOn(on: Bool) {
@@ -98,7 +99,7 @@ extension NadoSwitch {
     }
     
     /// switch의 state가 변화될 때 애니메이션을 그리는 메서드
-    private func changeState() {
+    private func drawAnimationWhenSwitchStateChanged() {
         var circleCenter: CGFloat = 0
         var barViewColor: UIColor = .clear
         var circleViewColor: UIColor = .clear
@@ -113,17 +114,23 @@ extension NadoSwitch {
             circleViewColor = self.offColor.circle
         }
         
-        UIView.animate(withDuration: self.animationDuration, animations: { [weak self] in
+        setSwitchAnimation(circleCenter: circleCenter, barViewColor: barViewColor, circleViewColor: circleViewColor)
+        switchAnimator?.startAnimation()
+    }
+    
+    func setSwitchAnimation(circleCenter: CGFloat, barViewColor: UIColor, circleViewColor: UIColor) {
+        switchAnimator = UIViewPropertyAnimator(duration: self.animationDuration, curve: .easeInOut, animations: { [weak self] in
             guard let self = self else { return }
             
             self.circleView.center.x = circleCenter
             self.barView.backgroundColor = barViewColor
             self.circleView.backgroundColor = circleViewColor
-        }, completion: { [weak self] _ in
-            guard let self = self else { return }
-
-            self.switchDelegate?.isOnValueChange(isOn: self.isOn)
         })
+        
+        switchAnimator?.addCompletion { [weak self] _ in
+            guard let self = self else { return }
+            self.switchDelegate?.isOnValueChange(isOn: self.isOn)
+        }
     }
     
     /// 외부에서 switch의 state를 설정하는 메서드
