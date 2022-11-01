@@ -55,7 +55,7 @@ final class DefaultQuestionChatVC: BaseVC {
             sendAreaTextView.layer.borderWidth = 1
             sendAreaTextView.layer.borderColor = UIColor.gray1.cgColor
             sendAreaTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 15)
-            configueTextViewPlaceholder()
+            configueTextViewPlaceholder(isPlaceholder: true)
             sendAreaTextView.sizeToFit()
         }
     }
@@ -182,12 +182,11 @@ extension DefaultQuestionChatVC {
     }
     
     /// userType별로 TextView의 placeholder 지정하는 메서드
-    private func configueTextViewPlaceholder() {
+    private func configueTextViewPlaceholder(isPlaceholder: Bool) {
         sendAreaTextView.isEditable = true
-        sendAreaTextView.text = "답글쓰기"
-        sendAreaTextView.endEditing(true)
-        sendAreaTextView.textColor = .gray2
-        sendAreaTextView.backgroundColor = .gray0
+        sendAreaTextView.text = isPlaceholder ? "답글쓰기" : ""
+        sendAreaTextView.textColor = isPlaceholder ? .gray2 : .black
+        sendAreaTextView.backgroundColor = isPlaceholder ? .gray0 : .white
     }
     
     private func scrollTVtoBottom(animate: Bool) {
@@ -642,7 +641,7 @@ extension DefaultQuestionChatVC: UITextViewDelegate {
     /// textViewDidEndEditing
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            configueTextViewPlaceholder()
+            configueTextViewPlaceholder(isPlaceholder: true)
             sendBtn.isEnabled = false
             isTextViewEmpty = true
         }
@@ -808,9 +807,9 @@ extension DefaultQuestionChatVC {
                     if self.isCommentSend == true {
                         self.scrollTVtoBottom(animate: true)
                         self.isCommentSend = false
+                        self.configueTextViewPlaceholder(isPlaceholder: false)
                     }
                     
-                    self.configueTextViewPlaceholder()
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):
