@@ -7,6 +7,7 @@
 
 import Foundation
 import ReactorKit
+import FirebaseAnalytics
 
 final class CommunityWriteReactor: Reactor {
     
@@ -99,12 +100,13 @@ extension CommunityWriteReactor {
     
     /// 게시글 작성 API를 연결하는 메서드
     private func requestWritePost(type: PostFilterType, majorID: Int, answererID: Int, title: String, content: String)  -> Observable<Mutation> {
-        return Observable.create { observer in
+        return Observable.create { [weak self] observer in
             PublicAPI.shared.requestWritePost(type: type, majorID: majorID, answererID: answererID, title: title, content: content) { networkResult in
                 switch networkResult {
                 case .success(let res):
                     if let _ = res as? WritePostResModel {
                         observer.onNext(Mutation.setSuccess(success: true))
+                        self?.sendEvent(eventName: .community_write, parameterValue: type.postWriteLogEventParameterValue)
                         observer.onCompleted()
                     }
                 case .requestErr(let res):
@@ -151,5 +153,14 @@ extension CommunityWriteReactor {
             }
             return Disposables.create()
         }
+    }
+}
+
+// MARK: - SendGAEventDelegate
+extension CommunityWriteReactor: SendGAEventDelegate {
+    
+    /// Analytics Event를 보내는 메서드
+    func sendEvent(eventName: GAEventNameType, parameterValue: String) {
+        FirebaseAnalytics.Analytics.logEvent("\(eventName)", parameters: [eventName.parameterName : parameterValue])
     }
 }
