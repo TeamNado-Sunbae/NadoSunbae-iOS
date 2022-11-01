@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// 자동 초기화 방지
         Messaging.messaging().isAutoInitEnabled = true
         
-        
         /// 현재 등록 토큰 가져오기
         Messaging.messaging().token { token, error in
             if let error = error {
@@ -41,7 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ])
         
         #if DEVELOPMENT || QA
-        Analytics.setAnalyticsCollectionEnabled(false)
+        // TODO: 배포 전 수정하기
+        Analytics.setAnalyticsCollectionEnabled(true)
+//        Analytics.setAnalyticsCollectionEnabled(false)
         #endif
         
         return true
