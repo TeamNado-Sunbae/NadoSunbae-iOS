@@ -485,6 +485,7 @@ extension CommunityPostDetailVC {
                     DispatchQueue.main.async {
                         self.isTextViewEmpty = true
                         self.requestGetDetailInfoData(postID: postID, addLoadBackView: false)
+                        self.makeAnalyticsEvent(eventName: .community_write, parameterValue: "c_comment_write")
                         self.activityIndicator.stopAnimating()
                     }
                 }
