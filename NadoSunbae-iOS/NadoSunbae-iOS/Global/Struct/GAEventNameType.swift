@@ -35,7 +35,7 @@ enum GAEventNameType {
 }
 
 extension GAEventNameType {
-    var parameter: String {
+    var parameterName: String {
         switch self {
         case .signup_process, .review_process, .senior_click:
             return "journey"
