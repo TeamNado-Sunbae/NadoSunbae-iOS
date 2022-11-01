@@ -55,6 +55,8 @@
 		331C537C2795F4EF0052B309 /* QuestionPeopleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */; };
 		331C537E2795F6260052B309 /* QuestionPeopleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */; };
 		331C5382279629620052B309 /* BaseQuestionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C5381279629620052B309 /* BaseQuestionTVC.swift */; };
+		331D0DD3291131BE00A32EE8 /* GAEventNameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331D0DD2291131BE00A32EE8 /* GAEventNameType.swift */; };
+		331D0DD5291135AA00A32EE8 /* SendGAEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331D0DD4291135AA00A32EE8 /* SendGAEventDelegate.swift */; };
 		33286B7B28A4F813006E6FF0 /* CommunitySearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33286B7A28A4F813006E6FF0 /* CommunitySearchVC.swift */; };
 		33286B7D28A4FF76006E6FF0 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33286B7C28A4FF76006E6FF0 /* UIImage+.swift */; };
 		3332359928EF374A00F92793 /* ClassroomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3332359828EF374A00F92793 /* ClassroomVC.swift */; };
@@ -395,6 +397,8 @@
 		331C537B2795F4EF0052B309 /* QuestionPeopleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionPeopleHeaderView.xib; sourceTree = "<group>"; };
 		331C537D2795F6260052B309 /* QuestionPeopleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPeopleHeaderView.swift; sourceTree = "<group>"; };
 		331C5381279629620052B309 /* BaseQuestionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionTVC.swift; sourceTree = "<group>"; };
+		331D0DD2291131BE00A32EE8 /* GAEventNameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAEventNameType.swift; sourceTree = "<group>"; };
+		331D0DD4291135AA00A32EE8 /* SendGAEventDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGAEventDelegate.swift; sourceTree = "<group>"; };
 		33286B7A28A4F813006E6FF0 /* CommunitySearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySearchVC.swift; sourceTree = "<group>"; };
 		33286B7C28A4FF76006E6FF0 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		3332359828EF374A00F92793 /* ClassroomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomVC.swift; sourceTree = "<group>"; };
@@ -821,6 +825,7 @@
 				3367955D29002E54005E83FC /* ReportPostType.swift */,
 				33463ADF2907E10400323072 /* AlertType.swift */,
 				771F20C829095635000D56CF /* ReviewWriterType.swift */,
+				331D0DD2291131BE00A32EE8 /* GAEventNameType.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1844,6 +1849,7 @@
 				3332359C28EF482000F92793 /* SendContentSizeDelegate.swift */,
 				33463AE12908016300323072 /* SendLoadingStatusDelegate.swift */,
 				771F20CC2909D673000D56CF /* SendCellBtnStatusDelegate.swift */,
+				331D0DD4291135AA00A32EE8 /* SendGAEventDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2180,6 +2186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				331D0DD3291131BE00A32EE8 /* GAEventNameType.swift in Sources */,
 				5C3280182797217E00781EBE /* MypageService.swift in Sources */,
 				C7ACE62F27CB71FA0011B23F /* SettingVC.swift in Sources */,
 				5CA73379278A8F4900806B17 /* NadoAlertVC.swift in Sources */,
@@ -2435,6 +2442,7 @@
 				C740A85B27C7C58500C4518A /* EditProfileVC.swift in Sources */,
 				775728B127D6617300148C9A /* OnboardingVC.swift in Sources */,
 				C7ACE63227CB73F80011B23F /* SettingTVC.swift in Sources */,
+				331D0DD5291135AA00A32EE8 /* SendGAEventDelegate.swift in Sources */,
 				33BAFD00278C004700BFF6BE /* ClassroomCommentTVC.swift in Sources */,
 				330DA4352790C3E300FE127F /* UIScrollView+.swift in Sources */,
 				7754A32327947F310093C230 /* ReviewDetailVC.swift in Sources */,
