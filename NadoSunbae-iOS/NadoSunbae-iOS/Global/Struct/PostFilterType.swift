@@ -30,4 +30,18 @@ extension PostFilterType {
             return "1:1 질문"
         }
     }
+    
+    var postWriteLogEventParameterValue: String {
+        switch self {
+        case .general:
+            return "c_free_upload"
+        case .questionToEveryone:
+            return "c_question_upload"
+        case .information:
+            return "c_info_upload"
+        case .questionToPerson:
+            return "question_1on1_upload"
+        default: return ""
+        }
+    }
 }
