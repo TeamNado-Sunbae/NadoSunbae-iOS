@@ -59,6 +59,7 @@ class CommunityPostDetailVC: BaseVC {
     private var isWriter: Bool?
     private let textViewMaxHeight: CGFloat = 85.adjustedH
     private let whiteBackView = UIView()
+    private var isFirstLoad: Bool = true
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -444,6 +445,13 @@ extension CommunityPostDetailVC {
                     self.userID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
                     self.isWriter = (self.userID == self.infoDetailData?.writer.writerID) ? true : false
                     self.setUpNaviSubTitle(major: data.post.majorName)
+                    
+                    // 첫번째 로드일 때만 Analytics Event를 보낸다
+                    if self.isFirstLoad {
+                        let parameterValue: String = data.post.type == "질문" ? "c_question_read" : (data.post.type == "정보" ? "c_info_read" : "c_free_read")
+                        self.makeAnalyticsEvent(eventName: .community_read, parameterValue: parameterValue)
+                        self.isFirstLoad = false
+                    }
                     
                     DispatchQueue.main.async {
                         self.infoDetailTV.reloadData()
