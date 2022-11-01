@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SendGAEventDelegate {
-    func sendEvent(eventName: GAEventNameType, parameter: String)
+    func sendEvent(eventName: GAEventNameType, parameterValue: String)
 }
