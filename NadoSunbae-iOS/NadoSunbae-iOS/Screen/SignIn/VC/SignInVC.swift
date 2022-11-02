@@ -41,6 +41,7 @@ class SignInVC: BaseVC {
     }
     
     @IBAction func tapSignUpBtn(_ sender: UIButton) {
+        self.makeAnalyticsEvent(eventName: .signup_process, parameterValue: "signup_start")
         self.navigator?.instantiateVC(destinationViewControllerType: SignUpNC.self, useStoryboard: true, storyboardName: AgreeTermsVC.className, naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
     }
     
