@@ -848,8 +848,21 @@ extension DefaultQuestionChatVC {
                     DispatchQueue.main.async {
                         self.requestGetDetailQuestionData(postID: postID)
                         self.isTextViewEmpty = true
+                        let isWriter = self.questionerData?.writerID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
+                        
+                        // 내가 올린 1대1 질문 글에 선배의 답장이 달리는 경우
+                        if isWriter == false {
+                            // 첫 답변이 달리는 경우
+                            if !self.didAnswererReplied() {
+                                self.makeAnalyticsEvent(eventName: .question_write_1on1, parameterValue: "question_1on1_reply")
+                                self.makeAnalyticsEvent(eventName: .question_write_1on1, parameterValue: "question_1on1_reply_sen")
+                            }
+                            self.makeAnalyticsEvent(eventName: .question_answered_1on1, parameterValue: "")
+                        }
+                        
                         self.activityIndicator.stopAnimating()
                     }
+                    
                     FirebaseAnalytics.Analytics.logEvent("user_question", parameters: [
                         "question_type": "question_reply",
                         "UserID": UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID),
