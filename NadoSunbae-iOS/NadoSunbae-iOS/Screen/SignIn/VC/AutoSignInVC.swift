@@ -58,21 +58,24 @@ extension AutoSignInVC {
     
     /// 자동로그인 요청하는 메서드
     private func requestAutoSignIn() {
-        SignAPI.shared.requestSignIn(email: email, PW: PW, deviceToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.FCMTokenForDevice) ?? "") { networkResult in
+        SignAPI.shared.requestSignIn(email: email, PW: PW, deviceToken: UserDefaults.standard.string(forKey: UserDefaults.Keys.FCMTokenForDevice) ?? "") { [weak self] networkResult in
             switch networkResult {
             case .success(let res):
                 if let data = res as? SignInDataModel {
-                    self.setUpUserdefaultValues(data: data)
-                    self.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
+                    self?.setUpUserdefaultValues(data: data)
+                    self?.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
                     let nadoSunbaeTBC = NadoSunbaeTBC()
                     nadoSunbaeTBC.modalPresentationStyle = .fullScreen
-                    self.present(nadoSunbaeTBC, animated: true, completion: {
+                    self?.present(nadoSunbaeTBC, animated: true, completion: {
                         nadoSunbaeTBC.selectedIndex = NotificationInfo.shared.isPushComes ? 2 : 0
                         NotificationInfo.shared.isPushComes = false
                     })
                     if env() == .development {
                         debugPrint("SIGN IN ACCESS TOKEN: \(data.accesstoken)")
                     }
+                    self?.minorUpdateMessage = data.updateAlert?.minor
+                    self?.majorUpdateMessage = data.updateAlert?.major
+                    
                     Analytics.setUserID("\(data.user.userID)")
                     Analytics.setUserProperty("제1전공", forName: data.user.firstMajorName)
                     Analytics.setUserProperty("제2전공", forName: data.user.secondMajorName)
@@ -80,7 +83,7 @@ extension AutoSignInVC {
                 }
             default:
                 print("Failed Auto SignIn")
-                self.navigator?.instantiateVC(destinationViewControllerType: SignInVC.self, useStoryboard: true, storyboardName: "SignInSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
+                self?.navigator?.instantiateVC(destinationViewControllerType: SignInVC.self, useStoryboard: true, storyboardName: "SignInSB", naviType: .present, modalPresentationStyle: .fullScreen) { destination in }
             }
         }
     }

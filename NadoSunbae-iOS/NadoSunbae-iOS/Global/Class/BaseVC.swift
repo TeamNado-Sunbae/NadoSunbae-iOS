@@ -28,6 +28,8 @@ class BaseVC: UIViewController {
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     var navigator: Navigator?
+    var minorUpdateMessage: String?
+    var majorUpdateMessage: String?
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -343,7 +345,7 @@ extension BaseVC {
                 if let message = res as? String {
                     print(message)
                     self.activityIndicator.stopAnimating()
-                    self.makeAlert(title: AlertType.alreadyReported.alertMessage)
+                    self.makeAlert(title: AlertType.networkError.alertMessage)
                 } else if res is Bool {
                     self.updateAccessToken { _ in
                         self.getLatestVersion { response in
@@ -353,7 +355,7 @@ extension BaseVC {
                 }
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: AlertType.alreadyReported.alertMessage)
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
@@ -371,17 +373,17 @@ extension BaseVC {
                     if message == AlertType.alreadyReported.alertMessage {
                         self.makeAlert(title: AlertType.alreadyReported.alertMessage)
                     } else {
-                        self.makeAlert(title: AlertType.alreadyReported.alertMessage)
+                        self.makeAlert(title: AlertType.networkError.alertMessage)
                     }
                 } else if res is Bool {
-                    self.updateAccessToken { _ in
-                        self.makeAlert(title: AlertType.alreadyReported.alertMessage)
+                    self.updateAccessToken { [weak self] _ in
+                        self?.requestReport(reportedTargetID: reportedTargetID, postType: postType, reason: reason)
                     }
                 }
                 self.activityIndicator.stopAnimating()
             default:
                 self.activityIndicator.stopAnimating()
-                self.makeAlert(title: AlertType.alreadyReported.alertMessage)
+                self.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }

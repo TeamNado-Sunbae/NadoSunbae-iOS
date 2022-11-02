@@ -11,11 +11,13 @@ struct SignInDataModel: Codable {
     var user: User
     var accesstoken: String
     var refreshtoken: String
+    var updateAlert: UpdateAlert?
 
     enum CodingKeys: String, CodingKey {
         case user = "user"
         case accesstoken = "accesstoken"
         case refreshtoken = "refreshtoken"
+        case updateAlert = "updateAlert"
     }
     
     struct User: Codable {
@@ -45,6 +47,16 @@ struct SignInDataModel: Codable {
             case isUserReported = "isUserReported"
             case isReviewInappropriate = "isReviewInappropriate"
             case permissionMsg = "message"
+        }
+    }
+    
+    struct UpdateAlert: Codable {
+        var minor: String
+        var major: String
+        
+        enum CodingKeys: String, CodingKey {
+            case minor = "minor"
+            case major = "major"
         }
     }
 }
