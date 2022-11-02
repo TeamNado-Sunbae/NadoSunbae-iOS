@@ -143,6 +143,7 @@ extension CommunityMainReactor {
                         } else if res is Bool {
                             observer.onNext(.setUpdateAccessTokenAction(action: .requestNewCommunityList(majorID: majorID, type: type, sort: sort, search: search)))
                             observer.onNext(Mutation.setUpdateAccessTokenState(state: true))
+                            observer.onCompleted()
                         }
                     default:
                         observer.onNext(Mutation.setAlertState(showState: true))

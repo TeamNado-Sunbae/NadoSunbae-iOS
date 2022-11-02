@@ -156,11 +156,13 @@ extension CommunityMainVC {
         
         reactor.state
             .subscribe(onNext: { [weak self] _ in
-                self?.communityTV.layoutIfNeeded()
-                
-                if let contentHeight = self?.communityTV.contentSize.height {
-                    self?.communityTV.snp.updateConstraints {
-                        $0.height.equalTo(contentHeight)
+                DispatchQueue.main.async {
+                    self?.communityTV.layoutIfNeeded()
+                    
+                    if let contentHeight = self?.communityTV.contentSize.height {
+                        self?.communityTV.snp.updateConstraints {
+                            $0.height.equalTo(contentHeight)
+                        }
                     }
                 }
             })
@@ -171,16 +173,18 @@ extension CommunityMainVC {
             .map { $0 }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] loading in
-                self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
-                if loading {
-                    self?.activityIndicator.startAnimating()
-                    self?.setEmptyLabelIsHidden(isHidden: true)
-                } else {
-                    self?.activityIndicator.stopAnimating()
-                    if reactor.currentState.animateToTopState {
-                        self?.communitySV.contentOffset.y = 0
+                DispatchQueue.main.async {
+                    self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                    if loading {
+                        self?.activityIndicator.startAnimating()
+                        self?.setEmptyLabelIsHidden(isHidden: true)
+                    } else {
+                        self?.activityIndicator.stopAnimating()
+                        if reactor.currentState.animateToTopState {
+                            self?.communitySV.contentOffset.y = 0
+                        }
+                        self?.setEmptyLabelIsHidden(isHidden: reactor.currentState.communityList.isEmpty ? false : true)
                     }
-                    self?.setEmptyLabelIsHidden(isHidden: reactor.currentState.communityList.isEmpty ? false : true)
                 }
             })
             .disposed(by: disposeBag)
@@ -190,7 +194,9 @@ extension CommunityMainVC {
             .distinctUntilChanged()
             .map { $0 }
             .subscribe(onNext: { [weak self] filled in
-                self?.filterBtn.isSelected = filled
+                DispatchQueue.main.async {
+                    self?.filterBtn.isSelected = filled
+                }
             })
             .disposed(by: disposeBag)
         
@@ -204,8 +210,10 @@ extension CommunityMainVC {
         reactor.state
             .map { $0.showAlert }
             .subscribe(onNext: { show in
-                if show {
-                    self.makeAlert(title: reactor.currentState.alertMessage)
+                DispatchQueue.main.async {
+                    if show {
+                        self.makeAlert(title: reactor.currentState.alertMessage)
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -297,6 +305,7 @@ extension CommunityMainVC {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.bottom.equalToSuperview().offset(-16)
+            $0.height.equalTo(0)
         }
     }
     
@@ -342,6 +351,10 @@ extension CommunityMainVC {
         slideVC.selectFilterIndex = reactor?.currentState.filterMajorID ?? MajorIDConstants.regardlessMajorID
         self.present(slideVC, animated: true)
     }
+    
+    private func sendFilterFilledAction(majorName: String, majorID: Int) {
+        self.reactor?.action.onNext(.filterFilled(fill: majorName == "" ? false : true, majorID: majorID, type: PostFilterType(rawValue: 0) ?? .community))
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -379,6 +392,9 @@ extension CommunityMainVC: SendPostTypeDelegate {
 // MARK: - SendCommunityInfoDelegate
 extension CommunityMainVC: SendCommunityInfoDelegate {
     func sendCommunityInfo(majorID: Int, majorName: String) {
-        reactor?.action.onNext(.filterFilled(fill: majorName == "" ? false : true, majorID: majorID, type: PostFilterType(rawValue: communitySegmentedControl.selectedSegmentIndex) ?? .community))
+        self.activityIndicator.startAnimating()
+        DispatchQueue.global().async {
+            self.sendFilterFilledAction(majorName: majorName, majorID: majorID)
+        }
     }
 }
