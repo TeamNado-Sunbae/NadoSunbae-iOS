@@ -142,6 +142,7 @@ extension CommunityMainVC {
     private func bindState(_ reactor: CommunityMainReactor) {
         reactor.state
             .map { $0.communityList }
+            .distinctUntilChanged()
             .bind(to: communityTV.rx.items) { tableView, index, item in
                 
                 let indexPath = IndexPath(row: index, section: 0)
@@ -175,6 +176,7 @@ extension CommunityMainVC {
             .subscribe(onNext: { [weak self] loading in
                 DispatchQueue.main.async {
                     self?.view.bringSubviewToFront(self?.activityIndicator ?? UIView())
+                    
                     if loading {
                         self?.activityIndicator.startAnimating()
                         self?.setEmptyLabelIsHidden(isHidden: true)
@@ -182,6 +184,7 @@ extension CommunityMainVC {
                         self?.activityIndicator.stopAnimating()
                         if reactor.currentState.animateToTopState {
                             self?.communitySV.contentOffset.y = 0
+                            reactor.action.onNext(.changeAnimateState)
                         }
                         self?.setEmptyLabelIsHidden(isHidden: reactor.currentState.communityList.isEmpty ? false : true)
                     }
@@ -305,7 +308,7 @@ extension CommunityMainVC {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.bottom.equalToSuperview().offset(-16)
-            $0.height.equalTo(0)
+            $0.height.equalTo(UIScreen.main.bounds.height)
         }
     }
     
@@ -352,8 +355,8 @@ extension CommunityMainVC {
         self.present(slideVC, animated: true)
     }
     
-    private func sendFilterFilledAction(majorName: String, majorID: Int) {
-        self.reactor?.action.onNext(.filterFilled(fill: majorName == "" ? false : true, majorID: majorID, type: PostFilterType(rawValue: 0) ?? .community))
+    private func sendFilterFilledAction(majorName: String, majorID: Int, selectedIndex: Int) {
+        self.reactor?.action.onNext(.filterFilled(fill: majorName == "" ? false : true, majorID: majorID, type: PostFilterType(rawValue: selectedIndex) ?? .community))
     }
 }
 
@@ -392,9 +395,10 @@ extension CommunityMainVC: SendPostTypeDelegate {
 // MARK: - SendCommunityInfoDelegate
 extension CommunityMainVC: SendCommunityInfoDelegate {
     func sendCommunityInfo(majorID: Int, majorName: String) {
-        self.activityIndicator.startAnimating()
+        let selectedIndex = communitySegmentedControl.selectedSegmentIndex
         DispatchQueue.global().async {
-            self.sendFilterFilledAction(majorName: majorName, majorID: majorID)
+            self.sendFilterFilledAction(majorName: majorName, majorID: majorID, selectedIndex: selectedIndex)
         }
     }
+    
 }
