@@ -230,6 +230,7 @@ extension PersonalQuestionVC: View {
                 if item.userID == -2 {
                     self?.navigator?.instantiateVC(destinationViewControllerType: QuestionPersonListVC.self, useStoryboard: false, storyboardName: QuestionPersonListVC.className, naviType: .push) { _ in }
                 } else {
+                    self?.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_classroom_out")
                     self?.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                         mypageUserVC.targetUserID = item.userID
                     }

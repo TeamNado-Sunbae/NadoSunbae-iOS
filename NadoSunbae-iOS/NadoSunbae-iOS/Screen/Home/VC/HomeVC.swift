@@ -139,6 +139,7 @@ extension HomeVC: SendRankerDataDelegate {
         if data.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
             goToRootOfTab(index: 4)
         } else {
+            self.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_ranging_out")
             self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                 mypageUserVC.targetUserID = data.id
             }
