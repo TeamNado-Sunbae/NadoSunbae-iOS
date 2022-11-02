@@ -87,10 +87,13 @@ extension HomeBannerTVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1, 4:
+            self.makeAnalyticsEvent(eventName: .banner_click, parameterValue: "banner_1")
             sendUpdateDelegate?.sendUpdate(data: bannerRedirectURLsData[0])
         case 2:
+            self.makeAnalyticsEvent(eventName: .banner_click, parameterValue: "banner_2")
             sendUpdateDelegate?.sendUpdate(data: bannerRedirectURLsData[1])
         case 0, 3:
+            self.makeAnalyticsEvent(eventName: .banner_click, parameterValue: "banner_3")
             sendUpdateDelegate?.sendUpdate(data: bannerRedirectURLsData[2])
         default:
             break
