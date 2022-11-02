@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class BaseTVC: UITableViewCell {
     
@@ -29,6 +30,20 @@ class BaseTVC: UITableViewCell {
                 self.layer.sublayers?.last?.removeFromSuperlayer()
             }
         }
+    }
+    
+    /// Firebase Analytics 기본 이벤트 메서드
+    func makeAnalyticsEvent(eventName: GAEventNameType, parameterValue: String) {
+        // TODO: 배포 전 주석 제거
+//        if env() == .production {
+            let parameterName = eventName.hasParameter ? eventName.parameterName : nil
+            
+            if let parameterName = parameterName {
+                FirebaseAnalytics.Analytics.logEvent("\(eventName)", parameters: [parameterName : parameterValue])
+            } else {
+                FirebaseAnalytics.Analytics.logEvent("\(eventName)", parameters: nil)
+            }
+//        }
     }
 }
 

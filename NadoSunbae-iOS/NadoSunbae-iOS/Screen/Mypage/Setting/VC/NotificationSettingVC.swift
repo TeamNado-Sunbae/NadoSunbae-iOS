@@ -29,6 +29,7 @@ class NotificationSettingVC: BaseVC {
     }
     
     // MARK: Properties
+    var isOriginalSystemNotiSettingOn = false
     var isSystemNotiSettingOn = false
     
     // MARK: Life Cycle
@@ -36,6 +37,7 @@ class NotificationSettingVC: BaseVC {
         super.viewDidLoad()
         registerXIB()
         setNotificationCenter()
+        checkNotificationStatusFirstTime()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,10 +52,26 @@ class NotificationSettingVC: BaseVC {
     }
     
     /// 나도선배 앱 알림 설정을 시스템에서 받아오는 함수
-    @objc
-    private func checkNotificationStatus() {
+    @objc private func checkNotificationStatus() {
         UNUserNotificationCenter.current().getNotificationSettings { setting in
             self.isSystemNotiSettingOn = setting.alertSetting == .enabled
+            if self.isOriginalSystemNotiSettingOn == false && self.isSystemNotiSettingOn == true {
+                self.makeAnalyticsEvent(eventName: .alert_opt, parameterValue: "alert_accept")
+                debugPrint("alert_accept")
+            } else if self.isOriginalSystemNotiSettingOn == true && self.isSystemNotiSettingOn == false {
+                self.makeAnalyticsEvent(eventName: .alert_opt, parameterValue: "alert_refuse")
+                debugPrint("alert_refuse")
+            }
+            DispatchQueue.main.async {
+                self.settingTV.reloadData()
+            }
+        }
+    }
+    
+    @objc private func checkNotificationStatusFirstTime() {
+        UNUserNotificationCenter.current().getNotificationSettings { setting in
+            self.isSystemNotiSettingOn = setting.alertSetting == .enabled
+            self.isOriginalSystemNotiSettingOn = setting.alertSetting == .enabled
             DispatchQueue.main.async {
                 self.settingTV.reloadData()
             }

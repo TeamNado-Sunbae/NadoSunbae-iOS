@@ -183,6 +183,7 @@ extension HomeVC: UITableViewDataSource {
                     subTitleCell.setTitleLabel(title: "최근 후기")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press { [weak self] in
+                        self?.makeAnalyticsEvent(eventName: .home_viewmore, parameterValue: "revew_more")
                         let recentReviewVC = RecentReviewVC()
                         recentReviewVC.reactor = RecentReviewReactor()
                         self?.navigationController?.pushViewController(recentReviewVC, animated: true)
@@ -202,6 +203,7 @@ extension HomeVC: UITableViewDataSource {
                     subTitleCell.setTitleLabel(title: "선배랭킹")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
                     subTitleCell.moreBtn.press { [weak self] in
+                        self?.makeAnalyticsEvent(eventName: .home_viewmore, parameterValue: "senior_more")
                         let rankingVC = RankingVC()
                         rankingVC.reactor = RankingReactor()
                         self?.navigationController?.pushViewController(rankingVC, animated: true)
@@ -215,8 +217,9 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 1:1 질문")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        self.navigationController?.pushViewController(HomeRecentPersonalQuestionVC(), animated: true)
+                    subTitleCell.moreBtn.press { [weak self] in
+                        self?.makeAnalyticsEvent(eventName: .home_viewmore, parameterValue: "question_1on1_more")
+                        self?.navigationController?.pushViewController(HomeRecentPersonalQuestionVC(), animated: true)
                     }
                     return subTitleCell
                 case 3:
@@ -233,8 +236,9 @@ extension HomeVC: UITableViewDataSource {
                     guard let subTitleCell = tableView.dequeueReusableCell(withIdentifier: HomeSubTitleHeaderCell.className) as? HomeSubTitleHeaderCell else { return HomeSubTitleHeaderCell() }
                     subTitleCell.setTitleLabel(title: "최근 게시글")
                     subTitleCell.moreBtn.removeTarget(nil, action: nil, for: .allEvents)
-                    subTitleCell.moreBtn.press {
-                        self.goToRootOfTab(index: 2)
+                    subTitleCell.moreBtn.press { [weak self] in
+                        self?.makeAnalyticsEvent(eventName: .home_viewmore, parameterValue: "community_more")
+                        self?.goToRootOfTab(index: 2)
                     }
                     return subTitleCell
                 case 1:
