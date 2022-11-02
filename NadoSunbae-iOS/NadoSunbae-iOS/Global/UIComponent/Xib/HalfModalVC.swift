@@ -222,19 +222,19 @@ extension HalfModalVC {
                 selectMajorDelegate.sendUpdate(data: selectedMajorName)
             }
             
-            // communityDelegate일 때
-            if let selectCommunityDelegate = self.selectCommunityDelegate {
-                // 선택된 값이 없을 때에는 majorID: 0 (전체), majorName: "" 으로 전달
-                selectCommunityDelegate.sendCommunityInfo(majorID: selectedMajorID, majorName: selectedMajorName)
-            }
-            
-            if self.selectFilterDelegate != nil {
-                ReviewFilterInfo.shared.selectedBtnList = [false, false, false, false, false, false, false]
-                self.selectFilterDelegate?.sendStatus(data: false)
-            }
-            
             self.dismiss(animated: true, completion: {
                 NotificationCenter.default.post(name: Notification.Name.dismissHalfModal, object: nil)
+                
+                // communityDelegate일 때
+                if let selectCommunityDelegate = self.selectCommunityDelegate {
+                    // 선택된 값이 없을 때에는 majorID: 0 (전체), majorName: "" 으로 전달
+                    selectCommunityDelegate.sendCommunityInfo(majorID: selectedMajorID, majorName: selectedMajorName)
+                }
+                
+                if self.selectFilterDelegate != nil {
+                    ReviewFilterInfo.shared.selectedBtnList = [false, false, false, false, false, false, false]
+                    self.selectFilterDelegate?.sendStatus(data: false)
+                }
             })
         }
     }
