@@ -58,7 +58,15 @@ extension NotificationMainVC: UITableViewDelegate {
                 }
                 
                 /// 커뮤니티로 이동
-            case 3, 5, 8, 9, 10:
+            case 3, 5, 8, 9:
+                self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
+                    postDetailVC.postID = self.notificationList[indexPath.section].postID
+                    postDetailVC.hidesBottomBarWhenPushed = true
+                }
+                
+                /// 커뮤니티_특정학과대상 질문글 푸시알림인 경우 GA Event 수집 및 커뮤니티로 이동
+            case 10:
+                self.makeAnalyticsEvent(eventName: .mention_function, parameterValue: "mention_active")
                 self.navigator?.instantiateVC(destinationViewControllerType: CommunityPostDetailVC.self, useStoryboard: true, storyboardName: "CommunityPostDetailSB", naviType: .push) { postDetailVC in
                     postDetailVC.postID = self.notificationList[indexPath.section].postID
                     postDetailVC.hidesBottomBarWhenPushed = true
