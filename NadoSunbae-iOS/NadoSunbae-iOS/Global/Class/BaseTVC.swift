@@ -34,8 +34,7 @@ class BaseTVC: UITableViewCell {
     
     /// Firebase Analytics 기본 이벤트 메서드
     func makeAnalyticsEvent(eventName: GAEventNameType, parameterValue: String) {
-        // TODO: 배포 전 주석 제거
-//        if env() == .production {
+        if env() == .production {
             let parameterName = eventName.hasParameter ? eventName.parameterName : nil
             
             if let parameterName = parameterName {
@@ -43,7 +42,7 @@ class BaseTVC: UITableViewCell {
             } else {
                 FirebaseAnalytics.Analytics.logEvent("\(eventName)", parameters: nil)
             }
-//        }
+        }
     }
 }
 
