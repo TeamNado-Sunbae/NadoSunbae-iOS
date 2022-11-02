@@ -8,7 +8,11 @@
 import Foundation
 
 /// 커뮤니티 전체, 자유, 질문, 정보, 1:1 질문 전체 Post List 조회 Response Data Model
-struct PostListResModel: Codable {
+struct PostListResModel: Codable, Equatable {
+    static func == (lhs: PostListResModel, rhs: PostListResModel) -> Bool {
+        return (lhs.postID == rhs.postID && lhs.type == rhs.type && lhs.title == rhs.title && lhs.content == rhs.content && lhs.createdAt == rhs.createdAt && lhs.majorName == rhs.majorName && lhs.writer == rhs.writer && lhs.isAuthorized == rhs.isAuthorized && lhs.commentCount == rhs.commentCount && lhs.like == rhs.like)
+    }
+    
     let postID: Int
     let type: String?
     let title, content, createdAt: String
@@ -25,7 +29,7 @@ struct PostListResModel: Codable {
 }
 
 
-struct CommunityWriter: Codable {
+struct CommunityWriter: Codable, Equatable {
     let writerID: Int
     let nickname: String
     

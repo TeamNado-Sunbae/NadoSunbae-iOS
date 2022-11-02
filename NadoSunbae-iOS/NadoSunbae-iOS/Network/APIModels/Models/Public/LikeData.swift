@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Like
-struct Like: Codable {
+struct Like: Codable, Equatable {
     let isLiked: Bool
     let likeCount: Int
     
