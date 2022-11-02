@@ -77,6 +77,7 @@ extension MailCompleteVC {
         self.activityIndicator.startAnimating()
         switch completeType {
         case .resetPW:
+            self.makeAnalyticsEvent(eventName: .remail_button, parameterValue: "find_passward_view")
             MypageSettingAPI.shared.requestResetPW(email: email) { networkResult in
                 switch networkResult {
                 case .success:
@@ -98,6 +99,7 @@ extension MailCompleteVC {
                 }
             }
         case .signUp:
+            self.makeAnalyticsEvent(eventName: .remail_button, parameterValue: "sign_up_view")
             SignAPI.shared.resendSignUpMail(email: email, PW: PW) { networkResult in
                 switch networkResult {
                 case .success:
