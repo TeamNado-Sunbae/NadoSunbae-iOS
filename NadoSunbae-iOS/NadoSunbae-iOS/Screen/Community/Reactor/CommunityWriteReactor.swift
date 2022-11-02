@@ -107,6 +107,9 @@ extension CommunityWriteReactor {
                     if let _ = res as? WritePostResModel {
                         observer.onNext(Mutation.setSuccess(success: true))
                         self?.sendEvent(eventName: .community_write, parameterValue: type.postWriteLogEventParameterValue)
+                        if majorID != UnivType(rawValue: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID))?.regardlessMajorID {
+                            self?.sendEvent(eventName: .mention_function, parameterValue: "mention_send")
+                        }
                         observer.onCompleted()
                     }
                 case .requestErr(let res):
