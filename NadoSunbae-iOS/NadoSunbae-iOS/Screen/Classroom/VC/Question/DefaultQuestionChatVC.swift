@@ -86,6 +86,7 @@ final class DefaultQuestionChatVC: BaseVC {
     private var keyboardShowUpY: CGFloat = 0
     private let textViewMaxHeight: CGFloat = 85
     private let userID: Int = UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID)
+    private var isFirstLoad: Bool = true
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -387,6 +388,19 @@ extension DefaultQuestionChatVC {
                     }
                 }
             }
+        }
+    }
+    
+    /// question_read_1on1 이벤트를 수집하는 메서드
+    private func makeQuetionRead1on1GAEvent() {
+        if self.isFirstLoad {
+            if self.isAuthorized == true {
+                self.makeAnalyticsEvent(eventName: .question_read_1on1, parameterValue: self.userType == .questioner ? "my_question" : "other_question_mine")
+            } else {
+                self.makeAnalyticsEvent(eventName: .question_read_1on1, parameterValue: "other_question_oth")
+            }
+            
+            self.isFirstLoad = false
         }
     }
 }
@@ -791,6 +805,7 @@ extension DefaultQuestionChatVC {
                     self.userType = self.identifyUserType(questionerID: data.writer.writerID, isAuthorized: data.isAuthorized)
                     self.setUpSendBtnEnabledState(textView: self.sendAreaTextView ?? UITextView())
                     self.setUserSendMessageAuthorized()
+                    self.makeQuetionRead1on1GAEvent()
                     
                     /// 댓글 수정되었을 때
                     if self.isCommentEdited == true {
