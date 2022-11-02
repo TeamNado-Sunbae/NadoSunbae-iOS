@@ -96,7 +96,8 @@ extension BaseVC {
     
     /// 앱 최신 버전 조회 후 alert 띄우는 함수
     func getLatestVersion(completion: @escaping () -> ()) {
-        getLatestVersion { response in
+        getLatestVersion { [weak self] response in
+            guard let self = self else { return }
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
             alert.view.backgroundColor = .init(white: 1, alpha: 0.5)
             alert.confirmBtn.press {
@@ -113,11 +114,15 @@ extension BaseVC {
                 completion()
             } else {
                 
-                /// 앞자리가 최신 버전과 다르다면 강제 업데이트 알럿
-                if AppVersion.shared.latestVersion.prefix(1) != AppVersion.shared.currentVersion.prefix(1) {
-                    alert.showNadoAlert(vc: self, message: AlertType.forceUpdate.alertMessage, confirmBtnTitle: "나도선배 앱 업데이트", cancelBtnTitle: "", type: .withSingleBtn)
-                } else if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
-                    alert.showNadoAlert(vc: self, message: AlertType.softUpdate.alertMessage, confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+                /// 앞자리가 최신 버전보다 크다면 강제 업데이트 알럿
+                if AppVersion.shared.latestVersion.prefix(1) > AppVersion.shared.currentVersion.prefix(1) {
+                    alert.showNadoAlert(vc: self, message: self.majorUpdateMessage ?? AlertType.forceUpdate.alertMessage, confirmBtnTitle: "나도선배 앱 업데이트", cancelBtnTitle: "", type: .withSingleBtn)
+                } else if AppVersion.shared.latestVersion.prefix(1) == AppVersion.shared.currentVersion.prefix(1) {
+                    if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
+                        alert.showNadoAlert(vc: self, message: self.minorUpdateMessage ?? AlertType.softUpdate.alertMessage, confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+                    } else {
+                        completion()
+                    }
                 } else {
                     completion()
                 }
