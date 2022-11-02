@@ -263,6 +263,7 @@ extension CommunitySearchVC: UISearchBarDelegate {
     
     /// searchBarSearchButtonClicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        makeAnalyticsEvent(eventName: .search_function, parameterValue: "")
         reactor?.action.onNext(.tapCompleteSearchBtn(searchKeyword: searchBar.searchTextField.text ?? ""))
         view.endEditing(true)
     }
