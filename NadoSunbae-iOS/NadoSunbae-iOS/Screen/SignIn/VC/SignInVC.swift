@@ -158,33 +158,37 @@ extension SignInVC {
     /// 로그인 요청하는 메서드
     private func requestSignIn() {
         self.activityIndicator.startAnimating()
-        SignAPI.shared.requestSignIn(email: emailTextField.text ?? "", PW: PWTextField.text ?? "", deviceToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.FCMTokenForDevice) as! String) { networkResult in
+        SignAPI.shared.requestSignIn(email: emailTextField.text ?? "", PW: PWTextField.text ?? "", deviceToken: UserDefaults.standard.value(forKey: UserDefaults.Keys.FCMTokenForDevice) as! String) { [weak self] networkResult in
             switch networkResult {
             case .success(let res):
-                self.activityIndicator.stopAnimating()
+                self?.activityIndicator.stopAnimating()
                 if let data = res as? SignInDataModel {
-                    self.doForIsEmailVerified(data: data)
-                    self.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
+                    self?.doForIsEmailVerified(data: data)
+                    self?.setUserToken(accessToken: data.accesstoken, refreshToken: data.refreshtoken)
                     if env() == .development {
                         debugPrint("SIGN IN ACCESS TOKEN: \(data.accesstoken)")
                     }
+                    
+                    self?.minorUpdateMessage = data.updateAlert?.minor
+                    self?.majorUpdateMessage = data.updateAlert?.major
+                    
                     Analytics.setUserID("\(data.user.userID)")
                     Analytics.setUserProperty("제1전공", forName: data.user.firstMajorName)
                     Analytics.setUserProperty("제2전공", forName: data.user.secondMajorName)
                     FirebaseAnalytics.Analytics.logEvent(AnalyticsEventLogin, parameters: nil)
                 }
             case .requestErr(let res):
-                self.activityIndicator.stopAnimating()
+                self?.activityIndicator.stopAnimating()
                 if let message = res as? String {
-                    self.infoLabel.text = "아이디 또는 비밀번호가 잘못되었어요."
-                    self.infoLabel.isHidden = false
+                    self?.infoLabel.text = "아이디 또는 비밀번호가 잘못되었어요."
+                    self?.infoLabel.isHidden = false
                     print("requestSignIn request err", message)
                 } else if res is Bool {
-                    self.doForIsNotEmailVerified()
+                    self?.doForIsNotEmailVerified()
                 }
             default:
-                self.activityIndicator.stopAnimating()
-                self.makeAlert(title: AlertType.networkError.alertMessage)
+                self?.activityIndicator.stopAnimating()
+                self?.makeAlert(title: AlertType.networkError.alertMessage)
             }
         }
     }
