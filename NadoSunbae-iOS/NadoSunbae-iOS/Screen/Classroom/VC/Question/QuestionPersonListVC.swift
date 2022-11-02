@@ -196,6 +196,8 @@ extension QuestionPersonListVC: UICollectionViewDelegate {
         if targetUserID == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
            goToRootOfTab(index: 4)
         } else {
+            switchIsOn ? self.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_ranking_toggleon") : nil
+            self.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_classroom_in")
             self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                 mypageUserVC.targetUserID = targetUserID
                 mypageUserVC.judgeBlockStatusDelegate = self

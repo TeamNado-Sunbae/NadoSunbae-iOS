@@ -94,6 +94,7 @@ extension RankingVC {
                 if item.id == UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID) {
                     self?.goToRootOfTab(index: 4)
                 } else {
+                    self?.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_ranking_in")
                     self?.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                         mypageUserVC.targetUserID = item.id
                     }

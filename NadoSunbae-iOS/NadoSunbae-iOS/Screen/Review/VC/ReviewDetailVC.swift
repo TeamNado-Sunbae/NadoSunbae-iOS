@@ -217,6 +217,7 @@ extension ReviewDetailVC: UITableViewDataSource {
         if indexPath.section == 0 {
             reviewDetailPostWithImgTVC.setData(postData: detailPost)
             reviewDetailPostWithImgTVC.tapPresentProfileBtnAction = {
+                self.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_review")
                 self.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
                     mypageUserVC.targetUserID = self.detailPost.writer.writerID
                 }
