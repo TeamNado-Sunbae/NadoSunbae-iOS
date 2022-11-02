@@ -41,7 +41,7 @@ extension GAEventNameType {
             return "journey"
         case .write_request_alert, .alert_opt:
             return "choice"
-        case .community_write, .question_read_1on1, .community_read, .mention_function, .review_write, .question_write_1on1, .profile_change, .remail_button, .bottomsheet_function:
+        case .community_write, .question_read_1on1, .community_read, .mention_function, .review_write, .question_write_1on1, .profile_change, .remail_button, .bottomsheet_function, .like_click:
             return "type"
         case .home_viewmore:
             return "tap"
@@ -49,8 +49,6 @@ extension GAEventNameType {
             return "number"
         case .user_post:
             return "post_type"
-        case .like_click:
-            return "like_on"
         default: return ""
         }
     }
