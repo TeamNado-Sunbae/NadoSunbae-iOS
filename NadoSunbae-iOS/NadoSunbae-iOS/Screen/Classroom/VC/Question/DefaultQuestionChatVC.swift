@@ -381,6 +381,7 @@ extension DefaultQuestionChatVC {
                     configureQuestionFloatingBtn()
                     goToQuestionfloatingBtn.press { [weak self] in
                         guard let self = self else { return }
+                        self.makeAnalyticsEvent(eventName: .new_question_button_1on1, parameterValue: "")
                         self.navigator?.instantiateVC(destinationViewControllerType: WriteQuestionVC.self, useStoryboard: true, storyboardName: Identifiers.WriteQusetionSB, naviType: .present, modalPresentationStyle: .fullScreen) { writeQuestionVC in
                             writeQuestionVC.answererID = self.answererID
                             writeQuestionVC.isFromQuestionDetailVC = true
