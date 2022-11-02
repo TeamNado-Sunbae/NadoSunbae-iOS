@@ -101,8 +101,10 @@ extension BaseVC {
                 if let url = URL(string: "itms-apps://itunes.apple.com/app/1605763068"), UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
+                self.makeAnalyticsEvent(eventName: .update_opt, parameterValue: "update_now")
             }
             alert.cancelBtn.press {
+                self.makeAnalyticsEvent(eventName: .update_opt, parameterValue: "update_later")
                 completion()
             }
             if env() == .development || env() == .qa {
