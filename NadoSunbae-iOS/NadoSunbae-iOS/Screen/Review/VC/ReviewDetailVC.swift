@@ -274,9 +274,11 @@ extension ReviewDetailVC {
         PublicAPI.shared.postLikeAPI(postID: postID, postType: .review) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? PostLikeResModel {
+                if let likeData = res as? PostLikeResModel {
                     self.requestGetReviewPostDetail(postID: postID)
-                    print(res)
+                    if likeData.isLiked {
+                        self.makeAnalyticsEvent(eventName: .like_click, parameterValue: "like_on")
+                    }
                     self.activityIndicator.stopAnimating()
                 }
             case .requestErr(let res):

@@ -49,13 +49,15 @@ extension GAEventNameType {
             return "number"
         case .user_post:
             return "post_type"
+        case .like_click:
+            return "like_on"
         default: return ""
         }
     }
     
     var hasParameter: Bool {
         switch self {
-        case .review_read, .question_answered_1on1, .update_opt, .first_login, .search_function, .like_click, .bottomsheet_function, .new_question_button_1on1:
+        case .review_read, .question_answered_1on1, .update_opt, .first_login, .search_function, .bottomsheet_function, .new_question_button_1on1:
             return false
         default: return true
         }

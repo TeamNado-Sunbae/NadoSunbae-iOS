@@ -908,7 +908,10 @@ extension DefaultQuestionChatVC {
         PublicAPI.shared.postLikeAPI(postID: postID, postType: .post) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? PostLikeResModel {
+                if let likeData = res as? PostLikeResModel {
+                    if likeData.isLiked {
+                        self.makeAnalyticsEvent(eventName: .like_click, parameterValue: "like_on")
+                    }
                     self.requestGetDetailQuestionData(postID: self.postID ?? 0)
                     self.activityIndicator.stopAnimating()
                 }
