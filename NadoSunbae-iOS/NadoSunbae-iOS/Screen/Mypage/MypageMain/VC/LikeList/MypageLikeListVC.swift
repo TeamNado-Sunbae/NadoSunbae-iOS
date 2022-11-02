@@ -170,6 +170,7 @@ extension MypageLikeListVC: UITableViewDelegate {
         switch likeListType {
         case .review:
             self.divideUserPermission {
+                self.makeAnalyticsEvent(eventName: .review_read, parameterValue: "")
                 self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
                     reviewDetailVC.postId = self.reviewData[indexPath.row].id
                 }

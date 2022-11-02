@@ -94,6 +94,7 @@ extension HomeVC: SendHomeRecentDataDelegate {
         self.divideUserPermission() {
             switch type {
             case .review:
+                self.makeAnalyticsEvent(eventName: .review_read, parameterValue: "")
                 self.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push, modalPresentationStyle: .fullScreen) { reviewDetailVC in
                     reviewDetailVC.postId = id
                 }

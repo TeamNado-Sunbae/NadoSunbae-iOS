@@ -65,6 +65,7 @@ extension ReviewVC: View {
         reviewTV.rx.modelSelected(ReviewMainPostListData.self)
             .subscribe(onNext: { [weak self] item in
                 self?.divideUserPermission() {
+                    self?.makeAnalyticsEvent(eventName: .review_read, parameterValue: "")
                     self?.navigator?.instantiateVC(destinationViewControllerType: ReviewDetailVC.self, useStoryboard: true, storyboardName: "ReviewDetailSB", naviType: .push) { reviewDetailVC in
                         reviewDetailVC.postId = item.postID
                     }
