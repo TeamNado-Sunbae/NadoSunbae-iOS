@@ -371,6 +371,7 @@ extension SignUpUserInfoVC {
                     mailCompleteVC.email = userData.email
                     mailCompleteVC.PW = userData.PW
                     mailCompleteVC.modalPresentationStyle = .fullScreen
+                    self.makeAnalyticsEvent(eventName: .signup_process, parameterValue: "signup_success")
                     self.present(mailCompleteVC, animated: true, completion: nil)
                 }
             case .requestErr(let msg):
