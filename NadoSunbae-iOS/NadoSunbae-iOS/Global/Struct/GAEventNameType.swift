@@ -41,7 +41,7 @@ extension GAEventNameType {
             return "journey"
         case .write_request_alert, .alert_opt:
             return "choice"
-        case .community_write, .question_read_1on1, .community_read, .mention_function, .review_write, .question_write_1on1, .profile_change, .remail_button:
+        case .community_write, .question_read_1on1, .community_read, .mention_function, .review_write, .question_write_1on1, .profile_change, .remail_button, .bottomsheet_function:
             return "type"
         case .home_viewmore:
             return "tap"
@@ -57,7 +57,7 @@ extension GAEventNameType {
     
     var hasParameter: Bool {
         switch self {
-        case .review_read, .question_answered_1on1, .update_opt, .first_login, .search_function, .bottomsheet_function, .new_question_button_1on1:
+        case .review_read, .question_answered_1on1, .update_opt, .first_login, .search_function, .new_question_button_1on1:
             return false
         default: return true
         }

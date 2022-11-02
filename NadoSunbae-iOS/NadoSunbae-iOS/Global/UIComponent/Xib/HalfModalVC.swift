@@ -303,6 +303,10 @@ extension HalfModalVC: UITextFieldDelegate {
     func textFieldDidChange(_ sender: Any?) {
         applySnapshot(filter: searchTextField.text)
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        makeAnalyticsEvent(eventName: .bottomsheet_function, parameterValue: "search_major")
+    }
 }
 
 // MARK: - SendCellBtnStatusDelegate
@@ -378,9 +382,10 @@ extension HalfModalVC {
             switch networkResult {
                 
             case .success(let res):
-                if let _ = res as? FavoriteMajorPostResModel {
+                if let favoriteData = res as? FavoriteMajorPostResModel {
                     self.applySnapshot(filter: self.searchTextField.text?.isEmpty ?? false ? "" : self.searchTextField.text, applyAnimation: false)
                     self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
+                    self.makeAnalyticsEvent(eventName: .bottomsheet_function, parameterValue: favoriteData.isDeleted ? "favorite_off" : "favorite_on")
                 }
             case .requestErr(let res):
                 if let _ = res as? String {
