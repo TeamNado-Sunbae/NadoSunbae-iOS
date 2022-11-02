@@ -133,8 +133,13 @@ extension BaseVC {
         
         switch permissionStatus {
         case .review:
-            restrictionAlert.confirmBtn.press {
-                self.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { reviewWriteVC in }
+            restrictionAlert.confirmBtn.press { [weak self] in
+                self?.makeAnalyticsEvent(eventName: .write_request_alert, parameterValue: "write_now")
+                self?.navigator?.instantiateVC(destinationViewControllerType: ReviewWriteVC.self, useStoryboard: true, storyboardName: "ReviewWriteSB", naviType: .present, modalPresentationStyle: .fullScreen) { reviewWriteVC in }
+            }
+            
+            restrictionAlert.cancelBtn.press { [weak self] in
+                self?.makeAnalyticsEvent(eventName: .write_request_alert, parameterValue: "write_later")
             }
         case .inappropriate:
             permissionMsg = AlertType.inappropriateReview.alertMessage
