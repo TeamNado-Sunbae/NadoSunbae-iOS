@@ -520,9 +520,12 @@ extension CommunityPostDetailVC {
         PublicAPI.shared.postLikeAPI(postID: postID, postType: postType) { networkResult in
             switch networkResult {
             case .success(let res):
-                if let _ = res as? PostLikeResModel {
+                if let likeData = res as? PostLikeResModel {
                     DispatchQueue.main.async {
                         self.requestGetDetailInfoData(postID: self.postID ?? 0, addLoadBackView: false)
+                    }
+                    if likeData.isLiked {
+                        self.makeAnalyticsEvent(eventName: .like_click, parameterValue: "like_on")
                     }
                     self.activityIndicator.stopAnimating()
                 }
