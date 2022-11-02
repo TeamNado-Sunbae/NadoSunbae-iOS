@@ -19,6 +19,7 @@ final class CommunityMainReactor: Reactor {
         case requestNewCommunityList(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
         case refreshControl(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
         case tapSegmentedControl(majorID: Int? = MajorIDConstants.allMajorID, type: PostFilterType, sort: String? = "recent", search: String? = "")
+        case changeAnimateState
     }
     
     // MARK: represent state changes
@@ -63,6 +64,7 @@ extension CommunityMainReactor {
         case .filterFilled(let fill, let majorID, let type):
             return Observable.concat([
                 Observable.just(.setLoading(loading: true)),
+                Observable.just(.requestCommunityList(communityList: [])),
                 Observable.just(.setFilterBtnState(selected: fill)),
                 Observable.just(.setFilterMajorID(majorID: majorID)),
                 Observable.just(.setAnimateToTopState(state: true)),
@@ -84,6 +86,8 @@ extension CommunityMainReactor {
                 Observable.just(.setAnimateToTopState(state: true)),
                 self.requestCommunityList(majorID: majorID, type: type, sort: sort, search: search)
             ])
+        case .changeAnimateState:
+            return Observable.just(.setAnimateToTopState(state: false))
         }
     }
     
@@ -132,7 +136,6 @@ extension CommunityMainReactor {
                             observer.onNext(Mutation.setRefreshLoading(loading: false))
                             observer.onNext(Mutation.setUpdateAccessTokenState(state: false))
                             observer.onNext(Mutation.setLoading(loading: false))
-                            observer.onNext(Mutation.setAnimateToTopState(state: false))
                             observer.onCompleted()
                         }
                     case .requestErr(let res):
