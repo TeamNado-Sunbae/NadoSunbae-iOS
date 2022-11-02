@@ -40,9 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ])
         
         #if DEVELOPMENT || QA
-        // TODO: 배포 전 수정하기
-        Analytics.setAnalyticsCollectionEnabled(true)
-//        Analytics.setAnalyticsCollectionEnabled(false)
+        Analytics.setAnalyticsCollectionEnabled(false)
         #endif
         
         return true
