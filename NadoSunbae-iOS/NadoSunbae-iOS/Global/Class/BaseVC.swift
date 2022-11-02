@@ -100,6 +100,7 @@ extension BaseVC {
             guard let self = self else { return }
             guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
             alert.view.backgroundColor = .init(white: 1, alpha: 0.5)
+            alert.confirmBtn.removeTarget(nil, action: nil, for: .allEvents)
             alert.confirmBtn.press {
                 if let url = URL(string: "itms-apps://itunes.apple.com/app/1605763068"), UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
