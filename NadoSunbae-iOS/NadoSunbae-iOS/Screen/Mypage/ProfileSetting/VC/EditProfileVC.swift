@@ -183,6 +183,7 @@ extension EditProfileVC {
             alert.confirmBtn.press {
                 self.setProfileData()
                 self.requestEditProfile(data: self.changedInfo)
+                self.judgeEditProfileGA()
             }
             
             alert.showNadoAlert(vc: self, message: "내 정보를 수정하시겠습니까?", confirmBtnTitle: "저장", cancelBtnTitle: "아니요")
@@ -317,6 +318,22 @@ extension EditProfileVC {
         editProfileUserInfo.secondMajorID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.SecondMajorID)
         editProfileUserInfo.secondMajorStart = data.secondMajorStart
         return editProfileUserInfo
+    }
+    
+    /// 프로필 수정 GA 이벤트 수집을 위한 메서드
+    private func judgeEditProfileGA() {
+        if self.userInfo.bio != self.changedInfo.bio {
+            self.makeAnalyticsEvent(eventName: .profile_change, parameterValue: "oneline_introduce")
+        }
+        if self.userInfo.profileImageID != self.changedInfo.profileImageID {
+            self.makeAnalyticsEvent(eventName: .profile_change, parameterValue: "profile_image")
+        }
+        if self.userInfo.isOnQuestion == false && self.changedInfo.isOnQuestion == true {
+            self.makeAnalyticsEvent(eventName: .profile_change, parameterValue: "question_allow_on")
+        }
+        if self.userInfo.isOnQuestion == true && self.changedInfo.isOnQuestion == false {
+            self.makeAnalyticsEvent(eventName: .profile_change, parameterValue: "question_allow_off")
+        }
     }
 }
 
