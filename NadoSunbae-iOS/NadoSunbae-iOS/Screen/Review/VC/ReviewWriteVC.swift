@@ -20,6 +20,9 @@ class ReviewWriteVC: BaseVC {
                 guard let alert = Bundle.main.loadNibNamed(NadoAlertVC.className, owner: self, options: nil)?.first as? NadoAlertVC else { return }
                 if self.isPosting {
                     alert.showNadoAlert(vc: self, message: "페이지를 나가면 \n 작성중인 글이 삭제돼요.", confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
+                    alert.cancelBtn.press { [weak self] in
+                        self?.makeAnalyticsEvent(eventName: .review_process, parameterValue: "review_exit")
+                    }
                 } else {
                     alert.showNadoAlert(vc: self, message: "페이지를 나가면 \n 수정한 내용이 저장되지 않아요.", confirmBtnTitle: "계속 작성", cancelBtnTitle: "나갈래요")
                 }
@@ -74,6 +77,9 @@ class ReviewWriteVC: BaseVC {
     /// 데이터 삽입을 위한 리스트 변수
     private var bgImgList: [ReviewWriteBgImgData] = []
     
+    /// GA 수집 지표와 관련하여 글자수가 초과되었는지 여부를 파악하기 위한 변수
+    private var isFirstOverTextCountDict: [UITextView: Bool] = [:]
+    
     // 새글 작성, 기존글 수정 구분 위한 변수
     var isPosting: Bool = true
     var postID: Int = 0
@@ -91,6 +97,7 @@ class ReviewWriteVC: BaseVC {
         addKeyboardObserver()
         hideKeyboardWhenTappedAround()
         setUpTapCompleteBtn()
+        initFirstOverCountDict()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,7 +110,6 @@ class ReviewWriteVC: BaseVC {
             textView in setUpCharCount(textView: textView)
         }
         setUpDefaultStatus()
-        makeDefaultAnalyticsEvent(eventName: "후기작성뷰_진입")
         makeScreenAnalyticsEvent(screenName: "Review Tab", screenClass: ReviewWriteVC.className)
     }
     
@@ -262,7 +268,7 @@ extension ReviewWriteVC {
                     /// UserDefaults 값 세팅
                     UserPermissionInfo.shared.isReviewed = true
                     UserPermissionInfo.shared.isReviewInappropriate = false
-                    self.makeDefaultAnalyticsEvent(eventName: "후기등록완료_버튼클릭")
+                    self.makeAnalyticsEvent(eventName: .review_process, parameterValue: "review_upload")
                 } else {
                     
                     /// 게시글 수정 서버통신
@@ -279,6 +285,34 @@ extension ReviewWriteVC {
                     }
                 }
             }
+        }
+    }
+    
+    /// analytics Event를 보내는 메서드
+    private func sendAnalyticsEvent(textView: UITextView) {
+        var parameterValue = ""
+        if textView == oneLineReviewTextView {
+            parameterValue = "review_one_line"
+        } else if textView == prosAndConsTextView {
+            parameterValue = "review_pros_cons"
+        } else if textView == learnInfoTextView {
+            parameterValue = "review_learn"
+        } else if textView == recommendClassTextView {
+            parameterValue = "review_recom"
+        } else if textView == badClassTextView {
+            parameterValue = "review_hard"
+        } else if textView == futureTextView {
+            parameterValue = "review_career"
+        } else {
+            parameterValue = "review_tip"
+        }
+        
+        makeAnalyticsEvent(eventName: .review_process, parameterValue: parameterValue)
+    }
+    
+    private func initFirstOverCountDict() {
+        [oneLineReviewTextView, prosAndConsTextView, learnInfoTextView, recommendClassTextView, badClassTextView, futureTextView, tipTextView].forEach {
+            isFirstOverTextCountDict[$0] = true
         }
     }
 }
@@ -436,6 +470,18 @@ extension ReviewWriteVC: UITextViewDelegate {
                 scrollView.scrollIndicators.vertical?.backgroundColor = .scrollMint
             }
         }
+        
+        /// 글자수가 최초로 기준 수를 넘어간 경우 Analytics Event를 수집
+        if isFirstOverTextCountDict[textView] == true {
+            /// 한줄평 TextView만 기준을 5로 설정
+            if textView.text.count >= 5 && textView == oneLineReviewTextView {
+                sendAnalyticsEvent(textView: oneLineReviewTextView)
+                isFirstOverTextCountDict[oneLineReviewTextView] = false
+            } else if textView.text.count >= 10 {
+                sendAnalyticsEvent(textView: textView)
+                isFirstOverTextCountDict[textView] = false
+            }
+        }
     }
 }
 
@@ -471,7 +517,7 @@ extension ReviewWriteVC {
             case .success(let res):
                 if let _ = res as? ReviewPostDetailData {
                     self.dismiss(animated: true)
-                    self.makePostAnalyticsEvent(postType: !UserPermissionInfo.shared.isReviewed ? "review_new" : "review_additional", postedMajor: self.majorNameLabel.text ?? "")
+                    self.makeAnalyticsEvent(eventName: .review_write, parameterValue: !UserPermissionInfo.shared.isReviewed ? "review_new" : "review_additional")
                 }
             case .requestErr(let res):
                 if let _ = res as? String {
