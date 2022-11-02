@@ -169,6 +169,7 @@ extension WriteQuestionVC {
                             questionChatNC.modalPresentationStyle = .fullScreen
                             questionChatNC.navigationBar.isHidden = true
                             presentingVC.present(questionChatNC, animated: false, completion: nil)
+                            self.makeAnalyticsEvent(eventName: .question_write_1on1, parameterValue: "question_1on1_upload")
                         }
                     }
                 }
