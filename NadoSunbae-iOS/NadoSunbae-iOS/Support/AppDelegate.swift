@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         #if DEVELOPMENT || QA
         Analytics.setAnalyticsCollectionEnabled(false)
+        #elseif RELEASE
+        Analytics.setAnalyticsCollectionEnabled(true)
         #endif
         
         return true
