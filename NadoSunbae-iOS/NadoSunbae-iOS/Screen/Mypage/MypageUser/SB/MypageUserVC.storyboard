@@ -49,7 +49,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KN-MV-zEV">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금은 질문을 안 받기로 했어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rZ-yi-T09">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금 이 선배에겐 질문할 수 없어요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rZ-yi-T09">
                                                         <rect key="frame" x="26" y="0.0" width="323" height="32"/>
                                                         <fontDescription key="fontDescription" name="Pretendard-Regular" family="Pretendard" pointSize="12"/>
                                                         <color key="textColor" name="mainDark"/>
@@ -359,6 +359,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="948"/>
                     <connections>
+                        <outlet property="bioLabel" destination="7Cf-ca-guQ" id="yRN-cg-H2j"/>
                         <outlet property="firstMajorFormLabel" destination="yPh-Ud-xRn" id="DwK-DM-EnF"/>
                         <outlet property="firstMajorFormLineView" destination="wz5-np-T0h" id="7Fd-0i-YZX"/>
                         <outlet property="firstMajorLabel" destination="k4h-rD-4bX" id="bcy-3M-F37"/>
@@ -373,9 +374,10 @@
                         <outlet property="questionEmptyView" destination="x0n-Mc-DWP" id="p8D-Tw-fD8"/>
                         <outlet property="questionTV" destination="kXs-pO-uLu" id="c9i-Dw-cxu"/>
                         <outlet property="questionTVHeight" destination="9Eh-OO-Be7" id="cHm-PC-Cy0"/>
+                        <outlet property="rateLabel" destination="QBm-G2-gQr" id="7xh-4X-xuC"/>
                         <outlet property="responseRateLabel" destination="E7l-XF-nO7" id="wzk-e0-3jA"/>
                         <outlet property="secondMajorFormLabel" destination="cvT-p9-Xxn" id="bUY-87-La2"/>
-                        <outlet property="secondMajorFormLineView" destination="WBF-5b-Y9V" id="HoQ-uU-Vph"/>
+                        <outlet property="secondMajorFormLineView" destination="WBF-5b-Y9V" id="UjX-Pl-dmY"/>
                         <outlet property="secondMajorLabel" destination="QdH-XR-kIi" id="PY0-W5-go8"/>
                         <outlet property="sortBtn" destination="YlK-2x-mgE" id="ijw-06-d5o"/>
                         <outlet property="userStateView" destination="1KN-MV-zEV" id="nlC-vs-Xrm"/>
