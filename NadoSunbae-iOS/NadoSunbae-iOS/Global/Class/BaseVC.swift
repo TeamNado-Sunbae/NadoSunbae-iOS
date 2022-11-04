@@ -116,11 +116,25 @@ extension BaseVC {
             } else {
                 
                 /// 앞자리가 최신 버전보다 크다면 강제 업데이트 알럿
-                if AppVersion.shared.latestVersion.prefix(1) > AppVersion.shared.currentVersion.prefix(1) {
-                    alert.showNadoAlert(vc: self, message: self.majorUpdateMessage ?? AlertType.forceUpdate.alertMessage, confirmBtnTitle: "나도선배 앱 업데이트", cancelBtnTitle: "", type: .withSingleBtn)
-                } else if AppVersion.shared.latestVersion.prefix(1) == AppVersion.shared.currentVersion.prefix(1) {
-                    if AppVersion.shared.latestVersion != AppVersion.shared.currentVersion {
-                        alert.showNadoAlert(vc: self, message: self.minorUpdateMessage ?? AlertType.softUpdate.alertMessage, confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+                let latestVersionArray = AppVersion.shared.latestVersion.split(separator: ".").map { String($0) }
+                let currentVersionArray = AppVersion.shared.currentVersion.split(separator: ".").map { String($0) }
+                
+                // 배열 인덱스 접근 에러를 방지하기 위한 if문
+                if latestVersionArray.count == 3 && currentVersionArray.count == 3 {
+                    if latestVersionArray[0] > currentVersionArray[0] {
+                        alert.showNadoAlert(vc: self, message: self.majorUpdateMessage ?? AlertType.forceUpdate.alertMessage, confirmBtnTitle: "나도선배 앱 업데이트", cancelBtnTitle: "", type: .withSingleBtn)
+                    } else if latestVersionArray[0] == currentVersionArray[0] {
+                        if latestVersionArray[1] > currentVersionArray[1] {
+                            alert.showNadoAlert(vc: self, message: self.minorUpdateMessage ?? AlertType.softUpdate.alertMessage, confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+                        } else if latestVersionArray[1] == currentVersionArray[1] {
+                            if latestVersionArray[2] > currentVersionArray[2] {
+                                alert.showNadoAlert(vc: self, message: self.minorUpdateMessage ?? AlertType.softUpdate.alertMessage, confirmBtnTitle: "업데이트", cancelBtnTitle: "다음에 하기")
+                            } else {
+                                completion()
+                            }
+                        } else {
+                            completion()
+                        }
                     } else {
                         completion()
                     }
