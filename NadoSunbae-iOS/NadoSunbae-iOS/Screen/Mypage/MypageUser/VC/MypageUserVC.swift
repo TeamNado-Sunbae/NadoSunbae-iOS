@@ -169,11 +169,9 @@ extension MypageUserVC {
             if self.userInfo.isOnQuestion {
                 self.floatingBtn.setImage(UIImage(named: "btn_floating_plus")!, for: .normal)
                 self.userStateViewHeight.constant = 0
-                self.rateLabel.isHidden = false
             } else {
                 self.floatingBtn.setImage(UIImage(named: "btnFloating_x")!, for: .normal)
                 self.userStateViewHeight.constant = 32.adjusted
-                self.rateLabel.isHidden = true
             }
             self.questionEmptyView.isHidden = self.questionList.isEmpty ? false : true
             self.questionTV.isHidden = self.questionList.isEmpty ? true : false
