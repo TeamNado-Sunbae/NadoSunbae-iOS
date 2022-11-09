@@ -209,15 +209,17 @@ extension PersonalQuestionVC: View {
     private func bindrecentQuestionTV() {
         recentQuestionTV.rx.modelSelected(PostListResModel.self)
             .subscribe(onNext: { [weak self] item in
-                self?.divideUserPermission() {
-                    guard let postDetailVC = UIStoryboard.init(name: "QuestionChatSB", bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
-                    let postDetailNC = UINavigationController(rootViewController: postDetailVC)
-                    postDetailVC.naviStyle = .present
-                    postDetailVC.postID = item.postID
-                    postDetailVC.isAuthorized = item.isAuthorized
-                    postDetailNC.modalPresentationStyle = .fullScreen
-                    postDetailNC.navigationBar.isHidden = true
-                    self?.present(postDetailNC, animated: true)
+                if item.postID != -1 {
+                    self?.divideUserPermission() {
+                        guard let postDetailVC = UIStoryboard.init(name: "QuestionChatSB", bundle: nil).instantiateViewController(withIdentifier: DefaultQuestionChatVC.className) as? DefaultQuestionChatVC else { return }
+                        let postDetailNC = UINavigationController(rootViewController: postDetailVC)
+                        postDetailVC.naviStyle = .present
+                        postDetailVC.postID = item.postID
+                        postDetailVC.isAuthorized = item.isAuthorized
+                        postDetailNC.modalPresentationStyle = .fullScreen
+                        postDetailNC.navigationBar.isHidden = true
+                        self?.present(postDetailNC, animated: true)
+                    }
                 }
             })
             .disposed(by: disposeBag)
