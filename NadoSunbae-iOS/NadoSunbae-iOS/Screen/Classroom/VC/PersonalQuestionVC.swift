@@ -69,7 +69,8 @@ final class PersonalQuestionVC: BaseVC {
         bindrecentQuestionTV()
         bindSeniorCV()
         seeMoreBtn.press { [weak self] in
-            self?.navigator?.instantiateVC(destinationViewControllerType: QuestionPersonListVC.self, useStoryboard: false, storyboardName: QuestionPersonListVC.className, naviType: .push) { _ in
+            self?.navigator?.instantiateVC(destinationViewControllerType: QuestionPersonListVC.self, useStoryboard: false, storyboardName: QuestionPersonListVC.className, naviType: .push) { questionPersonListVC in
+                questionPersonListVC.hidesBottomBarWhenPushed = true
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(setUpInitAction), name: Notification.Name.dismissHalfModal, object: nil)
@@ -229,12 +230,17 @@ extension PersonalQuestionVC: View {
     private func bindSeniorCV() {
         availableQuestionPersonCV.rx.modelSelected(QuestionUser.self)
             .subscribe(onNext: { [weak self] item in
-                if item.userID == -2 {
-                    self?.navigator?.instantiateVC(destinationViewControllerType: QuestionPersonListVC.self, useStoryboard: false, storyboardName: QuestionPersonListVC.className, naviType: .push) { _ in }
-                } else {
-                    self?.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_classroom_out")
-                    self?.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
-                        mypageUserVC.targetUserID = item.userID
+                if self?.reactor?.currentState.seniorList.isEmpty == false {
+                    if item.userID == -2 {
+                        self?.navigator?.instantiateVC(destinationViewControllerType: QuestionPersonListVC.self, useStoryboard: false, storyboardName: QuestionPersonListVC.className, naviType: .push) { questionPersonListVC in
+                            questionPersonListVC.hidesBottomBarWhenPushed = true
+                        }
+                    } else {
+                        self?.makeAnalyticsEvent(eventName: .senior_click, parameterValue: "senior_classroom_out")
+                        self?.navigator?.instantiateVC(destinationViewControllerType: MypageUserVC.self, useStoryboard: true, storyboardName: MypageUserVC.className, naviType: .push) { mypageUserVC in
+                            mypageUserVC.targetUserID = item.userID
+                            mypageUserVC.hidesBottomBarWhenPushed = true
+                        }
                     }
                 }
             })
