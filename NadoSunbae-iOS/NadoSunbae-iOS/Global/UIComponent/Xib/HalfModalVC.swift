@@ -360,6 +360,7 @@ extension HalfModalVC {
             case .success(let res):
                 if let data = res as? [MajorInfoModel] {
                     MajorInfo.shared.majorList = data
+                    self.setUpMajorList(hasNoMajorOption: self.hasNoMajorOption)
                 }
             case .requestErr(let res):
                 if let _ = res as? String {
@@ -383,7 +384,6 @@ extension HalfModalVC {
                 
             case .success(let res):
                 if let favoriteData = res as? FavoriteMajorPostResModel {
-                    self.applySnapshot(filter: self.searchTextField.text?.isEmpty ?? false ? "" : self.searchTextField.text, applyAnimation: false)
                     self.requestGetMajorList(univID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.univID), filterType: "all", userID: UserDefaults.standard.integer(forKey: UserDefaults.Keys.UserID))
                     self.makeAnalyticsEvent(eventName: .bottomsheet_function, parameterValue: favoriteData.isDeleted ? "favorite_off" : "favorite_on")
                 }
