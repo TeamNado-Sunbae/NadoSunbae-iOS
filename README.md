@@ -5,12 +5,10 @@
 > **아는 선배 없어도 괜찮아! 우리 같이 서로의 선배가 되어주자!**  
 제2전공생을 위한 학과후기, 전공정보 공유 플랫폼 - 나도선배
 >
-> 29th WE SOPT APPJAM <br>
+> **29th WE SOPT APPJAM 최우수상 🏆** <br>
 > 해커톤 기간 : 2022.01.02 ~ 2022.01.22    
 > 앱스토어 출시 : 2022.03.12  
 > 사용성 개선 및 기능 확장 업데이트 : 2022.11.05
-
-<br>
 
 [<img width=150px src=https://user-images.githubusercontent.com/42789819/115149387-d42e1980-a09e-11eb-88e3-94ca9b5b604b.png>](https://apps.apple.com/kr/app/%EB%82%98%EB%8F%84%EC%84%A0%EB%B0%B0/id1605763068)
 
@@ -169,7 +167,7 @@ NadoSunbae-iOS
 
 ## 💻 Coding Convention
 <details markdown="1">
-<summary>🖋네이밍</summary>
+<summary>🖋 네이밍</summary>
 
 ---
 
@@ -236,7 +234,7 @@ NadoSunbae-iOS
 </details>
 
 <details markdown="2">
-<summary>🏷주석</summary>
+<summary>🏷 주석</summary>
  
 ---
 	
@@ -268,7 +266,7 @@ NadoSunbae-iOS
 </details>
 
 <details markdown="3">
-<summary>⭕️공백</summary>
+<summary> ⭕️ 공백 </summary>
 
 ---
 	
@@ -302,7 +300,7 @@ NadoSunbae-iOS
 </details>
 
 <details markdown="4">
-<summary>🎸기타규칙</summary>  
+<summary>🎸 기타규칙</summary>  
 
 ---
  
