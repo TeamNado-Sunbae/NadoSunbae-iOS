@@ -1,5 +1,4 @@
 # 🙋🏻‍♀️나도선배 iOS
-![Frame 14](https://user-images.githubusercontent.com/63224278/149148867-674514b9-1eec-4b91-9e5d-9fc6b8d3dfa1.png)
 ![image](https://user-images.githubusercontent.com/63224278/150574516-a8d5f367-968e-48a5-99b8-eb82e4eee9c9.png)
 <br>
 
@@ -7,7 +6,13 @@
 제2전공생을 위한 학과후기, 전공정보 공유 플랫폼 - 나도선배
 >
 > 29th WE SOPT APPJAM <br>
-> 프로젝트 기간 : 2022.01.02 ~ 2021.01.22
+> 해커톤 기간 : 2022.01.02 ~ 2022.01.22    
+> 앱스토어 출시 : 2022.03.12  
+> 사용성 개선 및 기능 확장 업데이트 : 2022.11.05
+
+<br>
+
+[<img width=150px src=https://user-images.githubusercontent.com/42789819/115149387-d42e1980-a09e-11eb-88e3-94ca9b5b604b.png>](https://apps.apple.com/kr/app/%EB%82%98%EB%8F%84%EC%84%A0%EB%B0%B0/id1605763068)
 
 <br>
 
@@ -18,14 +23,148 @@
  [@hwangJi-dev](https://github.com/hwangJi-dev)  |  [@dev-madilyn](https://github.com/dev-madilyn)  |  [@jane1choi](https://github.com/jane1choi)  | 
 <br>
 
-## 🌲 Menu Tree 
-![menuTree](https://user-images.githubusercontent.com/58043306/150113629-9e7c325b-d7b6-429d-9134-11a9d2de4c0c.png)
+## 🛠️ Development Environment
+<p align="left">
+<img src ="https://img.shields.io/badge/Swift-5.0-ff69b4">
+<img src ="https://img.shields.io/badge/Xcode-13.3-blue">
+<img src ="https://img.shields.io/badge/iOS-15.0-blue">
+<br>
+
+## 📚 Library
+| 라이브러리(Library) | 버전(Version) | 사용목적(Purpose) |
+|:---|:----------|:---|
+| SnapKit| 5.0.0 | Layout |
+| Then | 3.0.0 | Layout |
+| Moya| 15.0.0 | 서버 통신 |
+| RxSwift | 6.5.0 | 비동기 처리 |
+| RxCocoa | 6.5.0 | 비동기 처리 |
+| ReactorKit | 3.2.0 | MVVM 아키텍처 활용 |
+| Firebase/Analytics| 9.0.0 | 앱 데이터 분석 |
+| Firebase/Messaging| 8.12.0 | 푸시 알림 |
+<br>
+
+## ⚙️ 프로젝트 구조
+### 🏛️ Architecture: ReactorKit을 활용한 MVVM
+<img width="1200" alt="ReactorKit-MVVM" src="https://user-images.githubusercontent.com/63277563/236613006-f9d774e0-be6d-42de-aba2-6899c6fa8c03.png">
+
+### 🗂️ Foldering
+```
+NadoSunbae-iOS
+    ├──📁 Global
+    │   ├── LaunchScreen.storyboard
+    │   ├── PublicData  
+    │   ├── Factory 
+    │   ├── Class
+    │   ├── Struct
+    │   ├── Extension
+    │   ├── Protocol
+    │   ├── Font
+    │   └── UIComponent
+    │       ├── Class
+    │       └── Xib
+    ├──📁 Network
+    │   ├── APIEssentials
+    │   ├── APIModels
+    │   ├── APIManagers
+    │   ├── MoyaTarget
+    │   └── NetworkLoggerPlugin.swift
+    ├──📁 Screen
+    │   └── Classroom
+    │       ├── Reactor
+    │       ├── SB
+    │       ├── VC
+    │       └── Cell
+    └──📁 Support
+        ├── AppDelegate.swift
+        ├── SceneDelegate.swift
+        ├── Assets.xcassets
+        ├── Colorsets.xcassets
+        ├── Info.plist
+        └── Configuration
+            ├── Development
+            ├── QA
+            └── Release
+``` 
+<br>
+
+## 🎯 주요 기능
+
+### `홈`
+### 💡 최신글을 확인할 수 있는 홈 탭
+
+- 서비스 내에서 새로 올라온 모든 글들(후기, 1:1 질문, 커뮤니티 글)을 한눈에 볼 수 있습니다.
+- 선배랭킹을 통해 나도선배 서비스에서 열정적으로 활동해주는 선배들을 한눈에 볼 수 있습니다.
+
+<img width="800" alt="호ㅁ" src="https://user-images.githubusercontent.com/63277563/236614624-e9e3db0b-0f27-47b1-85fe-3f466e978402.png">
+
+---
+### `과방`
+### 💡 학과별 후기를 열람하고 작성할 수 있는 후기 탭
+
+- 본인의 학과 및 관심있는 타학과의 후기글을 열람할 수 있습니다.
+- 상단 토글 버튼을 통해 학과 필터 바텀시트를 불러와 열람 학과를 변경할 수 있습니다.
+- 본인의 학과 후기를 최소 1회 작성해야 합니다!
+    - 학과 후기 작성 항목
+        - 필수: 학과의 한줄평, 장단점
+        - 선택: 배우는 과목, 추천 수업, 힘든 수업, 향후 진로, 꿀팁 (최소 1개 이상 작성)
+	
+<img width="900" alt="후기" src="https://user-images.githubusercontent.com/63277563/236615605-03df9895-2df9-4765-ab2c-997adf9c6a3e.png">
 <br>
 
 
-## 📋 IA  
-![nadosunbaeIA수정본](https://user-images.githubusercontent.com/58043306/150135580-ceca346c-fe48-4724-a83f-c395bef71db3.jpg)
-<br>
+### 💡 후기 작성자와 1:1 질문을 나눌 수 있는 1:1 질문 탭
+
+- 관심있는 학과의 후기를 인상적으로 읽은 후 추가적으로 나누고 싶은 질문이 있다면 1:1 질문 기능을 이용할 수 있습니다.
+- 선배의 1:1 질문 목록을 보거나 새 질문을 남길 수 있습니다.
+- 질문 기능을 채팅 스레드로 제공합니다.
+- 오로지 질문자와, 질문을 받은 사용자만 메시지를 주고받을 수 있으며 일반 유저들은 글 열람만 가능합니다. (답글 작성 불가)
+- 부적절한 질문 및 답글은 신고할 수 있으며, 유저를 차단할 수 있습니다. (차단된 유저의 글은 보이지 않습니다.)
+
+<img width="900" alt="11" src="https://user-images.githubusercontent.com/63277563/236615622-fc51a318-57af-4f1e-8dbb-c0da5791e06c.png">
+
+---
+### `커뮤니티`
+### 💡 자유로운 글을 남기고 소통할 수 있는 커뮤니티 탭
+
+- 커뮤니티 탭에서는 좀 더 자유롭게 유저들간에 소통을 할 수 있습니다.
+- 질문/정보/자유 글을 작성하고 소통할 수 있습니다.
+    - 특정학과의 전공생 전체에게 혹은 전체학과의 학생들에게 질문하고 싶을 때 커뮤니티의 질문 기능을 이용할 수 있습니다.
+    - 질문글을 작성할 때 특정 학과를 지정하면, 해당 학과의 본전공, 제2전공생 모두에게 알림이 갑니다.
+- 학과 필터 기능을 통해 특정 학과의 글만을 열람할 수 있습니다.
+- 키워드를 통해 게시글을 검색할 수 있습니다.
+<img width="900" alt="커뮤" src="https://user-images.githubusercontent.com/63277563/236615638-384e1eac-d8e8-420f-a1c3-bc45257804b9.png">
+
+---
+### `알림`
+### 💡 나에게 온 알림을 확인할 수 있는 알림 탭
+
+**1:1 질문** 
+
+1. 후배가 1:1질문글 처음 작성시  → 선배에게 알림
+2. 작성했던 1:1 질문글에 선배가 답글 달아줬을시. → 후배에게 알림
+3. 후배가 본인이 작성한 1:1질문글에 추가 댓글을 다는 경우 → 선배에게 알림
+
+**커뮤니티**
+
+1. 본인이 작성한 커뮤니티글에 댓글이 달린경우 알림
+2. 답글을 작성한 커뮤니티 글에 답글이 달린 경우 알림
+3. 특정학과대상 질문글이 올라온 경우 알림
+
+<img width="900" alt="알림" src="https://user-images.githubusercontent.com/63277563/236615659-23c72272-c4ae-4e42-9f31-0004f9150d80.png">
+
+
+---
+### `마이페이지`
+
+- 1:1 질문 작성 시 선배의 마이페이지에 질문 글이 게시됩니다.
+- 선배의 마이페이지에서는 선배의 본전공, 제2전공, 한줄소개, 질문 응답률 등을 확인할 수 있습니다.
+- 본인의 마이페이지인 경우, 프로필을 수정하고 한 줄 소개를 작성할 수 있으며, 내가 쓴 글, 답글, 후기, 좋아요 목록을 모아볼 수 있습니다.
+
+<img width="900" alt="마이" src="https://user-images.githubusercontent.com/63277563/236615666-f2c79d43-62b9-4b09-a840-39b8d73a19b3.png">
+
+
+</details>
+	
 <br>
 
 ## 💻 Coding Convention
@@ -190,48 +329,6 @@
 </details>
 
 <br>
-	
-
-## 🗂 Foldering Convention
-<details>
-<summary> 🙋🏻‍♀️ NadoSunbae-iOS Foldering Convention 🙋🏻‍♀️ </summary>
-<div markdown="1"> 
-
-```
-
- NadoSunbae-iOS
-    ├──📁 Global
-    │   ├── LaunchScreen.storyboard
-    │   ├── Class
-    │   ├── Extension
-    │   ├── Factory 
-    │   ├── Font
-    │   ├── Protocol
-    │   ├── Struct
-    │   └── UIComponent
-    │       ├── Class
-    │       └── Xib
-    ├──📁 Network
-    │   ├── APIEssentials
-    │   ├── APIModels
-    │   ├── APIServices
-    │   ├── MoyaTarget
-    │   └── NetworkLoggerPlugin.swift
-    ├──📁 Screen
-    │   └── Classroom
-    │       ├── SB
-    │       ├── VC
-    │       └── Cell
-    └──📁 Support
-        ├── AppDelegate.swift
-        ├── Assets.xcassets
-        ├── Colorsets.xcassets
-        ├── Info.plist
-        └── SceneDelegate.swift
-``` 
-</details>
-	
-<br>
 
 ## ✉️ Commit Convention
 
@@ -287,42 +384,3 @@
 
 </details>
 <br>
-	
-### 🙆🏻‍♀️ 역할 분담 선배
----
-- 지은
-```
-- 과방 탭
-- 프로젝트 세팅
-- 공통 컴포넌트: NadosunbaeBtn, NodosunbaeNaviBar, NadosunbaeTextView, NadoSegmentView, NadoHorizonContainerViews
-```
-
-- 은주
-```
-- 후기 탭
-- 공통 컴포넌트: 학과 선택 bottom sheet
-```
-
-- 정빈
-```
-- 로그인, 회원가입, 알림 탭, 마이페이지 탭
-- FCM 세팅
-- 공통 컴포넌트: NadoAlert
-```
-
-### 👵🏻 회고 선배
----
- - 지은
-	
-> 나도선배 iOS 개발을 시작하면서 3명의 코드가 한 사람의 코드처럼 보였으면 좋겠다는 바램을 안고 개발을 시작했었다. 그래서 처음에 와이어프레임을 보며 공통적으로 사용될 부분들을 공통 컴포넌트, 클래스, 베이스 컨트롤러 등으로 만들어서 효율적인 협업을 하자는 제안을 했던 것이 기억난다. 프로젝트 초반엔 공통적인 부분을 3명이서 다 따로 개발해도 문제가 없고 속도도 크게 달라지지 않지만, 프로젝트가 어느정도 진행되며 무거워진 시점에 어느 한 뷰에 변동이 생기거나 갑자기 버튼 스타일이 변경되는 일 등이 생긴다면 모든 스토리보드, 컨트롤러의 값을 일일이 바꿔줘야 하는 불상사가 일어나기 쉽다. 그래서 모든 VC에 공통적으로 자주 사용되는 Button, Navigation Bar, textView, Custom Alert, BottomSheet 등을 공통 UIComponent, Custom Class로 만들어 사용하였다. 
-사실 나조차 큰 프로젝트에 재사용 컴포넌트를 도입해 관리하는 경험이 처음이었기에 효용성에 대한 확실한 확신이 없었는데, 프로젝트가 후반부로 달려가면서 앱 규모가 커져가니 재사용 컴포넌트의 효용성은 정말 놀라웠다. 최상위 Class에서 값을 바꿔주면 모든 뷰에서 값이 바뀌는 효율적인 경험을 함께하는 두명의 팀원들에게 직접 체감하며 느끼게 해주었다는 점에서도 스스로도 굉장히 뿌듯했다. 사실 Extension이나 공통 Component를 만들어놓아도 후반부에는 잘 재사용을 안하거나 본인의 코드에 갇히기 마련인데, 우리 팀원들은 범용성을 위해 공통적인 코드를 사용하려고 노력해줘서 그 점도 우리 프로젝트가 효율적으로 관리되는데 한 몫을 했다고 생각한다. 
-아무튼간.. 나도선배 짱이고.. 정정빈, 최은주와 같은 팀으로 같은 파트로 개발하게 되어서 너무 많이 성장했고 영광이었고 행복한 3주였다. 우리, 앞으로도 화이팅!
-	
- - 은주
-
-> 서버통신에 대한 이해도가 부족한 상태로 앱잼에 참여하게 되어서 마지막 주차에 API를 연결하는 과정이 이번 프로젝트에서 가장 어려웠던 부분이었던 것 같다. 3주차 중반부터 서버를 연결하기 시작했는데, 서버 통신 전반에 대한 이해가 부족하다보니 서버 통신 과정에서 오류가 많이 발생해 팀 전체의 작업이 느려지게 된 것 같아 팀원들에게 가장 미안했다. 
- 그럴 때마다 팀원들이 오류를 같이 확인해주고 통신에 실패하는 원인에 대해 상세하게 설명해주며 문제를 해결할 수 있도록 도와주어 잘 해결할 수 있었다. 팀원들이 문제 해결을 대신해주었던 것이 아니라 함께 해결할 수 있도록 도와주며 문제 원인에 대해 상세하게 설명해준 덕분에 점점 서버통신과 앱의 생명주기에 대한 이해도를 높여갈 수 있었으며, 점점 오류도 줄어들게 되어 서버 연결 작업에 속도도 붙을 수 있었다. 개발하면서 힘든 점, 어려운 점이 있다면 항상 본인의 일처럼 도와주고, ‘함께’의 가치를 알고 실천하는 팀원들과 함께할 수 있어서 감사한 시간이었고 팀원들에게서 개발 지식 뿐만 아니라 협업에 필요한 마인드까지 배울 수 있었던 시간이었다. 항상 든든한 팀원인 지은, 정빈에게 고마운 마음을 전하고 싶다.
-
- - 정빈
-
-> 이전엔 혼자, 혹은 두 명이서 협업한 경험만 있었는데, iOS 개발자 3명 이상과 제대로 된 협업은 처음 해 봤다. 혼자 공부할 때에는 어쩔 수 없이 시야가 좁아지는 느낌이 있다. 어떤 기능을 구현할 줄은 알지만, 구현하는 방법은 한 가지밖에 모른다는 것이다. 혼자 개발할 땐 아무런 문제가 되지 않았지만, 팀원들과 코드 리뷰를 진행하면서는 문제가 되었다. 기획대로 우선 생각나는 대로 개발하고, 나중에 생각하자! 하던 습관과 앱잼 협업 방식이 충돌하여 초반에 좀 속도도 안 나고, 어려웠다는 느낌이 있었다. 이를 극복하기 위해 단순 "코드를 짠다"가 아니라, "효율적인 코드를 짠다"에 초점을 맞추고 스스로도 다양한 방법, 더 효율적인 방법에 대해 한 번 더 생각해 보았다. 또한 내가 익숙한 방식을 경계하도록 노력했다. 팀원들의 피드백도 내 시야를 넓히는 데 많은 도움이 되었고, 나 또한 팀원들의 코드를 가능한 한 모두 보았다. 확실히 보수적이던 내 개발 방식이 앱잼을 하며 개방적인 태도로 바뀐 것 같은 느낌이 들었다.
